@@ -1,0 +1,223 @@
+# راه‌اندازی محلی 🖥️
+
+**اگر ترجیح می‌دهید همه چیز را روی لپ‌تاپ خودتان اجرا کنید، از این راهنما استفاده کنید.**  
+دو مسیر دارید: **(A) پایتون بومی + virtual-env** یا **(B) کانتینر توسعه VS Code با داکر**.  
+هر کدام که برایتان آسان‌تر است را انتخاب کنید—هر دو به همان درس‌ها منتهی می‌شوند.
+
+## 1. پیش‌نیازها
+
+| ابزار               | نسخه / توضیحات                                                                      |
+|--------------------|--------------------------------------------------------------------------------------|
+| **Python**         | 3.10 به بالا (از <https://python.org> دریافت کنید)                                   |
+| **Git**            | آخرین نسخه (همراه با Xcode / Git برای ویندوز / مدیر بسته لینوکس)                     |
+| **VS Code**        | اختیاری اما توصیه شده <https://code.visualstudio.com>                               |
+| **Docker Desktop** | *فقط* برای گزینه B. نصب رایگان: <https://docs.docker.com/desktop/>                  |
+
+> 💡 **نکته** – ابزارها را در ترمینال بررسی کنید:  
+> `python --version`، `git --version`، `docker --version`، `code --version`  
+
+## 2. گزینه A – پایتون بومی (سریع‌ترین)
+
+### مرحله 1 کلون کردن این مخزن
+
+```bash
+git clone https://github.com/<your-github>/generative-ai-for-beginners
+cd generative-ai-for-beginners
+```
+
+### مرحله 2 ایجاد و فعال‌سازی محیط مجازی
+
+```bash
+python -m venv .venv          # یکی بساز
+source .venv/bin/activate     # مک‌اواس / لینوکس
+.\.venv\Scripts\activate      # ویندوز پاورشل
+```
+
+✅ اکنون پرامپت باید با (.venv) شروع شود—این یعنی شما داخل محیط هستید.
+
+### مرحله 3 نصب وابستگی‌ها
+
+```bash
+pip install -r requirements.txt
+```
+
+به بخش 3 درباره [کلیدهای API](../../../00-course-setup) بروید
+
+## 2. گزینه B – کانتینر توسعه VS Code (داکر)
+
+ما این مخزن و دوره را با یک [کانتینر توسعه](https://containers.dev?WT.mc_id=academic-105485-koreyst) راه‌اندازی کرده‌ایم که یک محیط اجرایی جهانی دارد و می‌تواند از توسعه Python3، .NET، Node.js و Java پشتیبانی کند. پیکربندی مرتبط در فایل `devcontainer.json` واقع در پوشه `.devcontainer/` در ریشه این مخزن تعریف شده است.
+
+>**چرا این را انتخاب کنیم؟**  
+>محیطی یکسان با Codespaces؛ بدون انحراف وابستگی.
+
+### مرحله 0 نصب موارد اضافی
+
+Docker Desktop – تأیید کنید ```docker --version``` کار می‌کند.  
+افزونه VS Code Remote – Containers (شناسه: ms-vscode-remote.remote-containers).
+
+### مرحله 1 باز کردن مخزن در VS Code
+
+File ▸ Open Folder…  → generative-ai-for-beginners
+
+VS Code پوشه .devcontainer/ را شناسایی کرده و یک اعلان نمایش می‌دهد.
+
+### مرحله 2 باز کردن مجدد در کانتینر
+
+روی «Reopen in Container» کلیک کنید. داکر تصویر را می‌سازد (≈ ۳ دقیقه برای بار اول).  
+وقتی پرامپت ترمینال ظاهر شد، شما داخل کانتینر هستید.
+
+## 2. گزینه C – Miniconda
+
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) یک نصب‌کننده سبک برای نصب [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst)، پایتون و چند بسته است.  
+Conda خود یک مدیر بسته است که راه‌اندازی و جابجایی بین [محیط‌های مجازی](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) و بسته‌های مختلف پایتون را آسان می‌کند. همچنین برای نصب بسته‌هایی که از طریق `pip` در دسترس نیستند مفید است.
+
+### مرحله 0 نصب Miniconda
+
+راهنمای [نصب MiniConda](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) را دنبال کنید.
+
+```bash
+conda --version
+```
+
+### مرحله 1 ایجاد محیط مجازی
+
+یک فایل محیط جدید بسازید (*environment.yml*). اگر با Codespaces کار می‌کنید، این فایل را در دایرکتوری `.devcontainer` ایجاد کنید، یعنی `.devcontainer/environment.yml`.
+
+### مرحله 2 پر کردن فایل محیط
+
+قطعه کد زیر را به فایل `environment.yml` اضافه کنید
+
+```yml
+name: <environment-name>
+channels:
+ - defaults
+ - microsoft
+dependencies:
+- python=<python-version>
+- openai
+- python-dotenv
+- pip
+- pip:
+    - azure-ai-ml
+
+```
+
+### مرحله 3 ایجاد محیط Conda
+
+دستورات زیر را در خط فرمان/ترمینال اجرا کنید
+
+```bash 
+conda env create --name ai4beg --file .devcontainer/environment.yml # مسیر فرعی .devcontainer فقط برای تنظیمات Codespace اعمال می‌شود
+conda activate ai4beg
+```
+
+اگر با مشکلی مواجه شدید، به [راهنمای محیط‌های Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) مراجعه کنید.
+
+## 2 گزینه D – Jupyter کلاسیک / Jupyter Lab (در مرورگر شما)
+
+> **این گزینه برای چه کسانی است؟**  
+> هر کسی که رابط کلاسیک Jupyter را دوست دارد یا می‌خواهد دفترچه‌ها را بدون VS Code اجرا کند.
+
+### مرحله 1 اطمینان از نصب Jupyter
+
+برای شروع Jupyter به صورت محلی، به ترمینال/خط فرمان بروید، به دایرکتوری دوره بروید و اجرا کنید:
+
+```bash
+jupyter notebook
+```
+
+یا
+
+```bash
+jupyterhub
+```
+
+این یک نمونه Jupyter را راه‌اندازی می‌کند و آدرس URL برای دسترسی به آن در پنجره خط فرمان نمایش داده می‌شود.
+
+وقتی به URL دسترسی پیدا کردید، باید طرح دوره را ببینید و بتوانید به هر فایل `*.ipynb` دسترسی داشته باشید. برای مثال، `08-building-search-applications/python/oai-solution.ipynb`.
+
+## 3. افزودن کلیدهای API خود
+
+حفظ امنیت کلیدهای API هنگام ساخت هر نوع برنامه‌ای مهم است. توصیه می‌کنیم کلیدهای API را مستقیماً در کد خود ذخیره نکنید. ثبت این اطلاعات در مخزن عمومی می‌تواند منجر به مشکلات امنیتی و حتی هزینه‌های ناخواسته در صورت استفاده توسط افراد مخرب شود.  
+در اینجا راهنمای گام به گام برای ایجاد فایل `.env` برای پایتون و افزودن `GITHUB_TOKEN` آمده است:
+
+1. **به دایرکتوری پروژه خود بروید**: ترمینال یا خط فرمان را باز کنید و به دایرکتوری ریشه پروژه خود که می‌خواهید فایل `.env` را ایجاد کنید، بروید.
+
+   ```bash
+   cd path/to/your/project
+   ```
+
+2. **ایجاد فایل `.env`**: با ویرایشگر متن مورد علاقه خود یک فایل جدید به نام `.env` بسازید. اگر از خط فرمان استفاده می‌کنید، می‌توانید از `touch` (در سیستم‌های مبتنی بر یونیکس) یا `echo` (در ویندوز) استفاده کنید:
+
+   سیستم‌های مبتنی بر یونیکس:
+
+   ```bash
+   touch .env
+   ```
+
+   ویندوز:
+
+   ```cmd
+   echo . > .env
+   ```
+
+3. **ویرایش فایل `.env`**: فایل `.env` را در یک ویرایشگر متن (مثلاً VS Code، Notepad++ یا هر ویرایشگر دیگر) باز کنید. خط زیر را به فایل اضافه کنید و `your_github_token_here` را با توکن واقعی گیت‌هاب خود جایگزین کنید:
+
+   ```env
+   GITHUB_TOKEN=your_github_token_here
+   ```
+
+4. **ذخیره فایل**: تغییرات را ذخیره کرده و ویرایشگر متن را ببندید.
+
+5. **نصب `python-dotenv`**: اگر قبلاً نصب نکرده‌اید، باید بسته `python-dotenv` را نصب کنید تا متغیرهای محیطی از فایل `.env` در برنامه پایتون شما بارگذاری شوند. می‌توانید با `pip` آن را نصب کنید:
+
+   ```bash
+   pip install python-dotenv
+   ```
+
+6. **بارگذاری متغیرهای محیطی در اسکریپت پایتون خود**: در اسکریپت پایتون خود، از بسته `python-dotenv` برای بارگذاری متغیرهای محیطی از فایل `.env` استفاده کنید:
+
+   ```python
+   from dotenv import load_dotenv
+   import os
+
+   # بارگذاری متغیرهای محیطی از فایل .env
+   load_dotenv()
+
+   # دسترسی به متغیر GITHUB_TOKEN
+   github_token = os.getenv("GITHUB_TOKEN")
+
+   print(github_token)
+   ```
+
+همین! شما با موفقیت فایل `.env` را ایجاد کرده، توکن گیت‌هاب خود را اضافه کرده و آن را در برنامه پایتون خود بارگذاری کرده‌اید.
+
+🔐 هرگز فایل .env را کامیت نکنید—این فایل در .gitignore قرار دارد.  
+دستورالعمل‌های کامل ارائه‌دهنده در [`providers.md`](03-providers.md) موجود است.
+
+## 4. مرحله بعدی چیست؟
+
+| می‌خواهم…          | برو به…                                                                  |
+|---------------------|-------------------------------------------------------------------------|
+| شروع درس 1          | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| راه‌اندازی ارائه‌دهنده LLM | [`providers.md`](03-providers.md)                                       |
+| ملاقات با دیگر یادگیرندگان | [به Discord ما بپیوندید](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
+
+## 5. عیب‌یابی
+
+| نشانه                                   | رفع مشکل                                                        |
+|-----------------------------------------|-----------------------------------------------------------------|
+| `python not found`                      | افزودن پایتون به PATH یا باز کردن مجدد ترمینال پس از نصب       |
+| `pip` نمی‌تواند wheels بسازد (ویندوز)  | اجرای `pip install --upgrade pip setuptools wheel` سپس تلاش مجدد.|
+| `ModuleNotFoundError: dotenv`           | اجرای `pip install -r requirements.txt` (محیط نصب نشده بود).   |
+| خطای ساخت داکر *No space left*          | Docker Desktop ▸ *Settings* ▸ *Resources* → افزایش حجم دیسک.   |
+| VS Code مرتباً درخواست بازگشایی می‌دهد | ممکن است هر دو گزینه فعال باشند؛ یکی را انتخاب کنید (venv **یا** کانتینر)|
+| خطاهای OpenAI 401 / 429                 | مقدار `OPENAI_API_KEY` و محدودیت نرخ درخواست را بررسی کنید.   |
+| خطاهای استفاده از Conda                | نصب کتابخانه‌های AI مایکروسافت با `conda install -c microsoft azure-ai-ml`|
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**سلب مسئولیت**:  
+این سند با استفاده از سرویس ترجمه هوش مصنوعی [Co-op Translator](https://github.com/Azure/co-op-translator) ترجمه شده است. در حالی که ما در تلاش برای دقت هستیم، لطفاً توجه داشته باشید که ترجمه‌های خودکار ممکن است حاوی خطاها یا نواقصی باشند. سند اصلی به زبان بومی خود باید به عنوان منبع معتبر در نظر گرفته شود. برای اطلاعات حیاتی، ترجمه حرفه‌ای انسانی توصیه می‌شود. ما مسئول هیچ گونه سوءتفاهم یا تفسیر نادرستی که از استفاده این ترجمه ناشی شود، نیستیم.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

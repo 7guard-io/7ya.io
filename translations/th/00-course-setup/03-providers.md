@@ -1,0 +1,122 @@
+# การเลือกและการกำหนดค่าผู้ให้บริการ LLM 🔑
+
+งานมอบหมาย **อาจจะ** ถูกตั้งค่าให้ทำงานกับการปรับใช้ Large Language Model (LLM) หนึ่งหรือมากกว่าผ่านผู้ให้บริการที่รองรับ เช่น OpenAI, Azure หรือ Hugging Face ซึ่งให้ _hosted endpoint_ (API) ที่เราสามารถเข้าถึงได้โดยโปรแกรมด้วยข้อมูลรับรองที่ถูกต้อง (API key หรือ token) ในหลักสูตรนี้ เราจะพูดถึงผู้ให้บริการเหล่านี้:
+
+ - [OpenAI](https://platform.openai.com/docs/models?WT.mc_id=academic-105485-koreyst) พร้อมโมเดลหลากหลายรวมถึงชุด GPT หลัก
+ - [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst) สำหรับโมเดล OpenAI ที่เน้นความพร้อมใช้งานในองค์กร
+ - [Hugging Face](https://huggingface.co/docs/hub/index?WT.mc_id=academic-105485-koreyst) สำหรับโมเดลโอเพ่นซอร์สและเซิร์ฟเวอร์การอนุมาน
+
+**คุณจะต้องใช้บัญชีของคุณเองสำหรับแบบฝึกหัดเหล่านี้** งานมอบหมายเป็นทางเลือก ดังนั้นคุณสามารถเลือกตั้งค่าเพียงหนึ่ง รายการทั้งหมด หรือไม่มีเลยก็ได้ตามความสนใจของคุณ คำแนะนำสำหรับการสมัคร:
+
+| สมัคร | ค่าใช้จ่าย | API Key | Playground | ความคิดเห็น |
+|:---|:---|:---|:---|:---|
+| [OpenAI](https://platform.openai.com/signup?WT.mc_id=academic-105485-koreyst)| [ราคาค่าบริการ](https://openai.com/pricing#language-models?WT.mc_id=academic-105485-koreyst)| [ตามโปรเจกต์](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) | [ไม่ต้องเขียนโค้ด, เว็บ](https://platform.openai.com/playground?WT.mc_id=academic-105485-koreyst) | มีโมเดลหลายแบบให้เลือก |
+| [Azure](https://aka.ms/azure/free?WT.mc_id=academic-105485-koreyst)| [ราคาค่าบริการ](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/?WT.mc_id=academic-105485-koreyst)| [เริ่มต้นด้วย SDK](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst)| [เริ่มต้นด้วย Studio](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst) |  [ต้องสมัครล่วงหน้าเพื่อขอสิทธิ์เข้าถึง](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst)|
+| [Hugging Face](https://huggingface.co/join?WT.mc_id=academic-105485-koreyst) | [ราคาค่าบริการ](https://huggingface.co/pricing) | [Access Tokens](https://huggingface.co/docs/hub/security-tokens?WT.mc_id=academic-105485-koreyst) | [Hugging Chat](https://huggingface.co/chat/?WT.mc_id=academic-105485-koreyst)| [Hugging Chat มีโมเดลจำกัด](https://huggingface.co/chat/models?WT.mc_id=academic-105485-koreyst) |
+| | | | | |
+
+ทำตามคำแนะนำด้านล่างเพื่อ _กำหนดค่า_ ที่เก็บนี้สำหรับการใช้งานกับผู้ให้บริการต่างๆ งานมอบหมายที่ต้องการผู้ให้บริการเฉพาะจะมีแท็กเหล่านี้ในชื่อไฟล์:
+
+- `aoai` - ต้องใช้ Azure OpenAI endpoint และ key
+- `oai` - ต้องใช้ OpenAI endpoint และ key
+- `hf` - ต้องใช้ Hugging Face token
+
+คุณสามารถกำหนดค่าเพียงหนึ่ง ไม่มีเลย หรือทั้งหมดก็ได้ งานมอบหมายที่เกี่ยวข้องจะเกิดข้อผิดพลาดหากขาดข้อมูลรับรอง
+
+## สร้างไฟล์ `.env`
+
+เราสมมติว่าคุณได้อ่านคำแนะนำข้างต้นและสมัครกับผู้ให้บริการที่เกี่ยวข้องแล้ว และได้รับข้อมูลรับรองการตรวจสอบสิทธิ์ที่จำเป็น (API_KEY หรือ token) ในกรณีของ Azure OpenAI เราสมมติว่าคุณมีการปรับใช้ Azure OpenAI Service (endpoint) ที่ถูกต้องพร้อมโมเดล GPT อย่างน้อยหนึ่งโมเดลสำหรับการสนทนา
+
+ขั้นตอนถัดไปคือการกำหนดค่า **ตัวแปรสภาพแวดล้อมในเครื่องของคุณ** ดังนี้:
+
+1. มองหาไฟล์ `.env.copy` ในโฟลเดอร์รากซึ่งควรมีเนื้อหาดังนี้:
+
+   ```bash
+   # ผู้ให้บริการ OpenAI
+   OPENAI_API_KEY='<add your OpenAI API key here>'
+
+   ## Azure OpenAI
+   AZURE_OPENAI_API_VERSION='2024-02-01' # ตั้งค่าเริ่มต้นแล้ว!
+   AZURE_OPENAI_API_KEY='<add your AOAI key here>'
+   AZURE_OPENAI_ENDPOINT='<add your AOIA service endpoint here>'
+   AZURE_OPENAI_DEPLOYMENT='<add your chat completion model name here>' 
+   AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='<add your embeddings model name here>'
+
+   ## Hugging Face
+   HUGGING_FACE_API_KEY='<add your HuggingFace API or token here>'
+   ```
+
+2. คัดลอกไฟล์นั้นเป็น `.env` โดยใช้คำสั่งด้านล่าง ไฟล์นี้จะถูก _gitignore_ เพื่อเก็บความลับให้ปลอดภัย
+
+   ```bash
+   cp .env.copy .env
+   ```
+
+3. กรอกค่าต่างๆ (แทนที่ตัวแทนที่อยู่ด้านขวาของ `=`) ตามที่อธิบายในส่วนถัดไป
+
+4. (ตัวเลือก) หากคุณใช้ GitHub Codespaces คุณสามารถบันทึกตัวแปรสภาพแวดล้อมเป็น _Codespaces secrets_ ที่เชื่อมโยงกับที่เก็บนี้ได้ ในกรณีนั้น คุณจะไม่ต้องตั้งค่าไฟล์ .env ในเครื่อง **อย่างไรก็ตาม โปรดทราบว่าตัวเลือกนี้ใช้ได้เฉพาะกับ GitHub Codespaces เท่านั้น** คุณยังคงต้องตั้งค่าไฟล์ .env หากใช้ Docker Desktop แทน
+
+## เติมข้อมูลในไฟล์ `.env`
+
+มาดูชื่อของตัวแปรเพื่อเข้าใจว่ามันแทนอะไร:
+
+| ตัวแปร  | คำอธิบาย  |
+| :--- | :--- |
+| HUGGING_FACE_API_KEY | นี่คือ token การเข้าถึงผู้ใช้ที่คุณตั้งค่าในโปรไฟล์ของคุณ |
+| OPENAI_API_KEY | นี่คือคีย์อนุญาตสำหรับใช้บริการกับ OpenAI ที่ไม่ใช่ Azure |
+| AZURE_OPENAI_API_KEY | นี่คือคีย์อนุญาตสำหรับใช้บริการนั้น |
+| AZURE_OPENAI_ENDPOINT | นี่คือ endpoint ที่ปรับใช้สำหรับทรัพยากร Azure OpenAI |
+| AZURE_OPENAI_DEPLOYMENT | นี่คือ endpoint การปรับใช้โมเดล _text generation_ |
+| AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT | นี่คือ endpoint การปรับใช้โมเดล _text embeddings_ |
+| | |
+
+หมายเหตุ: ตัวแปร Azure OpenAI สองตัวสุดท้ายสะท้อนโมเดลเริ่มต้นสำหรับการสนทนา (text generation) และการค้นหาเวกเตอร์ (embeddings) ตามลำดับ คำแนะนำสำหรับการตั้งค่าจะถูกกำหนดในงานมอบหมายที่เกี่ยวข้อง
+
+## กำหนดค่า Azure: จากพอร์ทัล
+
+ค่า endpoint และ key ของ Azure OpenAI จะพบได้ใน [Azure Portal](https://portal.azure.com?WT.mc_id=academic-105485-koreyst) ดังนั้นเรามาเริ่มที่นั่นกัน
+
+1. ไปที่ [Azure Portal](https://portal.azure.com?WT.mc_id=academic-105485-koreyst)
+1. คลิกตัวเลือก **Keys and Endpoint** ในแถบด้านข้าง (เมนูด้านซ้าย)
+1. คลิก **Show Keys** - คุณจะเห็นดังนี้: KEY 1, KEY 2 และ Endpoint
+1. ใช้ค่า KEY 1 สำหรับ AZURE_OPENAI_API_KEY
+1. ใช้ค่า Endpoint สำหรับ AZURE_OPENAI_ENDPOINT
+
+ถัดไป เราต้องการ endpoint สำหรับโมเดลเฉพาะที่เราปรับใช้
+
+1. คลิกตัวเลือก **Model deployments** ในแถบด้านข้าง (เมนูซ้าย) สำหรับทรัพยากร Azure OpenAI
+1. ในหน้าปลายทาง คลิก **Manage Deployments**
+
+สิ่งนี้จะพาคุณไปยังเว็บไซต์ Azure OpenAI Studio ซึ่งเราจะพบค่าที่เหลือตามที่อธิบายด้านล่าง
+
+## กำหนดค่า Azure: จาก Studio
+
+1. ไปที่ [Azure OpenAI Studio](https://oai.azure.com?WT.mc_id=academic-105485-koreyst) **จากทรัพยากรของคุณ** ตามที่อธิบายไว้ข้างต้น
+1. คลิกแท็บ **Deployments** (แถบด้านข้าง ซ้าย) เพื่อดูโมเดลที่ปรับใช้ในปัจจุบัน
+1. หากโมเดลที่ต้องการยังไม่ถูกปรับใช้ ให้ใช้ **Create new deployment** เพื่อปรับใช้
+1. คุณจะต้องมีโมเดล _text-generation_ — เราแนะนำ: **gpt-35-turbo**
+1. คุณจะต้องมีโมเดล _text-embedding_ — เราแนะนำ **text-embedding-ada-002**
+
+ตอนนี้อัปเดตตัวแปรสภาพแวดล้อมให้สะท้อน _ชื่อการปรับใช้_ ที่ใช้ โดยปกติจะเหมือนกับชื่อโมเดลเว้นแต่คุณจะเปลี่ยนชื่ออย่างชัดเจน ดังนั้น ตัวอย่างเช่น คุณอาจมี:
+
+```bash
+AZURE_OPENAI_DEPLOYMENT='gpt-35-turbo'
+AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='text-embedding-ada-002'
+```
+
+**อย่าลืมบันทึกไฟล์ .env เมื่อเสร็จแล้ว** คุณสามารถออกจากไฟล์และกลับไปทำตามคำแนะนำสำหรับการรันโน้ตบุ๊กได้
+
+## กำหนดค่า OpenAI: จากโปรไฟล์
+
+คีย์ API ของ OpenAI ของคุณสามารถพบได้ใน [บัญชี OpenAI ของคุณ](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) หากคุณยังไม่มี คุณสามารถสมัครบัญชีและสร้างคีย์ API ได้ เมื่อคุณมีคีย์แล้ว คุณสามารถใช้เพื่อเติมตัวแปร `OPENAI_API_KEY` ในไฟล์ `.env`
+
+## กำหนดค่า Hugging Face: จากโปรไฟล์
+
+โทเค็น Hugging Face ของคุณสามารถพบได้ในโปรไฟล์ของคุณภายใต้ [Access Tokens](https://huggingface.co/settings/tokens?WT.mc_id=academic-105485-koreyst) อย่าโพสต์หรือแชร์โทเค็นเหล่านี้สู่สาธารณะ ให้สร้างโทเค็นใหม่สำหรับการใช้งานโปรเจกต์นี้และคัดลอกไปยังไฟล์ `.env` ภายใต้ตัวแปร `HUGGING_FACE_API_KEY` _หมายเหตุ:_ นี่ไม่ใช่คีย์ API ทางเทคนิค แต่ใช้สำหรับการตรวจสอบสิทธิ์ ดังนั้นเราจึงใช้ชื่อนี้เพื่อความสอดคล้องกัน
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ข้อจำกัดความรับผิดชอบ**:  
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษาอัตโนมัติ [Co-op Translator](https://github.com/Azure/co-op-translator) แม้เราจะพยายามให้ความถูกต้องสูงสุด แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางถือเป็นแหล่งข้อมูลที่เชื่อถือได้ สำหรับข้อมูลที่สำคัญ ขอแนะนำให้ใช้บริการแปลโดยผู้เชี่ยวชาญมนุษย์ เราไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความผิดใด ๆ ที่เกิดจากการใช้การแปลนี้
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

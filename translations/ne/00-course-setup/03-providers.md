@@ -1,0 +1,122 @@
+# LLM प्रदायक छनोट र कन्फिगर गर्ने 🔑
+
+असाइनमेन्टहरू **सक्छन्** एक वा बढी ठूलो भाषा मोडेल (LLM) डिप्लोयमेन्टहरूमा समर्थित सेवा प्रदायक जस्तै OpenAI, Azure वा Hugging Face मार्फत काम गर्न सेटअप गरिन सक्छ। यीले एक _होस्ट गरिएको अन्तबिन्दु_ (API) प्रदान गर्छन् जुन हामीले सही प्रमाणपत्रहरू (API कुञ्जी वा टोकन) सहित प्रोग्रामिङ्गमार्फत पहुँच गर्न सक्छौं। यस कोर्समा, हामी यी प्रदायकहरूलाई छलफल गर्छौं:
+
+ - [OpenAI](https://platform.openai.com/docs/models?WT.mc_id=academic-105485-koreyst) विभिन्न मोडेलहरू सहित मुख्य GPT श्रृंखला।
+ - [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst) OpenAI मोडेलहरूका लागि उद्यम तत्परता केन्द्रित
+ - [Hugging Face](https://huggingface.co/docs/hub/index?WT.mc_id=academic-105485-koreyst) खुला स्रोत मोडेलहरू र इन्फरेन्स सर्भरका लागि
+
+**तपाईंले यी अभ्यासहरूका लागि आफ्नै खाता प्रयोग गर्नुपर्नेछ**। असाइनमेन्टहरू वैकल्पिक छन् त्यसैले तपाईं आफ्नो रुचि अनुसार एक, सबै वा कुनै पनि प्रदायक सेटअप गर्न सक्नुहुन्छ। साइनअपका लागि केही मार्गदर्शन:
+
+| साइनअप | लागत | API कुञ्जी | प्लेग्राउन्ड | टिप्पणीहरू |
+|:---|:---|:---|:---|:---|
+| [OpenAI](https://platform.openai.com/signup?WT.mc_id=academic-105485-koreyst)| [मूल्य निर्धारण](https://openai.com/pricing#language-models?WT.mc_id=academic-105485-koreyst)| [परियोजना-आधारित](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) | [नो-कोड, वेब](https://platform.openai.com/playground?WT.mc_id=academic-105485-koreyst) | धेरै मोडेलहरू उपलब्ध |
+| [Azure](https://aka.ms/azure/free?WT.mc_id=academic-105485-koreyst)| [मूल्य निर्धारण](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/?WT.mc_id=academic-105485-koreyst)| [SDK क्विकस्टार्ट](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst)| [स्टुडियो क्विकस्टार्ट](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst) |  [पहिले पहुँचका लागि आवेदन दिनुहोस्](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst)|
+| [Hugging Face](https://huggingface.co/join?WT.mc_id=academic-105485-koreyst) | [मूल्य निर्धारण](https://huggingface.co/pricing) | [पहुँच टोकनहरू](https://huggingface.co/docs/hub/security-tokens?WT.mc_id=academic-105485-koreyst) | [Hugging Chat](https://huggingface.co/chat/?WT.mc_id=academic-105485-koreyst)| [Hugging Chat मा सीमित मोडेलहरू छन्](https://huggingface.co/chat/models?WT.mc_id=academic-105485-koreyst) |
+| | | | | |
+
+विभिन्न प्रदायकहरूसँग प्रयोग गर्न यो रिपोजिटोरीलाई _कन्फिगर_ गर्न तलका निर्देशनहरू पालना गर्नुहोस्। कुनै विशेष प्रदायक आवश्यक पर्ने असाइनमेन्टहरूमा फाइलनाममा यी ट्यागहरू मध्ये एक हुनेछ:
+
+- `aoai` - Azure OpenAI अन्तबिन्दु, कुञ्जी आवश्यक
+- `oai` - OpenAI अन्तबिन्दु, कुञ्जी आवश्यक
+- `hf` - Hugging Face टोकन आवश्यक
+
+तपाईं एक, कुनै पनि वा सबै प्रदायकहरू कन्फिगर गर्न सक्नुहुन्छ। सम्बन्धित असाइनमेन्टहरूमा प्रमाणपत्रहरू नभएमा त्रुटि हुनेछ।
+
+## `.env` फाइल बनाउने
+
+हामी मान्छौं तपाईंले माथिको मार्गदर्शन पढिसक्नुभएको छ र सम्बन्धित प्रदायकसँग साइन अप गरी आवश्यक प्रमाणीकरण प्रमाणपत्रहरू (API_KEY वा टोकन) प्राप्त गर्नुभएको छ। Azure OpenAI को मामलामा, हामी मान्छौं तपाईंले Azure OpenAI सेवा (अन्तबिन्दु) को मान्य डिप्लोयमेन्ट पनि गर्नुभएको छ जहाँ कम्तिमा एक GPT मोडेल च्याट कम्प्लीसनका लागि डिप्लोय गरिएको छ।
+
+अर्को चरण तपाईंको **स्थानीय वातावरण चरहरू** यसरी कन्फिगर गर्नु हो:
+
+1. रुट फोल्डरमा `.env.copy` फाइल खोज्नुहोस् जसमा यस प्रकारको सामग्री हुनुपर्छ:
+
+   ```bash
+   # OpenAI प्रदायक
+   OPENAI_API_KEY='<add your OpenAI API key here>'
+
+   ## Azure OpenAI
+   AZURE_OPENAI_API_VERSION='2024-02-01' # पूर्वनिर्धारित सेट गरिएको छ!
+   AZURE_OPENAI_API_KEY='<add your AOAI key here>'
+   AZURE_OPENAI_ENDPOINT='<add your AOIA service endpoint here>'
+   AZURE_OPENAI_DEPLOYMENT='<add your chat completion model name here>' 
+   AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='<add your embeddings model name here>'
+
+   ## Hugging Face
+   HUGGING_FACE_API_KEY='<add your HuggingFace API or token here>'
+   ```
+
+2. तलको कमाण्ड प्रयोग गरी त्यो फाइललाई `.env` मा कपी गर्नुहोस्। यो फाइल _gitignore गरिएको_ छ, जसले गोप्य जानकारी सुरक्षित राख्छ।
+
+   ```bash
+   cp .env.copy .env
+   ```
+
+3. मानहरू भर्नुहोस् (`=` को दायाँपट्टि प्लेसहोल्डरहरू प्रतिस्थापन गर्नुहोस्) जुन अर्को खण्डमा वर्णन गरिएको छ।
+
+4. (वैकल्पिक) यदि तपाईं GitHub Codespaces प्रयोग गर्नुहुन्छ भने, तपाईंले वातावरण चरहरूलाई यस रिपोजिटोरीसँग सम्बन्धित _Codespaces secrets_ को रूपमा सुरक्षित गर्न सक्नुहुन्छ। त्यस अवस्थामा, तपाईंलाई स्थानीय .env फाइल सेटअप गर्न आवश्यक पर्दैन। **तर, यो विकल्प केवल GitHub Codespaces प्रयोग गर्दा मात्र काम गर्छ।** Docker Desktop प्रयोग गर्दा तपाईंले अझै .env फाइल सेटअप गर्नुपर्नेछ।
+
+## `.env` फाइल भर्नुहोस्
+
+हामी छिटो चर नामहरूलाई बुझ्ने प्रयास गरौं कि तिनीहरूले के जनाउँछन्:
+
+| चर  | विवरण  |
+| :--- | :--- |
+| HUGGING_FACE_API_KEY | यो तपाईंले आफ्नो प्रोफाइलमा सेटअप गरेको प्रयोगकर्ता पहुँच टोकन हो |
+| OPENAI_API_KEY | यो गैर-Azure OpenAI अन्तबिन्दुहरूको लागि सेवा प्रयोग गर्ने प्राधिकरण कुञ्जी हो |
+| AZURE_OPENAI_API_KEY | यो Azure OpenAI सेवा प्रयोग गर्ने प्राधिकरण कुञ्जी हो |
+| AZURE_OPENAI_ENDPOINT | यो Azure OpenAI स्रोतको डिप्लोय गरिएको अन्तबिन्दु हो |
+| AZURE_OPENAI_DEPLOYMENT | यो _टेक्स्ट जेनेरेसन_ मोडेल डिप्लोयमेन्ट अन्तबिन्दु हो |
+| AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT | यो _टेक्स्ट एम्बेडिङ्स_ मोडेल डिप्लोयमेन्ट अन्तबिन्दु हो |
+| | |
+
+टिप्पणी: अन्तिम दुई Azure OpenAI चरहरूले क्रमशः च्याट कम्प्लीसन (टेक्स्ट जेनेरेसन) र भेक्टर खोज (एम्बेडिङ्स) का लागि पूर्वनिर्धारित मोडेल जनाउँछन्। तिनीहरू सेटअप गर्ने निर्देशनहरू सम्बन्धित असाइनमेन्टहरूमा दिइनेछ।
+
+## Azure कन्फिगर गर्ने: पोर्टलबाट
+
+Azure OpenAI अन्तबिन्दु र कुञ्जी मानहरू [Azure पोर्टल](https://portal.azure.com?WT.mc_id=academic-105485-koreyst) मा पाइन्छन्, त्यसैले त्यहाँबाट सुरु गरौं।
+
+1. [Azure पोर्टल](https://portal.azure.com?WT.mc_id=academic-105485-koreyst) मा जानुहोस्
+1. साइडबार (बायाँ मेनु) मा **Keys and Endpoint** विकल्पमा क्लिक गर्नुहोस्।
+1. **Show Keys** मा क्लिक गर्नुहोस् - तपाईंले KEY 1, KEY 2 र Endpoint देख्नुहुनेछ।
+1. AZURE_OPENAI_API_KEY को लागि KEY 1 मान प्रयोग गर्नुहोस्
+1. AZURE_OPENAI_ENDPOINT को लागि Endpoint मान प्रयोग गर्नुहोस्
+
+अर्को, हामीले डिप्लोय गरेका विशिष्ट मोडेलहरूको अन्तबिन्दुहरू चाहिन्छ।
+
+1. Azure OpenAI स्रोतको लागि साइडबार (बायाँ मेनु) मा **Model deployments** विकल्पमा क्लिक गर्नुहोस्।
+1. गन्तव्य पृष्ठमा, **Manage Deployments** मा क्लिक गर्नुहोस्
+
+यसले तपाईंलाई Azure OpenAI Studio वेबसाइटमा लैजान्छ, जहाँ हामी तल वर्णन गरिएका अन्य मानहरू फेला पार्नेछौं।
+
+## Azure कन्फिगर गर्ने: स्टुडियोबाट
+
+1. माथि वर्णन अनुसार आफ्नो स्रोतबाट [Azure OpenAI Studio](https://oai.azure.com?WT.mc_id=academic-105485-koreyst) मा जानुहोस्।
+1. हाल डिप्लोय भएका मोडेलहरू हेर्न **Deployments** ट्याब (साइडबार, बायाँ) मा क्लिक गर्नुहोस्।
+1. तपाईंको चाहिएको मोडेल डिप्लोय नभए, **Create new deployment** प्रयोग गरी डिप्लोय गर्नुहोस्।
+1. तपाईंलाई _टेक्स्ट-जेनेरेसन_ मोडेल चाहिन्छ - हामी सिफारिस गर्छौं: **gpt-35-turbo**
+1. तपाईंलाई _टेक्स्ट-एम्बेडिङ_ मोडेल चाहिन्छ - हामी सिफारिस गर्छौं **text-embedding-ada-002**
+
+अब वातावरण चरहरूलाई _Deployment name_ अनुसार अपडेट गर्नुहोस् जुन सामान्यतया मोडेल नामकै समान हुन्छ जबसम्म तपाईंले स्पष्ट रूपमा परिवर्तन गर्नु भएको छैन। उदाहरणका लागि, तपाईंले हुनसक्छ:
+
+```bash
+AZURE_OPENAI_DEPLOYMENT='gpt-35-turbo'
+AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='text-embedding-ada-002'
+```
+
+**सम्पादन पछि .env फाइल सुरक्षित गर्न नबिर्सनुहोस्**। अब तपाईं फाइलबाट बाहिर निस्कन सक्नुहुन्छ र नोटबुक चलाउने निर्देशनहरूमा फर्कन सक्नुहुन्छ।
+
+## OpenAI कन्फिगर गर्ने: प्रोफाइलबाट
+
+तपाईंको OpenAI API कुञ्जी तपाईंको [OpenAI खातामा](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) फेला पार्न सकिन्छ। यदि तपाईं सँग छैन भने, तपाईं खाता खोल्न र API कुञ्जी बनाउन सक्नुहुन्छ। कुञ्जी पाएपछि, तपाईंले `.env` फाइलमा `OPENAI_API_KEY` चर भर्न सक्नुहुन्छ।
+
+## Hugging Face कन्फिगर गर्ने: प्रोफाइलबाट
+
+तपाईंको Hugging Face टोकन तपाईंको प्रोफाइलमा [Access Tokens](https://huggingface.co/settings/tokens?WT.mc_id=academic-105485-koreyst) अन्तर्गत फेला पार्न सकिन्छ। यी सार्वजनिक रूपमा पोस्ट वा साझा नगर्नुहोस्। यसको सट्टा, यस परियोजनाको लागि नयाँ टोकन सिर्जना गरी त्यसलाई `.env` फाइलमा `HUGGING_FACE_API_KEY` चरमा कपी गर्नुहोस्। _टिप्पणी:_ यो प्राविधिक रूपमा API कुञ्जी होइन तर प्रमाणीकरणका लागि प्रयोग गरिन्छ त्यसैले हामीले नामकरण परम्परा कायम राखेका छौं।
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**अस्वीकरण**:
+यो दस्तावेज AI अनुवाद सेवा [Co-op Translator](https://github.com/Azure/co-op-translator) प्रयोग गरी अनुवाद गरिएको हो। हामी शुद्धताका लागि प्रयासरत छौं, तर कृपया ध्यान दिनुहोस् कि स्वचालित अनुवादमा त्रुटि वा अशुद्धता हुन सक्छ। मूल दस्तावेज यसको मूल भाषामा आधिकारिक स्रोत मानिनु पर्छ। महत्वपूर्ण जानकारीका लागि व्यावसायिक मानव अनुवाद सिफारिस गरिन्छ। यस अनुवादको प्रयोगबाट उत्पन्न कुनै पनि गलतफहमी वा गलत व्याख्याका लागि हामी जिम्मेवार छैनौं।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

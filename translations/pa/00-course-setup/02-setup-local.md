@@ -1,0 +1,223 @@
+# ਲੋਕਲ ਸੈਟਅਪ 🖥️
+
+**ਜੇ ਤੁਸੀਂ ਆਪਣੀ ਲੈਪਟਾਪ 'ਤੇ ਸਾਰਾ ਕੁਝ ਚਲਾਉਣਾ ਪਸੰਦ ਕਰਦੇ ਹੋ ਤਾਂ ਇਸ ਗਾਈਡ ਦੀ ਵਰਤੋਂ ਕਰੋ।**  
+ਤੁਹਾਡੇ ਕੋਲ ਦੋ ਰਾਹ ਹਨ: **(A) ਨੈਟਿਵ ਪਾਇਥਨ + ਵਰਚੁਅਲ-ਇਨਵਾਇਰਨਮੈਂਟ** ਜਾਂ **(B) ਡੋਕਰ ਨਾਲ VS ਕੋਡ ਡੈਵ ਕੰਟੇਨਰ**।  
+ਜੋ ਵੀ ਤੁਹਾਨੂੰ ਆਸਾਨ ਲੱਗੇ ਚੁਣੋ—ਦੋਹਾਂ ਰਾਹਾਂ ਨਾਲ ਇੱਕੋ ਹੀ ਸਬਕ ਮਿਲਦੇ ਹਨ।
+
+## 1.  ਲੋੜੀਂਦੇ ਸਾਧਨ
+
+| ਸਾਧਨ               | ਵਰਜਨ / ਨੋਟਸ                                                                      |
+|--------------------|----------------------------------------------------------------------------------|
+| **Python**         | 3.10 + (<https://python.org> ਤੋਂ ਪ੍ਰਾਪਤ ਕਰੋ)                                        |
+| **Git**            | ਤਾਜ਼ਾ (Xcode / Git for Windows / Linux ਪੈਕੇਜ ਮੈਨੇਜਰ ਨਾਲ ਆਉਂਦਾ ਹੈ)               |
+| **VS Code**        | ਵਿਕਲਪਿਕ ਪਰ ਸਿਫਾਰਸ਼ੀ <https://code.visualstudio.com>                             |
+| **Docker Desktop** | *ਸਿਰਫ* ਵਿਕਲਪ B ਲਈ। ਮੁਫ਼ਤ ਇੰਸਟਾਲ: <https://docs.docker.com/desktop/>           |
+
+> 💡 **ਟਿਪ** – ਟਰਮੀਨਲ ਵਿੱਚ ਸਾਧਨਾਂ ਦੀ ਜਾਂਚ ਕਰੋ:  
+> `python --version`, `git --version`, `docker --version`, `code --version`  
+
+## 2.  ਵਿਕਲਪ A – ਨੈਟਿਵ ਪਾਇਥਨ (ਸਭ ਤੋਂ ਤੇਜ਼)
+
+### ਕਦਮ 1  ਇਸ ਰਿਪੋ ਨੂੰ ਕਲੋਨ ਕਰੋ
+
+```bash
+git clone https://github.com/<your-github>/generative-ai-for-beginners
+cd generative-ai-for-beginners
+```
+
+### ਕਦਮ 2 ਵਰਚੁਅਲ ਇਨਵਾਇਰਨਮੈਂਟ ਬਣਾਓ ਅਤੇ ਐਕਟੀਵੇਟ ਕਰੋ
+
+```bash
+python -m venv .venv          # ਇੱਕ ਬਣਾਓ
+source .venv/bin/activate     # ਮੈਕਓਐਸ / ਲਿਨਕਸ
+.\.venv\Scripts\activate      # ਵਿਂਡੋਜ਼ ਪਾਵਰਸ਼ੈੱਲ
+```
+
+✅ ਪ੍ਰਾਂਪਟ ਹੁਣ (.venv) ਨਾਲ ਸ਼ੁਰੂ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ—ਇਸਦਾ ਮਤਲਬ ਹੈ ਕਿ ਤੁਸੀਂ ਇਨਵਾਇਰਨਮੈਂਟ ਵਿੱਚ ਹੋ।
+
+### ਕਦਮ 3 ਡਿਪੈਂਡੈਂਸੀਜ਼ ਇੰਸਟਾਲ ਕਰੋ
+
+```bash
+pip install -r requirements.txt
+```
+
+[API keys](../../../00-course-setup) ਬਾਰੇ ਸੈਕਸ਼ਨ 3 'ਤੇ ਜਾਓ
+
+## 2. ਵਿਕਲਪ B – VS ਕੋਡ ਡੈਵ ਕੰਟੇਨਰ (ਡੋਕਰ)
+
+ਅਸੀਂ ਇਸ ਰਿਪੋਜ਼ਟਰੀ ਅਤੇ ਕੋਰਸ ਨੂੰ ਇੱਕ [ਡੈਵਲਪਮੈਂਟ ਕੰਟੇਨਰ](https://containers.dev?WT.mc_id=academic-105485-koreyst) ਨਾਲ ਸੈਟਅਪ ਕੀਤਾ ਹੈ ਜਿਸ ਵਿੱਚ ਇੱਕ ਯੂਨੀਵਰਸਲ ਰਨਟਾਈਮ ਹੈ ਜੋ Python3, .NET, Node.js ਅਤੇ Java ਡਿਵੈਲਪਮੈਂਟ ਨੂੰ ਸਹਾਰਾ ਦਿੰਦਾ ਹੈ। ਸੰਬੰਧਿਤ ਕਨਫਿਗਰੇਸ਼ਨ `devcontainer.json` ਫਾਇਲ ਵਿੱਚ ਪਰਿਭਾਸ਼ਿਤ ਹੈ ਜੋ ਇਸ ਰਿਪੋਜ਼ਟਰੀ ਦੀ ਰੂਟ `.devcontainer/` ਫੋਲਡਰ ਵਿੱਚ ਹੈ।
+
+>**ਇਸਨੂੰ ਕਿਉਂ ਚੁਣੀਏ?**  
+>Codespaces ਵਰਗਾ ਇਕੋ ਜਿਹਾ ਮਾਹੌਲ; ਕੋਈ ਡਿਪੈਂਡੈਂਸੀ ਡ੍ਰਿਫਟ ਨਹੀਂ।
+
+### ਕਦਮ 0 ਐਕਸਟ੍ਰਾ ਇੰਸਟਾਲ ਕਰੋ
+
+Docker Desktop – ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ```docker --version``` ਕੰਮ ਕਰਦਾ ਹੈ।  
+VS Code Remote – Containers ਐਕਸਟੈਂਸ਼ਨ (ID: ms-vscode-remote.remote-containers)।
+
+### ਕਦਮ 1 VS ਕੋਡ ਵਿੱਚ ਰਿਪੋ ਖੋਲ੍ਹੋ
+
+File ▸ Open Folder…  → generative-ai-for-beginners
+
+VS ਕੋਡ `.devcontainer/` ਨੂੰ ਡਿਟੈਕਟ ਕਰਦਾ ਹੈ ਅਤੇ ਪ੍ਰਾਂਪਟ ਦਿਖਾਉਂਦਾ ਹੈ।
+
+### ਕਦਮ 2 ਕੰਟੇਨਰ ਵਿੱਚ ਮੁੜ ਖੋਲ੍ਹੋ
+
+“Reopen in Container” 'ਤੇ ਕਲਿੱਕ ਕਰੋ। ਡੋਕਰ ਇਮੇਜ ਬਣਾਉਂਦਾ ਹੈ (ਪਹਿਲੀ ਵਾਰੀ ਲਗਭਗ 3 ਮਿੰਟ)।  
+ਜਦੋਂ ਟਰਮੀਨਲ ਪ੍ਰਾਂਪਟ ਆਵੇ, ਤੁਸੀਂ ਕੰਟੇਨਰ ਵਿੱਚ ਹੋ।
+
+## 2.  ਵਿਕਲਪ C – ਮਿਨੀਕੋਂਡਾ
+
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) ਇੱਕ ਹਲਕਾ ਫੁਲਕਾ ਇੰਸਟਾਲਰ ਹੈ ਜੋ [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), Python ਅਤੇ ਕੁਝ ਪੈਕੇਜਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਦਾ ਹੈ।  
+Conda ਖੁਦ ਇੱਕ ਪੈਕੇਜ ਮੈਨੇਜਰ ਹੈ, ਜੋ ਵੱਖ-ਵੱਖ Python [**ਵਰਚੁਅਲ ਇਨਵਾਇਰਨਮੈਂਟਸ**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) ਅਤੇ ਪੈਕੇਜਾਂ ਵਿਚਕਾਰ ਸੈਟਅਪ ਅਤੇ ਸਵਿੱਚ ਕਰਨਾ ਆਸਾਨ ਬਣਾਉਂਦਾ ਹੈ। ਇਹ ਉਹਨਾਂ ਪੈਕੇਜਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਵੀ ਲਾਭਦਾਇਕ ਹੈ ਜੋ `pip` ਰਾਹੀਂ ਉਪਲਬਧ ਨਹੀਂ ਹਨ।
+
+### ਕਦਮ 0  ਮਿਨੀਕੋਂਡਾ ਇੰਸਟਾਲ ਕਰੋ
+
+[MiniConda ਇੰਸਟਾਲੇਸ਼ਨ ਗਾਈਡ](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) ਦੀ ਪਾਲਣਾ ਕਰੋ।
+
+```bash
+conda --version
+```
+
+### ਕਦਮ 1 ਵਰਚੁਅਲ ਇਨਵਾਇਰਨਮੈਂਟ ਬਣਾਓ
+
+ਇੱਕ ਨਵਾਂ ਇਨਵਾਇਰਨਮੈਂਟ ਫਾਇਲ (*environment.yml*) ਬਣਾਓ। ਜੇ ਤੁਸੀਂ Codespaces ਵਰਤ ਰਹੇ ਹੋ, ਤਾਂ ਇਸਨੂੰ `.devcontainer` ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਬਣਾਓ, ਜਿਵੇਂ `.devcontainer/environment.yml`।
+
+### ਕਦਮ 2 ਆਪਣਾ ਇਨਵਾਇਰਨਮੈਂਟ ਫਾਇਲ ਭਰੋ
+
+ਆਪਣੇ `environment.yml` ਵਿੱਚ ਹੇਠਾਂ ਦਿੱਤਾ ਟੁਕੜਾ ਸ਼ਾਮਲ ਕਰੋ
+
+```yml
+name: <environment-name>
+channels:
+ - defaults
+ - microsoft
+dependencies:
+- python=<python-version>
+- openai
+- python-dotenv
+- pip
+- pip:
+    - azure-ai-ml
+
+```
+
+### ਕਦਮ 3 ਆਪਣਾ Conda ਇਨਵਾਇਰਨਮੈਂਟ ਬਣਾਓ
+
+ਹੇਠਾਂ ਦਿੱਤੇ ਕਮਾਂਡ ਲਾਈਨ/ਟਰਮੀਨਲ ਵਿੱਚ ਚਲਾਓ
+
+```bash 
+conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer ਸਬ ਪਾਥ ਸਿਰਫ Codespace ਸੈਟਅਪ ਲਈ ਲਾਗੂ ਹੁੰਦਾ ਹੈ
+conda activate ai4beg
+```
+
+ਜੇ ਕੋਈ ਸਮੱਸਿਆ ਆਵੇ ਤਾਂ [Conda environments guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) ਨੂੰ ਵੇਖੋ।
+
+## 2  ਵਿਕਲਪ D – ਕਲਾਸਿਕ ਜੂਪਿਟਰ / ਜੂਪਿਟਰ ਲੈਬ (ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ)
+
+> **ਇਹ ਕਿਸ ਲਈ ਹੈ?**  
+> ਜੋ ਕੋਈ ਕਲਾਸਿਕ ਜੂਪਿਟਰ ਇੰਟਰਫੇਸ ਪਸੰਦ ਕਰਦਾ ਹੈ ਜਾਂ VS ਕੋਡ ਬਿਨਾਂ ਨੋਟਬੁੱਕ ਚਲਾਉਣਾ ਚਾਹੁੰਦਾ ਹੈ।  
+
+### ਕਦਮ 1  ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਜੂਪਿਟਰ ਇੰਸਟਾਲ ਹੈ
+
+ਜੂਪਿਟਰ ਨੂੰ ਲੋਕਲ ਚਲਾਉਣ ਲਈ, ਟਰਮੀਨਲ/ਕਮਾਂਡ ਲਾਈਨ 'ਤੇ ਜਾਓ, ਕੋਰਸ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਜਾਓ ਅਤੇ ਚਲਾਓ:
+
+```bash
+jupyter notebook
+```
+
+ਜਾਂ
+
+```bash
+jupyterhub
+```
+
+ਇਸ ਨਾਲ ਜੂਪਿਟਰ ਇੰਸਟੈਂਸ ਸ਼ੁਰੂ ਹੋਵੇਗਾ ਅਤੇ ਇਸਨੂੰ ਐਕਸੈਸ ਕਰਨ ਲਈ URL ਕਮਾਂਡ ਲਾਈਨ ਵਿੰਡੋ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਵੇਗਾ।
+
+ਜਦੋਂ ਤੁਸੀਂ URL ਖੋਲ੍ਹੋਗੇ, ਤਾਂ ਤੁਹਾਨੂੰ ਕੋਰਸ ਦਾ ਢਾਂਚਾ ਦਿਖਾਈ ਦੇਵੇਗਾ ਅਤੇ ਤੁਸੀਂ ਕਿਸੇ ਵੀ `*.ipynb` ਫਾਇਲ ਤੇ ਜਾ ਸਕਦੇ ਹੋ। ਉਦਾਹਰਨ ਲਈ, `08-building-search-applications/python/oai-solution.ipynb`।
+
+## 3. ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ ਸ਼ਾਮਲ ਕਰੋ
+
+ਆਪਣੀਆਂ API ਕੁੰਜੀਆਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣਾ ਕਿਸੇ ਵੀ ਕਿਸਮ ਦੀ ਐਪਲੀਕੇਸ਼ਨ ਬਣਾਉਂਦੇ ਸਮੇਂ ਮਹੱਤਵਪੂਰਨ ਹੈ। ਅਸੀਂ ਸਿਫਾਰਸ਼ ਕਰਦੇ ਹਾਂ ਕਿ ਕੋਈ ਵੀ API ਕੁੰਜੀਆਂ ਸਿੱਧਾ ਆਪਣੇ ਕੋਡ ਵਿੱਚ ਸਟੋਰ ਨਾ ਕਰੋ। ਇਹ ਜਾਣਕਾਰੀ ਜਨਤਕ ਰਿਪੋਜ਼ਟਰੀ ਵਿੱਚ ਕਮਿਟ ਕਰਨ ਨਾਲ ਸੁਰੱਖਿਆ ਸਮੱਸਿਆਵਾਂ ਅਤੇ ਬੁਰੇ ਉਪਭੋਗਤਾ ਵੱਲੋਂ ਵਰਤੋਂ ਹੋਣ 'ਤੇ ਅਣਚਾਹੇ ਖਰਚੇ ਹੋ ਸਕਦੇ ਹਨ।  
+ਇੱਥੇ ਇੱਕ ਕਦਮ-ਦਰ-ਕਦਮ ਗਾਈਡ ਹੈ ਕਿ ਕਿਵੇਂ Python ਲਈ `.env` ਫਾਇਲ ਬਣਾਈਏ ਅਤੇ `GITHUB_TOKEN` ਸ਼ਾਮਲ ਕਰੋ:
+
+1. **ਆਪਣੇ ਪ੍ਰੋਜੈਕਟ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਜਾਓ**: ਆਪਣਾ ਟਰਮੀਨਲ ਜਾਂ ਕਮਾਂਡ ਪ੍ਰਾਂਪਟ ਖੋਲ੍ਹੋ ਅਤੇ ਉਸ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ ਜਾਓ ਜਿੱਥੇ ਤੁਸੀਂ `.env` ਫਾਇਲ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ।
+
+   ```bash
+   cd path/to/your/project
+   ```
+
+2. **`.env` ਫਾਇਲ ਬਣਾਓ**: ਆਪਣੀ ਪਸੰਦ ਦਾ ਟੈਕਸਟ ਐਡੀਟਰ ਵਰਤ ਕੇ `.env` ਨਾਮ ਦੀ ਨਵੀਂ ਫਾਇਲ ਬਣਾਓ। ਜੇ ਤੁਸੀਂ ਕਮਾਂਡ ਲਾਈਨ ਵਰਤ ਰਹੇ ਹੋ, ਤਾਂ `touch` (ਯੂਨਿਕਸ-ਆਧਾਰਿਤ ਸਿਸਟਮਾਂ ਲਈ) ਜਾਂ `echo` (ਵਿੰਡੋਜ਼ ਲਈ) ਵਰਤ ਸਕਦੇ ਹੋ:
+
+   ਯੂਨਿਕਸ-ਆਧਾਰਿਤ ਸਿਸਟਮ:
+
+   ```bash
+   touch .env
+   ```
+
+   ਵਿੰਡੋਜ਼:
+
+   ```cmd
+   echo . > .env
+   ```
+
+3. **`.env` ਫਾਇਲ ਸੰਪਾਦਿਤ ਕਰੋ**: `.env` ਫਾਇਲ ਨੂੰ ਕਿਸੇ ਟੈਕਸਟ ਐਡੀਟਰ (ਜਿਵੇਂ VS ਕੋਡ, Notepad++, ਜਾਂ ਹੋਰ) ਵਿੱਚ ਖੋਲ੍ਹੋ। ਹੇਠਾਂ ਦਿੱਤੀ ਲਾਈਨ ਸ਼ਾਮਲ ਕਰੋ, `your_github_token_here` ਨੂੰ ਆਪਣੀ ਅਸਲੀ GitHub ਟੋਕਨ ਨਾਲ ਬਦਲੋ:
+
+   ```env
+   GITHUB_TOKEN=your_github_token_here
+   ```
+
+4. **ਫਾਇਲ ਸੇਵ ਕਰੋ**: ਬਦਲਾਅ ਸੇਵ ਕਰੋ ਅਤੇ ਟੈਕਸਟ ਐਡੀਟਰ ਬੰਦ ਕਰੋ।
+
+5. **`python-dotenv` ਇੰਸਟਾਲ ਕਰੋ**: ਜੇ ਤੁਸੀਂ ਪਹਿਲਾਂ ਨਹੀਂ ਕੀਤਾ, ਤਾਂ `.env` ਫਾਇਲ ਤੋਂ ਵਾਤਾਵਰਣ ਚਲਣ ਵਾਲੇ ਵੈਰੀਏਬਲਾਂ ਨੂੰ ਆਪਣੇ Python ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਲੋਡ ਕਰਨ ਲਈ `python-dotenv` ਪੈਕੇਜ ਇੰਸਟਾਲ ਕਰੋ। ਤੁਸੀਂ ਇਸਨੂੰ `pip` ਨਾਲ ਇੰਸਟਾਲ ਕਰ ਸਕਦੇ ਹੋ:
+
+   ```bash
+   pip install python-dotenv
+   ```
+
+6. **ਆਪਣੇ Python ਸਕ੍ਰਿਪਟ ਵਿੱਚ ਵਾਤਾਵਰਣ ਵੈਰੀਏਬਲ ਲੋਡ ਕਰੋ**: ਆਪਣੇ Python ਸਕ੍ਰਿਪਟ ਵਿੱਚ, `.env` ਫਾਇਲ ਤੋਂ ਵਾਤਾਵਰਣ ਵੈਰੀਏਬਲ ਲੋਡ ਕਰਨ ਲਈ `python-dotenv` ਪੈਕੇਜ ਦੀ ਵਰਤੋਂ ਕਰੋ:
+
+   ```python
+   from dotenv import load_dotenv
+   import os
+
+   # .env ਫਾਇਲ ਤੋਂ ਵਾਤਾਵਰਣ ਵੈਰੀਏਬਲ ਲੋਡ ਕਰੋ
+   load_dotenv()
+
+   # GITHUB_TOKEN ਵੈਰੀਏਬਲ ਤੱਕ ਪਹੁੰਚ ਕਰੋ
+   github_token = os.getenv("GITHUB_TOKEN")
+
+   print(github_token)
+   ```
+
+ਬਸ ਹੋ ਗਿਆ! ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ `.env` ਫਾਇਲ ਬਣਾਈ, ਆਪਣੀ GitHub ਟੋਕਨ ਸ਼ਾਮਲ ਕੀਤੀ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ Python ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਲੋਡ ਕੀਤਾ।
+
+🔐 ਕਦੇ ਵੀ .env ਕਮਿਟ ਨਾ ਕਰੋ—ਇਹ ਪਹਿਲਾਂ ਹੀ .gitignore ਵਿੱਚ ਹੈ।  
+ਪੂਰੀ ਪ੍ਰੋਵਾਈਡਰ ਹਦਾਇਤਾਂ [`providers.md`](03-providers.md) ਵਿੱਚ ਹਨ।
+
+## 4. ਅਗਲਾ ਕੀ?
+
+| ਮੈਂ ਚਾਹੁੰਦਾ ਹਾਂ…       | ਜਾਓ…                                                                   |
+|---------------------|-------------------------------------------------------------------------|
+| ਪਾਠ 1 ਸ਼ੁਰੂ ਕਰੋ       | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| ਇੱਕ LLM ਪ੍ਰੋਵਾਈਡਰ ਸੈਟਅਪ ਕਰੋ | [`providers.md`](03-providers.md)                                       |
+| ਹੋਰ ਸਿੱਖਣ ਵਾਲਿਆਂ ਨਾਲ ਮਿਲੋ | [ਸਾਡੇ Discord ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
+
+## 5. ਸਮੱਸਿਆ ਨਿਵਾਰਣ
+
+| ਲੱਛਣ                                   | ਸੁਧਾਰ                                                             |
+|----------------------------------------|------------------------------------------------------------------|
+| `python not found`                     | Python ਨੂੰ PATH ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ ਜਾਂ ਇੰਸਟਾਲ ਤੋਂ ਬਾਅਦ ਟਰਮੀਨਲ ਮੁੜ ਖੋਲ੍ਹੋ |
+| `pip` cannot build wheels (Windows)    | `pip install --upgrade pip setuptools wheel` ਚਲਾਓ ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ। |
+| `ModuleNotFoundError: dotenv`          | `pip install -r requirements.txt` ਚਲਾਓ (env ਇੰਸਟਾਲ ਨਹੀਂ ਸੀ)       |
+| Docker build fails *No space left*     | Docker Desktop ▸ *Settings* ▸ *Resources* → ਡਿਸਕ ਸਾਈਜ਼ ਵਧਾਓ।       |
+| VS Code ਮੁੜ ਖੋਲ੍ਹਣ ਲਈ ਪ੍ਰਾਂਪਟ ਕਰਦਾ ਰਹਿੰਦਾ ਹੈ | ਤੁਹਾਡੇ ਕੋਲ ਦੋਹਾਂ ਵਿਕਲਪ ਚਾਲੂ ਹੋ ਸਕਦੇ ਹਨ; ਇੱਕ ਚੁਣੋ (venv **ਜਾਂ** container)|
+| OpenAI 401 / 429 errors                | `OPENAI_API_KEY` ਦੀ ਕੀਮਤ ਜਾਂ ਬੇਨਤੀ ਦੀ ਦਰ ਦੀ ਜਾਂਚ ਕਰੋ।              |
+| Conda ਵਰਤੋਂ ਵਿੱਚ ਗਲਤੀਆਂ              | Microsoft AI ਲਾਇਬ੍ਰੇਰੀਜ਼ `conda install -c microsoft azure-ai-ml` ਨਾਲ ਇੰਸਟਾਲ ਕਰੋ |
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**ਅਸਵੀਕਾਰੋਪੱਤਰ**:  
+ਇਹ ਦਸਤਾਵੇਜ਼ AI ਅਨੁਵਾਦ ਸੇਵਾ [Co-op Translator](https://github.com/Azure/co-op-translator) ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਅਨੁਵਾਦ ਕੀਤਾ ਗਿਆ ਹੈ। ਜਦੋਂ ਕਿ ਅਸੀਂ ਸਹੀਤਾ ਲਈ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ ਕਿ ਸਵੈਚਾਲਿਤ ਅਨੁਵਾਦਾਂ ਵਿੱਚ ਗਲਤੀਆਂ ਜਾਂ ਅਸਮਰਥਤਾਵਾਂ ਹੋ ਸਕਦੀਆਂ ਹਨ। ਮੂਲ ਦਸਤਾਵੇਜ਼ ਆਪਣੀ ਮੂਲ ਭਾਸ਼ਾ ਵਿੱਚ ਪ੍ਰਮਾਣਿਕ ਸਰੋਤ ਮੰਨਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ। ਮਹੱਤਵਪੂਰਨ ਜਾਣਕਾਰੀ ਲਈ, ਪੇਸ਼ੇਵਰ ਮਨੁੱਖੀ ਅਨੁਵਾਦ ਦੀ ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾਂਦੀ ਹੈ। ਅਸੀਂ ਇਸ ਅਨੁਵਾਦ ਦੀ ਵਰਤੋਂ ਤੋਂ ਉਤਪੰਨ ਕਿਸੇ ਵੀ ਗਲਤਫਹਿਮੀ ਜਾਂ ਗਲਤ ਵਿਆਖਿਆ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਨਹੀਂ ਹਾਂ।
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

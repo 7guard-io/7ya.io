@@ -1,0 +1,122 @@
+# Избор и конфигурисање провајдера LLM 🔑
+
+Задатке **може** такође бити подешено да раде са једним или више Large Language Model (LLM) распореда преко подржаног провајдера услуга као што су OpenAI, Azure или Hugging Face. Они обезбеђују _хостовану крајњу тачку_ (API) којој можемо приступити програмски са одговарајућим акредитивима (API кључ или токен). У овом курсу, разматрамо ове провајдере:
+
+ - [OpenAI](https://platform.openai.com/docs/models?WT.mc_id=academic-105485-koreyst) са разноврсним моделима укључујући основну GPT серију.
+ - [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst) за OpenAI моделе са фокусом на спремност за предузећа
+ - [Hugging Face](https://huggingface.co/docs/hub/index?WT.mc_id=academic-105485-koreyst) за open-source моделе и inference сервер
+
+**За ове вежбе ћете морати да користите своје налоге**. Задатци су опциони, па можете изабрати да подесите једног, све - или ниједног - од провајдера у складу са својим интересовањима. Нека упутства за регистрацију:
+
+| Регистрација | Цена | API кључ | Playground | Коментари |
+|:---|:---|:---|:---|:---|
+| [OpenAI](https://platform.openai.com/signup?WT.mc_id=academic-105485-koreyst)| [Цене](https://openai.com/pricing#language-models?WT.mc_id=academic-105485-koreyst)| [Пројектно базирано](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst) | [Без кода, веб](https://platform.openai.com/playground?WT.mc_id=academic-105485-koreyst) | Више доступних модела |
+| [Azure](https://aka.ms/azure/free?WT.mc_id=academic-105485-koreyst)| [Цене](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/?WT.mc_id=academic-105485-koreyst)| [SDK брзи почетак](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst)| [Studio брзи почетак](https://learn.microsoft.com/azure/ai-services/openai/quickstart?WT.mc_id=academic-105485-koreyst) |  [Морате се пријавити унапред за приступ](https://learn.microsoft.com/azure/ai-services/openai/?WT.mc_id=academic-105485-koreyst)|
+| [Hugging Face](https://huggingface.co/join?WT.mc_id=academic-105485-koreyst) | [Цене](https://huggingface.co/pricing) | [Токени за приступ](https://huggingface.co/docs/hub/security-tokens?WT.mc_id=academic-105485-koreyst) | [Hugging Chat](https://huggingface.co/chat/?WT.mc_id=academic-105485-koreyst)| [Hugging Chat има ограничене моделе](https://huggingface.co/chat/models?WT.mc_id=academic-105485-koreyst) |
+| | | | | |
+
+Пратите упутства испод да _конфигуришете_ овај репозиторијум за коришћење са различитим провајдерима. Задатци који захтевају одређеног провајдера ће у свом имену датотеке имати једну од ових ознака:
+
+- `aoai` - захтева Azure OpenAI крајњу тачку, кључ
+- `oai` - захтева OpenAI крајњу тачку, кључ
+- `hf` - захтева Hugging Face токен
+
+Можете конфигурисати једног, ниједног или све провајдере. Повезани задаци ће једноставно пријавити грешку ако недостају акредитиви.
+
+## Креирање `.env` фајла
+
+Претпостављамо да сте већ прочитали горе наведена упутства, регистровали се код релевантног провајдера и добили потребне акредитиве за аутентификацију (API_KEY или токен). У случају Azure OpenAI, претпостављамо да такође имате важећу распоређену Azure OpenAI услугу (крајњу тачку) са најмање једним GPT моделом распоређеним за chat completion.
+
+Следећи корак је да конфигуришете своје **локалне променљиве окружења** на следећи начин:
+
+1. Потражите у коренском фолдеру `.env.copy` фајл који би требао имати садржај као овај:
+
+   ```bash
+   # OpenAI провајдер
+   OPENAI_API_KEY='<add your OpenAI API key here>'
+
+   ## Azure OpenAI
+   AZURE_OPENAI_API_VERSION='2024-02-01' # Подразумевано је подешено!
+   AZURE_OPENAI_API_KEY='<add your AOAI key here>'
+   AZURE_OPENAI_ENDPOINT='<add your AOIA service endpoint here>'
+   AZURE_OPENAI_DEPLOYMENT='<add your chat completion model name here>' 
+   AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='<add your embeddings model name here>'
+
+   ## Hugging Face
+   HUGGING_FACE_API_KEY='<add your HuggingFace API or token here>'
+   ```
+
+2. Копирајте тај фајл у `.env` користећи команду испод. Овај фајл је _gitignore-ован_, чувајући тајне безбедним.
+
+   ```bash
+   cp .env.copy .env
+   ```
+
+3. Попуните вредности (замените плейсхолдере са десне стране `=`) како је описано у следећем одељку.
+
+4. (Опционо) Ако користите GitHub Codespaces, имате опцију да сачувате променљиве окружења као _Codespaces тајне_ повезане са овим репозиторијумом. У том случају, нећете морати да подешавате локални .env фајл. **Међутим, имајте у виду да ова опција ради само ако користите GitHub Codespaces.** И даље ћете морати да подесите .env фајл ако користите Docker Desktop.
+
+## Попуњавање `.env` фајла
+
+Хајде да брзо погледамо имена променљивих да бисмо разумели шта представљају:
+
+| Променљива  | Опис  |
+| :--- | :--- |
+| HUGGING_FACE_API_KEY | Ово је кориснички токен за приступ који сте подесили у свом профилу |
+| OPENAI_API_KEY | Ово је кључ за ауторизацију за коришћење услуге за не-Azure OpenAI крајње тачке |
+| AZURE_OPENAI_API_KEY | Ово је кључ за ауторизацију за коришћење те услуге |
+| AZURE_OPENAI_ENDPOINT | Ово је распоређена крајња тачка за Azure OpenAI ресурс |
+| AZURE_OPENAI_DEPLOYMENT | Ово је крајња тачка распореда модела за _генерисање текста_ |
+| AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT | Ово је крајња тачка распореда модела за _текстуалне угнежђене представе_ |
+| | |
+
+Напомена: Последње две Azure OpenAI променљиве одражавају подразумевани модел за chat completion (генерисање текста) и претрагу вектора (угнежђене представе) респективно. Упутства за њихово подешавање биће дефинисана у релевантним задацима.
+
+## Конфигурисање Azure: Са портала
+
+Вредности Azure OpenAI крајње тачке и кључа можете пронаћи у [Azure порталу](https://portal.azure.com?WT.mc_id=academic-105485-koreyst), па хајде да почнемо одатле.
+
+1. Идите на [Azure портал](https://portal.azure.com?WT.mc_id=academic-105485-koreyst)
+1. Кликните на опцију **Keys and Endpoint** у бочној траци (леви мени).
+1. Кликните на **Show Keys** - требало би да видите следеће: KEY 1, KEY 2 и Endpoint.
+1. Користите вредност KEY 1 за AZURE_OPENAI_API_KEY
+1. Користите вредност Endpoint за AZURE_OPENAI_ENDPOINT
+
+Следеће, потребне су нам крајње тачке за специфичне моделе које смо распоредили.
+
+1. Кликните на опцију **Model deployments** у бочној траци (леви мени) за Azure OpenAI ресурс.
+1. На одредишној страници, кликните на **Manage Deployments**
+
+Ово ће вас одвести на вебсајт Azure OpenAI Studio, где ћемо пронаћи остале вредности као што је описано испод.
+
+## Конфигурисање Azure: Са студија
+
+1. Идите на [Azure OpenAI Studio](https://oai.azure.com?WT.mc_id=academic-105485-koreyst) **са свог ресурса** као што је описано горе.
+1. Кликните на картицу **Deployments** (бочна трака, лево) да бисте видели тренутно распоређене моделе.
+1. Ако ваш жељени модел није распоређен, користите **Create new deployment** да га распоредите.
+1. Потребан вам је _text-generation_ модел - препоручујемо: **gpt-35-turbo**
+1. Потребан вам је _text-embedding_ модел - препоручујемо **text-embedding-ada-002**
+
+Сада ажурирајте променљиве окружења да одражавају коришћено _име распореда_. Обично ће то бити исто као име модела осим ако га нисте експлицитно променили. На пример, можете имати:
+
+```bash
+AZURE_OPENAI_DEPLOYMENT='gpt-35-turbo'
+AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT='text-embedding-ada-002'
+```
+
+**Не заборавите да сачувате .env фајл када завршите**. Сада можете изаћи из фајла и вратити се упутствима за покретање нотебоока.
+
+## Конфигурисање OpenAI: Са профила
+
+Ваш OpenAI API кључ можете пронаћи у свом [OpenAI налогу](https://platform.openai.com/api-keys?WT.mc_id=academic-105485-koreyst). Ако га немате, можете се регистровати и креирати API кључ. Када добијете кључ, можете га користити за попуњавање променљиве `OPENAI_API_KEY` у `.env` фајлу.
+
+## Конфигурисање Hugging Face: Са профила
+
+Ваш Hugging Face токен можете пронаћи у свом профилу под [Access Tokens](https://huggingface.co/settings/tokens?WT.mc_id=academic-105485-koreyst). Немојте их објављивати или делити јавно. Уместо тога, креирајте нови токен за ову употребу пројекта и копирајте га у `.env` фајл под променљиву `HUGGING_FACE_API_KEY`. _Напомена:_ Технички ово није API кључ, али се користи за аутентификацију, па задржавамо ову конвенцију именовања ради доследности.
+
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Одрицање од одговорности**:
+Овај документ је преведен коришћењем AI услуге за превођење [Co-op Translator](https://github.com/Azure/co-op-translator). Иако се трудимо да превод буде тачан, молимо вас да имате у виду да аутоматски преводи могу садржати грешке или нетачности. Оригинални документ на његовом изворном језику треба сматрати ауторитетним извором. За критичне информације препоручује се професионални људски превод. Нисмо одговорни за било каква неспоразума или погрешна тумачења која произилазе из коришћења овог превода.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->
