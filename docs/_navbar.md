@@ -1,10 +1,11 @@
 <!-- _navbar.md -->
 
-* Select Language
+- Select Language
+  - [English](/)
+  - [Simplified Chinese](/translations/zh/)
+  - [Traditional Chinese](/translations/tw/)
+  - [Portuguese](/translations/pt/)
+  - [Japanese](/translations/ja/)
+  - [Korean](/translations/ko/)
 
-    * [English](/)
-    * [Simplified Chinese](/translations/zh/)
-    * [Traditional Chinese](/translations/tw/)
-    * [Portuguese](/translations/pt/)
-    * [Japanese](/translations/ja/)
-    * [Korean](/translations/ko/)
+- [All My Links](/#/my-links)
