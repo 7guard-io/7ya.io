@@ -1,0 +1,131 @@
+/* Base */
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #e6e6e6;
+    font-family: "Inter", "Assistant", sans-serif;
+    line-height: 1.6;
+}
+
+/* Hero */
+.hero {
+    background: #0a0a0a;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.title-en {
+    color: #f2f2f2;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+.title-he {
+    color: #f2f2f2;
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+.subtitle-en,
+.subtitle-he {
+    color: #bfbfbf;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Intro */
+.intro {
+    padding: 40px 20px;
+    max-width: 700px;
+    margin: auto;
+    color: #dcdcdc;
+}
+
+/* Route Map */
+.route-map {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.route {
+    color: #ff8c32; /* measured warning orange */
+    font-family: monospace;
+}
+
+/* Section Tiles */
+.sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    padding: 40px 20px;
+}
+
+.tile {
+    background: #111;
+    padding: 20px;
+    border: 1px solid #333;
+    text-align: center;
+    cursor: default;
+    transition: background 0.2s;
+}
+
+.tile:hover {
+    background: #161616;
+}
+
+/* Evidence Legend */
+.evidence-legend {
+    padding: 40px 20px;
+    border-top: 1px solid #222;
+}
+
+.evidence-legend ul {
+    list-style: none;
+    padding: 0;
+}
+
+.evidence-legend li {
+    padding: 4px 0;
+    color: #9fdfff; /* subtle cyan for interactive/technical */
+}
+
+/* Archive Placeholders */
+.archive-placeholders {
+    padding: 40px 20px;
+}
+
+.placeholder {
+    border: 1px dashed #444;
+    padding: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+    color: #777;
+    font-family: monospace;
+}
+
+/* CTA */
+.cta {
+    padding: 40px 20px;
+    text-align: center;
+    color: #dcdcdc;
+}
+
+.pdf-note {
+    color: #888;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.home-link {
+    color: #9fdfff;
+    text-decoration: none;
+}
