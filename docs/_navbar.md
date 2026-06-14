@@ -8,4 +8,4 @@
   - [Japanese](/translations/ja/)
   - [Korean](/translations/ko/)
 
-- [All My Links](/#/my-links)
+- [All My Links](/#/docs/my-links)
