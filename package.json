@@ -1,26 +1,26 @@
 {
-	"name": "generative-ai-for-beginners",
+	"name": "7ya-io",
 	"version": "1.0.0",
-	"description": "Generative AI for Beginners - A Curriculum",
+	"description": "7ya.io link hub and documentation site",
 	"main": "index.js",
 	"scripts": {
 		"convert": "node_modules/.bin/docsify-to-pdf"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/microsoft/generative-ai-for-beginners.git"
+		"url": "https://github.com/7ya/7ya.io.git"
 	},
 	"keywords": [
 		"generative",
 		"ai",
 		"curriculum"
 	],
-	"author": "Jim Bennett and team",
+	"author": "7ya.io",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/microsoft/generative-ai-for-beginners/issues"
+		"url": "mailto:hello@7ya.io"
 	},
-	"homepage": "https://github.com/microsoft/generative-ai-for-beginners#readme",
+	"homepage": "https://7ya.io",
 	"devDependencies": {
 		"@types/node": "^25.3.3",
 		"docsify-to-pdf": "0.0.5"
