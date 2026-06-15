@@ -22,7 +22,7 @@
 	},
 	"homepage": "https://7ya.io",
 	"devDependencies": {
-		"@types/node": "^25.3.3",
+		"@types/node": "^25.9.3",
 		"docsify-to-pdf": "0.0.5"
 	},
 	"dependencies": {
