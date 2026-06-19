@@ -44,6 +44,7 @@
 | VS Code מציג “Dev container mounting…” | רענן את לשונית הדפדפן—לעיתים Codespaces מאבדים חיבור            |
 | הליבה של פנקס הרישומים חסרה           | תפריט פנקס הרישומים ➜ **Kernel ▸ Select Kernel ▸ Python 3**       |
 
+
    מערכות מבוססות יוניקס:
 
    ```bash
