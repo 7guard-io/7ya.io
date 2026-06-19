@@ -247,3 +247,32 @@ body {
     color: #bfbfbf;
     margin-top: 24px;
 }
+
+.model-playground {
+    background: #0c0c0c;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    margin: 24px auto 0;
+    max-width: 780px;
+    padding: 18px;
+}
+
+.model-playground h4 {
+    color: #9fdfff;
+    margin: 0 0 10px;
+}
+
+.playground-link {
+    background: #76b900;
+    border-radius: 999px;
+    color: #050505;
+    display: inline-block;
+    font-weight: 800;
+    margin-top: 8px;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+
+.playground-link:hover {
+    background: #91d629;
+}
