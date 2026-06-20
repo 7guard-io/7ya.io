@@ -1,11 +1,6 @@
 <!-- _navbar.md -->
 
-- Select Language
-  - [English](/)
-  - [Simplified Chinese](/translations/zh/)
-  - [Traditional Chinese](/translations/tw/)
-  - [Portuguese](/translations/pt/)
-  - [Japanese](/translations/ja/)
-  - [Korean](/translations/ko/)
-
-- [All My Links](/#/my-links)
+- [ראשי](/)
+- [כל הקישורים](/#/docs/my-links)
+- [אבטחה](/#/docs/SECURITY_GUIDELINES)
+- [תוכנית עבודה](/#/docs/ENHANCED_FEATURES_ROADMAP)

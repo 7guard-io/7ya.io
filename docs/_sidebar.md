@@ -1,2 +1,4 @@
-- Getting Started
-  - [Introduction to Generative AI](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)
+- 7ya.io
+  - [כל הקישורים](/#/docs/my-links)
+  - [הנחיות אבטחה](/#/docs/SECURITY_GUIDELINES)
+  - [תוכנית יכולות](/#/docs/ENHANCED_FEATURES_ROADMAP)
