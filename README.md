@@ -1,23 +1,33 @@
 # 7ya.io
 
-ברוכים הבאים למרכז הניהול של 7ya.io — דף בית פשוט שמרכז את הקישורים, ערוצי הקשר והמשימות החשובות של המותג במקום אחד.
+7ya.io is the canonical public home of Igor Vepretski and the #7YA movement.
 
-## קישורים מהירים
+The site is no longer positioned as a simple management center. It now acts as a founder-led public gateway for:
 
-- [כל הקישורים](./docs/my-links.md)
-- [האתר הראשי](https://7ya.io)
-- [יצירת קשר במייל](mailto:hello@7ya.io)
+- Igor Vepretski's story and 7YA identity
+- the 7YA Knowledge Stream under `/articles/`
+- movement messaging: Build, Learn, Protect, Lead
+- public links, docs, and proof routes
+- future member-pass and community onboarding flows
 
-## מה מנהלים כאן?
+## Live public paths
 
-- עדכון קישורים ציבוריים לערוצי המדיה והקהילה.
-- שמירה על דף נחיתה נקי, מהיר וקל לעריכה.
-- ריכוז מסמכים פנימיים ותוכניות עבודה תחת תיקיית `docs`.
+- `/` — new founder-led movement homepage
+- `/articles/` — 7YA Knowledge Stream
+- `/articles/igor-vepretski-7ya-origin.html` — origin article
+- `/articles/7ya-movement-not-project.html` — movement manifesto
+- `/docs/` — existing documentation layer
+- `/docs/my-links.md` — public/social link management
 
-## איך מעדכנים קישור?
+## Editorial rule
 
-1. פותחים את [`docs/my-links.md`](./docs/my-links.md).
-2. מחליפים את כתובת היעד בשורה המתאימה.
-3. שומרים, בודקים שהדף נטען, ומפרסמים.
+Keep the homepage personal, sharp, and movement-oriented. Do not add unsupported metrics or vague hype. Every new public page should answer at least one of these questions:
 
-> טיפ: מומלץ להחליף את קישורי ברירת המחדל לערוצים המדויקים של 7ya.io לפני פרסום ציבורי.
+1. Who is Igor?
+2. Why does 7YA exist?
+3. Why does it matter now?
+4. What should a visitor do next?
+
+## Brand line
+
+Not fashion. Force.
