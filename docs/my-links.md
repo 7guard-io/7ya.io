@@ -5,15 +5,15 @@
 ## קישורים ראשיים
 
 - [האתר הראשי](https://7ya.io)
-- [אינסטגרם](https://instagram.com/)
-- [יוטיוב](https://youtube.com/)
-- [טיקטוק](https://tiktok.com/)
-- [וואטסאפ](https://wa.me/)
+- [אינסטגרם](https://www.instagram.com/igor.vepretski/)
+- [יוטיוב](https://www.youtube.com/@Igor.vepretski)
+- [טיקטוק](https://www.tiktok.com/@igor.vepretski)
+- [וואטסאפ](https://wa.me/35794420317)
 
 ## קישורי עבודה
 
-- [GitHub](https://github.com/)
-- [LinkedIn](https://linkedin.com/)
-- [יצירת קשר במייל](mailto:hello@7ya.io)
+- [GitHub](https://github.com/vepretski)
+- [LinkedIn](https://www.linkedin.com/in/vepretski/)
+- [יצירת קשר במייל](mailto:igor.vepretski@gmail.com)
 
-> עדכן/י את הקישורים האלו לכתובות המדויקות שלך.
+> עדכן/י את הקישורים האלה לכתובות המדויקות שלך.
