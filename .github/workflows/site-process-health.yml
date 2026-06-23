@@ -25,5 +25,14 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Print diagnostic context
+        run: |
+          pwd
+          node --version
+          npm --version
+          ls -la
+          ls -la scripts
+          ls -la .github/workflows
+
       - name: Run site process health check
         run: npm run check-site
