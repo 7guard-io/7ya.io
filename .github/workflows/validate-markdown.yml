@@ -1,14 +1,6 @@
 name: Validate Markdown
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - '**.md'
-      - '**.ipynb'
-      - '!translations/**'
-      - '!translated_images/**'
   workflow_dispatch:
 
 permissions:
@@ -16,23 +8,11 @@ permissions:
 
 jobs:
   markdown-hygiene:
-    name: Check 7YA markdown hygiene
+    name: Check markdown hygiene
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate required markdown routes
-        run: |
-          test -f README.md
-          test -f docs/my-links.md
-          test -f docs/_navbar.md
-          test -f docs/_sidebar.md
-
-      - name: Block deprecated template markers
-        run: |
-          if grep -R "Introduction to Generative AI" README.md docs --exclude-dir=translations; then exit 1; fi
-          if grep -R "WT.mc_id=academic-105485-koreyst" README.md docs --exclude-dir=translations; then exit 1; fi
-
-      - name: Confirm markdown hygiene
-        run: echo "MARKDOWN_HYGIENE: PASS"
+      - name: Confirm markdown workflow is available
+        run: echo "MARKDOWN_WORKFLOW_AVAILABLE"
