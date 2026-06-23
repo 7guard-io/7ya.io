@@ -6,6 +6,7 @@ The site is no longer positioned as a simple management center. It now acts as a
 
 - Igor Vepretski's story and 7YA identity
 - the 7YA Knowledge Stream under `/articles/`
+- the direct Talk route under `/talk/`
 - movement messaging: Build, Learn, Protect, Lead
 - public links, docs, and proof routes
 - future member-pass and community onboarding flows
@@ -13,11 +14,31 @@ The site is no longer positioned as a simple management center. It now acts as a
 ## Live public paths
 
 - `/` — new founder-led movement homepage
+- `/talk/` — direct route for ideas, media, partnerships, and collaboration
 - `/articles/` — 7YA Knowledge Stream
 - `/articles/igor-vepretski-7ya-origin.html` — origin article
 - `/articles/7ya-movement-not-project.html` — movement manifesto
 - `/docs/` — existing documentation layer
 - `/docs/my-links.md` — public/social link management
+- `/docs/influence` — influence archive and proof-oriented context
+
+## Process health gate
+
+Every structural change to the public surface should pass the local site process check:
+
+```bash
+npm run check-site
+```
+
+The same check is wired to `npm test` and to the GitHub Actions workflow at `.github/workflows/site-process-health.yml`.
+
+The gate verifies:
+
+- critical public files exist
+- required routes are linked
+- HTML pages include core metadata
+- docs navigation points back to the 7YA public route map
+- deprecated GenAI template navigation does not return
 
 ## Editorial rule
 
