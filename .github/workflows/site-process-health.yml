@@ -35,4 +35,11 @@ jobs:
           ls -la .github/workflows
 
       - name: Run site process health check
-        run: npm run check-site
+        run: node scripts/run-check-site-ci.mjs
+
+      - name: Upload site process health log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-process-health-log
+          path: site-process-health.log
