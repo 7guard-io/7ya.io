@@ -11,6 +11,8 @@ permissions:
 
 jobs:
   ok:
+    name: Minimal runner validation
     runs-on: ubuntu-latest
     steps:
-      - run: true
+      - name: Runner can execute shell
+        run: echo "ACTIONS_SMOKE_PASS"
