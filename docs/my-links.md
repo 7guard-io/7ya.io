@@ -1,19 +1,22 @@
-# קישורי 7ya.io
+# 7YA Public Links
 
-עמוד זה מרכז במקום אחד את כל הקישורים החשובים והמעודכנים של 7ya.io.
-
-## קישורים ראשיים
-
-- [האתר הראשי](https://7ya.io)
-- [אינסטגרם](https://www.instagram.com/igor.vepretski/)
-- [יוטיוב](https://www.youtube.com/@Igor.vepretski)
-- [טיקטוק](https://www.tiktok.com/@igor.vepretski)
-- [וואטסאפ](https://wa.me/35794420317)
-
-## קישורי עבודה
-
-- [GitHub](https://github.com/vepretski)
-- [LinkedIn](https://www.linkedin.com/in/vepretski/)
-- [יצירת קשר במייל](mailto:igor.vepretski@gmail.com)
-
-> עדכן/י את הקישורים האלה לכתובות המדויקות שלך.
+<div class="seven-links" dir="ltr">
+  <style>
+    .seven-links{--bg0:#020304;--bg2:#081217;--text:#f7fbfc;--muted:#a9bac0;--soft:#d8e5e8;--line:rgba(255,255,255,.14);--cyan:#29f2ff;--cyan2:#7af8ff;--green:#8dff68;--green2:#c8ff82;--gold:#ffd166;color:var(--text);background:radial-gradient(circle at 12% -6%,rgba(41,242,255,.24),transparent 34%),radial-gradient(circle at 86% 0%,rgba(141,255,104,.16),transparent 36%),linear-gradient(180deg,var(--bg0),var(--bg2) 62%,#020404);border:1px solid rgba(122,248,255,.18);border-radius:28px;padding:clamp(1.25rem,4vw,3rem);box-shadow:0 30px 82px rgba(0,0,0,.42),0 0 44px rgba(41,242,255,.06);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;margin:1.5rem 0 3rem}.seven-kicker{display:inline-flex;padding:.45rem .72rem;border:1px solid rgba(141,255,104,.30);border-radius:999px;background:linear-gradient(90deg,rgba(141,255,104,.10),rgba(41,242,255,.06));color:var(--green2);font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}.seven-links h2{font-size:clamp(2rem,6vw,4.8rem);line-height:.92;letter-spacing:-.07em;margin:1rem 0;background:linear-gradient(90deg,#fff 0%,var(--cyan2) 35%,var(--green2) 72%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.seven-links p{color:var(--soft);font-size:1.05rem;line-height:1.65}.seven-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin:1.4rem 0}.seven-card{display:flex;flex-direction:column;justify-content:space-between;min-height:150px;padding:1rem;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.028));text-decoration:none!important;color:var(--text)!important}.seven-card:hover{border-color:rgba(122,248,255,.36);transform:translateY(-1px)}.seven-card b{font-size:1.15rem}.seven-card small{color:var(--muted);display:block;margin-top:.35rem}.seven-action{display:inline-flex;margin-top:1rem;color:var(--cyan2);font-weight:900}.seven-note{margin-top:1.3rem;padding:1rem;border-left:3px solid var(--gold);border-radius:18px;background:linear-gradient(90deg,rgba(255,209,102,.10),rgba(255,159,67,.035));color:#ffe7a8}@media(max-width:820px){.seven-grid{grid-template-columns:1fr}}
+  </style>
+  <div class="seven-kicker">Public route map</div>
+  <h2>One signal. All routes.</h2>
+  <p>This page keeps the important 7YA channels in one clean place: social presence, story, docs, influence archive, and the direct Talk route.</p>
+  <div class="seven-grid">
+    <a class="seven-card" href="/"><span><b>🏠 7YA Home</b><small>The command site and main public entry.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="/talk/"><span><b>💬 Talk</b><small>Direct route for ideas, partnerships, media, and collaboration.</small></span><span class="seven-action">Start →</span></a>
+    <a class="seven-card" href="/articles/"><span><b>📚 Knowledge Stream</b><small>Founder story, movement logic, and public articles.</small></span><span class="seven-action">Read →</span></a>
+    <a class="seven-card" href="/docs/influence"><span><b>🦅 Influence Archive</b><small>Historical public influence layer and proof-oriented context.</small></span><span class="seven-action">View →</span></a>
+    <a class="seven-card" href="https://www.instagram.com/igor.vepretski/"><span><b>📸 Instagram</b><small>Visual identity, presence, and community surface.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://www.tiktok.com/@igor.vepretski"><span><b>🎬 TikTok</b><small>Short-form public attention and creator signal.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://www.youtube.com/@Igor.vepretski"><span><b>▶️ YouTube</b><small>Video, narrative, and long-form public presence.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://www.linkedin.com/in/vepretski/"><span><b>💼 LinkedIn</b><small>Professional route for credibility and partnerships.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://github.com/vepretski"><span><b>⚙️ GitHub</b><small>Builder layer, repositories, and technical footprint.</small></span><span class="seven-action">Open →</span></a>
+  </div>
+  <div class="seven-note">UX rule: every public route should return to one of three actions — understand the story, verify the signal, or start a focused conversation.</div>
+</div>
