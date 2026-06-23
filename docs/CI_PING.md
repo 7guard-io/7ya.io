@@ -2,4 +2,4 @@
 
 Minimal validation for the repository automation layer.
 
-Retriggered after correcting the Actions Smoke workflow command on main.
+Retriggered again after confirming the corrected Actions Smoke workflow is on main.
