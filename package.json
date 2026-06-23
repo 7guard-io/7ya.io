@@ -4,6 +4,8 @@
 	"description": "7ya.io link hub and documentation site",
 	"main": "index.js",
 	"scripts": {
+		"check-site": "node scripts/check-site.mjs",
+		"test": "npm run check-site",
 		"convert": "node_modules/.bin/docsify-to-pdf"
 	},
 	"repository": {
