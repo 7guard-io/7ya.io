@@ -25,3 +25,5 @@ Scope covered by the gate:
 - deprecated template-snippet prevention
 
 This file is intentionally small. Its purpose is to trigger a real PR workflow without changing production UX.
+
+Validation note: this update retriggers the PR workflow after adding basic workflow diagnostics on `main`.
