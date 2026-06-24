@@ -26,6 +26,8 @@ The site is no longer positioned as a simple management center. It now acts as a
 
 - `docs/GPU_READINESS.md` — future GPU accelerated AI, media, visualization, and education workflows.
 - `docs/CI_RUNBOOK.md` — CI blocker status and recovery order.
+- `docs/AGENT_CONTROL_MODEL.md` — layered agent control model and current service access map.
+- `AGENTS.md` — repository-wide rules for agent behavior, validation, and review.
 
 ## Process health gate
 
