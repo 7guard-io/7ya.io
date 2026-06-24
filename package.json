@@ -1,35 +1,38 @@
 {
-	"name": "7ya-io",
-	"version": "1.0.0",
-	"description": "7ya.io link hub and documentation site",
-	"main": "index.js",
-	"scripts": {
-		"check-site": "node scripts/check-site.mjs",
-		"test": "npm run check-site",
-		"convert": "node_modules/.bin/docsify-to-pdf"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/7ya/7ya.io.git"
-	},
-	"keywords": [
-		"generative",
-		"ai",
-		"curriculum"
-	],
-	"author": "7ya.io",
-	"license": "MIT",
-	"bugs": {
-		"url": "mailto:hello@7ya.io"
-	},
-	"homepage": "https://7ya.io",
-	"devDependencies": {
-		"@types/node": "^25.3.3",
-		"docsify-to-pdf": "0.0.5"
-	},
-	"dependencies": {
-		"@azure-rest/ai-inference": "^1.0.0-beta.2",
-		"@azure/core-auth": "^1.10.1",
-		"openai": "^6.44.0"
-	}
+  "name": "7ya-io",
+  "version": "1.0.0",
+  "description": "7ya.io public command site and documentation layer",
+  "main": "index.js",
+  "scripts": {
+    "check-site": "node scripts/check-site.mjs",
+    "test": "npm run check-site",
+    "deploy:preview": "vercel deploy",
+    "deploy:prod": "vercel deploy --prod",
+    "convert": "node_modules/.bin/docsify-to-pdf"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/7guard-io/7ya.io.git"
+  },
+  "keywords": [
+    "7ya",
+    "igor-vepretski",
+    "public-site",
+    "evidence"
+  ],
+  "author": "Igor Vepretski / 7YA",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/7guard-io/7ya.io/issues"
+  },
+  "homepage": "https://7ya.io",
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "docsify-to-pdf": "0.0.5"
+  },
+  "dependencies": {
+    "@azure-rest/ai-inference": "^1.0.0-beta.2",
+    "@azure/core-auth": "^1.10.1",
+    "openai": "^6.44.0"
+  }
 }
