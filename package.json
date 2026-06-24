@@ -7,9 +7,10 @@
     "check-site": "node scripts/check-site.mjs",
     "check-links": "node scripts/check-links.mjs",
     "check-all": "npm run check-site && npm run check-links",
+    "verify:routes": "node scripts/verify-routes.mjs",
     "test": "npm run check-all",
-    "deploy:preview": "vercel deploy",
-    "deploy:prod": "vercel deploy --prod",
+    "deploy:preview": "npx vercel@latest deploy",
+    "deploy:prod": "npx vercel@latest deploy --prod",
     "convert": "node_modules/.bin/docsify-to-pdf"
   },
   "repository": {
