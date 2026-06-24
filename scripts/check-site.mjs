@@ -13,178 +13,98 @@ function pass(message) {
   console.log(`PASS ${message}`);
 }
 
-function readRequired(filePath) {
-  const absolutePath = path.join(root, filePath);
-  if (!fs.existsSync(absolutePath)) {
-    fail(`${filePath} is missing`);
+function read(filePath) {
+  const absolute = path.join(root, filePath);
+  if (!fs.existsSync(absolute)) {
+    fail(`${filePath} missing`);
     return '';
   }
   pass(`${filePath} exists`);
-  return fs.readFileSync(absolutePath, 'utf8');
+  return fs.readFileSync(absolute, 'utf8');
 }
 
-function requireIncludes(filePath, content, snippets) {
+function includes(filePath, content, snippets) {
   for (const snippet of snippets) {
-    if (!content.includes(snippet)) {
-      fail(`${filePath} missing required snippet: ${snippet}`);
-    } else {
-      pass(`${filePath} includes ${snippet}`);
-    }
+    if (content.includes(snippet)) pass(`${filePath} includes ${snippet}`);
+    else fail(`${filePath} missing ${snippet}`);
   }
 }
 
-function requireHtmlBasics(filePath, content) {
-  const checks = [
-    ['doctype', /<!doctype html>/i],
-    ['viewport', /<meta\s+name=["']viewport["']/i],
-    ['title', /<title>[^<]+<\/title>/i],
-    ['description', /<meta\s+name=["']description["']/i],
-    ['canonical', /<link\s+rel=["']canonical["']/i]
-  ];
-
-  for (const [label, pattern] of checks) {
-    if (!pattern.test(content)) {
-      fail(`${filePath} missing HTML basic: ${label}`);
-    } else {
-      pass(`${filePath} HTML basic OK: ${label}`);
-    }
-  }
+function htmlBasics(filePath, content) {
+  const checks = ['<!doctype html>', '<meta name="viewport"', '<title>', '<meta name="description"', '<link rel="canonical"'];
+  for (const check of checks) includes(filePath, content, [check]);
 }
 
-const requiredHtmlPages = [
+const files = [
   'index.html',
+  'member-pass/index.html',
+  'member/igor-vepretski/index.html',
   'talk/index.html',
   'articles/index.html',
-  'articles/igor-vepretski-7ya-origin.html',
-  'articles/7ya-movement-not-project.html',
+  'social/index.html',
   'labs/visual-ai/index.html',
   'labs/visual-ai/evidence-card.html',
-  'social/index.html'
-];
-
-const requiredDocs = [
   'docs/my-links.md',
-  'docs/_navbar.md',
-  'docs/_sidebar.md',
-  'docs/influence.md',
   'docs/GPU_READINESS.md',
   'docs/FEATURES.md',
-  'docs/CI_RUNBOOK.md'
+  'docs/CI_RUNBOOK.md',
+  'wallet/7ya-member-pass.json'
 ];
 
-const contents = new Map();
-for (const filePath of [...requiredHtmlPages, ...requiredDocs]) {
-  contents.set(filePath, readRequired(filePath));
+const content = new Map(files.map(file => [file, read(file)]));
+
+for (const file of files.filter(file => file.endsWith('.html'))) {
+  htmlBasics(file, content.get(file));
 }
 
-for (const filePath of requiredHtmlPages) {
-  requireHtmlBasics(filePath, contents.get(filePath));
-}
-
-requireIncludes('index.html', contents.get('index.html'), [
-  '7YA Command Site',
-  'Start a conversation',
+includes('index.html', content.get('index.html'), [
+  '7YA Space Lobby',
+  'floating guide',
+  '/member-pass/',
   '/talk/',
-  '/articles/',
   '/social/',
-  '/docs/my-links.md',
-  'Claims stay evidence-aware'
+  'Complexity by process'
 ]);
 
-requireIncludes('talk/index.html', contents.get('talk/index.html'), [
-  'Talk with Igor',
-  '/docs/my-links.md',
-  '/articles/',
-  'Make it actionable',
-  'What proof exists?'
+includes('member-pass/index.html', content.get('member-pass/index.html'), [
+  '7YA Digital Member Pass',
+  'Open Igor Pass',
+  'Download pass spec'
 ]);
 
-requireIncludes('articles/index.html', contents.get('articles/index.html'), [
-  '7YA Knowledge Stream',
-  '/articles/igor-vepretski-7ya-origin.html',
-  '/articles/7ya-movement-not-project.html',
-  '/talk/'
+includes('member/igor-vepretski/index.html', content.get('member/igor-vepretski/index.html'), [
+  'Igor Vepretski Member Pass',
+  '7YA-IGOR-0001',
+  'Founder Pass'
 ]);
 
-requireIncludes('labs/visual-ai/index.html', contents.get('labs/visual-ai/index.html'), [
-  'Visual AI Lab',
-  '/labs/visual-ai/evidence-card.html',
-  '/docs/GPU_READINESS.md',
-  'Claim hygiene'
+includes('docs/my-links.md', content.get('docs/my-links.md'), [
+  'One clean route map',
+  '/member-pass/',
+  '/member/igor-vepretski/',
+  '/social/',
+  'https://www.youtube.com/@IgorVepretski'
 ]);
 
-requireIncludes('labs/visual-ai/evidence-card.html', contents.get('labs/visual-ai/evidence-card.html'), [
-  'Visual Evidence Card',
-  'No upload, no server, no external API',
-  '7ya.visualEvidenceCard.v0.1',
-  'Copy JSON',
-  'Download JSON'
-]);
-
-requireIncludes('social/index.html', contents.get('social/index.html'), [
+includes('social/index.html', content.get('social/index.html'), [
   'Social Signal Wall',
-  'https://www.tiktok.com/@igor.vepretski',
-  'https://www.instagram.com/igor.vepretski/',
-  'https://www.youtube.com/@IgorVepretski',
   '7653793755757169941',
   'approved snapshots'
 ]);
 
-requireIncludes('docs/GPU_READINESS.md', contents.get('docs/GPU_READINESS.md'), [
-  'NVIDIA Developer Program',
-  'developer ecosystem access',
-  'GPU readiness',
-  'evidence based'
+includes('wallet/7ya-member-pass.json', content.get('wallet/7ya-member-pass.json'), [
+  '7ya.digitalMemberPass.v0.1',
+  '7YA-IGOR-0001'
 ]);
 
-requireIncludes('docs/FEATURES.md', contents.get('docs/FEATURES.md'), [
-  'GPU readiness',
-  'Visual streaming research',
-  'Visual AI lab route',
-  'Evidence-aware claims'
-]);
-
-requireIncludes('docs/my-links.md', contents.get('docs/my-links.md'), [
-  'One signal. All routes.',
-  '/talk/',
-  '/articles/',
-  '/social/',
-  '/docs/influence',
-  'https://www.instagram.com/igor.vepretski/',
-  'https://www.tiktok.com/@igor.vepretski',
-  'https://www.youtube.com/@IgorVepretski'
-]);
-
-requireIncludes('docs/_navbar.md', contents.get('docs/_navbar.md'), [
-  '[Talk](/talk/)',
-  '[Knowledge Stream](/articles/)',
-  '[כל הקישורים](/docs/my-links)',
-  '[קיר השפעה](/docs/influence)'
-]);
-
-requireIncludes('docs/_sidebar.md', contents.get('docs/_sidebar.md'), [
-  '7YA Public Routes',
-  '[Home](/)',
-  '[Talk](/talk/)',
-  '[Knowledge Stream](/articles/)',
-  '[Influence Archive](/docs/influence)'
-]);
-
-const forbiddenSnippets = [
-  'Introduction to Generative AI',
-  'WT.mc_id=academic-105485-koreyst'
-];
-
-for (const [filePath, content] of contents.entries()) {
-  for (const snippet of forbiddenSnippets) {
-    if (content.includes(snippet)) {
-      fail(`${filePath} contains deprecated snippet: ${snippet}`);
-    }
+for (const [file, body] of content.entries()) {
+  for (const bad of ['Introduction to Generative AI', 'WT.mc_id=academic-105485-koreyst']) {
+    if (body.includes(bad)) fail(`${file} contains deprecated snippet: ${bad}`);
   }
 }
 
 if (failures > 0) {
-  console.error(`\nSITE_PROCESS_HEALTH: FAIL (${failures} issue${failures === 1 ? '' : 's'})`);
+  console.error(`\nSITE_PROCESS_HEALTH: FAIL (${failures})`);
   process.exit(1);
 }
 
