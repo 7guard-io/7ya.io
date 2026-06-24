@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "check-site": "node scripts/check-site.mjs",
-    "test": "npm run check-site",
+    "check-links": "node scripts/check-links.mjs",
+    "check-all": "npm run check-site && npm run check-links",
+    "test": "npm run check-all",
     "deploy:preview": "vercel deploy",
     "deploy:prod": "vercel deploy --prod",
     "convert": "node_modules/.bin/docsify-to-pdf"
