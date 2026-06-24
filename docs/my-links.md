@@ -6,15 +6,19 @@
   </style>
   <div class="seven-kicker">Public route map</div>
   <h2>One signal. All routes.</h2>
-  <p>This page keeps the important 7YA channels in one clean place: social presence, story, docs, influence archive, and the direct Talk route.</p>
+  <p>This page keeps the important 7YA channels in one clean place: social presence, story, docs, influence archive, Visual AI Lab, and the direct Talk route.</p>
   <div class="seven-grid">
     <a class="seven-card" href="/"><span><b>🏠 7YA Home</b><small>The command site and main public entry.</small></span><span class="seven-action">Open →</span></a>
     <a class="seven-card" href="/talk/"><span><b>💬 Talk</b><small>Direct route for ideas, partnerships, media, and collaboration.</small></span><span class="seven-action">Start →</span></a>
     <a class="seven-card" href="/articles/"><span><b>📚 Knowledge Stream</b><small>Founder story, movement logic, and public articles.</small></span><span class="seven-action">Read →</span></a>
+    <a class="seven-card" href="/social/"><span><b>📡 Social Signal Wall</b><small>Public social routes, embeds, and approved snapshots.</small></span><span class="seven-action">View →</span></a>
+    <a class="seven-card" href="/labs/visual-ai/"><span><b>🧠 Visual AI Lab</b><small>GPU readiness, media processing, and evidence-card prototype.</small></span><span class="seven-action">Open →</span></a>
     <a class="seven-card" href="/docs/influence"><span><b>🦅 Influence Archive</b><small>Historical public influence layer and proof-oriented context.</small></span><span class="seven-action">View →</span></a>
     <a class="seven-card" href="https://www.instagram.com/igor.vepretski/"><span><b>📸 Instagram</b><small>Visual identity, presence, and community surface.</small></span><span class="seven-action">Open →</span></a>
     <a class="seven-card" href="https://www.tiktok.com/@igor.vepretski"><span><b>🎬 TikTok</b><small>Short-form public attention and creator signal.</small></span><span class="seven-action">Open →</span></a>
-    <a class="seven-card" href="https://www.youtube.com/@Igor.vepretski"><span><b>▶️ YouTube</b><small>Video, narrative, and long-form public presence.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://www.youtube.com/@IgorVepretski"><span><b>▶️ YouTube</b><small>Video, narrative, and long-form public presence.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://www.facebook.com/vepretski"><span><b>f Facebook</b><small>Community-facing public updates.</small></span><span class="seven-action">Open →</span></a>
+    <a class="seven-card" href="https://x.com/igorvepretski"><span><b>𝕏 X</b><small>Fast public signal and conversation route.</small></span><span class="seven-action">Open →</span></a>
     <a class="seven-card" href="https://www.linkedin.com/in/vepretski/"><span><b>💼 LinkedIn</b><small>Professional route for credibility and partnerships.</small></span><span class="seven-action">Open →</span></a>
     <a class="seven-card" href="https://github.com/vepretski"><span><b>⚙️ GitHub</b><small>Builder layer, repositories, and technical footprint.</small></span><span class="seven-action">Open →</span></a>
   </div>
