@@ -7,3 +7,4 @@
 # 2. Agent Governance & Policy Definitions
 AGENTS.md @vepretski
 docs/AGENT_CONTROL_MODEL.md @vepretski
+CODEOWNERS @vepretski
