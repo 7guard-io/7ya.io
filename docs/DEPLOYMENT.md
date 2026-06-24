@@ -26,14 +26,17 @@ Local commands:
 
 - npm run check-all
 - npm run deploy:preview
+- npm run verify:routes -- <preview-url>
 - npm run deploy:prod
+- npm run verify:routes -- https://7ya.io
 
 Safe order:
 
 1. Run the local checks.
 2. Deploy a preview.
-3. Verify preview routes.
+3. Verify preview routes with the preview URL.
 4. Deploy production only after preview verification.
+5. Verify live routes on https://7ya.io.
 
 Routes to verify:
 
@@ -49,7 +52,7 @@ Routes to verify:
 
 Production caution:
 
-The live 7ya.io Evidence Cockpit appears to be served by a production source that is not fully confirmed in this repository. Do not overwrite the live cockpit blindly. Publish this release only through the confirmed production source or after binding the active repository to the production domain.
+The live 7ya.io Evidence Cockpit appears to be served by a production source that is not fully confirmed in this repository. Publish this release only through the confirmed production source or after binding the active repository to the production domain.
 
 Note:
 
