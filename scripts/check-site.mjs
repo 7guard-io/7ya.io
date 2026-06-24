@@ -56,14 +56,19 @@ const requiredHtmlPages = [
   'talk/index.html',
   'articles/index.html',
   'articles/igor-vepretski-7ya-origin.html',
-  'articles/7ya-movement-not-project.html'
+  'articles/7ya-movement-not-project.html',
+  'labs/visual-ai/index.html',
+  'labs/visual-ai/evidence-card.html'
 ];
 
 const requiredDocs = [
   'docs/my-links.md',
   'docs/_navbar.md',
   'docs/_sidebar.md',
-  'docs/influence.md'
+  'docs/influence.md',
+  'docs/GPU_READINESS.md',
+  'docs/FEATURES.md',
+  'docs/CI_RUNBOOK.md'
 ];
 
 const contents = new Map();
@@ -97,6 +102,35 @@ requireIncludes('articles/index.html', contents.get('articles/index.html'), [
   '/articles/igor-vepretski-7ya-origin.html',
   '/articles/7ya-movement-not-project.html',
   '/talk/'
+]);
+
+requireIncludes('labs/visual-ai/index.html', contents.get('labs/visual-ai/index.html'), [
+  'Visual AI Lab',
+  '/labs/visual-ai/evidence-card.html',
+  '/docs/GPU_READINESS.md',
+  'Claim hygiene'
+]);
+
+requireIncludes('labs/visual-ai/evidence-card.html', contents.get('labs/visual-ai/evidence-card.html'), [
+  'Visual Evidence Card',
+  'No upload, no server, no external API',
+  '7ya.visualEvidenceCard.v0.1',
+  'Copy JSON',
+  'Download JSON'
+]);
+
+requireIncludes('docs/GPU_READINESS.md', contents.get('docs/GPU_READINESS.md'), [
+  'NVIDIA Developer Program',
+  'developer ecosystem access',
+  'GPU readiness',
+  'evidence based'
+]);
+
+requireIncludes('docs/FEATURES.md', contents.get('docs/FEATURES.md'), [
+  'GPU readiness',
+  'Visual streaming research',
+  'Visual AI lab route',
+  'Evidence-aware claims'
 ]);
 
 requireIncludes('docs/my-links.md', contents.get('docs/my-links.md'), [
