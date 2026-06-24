@@ -1,0 +1,9 @@
+# 7YA Agent Governance & Workflow Control
+# Enforces mandatory human review for control plane modifications
+
+# 1. CI/CD & Automation Control Plane (Zero-Trust)
+.github/workflows/* @vepretski
+
+# 2. Agent Governance & Policy Definitions
+AGENTS.md @vepretski
+docs/AGENT_CONTROL_MODEL.md @vepretski
