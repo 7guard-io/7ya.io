@@ -1,0 +1,19 @@
+{
+  "schema": "7ya.digitalMemberPass.v0.1",
+  "type": "member-access",
+  "status": "web-pass-ready",
+  "member": {
+    "id": "7YA-IGOR-0001",
+    "name": "Igor Vepretski",
+    "role": "Founder · 7YA · StartOn",
+    "canonicalUrl": "https://7ya.io/member/igor-vepretski/"
+  },
+  "fields": [
+    "memberName",
+    "memberId",
+    "role",
+    "canonicalUrl",
+    "status"
+  ],
+  "publicClaimRule": "This is an identity and access pass, not a payment card or government ID. Native wallet release requires issuer setup."
+}
