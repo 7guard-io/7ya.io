@@ -22,6 +22,11 @@ The site is no longer positioned as a simple management center. It now acts as a
 - `/docs/my-links.md` — public/social link management
 - `/docs/influence` — influence archive and proof-oriented context
 
+## Technical readiness tracks
+
+- `docs/GPU_READINESS.md` — future GPU accelerated AI, media, visualization, and education workflows.
+- `docs/CI_RUNBOOK.md` — CI blocker status and recovery order.
+
 ## Process health gate
 
 Every structural change to the public surface should pass the local site process check:
@@ -30,7 +35,7 @@ Every structural change to the public surface should pass the local site process
 npm run check-site
 ```
 
-The same check is wired to `npm test` and to the GitHub Actions workflow at `.github/workflows/site-process-health.yml`.
+The same check is wired to `npm test`. GitHub Actions automation is currently manual-only while issue #83 is open.
 
 The gate verifies:
 
