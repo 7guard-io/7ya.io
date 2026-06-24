@@ -58,7 +58,8 @@ const requiredHtmlPages = [
   'articles/igor-vepretski-7ya-origin.html',
   'articles/7ya-movement-not-project.html',
   'labs/visual-ai/index.html',
-  'labs/visual-ai/evidence-card.html'
+  'labs/visual-ai/evidence-card.html',
+  'social/index.html'
 ];
 
 const requiredDocs = [
@@ -85,6 +86,7 @@ requireIncludes('index.html', contents.get('index.html'), [
   'Start a conversation',
   '/talk/',
   '/articles/',
+  '/social/',
   '/docs/my-links.md',
   'Claims stay evidence-aware'
 ]);
@@ -119,6 +121,15 @@ requireIncludes('labs/visual-ai/evidence-card.html', contents.get('labs/visual-a
   'Download JSON'
 ]);
 
+requireIncludes('social/index.html', contents.get('social/index.html'), [
+  'Social Signal Wall',
+  'https://www.tiktok.com/@igor.vepretski',
+  'https://www.instagram.com/igor.vepretski/',
+  'https://www.youtube.com/@IgorVepretski',
+  '7653793755757169941',
+  'approved snapshots'
+]);
+
 requireIncludes('docs/GPU_READINESS.md', contents.get('docs/GPU_READINESS.md'), [
   'NVIDIA Developer Program',
   'developer ecosystem access',
@@ -137,9 +148,11 @@ requireIncludes('docs/my-links.md', contents.get('docs/my-links.md'), [
   'One signal. All routes.',
   '/talk/',
   '/articles/',
+  '/social/',
   '/docs/influence',
   'https://www.instagram.com/igor.vepretski/',
-  'https://www.tiktok.com/@igor.vepretski'
+  'https://www.tiktok.com/@igor.vepretski',
+  'https://www.youtube.com/@IgorVepretski'
 ]);
 
 requireIncludes('docs/_navbar.md', contents.get('docs/_navbar.md'), [
