@@ -5,6 +5,7 @@ One clean route map. Complexity opens only when needed.
 ## Core
 
 - [7YA Space](/)
+- [Founder Root](/igor-vepretski/)
 - [Digital Member Pass](/member-pass/)
 - [Igor Member Pass](/member/igor-vepretski/)
 - [Talk](/talk/)
@@ -12,6 +13,13 @@ One clean route map. Complexity opens only when needed.
 - [Social Signal Wall](/social/)
 - [Visual AI Lab](/labs/visual-ai/)
 - [Influence Archive](/docs/influence)
+
+## Trust and operations
+
+- [Sitemap](/sitemap.xml)
+- [Robots](/robots.txt)
+- [Health](/healthz/)
+- [API Health](/api/health/)
 
 ## Social
 
@@ -25,4 +33,6 @@ One clean route map. Complexity opens only when needed.
 
 ## Rule
 
-The homepage stays simple. The deeper layers open through the floating guide or a focused route.
+The homepage stays simple. The founder root is the canonical identity route. Deeper layers open through the floating guide or a focused route.
+
+Public claims stay evidence-aware: no sponsorship, candidacy, institutional endorsement, or large metric claim should be presented unless a visible source route supports it.
