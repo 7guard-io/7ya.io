@@ -4,13 +4,18 @@ const baseUrl = (process.argv[2] || 'https://7ya.io').replace(/\/$/, '');
 
 const routes = [
   '/',
+  '/igor-vepretski/',
   '/member-pass/',
   '/member/igor-vepretski/',
   '/talk/',
   '/social/',
   '/labs/visual-ai/',
   '/labs/visual-ai/evidence-card.html',
-  '/docs/my-links.md'
+  '/docs/my-links.md',
+  '/robots.txt',
+  '/sitemap.xml',
+  '/healthz/',
+  '/api/health/'
 ];
 
 function request(url) {

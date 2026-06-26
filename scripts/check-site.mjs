@@ -31,12 +31,16 @@ function includes(filePath, content, snippets) {
 }
 
 function htmlBasics(filePath, content) {
-  const checks = ['<!doctype html>', '<meta name="viewport"', '<title>', '<meta name="description"', '<link rel="canonical"'];
+  const checks = ['<!doctype html>', '<meta name="viewport"', '<title>', '<meta name="description"'];
   for (const check of checks) includes(filePath, content, [check]);
+  if (!filePath.startsWith('healthz/') && !filePath.startsWith('api/health/')) {
+    includes(filePath, content, ['<link rel="canonical"']);
+  }
 }
 
 const files = [
   'index.html',
+  'igor-vepretski/index.html',
   'member-pass/index.html',
   'member/igor-vepretski/index.html',
   'talk/index.html',
@@ -44,10 +48,14 @@ const files = [
   'social/index.html',
   'labs/visual-ai/index.html',
   'labs/visual-ai/evidence-card.html',
+  'healthz/index.html',
+  'api/health/index.html',
   'docs/my-links.md',
   'docs/GPU_READINESS.md',
   'docs/FEATURES.md',
   'docs/CI_RUNBOOK.md',
+  'robots.txt',
+  'sitemap.xml',
   'wallet/7ya-member-pass.json'
 ];
 
@@ -60,10 +68,20 @@ for (const file of files.filter(file => file.endsWith('.html'))) {
 includes('index.html', content.get('index.html'), [
   '7YA Space Lobby',
   'floating guide',
+  '/igor-vepretski/',
   '/member-pass/',
   '/talk/',
   '/social/',
-  'Complexity by process'
+  'Complexity by process',
+  'Evidence before escalation'
+]);
+
+includes('igor-vepretski/index.html', content.get('igor-vepretski/index.html'), [
+  'Igor Vepretski / #7YA Root',
+  'Canonical founder root',
+  'developer ecosystem',
+  'Do not present this as sponsorship',
+  'Evidence before escalation'
 ]);
 
 includes('member-pass/index.html', content.get('member-pass/index.html'), [
@@ -80,6 +98,7 @@ includes('member/igor-vepretski/index.html', content.get('member/igor-vepretski/
 
 includes('docs/my-links.md', content.get('docs/my-links.md'), [
   'One clean route map',
+  '/igor-vepretski/',
   '/member-pass/',
   '/member/igor-vepretski/',
   '/social/',
@@ -92,14 +111,29 @@ includes('social/index.html', content.get('social/index.html'), [
   'approved snapshots'
 ]);
 
+includes('robots.txt', content.get('robots.txt'), [
+  'User-agent: *',
+  'Allow: /',
+  'Sitemap: https://7ya.io/sitemap.xml'
+]);
+
+includes('sitemap.xml', content.get('sitemap.xml'), [
+  'https://7ya.io/',
+  'https://7ya.io/igor-vepretski/',
+  'https://7ya.io/talk/'
+]);
+
+includes('healthz/index.html', content.get('healthz/index.html'), ['ok']);
+includes('api/health/index.html', content.get('api/health/index.html'), ['ok']);
+
 includes('wallet/7ya-member-pass.json', content.get('wallet/7ya-member-pass.json'), [
   '7ya.digitalMemberPass.v0.1',
   '7YA-IGOR-0001'
 ]);
 
 for (const [file, body] of content.entries()) {
-  for (const bad of ['Introduction to Generative AI', 'WT.mc_id=academic-105485-koreyst']) {
-    if (body.includes(bad)) fail(`${file} contains deprecated snippet: ${bad}`);
+  for (const bad of ['Introduction to Generative AI', 'WT.mc_id=academic-105485-koreyst', '5.1B+ views', '10,000+ youth empowered', 'Knesset Candidate', 'Microsoft-backed social entrepreneur', 'candidate for Knesset 2026']) {
+    if (body.includes(bad)) fail(`${file} contains deprecated or unsupported snippet: ${bad}`);
   }
 }
 
