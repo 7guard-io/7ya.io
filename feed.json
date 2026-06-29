@@ -1,0 +1,17 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "7ya.io",
+  "home_page_url": "https://7ya.io/",
+  "feed_url": "https://7ya.io/feed.json",
+  "language": "he",
+  "description": "עדכונים רשמיים, קישורים ותוכן חדש מ-7ya.io.",
+  "items": [
+    {
+      "id": "https://7ya.io/#/docs/my-links",
+      "url": "https://7ya.io/#/docs/my-links",
+      "title": "כל הקישורים והרשתות החברתיות של 7ya.io",
+      "content_text": "עמוד מרוכז לכל הרשתות החברתיות, ערוצי התוכן, RSS ודרכי יצירת הקשר של 7ya.io.",
+      "date_published": "2026-06-21T00:00:00Z"
+    }
+  ]
+}

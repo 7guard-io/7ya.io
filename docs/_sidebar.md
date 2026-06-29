@@ -1,4 +1,5 @@
 - 7ya.io
   - [כל הקישורים](/#/docs/my-links)
+  - [RSS](/rss.xml)
   - [הנחיות אבטחה](/#/docs/SECURITY_GUIDELINES)
   - [תוכנית יכולות](/#/docs/ENHANCED_FEATURES_ROADMAP)

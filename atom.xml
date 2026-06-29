@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="he">
+  <title>7ya.io</title>
+  <link href="https://7ya.io/" />
+  <link href="https://7ya.io/atom.xml" rel="self" type="application/atom+xml" />
+  <id>https://7ya.io/</id>
+  <updated>2026-06-21T00:00:00Z</updated>
+  <subtitle>עדכונים רשמיים, קישורים ותוכן חדש מ-7ya.io.</subtitle>
+  <entry>
+    <title>כל הקישורים והרשתות החברתיות של 7ya.io</title>
+    <link href="https://7ya.io/#/docs/my-links" />
+    <id>https://7ya.io/#/docs/my-links</id>
+    <updated>2026-06-21T00:00:00Z</updated>
+    <summary>עמוד מרוכז לכל הרשתות החברתיות, ערוצי התוכן, RSS ודרכי יצירת הקשר של 7ya.io.</summary>
+  </entry>
+</feed>
