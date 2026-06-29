@@ -8,10 +8,13 @@
     "check-links": "node scripts/check-links.mjs",
     "check-all": "npm run check-site && npm run check-links",
     "verify:routes": "node scripts/verify-routes.mjs",
-    "test": "npm run check-all",
+    "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
     "deploy:preview": "npx vercel@latest deploy",
     "deploy:prod": "npx vercel@latest deploy --prod",
-    "convert": "node_modules/.bin/docsify-to-pdf"
+    "convert": "node_modules/.bin/docsify-to-pdf",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs"
   },
   "repository": {
     "type": "git",
@@ -31,11 +34,13 @@
   "homepage": "https://7ya.io",
   "devDependencies": {
     "@types/node": "^25.3.3",
-    "docsify-to-pdf": "0.0.5"
+    "docsify-to-pdf": "0.0.5",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@azure-rest/ai-inference": "^1.0.0-beta.2",
     "@azure/core-auth": "^1.10.1",
     "openai": "^6.44.0"
-  }
+  },
+  "type": "module"
 }
