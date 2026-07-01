@@ -2,4 +2,5 @@
   - [כל הקישורים](/#/docs/my-links)
   - [RSS](/rss.xml)
   - [הנחיות אבטחה](/#/docs/SECURITY_GUIDELINES)
+  - [Merkle Integrity](/#/docs/MERKLE_INTEGRITY)
   - [תוכנית יכולות](/#/docs/ENHANCED_FEATURES_ROADMAP)
