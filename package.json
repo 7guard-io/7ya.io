@@ -11,6 +11,8 @@
     "check-all": "npm run check-site && npm run check-links",
     "verify:routes": "node scripts/verify-routes.mjs",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
+    "test:evidence": "npm run build && node --test dist/packages/evidence-oracle/test/evidence-oracle.test.js",
+    "verify:evidence": "npm run typecheck && npm run test:evidence",
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
