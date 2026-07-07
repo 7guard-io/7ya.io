@@ -22,6 +22,10 @@ The site is no longer positioned as a simple management center. It now acts as a
 - `/docs/my-links.md` — public/social link management
 - `/docs/influence` — influence archive and proof-oriented context
 
+## Owner briefing
+
+- `docs/OWNER_BRIEFING_HE.md` — Hebrew owner/operator briefing that summarizes the recent 7YA direction in non-technical language and gives a safe next-step workflow.
+
 ## Technical readiness tracks
 
 - `docs/GPU_READINESS.md` — future GPU accelerated AI, media, visualization, and education workflows.
