@@ -4,6 +4,7 @@
   - [Knowledge Stream](/articles/)
   - [Public Links](/docs/my-links)
   - [Influence Archive](/docs/influence)
+  - [Owner Briefing HE](/docs/OWNER_BRIEFING_HE)
 
 - 7YA Articles
   - [Origin](/articles/igor-vepretski-7ya-origin.html)
