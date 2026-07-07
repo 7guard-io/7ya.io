@@ -4,3 +4,4 @@
   - [הנחיות אבטחה](/#/docs/SECURITY_GUIDELINES)
   - [Merkle Integrity](/#/docs/MERKLE_INTEGRITY)
   - [תוכנית יכולות](/#/docs/ENHANCED_FEATURES_ROADMAP)
+  - [קישורים משפטיים](/#/docs/legal-links)
