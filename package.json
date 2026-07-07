@@ -9,12 +9,11 @@
     "check-all": "npm run check-site && npm run check-links",
     "verify:routes": "node scripts/verify-routes.mjs",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
-    "deploy:preview": "npx vercel@latest deploy",
-    "deploy:prod": "npx vercel@latest deploy --prod",
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs"
+    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs",
+    "serve:static": "python3 -m http.server 4173"
   },
   "repository": {
     "type": "git",
