@@ -36,6 +36,11 @@
 - [Discord](https://discord.com/)
 - [יצירת קשר במייל](mailto:hello@7ya.io)
 
+## קישורים משפטיים
+
+- [Instagram for iOS — הודעות צד שלישי](https://m.facebook.com/legal/thirdpartynotices/?fbsn=instagram_for_ios&fbav=436.0.0.24.53)
+- [כל הקישורים המשפטיים](/#/docs/legal-links)
+
 ## איך לעקוב
 
 1. שמרו את העמוד הזה במועדפים.
