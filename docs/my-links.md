@@ -16,6 +16,8 @@ One clean route map. Complexity opens only when needed.
 
 ## Trust and operations
 
+- [Third Party Notices](/legal/third-party-notices/)
+- [Notice Register](/THIRD_PARTY_NOTICES.md)
 - [Sitemap](/sitemap.xml)
 - [Robots](/robots.txt)
 - [Health](/healthz/)

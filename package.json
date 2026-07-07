@@ -14,7 +14,8 @@
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs"
+    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs",
+    "legal:third-party": "node scripts/generate-third-party-notices.mjs --write"
   },
   "repository": {
     "type": "git",
