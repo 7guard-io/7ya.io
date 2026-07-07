@@ -11,6 +11,8 @@ const routes = [
   '/social/',
   '/labs/visual-ai/',
   '/labs/visual-ai/evidence-card.html',
+  '/legal/third-party-notices/',
+  '/THIRD_PARTY_NOTICES.md',
   '/docs/my-links.md',
   '/robots.txt',
   '/sitemap.xml',
