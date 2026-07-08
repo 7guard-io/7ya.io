@@ -11,6 +11,7 @@ One clean route map. Complexity opens only when needed.
 - [Talk](/talk/)
 - [Knowledge Stream](/articles/)
 - [Social Signal Wall](/social/)
+- [Social Embed Kit](/social/?embed=1)
 - [Visual AI Lab](/labs/visual-ai/)
 - [Influence Archive](/docs/influence)
 
@@ -20,6 +21,7 @@ One clean route map. Complexity opens only when needed.
 - [Robots](/robots.txt)
 - [Health](/healthz/)
 - [API Health](/api/health/)
+- [Social Embedded Terminal OS](/docs/social-embedded-terminal-os.md)
 
 ## Social
 
