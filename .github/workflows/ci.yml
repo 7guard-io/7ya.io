@@ -1,0 +1,65 @@
+name: 7YA CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 7ya-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Typecheck, site health, links, routes
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Print diagnostic context
+        run: |
+          node --version
+          npm --version
+          pwd
+          ls -la
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Site process health
+        run: npm run check-site
+
+      - name: Link audit
+        run: npm run check-links
+
+      - name: Static route verification
+        run: |
+          python3 -m http.server 4173 > /tmp/7ya-static-server.log 2>&1 &
+          echo $! > /tmp/7ya-static-server.pid
+          sleep 2
+          npm run verify:routes -- http://127.0.0.1:4173
+
+      - name: Upload static server log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-server-log
+          path: /tmp/7ya-static-server.log
