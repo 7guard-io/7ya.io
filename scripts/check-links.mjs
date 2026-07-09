@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 const root = process.cwd();
-const files = ['index.html','igor-vepretski/index.html','talk/index.html','social/index.html','pass/index.html','evidence/index.html','starton/index.html','contact/index.html','radar/index.html','member-pass/index.html'];
+const files = ['index.html','igor-vepretski/index.html','evidence/index.html','journey/index.html','starton/index.html','oracle/index.html','business/index.html','talk/index.html','contact/index.html','social/index.html','pass/index.html','radar/index.html','member-pass/index.html'];
 let failures = 0;
 const fail = m => { failures++; console.error(`FAIL ${m}`); };
 const pass = m => console.log(`PASS ${m}`);
