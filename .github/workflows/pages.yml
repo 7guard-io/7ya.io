@@ -6,6 +6,8 @@ on:
     paths:
       - "index.html"
       - "styles/**"
+      - "scripts/**"
+      - "museum/**"
       - "evidence/**"
       - "journey/**"
       - "starton/**"
@@ -24,23 +26,38 @@ on:
       - "sitemap.xml"
       - "CNAME"
       - ".github/workflows/pages.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "styles/**"
+      - "scripts/**"
+      - "museum/**"
+      - "evidence/**"
+      - "journey/**"
+      - "starton/**"
+      - "oracle/**"
+      - "business/**"
+      - "talk/**"
+      - "contact/**"
+      - "igor-vepretski/**"
+      - "influence/**"
+      - "social/**"
+      - "robots.txt"
+      - "sitemap.xml"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: github-pages
+  group: github-pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,14 +67,35 @@ jobs:
         run: |
           set -euo pipefail
           test -f index.html
+          test -f museum/index.html
           test -f styles/home.css
+          test -f styles/museum.css
+          test -f scripts/museum.js
           test "$(cat CNAME)" = "7ya.io"
-          grep -qi "Build what matters" index.html
-          grep -qi "Prove what is real" index.html
+          grep -qi "The person behind the system" index.html
+          grep -qi "Enter Igor's digital museum" index.html
           grep -qi "Evidence before amplification" index.html
-          for route in evidence journey starton oracle business talk contact igor-vepretski; do
+          grep -qi "Igor Vepretski Digital Museum" museum/index.html
+          for route in museum evidence journey starton oracle business talk contact igor-vepretski social; do
             test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
           done
+          node scripts/check-site.mjs
+          node scripts/check-links.mjs
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Assemble production artifact
         shell: bash
@@ -66,7 +104,7 @@ jobs:
           rm -rf dist
           mkdir -p dist
           cp index.html CNAME robots.txt sitemap.xml dist/
-          for path in styles evidence journey starton oracle business talk contact igor-vepretski influence social articles data assets images; do
+          for path in styles scripts museum evidence journey starton oracle business talk contact igor-vepretski influence social articles data assets images; do
             if [ -e "$path" ]; then cp -R "$path" dist/; fi
           done
           touch dist/.nojekyll
@@ -83,5 +121,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-# Deployment retrigger: 2026-07-10T16:33:00+03:00
