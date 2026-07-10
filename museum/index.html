@@ -1,29 +1,34 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Igor Vepretski Digital Museum | 7YA</title>
-  <meta name="description" content="The digital museum of Igor Vepretski: documented life chapters, creator history, public service, StartOn, civic activity, media signals, and the 7YA evidence system.">
+  <title>המוזיאון הדיגיטלי של איגור ופרצקי | 7YA</title>
+  <meta name="description" content="הארכיון החי של איגור ופרצקי: רגעים ויראליים, שידורים, ראיונות, כתיבה, תגובות ציבוריות, StartOn, מחקר SUPERNOAH ומערכת הראיות של 7YA.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://7ya.io/museum/">
-  <meta name="theme-color" content="#05070b">
+  <meta name="theme-color" content="#070707">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA">
-  <meta property="og:title" content="Igor Vepretski Digital Museum | 7YA">
-  <meta property="og:description" content="A living, evidence-aware museum of Igor Vepretski: the person, creator, public servant, social entrepreneur, and builder behind 7YA.">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="המוזיאון הדיגיטלי של איגור ופרצקי">
+  <meta property="og:description" content="לא עמוד אודות. ארכיון חי של קול, יצירה, שירות, השפעה ושליחות — עם מקור לכל טענה ציבורית.">
   <meta property="og:url" content="https://7ya.io/museum/">
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/149789877?v=4">
+  <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:Redirect/file/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../styles/museum.css?v=20260710-4">
+  <script src="../scripts/museum.js?v=20260710-4" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "CollectionPage",
-        "name": "Igor Vepretski Digital Museum",
+        "name": "המוזיאון הדיגיטלי של איגור ופרצקי",
+        "alternateName": "Igor Vepretski Living Archive",
         "url": "https://7ya.io/museum/",
-        "description": "A living digital museum connecting Igor Vepretski's documented journey, creator archive, social impact work, civic activity, and evidence records.",
+        "inLanguage": ["he", "en", "ru"],
+        "description": "ארכיון חי ומבוסס מקורות של איגור ופרצקי: מסע אישי, יצירה, שירות ציבורי, StartOn, שידורים, כתיבה ומחקר.",
         "isPartOf": {"@type": "WebSite", "name": "7YA", "url": "https://7ya.io/"},
         "about": {"@id": "https://7ya.io/igor-vepretski/#person"}
       },
@@ -33,241 +38,286 @@
         "name": "Igor Vepretski",
         "alternateName": ["איגור ופרצקי", "Игорь Вепрецкий", "#7YA"],
         "url": "https://7ya.io/igor-vepretski/",
-        "image": "https://avatars.githubusercontent.com/u/149789877?v=4",
+        "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png",
         "sameAs": [
-          "https://www.instagram.com/igor.vepretski/",
-          "https://www.youtube.com/@Igor.vepretski",
-          "https://www.facebook.com/vepretski/",
           "https://www.linkedin.com/in/vepretski/",
+          "https://www.instagram.com/igor.vepretski/",
+          "https://www.tiktok.com/@igor.vepretski",
+          "https://www.youtube.com/@IgorVepretski",
+          "https://www.facebook.com/vepretski/",
+          "https://x.com/igorvepretski",
           "https://starton.org.il/"
         ]
       }
     ]
   }
   </script>
-  <link rel="stylesheet" href="../styles/museum.css?v=20260710-1">
-  <script src="../scripts/museum.js?v=20260710-1" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to museum content</a>
+  <a class="skip-link" href="#main">דלגו לתוכן המוזיאון</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
 
-  <header class="museum-header">
-    <a class="museum-brand" href="/" aria-label="7YA home">
-      <span class="brand-seven">7</span>
-      <span><strong>7YA</strong><small>Living Proof System</small></span>
+  <header class="site-header" id="top">
+    <a class="brand" href="/" aria-label="7YA — דף הבית">
+      <span class="brand-mark">7</span>
+      <span class="brand-copy"><strong>7YA</strong><small>IGOR VEPRETSKI / LIVING ARCHIVE</small></span>
     </a>
-    <nav aria-label="Museum navigation">
-      <a href="#rooms">Rooms</a>
-      <a href="#signals">Signals</a>
-      <a href="#timeline">Timeline</a>
-      <a href="/evidence/">Evidence</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="museumNav">
+      <span></span><span></span><span></span><b class="sr-only">פתיחת תפריט</b>
+    </button>
+    <nav class="museum-nav" id="museumNav" aria-label="ניווט במוזיאון">
+      <a href="#moments">הרגעים</a>
+      <a href="#broadcasts">על המסך</a>
+      <a href="#writing">הכתיבה</a>
+      <a href="#responses">התגובות</a>
+      <a href="#arc">המסלול</a>
+      <a href="#research">המחקר</a>
+      <a href="#sources">המקורות</a>
     </nav>
-    <a class="header-action" href="/talk/">Talk to 7YA <span aria-hidden="true">↗</span></a>
+    <a class="archive-button" href="#broadcasts">OPEN ARCHIVE <span aria-hidden="true">↙</span></a>
   </header>
 
   <main id="main">
-    <section class="museum-hero" aria-labelledby="museum-title">
-      <div class="hero-atmosphere" aria-hidden="true"></div>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-copy">
-        <p class="overline"><span class="status-dot"></span> Permanent digital exhibition · continuously documented</p>
-        <h1 id="museum-title"><span>Igor</span><br>Vepretski.</h1>
-        <p class="hero-declaration">Not a résumé. Not a mythology. A living museum of the person, the public journey, the creator archive, the social mission, and the system built from it.</p>
+        <div class="hero-index"><span>001—∞</span><span>PUBLIC / LIVING / VERIFIED</span></div>
+        <p class="eyebrow">IGOR VEPRETSKI / LIVING ARCHIVE</p>
+        <h1 id="hero-title"><span>החיים שלי</span><br>לא נכנסו<br>לפוסט אחד.</h1>
+        <p class="hero-lead">אז בניתי להם מוזיאון: הקול, הרגעים שהפכו לשיחה, הראיונות, האנשים שהגיבו — והשליחות שהפכה ל־7YA.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#rooms">Enter the museum <span aria-hidden="true">↓</span></a>
-          <a class="button secondary" href="/evidence/">Inspect the evidence wall</a>
+          <a class="button button-light" href="#moments">להיכנס לסיפור <span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" href="/evidence/">לפתוח את קיר הראיות</a>
         </div>
-        <p class="name-line">איגור ופרצקי · Игорь Вепрецкий · IGOR VEPRETSKI · #7YA</p>
+        <div class="source-promise">
+          <span class="pulse-dot"></span>
+          <div><strong>מקור לפני מספר</strong><small>רק פריטים שניתן לפתוח, לבדוק ולהחזיר להקשר</small></div>
+        </div>
       </div>
 
-      <div class="portrait-stage" aria-label="Portrait of Igor Vepretski">
+      <figure class="hero-portrait">
+        <span class="portrait-number" aria-hidden="true">7</span>
         <div class="portrait-frame">
-          <img src="https://avatars.githubusercontent.com/u/149789877?v=4" alt="Igor Vepretski" width="720" height="720" loading="eager" referrerpolicy="no-referrer">
-          <div class="portrait-shade"></div>
-          <div class="portrait-caption">
-            <span>SUBJECT 07</span>
-            <strong>Builder, creator, public-service professional, founder.</strong>
+          <img
+            src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png"
+            data-fallback="https://avatars.githubusercontent.com/u/149789877?v=4"
+            alt="איגור ופרצקי — דיוקן ציבורי"
+            width="900"
+            height="1125"
+            fetchpriority="high"
+            referrerpolicy="no-referrer">
+          <div class="portrait-overlay"></div>
+          <figcaption><small>IGOR VEPRETSKI</small><strong>FOUNDER / CREATOR / PUBLIC VOICE</strong></figcaption>
+        </div>
+        <div class="portrait-meta"><span>איגור ופרצקי</span><span>Игорь Вепрецкий</span><span>#7YA</span></div>
+      </figure>
+    </section>
+
+    <section class="proof-strip" aria-label="אותות ציבוריים נבחרים">
+      <a href="https://www.linkedin.com/posts/vepretski_%D7%94%D7%AA%D7%A7%D7%A9%D7%95%D7%A8%D7%AA-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%95%D7%94%D7%9E%D7%9E%D7%A9%D7%9C%D7%94-%D7%A6%D7%A8%D7%99%D7%9B%D7%95%D7%AA-%D7%9C%D7%94%D7%AA%D7%91%D7%99%D7%99%D7%A9-activity-7114568456275996674-QOOW" target="_blank" rel="noopener noreferrer"><b>347</b><span>תגובות־אהדה בפוסט ציבורי</span></a>
+      <a href="https://www.linkedin.com/posts/vepretski_%D7%94%D7%AA%D7%A7%D7%A9%D7%95%D7%A8%D7%AA-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%95%D7%94%D7%9E%D7%9E%D7%A9%D7%9C%D7%94-%D7%A6%D7%A8%D7%99%D7%9B%D7%95%D7%AA-%D7%9C%D7%94%D7%AA%D7%91%D7%99%D7%99%D7%A9-activity-7114568456275996674-QOOW" target="_blank" rel="noopener noreferrer"><b>51</b><span>תגובות ושיחה חיה</span></a>
+      <a href="https://13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/" target="_blank" rel="noopener noreferrer"><b>05:57</b><span>כתבת וידאו בחדשות 13</span></a>
+      <a href="https://il.linkedin.com/in/vepretski/" target="_blank" rel="noopener noreferrer"><b>300+</b><span>פוסטים ציבוריים ב־LinkedIn</span></a>
+      <p>המספרים הם צילום מצב ציבורי שנבדק ב־10.07.2026 ועשויים להשתנות.</p>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div>POSTS · INTERVIEWS · VIRAL MOMENTS · PUBLIC SERVICE · STARTON · COMMUNITY · SUPERNOAH · 7YA · POSTS · INTERVIEWS · VIRAL MOMENTS · PUBLIC SERVICE · STARTON · COMMUNITY · SUPERNOAH · 7YA ·</div>
+    </div>
+
+    <section class="intro section-shell" id="moments">
+      <div class="section-number">01 / WHY THIS EXISTS</div>
+      <div class="intro-grid">
+        <h2>אנשים קראו לזה<br><em>ויראליות.</em></h2>
+        <div>
+          <p>אני קראתי לזה רגע שבו מישהו הרגיש פחות לבד.</p>
+          <p>המוזיאון הזה אינו ניסיון להגדיל סיפור. הוא ניסיון למנוע מהסיפור להתפזר: לשמור את המקור, את ההקשר ואת האנשים שבחרו להגיב.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature section-shell" aria-labelledby="feature-title">
+      <div class="section-number">02 / THE MOMENT THAT TRAVELLED</div>
+      <div class="feature-heading">
+        <h2 id="feature-title">כשהקול<br><span>עבר הלאה.</span></h2>
+        <p>פוסט על הנרי חן — לוחם, ספורטאי ואלוף — הפך לאחת מנקודות השיא המתועדות בארכיון הציבורי.</p>
+      </div>
+      <a class="feature-card" href="https://www.linkedin.com/posts/vepretski_%D7%94%D7%AA%D7%A7%D7%A9%D7%95%D7%A8%D7%AA-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%95%D7%94%D7%9E%D7%9E%D7%A9%D7%9C%D7%94-%D7%A6%D7%A8%D7%99%D7%9B%D7%95%D7%AA-%D7%9C%D7%94%D7%AA%D7%91%D7%99%D7%99%D7%A9-activity-7114568456275996674-QOOW" target="_blank" rel="noopener noreferrer">
+        <div class="feature-status"><span>PUBLIC / VERIFIED LINK</span><span>LINKEDIN · 02.10.2023</span></div>
+        <blockquote>“תכירו את הנרי האלוף.”</blockquote>
+        <p>המסר לא נשאר אצלי. הוא פתח שיחה על הכרה, ייצוג וגאווה ישראלית — ואנשים בחרו להעביר אותו הלאה.</p>
+        <dl><div><dt>347</dt><dd>REACTIONS</dd></div><div><dt>51</dt><dd>COMMENTS</dd></div><div><dt>OPEN</dt><dd>PUBLIC SOURCE ↙</dd></div></dl>
+      </a>
+    </section>
+
+    <section class="archive-section section-shell" id="broadcasts" aria-labelledby="broadcasts-title">
+      <div class="section-number">03 / SEEN &amp; HEARD</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">BROADCAST ARCHIVE</p><h2 id="broadcasts-title">הסיפור<br>עלה לשידור.</h2></div>
+        <p>מהשטח אל האולפן: מסלול חיים, שירות, StartOn, נוער בסיכון, חינוך ומנהיגות. כל כרטיס נפתח במקור הציבורי.</p>
+      </div>
+
+      <div class="media-grid archive-items" data-archive-group="screen">
+        <article class="media-card media-card-wide archive-item" data-kind="screen">
+          <a class="media-visual media-visual-news" href="https://13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/" target="_blank" rel="noopener noreferrer" aria-label="צפייה בכתבת חדשות 13">
+            <span class="play">▶</span><span class="channel">חדשות 13</span><strong>05:57</strong>
+          </a>
+          <div class="media-body"><div class="card-meta"><span>חדשות 13 · העולם הבוקר</span><span>22.05.2022</span></div><h3>קצין משטרה עזב את העבודה והחליט להקים מרכז לנערים בסיכון</h3><p>כתבה על המעבר משירות ביטחוני לבניית StartOn ועל הבחירה להפוך ניסיון חיים לתשתית עבור אחרים.</p><a href="https://13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/" target="_blank" rel="noopener noreferrer">לצפייה בכתבה ↙</a></div>
+        </article>
+
+        <article class="media-card archive-item" data-kind="podcast">
+          <a class="media-visual thumbnail" href="https://music.amazon.com/es-us/podcasts/fdc4d18f-ead0-4c44-bd35-0d4fe34682cb/%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99---%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%A7%D7%A8%D7%99%D7%9E%D7%99%D7%A0%D7%95%D7%9C%D7%95%D7%92-%D7%95%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99" target="_blank" rel="noopener noreferrer"><span class="sound-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="play">▶</span></a>
+          <div class="media-body"><div class="card-meta"><span>PODCAST / MINDSET</span><span>02.01.2024</span></div><h3>מנער בסיכון לקרימינולוג ויזם חברתי</h3><p>שיחה ארוכה על ילדות, שינוי מיינדסט, שירות, שליחות והקמת StartOn.</p><a href="https://music.amazon.com/es-us/podcasts/fdc4d18f-ead0-4c44-bd35-0d4fe34682cb/%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99---%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%A7%D7%A8%D7%99%D7%9E%D7%99%D7%A0%D7%95%D7%9C%D7%95%D7%92-%D7%95%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99" target="_blank" rel="noopener noreferrer">להאזנה ↙</a></div>
+        </article>
+
+        <article class="media-card archive-item" data-kind="screen">
+          <a class="media-visual thumbnail" href="https://www.youtube.com/watch?v=O3v309CA4ao" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/O3v309CA4ao/hqdefault.jpg" alt="תמונת תצוגה לראיון על StartOn בערוץ 14" loading="lazy"><span class="play">▶</span></a>
+          <div class="media-body"><div class="card-meta"><span>TV / CHANNEL 14</span><span>PUBLIC VIDEO</span></div><h3>חוזר לשכונה: משירות בכוחות הביטחון להקמת מרכז מיוחד לנוער בסיכון</h3><p>ראיון על המיזם, החזון והזדמנות טכנולוגית לנוער בסיכון.</p><a href="https://www.youtube.com/watch?v=O3v309CA4ao" target="_blank" rel="noopener noreferrer">לצפייה ↙</a></div>
+        </article>
+
+        <article class="media-card archive-item" data-kind="screen">
+          <a class="media-visual thumbnail" href="https://www.youtube.com/watch?v=SOpAglwkJ8I" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/SOpAglwkJ8I/hqdefault.jpg" alt="תמונת תצוגה לראיון פותחים יום עם איגור" loading="lazy"><span class="play">▶</span></a>
+          <div class="media-body"><div class="card-meta"><span>TV / CHANNEL 13</span><span>PUBLIC VIDEO</span></div><h3>פותחים יום עם איגור ופרצקי</h3><p>שיחה נוספת על המיזם ועל הבחירה להפוך סיפור אישי לתשתית לאחרים.</p><a href="https://www.youtube.com/watch?v=SOpAglwkJ8I" target="_blank" rel="noopener noreferrer">לצפייה ↙</a></div>
+        </article>
+
+        <article class="media-card archive-item" data-kind="explainer">
+          <a class="media-visual thumbnail" href="https://www.youtube.com/watch?v=2EW_Rh7okEM" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/2EW_Rh7okEM/hqdefault.jpg" alt="תמונת תצוגה לסרטון הסברה של StartOn" loading="lazy"><span class="play">▶</span></a>
+          <div class="media-body"><div class="card-meta"><span>STARTON / EXPLAINER</span><span>PUBLIC VIDEO</span></div><h3>פרויקט הקמת חלל אינטראקטיבי עבור נערים בסיכון</h3><p>סרטון הסברה קצר שמציג את הצורך, המודל והחזון של החלל.</p><a href="https://www.youtube.com/watch?v=2EW_Rh7okEM" target="_blank" rel="noopener noreferrer">לצפייה ↙</a></div>
+        </article>
+
+        <article class="media-card archive-item media-playlist" data-kind="playlist">
+          <div class="media-body"><div class="card-meta"><span>YOUTUBE / PLAYLIST</span><span>OPEN ARCHIVE</span></div><h3>הראיונות והפודקאסטים</h3><p>פלייליסט ציבורי שמרכז שיחות ארוכות, ראיונות אישיים ופרקים מהדרך.</p><a href="https://www.youtube.com/playlist?list=PLvXOwJ42abaQiQhJoGD4MkTLGzDdwE_GZ" target="_blank" rel="noopener noreferrer">לפתוח את הפלייליסט ↙</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="archive-section section-shell" id="writing" aria-labelledby="writing-title">
+      <div class="section-number">04 / THE EDITORIAL DESK</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">PUBLIC WRITING</p><h2 id="writing-title">כתבתי את מה<br>שלא הסכמתי<br>להשאיר בשקט.</h2></div>
+        <p>חינוך, הורות, חברה, דוגמה אישית ו־StartOn. המספרים מוצגים כצילום מצב בלבד; הקישור למקור הוא הראיה המרכזית.</p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="סינון ארכיון הכתיבה">
+        <button type="button" class="filter-button active" data-filter="all">הכול</button>
+        <button type="button" class="filter-button" data-filter="education">חינוך</button>
+        <button type="button" class="filter-button" data-filter="personal">אישי</button>
+        <button type="button" class="filter-button" data-filter="society">חברה</button>
+        <button type="button" class="filter-button" data-filter="starton">StartOn</button>
+      </div>
+
+      <div class="writing-grid" id="writingGrid">
+        <a class="writing-card archive-item" data-kind="education" href="https://www.linkedin.com/pulse/%D7%9B%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%A9%D7%97%D7%A7-%D7%94%D7%A9%D7%AA%D7%A0%D7%95-%D7%97%D7%99%D7%A0%D7%95%D7%9A-%D7%91%D7%A2%D7%99%D7%93%D7%9F-%D7%94%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-igor-vepretski" target="_blank" rel="noopener noreferrer"><span class="writing-category">EDUCATION / 08.12.2022</span><h3>כללי המשחק השתנו — חינוך בעידן המודרני</h3><p>על המאבק על תשומת הלב של הדור הצעיר ועל האחריות של מבוגרים להבין את המרחב הדיגיטלי.</p><dl><div><dt>38</dt><dd>תגובות־אהדה</dd></div><div><dt>30</dt><dd>תגובות</dd></div></dl><b>לקריאה במקור ↙</b></a>
+        <a class="writing-card archive-item" data-kind="personal" href="https://www.linkedin.com/pulse/%D7%AA%D7%97%D7%99%D7%95-%D7%9B%D7%90%D7%99%D7%9C%D7%95-%D7%94%D7%99%D7%9C%D7%93%D7%99%D7%9D-%D7%A9%D7%9C%D7%9B%D7%9D-%D7%9E%D7%AA%D7%91%D7%95%D7%A0%D7%A0%D7%99%D7%9D-%D7%91%D7%9B%D7%9D-igor-vepretski" target="_blank" rel="noopener noreferrer"><span class="writing-category">PERSONAL / 08.11.2022</span><h3>תחיו כאילו הילדים שלכם מתבוננים בכם</h3><p>הטקסט שבו הבחירה האישית, השירות והחלום על StartOn הופכים לדוגמה חיה.</p><dl><div><dt>43</dt><dd>תגובות־אהדה</dd></div><div><dt>38</dt><dd>תגובות</dd></div></dl><b>לקריאה במקור ↙</b></a>
+        <a class="writing-card archive-item" data-kind="education" href="https://www.linkedin.com/pulse/%D7%9C%D7%91%D7%9F-%D7%A9%D7%9C%D7%99-%D7%90%D7%99%D7%9F-%D7%98%D7%99%D7%A7%D7%98%D7%95%D7%A7-%D7%9E%D7%9B%D7%99%D7%A8%D7%99%D7%9D-%D7%9B%D7%90%D7%9C%D7%95-igor-vepretski" target="_blank" rel="noopener noreferrer"><span class="writing-category">DIGITAL LIFE / 10.11.2022</span><h3>“לבן שלי אין טיקטוק” — מכירים כאלו?</h3><p>טור על הורות, שייכות והצורך ללמד התנהלות דיגיטלית במקום להיעלם ממנה.</p><dl><div><dt>17</dt><dd>תגובות־אהדה</dd></div><div><dt>PUBLIC</dt><dd>מקור פתוח</dd></div></dl><b>לקריאה במקור ↙</b></a>
+        <a class="writing-card archive-item" data-kind="starton" href="https://www.linkedin.com/pulse/%D7%A0%D7%A9%D7%90%D7%A8-%D7%A8%D7%A7-%D7%93%D7%91%D7%A8-%D7%90%D7%97%D7%93-%D7%9C%D7%94%D7%92%D7%A9%D7%9E%D7%AA-%D7%94%D7%97%D7%9C%D7%95%D7%9D-%D7%96%D7%A7%D7%95%D7%A7%D7%99%D7%9D-%D7%9C%D7%97%D7%91%D7%A8%D7%AA-%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%94-%D7%9C%D7%9E%D7%AA%D7%9F-vepretski-mo1uf" target="_blank" rel="noopener noreferrer"><span class="writing-category">STARTON / 18.05.2024</span><h3>נשאר רק דבר אחד להגשמת החלום</h3><p>קריאה לחברות טכנולוגיה להצטרף להקמת מרכזים טכנולוגיים לנוער בסיכון.</p><dl><div><dt>11</dt><dd>תגובות־אהדה</dd></div><div><dt>4</dt><dd>תגובות</dd></div></dl><b>לקריאה במקור ↙</b></a>
+        <a class="writing-card archive-item" data-kind="society" href="https://www.linkedin.com/pulse/%D7%91%D7%9E%D7%A9%D7%91%D7%A8-%D7%94%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%94%D7%9E%D7%A6%D7%98%D7%99%D7%99%D7%A0%D7%99%D7%9D-%D7%90%D7%A9%D7%9E%D7%99-igor-vepretski" target="_blank" rel="noopener noreferrer"><span class="writing-category">SOCIETY / 07.11.2022</span><h3>במשבר החברתי ה״מצטיינים״ אשמים</h3><p>טקסט ציבורי על אחריות, פערים והקשר בין הצלחה אישית למבנה חברתי.</p><dl><div><dt>37</dt><dd>תגובות־אהדה</dd></div><div><dt>8</dt><dd>תגובות</dd></div></dl><b>לקריאה במקור ↙</b></a>
+      </div>
+      <p class="filter-result" id="filterResult" aria-live="polite">מוצגים 5 פריטי כתיבה.</p>
+    </section>
+
+    <section class="responses section-shell" id="responses" aria-labelledby="responses-title">
+      <div class="section-number">05 / WHAT CAME BACK</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">PUBLIC RESPONSE</p><h2 id="responses-title">שלחתי קול.<br>חזרו אליי אנשים.</h2></div>
+        <p>תגובות פומביות מתוך הפוסטים והמאמרים. כל ציטוט קצר מחובר להקשר המקורי; שמות אינם משמשים כאן לקידום או להסכמה משתמעת.</p>
+      </div>
+      <div class="quote-wall">
+        <a href="https://www.linkedin.com/posts/vepretski_%D7%94%D7%AA%D7%A7%D7%A9%D7%95%D7%A8%D7%AA-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%95%D7%94%D7%9E%D7%9E%D7%A9%D7%9C%D7%94-%D7%A6%D7%A8%D7%99%D7%9B%D7%95%D7%AA-%D7%9C%D7%94%D7%AA%D7%91%D7%99%D7%99%D7%A9-activity-7114568456275996674-QOOW" target="_blank" rel="noopener noreferrer"><span>01</span><blockquote>“תודה שהכרת לנו אותו.”</blockquote><p>תגובה לפוסט על הנרי חן</p></a>
+        <a href="https://www.linkedin.com/pulse/%D7%9B%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%A9%D7%97%D7%A7-%D7%94%D7%A9%D7%AA%D7%A0%D7%95-%D7%97%D7%99%D7%A0%D7%95%D7%9A-%D7%91%D7%A2%D7%99%D7%93%D7%9F-%D7%94%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-igor-vepretski" target="_blank" rel="noopener noreferrer"><span>02</span><blockquote>“נושא כל כך קריטי.”</blockquote><p>תגובה לטור על חינוך בעידן הדיגיטלי</p></a>
+        <a href="https://www.linkedin.com/pulse/%D7%AA%D7%97%D7%99%D7%95-%D7%9B%D7%90%D7%99%D7%9C%D7%95-%D7%94%D7%99%D7%9C%D7%93%D7%99%D7%9D-%D7%A9%D7%9C%D7%9B%D7%9D-%D7%9E%D7%AA%D7%91%D7%95%D7%A0%D7%A0%D7%99%D7%9D-%D7%91%D7%9B%D7%9D-igor-vepretski" target="_blank" rel="noopener noreferrer"><span>03</span><blockquote>“אתה ממש השראה.”</blockquote><p>תגובה לטקסט על בחירה ודוגמה אישית</p></a>
+        <a href="https://www.linkedin.com/pulse/%D7%A0%D7%A9%D7%90%D7%A8-%D7%A8%D7%A7-%D7%93%D7%91%D7%A8-%D7%90%D7%97%D7%93-%D7%9C%D7%94%D7%92%D7%A9%D7%9E%D7%AA-%D7%94%D7%97%D7%9C%D7%95%D7%9D-%D7%96%D7%A7%D7%95%D7%A7%D7%99%D7%9D-%D7%9C%D7%97%D7%91%D7%A8%D7%AA-%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%94-%D7%9C%D7%9E%D7%AA%D7%9F-vepretski-mo1uf" target="_blank" rel="noopener noreferrer"><span>04</span><blockquote>“Great work.”</blockquote><p>תגובה לקריאה לחסות עבור StartOn</p></a>
+        <a href="https://www.linkedin.com/pulse/%D7%9B%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%A9%D7%97%D7%A7-%D7%94%D7%A9%D7%AA%D7%A0%D7%95-%D7%97%D7%99%D7%A0%D7%95%D7%9A-%D7%91%D7%A2%D7%99%D7%93%D7%9F-%D7%94%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-igor-vepretski" target="_blank" rel="noopener noreferrer"><span>05</span><blockquote>“תודה לך שאתה מעלה נקודות חשובות.”</blockquote><p>תגובה לכתיבה הציבורית</p></a>
+        <a href="https://www.linkedin.com/pulse/%D7%AA%D7%97%D7%99%D7%95-%D7%9B%D7%90%D7%99%D7%9C%D7%95-%D7%94%D7%99%D7%9C%D7%93%D7%99%D7%9D-%D7%A9%D7%9C%D7%9B%D7%9D-%D7%9E%D7%AA%D7%91%D7%95%D7%A0%D7%A0%D7%99%D7%9D-%D7%91%D7%9B%D7%9D-igor-vepretski" target="_blank" rel="noopener noreferrer"><span>06</span><blockquote>“לא פשוט לעזוב מקום בטוח ולהתחיל מאפס.”</blockquote><p>תגובה למסע האישי ול־StartOn</p></a>
+      </div>
+    </section>
+
+    <section class="arc section-shell" id="arc" aria-labelledby="arc-title">
+      <div class="section-number">06 / THE ARC</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">LIFE → SERVICE → IMPACT → SYSTEM</p><h2 id="arc-title">לא קמפיין.<br><span>מסלול חיים.</span></h2></div>
+        <p>המורשת אינה מספר אחד. היא החיבור בין המקום שממנו באתי, האחריות שבחרתי, והמערכות שבניתי כדי לתת לאחרים נקודת פתיחה טובה יותר.</p>
+      </div>
+      <ol class="arc-grid">
+        <li><span>01</span><small>ORIGIN</small><h3>התחלה ושייכות</h3><p>עלייה לישראל, שכונות, מערכות שלא תמיד ידעו להכיל — והחיפוש אחר מקום.</p><b>BIOGRAPHY / CONTEXT</b></li>
+        <li><span>02</span><small>FIELD</small><h3>שירות ואחריות</h3><p>שנים במערכות ביטחון ובטיחות ציבורית הפכו אחריות ציבורית לשפה אישית.</p><b>HIGH-LEVEL / PROTECTED</b></li>
+        <li><span>03</span><small>VOICE</small><h3>החיים הפכו לתוכן</h3><p>מוזיקה, וידאו, פוסטים, ראיונות ושיחות על חברה, הורות וחינוך.</p><b>PUBLIC ARCHIVE</b></li>
+        <li><span>04</span><small>STARTON</small><h3>החלום קיבל מבנה</h3><p>חללים טכנולוגיים, קהילה, מנטורים והזדמנות מעשית לנוער בסיכון.</p><b>PUBLIC ORGANIZATION</b></li>
+        <li><span>05</span><small>CIVIC</small><h3>הקול נכנס למרחב הציבורי</h3><p>מעורבות אזרחית, מנהיגות מקומית ושיח ציבורי — עם הפרדה בין עמדה, תפקיד והוכחה.</p><b>CLAIM-BY-CLAIM</b></li>
+        <li><span>06</span><small>7YA</small><h3>התוכן הפך למערכת</h3><p>ארכיון הוכחות, מסלולי תיקון, סיווג טענות ומנהיגות בעידן אלגוריתמי.</p><b>SYSTEM ACTIVE</b></li>
+        <li><span>07</span><small>FUTURE</small><h3>העבודה ממשיכה</h3><p>מוזיאון חי אינו נסגר. הוא מקבל מקורות חדשים, תיקונים ופרקים נוספים.</p><b>OPEN-ENDED</b></li>
+      </ol>
+      <div class="arc-actions"><a class="button button-light" href="/journey/">לפתוח את ציר הזמן המלא</a><a class="button button-ghost" href="/starton/">להיכנס ל־StartOn</a></div>
+    </section>
+
+    <section class="research section-shell" id="research" aria-labelledby="research-title">
+      <div class="section-number">07 / AFTER THE DATA FLOOD</div>
+      <div class="research-layout">
+        <div class="research-word"><span>SUPER</span><strong>NOAH.</strong></div>
+        <div class="research-copy">
+          <p class="eyebrow">PUBLIC THEORY / DIGITAL RESILIENCE</p>
+          <h2 id="research-title">איך שומרים על אדם בתוך הצפה אלגוריתמית?</h2>
+          <p>SUPERNOAH היא תיאוריה ציבורית של חוסן דיגיטלי: שמירה על קשב, אמון, זיכרון, יכולת בחירה וחזרה לחיים אנושיים בתוך הצפה של אותות.</p>
+          <div class="research-cards">
+            <a href="https://www.academia.edu/168077235/SUPERNOAH_An_Ark_Theory_of_Digital_Resilience_for_the_Algorithmic_Age" target="_blank" rel="noopener noreferrer"><span>FOUNDATIONAL RESEARCH EDITION</span><h3>An Ark Theory of Digital Resilience for the Algorithmic Age</h3><p>גרסה 2.3 · 02.06.2026 · Independent conceptual preprint · Not peer reviewed.</p><b>לקריאה ולביקורת ↙</b></a>
+            <a href="https://www.academia.edu/168076525/7YA_LEADERSHIP_FOR_THE_ALGORITHMIC_AGE_SUPERNOAH_Founder_Edition_After_the_Data_Flood" target="_blank" rel="noopener noreferrer"><span>FOUNDER EDITION</span><h3>7YA — Leadership for the Algorithmic Age</h3><p>המסע האישי, StartOn והמעבר מרעיון ציבורי למסגרת מנהיגותית.</p><b>לפתוח את המהדורה ↙</b></a>
           </div>
         </div>
-        <div class="orbit-label orbit-a">IDENTITY</div>
-        <div class="orbit-label orbit-b">IMPACT</div>
-        <div class="orbit-label orbit-c">EVIDENCE</div>
       </div>
     </section>
 
-    <section class="museum-principle" aria-label="Museum principle">
-      <p>THE PERSON IS THE CENTER.</p>
-      <h2>Every system on 7ya.io should explain what Igor lived, built, changed, created, or is still proving.</h2>
-      <div class="principle-states">
-        <span><i class="verified"></i> Source present</span>
-        <span><i class="review"></i> Under review</span>
-        <span><i class="private"></i> Private by design</span>
-      </div>
-    </section>
-
-    <section class="rooms-section" id="rooms" aria-labelledby="rooms-title">
+    <section class="sources section-shell" id="sources" aria-labelledby="sources-title">
+      <div class="section-number">08 / SOURCE ROOM</div>
       <div class="section-heading">
-        <div>
-          <p class="overline">Five exhibition rooms</p>
-          <h2 id="rooms-title">One life. Multiple public layers.</h2>
+        <div><p class="eyebrow">PROVENANCE / CONTEXT / BOUNDARY</p><h2 id="sources-title">גם לתמונה<br>יש מקור.</h2></div>
+        <p>הדיוקן הציבורי פורסם ב־Wikimedia Commons תחת CC0. השידורים, הפוסטים, המאמרים והמחקרים מובילים ישירות למקור הציבורי. חומר פרטי נשאר מחוץ לאתר.</p>
+      </div>
+      <div class="source-states">
+        <article><span class="state-dot public"></span><h3>PUBLIC</h3><p>פתוח לצפייה במקור</p></article>
+        <article><span class="state-dot verified"></span><h3>VERIFIED</h3><p>המספר או הטענה נראים במקור</p></article>
+        <article><span class="state-dot context"></span><h3>CONTEXT</h3><p>תאריך, במה ונושא נשמרים</p></article>
+        <article><span class="state-dot boundary"></span><h3>BOUNDARY</h3><p>חומר פרטי או רגיש אינו מפורסם</p></article>
+      </div>
+      <div class="source-registry">
+        <div class="registry-head"><h3>מרשם המקורות של המוזיאון</h3><span id="sourceCount">טוען מרשם…</span></div>
+        <div class="registry-list" id="sourceRegistry">
+          <noscript><p>מרשם המקורות זמין בקובץ <a href="/data/museum-sources.json">museum-sources.json</a>.</p></noscript>
         </div>
-        <p>Each room separates documented public material from biography that still requires corroboration. The result is personal without becoming careless.</p>
-      </div>
-
-      <div class="room-grid">
-        <article class="room-card room-origin">
-          <span class="room-number">01</span>
-          <p class="room-label">ORIGINS / TRANSFORMATION</p>
-          <h3>From vulnerability to systems thinking.</h3>
-          <p>Childhood, immigration, Bat Yam, Jessie Cohen, and the lived context behind Igor's focus on safety, belonging, and youth opportunity.</p>
-          <div class="room-state"><span class="state review">BIOGRAPHY REVIEW</span><a href="/journey/">Open journey ↗</a></div>
-        </article>
-
-        <article class="room-card room-service">
-          <span class="room-number">02</span>
-          <p class="room-label">SERVICE / PUBLIC SAFETY</p>
-          <h3>Service before visibility.</h3>
-          <p>IDF service, security work, public-safety experience, and municipal leadership—published at a high level while operational details stay protected.</p>
-          <div class="room-state"><span class="state private">PRIVACY BOUNDARY</span><a href="/evidence/">See claim states ↗</a></div>
-        </article>
-
-        <article class="room-card room-creator">
-          <span class="room-number">03</span>
-          <p class="room-label">CREATOR / VIRAL MEMORY</p>
-          <h3>The internet knew Igor before 7YA had a name.</h3>
-          <p>Music, comedy, interviews, public posts, creator experiments, and viral clusters—organized as an archive rather than reduced to a follower count.</p>
-          <div class="room-state"><span class="state verified">PUBLIC SOURCES</span><a href="#signals">Browse signals ↗</a></div>
-        </article>
-
-        <article class="room-card room-starton">
-          <span class="room-number">04</span>
-          <p class="room-label">STARTON / SOCIAL IMPACT</p>
-          <h3>Turn lived experience into infrastructure.</h3>
-          <p>StartOn is the youth-impact layer: safe technology spaces, mentoring, practical opportunity, and a model designed for young people at risk.</p>
-          <div class="room-state"><span class="state verified">PUBLIC ORGANIZATION</span><a href="/starton/">Enter StartOn ↗</a></div>
-        </article>
-
-        <article class="room-card room-system">
-          <span class="room-number">05</span>
-          <p class="room-label">7YA / LIVING PROOF</p>
-          <h3>A personal archive became a trust architecture.</h3>
-          <p>7YA connects identity, evidence, public communication, civic technology, and correction paths without pretending every claim has equal certainty.</p>
-          <div class="room-state"><span class="state verified">SYSTEM ACTIVE</span><a href="/oracle/">Open Oracle ↗</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="signals-section" id="signals" aria-labelledby="signals-title">
-      <div class="section-heading signal-heading">
-        <div>
-          <p class="overline">Creator and public influence archive</p>
-          <h2 id="signals-title">The signals people remember.</h2>
-        </div>
-        <p>Profiles and broad archive clusters are linked now. Exact post metrics, press articles, interview URLs, and screenshots remain visible as intake categories until their source records are attached.</p>
-      </div>
-
-      <div class="filter-bar" role="group" aria-label="Filter museum signals">
-        <button class="filter-button active" type="button" data-filter="all">All signals</button>
-        <button class="filter-button" type="button" data-filter="creator">Creator</button>
-        <button class="filter-button" type="button" data-filter="music">Music</button>
-        <button class="filter-button" type="button" data-filter="civic">Civic</button>
-        <button class="filter-button" type="button" data-filter="impact">Impact</button>
-        <button class="filter-button" type="button" data-filter="intake">Archive intake</button>
-      </div>
-
-      <div class="signal-grid" id="signalGrid">
-        <article class="signal-card featured" data-room="creator">
-          <div class="signal-top"><span>INSTAGRAM</span><span class="source present">SOURCE PRESENT</span></div>
-          <h3>Igor Vepretski public creator profile</h3>
-          <p>Public-facing visual identity, creator work, #7YA signals, civic moments, and personal storytelling.</p>
-          <a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noopener noreferrer">Open Instagram ↗</a>
-        </article>
-
-        <article class="signal-card" data-room="creator music">
-          <div class="signal-top"><span>YOUTUBE</span><span class="source present">SOURCE PRESENT</span></div>
-          <h3>Music, video, podcast, and viral archive</h3>
-          <p>The public channel is the primary starting point for identifying individual videos and attaching exact evidence rows.</p>
-          <a href="https://www.youtube.com/@Igor.vepretski" target="_blank" rel="noopener noreferrer">Open YouTube ↗</a>
-        </article>
-
-        <article class="signal-card" data-room="music">
-          <div class="signal-top"><span>HIP-HOP HISTORY</span><span class="source review">URL REQUIRED</span></div>
-          <h3>Ron Nesher & Igor Vepretski — music milestone</h3>
-          <p>A known Hebrew hip-hop archive node. Publication remains conservative until the specific canonical video or release URL is attached.</p>
-          <a href="https://www.youtube.com/@Igor.vepretski" target="_blank" rel="noopener noreferrer">Search the channel ↗</a>
-        </article>
-
-        <article class="signal-card" data-room="creator">
-          <div class="signal-top"><span>VIRAL CLUSTER</span><span class="source review">EXPORT REQUIRED</span></div>
-          <h3>Comedy and creator videos</h3>
-          <p>A historical cluster that shaped Igor's public footprint. The museum exposes the category now and waits for platform exports before publishing aggregate metrics.</p>
-          <a href="/evidence/">View evidence policy ↗</a>
-        </article>
-
-        <article class="signal-card" data-room="civic">
-          <div class="signal-top"><span>PUBLIC LIFE</span><span class="source present">PROFILE PRESENT</span></div>
-          <h3>Civic and political moments</h3>
-          <p>Public activity and appearances are collected from first-party posts while role, date, and event claims remain individually classified.</p>
-          <a href="https://www.facebook.com/vepretski/" target="_blank" rel="noopener noreferrer">Open Facebook ↗</a>
-        </article>
-
-        <article class="signal-card" data-room="impact">
-          <div class="signal-top"><span>STARTON</span><span class="source present">PUBLIC SITE</span></div>
-          <h3>Youth-impact infrastructure</h3>
-          <p>The social mission behind Igor's work: technology, mentoring, safe spaces, and practical pathways for young people at risk.</p>
-          <a href="https://starton.org.il/" target="_blank" rel="noopener noreferrer">Open StartOn ↗</a>
-        </article>
-
-        <article class="signal-card intake" data-room="intake">
-          <div class="signal-top"><span>PRESS / INTERVIEWS</span><span class="source intake-status">INTAKE OPEN</span></div>
-          <h3>Articles, interviews, television, podcasts</h3>
-          <p>This wall is reserved for canonical media URLs, publication dates, screenshots, transcripts, and correction history.</p>
-          <a href="mailto:hello@7ya.io?subject=7YA%20museum%20press%20source">Submit a source ↗</a>
-        </article>
-
-        <article class="signal-card intake" data-room="intake">
-          <div class="signal-top"><span>COMMUNITY RESPONSE</span><span class="source intake-status">INTAKE OPEN</span></div>
-          <h3>Positive comments and public reactions</h3>
-          <p>Selected reactions can appear only with context, source, date, privacy review, and permission where required.</p>
-          <a href="mailto:hello@7ya.io?subject=7YA%20museum%20community%20reaction">Submit a reaction ↗</a>
-        </article>
-      </div>
-      <p class="filter-result" id="filterResult" aria-live="polite">Showing 8 museum signals.</p>
-    </section>
-
-    <section class="timeline-section" id="timeline" aria-labelledby="timeline-title">
-      <div class="section-heading">
-        <div>
-          <p class="overline">Transformation timeline</p>
-          <h2 id="timeline-title">The story is not linear. The record should be.</h2>
-        </div>
-        <p>This timeline is a public index, not a complete biography. Dates and claims expand only when a source record is ready.</p>
-      </div>
-
-      <ol class="museum-timeline">
-        <li><span>ORIGIN</span><div><h3>Ukraine → Israel</h3><p>Immigration and early life form the context. Exact biographical details remain governed by the evidence archive.</p></div></li>
-        <li><span>SERVICE</span><div><h3>Security and public safety</h3><p>A service path across military, security, law-enforcement, and municipal environments, presented with operational boundaries.</p></div></li>
-        <li><span>CREATOR</span><div><h3>Music, comedy, social platforms</h3><p>Creator activity builds a recognisable digital identity and a long-tail archive of public signals.</p></div></li>
-        <li><span>IMPACT</span><div><h3>StartOn</h3><p>Personal history becomes a practical social-impact model focused on youth, technology, safety, and opportunity.</p></div></li>
-        <li><span>SYSTEM</span><div><h3>7YA Evidence Oracle</h3><p>The archive evolves into infrastructure for claims, sources, classifications, corrections, and public trust.</p></div></li>
-      </ol>
-    </section>
-
-    <section class="source-gate" aria-labelledby="source-gate-title">
-      <div>
-        <p class="overline">Museum source gate</p>
-        <h2 id="source-gate-title">Nothing important should disappear. Nothing unsupported should be promoted as fact.</h2>
       </div>
       <div class="source-actions">
-        <a class="button primary" href="mailto:hello@7ya.io?subject=Digital%20museum%20source">Send a missing source</a>
-        <a class="button secondary" href="https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" target="_blank" rel="noopener noreferrer">Open museum prototype ↗</a>
+        <a class="button button-light" href="https://commons.wikimedia.org/wiki/File:Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png" target="_blank" rel="noopener noreferrer">רישיון התמונה / CC0 ↙</a>
+        <a class="button button-ghost" href="/data/museum-sources.json">לפתוח את מרשם המקורות JSON</a>
+        <a class="button button-ghost" href="mailto:hello@7ya.io?subject=7YA%20Museum%20Source">לשלוח מקור חסר</a>
       </div>
+    </section>
+
+    <section class="follow section-shell" id="follow" aria-labelledby="follow-title">
+      <div class="section-number">09 / KEEP FOLLOWING</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">LIVE CHANNELS</p><h2 id="follow-title">הארכיון חי.<br>הסיפור ממשיך.</h2></div>
+        <p>הערוצים הציבוריים הם שכבת הקליטה של המוזיאון. פריט אינו נכנס לארכיון המאומת רק מפני שפורסם; הוא נכנס לאחר שמקורו והקשרו נשמרים.</p>
+      </div>
+      <div class="social-grid">
+        <a href="https://www.tiktok.com/@igor.vepretski" target="_blank" rel="noopener noreferrer"><span>TIKTOK</span><strong>@igor.vepretski</strong><b>↙</b></a>
+        <a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noopener noreferrer"><span>INSTAGRAM</span><strong>@igor.vepretski</strong><b>↙</b></a>
+        <a href="https://www.youtube.com/@IgorVepretski" target="_blank" rel="noopener noreferrer"><span>YOUTUBE</span><strong>Igor Vepretski #7YA</strong><b>↙</b></a>
+        <a href="https://il.linkedin.com/in/vepretski/" target="_blank" rel="noopener noreferrer"><span>LINKEDIN</span><strong>Igor Vepretski</strong><b>↙</b></a>
+        <a href="https://www.facebook.com/vepretski/" target="_blank" rel="noopener noreferrer"><span>FACEBOOK</span><strong>Igor Vepretski</strong><b>↙</b></a>
+        <a href="https://x.com/igorvepretski" target="_blank" rel="noopener noreferrer"><span>X</span><strong>@igorvepretski</strong><b>↙</b></a>
+      </div>
+    </section>
+
+    <section class="closing section-shell">
+      <p>THE WORK CONTINUES</p>
+      <h2>אני לא מנסה<br>להיראות גדול.<br><span>אני בונה משהו שיישאר.</span></h2>
+      <div><a class="button button-light" href="/talk/">דברו איתי ↙</a><a class="button button-ghost" href="/">חזרה ל־7YA</a></div>
     </section>
   </main>
 
-  <footer class="museum-footer">
-    <div><strong>7YA.IO / IGOR VEPRETSKI DIGITAL MUSEUM</strong><span>Personal by design · evidence-aware by default</span></div>
-    <nav aria-label="Footer navigation"><a href="/">Home</a><a href="/evidence/">Evidence</a><a href="/journey/">Journey</a><a href="/contact/">Contact</a></nav>
-    <span class="footer-state"><i class="status-dot"></i> Exhibition active</span>
+  <footer class="site-footer">
+    <div><strong>7YA</strong><span>מוזיאון ההשפעה הדיגיטלית של איגור ופרצקי</span></div>
+    <nav aria-label="ניווט תחתון"><a href="/">דף הבית</a><a href="/evidence/">ראיות</a><a href="/journey/">מסע</a><a href="/contact/">יצירת קשר</a></nav>
+    <p>© <span id="year">2026</span> / LIVING EVIDENCE ARCHIVE</p>
   </footer>
 </body>
 </html>
