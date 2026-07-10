@@ -43,6 +43,10 @@ on:
       - "igor-vepretski/**"
       - "influence/**"
       - "social/**"
+      - "articles/**"
+      - "data/**"
+      - "assets/**"
+      - "images/**"
       - "robots.txt"
       - "sitemap.xml"
       - ".github/workflows/pages.yml"
@@ -71,11 +75,14 @@ jobs:
           test -f styles/home.css
           test -f styles/museum.css
           test -f scripts/museum.js
+          test -f data/museum-sources.json
           test "$(cat CNAME)" = "7ya.io"
-          grep -qi "The person behind the system" index.html
-          grep -qi "Enter Igor's digital museum" index.html
-          grep -qi "Evidence before amplification" index.html
-          grep -qi "Igor Vepretski Digital Museum" museum/index.html
+          grep -Fqi "The person behind the system" index.html
+          grep -Fqi "Enter Igor's digital museum" index.html
+          grep -Fqi "Evidence before amplification" index.html
+          grep -Fqi "המוזיאון הדיגיטלי של איגור ופרצקי" museum/index.html
+          grep -Fqi "BROADCAST ARCHIVE" museum/index.html
+          grep -Fqi "SUPERNOAH" museum/index.html
           for route in museum evidence journey starton oracle business talk contact igor-vepretski social; do
             test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
           done
