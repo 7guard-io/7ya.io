@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1.0",
+  "title": "7YA Igor Vepretski Digital Museum — Public Source Registry",
+  "updatedAt": "2026-07-10",
+  "policy": "A source proves only what is visible in that source. Dynamic counts are treated as dated public snapshots.",
+  "sources": [
+    {
+      "id": "linkedin-henry-chen",
+      "title": "הפוסט הציבורי על הנרי חן",
+      "type": "SOCIAL POST",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/posts/vepretski_%D7%94%D7%AA%D7%A7%D7%A9%D7%95%D7%A8%D7%AA-%D7%94%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%99%D7%AA-%D7%95%D7%94%D7%9E%D7%9E%D7%A9%D7%9C%D7%94-%D7%A6%D7%A8%D7%99%D7%9B%D7%95%D7%AA-%D7%9C%D7%94%D7%AA%D7%91%D7%99%D7%99%D7%A9-activity-7114568456275996674-QOOW",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["347 reactions", "51 comments", "public post text"]
+    },
+    {
+      "id": "channel13-haolam-haboker",
+      "title": "קצין משטרה עזב את העבודה והחליט להקים מרכז לנערים בסיכון",
+      "type": "TV REPORT",
+      "status": "verified",
+      "domain": "13tv.co.il",
+      "url": "https://13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["22.05.2022", "05:57", "העולם הבוקר"]
+    },
+    {
+      "id": "mindset-podcast",
+      "title": "איגור ופרצקי — מנער בסיכון לקרימינולוג ויזם חברתי",
+      "type": "PODCAST",
+      "status": "public",
+      "domain": "music.amazon.com",
+      "url": "https://music.amazon.com/es-us/podcasts/fdc4d18f-ead0-4c44-bd35-0d4fe34682cb/%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99---%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%A7%D7%A8%D7%99%D7%9E%D7%99%D7%A0%D7%95%D7%9C%D7%95%D7%92-%D7%95%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "channel14-starton",
+      "title": "חוזר לשכונה — משירות בכוחות הביטחון להקמת מרכז מיוחד לנוער בסיכון",
+      "type": "TV INTERVIEW",
+      "status": "public",
+      "domain": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=O3v309CA4ao",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "channel13-potchim-yom",
+      "title": "פותחים יום עם איגור ופרצקי",
+      "type": "TV INTERVIEW",
+      "status": "public",
+      "domain": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=SOpAglwkJ8I",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "starton-explainer",
+      "title": "פרויקט הקמת חלל אינטראקטיבי עבור נערים בסיכון",
+      "type": "EXPLAINER VIDEO",
+      "status": "public",
+      "domain": "youtube.com",
+      "url": "https://www.youtube.com/watch?v=2EW_Rh7okEM",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "podcast-playlist",
+      "title": "איגור ופרצקי — ראיונות ופודקאסטים",
+      "type": "PLAYLIST",
+      "status": "public",
+      "domain": "youtube.com",
+      "url": "https://www.youtube.com/playlist?list=PLvXOwJ42abaQiQhJoGD4MkTLGzDdwE_GZ",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "article-education",
+      "title": "כללי המשחק השתנו — חינוך בעידן המודרני",
+      "type": "ARTICLE",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/pulse/%D7%9B%D7%9C%D7%9C%D7%99-%D7%94%D7%9E%D7%A9%D7%97%D7%A7-%D7%94%D7%A9%D7%AA%D7%A0%D7%95-%D7%97%D7%99%D7%A0%D7%95%D7%9A-%D7%91%D7%A2%D7%99%D7%93%D7%9F-%D7%94%D7%9E%D7%95%D7%93%D7%A8%D7%A0%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-igor-vepretski",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["08.12.2022", "38 reactions", "30 comments"]
+    },
+    {
+      "id": "article-children-watch",
+      "title": "תחיו כאילו הילדים שלכם מתבוננים בכם",
+      "type": "ARTICLE",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/pulse/%D7%AA%D7%97%D7%99%D7%95-%D7%9B%D7%90%D7%99%D7%9C%D7%95-%D7%94%D7%99%D7%9C%D7%93%D7%99%D7%9D-%D7%A9%D7%9C%D7%9B%D7%9D-%D7%9E%D7%AA%D7%91%D7%95%D7%A0%D7%A0%D7%99%D7%9D-%D7%91%D7%9B%D7%9D-igor-vepretski",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["08.11.2022", "43 reactions", "38 comments"]
+    },
+    {
+      "id": "article-tiktok-parenting",
+      "title": "לבן שלי אין טיקטוק — מכירים כאלו?",
+      "type": "ARTICLE",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/pulse/%D7%9C%D7%91%D7%9F-%D7%A9%D7%9C%D7%99-%D7%90%D7%99%D7%9F-%D7%98%D7%99%D7%A7%D7%98%D7%95%D7%A7-%D7%9E%D7%9B%D7%99%D7%A8%D7%99%D7%9D-%D7%9B%D7%90%D7%9C%D7%95-igor-vepretski",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["10.11.2022", "17 reactions"]
+    },
+    {
+      "id": "article-starton-sponsor",
+      "title": "נשאר רק דבר אחד להגשמת החלום",
+      "type": "ARTICLE",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/pulse/%D7%A0%D7%A9%D7%90%D7%A8-%D7%A8%D7%A7-%D7%93%D7%91%D7%A8-%D7%90%D7%97%D7%93-%D7%9C%D7%94%D7%92%D7%A9%D7%9E%D7%AA-%D7%94%D7%97%D7%9C%D7%95%D7%9D-%D7%96%D7%A7%D7%95%D7%A7%D7%99%D7%9D-%D7%9C%D7%97%D7%91%D7%A8%D7%AA-%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%94-%D7%9C%D7%9E%D7%AA%D7%9F-vepretski-mo1uf",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["18.05.2024", "11 reactions", "4 comments"]
+    },
+    {
+      "id": "article-social-crisis",
+      "title": "במשבר החברתי ה'מצטיינים' אשמים",
+      "type": "ARTICLE",
+      "status": "verified",
+      "domain": "linkedin.com",
+      "url": "https://www.linkedin.com/pulse/%D7%91%D7%9E%D7%A9%D7%91%D7%A8-%D7%94%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%94%D7%9E%D7%A6%D7%98%D7%99%D7%99%D7%A0%D7%99%D7%9D-%D7%90%D7%A9%D7%9E%D7%99-igor-vepretski",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["07.11.2022", "37 reactions", "8 comments"]
+    },
+    {
+      "id": "supernoah-research",
+      "title": "SUPERNOAH: An Ark Theory of Digital Resilience for the Algorithmic Age",
+      "type": "RESEARCH PREPRINT",
+      "status": "context",
+      "domain": "academia.edu",
+      "url": "https://www.academia.edu/168077235/SUPERNOAH_An_Ark_Theory_of_Digital_Resilience_for_the_Algorithmic_Age",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["Version 2.3", "2 June 2026", "Independent conceptual preprint", "Not peer reviewed"]
+    },
+    {
+      "id": "supernoah-founder",
+      "title": "7YA — Leadership for the Algorithmic Age: SUPERNOAH Founder Edition",
+      "type": "FOUNDER EDITION",
+      "status": "context",
+      "domain": "academia.edu",
+      "url": "https://www.academia.edu/168076525/7YA_LEADERSHIP_FOR_THE_ALGORITHMIC_AGE_SUPERNOAH_Founder_Edition_After_the_Data_Flood",
+      "checkedAt": "2026-07-10"
+    },
+    {
+      "id": "wikimedia-portrait",
+      "title": "Igor Vepretski — public portrait",
+      "type": "IMAGE / CC0",
+      "status": "verified",
+      "domain": "commons.wikimedia.org",
+      "url": "https://commons.wikimedia.org/wiki/File:Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["CC0"]
+    },
+    {
+      "id": "linkedin-profile",
+      "title": "Igor Vepretski — LinkedIn public profile",
+      "type": "PUBLIC PROFILE",
+      "status": "public",
+      "domain": "linkedin.com",
+      "url": "https://il.linkedin.com/in/vepretski/",
+      "checkedAt": "2026-07-10",
+      "visibleClaims": ["300 posts", "5 articles"]
+    }
+  ]
+}
