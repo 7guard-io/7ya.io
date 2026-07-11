@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "index.html"
+      - "404.html"
       - "styles/**"
       - "evidence/**"
       - "journey/**"
@@ -14,6 +15,8 @@ on:
       - "talk/**"
       - "contact/**"
       - "speaker/**"
+      - "media/**"
+      - "7ya/**"
       - "igor-vepretski/**"
       - "influence/**"
       - "social/**"
@@ -51,26 +54,30 @@ jobs:
         run: |
           set -euo pipefail
           test -f index.html
+          test -f 404.html
           test -f CNAME
+          test -f assets/igor-vepretski-portrait.svg
           test "$(cat CNAME)" = "7ya.io"
-          grep -qi "איגור" index.html
+          grep -qi "איגור ופרצקי" index.html
+          grep -qi "IGOR VEPRETSKI" index.html
           grep -qi "Evidence Ledger" index.html
-          grep -qi "Evidence before amplification" index.html
-          for route in evidence journey starton oracle business talk contact speaker igor-vepretski; do
+          grep -qi "Igor before infrastructure" index.html
+          for route in evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence articles; do
             test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
           done
 
-      - name: Assemble production artifact
+      - name: Assemble immutable production artifact
         shell: bash
         run: |
           set -euo pipefail
           rm -rf dist
           mkdir -p dist
-          cp index.html CNAME robots.txt sitemap.xml dist/
-          for path in styles evidence journey starton oracle business talk contact speaker igor-vepretski influence social articles data assets images; do
-            if [ -e "$path" ]; then cp -R "$path" dist/; fi
+          cp index.html 404.html CNAME robots.txt sitemap.xml dist/
+          for path in styles evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence social articles data assets images; do
+            if [ -e "$path" ]; then cp -RL "$path" dist/; fi
           done
           touch dist/.nojekyll
+          test -f dist/assets/igor-vepretski-portrait.svg
           du -sh dist
 
       - name: Configure Pages
