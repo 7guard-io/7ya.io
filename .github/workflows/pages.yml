@@ -13,6 +13,7 @@ on:
       - "business/**"
       - "talk/**"
       - "contact/**"
+      - "speaker/**"
       - "igor-vepretski/**"
       - "influence/**"
       - "social/**"
@@ -50,12 +51,12 @@ jobs:
         run: |
           set -euo pipefail
           test -f index.html
-          test -f styles/home.css
+          test -f CNAME
           test "$(cat CNAME)" = "7ya.io"
-          grep -qi "Build what matters" index.html
-          grep -qi "Prove what is real" index.html
+          grep -qi "איגור" index.html
+          grep -qi "Evidence Ledger" index.html
           grep -qi "Evidence before amplification" index.html
-          for route in evidence journey starton oracle business talk contact igor-vepretski; do
+          for route in evidence journey starton oracle business talk contact speaker igor-vepretski; do
             test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
           done
 
@@ -66,7 +67,7 @@ jobs:
           rm -rf dist
           mkdir -p dist
           cp index.html CNAME robots.txt sitemap.xml dist/
-          for path in styles evidence journey starton oracle business talk contact igor-vepretski influence social articles data assets images; do
+          for path in styles evidence journey starton oracle business talk contact speaker igor-vepretski influence social articles data assets images; do
             if [ -e "$path" ]; then cp -R "$path" dist/; fi
           done
           touch dist/.nojekyll
@@ -83,5 +84,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-# Deployment retrigger: 2026-07-10T16:33:00+03:00
