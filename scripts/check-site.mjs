@@ -16,7 +16,7 @@ for (const route of routes) {
   if (html.includes('noindex')) fail(`${file} contains noindex`);
 }
 const home = read('index.html');
-for (const text of ['Igor Vepretski builds evidence-first civic technology','Credibility before volume','Evidence before amplification','Start a Strategic Conversation']) {
+for (const text of ['Igor Vepretski','Official public identity · 7YA evidence system','Evidence before amplification','Open Igor\'s public identity']) {
   home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
 }
 const sitemap = read('sitemap.xml');
