@@ -24,6 +24,7 @@ on:
       - "data/**"
       - "assets/**"
       - "images/**"
+      - "scripts/inject-ga4.mjs"
       - "robots.txt"
       - "sitemap.xml"
       - "favicon.svg"
@@ -61,6 +62,7 @@ jobs:
           test -f assets/igor-vepretski-portrait.svg
           test -f favicon.svg
           test -f site.webmanifest
+          test -f scripts/inject-ga4.mjs
           test "$(cat CNAME)" = "7ya.io"
           grep -qi "איגור ופרצקי" index.html
           grep -qi "IGOR VEPRETSKI" index.html
@@ -83,6 +85,20 @@ jobs:
           touch dist/.nojekyll
           test -f dist/assets/igor-vepretski-portrait.svg
           du -sh dist
+
+      - name: Inject and verify GA4 tracking
+        shell: bash
+        env:
+          GA_MEASUREMENT_ID: G-1028S7MMGQ
+        run: |
+          set -euo pipefail
+          node scripts/inject-ga4.mjs dist
+          expected="$(find dist -type f -name '*.html' | wc -l | tr -d ' ')"
+          configured="$(grep -RIl "googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}" dist --include='*.html' | wc -l | tr -d ' ')"
+          test "$expected" = "$configured" || {
+            echo "GA4 coverage mismatch: expected=$expected configured=$configured"
+            exit 1
+          }
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
