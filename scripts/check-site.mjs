@@ -19,7 +19,8 @@ const routes = [
   'media',
   '7ya',
   'influence',
-  'articles'
+  'articles',
+  'delta-audit'
 ];
 
 let failures = 0;

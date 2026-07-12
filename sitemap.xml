@@ -17,4 +17,5 @@
   <url><loc>https://7ya.io/social/</loc><lastmod>2026-07-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://7ya.io/pass/</loc><lastmod>2026-07-11</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://7ya.io/radar/</loc><lastmod>2026-07-11</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://7ya.io/delta-audit/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
