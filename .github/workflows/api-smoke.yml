@@ -1,5 +1,7 @@
 name: 7YA API Smoke
 
+# GitHub Actions remain quarantined while issue #83 is open. Keep this
+# production check manual-only and run it only after explicit approval.
 on:
   workflow_dispatch:
     inputs:
@@ -11,17 +13,6 @@ on:
         description: Browser origin to validate
         required: false
         default: https://7ya.io
-  push:
-    branches: [main]
-    paths:
-      - netlify/functions/chat.js
-      - netlify.toml
-      - scripts/smoke-test.js
-      - scripts/smoke-test.sh
-      - scripts/test-netlify-chat.mjs
-      - .github/workflows/api-smoke.yml
-  schedule:
-    - cron: "17 5 * * *"
 
 permissions:
   contents: read
