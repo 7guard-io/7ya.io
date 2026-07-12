@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ניהול 7YA.IO</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#111312">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="hero-panel" aria-labelledby="admin-title">
+      <a class="back-link" href="/">← חזרה לאתר</a>
+      <p class="eyebrow">7YA.IO CONTROL ROOM</p>
+      <h1 id="admin-title">ניהול נקי, מהיר וברור.</h1>
+      <p class="lead">כניסה אחת למנהל, בדיקת בריאות, נתוני פעילות, פוסטים ותשלומים — בלי לחפש endpoints ובלי ממשק מכוער.</p>
+      <div class="status-grid" aria-label="סטטוס מערכת">
+        <article><span>API</span><strong id="apiStatus">בודק…</strong></article>
+        <article><span>Session</span><strong id="sessionStatus">לא מחובר</strong></article>
+        <article><span>Role</span><strong id="roleStatus">—</strong></article>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="מרכז ניהול">
+      <form class="login-card" id="loginForm">
+        <div>
+          <p class="eyebrow">ADMIN LOGIN</p>
+          <h2>כניסה מאובטחת</h2>
+        </div>
+        <label>אימייל
+          <input id="email" name="email" type="email" autocomplete="username" required placeholder="admin@7ya.io">
+        </label>
+        <label>סיסמה
+          <input id="password" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="••••••••">
+        </label>
+        <button type="submit">כניסה לניהול</button>
+        <p class="form-note" id="formNote">הטוקן נשמר מקומית בדפדפן בלבד.</p>
+      </form>
+
+      <section class="dashboard" id="dashboard" hidden>
+        <div class="dashboard-head">
+          <div>
+            <p class="eyebrow">LIVE DASHBOARD</p>
+            <h2>תמונת מצב</h2>
+          </div>
+          <button class="ghost" id="logoutButton" type="button">התנתקות</button>
+        </div>
+
+        <div class="metric-grid" id="metricGrid">
+          <article><span>משתמשים</span><strong id="usersMetric">—</strong></article>
+          <article><span>פוסטים</span><strong id="postsMetric">—</strong></article>
+          <article><span>תשלומים</span><strong id="paymentsMetric">—</strong></article>
+          <article><span>הכנסות שנקלטו</span><strong id="revenueMetric">—</strong></article>
+        </div>
+
+        <form class="composer" id="postForm">
+          <h3>פרסום מהיר</h3>
+          <input id="postTitle" name="title" maxlength="160" required placeholder="כותרת">
+          <textarea id="postContent" name="content" maxlength="20000" required placeholder="תוכן לפרסום"></textarea>
+          <button type="submit">שמירת פוסט</button>
+          <p id="postNote" class="form-note"></p>
+        </form>
+
+        <div class="lists">
+          <section>
+            <h3>פוסטים אחרונים</h3>
+            <div class="list" id="postsList"></div>
+          </section>
+          <section>
+            <h3>תשלומים אחרונים</h3>
+            <div class="list" id="paymentsList"></div>
+          </section>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/admin/admin.js" type="module"></script>
+</body>
+</html>

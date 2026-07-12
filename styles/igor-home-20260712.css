@@ -81,6 +81,7 @@ a { color: inherit; text-decoration: none; }
 .brand small { margin-top: -2px; color: #6e625c; font-size: .68rem; letter-spacing: .18em; }
 .desktop-nav { display: flex; align-items: center; gap: 24px; font-size: .92rem; font-weight: 700; }
 .desktop-nav a { border-bottom: 1px solid transparent; }
+.desktop-nav .admin-link { padding: 8px 13px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); }
 .desktop-nav a:hover,
 .desktop-nav a:focus-visible { border-bottom-color: currentColor; }
 
@@ -149,7 +150,7 @@ h1 {
 .hero-actions {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 9px;
 }
 .button {
@@ -167,6 +168,7 @@ h1 {
   font-weight: 800;
 }
 .button-primary { border-color: var(--wine); background: var(--wine); color: #fff; }
+.button-admin { border-color: rgba(80,31,44,.34); background: #161312; color: #fff; }
 .button:hover,
 .button:focus-visible { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(42,28,23,.12); }
 
