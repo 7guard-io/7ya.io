@@ -1,9 +1,8 @@
 name: Publish 7YA Production Site
 
-# Production remains deployable on demand, but automatic runs are quarantined
-# while GitHub rejects jobs before runner startup at the account/org level.
-# Restore push triggers only after the manual smoke workflow passes; see
-# docs/CI_RUNBOOK.md and issue #83.
+# Automatic runs remain quarantined while GitHub blocks runners because of
+# the account billing lock tracked in issue #83. Keep this workflow complete
+# and deployable through workflow_dispatch once Actions can start runners.
 on:
   workflow_dispatch:
 
@@ -40,17 +39,16 @@ jobs:
           test -f favicon.svg
           test -f sw.js
           test -f service-worker.js
+          test -f scripts/check-site.mjs
           test -f scripts/inject-ga4.mjs
           test "$(cat CNAME)" = "7ya.io"
           grep -qi "איגור ופרצקי" index.html
           grep -qi "IGOR VEPRETSKI" index.html
           grep -qi "Evidence Ledger" index.html
-          grep -qi "igor-first-mobile-20260712-1" index.html
-          grep -Fq '/styles/igor-home-20260712.css?v=1' index.html
+          grep -qi "igor-first-mobile-20260712-2" index.html
+          grep -Fq '/styles/igor-home-20260712.css?v=2' index.html
           grep -Fq 'איש שטח, מייסד StartOn ובונה 7YA' index.html
-          for route in evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence articles; do
-            test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
-          done
+          node scripts/check-site.mjs
 
       - name: Assemble immutable production artifact
         shell: bash
@@ -59,13 +57,15 @@ jobs:
           rm -rf dist
           mkdir -p dist
           cp index.html 404.html CNAME robots.txt sitemap.xml favicon.svg sw.js service-worker.js dist/
-          for path in styles evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence social articles data assets images; do
+          for path in styles evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence social articles pass radar data assets images; do
             if [ -e "$path" ]; then cp -RL "$path" dist/; fi
           done
           touch dist/.nojekyll
           test -f dist/styles/igor-home-20260712.css
           test -f dist/assets/igor-home-portrait-20260712.webp
           test -f dist/assets/igor-home-og-20260712.jpg
+          test -f dist/pass/index.html
+          test -f dist/radar/index.html
           du -sh dist
 
       - name: Inject and verify GA4 tracking
