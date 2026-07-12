@@ -1,4 +1,4 @@
-name: Publish 7YA Redirect
+name: Publish 7YA Site
 
 on:
   workflow_dispatch:
@@ -13,35 +13,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  verify-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Assemble redirect artifact
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Verify rebuilt public surface
+        run: node scripts/verify-rebuild.mjs
+      - name: Build allowlisted Pages artifact
+        run: node scripts/build-pages-site.mjs
+      - name: Verify artifact contract
         shell: bash
         run: |
           set -euo pipefail
-          test "$(cat CNAME)" = "7ya.io"
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" index.html
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" 404.html
-          rm -rf dist
-          mkdir -p dist
-          cp index.html 404.html CNAME dist/
-          touch dist/.nojekyll
-
+          test "$(cat dist/CNAME)" = "7ya.io"
+          test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/sitemap.xml
+          test -f dist/robots.txt
+          test -f dist/assets/igor-home-portrait-20260712.webp
+          ! grep -Fq 'http-equiv="refresh"' dist/index.html
+          ! grep -Fq 'noindex' dist/index.html
       - name: Configure Pages
         uses: actions/configure-pages@v5
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
