@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { handler } from "./netlify/functions/chat.js";
+import { handler } from "../netlify/functions/chat.js";
 
 const post = await handler({
   httpMethod: "POST",
