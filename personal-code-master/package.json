@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Immutable personal code generation microservice wrapper with static context injection.",
+  "description": "Immutable personal code generation CLI with static context injection.",
   "scripts": {
     "start": "node server.js",
     "smoke": "python3 scripts/smoke_test.py"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1"
+    "@google/genai": "2.11.0",
+    "dotenv": "17.4.2"
   },
   "engines": {
     "node": ">=20"
