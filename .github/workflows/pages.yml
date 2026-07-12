@@ -1,5 +1,7 @@
-name: Publish 7YA Redirect
+name: Publish 7YA Production Site
 
+# Automatic runs remain quarantined while issue #83 is open. This workflow is
+# intentionally manual and must be run from main only after reviewed validation.
 on:
   workflow_dispatch:
 
@@ -9,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: github-pages-production
   cancel-in-progress: true
 
 jobs:
@@ -22,17 +24,117 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble redirect artifact
+      - name: Validate full-site release
         shell: bash
         run: |
           set -euo pipefail
+
+          required_files=(
+            index.html
+            404.html
+            CNAME
+            robots.txt
+            sitemap.xml
+            favicon.svg
+            sw.js
+            service-worker.js
+            scripts/check-site.mjs
+            scripts/check-links.mjs
+            scripts/inject-ga4.mjs
+            styles/igor-home-20260712.css
+            assets/igor-home-portrait-20260712.webp
+            assets/igor-home-portrait-20260712.jpg
+            assets/igor-home-og-20260712.jpg
+          )
+
+          for file in "${required_files[@]}"; do
+            test -f "$file" || { echo "Missing required production file: $file"; exit 1; }
+          done
+
           test "$(cat CNAME)" = "7ya.io"
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" index.html
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" 404.html
+          grep -qi "איגור ופרצקי" index.html
+          grep -qi "IGOR VEPRETSKI" index.html
+          grep -qi "Evidence Ledger" index.html
+          grep -qi '<meta name="robots" content="index, follow' index.html
+
+          if grep -qiE "http-equiv=['\"]refresh|window\.location\.(replace|assign)|location\.href[[:space:]]*=" index.html 404.html; then
+            echo "Redirect logic found in full-site entry files"
+            exit 1
+          fi
+
+          node scripts/check-site.mjs
+          node scripts/check-links.mjs
+
+      - name: Assemble immutable full-site artifact
+        shell: bash
+        run: |
+          set -euo pipefail
           rm -rf dist
           mkdir -p dist
-          cp index.html 404.html CNAME dist/
+
+          cp index.html \
+             404.html \
+             CNAME \
+             robots.txt \
+             sitemap.xml \
+             favicon.svg \
+             sw.js \
+             service-worker.js \
+             dist/
+
+          for path in \
+            styles evidence journey starton oracle business talk contact \
+            speaker media 7ya igor-vepretski influence social articles \
+            pass radar member-pass data assets images
+          do
+            if [ -e "$path" ]; then
+              cp -RL "$path" dist/
+            fi
+          done
+
           touch dist/.nojekyll
+
+          test -f dist/index.html
+          test -f dist/journey/index.html
+          test -f dist/igor-vepretski/index.html
+          test -f dist/starton/index.html
+          test -f dist/evidence/index.html
+          test -f dist/pass/index.html
+          test -f dist/radar/index.html
+          test -f dist/styles/igor-home-20260712.css
+          test -f dist/assets/igor-home-portrait-20260712.webp
+          test -f dist/assets/igor-home-og-20260712.jpg
+          test "$(cat dist/CNAME)" = "7ya.io"
+
+          if grep -qiE "http-equiv=['\"]refresh|window\.location\.(replace|assign)|location\.href[[:space:]]*=" dist/index.html dist/404.html; then
+            echo "Redirect logic found in full-site entry files"
+            exit 1
+          fi
+
+          if grep -qi 'noindex' dist/index.html; then
+            echo "Homepage must be indexable"
+            exit 1
+          fi
+
+          du -sh dist
+
+      - name: Inject and verify GA4 tracking
+        shell: bash
+        env:
+          GA_MEASUREMENT_ID: G-1028S7MMGQ
+        run: |
+          set -euo pipefail
+          node scripts/inject-ga4.mjs dist
+
+          expected="$(find dist -type f -name '*.html' | wc -l | tr -d ' ')"
+          configured="$(grep -RIl "googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}" dist --include='*.html' | wc -l | tr -d ' ')"
+
+          test "$expected" = "$configured" || {
+            echo "GA4 coverage mismatch: expected=$expected configured=$configured"
+            exit 1
+          }
+
+          echo "GA4 coverage verified: ${configured}/${expected}"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
