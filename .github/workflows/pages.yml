@@ -24,11 +24,12 @@ on:
       - "data/**"
       - "assets/**"
       - "images/**"
+      - "sw.js"
+      - "service-worker.js"
       - "scripts/inject-ga4.mjs"
       - "robots.txt"
       - "sitemap.xml"
       - "favicon.svg"
-      - "site.webmanifest"
       - "CNAME"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -59,9 +60,12 @@ jobs:
           test -f index.html
           test -f 404.html
           test -f CNAME
-          test -f assets/igor-vepretski-portrait.svg
+          test -f assets/igor-home-portrait-20260712.webp
+          test -f assets/igor-home-portrait-20260712.jpg
+          test -f assets/igor-home-og-20260712.jpg
           test -f favicon.svg
-          test -f site.webmanifest
+          test -f sw.js
+          test -f service-worker.js
           test -f scripts/inject-ga4.mjs
           test "$(cat CNAME)" = "7ya.io"
           grep -qi "איגור ופרצקי" index.html
@@ -78,12 +82,13 @@ jobs:
           set -euo pipefail
           rm -rf dist
           mkdir -p dist
-          cp index.html 404.html CNAME robots.txt sitemap.xml favicon.svg site.webmanifest dist/
+          cp index.html 404.html CNAME robots.txt sitemap.xml favicon.svg sw.js service-worker.js dist/
           for path in styles evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence social articles data assets images; do
             if [ -e "$path" ]; then cp -RL "$path" dist/; fi
           done
           touch dist/.nojekyll
-          test -f dist/assets/igor-vepretski-portrait.svg
+          test -f dist/assets/igor-home-portrait-20260712.webp
+          test -f dist/assets/igor-home-og-20260712.jpg
           du -sh dist
 
       - name: Inject and verify GA4 tracking
