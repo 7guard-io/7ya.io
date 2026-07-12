@@ -1,12 +1,10 @@
 name: 7YA CI
 
+# GitHub Actions is currently blocked before runner startup at the account/org level.
+# Keep the full validation suite available manually without creating false red
+# checks on every push or pull request. Restore automatic triggers only after
+# the manual smoke workflow passes; see docs/CI_RUNBOOK.md and issue #83.
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
