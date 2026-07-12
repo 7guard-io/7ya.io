@@ -60,6 +60,7 @@ jobs:
           test -f index.html
           test -f 404.html
           test -f CNAME
+          test -f styles/igor-home-20260712.css
           test -f assets/igor-home-portrait-20260712.webp
           test -f assets/igor-home-portrait-20260712.jpg
           test -f assets/igor-home-og-20260712.jpg
@@ -71,7 +72,9 @@ jobs:
           grep -qi "איגור ופרצקי" index.html
           grep -qi "IGOR VEPRETSKI" index.html
           grep -qi "Evidence Ledger" index.html
-          grep -qi "Igor before infrastructure" index.html
+          grep -qi "igor-first-mobile-20260712-1" index.html
+          grep -Fq '/styles/igor-home-20260712.css?v=1' index.html
+          grep -Fq 'איש שטח, מייסד StartOn ובונה 7YA' index.html
           for route in evidence journey starton oracle business talk contact speaker media 7ya igor-vepretski influence articles; do
             test -f "$route/index.html" || { echo "Missing route: $route"; exit 1; }
           done
@@ -87,6 +90,7 @@ jobs:
             if [ -e "$path" ]; then cp -RL "$path" dist/; fi
           done
           touch dist/.nojekyll
+          test -f dist/styles/igor-home-20260712.css
           test -f dist/assets/igor-home-portrait-20260712.webp
           test -f dist/assets/igor-home-og-20260712.jpg
           du -sh dist
