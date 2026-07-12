@@ -1,27 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { routes } from './site-routes.mjs';
+
 const root = process.cwd();
-const routes = [
-  '',
-  'igor-vepretski',
-  'evidence',
-  'journey',
-  'starton',
-  'oracle',
-  'business',
-  'talk',
-  'contact',
-  'social',
-  'pass',
-  'radar',
-  'speaker',
-  'media',
-  '7ya',
-  'influence',
-  'articles',
-  'delta-audit'
-];
 
 let failures = 0;
 const fail = message => { failures += 1; console.error(`FAIL ${message}`); };
