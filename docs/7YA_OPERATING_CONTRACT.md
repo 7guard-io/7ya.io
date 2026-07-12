@@ -9,11 +9,14 @@ Prevent 7ya.io operations from depending on memory, improvisation or informal ch
 - Repository: `7guard-io/7ya.io`
 - Default branch: `main`
 - Workflow file: `.github/workflows/pages.yml`
-- Current workflow name: `Publish 7YA Redirect`
+- Workflow name: `Publish 7YA Production Site`
 - Trigger: manual `workflow_dispatch`
 - Target: GitHub Pages
 - Live domain: `https://7ya.io`
-- Current release mode: redirect-only production entry point
+- Release mode: full-site static artifact
+- Artifact source: approved root HTML, route directories and public assets assembled into `dist/`
+- Analytics: artifact-time GA4 injection through `scripts/inject-ga4.mjs`
+- Migration status: pending reviewed merge, manual workflow success and independent live verification
 
 ## Governance room
 
@@ -26,11 +29,13 @@ Datasite is the governance and evidence vault, not the website editor or deploym
 | System | Authority |
 | --- | --- |
 | GitHub | Source code, branches, commits, pull requests and production deployment |
-| GitHub Pages | Production publishing target |
+| GitHub Pages | Canonical production publishing target |
 | `7ya.io` | Live public result |
 | Datasite | Governance, evidence, approvals, releases and audit trail |
 | Coding agents | Execution operators only |
 | Chat memory | Non-authoritative context only |
+
+Vercel and Netlify are deprecated as production targets. Root-level provider redirect configuration must not control the canonical release.
 
 ## Non-forgetting protocol
 
@@ -41,9 +46,9 @@ For every task:
 3. Read governance files.
 4. Create a dedicated branch.
 5. Make minimal changes.
-6. Validate through available checks.
+6. Validate the source and locally assemble the exact Pages artifact.
 7. Integrate through pull request.
-8. Publish only through the verified production workflow.
+8. Publish only through the verified manual production workflow.
 9. Verify production independently.
 10. Archive evidence and rollback information.
 
@@ -53,13 +58,23 @@ Operators must use dedicated branches, pull requests, minimal diffs and explicit
 
 Operators must not work from ZIP files, obsolete repositories, random local copies, unverified workflows or chat memory as source of truth.
 
+`npm run build` is not the frontend build contract. The public site is static and must be assembled according to `docs/DEPLOYMENT_RUNBOOK.md`.
+
 ## Current route policy
 
-The current release is a redirect artifact. `/` is the required production entry route. `/pass/` and `/radar/` remain future full-site verification targets and become mandatory only after a deliberate, verified architecture change.
+The approved release is a full static site. Critical routes are:
+
+- `/`
+- `/journey/`
+- `/igor-vepretski/`
+- `/starton/`
+- `/evidence/`
+
+The complete public route list is recorded in `docs/RELEASE_STATE.json`. Routes are not considered live until the workflow succeeds and the public domain is verified.
 
 ## Blocker policy
 
-GitHub issue `#83` is currently open. Treat GitHub Actions as quarantined except for verified manual workflows. Do not re-enable automatic CI gates until the smoke workflow passes or a later verified record supersedes this policy.
+GitHub issue `#83` is currently open. Treat GitHub Actions as quarantined except for one explicitly approved manual production run. Do not re-enable automatic CI gates until a smoke workflow succeeds or a later verified record supersedes this policy.
 
 ## Conflict resolution
 
