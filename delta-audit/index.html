@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delta Audit RAG Board | 7YA</title>
+  <meta name="description" content="לוח RAG מסווג ל־Delta Audit של 7YA: P0/P1/P2, בעלות, Definition of Done ונוסח הנהלה קצר ל־GO/NO-GO.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://7ya.io/delta-audit/">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <style>
+    .rag-board{display:grid;gap:18px}.rag-card{border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.68);padding:24px;box-shadow:0 20px 60px rgba(72,51,30,.08)}
+    .rag-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}.rag-title{margin:0}.rag-status{min-width:86px;justify-content:center}.rag-status.red{color:#fff;background:var(--red);border-color:var(--red)}.rag-status.amber{color:#fff;background:var(--amber);border-color:var(--amber)}.rag-status.green{color:#fff;background:var(--green);border-color:var(--green)}
+    .audit-table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.62)}.audit-table th,.audit-table td{padding:14px 12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:start}.audit-table th{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);background:rgba(255,255,255,.45)}.audit-table tr:last-child td{border-bottom:0}.owner{font-weight:900}.dod{color:rgba(23,21,17,.72)}.exec-list{counter-reset:exec;display:grid;gap:10px;padding:0;list-style:none}.exec-list li{counter-increment:exec;padding:14px 16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.54)}.exec-list li:before{content:counter(exec) ". ";font-weight:950;color:var(--gold)}
+    @media(max-width:760px){.audit-table,.audit-table thead,.audit-table tbody,.audit-table tr,.audit-table th,.audit-table td{display:block}.audit-table thead{display:none}.audit-table tr{border-bottom:1px solid var(--line);padding:10px}.audit-table td{border:0;padding:8px}.audit-table td:before{content:attr(data-label);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:900}}
+  </style>
+</head>
+<body data-route="/delta-audit/">
+  <a class="skip" href="#main">דלג לתוכן</a>
+  <div class="app-shell">
+    <aside class="app-sidebar">
+      <a class="brand-lockup" href="/"><span class="brand-mark">IGOR VEPRETSKI</span><span class="brand-subtitle">7YA.IO</span></a>
+      <nav class="layout-nav">
+        <a class="nav-link" href="/">בית</a><a class="nav-link" href="/igor-vepretski/">איגור</a><a class="nav-link" href="/starton/">StartOn</a><a class="nav-link" href="/evidence/">ראיות</a><a class="nav-link" href="/media/">מדיה</a><a class="nav-link" href="/delta-audit/" aria-current="page">Delta Audit</a><a class="nav-link" href="/contact/">קשר</a>
+      </nav>
+      <section class="system-status"><div class="status-line"><span class="status-dot"></span>NO-GO מבוקר</div><p class="status-copy">כל טענה תלוית־ריצה דורשת אימות מחדש.</p></section>
+    </aside>
+    <div class="app-main">
+      <header class="top-header"><div><div class="top-meta">7YA Governance</div><div class="top-title">Delta Audit RAG Board</div></div><div class="command-placeholder">Owner · Task · Definition of Done</div><div class="identity"><span class="status-dot"></span>12 July 2026</div></header>
+      <main id="main" class="page-frame">
+        <section class="hero"><p class="eyebrow">Delta Audit — Classified Execution</p><h1>NO-GO ברור.<br>ביצוע לפי RAG.</h1><p class="lead">הלוח מתרגם את ממצאי ה־Delta Audit לתוכנית עבודה אחת: P0 לסגירת חסמי השקה, P1 לבנייה מוסדית, ו־P2 למדידה ובקרה. בסיס המקור הוא דוח 12 ביולי 2026 בלבד; Claims שתלויים במצב ריצה מסומנים לאימות מחדש.</p><div class="meta"><span class="badge internal">Gate: NO-GO</span><span class="badge partial">PASS 0 · PARTIAL 4 · FAIL 10</span><span class="badge pending">STALE CLAIMS VERIFY</span></div></section>
+
+        <section class="grid three">
+          <article class="rag-card"><div class="rag-head"><h2 class="rag-title">P0</h2><span class="badge rag-status red">RED</span></div><p>חסמי השקה: אין Outreach או פרסום מוסדי עד סגירת כל Definition of Done ואימות טענות הריצה.</p></article>
+          <article class="rag-card"><div class="rag-head"><h2 class="rag-title">P1</h2><span class="badge rag-status amber">AMBER</span></div><p>בנייה מחדש: Identity, CTA, הפרדת StartOn ו־7YA, ופוליש מובייל אחרי ש־P0 יציב.</p></article>
+          <article class="rag-card"><div class="rag-head"><h2 class="rag-title">P2</h2><span class="badge rag-status green">GREEN</span></div><p>מדידה מתמשכת: Vault, Search Console, התרעות, נגישות חוזרת ו־public changelog.</p></article>
+        </section>
+
+        <section><h2>P0 — Launch Blockers</h2><table class="audit-table"><thead><tr><th>RAG</th><th>Owner</th><th>Task</th><th>Definition of Done</th></tr></thead><tbody>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Canonical Owner</td><td data-label="Task">Publish canonical Igor entity page with short bio, long bio, press photo, sameAs, 7YA and StartOn links.</td><td data-label="Definition of Done" class="dod">One indexed canonical URL; navigation resolves to it; Person JSON-LD validates; no competing identity routes.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Evidence Owner</td><td data-label="Task">Attach source or status label to every public claim and downgrade unsupported claims to VERIFY.</td><td data-label="Definition of Done" class="dod">Every claim has source, status, date/context; unsupported metrics and partnership language removed.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Evidence Owner</td><td data-label="Task">Turn existing anchors into a live Evidence Wall and Press Archive.</td><td data-label="Definition of Done" class="dod">12+ cards live with source, date, context and why-it-matters; press archive linked from nav.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Product / Design Owner</td><td data-label="Task">Rebuild hero as mobile-first, human, premium and proof-linked.</td><td data-label="Definition of Done" class="dod">Mobile above-the-fold includes face, name, mission and proof doorway; no overflow at common breakpoints.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">IA Owner</td><td data-label="Task">Ship canonical nav: Home / About / StartOn / Evidence / Media / Press / Index-Public / Contact.</td><td data-label="Definition of Done" class="dod">No dead ends; all nav routes return 200 locally and in production; entity confusion removed.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Release Owner</td><td data-label="Task">Enforce one production source of truth and freeze unapproved content paths.</td><td data-label="Definition of Done" class="dod">Production branch, deploy target and content source are documented; stale runtime claims revalidated.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Engineering Owner</td><td data-label="Task">Close CI/CD: typecheck, route/link/site-health checks and valid production deploy ID.</td><td data-label="Definition of Done" class="dod">Green CI run; deploy URL recorded; route/link/site-health evidence stored in release notes.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">SEO Owner</td><td data-label="Task">Ship schema, canonical URLs, sitemap, internal linking and alt text baseline.</td><td data-label="Definition of Done" class="dod">Person + Organization JSON-LD validate; sitemap includes canonical pages; image alt coverage documented.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Accessibility Owner</td><td data-label="Task">Establish WCAG 2.1 AA baseline for nav, text alternatives, scaling and keyboard flow.</td><td data-label="Definition of Done" class="dod">Keyboard walkthrough passes; contrast/scaling issues logged or fixed; compliance status published.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status red">RED</span></td><td data-label="Owner" class="owner">Legal / Privacy Owner</td><td data-label="Task">Publish privacy, consent handling and safeguarding/compliance note where relevant.</td><td data-label="Definition of Done" class="dod">Privacy page linked; consent behavior documented; sensitive social-impact language reviewed.</td></tr>
+        </tbody></table></section>
+
+        <section><h2>P1 — Rebuild</h2><table class="audit-table"><thead><tr><th>RAG</th><th>Owner</th><th>Task</th><th>Definition of Done</th></tr></thead><tbody>
+          <tr><td data-label="RAG"><span class="badge rag-status amber">AMBER</span></td><td class="owner" data-label="Owner">Brand Owner</td><td data-label="Task">Apply institutional identity pack.</td><td class="dod" data-label="Definition of Done">Typography, color, imagery, tone and templates applied consistently across core pages.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status amber">AMBER</span></td><td class="owner" data-label="Owner">Content Owner</td><td data-label="Task">Create multilingual parallel entity pages.</td><td class="dod" data-label="Definition of Done">Language versions are complete, not partial, and point back to canonical identity architecture.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status amber">AMBER</span></td><td class="owner" data-label="Owner">Growth Owner</td><td data-label="Task">Build CTA funnel: Story → Proof → Action.</td><td class="dod" data-label="Definition of Done">Every primary page leads to one measurable next action without unsupported claims.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status amber">AMBER</span></td><td class="owner" data-label="Owner">Governance Owner</td><td data-label="Task">Separate StartOn ownership and operating boundaries from 7YA.</td><td class="dod" data-label="Definition of Done">Pages explain StartOn as impact/proof layer and 7YA as evidence/media layer.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status amber">AMBER</span></td><td class="owner" data-label="Owner">Design Owner</td><td data-label="Task">Polish mobile system and investor-grade visual consistency.</td><td class="dod" data-label="Definition of Done">Core pages pass responsive review and use the same component language.</td></tr>
+        </tbody></table></section>
+
+        <section><h2>P2 — Measurement</h2><table class="audit-table"><thead><tr><th>RAG</th><th>Owner</th><th>Task</th><th>Definition of Done</th></tr></thead><tbody>
+          <tr><td data-label="RAG"><span class="badge rag-status green">GREEN</span></td><td class="owner" data-label="Owner">Metrics Owner</td><td data-label="Task">Create metrics vault with evidence-backed numbers only.</td><td class="dod" data-label="Definition of Done">Metric records include source, method, date, owner and review status.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status green">GREEN</span></td><td class="owner" data-label="Owner">SEO Owner</td><td data-label="Task">Operate Search Console and indexing monitoring.</td><td class="dod" data-label="Definition of Done">Index status is checked after launch and stale indexing claims are retired.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status green">GREEN</span></td><td class="owner" data-label="Owner">Engineering Owner</td><td data-label="Task">Add CI, route and analytics alerting.</td><td class="dod" data-label="Definition of Done">Alerts fire on failed deploy, broken route, missing metadata or analytics outage.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status green">GREEN</span></td><td class="owner" data-label="Owner">Accessibility Owner</td><td data-label="Task">Schedule accessibility re-audits.</td><td class="dod" data-label="Definition of Done">Recurring audit cadence and issue register are documented.</td></tr>
+          <tr><td data-label="RAG"><span class="badge rag-status green">GREEN</span></td><td class="owner" data-label="Owner">Trust Owner</td><td data-label="Task">Maintain public changelog for trust.</td><td class="dod" data-label="Definition of Done">Material updates, corrections and evidence changes are timestamped publicly.</td></tr>
+        </tbody></table></section>
+
+        <section class="panel"><h2>נוסח הנהלה — 10 שורות בלבד</h2><ol class="exec-list"><li>Decision: NO-GO.</li><li>The narrative and evidence base are strong, but institutional readiness is blocked.</li><li>The package currently fails its own acceptance gate: PASS 0, PARTIAL 4, FAIL 10.</li><li>The blocking gaps are canonical entity, IA, hero/mobile, production integrity, SEO, accessibility, testing and legal/privacy.</li><li>Runtime-dependent findings from the audit are STALE CLAIMS until revalidated on current production.</li><li>Igor is the canonical identity; 7YA is the evidence/media layer; StartOn is the impact/proof layer.</li><li>The next move is not more outreach; it is P0 closure.</li><li>P0 requires canonical page, evidence wall, press archive, proof-linked hero, validated routes and green CI/CD.</li><li>GO is allowed only after all P0 items are closed and the gate is re-run with no FAIL items.</li><li>Until then, publish posture should remain controlled, evidence-first and non-institutional.</li></ol></section>
+      </main>
+      <footer>Igor Vepretski · 7YA.IO · Delta Audit RAG Board</footer>
+    </div>
+  </div>
+</body>
+</html>
