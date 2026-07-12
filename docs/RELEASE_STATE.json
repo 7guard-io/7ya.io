@@ -6,28 +6,65 @@
     "domain": "https://7ya.io",
     "publishing_target": "GitHub Pages",
     "workflow_file": ".github/workflows/pages.yml",
-    "workflow_name": "Publish 7YA Redirect",
+    "workflow_name": "Publish 7YA Production Site",
     "deployment_trigger": "workflow_dispatch",
-    "release_mode": "redirect_only",
-    "redirect_target": "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/",
+    "release_mode": "full_site_static",
+    "artifact_source": "repository_root_static_files_and_route_directories",
+    "artifact_directory": "dist",
+    "analytics_injection": "scripts/inject-ga4.mjs",
+    "analytics_measurement_id": "G-1028S7MMGQ",
     "latest_verified_production_commit": null,
     "latest_verified_workflow_run": null,
     "latest_verified_at": null,
-    "verification_status": "requires_live_verification"
+    "verification_status": "pending_full_site_migration",
+    "deployment_authorized": false
   },
-  "required_routes": [
-    "/"
+  "migration": {
+    "configuration_drift_detected": true,
+    "redirect_commit": "37fae627ff72e821bc9a1c25616a4fab400d30b5",
+    "last_full_site_source_commit": "120e8adda889b0346dad882912d9cdd3b5608a22",
+    "pre_deployment_rollback_point": "37fae627ff72e821bc9a1c25616a4fab400d30b5",
+    "status": "pr_validation_required"
+  },
+  "critical_routes": [
+    "/",
+    "/journey/",
+    "/igor-vepretski/",
+    "/starton/",
+    "/evidence/"
   ],
-  "future_full_site_routes": [
+  "public_routes": [
+    "/",
+    "/igor-vepretski/",
+    "/evidence/",
+    "/journey/",
+    "/starton/",
+    "/oracle/",
+    "/business/",
+    "/talk/",
+    "/contact/",
+    "/social/",
     "/pass/",
-    "/radar/"
+    "/radar/",
+    "/speaker/",
+    "/media/",
+    "/7ya/",
+    "/influence/",
+    "/articles/"
+  ],
+  "compatibility_routes": [
+    "/member-pass/"
   ],
   "governance": {
     "datasite_project": "7YA.IO Sovereign Control Room",
     "datasite_status": "requires_verification",
     "datasite_role": "governance_vault_evidence_approvals_release_records_audit_trail",
     "github_role": "code_branches_commits_pull_requests_production_deployment",
-    "chat_memory_role": "non_authoritative_context_only"
+    "chat_memory_role": "non_authoritative_context_only",
+    "deprecated_production_targets": [
+      "Vercel",
+      "Netlify"
+    ]
   },
   "blockers": [
     {
@@ -35,13 +72,14 @@
       "id": "#83",
       "title": "Blocker: GitHub Actions jobs fail without logs",
       "status": "open",
-      "effect": "Keep automatic CI gates quarantined; use only verified manual workflows until superseded by verified evidence."
+      "effect": "Keep automatic CI gates quarantined; allow only an explicitly approved manual workflow run after local artifact validation."
     }
   ],
   "operator_requirements": {
     "must_use_dedicated_branch": true,
     "must_use_pull_request": true,
     "must_validate_before_merge": true,
+    "must_assemble_artifact_locally": true,
     "must_publish_only_through_verified_workflow": true,
     "must_verify_live_site_before_claiming_success": true,
     "must_archive_evidence": true,
@@ -53,6 +91,8 @@
     "obsolete_repositories",
     "random_local_copies",
     "datasite_as_website_editor",
+    "vercel_as_production_target",
+    "netlify_as_production_target",
     "unverified_workflows"
   ],
   "secrets_policy": {
