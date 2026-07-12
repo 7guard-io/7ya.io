@@ -1,0 +1,36 @@
+/* Emergency production lock: Igor must remain visible in every viewport and renderer. */
+.hero{position:relative;min-height:100svh;isolation:isolate;background:#09090b;overflow:hidden}
+.hero-inner{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);align-items:stretch;padding:0!important}
+.portrait-card{position:relative!important;inset:auto!important;z-index:1!important;grid-column:2;grid-row:1;margin:0!important;min-height:100svh;overflow:hidden;background:#18181b}
+.portrait-card picture{display:block;width:100%;height:100%}
+.portrait-card img{display:block!important;width:100%!important;height:100%!important;min-height:100svh!important;object-fit:cover!important;object-position:50% 22%!important;opacity:1!important;filter:none!important;transform:none!important;background:#18181b}
+.portrait-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,9,11,.92) 0%,rgba(9,9,11,.28) 40%,transparent 72%),linear-gradient(180deg,transparent 55%,rgba(9,9,11,.5));pointer-events:none}
+.hero-copy{position:relative!important;z-index:3!important;grid-column:1;grid-row:1;align-self:center;width:auto!important;max-width:760px;margin-inline-start:max(24px,calc((100vw - 1180px)/2));padding:140px 42px 70px 0;text-align:right!important;text-shadow:none!important}
+.english-name{text-align:right!important}
+.hero-copy h1{margin:0!important;text-align:right!important;font-size:clamp(4.2rem,8vw,8.8rem)!important;line-height:.84!important}
+.identity{margin:28px 0 0!important;max-width:34ch!important;color:#e4e4e7!important;font-size:clamp(1.15rem,2vw,1.55rem)!important}
+.identity::before{margin:0 0 20px!important}
+.hero-actions{margin:30px 0 0!important;width:min(620px,100%)!important}
+.site-header{z-index:10!important}
+@media(max-width:900px){
+  .hero{min-height:auto}
+  .hero-inner{min-height:auto;display:flex!important;flex-direction:column;padding:0!important}
+  .portrait-card{order:1;width:100%;min-height:58svh!important;height:58svh;grid-column:auto;grid-row:auto}
+  .portrait-card img{min-height:58svh!important;height:58svh!important;object-position:50% 18%!important}
+  .portrait-card::after{background:linear-gradient(180deg,transparent 48%,#09090b 100%)}
+  .hero-copy{order:2;width:100%!important;max-width:none!important;margin:0!important;padding:10px 20px 42px!important;text-align:center!important;background:#09090b}
+  .english-name,.hero-copy h1{text-align:center!important}
+  .hero-copy h1{font-size:clamp(3.35rem,18vw,5.5rem)!important}
+  .identity{margin:22px auto 0!important;text-align:center}
+  .identity::before{margin:0 auto 18px!important}
+  .hero-actions{grid-template-columns:1fr!important;margin:26px auto 0!important}
+}
+@media(max-width:430px){
+  .portrait-card{height:55svh;min-height:55svh!important}
+  .portrait-card img{height:55svh!important;min-height:55svh!important}
+}
+@media print{
+  .portrait-card{position:relative!important;display:block!important;min-height:520px!important;height:520px!important;z-index:1!important}
+  .portrait-card img{display:block!important;height:520px!important;min-height:520px!important;opacity:1!important;filter:none!important}
+  .hero-copy{position:relative!important;color:#111!important;background:#fff!important}
+}
