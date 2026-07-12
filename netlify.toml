@@ -1,5 +1,12 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 [[redirects]]
   from = "/*"
-  to = "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/"
-  status = 301
-  force = true
+  to = "/index.html"
+  status = 200
