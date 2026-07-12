@@ -10,6 +10,7 @@
     "check-links": "node scripts/check-links.mjs",
     "generate:seo": "node scripts/generate-seo-files.mjs",
     "check:seo": "node scripts/check-seo.mjs",
+    "verify:production:seo": "node scripts/verify-production-seo.mjs",
     "check-all": "npm run generate:seo && npm run check-site && npm run check-links && npm run check:seo",
     "verify:routes": "node scripts/verify-routes.mjs",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
