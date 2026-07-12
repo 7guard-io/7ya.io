@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 const root = process.cwd();
-const routes = ['','igor-vepretski','evidence','journey','starton','oracle','business','talk','contact','social','pass','radar'];
+const routes = ['','igor','igor-vepretski','evidence','journey','starton','influence','press','speaker','partners','oracle','business','talk','contact','social','pass','radar','en'];
 let failures = 0;
 const fail = m => { failures++; console.error(`FAIL ${m}`); };
 const pass = m => console.log(`PASS ${m}`);
