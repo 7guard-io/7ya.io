@@ -10,6 +10,10 @@ import {
 
 const root = process.cwd();
 const outputDirs = [root, path.join(root, 'dist')];
+const releaseSha = process.env.RELEASE_SHA
+  || process.env.GITHUB_SHA
+  || process.env.COMMIT_SHA
+  || 'local';
 
 function escapeXml(value) {
   return value
@@ -44,6 +48,12 @@ function assertRouteRegistry() {
   }
 }
 
+function assertReleaseSha() {
+  if (releaseSha !== 'local' && !/^[0-9a-f]{40}$/i.test(releaseSha)) {
+    throw new Error(`Invalid release SHA: ${releaseSha}`);
+  }
+}
+
 function buildSitemap() {
   const entries = canonicalRoutes.map((route) => [
     '  <url>',
@@ -72,6 +82,13 @@ function buildRobots() {
   ].join('\n');
 }
 
+function buildRelease() {
+  return `${JSON.stringify({
+    release_sha: releaseSha,
+    repository: '7guard-io/7ya.io'
+  }, null, 2)}\n`;
+}
+
 async function writeAtomic(targetPath, content) {
   const directory = path.dirname(targetPath);
   const temporaryPath = `${targetPath}.tmp-${process.pid}`;
@@ -92,14 +109,20 @@ async function writeAtomic(targetPath, content) {
 }
 
 assertRouteRegistry();
+assertReleaseSha();
 
-const sitemap = buildSitemap();
-const robots = buildRobots();
+const generatedFiles = {
+  'sitemap.xml': buildSitemap(),
+  'robots.txt': buildRobots(),
+  'release.json': buildRelease()
+};
 
 for (const outputDir of outputDirs) {
-  await writeAtomic(path.join(outputDir, 'sitemap.xml'), sitemap);
-  await writeAtomic(path.join(outputDir, 'robots.txt'), robots);
+  for (const [filename, content] of Object.entries(generatedFiles)) {
+    await writeAtomic(path.join(outputDir, filename), content);
+  }
 }
 
-console.log(`Generated sitemap.xml and robots.txt for ${canonicalRoutes.length} canonical routes.`);
+console.log(`Generated sitemap.xml, robots.txt and release.json for ${canonicalRoutes.length} canonical routes.`);
+console.log(`Release SHA: ${releaseSha}`);
 console.log(`Outputs: ${outputDirs.map((dir) => path.relative(root, dir) || '.').join(', ')}`);
