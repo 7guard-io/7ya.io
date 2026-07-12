@@ -1,0 +1,11 @@
+services:
+  code-master:
+    build: .
+    container_name: supreme_code_master
+    env_file:
+      - .env
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-pro}
+    volumes:
+      - ./context:/app/context:ro
