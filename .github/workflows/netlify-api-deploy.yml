@@ -8,6 +8,10 @@ on:
       - netlify/functions/chat.js
       - scripts/prepare-netlify-api-deploy.mjs
       - scripts/test-netlify-chat.mjs
+      - scripts/smoke-test.js
+      - scripts/smoke-test.sh
+      - package.json
+      - package-lock.json
       - .github/workflows/netlify-api-deploy.yml
 
 permissions:
@@ -20,50 +24,138 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     environment: production
     env:
-      NETLIFY_SITE_ID: 5c8695c8-ebec-4faf-b9ae-dd772947f17d
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Require Netlify deployment credential
+          cache: npm
+
+      - name: Require repository deployment credentials
         shell: bash
         run: |
-          if [[ -z "$NETLIFY_AUTH_TOKEN" ]]; then
-            echo "::error::Repository secret NETLIFY_AUTH_TOKEN is not configured."
-            exit 1
-          fi
+          set -euo pipefail
+          missing=0
+          for name in NETLIFY_AUTH_TOKEN NETLIFY_SITE_ID; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::Repository secret ${name} is not configured."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Install pinned toolchain
+        run: npm ci --ignore-scripts
+
       - name: Verify API handler contract
         run: npm run test:netlify
-      - name: Prepare minimal production bundle
+
+      - name: Prepare immutable production bundle
         run: node scripts/prepare-netlify-api-deploy.mjs
-      - name: Deploy exact GitHub revision
-        working-directory: .netlify-api-deploy
+
+      - name: Deploy exact GitHub revision and capture provider evidence
         shell: bash
         run: |
-          npx --yes netlify-cli@17.38.1 deploy \
-            --prod \
-            --dir public \
-            --functions netlify/functions \
-            --site "$NETLIFY_SITE_ID" \
-            --auth "$NETLIFY_AUTH_TOKEN" \
-            --message "GitHub ${GITHUB_SHA}"
-      - name: Verify deployed API
+          set -euo pipefail
+          mkdir -p artifacts
+          (
+            cd .netlify-api-deploy
+            ../node_modules/.bin/netlify deploy \
+              --prod \
+              --dir public \
+              --functions netlify/functions \
+              --site "$NETLIFY_SITE_ID" \
+              --auth "$NETLIFY_AUTH_TOKEN" \
+              --message "GitHub ${GITHUB_SHA}" \
+              --json
+          ) > artifacts/netlify-deploy.json
+
+          jq -e '
+            type == "object" and
+            ((.deploy_url // .url // "") | type == "string" and length > 0)
+          ' artifacts/netlify-deploy.json >/dev/null
+          echo "Provider deployment evidence captured."
+
+      - name: Verify deployed revision marker
+        env:
+          DEPLOYMENT_URL: https://7ya-api.netlify.app/deployment.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+
+          for attempt in {1..12}; do
+            body_file="$(mktemp)"
+            http_code="$(
+              curl --silent --show-error --location \
+                --max-time 15 \
+                --output "$body_file" \
+                --write-out '%{http_code}' \
+                "${DEPLOYMENT_URL}?expected=${GITHUB_SHA}&attempt=${attempt}" || true
+            )"
+
+            if [[ "$http_code" == "200" ]] && \
+               jq -e --arg sha "$GITHUB_SHA" \
+                 '.service == "7ya-api" and .commit == $sha' \
+                 "$body_file" >/dev/null 2>&1; then
+              jq \
+                --arg status "PASS" \
+                --arg expected_sha "$GITHUB_SHA" \
+                --arg verified_at_utc "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+                '. + {
+                  status: $status,
+                  expected_sha: $expected_sha,
+                  sha_verified: true,
+                  verified_at_utc: $verified_at_utc
+                }' \
+                "$body_file" > artifacts/deployment-sha-verification.json
+              rm -f "$body_file"
+              echo "Production revision marker matches ${GITHUB_SHA}."
+              exit 0
+            fi
+
+            observed_sha="$(jq -r '.commit // "unavailable"' "$body_file" 2>/dev/null || echo unavailable)"
+            echo "Attempt ${attempt}/12: HTTP ${http_code:-000}, observed SHA ${observed_sha}."
+            rm -f "$body_file"
+            sleep 10
+          done
+
+          jq -n \
+            --arg status "FAIL" \
+            --arg expected_sha "$GITHUB_SHA" \
+            --arg deployment_url "$DEPLOYMENT_URL" \
+            --arg verified_at_utc "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+            '{
+              status: $status,
+              reason: "SHA mismatch or deployment marker unavailable",
+              expected_sha: $expected_sha,
+              deployment_url: $deployment_url,
+              sha_verified: false,
+              verified_at_utc: $verified_at_utc
+            }' > artifacts/deployment-sha-verification.json
+          exit 1
+
+      - name: Verify deployed API contract
         env:
           API_URL: https://7ya-api.netlify.app/api/chat
           ORIGIN: https://7ya.io
           TEST_REGION: github-actions-deploy
           EVIDENCE_DIR: artifacts
         run: node scripts/smoke-test.js
+
       - name: Upload deployment evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: 7ya-api-deployment-evidence
-          path: artifacts/*.json
-          if-no-files-found: warn
+          name: 7ya-api-deployment-evidence-${{ github.sha }}
+          path: |
+            artifacts/*.json
+            .netlify-api-deploy/public/deployment.json
+          if-no-files-found: error
           retention-days: 30
