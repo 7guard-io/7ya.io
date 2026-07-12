@@ -7,6 +7,13 @@
   status = 200
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/about"
+  to = "/igor-vepretski/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about/"
+  to = "/igor-vepretski/"
+  status = 301
+  force = true
