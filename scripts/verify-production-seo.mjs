@@ -14,6 +14,9 @@ const timeoutMs = Number.parseInt(process.env.PRODUCTION_TIMEOUT_MS || '15000', 
 const evidenceDir = path.resolve(process.env.EVIDENCE_DIR || 'artifacts');
 const distDir = path.resolve(process.env.DIST_DIR || 'dist');
 const evidencePath = path.join(evidenceDir, 'production-seo-verification.json');
+const expectedSha = process.env.EXPECTED_SHA
+  || process.env.GITHUB_SHA
+  || process.env.COMMIT_SHA;
 const failures = [];
 
 function sha256(value) {
@@ -46,7 +49,7 @@ async function fetchProduction(relativePath) {
         accept: '*/*',
         'cache-control': 'no-cache',
         pragma: 'no-cache',
-        'user-agent': '7YA-G6-production-gate/1.0'
+        'user-agent': '7YA-Institutional-Acceptance-Gate/1.0'
       }
     });
 
@@ -89,23 +92,40 @@ async function readDistFile(fileName) {
   };
 }
 
+if (!expectedSha || !/^[0-9a-f]{40}$/i.test(expectedSha)) {
+  throw new Error('EXPECTED_SHA, GITHUB_SHA or COMMIT_SHA must contain the exact 40-character release candidate SHA.');
+}
+
 await fs.mkdir(evidenceDir, { recursive: true });
 
 let localSitemap;
 let localRobots;
+let localRelease;
+let localReleaseJson = null;
 try {
-  [localSitemap, localRobots] = await Promise.all([
+  [localSitemap, localRobots, localRelease] = await Promise.all([
     readDistFile('sitemap.xml'),
-    readDistFile('robots.txt')
+    readDistFile('robots.txt'),
+    readDistFile('release.json')
   ]);
-  pass('dist sitemap.xml and robots.txt exist');
+  pass('dist sitemap.xml, robots.txt and release.json exist');
+
+  localReleaseJson = JSON.parse(localRelease.body.toString('utf8'));
+  localReleaseJson.release_sha === expectedSha
+    ? pass('dist release.json matches the expected SHA')
+    : fail(`dist release SHA mismatch: expected=${expectedSha} actual=${localReleaseJson.release_sha || 'missing'}`);
+
+  localReleaseJson.repository === '7guard-io/7ya.io'
+    ? pass('dist release.json identifies the canonical repository')
+    : fail(`dist release repository mismatch: ${localReleaseJson.repository || 'missing'}`);
 } catch (error) {
-  fail(`required dist SEO files are missing: ${error.message}`);
+  fail(`required dist release assets are missing or invalid: ${error.message}`);
 }
 
-const [productionSitemap, productionRobots] = await Promise.all([
+const [productionSitemap, productionRobots, productionRelease] = await Promise.all([
   fetchProduction('/sitemap.xml'),
-  fetchProduction('/robots.txt')
+  fetchProduction('/robots.txt'),
+  fetchProduction('/release.json')
 ]);
 
 if (productionSitemap.error) {
@@ -148,11 +168,9 @@ if (productionSitemap.status === 200 && productionSitemap.body.byteLength > 0) {
     ? pass('production sitemap has no duplicate URLs')
     : fail('production sitemap contains duplicate URLs');
 
-  for (const expectedUrl of expectedLocations) {
-    if (!locations.includes(expectedUrl)) {
-      fail(`production sitemap missing ${expectedUrl}`);
-    }
-  }
+  JSON.stringify(locations) === JSON.stringify(expectedLocations)
+    ? pass('production sitemap route order and content match the canonical registry')
+    : fail('production sitemap route order or content differs from the canonical registry');
 
   for (const location of locations) {
     if (!location.startsWith(`${canonicalSiteUrl}/`)) {
@@ -171,6 +189,10 @@ if (productionRobots.error) {
   productionRobots.status === 200
     ? pass('production robots.txt returns HTTP 200')
     : fail(`production robots.txt expected HTTP 200, received ${productionRobots.status}`);
+
+  /^text\/plain\b/i.test(productionRobots.content_type)
+    ? pass(`production robots.txt content type is text/plain (${productionRobots.content_type})`)
+    : fail(`production robots.txt has unexpected content type: ${productionRobots.content_type || 'missing'}`);
 
   productionRobots.final_url === new URL('/robots.txt', productionUrl).href
     ? pass('production robots.txt remains on the canonical URL')
@@ -198,11 +220,46 @@ if (productionRobots.status === 200 && productionRobots.body.byteLength > 0) {
     : pass('production robots.txt does not block the entire site');
 }
 
+let productionReleaseJson = null;
+if (productionRelease.error) {
+  fail(`production release.json request failed: ${productionRelease.error}`);
+} else {
+  productionRelease.status === 200
+    ? pass('production release.json returns HTTP 200')
+    : fail(`production release.json expected HTTP 200, received ${productionRelease.status}`);
+
+  /^application\/(?:json|[^;]+\+json)\b/i.test(productionRelease.content_type)
+    ? pass(`production release.json content type is JSON (${productionRelease.content_type})`)
+    : fail(`production release.json has non-JSON content type: ${productionRelease.content_type || 'missing'}`);
+
+  productionRelease.final_url === new URL('/release.json', productionUrl).href
+    ? pass('production release.json remains on the canonical URL')
+    : fail(`production release.json redirected to ${productionRelease.final_url}`);
+
+  try {
+    productionReleaseJson = JSON.parse(productionRelease.body.toString('utf8'));
+    pass('production release.json is valid JSON');
+  } catch (error) {
+    fail(`production release.json is invalid JSON: ${error.message}`);
+  }
+}
+
+if (productionReleaseJson) {
+  productionReleaseJson.release_sha === expectedSha
+    ? pass('production release SHA matches the tested SHA')
+    : fail(`production release SHA mismatch: expected=${expectedSha} actual=${productionReleaseJson.release_sha || 'missing'}`);
+
+  productionReleaseJson.repository === '7guard-io/7ya.io'
+    ? pass('production release.json identifies the canonical repository')
+    : fail(`production release repository mismatch: ${productionReleaseJson.repository || 'missing'}`);
+}
+
 const evidence = {
-  gate: 'G6.1/G6.2',
+  gate: 'G6.1/G6.2/G1.3',
   status: failures.length === 0 ? 'PASS' : 'FAIL',
   checked_at_utc: new Date().toISOString(),
   production_origin: productionUrl.origin,
+  expected_sha: expectedSha,
   timeout_ms: timeoutMs,
   expected_routes: canonicalRoutes.map(({ path: routePath }) => canonicalUrl(routePath)),
   local: {
@@ -211,6 +268,15 @@ const evidence = {
       : null,
     robots: localRobots
       ? { path: localRobots.path, bytes: localRobots.bytes, sha256: localRobots.sha256 }
+      : null,
+    release: localRelease
+      ? {
+          path: localRelease.path,
+          bytes: localRelease.bytes,
+          sha256: localRelease.sha256,
+          release_sha: localReleaseJson?.release_sha || null,
+          repository: localReleaseJson?.repository || null
+        }
       : null
   },
   production: {
@@ -233,6 +299,18 @@ const evidence = {
       bytes: productionRobots.bytes,
       sha256: productionRobots.sha256,
       error: productionRobots.error || null
+    },
+    release: {
+      requested_url: productionRelease.requested_url,
+      final_url: productionRelease.final_url,
+      status: productionRelease.status,
+      content_type: productionRelease.content_type,
+      cache_control: productionRelease.cache_control,
+      bytes: productionRelease.bytes,
+      sha256: productionRelease.sha256,
+      release_sha: productionReleaseJson?.release_sha || null,
+      repository: productionReleaseJson?.repository || null,
+      error: productionRelease.error || null
     }
   },
   failures
@@ -242,8 +320,8 @@ await fs.writeFile(evidencePath, `${JSON.stringify(evidence, null, 2)}\n`, 'utf8
 console.log(`Evidence written to ${evidencePath}`);
 
 if (failures.length > 0) {
-  console.error(`\nPRODUCTION_SEO_GATE: FAIL (${failures.length})`);
+  console.error(`\nPRODUCTION_RELEASE_GATE: FAIL (${failures.length})`);
   process.exit(1);
 }
 
-console.log('\nPRODUCTION_SEO_GATE: PASS');
+console.log('\nPRODUCTION_RELEASE_GATE: PASS');
