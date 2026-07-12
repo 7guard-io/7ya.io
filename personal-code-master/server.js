@@ -1,4 +1,5 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import 'dotenv/config';
+import { GoogleGenAI } from '@google/genai';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CONTEXT_PATH = path.resolve(__dirname, 'context', 'tailwind-rules.md');
+const DEFAULT_MODEL = 'gemini-3.5-flash';
 
 function readRequiredFile(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -25,29 +27,37 @@ OUTPUT: Markdown code blocks only. No theoretical filler.
 `;
 
 export async function executeSupremeMaster(userPrompt) {
-  if (!process.env.GEMINI_API_KEY) {
+  const prompt = String(userPrompt ?? '').trim();
+  if (!prompt) {
+    throw new Error('A non-empty code-generation prompt is required.');
+  }
+
+  const apiKey = process.env.GEMINI_API_KEY?.trim();
+  if (!apiKey || apiKey === 'replace_with_your_key') {
     throw new Error('GEMINI_API_KEY is required. Put it in .env or inject it via the runtime environment.');
   }
 
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({
-    model: process.env.GEMINI_MODEL || 'gemini-1.5-pro',
-    systemInstruction: MASTER_SYSTEM_INSTRUCTION,
-  });
-
-  const generationConfig = {
-    temperature: 0.0,
-    topP: 0.95,
-    topK: 64,
-  };
+  const ai = new GoogleGenAI({ apiKey });
 
   try {
-    const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-      generationConfig,
+    const response = await ai.models.generateContent({
+      model: process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL,
+      contents: prompt,
+      config: {
+        systemInstruction: MASTER_SYSTEM_INSTRUCTION,
+        temperature: 0.0,
+        topP: 0.95,
+        topK: 64,
+        candidateCount: 1,
+        seed: 7,
+      },
     });
 
-    return result.response.text();
+    const text = response.text?.trim();
+    if (!text) {
+      throw new Error('Gemini returned an empty response.');
+    }
+    return text;
   } catch (error) {
     console.error('CRITICAL FAILURE in Execution Pipeline:', error);
     throw error;
@@ -60,7 +70,8 @@ async function main() {
   console.log(output);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+const isDirectExecution = Boolean(process.argv[1]) && path.resolve(process.argv[1]) === __filename;
+if (isDirectExecution) {
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exit(1);
