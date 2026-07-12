@@ -16,7 +16,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs",
     "serve:static": "python3 -m http.server 4173",
-    "test:netlify": "node scripts/test-netlify-chat.mjs"
+    "test:netlify": "node scripts/test-netlify-chat.mjs",
+    "smoke:api": "node scripts/smoke-test.js",
+    "smoke:api:curl": "bash scripts/smoke-test.sh"
   },
   "repository": {
     "type": "git",
