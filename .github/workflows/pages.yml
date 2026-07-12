@@ -40,6 +40,7 @@ jobs:
           test -f sw.js
           test -f service-worker.js
           test -f scripts/check-site.mjs
+          test -f scripts/check-live-routes.mjs
           test -f scripts/inject-ga4.mjs
           test "$(cat CNAME)" = "7ya.io"
           grep -qi "איגור ופרצקי" index.html
@@ -93,3 +94,11 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify live production routes
+        env:
+          LIVE_BASE_URL: https://7ya.io/
+          LIVE_CHECK_ATTEMPTS: "6"
+          LIVE_CHECK_TIMEOUT_MS: "10000"
+          LIVE_CHECK_CONCURRENCY: "6"
+        run: node scripts/check-live-routes.mjs
