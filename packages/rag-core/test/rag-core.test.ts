@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-import { buildRagIndex, chunkDocument, searchRagIndex, type RagDocument } from '../src/index.js';
+import {
+  buildRagIndex,
+  chunkDocument,
+  evidenceClaimsToDocuments,
+  searchRagIndex,
+  type RagDocument,
+} from '../src/index.js';
 
 const documents: RagDocument[] = [
   {
@@ -74,4 +81,22 @@ test('rejects duplicate document ids and unsafe chunk settings', () => {
   assert.throws(() => buildRagIndex([documents[0], documents[0]]), /duplicate document id/);
   assert.throws(() => buildRagIndex(documents, { maxChars: 100 }), /maxChars/);
   assert.throws(() => buildRagIndex(documents, { maxChars: 300, overlapChars: 300 }), /overlapChars/);
+});
+
+test('ingests only public Evidence Ledger claims by default', async () => {
+  const rawClaims = JSON.parse(await readFile('data/evidence-claims.json', 'utf8')) as unknown;
+  const evidenceDocuments = evidenceClaimsToDocuments(rawClaims);
+
+  assert.equal(evidenceDocuments.length, 3);
+  assert.ok(evidenceDocuments.every((document) => document.metadata?.classification === 'PUBLIC'));
+  assert.ok(evidenceDocuments.every((document) => document.metadata?.claimId !== 'family-sensitive-details'));
+
+  const index = buildRagIndex(evidenceDocuments);
+  const starton = searchRagIndex(index, 'technology hubs youth at risk');
+  const merkle = searchRagIndex(index, 'Merkle verification source code');
+
+  assert.equal(starton[0]?.citation.documentId, 'evidence-claim:starton-mission');
+  assert.equal(starton[0]?.metadata?.verificationStatus, 'SOURCE PENDING');
+  assert.equal(merkle[0]?.citation.documentId, 'evidence-claim:seven-ya-evidence-oracle');
+  assert.equal(merkle[0]?.metadata?.verificationStatus, 'VERIFIED');
 });
