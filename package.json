@@ -15,7 +15,8 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs",
-    "serve:static": "python3 -m http.server 4173"
+    "serve:static": "python3 -m http.server 4173",
+    "test:netlify": "node scripts/test-netlify-chat.mjs"
   },
   "repository": {
     "type": "git",
