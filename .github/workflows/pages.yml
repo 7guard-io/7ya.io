@@ -33,6 +33,7 @@ jobs:
           test -f 404.html
           test -f CNAME
           test -f styles/igor-home-20260712.css
+          test -f styles/igor-portrait-lock-20260712.css
           test -f assets/igor-home-portrait-20260712.webp
           test -f assets/igor-home-portrait-20260712.jpg
           test -f assets/igor-home-og-20260712.jpg
@@ -40,15 +41,17 @@ jobs:
           test -f sw.js
           test -f service-worker.js
           test -f scripts/check-site.mjs
+          test -f scripts/check-links.mjs
           test -f scripts/inject-ga4.mjs
           test "$(cat CNAME)" = "7ya.io"
           grep -qi "איגור ופרצקי" index.html
           grep -qi "IGOR VEPRETSKI" index.html
-          grep -qi "Evidence Ledger" index.html
-          grep -qi "igor-first-mobile-20260712-2" index.html
-          grep -Fq '/styles/igor-home-20260712.css?v=2' index.html
-          grep -Fq 'איש שטח, מייסד StartOn ובונה 7YA' index.html
+          grep -Eq '<meta name="7ya-build" content="[^"]+">' index.html
+          grep -Eq '/styles/igor-home-20260712\.css\?v=[0-9]+' index.html
+          grep -Eq '/styles/igor-portrait-lock-20260712\.css\?v=[0-9]+' index.html
+          grep -Fq 'איש שטח. מייסד StartOn. בונה 7YA.' index.html
           node scripts/check-site.mjs
+          node scripts/check-links.mjs
 
       - name: Assemble immutable production artifact
         shell: bash
@@ -62,6 +65,7 @@ jobs:
           done
           touch dist/.nojekyll
           test -f dist/styles/igor-home-20260712.css
+          test -f dist/styles/igor-portrait-lock-20260712.css
           test -f dist/assets/igor-home-portrait-20260712.webp
           test -f dist/assets/igor-home-og-20260712.jpg
           test -f dist/pass/index.html
