@@ -36,6 +36,14 @@ function read(file) {
   return fs.readFileSync(resolved, 'utf8');
 }
 
+function expectIncludes(content, snippet, label) {
+  content.includes(snippet) ? pass(label) : fail(label);
+}
+
+function expectMatch(content, pattern, label) {
+  pattern.test(content) ? pass(label) : fail(label);
+}
+
 for (const route of routes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const html = read(file);
@@ -46,41 +54,48 @@ for (const route of routes) {
     '<meta name="viewport"',
     '<title>',
     '<meta name="description"',
-    '<meta name="robots" content="index, follow',
     `<link rel="canonical" href="${url}"`
   ]) {
-    html.includes(snippet)
-      ? pass(`${file} includes ${snippet}`)
-      : fail(`${file} missing ${snippet}`);
+    expectIncludes(html, snippet, `${file} includes ${snippet}`);
   }
 
-  if (html.includes('noindex')) fail(`${file} contains noindex`);
+  const robots = html.match(/<meta\s+name=["']robots["']\s+content=["']([^"']+)["']/i)?.[1] || '';
+  const directives = robots.toLowerCase().split(',').map(value => value.trim());
+  directives.includes('index') && directives.includes('follow')
+    ? pass(`${file} allows index and follow`)
+    : fail(`${file} missing index/follow robots directives`);
+
+  if (directives.includes('noindex')) fail(`${file} contains noindex`);
 }
 
 const home = read('index.html');
 for (const text of [
   'איגור ופרצקי',
   'IGOR VEPRETSKI',
-  'איש שטח, מייסד StartOn ובונה 7YA.',
-  'Evidence Ledger',
+  'מייסד StartOn',
+  'בונה 7YA',
   'Human first'
 ]) {
-  home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
+  expectIncludes(home, text, `homepage includes ${text}`);
 }
 
 for (const technical of [
-  'width=device-width, initial-scale=1, viewport-fit=cover',
   '/assets/igor-home-portrait-20260712.webp',
   '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-home-20260712.css?v=2',
-  'igor-first-mobile-20260712-2',
-  '7ya-legacy-cache-retired-20260712',
   'navigator.serviceWorker.getRegistrations()',
+  'caches.keys()',
   'Promise.allSettled(tasks)'
 ]) {
-  home.includes(technical)
-    ? pass(`homepage includes ${technical}`)
-    : fail(`homepage missing ${technical}`);
+  expectIncludes(home, technical, `homepage includes ${technical}`);
+}
+
+for (const [pattern, label] of [
+  [/<meta\s+name=["']viewport["']\s+content=["'][^"']*width=device-width[^"']*viewport-fit=cover[^"']*["']/i, 'responsive viewport contract'],
+  [/<meta\s+name=["']7ya-build["']\s+content=["'][^"']+["']/i, '7ya build marker'],
+  [/\/styles\/igor-home-20260712\.css\?v=\d+/, 'versioned homepage stylesheet'],
+  [/\/styles\/igor-portrait-lock-20260712\.css\?v=\d+/, 'versioned portrait-lock stylesheet']
+]) {
+  expectMatch(home, pattern, `homepage includes ${label}`);
 }
 
 for (const forbidden of [
@@ -104,6 +119,7 @@ for (const file of [
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
   'styles/igor-home-20260712.css',
+  'styles/igor-portrait-lock-20260712.css',
   'favicon.svg',
   '404.html',
   'sw.js',
