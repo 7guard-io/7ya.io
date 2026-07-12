@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import json
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,6 +9,7 @@ REQUIRED_FILES = [
     'Dockerfile',
     'docker-compose.yml',
     'package.json',
+    'package-lock.json',
     'server.js',
     'context/tailwind-rules.md',
 ]
@@ -31,10 +33,14 @@ REQUIRED_RULE_TOKENS = [
 ]
 
 REQUIRED_SERVER_TOKENS = [
+    "import 'dotenv/config'",
+    "from '@google/genai'",
     'GEMINI_API_KEY',
+    'gemini-3.5-flash',
     'tailwind-rules.md',
     'readRequiredFile',
     'temperature: 0.0',
+    'seed: 7',
     'MASTER_SYSTEM_INSTRUCTION',
     'executeSupremeMaster',
 ]
@@ -60,15 +66,24 @@ def main() -> None:
     server = (ROOT / 'server.js').read_text(encoding='utf-8')
     dockerfile = (ROOT / 'Dockerfile').read_text(encoding='utf-8')
     compose = (ROOT / 'docker-compose.yml').read_text(encoding='utf-8')
+    env_example = (ROOT / '.env.example').read_text(encoding='utf-8')
+    package = json.loads((ROOT / 'package.json').read_text(encoding='utf-8'))
 
     assert_contains('tailwind-rules.md', rules, REQUIRED_RULE_TOKENS)
     assert_contains('server.js', server, REQUIRED_SERVER_TOKENS)
 
-    if 'node:20-alpine' not in dockerfile:
-        fail('Dockerfile must use node:20-alpine')
+    dependencies = package.get('dependencies', {})
+    if dependencies.get('@google/genai') != '2.11.0' or dependencies.get('dotenv') != '17.4.2':
+        fail('package.json must pin the current Google GenAI SDK and dotenv versions')
 
-    if 'GEMINI_API_KEY' not in compose or './context:/app/context:ro' not in compose:
-        fail('docker-compose.yml must inject GEMINI_API_KEY and mount context read-only')
+    if 'node:20-alpine' not in dockerfile or 'npm ci --omit=dev' not in dockerfile or 'USER node' not in dockerfile:
+        fail('Dockerfile must use Node 20, npm ci, and a non-root runtime user')
+
+    if 'GEMINI_API_KEY' not in compose or 'read_only: true' not in compose or 'no-new-privileges:true' not in compose:
+        fail('docker-compose.yml must inject the API key and harden the runtime')
+
+    if 'gemini-3.5-flash' not in env_example:
+        fail('.env.example must use the current stable default model')
 
     print('PASS: personal-code-master smoke test completed successfully')
 
