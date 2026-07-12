@@ -1,0 +1,79 @@
+{
+  "project": "7ya.io",
+  "canonical_repository": "7guard-io/7ya.io",
+  "default_branch": "main",
+  "production": {
+    "domain": "https://7ya.io",
+    "publishing_target": "GitHub Pages",
+    "workflow_file": ".github/workflows/pages.yml",
+    "workflow_name": "Publish 7YA Redirect",
+    "deployment_trigger": "workflow_dispatch",
+    "release_mode": "redirect_only",
+    "redirect_target": "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/",
+    "latest_verified_production_commit": null,
+    "latest_verified_workflow_run": null,
+    "latest_verified_at": null,
+    "verification_status": "requires_live_verification"
+  },
+  "required_routes": [
+    "/"
+  ],
+  "future_full_site_routes": [
+    "/pass/",
+    "/radar/"
+  ],
+  "governance": {
+    "datasite_project": "7YA.IO Sovereign Control Room",
+    "datasite_status": "requires_verification",
+    "datasite_role": "governance_vault_evidence_approvals_release_records_audit_trail",
+    "github_role": "code_branches_commits_pull_requests_production_deployment",
+    "chat_memory_role": "non_authoritative_context_only"
+  },
+  "blockers": [
+    {
+      "system": "GitHub",
+      "id": "#83",
+      "title": "Blocker: GitHub Actions jobs fail without logs",
+      "status": "open",
+      "effect": "Keep automatic CI gates quarantined; use only verified manual workflows until superseded by verified evidence."
+    }
+  ],
+  "operator_requirements": {
+    "must_use_dedicated_branch": true,
+    "must_use_pull_request": true,
+    "must_validate_before_merge": true,
+    "must_publish_only_through_verified_workflow": true,
+    "must_verify_live_site_before_claiming_success": true,
+    "must_archive_evidence": true,
+    "must_record_rollback_point": true
+  },
+  "forbidden_sources": [
+    "chat_memory_as_source_of_truth",
+    "zip_exports",
+    "obsolete_repositories",
+    "random_local_copies",
+    "datasite_as_website_editor",
+    "unverified_workflows"
+  ],
+  "secrets_policy": {
+    "store_raw_secrets_in_documents": false,
+    "allowed_secret_metadata": [
+      "managed_location",
+      "owner_or_controller",
+      "system_using_secret",
+      "rotation_notes"
+    ]
+  },
+  "required_final_report_fields": [
+    "production_status",
+    "repository_and_branch_used",
+    "files_changed",
+    "tests_completed",
+    "pull_request_and_commit",
+    "deployment_workflow_result",
+    "live_routes_verified",
+    "evidence_archived",
+    "remaining_blockers",
+    "exact_rollback_point"
+  ]
+}
