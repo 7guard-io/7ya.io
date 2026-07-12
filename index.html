@@ -2,19 +2,17 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>איגור ופרצקי | IGOR VEPRETSKI — האתר הרשמי</title>
   <meta name="description" content="האתר הרשמי של איגור ופרצקי: הסיפור, שירות ציבורי, StartOn, השפעה דיגיטלית, ראיונות, כתיבה, הרצאות ו־Evidence Ledger.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f1eadf">
-  <meta name="7ya-build" content="igor-first-mobile-20260712-1">
+  <meta name="color-scheme" content="light">
+  <meta name="7ya-build" content="igor-first-mobile-20260712-2">
   <link rel="canonical" href="https://7ya.io/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/igor-home-portrait-20260712.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="/styles/igor-home-20260712.css?v=1">
+  <link rel="stylesheet" href="/styles/igor-home-20260712.css?v=2">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA.IO">
   <meta property="og:locale" content="he_IL">
@@ -86,7 +84,7 @@
         <figure class="portrait-card">
           <picture>
             <source srcset="/assets/igor-home-portrait-20260712.webp" type="image/webp">
-            <img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי בשיחת אולפן" width="1600" height="1600" fetchpriority="high" decoding="sync">
+            <img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי בשיחת אולפן" width="1600" height="1600" fetchpriority="high" decoding="async">
           </picture>
           <figcaption>איגור ופרצקי · צילום אולפן</figcaption>
         </figure>
@@ -212,16 +210,27 @@
   </footer>
 
   <script>
-    // Retire any service worker or cache left by an older 7YA shell.
+    // Retire legacy service workers and caches once, without penalising every visit.
     (() => {
+      const cleanupKey = '7ya-legacy-cache-retired-20260712';
+      try {
+        if (localStorage.getItem(cleanupKey) === '1') return;
+      } catch {}
+
+      const tasks = [];
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-          registrations.forEach(registration => registration.unregister());
-        }).catch(() => {});
+        tasks.push(
+          navigator.serviceWorker.getRegistrations()
+            .then(registrations => Promise.all(registrations.map(registration => registration.unregister())))
+        );
       }
       if ('caches' in window) {
-        caches.keys().then(keys => Promise.all(keys.map(key => caches.delete(key)))).catch(() => {});
+        tasks.push(caches.keys().then(keys => Promise.all(keys.map(key => caches.delete(key)))));
       }
+
+      Promise.allSettled(tasks).finally(() => {
+        try { localStorage.setItem(cleanupKey, '1'); } catch {}
+      });
     })();
   </script>
 </body>
