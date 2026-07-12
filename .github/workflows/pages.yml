@@ -1,37 +1,10 @@
 name: Publish 7YA Production Site
 
+# Production remains deployable on demand, but automatic runs are quarantined
+# while GitHub rejects jobs before runner startup at the account/org level.
+# Restore push triggers only after the manual smoke workflow passes; see
+# docs/CI_RUNBOOK.md and issue #83.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "index.html"
-      - "404.html"
-      - "styles/**"
-      - "evidence/**"
-      - "journey/**"
-      - "starton/**"
-      - "oracle/**"
-      - "business/**"
-      - "talk/**"
-      - "contact/**"
-      - "speaker/**"
-      - "media/**"
-      - "7ya/**"
-      - "igor-vepretski/**"
-      - "influence/**"
-      - "social/**"
-      - "articles/**"
-      - "data/**"
-      - "assets/**"
-      - "images/**"
-      - "sw.js"
-      - "service-worker.js"
-      - "scripts/inject-ga4.mjs"
-      - "robots.txt"
-      - "sitemap.xml"
-      - "favicon.svg"
-      - "CNAME"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
