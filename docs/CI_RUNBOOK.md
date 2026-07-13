@@ -31,6 +31,7 @@ npm ci --ignore-scripts
 npm audit --omit=dev --audit-level=high
 npm run typecheck
 npm test
+node --test scripts/release-manifest.test.mjs
 npm run check-all
 node scripts/prepare-netlify-api-deploy.mjs
 node scripts/verify-release-manifest.mjs \
@@ -55,6 +56,7 @@ npm run verify:routes -- http://127.0.0.1:4173
    - dependency installation from the lockfile;
    - production dependency audit;
    - typecheck and Evidence Oracle tests;
+   - release-manifest tamper, extra-file, and commit-mismatch rejection tests;
    - site, link, and route validation;
    - a valid `release-manifest.json` and matching bundle SHA-256.
 6. Confirm repository secrets `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` exist without exposing their values.
