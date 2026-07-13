@@ -2,23 +2,19 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "trailingSlash": true,
-  "alias": [
-    "7ya.io",
-    "www.7ya.io"
-  ],
   "rewrites": [
     { "source": "/release.json", "destination": "/api/release" },
     { "source": "/", "destination": "/api/render?route=/" },
     { "source": "/igor-vepretski/", "destination": "/api/render?route=/igor-vepretski/" },
+    { "source": "/journey/", "destination": "/api/render?route=/journey/" },
+    { "source": "/starton/", "destination": "/api/render?route=/starton/" },
+    { "source": "/evidence/", "destination": "/api/render?route=/evidence/" },
+    { "source": "/influence/", "destination": "/api/render?route=/influence/" },
+    { "source": "/speaker/", "destination": "/api/render?route=/speaker/" },
     { "source": "/talk/", "destination": "/api/render?route=/talk/" },
     { "source": "/social/", "destination": "/api/render?route=/social/" },
     { "source": "/pass/", "destination": "/api/render?route=/pass/" },
-    { "source": "/evidence/", "destination": "/api/render?route=/evidence/" },
-    { "source": "/starton/", "destination": "/api/render?route=/starton/" },
-    { "source": "/contact/", "destination": "/api/render?route=/contact/" },
     { "source": "/radar/", "destination": "/api/render?route=/radar/" },
-    { "source": "/journey/", "destination": "/api/render?route=/journey/" },
-    { "source": "/influence/", "destination": "/api/render?route=/influence/" },
-    { "source": "/speaker/", "destination": "/api/render?route=/speaker/" }
+    { "source": "/contact/", "destination": "/api/render?route=/contact/" }
   ]
 }
