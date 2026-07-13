@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "vercel-build": "node scripts/generate-release.js"
+    "vercel-build": "node scripts/generate-release.js",
+    "test:release": "node scripts/test-release.js"
   }
 }
