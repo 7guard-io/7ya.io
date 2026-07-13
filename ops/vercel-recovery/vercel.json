@@ -4,7 +4,6 @@
   "trailingSlash": true,
   "rewrites": [
     { "source": "/release.json", "destination": "/api/release" },
-    { "source": "/", "destination": "/api/render?route=/" },
     { "source": "/igor-vepretski/", "destination": "/api/render?route=/igor-vepretski/" },
     { "source": "/journey/", "destination": "/api/render?route=/journey/" },
     { "source": "/starton/", "destination": "/api/render?route=/starton/" },
