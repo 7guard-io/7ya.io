@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { writeReleaseManifest } from "./release-manifest-lib.mjs";
 
 const outputRoot = path.resolve(
   process.env.NETLIFY_API_OUTPUT || ".netlify-api-deploy",
@@ -45,5 +46,14 @@ await fs.writeFile(
   "utf8",
 );
 
+const manifestPath = path.join(publicDir, "release-manifest.json");
+const manifest = await writeReleaseManifest({
+  rootDir: outputRoot,
+  manifestPath,
+  service: "7ya-api",
+  commit: commitSha,
+});
+
 console.log(`Prepared Netlify API bundle at ${outputRoot}`);
 console.log(`Source commit: ${commitSha}`);
+console.log(`Bundle SHA-256: ${manifest.bundle_sha256}`);
