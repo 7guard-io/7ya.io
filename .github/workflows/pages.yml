@@ -1,4 +1,4 @@
-name: Publish 7YA Redirect
+name: Publish 7YA Production Site
 
 on:
   workflow_dispatch:
@@ -13,34 +13,69 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  validate-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Assemble redirect artifact
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Validate public source
+        run: npm run check-all
+
+      - name: Assemble full-site release artifact
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: npm run release:site
+
+      - name: Enforce release artifact contract
         shell: bash
         run: |
           set -euo pipefail
-          test "$(cat CNAME)" = "7ya.io"
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" index.html
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" 404.html
-          rm -rf dist
-          mkdir -p dist
-          cp index.html 404.html CNAME dist/
-          touch dist/.nojekyll
+          test "$(cat _site/CNAME)" = "7ya.io"
+          test -f _site/index.html
+          test -f _site/404.html
+          test -f _site/robots.txt
+          test -f _site/sitemap.xml
+          test -f _site/release.json
+          test -f _site/igor-vepretski/index.html
+          test -f _site/talk/index.html
+          test -f _site/social/index.html
+          test -f _site/pass/index.html
+          test -f _site/evidence/index.html
+          test -f _site/starton/index.html
+          test -f _site/contact/index.html
+          test -f _site/radar/index.html
+          grep -Fq '<link rel="canonical" href="https://7ya.io/">' _site/index.html
+          grep -Fq 'Sitemap: https://7ya.io/sitemap.xml' _site/robots.txt
+          if grep -Eqi 'noindex|http-equiv=["'"']refresh["'"']|window\.location\.(replace|assign)' _site/index.html; then
+            echo 'Release homepage contains a forbidden noindex or redirect directive.' >&2
+            exit 1
+          fi
 
-      - name: Configure Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload full-site Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
