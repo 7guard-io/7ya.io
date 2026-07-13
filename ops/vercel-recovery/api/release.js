@@ -1,3 +1,5 @@
+const representedSourceSha = 'b579599b35258f4cfacf405150eb368367fbdc3f';
+
 const criticalRoutes = [
   '/',
   '/igor-vepretski/',
@@ -11,7 +13,7 @@ const criticalRoutes = [
 ];
 
 module.exports = (_request, response) => {
-  const sourceSha = process.env.VERCEL_GIT_COMMIT_SHA || process.env.SOURCE_SHA || 'unbound';
+  const sourceSha = process.env.VERCEL_GIT_COMMIT_SHA || process.env.SOURCE_SHA || representedSourceSha;
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
   response.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   response.statusCode = 200;
@@ -22,7 +24,7 @@ module.exports = (_request, response) => {
     source_path: 'ops/vercel-recovery',
     source_sha: sourceSha,
     environment: process.env.VERCEL_ENV || 'unknown',
-    route_contract_version: '2026-07-13.1',
+    route_contract_version: '2026-07-14.1',
     critical_routes: criticalRoutes,
   }));
 };
