@@ -1,0 +1,43 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.7ya.io" }],
+      "destination": "https://7ya.io/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/release.json", "destination": "/api/release" },
+    { "source": "/", "destination": "/api/site?route=/" },
+    { "source": "/igor-vepretski/", "destination": "/api/site?route=/igor-vepretski/" },
+    { "source": "/talk/", "destination": "/api/site?route=/talk/" },
+    { "source": "/social/", "destination": "/api/site?route=/social/" },
+    { "source": "/pass/", "destination": "/api/site?route=/pass/" },
+    { "source": "/evidence/", "destination": "/api/site?route=/evidence/" },
+    { "source": "/starton/", "destination": "/api/site?route=/starton/" },
+    { "source": "/contact/", "destination": "/api/site?route=/contact/" },
+    { "source": "/radar/", "destination": "/api/site?route=/radar/" },
+    { "source": "/journey/", "destination": "/api/site?route=/journey/" },
+    { "source": "/work/", "destination": "/api/site?route=/work/" },
+    { "source": "/systems/", "destination": "/api/site?route=/systems/" },
+    { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
+    { "source": "/influence/", "destination": "/api/site?route=/influence/" },
+    { "source": "/music/", "destination": "/api/site?route=/music/" },
+    { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
+    { "source": "/7ya/", "destination": "/api/site?route=/7ya/" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}

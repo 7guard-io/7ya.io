@@ -1,0 +1,6 @@
+{
+  "name": "7ya-canonical-runtime-2077",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "test": "node scripts/test.js" }
+}
