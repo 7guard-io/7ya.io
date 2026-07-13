@@ -3,6 +3,25 @@ const path = require('path');
 
 const SHA_PATTERN = /^[0-9a-f]{40}$/i;
 const MANIFEST_PATH = path.join(__dirname, '..', 'release-manifest.json');
+const DEFAULT_RELEASE = '2026-07-14.5-public-archive';
+const CRITICAL_ROUTES = [
+  '/',
+  '/igor-vepretski/',
+  '/journey/',
+  '/work/',
+  '/starton/',
+  '/systems/',
+  '/public-service/',
+  '/evidence/',
+  '/influence/',
+  '/music/',
+  '/speaker/',
+  '/talk/',
+  '/social/',
+  '/pass/',
+  '/radar/',
+  '/contact/',
+];
 
 function readManifest() {
   try {
@@ -36,9 +55,10 @@ module.exports = (_request, response) => {
       service: '7ya-frontend',
       provider: 'vercel',
       status: 'PROVENANCE_UNBOUND',
-      release: manifest.release || '2026-07-14.4-provenance',
+      release: manifest.release || DEFAULT_RELEASE,
       source_repository: '7guard-io/7ya.io',
       source_path: 'ops/vercel-recovery',
+      repair: 'Deploy from Git or inject a full 40-character SOURCE_SHA at build and runtime.',
     }));
     return;
   }
@@ -48,7 +68,7 @@ module.exports = (_request, response) => {
     service: '7ya-frontend',
     provider: 'vercel',
     status: 'READY',
-    release: manifest.release || '2026-07-14.4-provenance',
+    release: manifest.release || DEFAULT_RELEASE,
     source_repository: '7guard-io/7ya.io',
     source_path: 'ops/vercel-recovery',
     source_sha: sourceSha,
@@ -61,21 +81,8 @@ module.exports = (_request, response) => {
       process.env.RELEASE_SOURCE_SHA ? 'RELEASE_SOURCE_SHA' :
       manifest.provenance_source || 'bundled_manifest',
     ai_endpoint: '/api/guide',
-    openai_ready: true,
-    model_default: 'gpt-5.6',
-    critical_routes: [
-      '/',
-      '/igor-vepretski/',
-      '/journey/',
-      '/starton/',
-      '/evidence/',
-      '/influence/',
-      '/speaker/',
-      '/talk/',
-      '/social/',
-      '/pass/',
-      '/radar/',
-      '/contact/',
-    ],
+    ai_mode: process.env.OPENAI_API_KEY ? 'openai-with-local-fallback' : 'local-guide',
+    model_default: process.env.OPENAI_MODEL || 'gpt-5.6',
+    critical_routes: CRITICAL_ROUTES,
   }));
 };
