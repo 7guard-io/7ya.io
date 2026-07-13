@@ -62,19 +62,24 @@ const home = read('index.html');
 for (const text of [
   'איגור ופרצקי',
   'IGOR VEPRETSKI',
-  'Build what can',
-  'The public record, not the promise.',
-  'Technology belongs where opportunity is missing.'
+  'אדם.',
+  'ראיות.',
+  'פעולה.',
+  'EVIDENCE BEFORE AMPLIFICATION',
+  'טכנולוגיה שייכת גם למקום שבו ההזדמנות עדיין חסרה.'
 ]) {
   home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
 }
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/home.css?v=20260713',
-  '/assets/home.js?v=20260713',
-  'home-redesign-20260713',
-  'https://7ya.io/assets/igor-home-og-20260712.jpg'
+  '/assets/igor-home-portrait-20260712.webp',
+  '/assets/home.css?v=20260713-2',
+  '/assets/home.js?v=20260713-2',
+  'igor-cinematic-20260713-2',
+  'https://7ya.io/assets/igor-home-og-20260712.jpg',
+  'data-reveal',
+  'scroll-progress'
 ]) {
   home.includes(technical)
     ? pass(`homepage includes ${technical}`)
@@ -101,7 +106,8 @@ for (const file of [
   'assets/igor-home-portrait-20260712.webp',
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
-  'styles/igor-home-20260712.css',
+  'assets/home.css',
+  'assets/home.js',
   'favicon.svg',
   '404.html',
   'sw.js',
