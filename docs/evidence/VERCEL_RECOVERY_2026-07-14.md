@@ -43,6 +43,10 @@ The following also returned HTTP 200:
 
 A production-targeted deployment containing only a probe file became the active project alias. This was separate from the GitHub Actions billing lock.
 
-## Control
+## Controls
 
-Do not create production-targeted probe deployments in the `7ya-static-site` project. Probes must target Preview only. Production promotion requires the complete route contract, crawl controls, release provenance, and post-deployment route verification.
+- Do not create production-targeted probe deployments in the `7ya-static-site` project.
+- Probes must target Preview only.
+- Production promotion requires the complete route contract, crawl controls, release provenance, and post-deployment route verification.
+- GitHub Actions remains quarantined until an account-level run creates real workflow steps.
+- The legacy release candidate PR #152 is superseded by current `main` and the verified Vercel recovery path.
