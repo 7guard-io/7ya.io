@@ -1,11 +1,11 @@
 {
   "/": {
-    "title": "איגור ופרצקי | האתר הרשמי",
-    "description": "האתר הרשמי של איגור ופרצקי — מייסד StartOn ובונה 7YA. סיפור חיים, עשייה ציבורית, הרצאות ומקורות.",
-    "eyebrow": "IGOR VEPRETSKI · STARTON · 7YA",
-    "heading": "לא באתי לבנות תדמית. באתי לבנות מסלול.",
-    "lead": "אני איגור ופרצקי. גדלתי בתוך מציאות שלא תמיד ראתה אותי בזמן. היום אני בונה מסגרות, תוכן ומערכות שנועדו לראות אנשים מוקדם יותר — ולחבר ניסיון חיים לפעולה ציבורית שאפשר לבדוק.",
-    "cards": [["JOURNEY", "שורשים, שירות ובנייה"], ["STARTON", "הזדמנות ושייכות לנוער"], ["7YA", "ראיות וזיכרון ציבורי"]]
+    "title": "Igor Vepretski | Fix the World with AI",
+    "description": "Igor Vepretski, StartOn and 7YA — using AI to build human opportunity, public trust and verifiable action.",
+    "eyebrow": "IGOR VEPRETSKI · HUMAN FIRST · AI FOR IMPACT",
+    "heading": "FIX THE WORLD WITH AI.",
+    "lead": "לא עוד אתר שמספר מי אני. מערכת חיה שמחברת את הסיפור שלי, StartOn, ראיות ובינה מלאכותית למשימה אחת: לבנות עולם שרואה אנשים מוקדם יותר ופועל טוב יותר.",
+    "cards": [["PEOPLE", "לראות אדם לפני שהוא נופל"], ["SYSTEMS", "להפוך ניסיון לפעולה ציבורית"], ["TRUTH", "לבנות אמון על ראיות"]]
   },
   "/igor-vepretski/": {
     "title": "איגור ופרצקי | זהות ציבורית רשמית",
