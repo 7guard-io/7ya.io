@@ -135,21 +135,27 @@ for (const snippet of [
     : fail(`robots missing ${snippet}`);
 }
 
+const unsupportedSnippets = [
+  '5.1B+',
+  '10,000+',
+  'Knesset Candidate',
+  'Microsoft-backed',
+  'candidate for Knesset',
+  'verified leader',
+  'official partner',
+  'Igor Ido Vepretski',
+  'Ido Vepretski',
+  'עידו ופרצקי',
+  'public-service veteran',
+  'former security and public-safety professional',
+  'Field Intelligence to Responsible AI',
+  'ניסיון מודיעיני וביטחוני מהשטח'
+];
+
 for (const route of routes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const body = read(file);
-  for (const bad of [
-    '5.1B+',
-    '10,000+',
-    'Knesset Candidate',
-    'Microsoft-backed',
-    'candidate for Knesset',
-    'verified leader',
-    'official partner',
-    'Igor Ido Vepretski',
-    'Ido Vepretski',
-    'עידו ופרצקי'
-  ]) {
+  for (const bad of unsupportedSnippets) {
     if (body.includes(bad)) fail(`${file} contains unsupported snippet: ${bad}`);
   }
 }
