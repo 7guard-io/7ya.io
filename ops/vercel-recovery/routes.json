@@ -1,0 +1,98 @@
+{
+  "/": {
+    "title": "איגור ופרצקי | 7YA — אדם, ראיות, פעולה",
+    "description": "האתר הרשמי של איגור ופרצקי: סיפור חיים, StartOn, עשייה ציבורית, הרצאות ומקורות.",
+    "eyebrow": "IGOR VEPRETSKI · STARTON · 7YA",
+    "heading": "אדם. ראיות. פעולה.",
+    "lead": "7YA מחבר בין סיפור חיים, עשייה חברתית, תוכן ומקורות — ומפריד בין תיעוד, אימות וטענות שעדיין בבדיקה.",
+    "cards": [["JOURNEY", "סיפור חיים"], ["STARTON", "הזדמנות לנוער"], ["7YA", "זיכרון ציבורי"]]
+  },
+  "/igor-vepretski/": {
+    "title": "איגור ופרצקי | זהות ציבורית רשמית | 7YA",
+    "description": "עמוד הזהות הציבורית של איגור ופרצקי.",
+    "eyebrow": "OFFICIAL PUBLIC IDENTITY",
+    "heading": "איגור ופרצקי.",
+    "lead": "יזם חברתי, יוצר ובונה מערכות ציבוריות. תפקידים, הישגים ומדדים מפורטים כפופים למקור ישיר ומתוארך.",
+    "cards": [["PUBLIC", "זהות"], ["DOCUMENTED", "עשייה"], ["GOVERNED", "טענות"]]
+  },
+  "/talk/": {
+    "title": "הרצאות, ראיונות ופודקאסטים | איגור ופרצקי",
+    "description": "הזמנת איגור ופרצקי לראיון, פודקאסט, פאנל או הרצאה.",
+    "eyebrow": "TALK · SPEAKING · MEDIA",
+    "heading": "לא רעש. אות.",
+    "lead": "שיחות על נוער ושייכות, שירות ואחריות, אמון ציבורי, השפעה דיגיטלית ובינה מלאכותית.",
+    "cards": [["FORMAT", "הרצאה"], ["FORMAT", "פודקאסט"], ["FORMAT", "פאנל"]]
+  },
+  "/social/": {
+    "title": "Social Radar | Igor Vepretski | 7YA",
+    "description": "ערוצים ציבוריים וכללי אימות למדדי חשיפה.",
+    "eyebrow": "SOCIAL RADAR",
+    "heading": "קישור מוכיח תוכן. לא היקף.",
+    "lead": "מדדי צפייה, שיתוף והשפעה דורשים צילום מצב מתוארך או יצוא פלטפורמה.",
+    "cards": [["CHANNEL", "Instagram"], ["CHANNEL", "YouTube"], ["CHANNEL", "LinkedIn"]]
+  },
+  "/pass/": {
+    "title": "7YA Pass | נתיב שירות שמור",
+    "description": "נתיב 7YA Pass פעיל ושמור.",
+    "eyebrow": "7YA PASS",
+    "heading": "נתיב פעיל. לא תעודת סמכות.",
+    "lead": "הנתיב נשמר לצורכי שירות עתידיים. אין בו כשלעצמו אימות זהות או הרשאה מוסדית.",
+    "cards": [["LIVE", "Route"], ["BOUNDARY", "Authority"], ["NEXT", "Privacy"]]
+  },
+  "/evidence/": {
+    "title": "Evidence Wall | 7YA",
+    "description": "מערכת הראיות הציבורית של 7YA.",
+    "eyebrow": "EVIDENCE BEFORE AMPLIFICATION",
+    "heading": "הארכיון הוא המוצר.",
+    "lead": "כל טענה ציבורית מקבלת מצב: מאומת, מתועד, בבדיקה או פרטי. חוסר הוכחה מסומן.",
+    "cards": [["VERIFIED", "הדומיין"], ["DOCUMENTED", "עמודים ציבוריים"], ["PENDING", "תפקידים ומדדים"]]
+  },
+  "/starton/": {
+    "title": "StartOn | טכנולוגיה, שייכות והזדמנות",
+    "description": "חזון חברתי־טכנולוגי למרחבים בטוחים לנוער.",
+    "eyebrow": "STARTON",
+    "heading": "טכנולוגיה כבית של הזדמנות.",
+    "lead": "StartOn מוצג כמשימה חברתית. שותפים, מספרים ותוצאות יפורסמו רק עם מקור מתאים.",
+    "cards": [["MODEL", "Play"], ["MODEL", "Learn"], ["MODEL", "Belong"]]
+  },
+  "/contact/": {
+    "title": "יצירת קשר | Igor Vepretski & 7YA",
+    "description": "פנייה בנושאי StartOn, תקשורת, הרצאות, שותפויות ותיקוני ראיות.",
+    "eyebrow": "OFFICIAL CONTACT",
+    "heading": "מתחילים בשיחה ברורה.",
+    "lead": "ערוץ הקשר הרשמי: hello@7ya.io.",
+    "cards": [["EMAIL", "StartOn"], ["EMAIL", "Media & speaking"], ["EMAIL", "Corrections"]]
+  },
+  "/radar/": {
+    "title": "7YA Radar | כוונה, החלטה, ביצוע ותוצאה",
+    "description": "הפרדה בין הצהרות, החלטות, תקציבים, ביצוע ותוצאות.",
+    "eyebrow": "GOVERNMENT & IMPACT RADAR",
+    "heading": "כוונה אינה תוצאה.",
+    "lead": "הרדאר עוקב אחרי מה נאמר, אושר, תוקצב, בוצע ונמדד — עם מקור ותאריך לכל שלב.",
+    "cards": [["STAGE 1", "כוונה"], ["STAGE 2", "מעמד פורמלי"], ["STAGE 3", "ביצוע ותוצאה"]]
+  },
+  "/journey/": {
+    "title": "המסע של איגור ופרצקי | 7YA",
+    "description": "מסלול חיים ציבורי: הגירה, שייכות, שירות, יצירה ובנייה.",
+    "eyebrow": "LIFE JOURNEY",
+    "heading": "שורשים. שירות. בנייה.",
+    "lead": "מפת מסע ציבורית שנועדה לתת הקשר — לא להחליף מסמכים.",
+    "cards": [["1993", "הגירה"], ["FIELD", "שירות"], ["NOW", "בנייה"]]
+  },
+  "/influence/": {
+    "title": "השפעה ציבורית | Igor Vepretski | 7YA",
+    "description": "ארכיון נוכחות ציבורית עם משמעת מדידה.",
+    "eyebrow": "PUBLIC INFLUENCE",
+    "heading": "נוכחות לאורך זמן.",
+    "lead": "היקפי חשיפה מוצגים רק כאשר קיים צילום מצב או יצוא מתוארך.",
+    "cards": [["VIDEO", "וידאו"], ["WRITING", "כתיבה"], ["MUSIC", "יצירה"]]
+  },
+  "/speaker/": {
+    "title": "Igor Vepretski | Speaker",
+    "description": "עמוד מרצה: נוער, אמון ציבורי, השפעה דיגיטלית ו־AI.",
+    "eyebrow": "SPEAKER",
+    "heading": "שיחה מהשטח.",
+    "lead": "הרצאות ופאנלים המחברים סיפור אישי, יזמות חברתית וטכנולוגיה.",
+    "cards": [["TOPIC", "נוער ושייכות"], ["TOPIC", "אמון ומנהיגות"], ["TOPIC", "AI ומערכות ציבוריות"]]
+  }
+}
