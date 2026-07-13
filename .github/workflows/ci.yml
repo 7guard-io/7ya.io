@@ -49,6 +49,9 @@ jobs:
       - name: Build and verify Evidence Oracle tests
         run: npm test
 
+      - name: Verify release manifest tamper rejection
+        run: node --test scripts/release-manifest.test.mjs
+
       - name: Site process and link health
         run: npm run check-all
 
