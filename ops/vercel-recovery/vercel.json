@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "trailingSlash": true,
+  "rewrites": [
+    { "source": "/", "destination": "/api/render?route=/" },
+    { "source": "/igor-vepretski/", "destination": "/api/render?route=/igor-vepretski/" },
+    { "source": "/talk/", "destination": "/api/render?route=/talk/" },
+    { "source": "/social/", "destination": "/api/render?route=/social/" },
+    { "source": "/pass/", "destination": "/api/render?route=/pass/" },
+    { "source": "/evidence/", "destination": "/api/render?route=/evidence/" },
+    { "source": "/starton/", "destination": "/api/render?route=/starton/" },
+    { "source": "/contact/", "destination": "/api/render?route=/contact/" },
+    { "source": "/radar/", "destination": "/api/render?route=/radar/" },
+    { "source": "/journey/", "destination": "/api/render?route=/journey/" },
+    { "source": "/influence/", "destination": "/api/render?route=/influence/" },
+    { "source": "/speaker/", "destination": "/api/render?route=/speaker/" }
+  ]
+}
