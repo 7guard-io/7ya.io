@@ -28,8 +28,9 @@ The site is no longer positioned as a simple management center. It now acts as a
 
 ## Technical readiness tracks
 
+- `docs/ARCHITECTURE.md` — canonical production boundaries, trust zones, data flow, release integrity, and infrastructure decision rules.
 - `docs/GPU_READINESS.md` — future GPU accelerated AI, media, visualization, and education workflows.
-- `docs/CI_RUNBOOK.md` — CI blocker status and recovery order.
+- `docs/CI_RUNBOOK.md` — CI blocker status, manual validation sequence, and recovery order.
 
 ## Process health gate
 
@@ -41,6 +42,15 @@ npm run check-site
 
 The same check is wired to `npm test`. GitHub Actions automation is currently manual-only while issue #83 is open.
 
+The manual release-integrity path additionally builds the API bundle and verifies its complete file inventory and SHA-256 manifest:
+
+```bash
+node scripts/prepare-netlify-api-deploy.mjs
+node scripts/verify-release-manifest.mjs \
+  .netlify-api-deploy/public/release-manifest.json \
+  .netlify-api-deploy
+```
+
 The gate verifies:
 
 - critical public files exist
@@ -48,6 +58,8 @@ The gate verifies:
 - HTML pages include core metadata
 - docs navigation points back to the 7YA public route map
 - deprecated GenAI template navigation does not return
+- Evidence Oracle tests reject altered records and invalid Merkle proofs
+- the release file inventory and bundle SHA-256 match the generated manifest
 
 ## Editorial rule
 
