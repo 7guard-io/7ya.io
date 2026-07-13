@@ -1,18 +1,9 @@
 name: Deploy 7YA API to Netlify
 
+# Production deployment remains manual while issue #83 is open. This workflow
+# must not run automatically until the Actions execution blocker is resolved.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - netlify/functions/chat.js
-      - scripts/prepare-netlify-api-deploy.mjs
-      - scripts/test-netlify-chat.mjs
-      - scripts/smoke-test.js
-      - scripts/smoke-test.sh
-      - package.json
-      - package-lock.json
-      - .github/workflows/netlify-api-deploy.yml
 
 permissions:
   contents: read
@@ -24,7 +15,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     environment: production
     env:
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -59,6 +50,14 @@ jobs:
       - name: Prepare immutable production bundle
         run: node scripts/prepare-netlify-api-deploy.mjs
 
+      - name: Verify local release manifest
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+        run: |
+          node scripts/verify-release-manifest.mjs \
+            .netlify-api-deploy/public/release-manifest.json \
+            .netlify-api-deploy
+
       - name: Deploy exact GitHub revision and capture provider evidence
         shell: bash
         run: |
@@ -82,6 +81,86 @@ jobs:
           ' artifacts/netlify-deploy.json >/dev/null
           echo "Provider deployment evidence captured."
 
+      - name: Verify deployed release manifest
+        env:
+          MANIFEST_URL: https://7ya-api.netlify.app/release-manifest.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts
+          local_manifest=".netlify-api-deploy/public/release-manifest.json"
+          expected_manifest_sha="$(sha256sum "$local_manifest" | awk '{print $1}')"
+          expected_bundle_sha="$(jq -r '.bundle_sha256' "$local_manifest")"
+
+          for attempt in {1..12}; do
+            body_file="$(mktemp)"
+            http_code="$({
+              curl --silent --show-error --location \
+                --max-time 15 \
+                --output "$body_file" \
+                --write-out '%{http_code}' \
+                "${MANIFEST_URL}?expected=${GITHUB_SHA}&attempt=${attempt}" || true
+            })"
+
+            if [[ "$http_code" == "200" ]]; then
+              observed_manifest_sha="$(sha256sum "$body_file" | awk '{print $1}')"
+              observed_bundle_sha="$(jq -r '.bundle_sha256 // "unavailable"' "$body_file" 2>/dev/null || echo unavailable)"
+
+              if jq -e --arg sha "$GITHUB_SHA" --arg bundle "$expected_bundle_sha" '
+                   .schema == "7ya.release-manifest.v1" and
+                   .service == "7ya-api" and
+                   .commit == $sha and
+                   .bundle_sha256 == $bundle
+                 ' "$body_file" >/dev/null 2>&1 && \
+                 [[ "$observed_manifest_sha" == "$expected_manifest_sha" ]]; then
+                cp "$body_file" artifacts/deployed-release-manifest.json
+                jq -n \
+                  --arg status "PASS" \
+                  --arg expected_commit "$GITHUB_SHA" \
+                  --arg manifest_sha256 "$observed_manifest_sha" \
+                  --arg bundle_sha256 "$observed_bundle_sha" \
+                  --arg verified_at_utc "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+                  '{
+                    status: $status,
+                    expected_commit: $expected_commit,
+                    manifest_sha256: $manifest_sha256,
+                    bundle_sha256: $bundle_sha256,
+                    manifest_verified: true,
+                    verified_at_utc: $verified_at_utc
+                  }' > artifacts/release-manifest-verification.json
+                rm -f "$body_file"
+                echo "Production release manifest matches the local immutable bundle."
+                exit 0
+              fi
+
+              echo "Attempt ${attempt}/12: manifest mismatch; observed bundle ${observed_bundle_sha}."
+            else
+              echo "Attempt ${attempt}/12: HTTP ${http_code:-000}."
+            fi
+
+            rm -f "$body_file"
+            sleep 10
+          done
+
+          jq -n \
+            --arg status "FAIL" \
+            --arg expected_commit "$GITHUB_SHA" \
+            --arg expected_manifest_sha256 "$expected_manifest_sha" \
+            --arg expected_bundle_sha256 "$expected_bundle_sha" \
+            --arg manifest_url "$MANIFEST_URL" \
+            --arg verified_at_utc "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+            '{
+              status: $status,
+              reason: "Production release manifest did not match the local bundle",
+              expected_commit: $expected_commit,
+              expected_manifest_sha256: $expected_manifest_sha256,
+              expected_bundle_sha256: $expected_bundle_sha256,
+              manifest_url: $manifest_url,
+              manifest_verified: false,
+              verified_at_utc: $verified_at_utc
+            }' > artifacts/release-manifest-verification.json
+          exit 1
+
       - name: Verify deployed revision marker
         env:
           DEPLOYMENT_URL: https://7ya-api.netlify.app/deployment.json
@@ -92,13 +171,13 @@ jobs:
 
           for attempt in {1..12}; do
             body_file="$(mktemp)"
-            http_code="$(
+            http_code="$({
               curl --silent --show-error --location \
                 --max-time 15 \
                 --output "$body_file" \
                 --write-out '%{http_code}' \
                 "${DEPLOYMENT_URL}?expected=${GITHUB_SHA}&attempt=${attempt}" || true
-            )"
+            })"
 
             if [[ "$http_code" == "200" ]] && \
                jq -e --arg sha "$GITHUB_SHA" \
@@ -157,5 +236,6 @@ jobs:
           path: |
             artifacts/*.json
             .netlify-api-deploy/public/deployment.json
+            .netlify-api-deploy/public/release-manifest.json
           if-no-files-found: error
           retention-days: 30
