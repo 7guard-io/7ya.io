@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://7ya.io/sitemap.xml
