@@ -4,16 +4,12 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'release-manifest.json');
 const SHA_PATTERN = /^[0-9a-f]{40}$/i;
-const DEFAULT_RELEASE = '2026-07-14.6-creatorverse-archive';
+const DEFAULT_RELEASE = '2026-07-14.7-direct-runtime';
 
 function readExistingManifest() {
-  try {
-    return JSON.parse(fs.readFileSync(OUTPUT, 'utf8'));
-  } catch {
-    return {};
-  }
+  try { return JSON.parse(fs.readFileSync(OUTPUT, 'utf8')); }
+  catch { return {}; }
 }
-
 function firstValidSha(...values) {
   return values.find((value) => SHA_PATTERN.test(String(value || '').trim())) || null;
 }
@@ -26,11 +22,8 @@ const sourceSha = firstValidSha(
   process.env.RELEASE_SOURCE_SHA,
   existing.source_sha,
 );
-
 if (!sourceSha) {
-  throw new Error(
-    'Release provenance is unbound. Set VERCEL_GIT_COMMIT_SHA, GITHUB_SHA, SOURCE_SHA, RELEASE_SOURCE_SHA, or ship a bound release-manifest.json.',
-  );
+  throw new Error('Release provenance is unbound. Inject a full SHA through the Vercel host, GitHub, SOURCE_SHA, RELEASE_SOURCE_SHA or a bound manifest.');
 }
 
 const manifest = {
@@ -47,6 +40,5 @@ const manifest = {
     process.env.RELEASE_SOURCE_SHA ? 'RELEASE_SOURCE_SHA' :
     'bundled_manifest',
 };
-
 fs.writeFileSync(OUTPUT, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`⚡ ${manifest.release} bound to ${sourceSha} via ${manifest.provenance_source}`);
