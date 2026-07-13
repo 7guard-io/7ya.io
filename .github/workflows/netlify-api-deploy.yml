@@ -47,6 +47,9 @@ jobs:
       - name: Verify API handler contract
         run: npm run test:netlify
 
+      - name: Verify release manifest tamper rejection
+        run: node --test scripts/release-manifest.test.mjs
+
       - name: Prepare immutable production bundle
         run: node scripts/prepare-netlify-api-deploy.mjs
 
