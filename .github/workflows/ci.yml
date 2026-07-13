@@ -16,9 +16,9 @@ concurrency:
 
 jobs:
   validate:
-    name: Typecheck, site health, links, routes
+    name: Code, evidence, routes, release integrity
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
 
     steps:
       - name: Checkout repository
@@ -28,6 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
 
       - name: Print diagnostic context
         run: |
@@ -36,28 +37,50 @@ jobs:
           pwd
           ls -la
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - name: Install lockfile-pinned dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Audit production dependency tree
+        run: npm audit --omit=dev --audit-level=high
 
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Site process health
-        run: npm run check-site
+      - name: Build and verify Evidence Oracle tests
+        run: npm test
 
-      - name: Link audit
-        run: npm run check-links
+      - name: Site process and link health
+        run: npm run check-all
+
+      - name: Build immutable API release bundle
+        run: node scripts/prepare-netlify-api-deploy.mjs
+
+      - name: Verify release file inventory and SHA-256
+        env:
+          EXPECTED_COMMIT: ${{ github.sha }}
+        run: |
+          node scripts/verify-release-manifest.mjs \
+            .netlify-api-deploy/public/release-manifest.json \
+            .netlify-api-deploy
 
       - name: Static route verification
+        shell: bash
         run: |
+          set -euo pipefail
           python3 -m http.server 4173 > /tmp/7ya-static-server.log 2>&1 &
-          echo $! > /tmp/7ya-static-server.pid
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           sleep 2
           npm run verify:routes -- http://127.0.0.1:4173
 
-      - name: Upload static server log
+      - name: Upload validation evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: static-server-log
-          path: /tmp/7ya-static-server.log
+          name: 7ya-ci-evidence-${{ github.sha }}
+          path: |
+            /tmp/7ya-static-server.log
+            .netlify-api-deploy/public/deployment.json
+            .netlify-api-deploy/public/release-manifest.json
+          if-no-files-found: warn
+          retention-days: 30
