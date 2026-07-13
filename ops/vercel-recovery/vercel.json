@@ -2,6 +2,7 @@
   "version": 2,
   "trailingSlash": true,
   "rewrites": [
+    { "source": "/release.json", "destination": "/api/release" },
     { "source": "/", "destination": "/api/render?route=/" },
     { "source": "/igor-vepretski/", "destination": "/api/render?route=/igor-vepretski/" },
     { "source": "/talk/", "destination": "/api/render?route=/talk/" },
