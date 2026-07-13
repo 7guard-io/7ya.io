@@ -22,16 +22,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Assemble redirect artifact
+      - name: Validate static site before publish
         shell: bash
         run: |
           set -euo pipefail
           test "$(cat CNAME)" = "7ya.io"
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" index.html
-          grep -Fq "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/" 404.html
+          npm ci
+          npm run check-all
+
+      - name: Assemble static site artifact
+        shell: bash
+        run: |
+          set -euo pipefail
           rm -rf dist
           mkdir -p dist
-          cp index.html 404.html CNAME dist/
+          rsync -a \
+            --exclude .git \
+            --exclude .github \
+            --exclude .netlify \
+            --exclude .vercel \
+            --exclude dist \
+            --exclude node_modules \
+            --exclude artifacts \
+            ./ dist/
           touch dist/.nojekyll
 
       - name: Configure Pages
