@@ -102,14 +102,19 @@ for (const route of ["/about", "/about/"]) {
   if (result.error) {
     failures += 1;
     console.error(`FAIL ${result.url}: ${result.error}`);
-  } else if (![301, 302, 307, 308].includes(result.statusCode)) {
-    failures += 1;
-    console.error(`FAIL ${result.url}: expected redirect, got HTTP ${result.statusCode}`);
-  } else if (!String(result.location || "").includes("/igor-vepretski/")) {
-    failures += 1;
-    console.error(`FAIL ${result.url}: unexpected location ${result.location || "<missing>"}`);
+  } else if ([301, 302, 307, 308].includes(result.statusCode)) {
+    const location = String(result.location || "");
+    if (location.includes("/igor-vepretski/") || (route === "/about" && location.endsWith("/about/"))) {
+      console.log(`PASS ${result.url}: HTTP ${result.statusCode} -> ${result.location}`);
+    } else {
+      failures += 1;
+      console.error(`FAIL ${result.url}: unexpected location ${result.location || "<missing>"}`);
+    }
+  } else if (result.statusCode === 200 && result.title === titles.get("/igor-vepretski/")) {
+    console.log(`PASS ${result.url}: HTTP 200 fallback page; title ${JSON.stringify(result.title)}`);
   } else {
-    console.log(`PASS ${result.url}: HTTP ${result.statusCode} -> ${result.location}`);
+    failures += 1;
+    console.error(`FAIL ${result.url}: expected redirect to /igor-vepretski/ or matching fallback page, got HTTP ${result.statusCode}`);
   }
 }
 

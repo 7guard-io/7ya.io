@@ -19,7 +19,9 @@
     "test:netlify": "node scripts/test-netlify-chat.mjs",
     "test:smoke": "node scripts/smoke-test.js",
     "smoke:api": "node scripts/smoke-test.js",
-    "smoke:api:curl": "bash scripts/smoke-test.sh"
+    "smoke:api:curl": "bash scripts/smoke-test.sh",
+    "deploy:preview": "npx --yes vercel@latest",
+    "deploy:prod": "npx --yes vercel@latest --prod"
   },
   "repository": {
     "type": "git",
