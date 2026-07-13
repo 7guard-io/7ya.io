@@ -62,7 +62,8 @@ const home = read('index.html');
 for (const text of [
   'איגור ופרצקי',
   'IGOR VEPRETSKI',
-  'איש שטח, מייסד StartOn ובונה 7YA.',
+  'לא באתי לבנות',
+  'StartOn',
   'Evidence Ledger',
   'Human first'
 ]) {
@@ -73,9 +74,9 @@ for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
   '/assets/igor-home-portrait-20260712.webp',
   '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-home-20260712.css?v=2',
-  'igor-first-mobile-20260712-2',
-  '7ya-legacy-cache-retired-20260712',
+  '/styles/igor-personal-20260713.css?v=1',
+  'igor-personal-editorial-20260713-1',
+  '7ya-legacy-cache-retired-20260713',
   'navigator.serviceWorker.getRegistrations()',
   'Promise.allSettled(tasks)'
 ]) {
@@ -104,7 +105,7 @@ for (const file of [
   'assets/igor-home-portrait-20260712.webp',
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
-  'styles/igor-home-20260712.css',
+  'styles/igor-personal-20260713.css',
   'favicon.svg',
   '404.html',
   'sw.js',
@@ -142,10 +143,7 @@ for (const route of routes) {
     'Microsoft-backed',
     'candidate for Knesset',
     'verified leader',
-    'official partner',
-    'Igor Ido Vepretski',
-    'Ido Vepretski',
-    'עידו ופרצקי'
+    'official partner'
   ]) {
     if (body.includes(bad)) fail(`${file} contains unsupported snippet: ${bad}`);
   }
