@@ -1,6 +1,9 @@
-name: Publish 7YA Redirect
+name: Publish 7YA Creatorverse
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -22,15 +25,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate static site before publish
+      - name: Validate Creatorverse release contract
         shell: bash
         run: |
           set -euo pipefail
           test "$(cat CNAME)" = "7ya.io"
+          test -f index.html
+          test -f styles/creatorverse-20260714.css
+          test -f scripts/creatorverse-20260714.js
+          grep -Fq 'creatorverse-cosmic-20260714-1' index.html
+          grep -Fq 'CREATOR' index.html
+          grep -Fq 'OF WORLDS.' index.html
+          grep -Fq 'IGOR VEPRETSKI' index.html
+          grep -Fq 'StartOn' index.html
+          grep -Fq 'Evidence Ledger' index.html
+          grep -Fq 'AGENT COUNCIL' index.html
+          grep -Fq 'Human first' index.html
+          ! grep -Eqi 'http-equiv="refresh"|window\.location|location\.replace|noindex' index.html
+          echo 'CREATORVERSE_RELEASE_CONTRACT: PASS'
+
+      - name: Validate static site before publish
+        shell: bash
+        run: |
+          set -euo pipefail
           npm ci
           npm run check-all
 
-      - name: Assemble static site artifact
+      - name: Assemble immutable static artifact
         shell: bash
         run: |
           set -euo pipefail
@@ -46,6 +67,11 @@ jobs:
             --exclude artifacts \
             ./ dist/
           touch dist/.nojekyll
+          test -f dist/index.html
+          test -f dist/styles/creatorverse-20260714.css
+          test -f dist/scripts/creatorverse-20260714.js
+          grep -Fq 'creatorverse-cosmic-20260714-1' dist/index.html
+          echo 'PAGES_ARTIFACT: PASS'
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
