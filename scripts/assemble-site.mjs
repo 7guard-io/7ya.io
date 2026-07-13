@@ -49,20 +49,35 @@ function extractPublicRoutes(sitemap) {
   return [...new Set(routes)].sort();
 }
 
+function containsRedirect(html) {
+  return /http-equiv=["']refresh["']/i.test(html)
+    || /window\.location\.(?:replace|assign)|window\.location\s*=/i.test(html);
+}
+
 async function assertArtifact(routes) {
   const homepage = await fs.readFile(path.join(output, 'index.html'), 'utf8');
+  const notFound = await fs.readFile(path.join(output, '404.html'), 'utf8');
   const robots = await fs.readFile(path.join(output, 'robots.txt'), 'utf8');
   const sitemap = await fs.readFile(path.join(output, 'sitemap.xml'), 'utf8');
   const cname = (await fs.readFile(path.join(output, 'CNAME'), 'utf8')).trim();
 
   if (cname !== '7ya.io') throw new Error(`Unexpected CNAME: ${JSON.stringify(cname)}`);
   if (/noindex/i.test(homepage)) throw new Error('Homepage release artifact contains noindex');
-  if (/http-equiv=["']refresh["']/i.test(homepage)) throw new Error('Homepage release artifact contains a meta refresh');
-  if (/window\.location\.(?:replace|assign)|window\.location\s*=/i.test(homepage)) {
-    throw new Error('Homepage release artifact contains a client-side redirect');
-  }
+  if (containsRedirect(homepage)) throw new Error('Homepage release artifact contains a redirect');
   if (!homepage.includes('<link rel="canonical" href="https://7ya.io/">')) {
     throw new Error('Homepage canonical is not https://7ya.io/');
+  }
+
+  if (!/name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(notFound)) {
+    throw new Error('404.html must remain noindex');
+  }
+  if (containsRedirect(notFound)) throw new Error('404.html contains a redirect');
+  if (/igor-7ya-digital-museum\.igor-vepretski\.chatgpt\.site/i.test(notFound)) {
+    throw new Error('404.html points to the retired external redirect target');
+  }
+
+  if (!robots.includes('User-agent: *') || !robots.includes('Allow: /')) {
+    throw new Error('robots.txt does not allow canonical crawling');
   }
   if (!robots.includes('Sitemap: https://7ya.io/sitemap.xml')) {
     throw new Error('robots.txt does not advertise the canonical sitemap');
@@ -82,7 +97,11 @@ await fs.mkdir(output, { recursive: true });
 
 const sitemapSource = await fs.readFile(path.join(root, 'sitemap.xml'), 'utf8');
 const routes = extractPublicRoutes(sitemapSource);
-const routeDirectories = [...new Set(routes.filter((route) => route !== '/').map((route) => route.split('/').filter(Boolean)[0]))];
+const routeDirectories = [...new Set(
+  routes
+    .filter((route) => route !== '/')
+    .map((route) => route.split('/').filter(Boolean)[0]),
+)];
 
 for (const file of requiredRootFiles) await copyRequired(file);
 for (const directory of requiredAssetDirectories) await copyRequired(directory);
