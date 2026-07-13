@@ -21,7 +21,7 @@
 </head>
 <body data-build="home-redesign-20260713">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="signal-bar" aria-label="Public ledger status"><span class="signal-dot" aria-hidden="true"></span><span>Public ledger online</span><span class="signal-languages">HE / EN / RU</span></div>
+  <div class="signal-bar" role="status" aria-label="Public ledger status"><span class="signal-dot" aria-hidden="true"></span><span>Public ledger online</span><span class="signal-languages">HE / EN / RU</span></div>
   <header class="site-header">
     <a class="brand" href="/" aria-label="7YA home"><strong>7YA</strong><span>Family = Force</span></a>
     <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav"><span class="sr-only">Toggle navigation</span><span aria-hidden="true">Menu</span></button>
@@ -51,11 +51,11 @@
     </section>
     <section id="evidence" class="ledger-section section-shell" aria-labelledby="ledger-title">
       <div class="ledger-intro"><p class="pill pill-green">Evidence first</p><h2 id="ledger-title">The public record, not the promise.</h2><p>Each record carries a source, verification state and last-reviewed date.</p><a class="button button-secondary" href="/evidence/">See all evidence</a></div>
-      <div class="records" role="list">
-        <article class="record" role="listitem"><span class="record-dot verified" aria-hidden="true"></span><div><h3>StartOn — technology hubs for youth at risk</h3><p>Institutional context · reviewed 12 Jul 2026</p></div><span class="status verified">Verified</span></article>
-        <article class="record" role="listitem"><span class="record-dot verified" aria-hidden="true"></span><div><h3>7YA public source archive</h3><p>Repository and public URLs · reviewed 13 Jul 2026</p></div><span class="status verified">Verified</span></article>
-        <article class="record" role="listitem"><span class="record-dot pending" aria-hidden="true"></span><div><h3>Aggregate reach claim</h3><p>Awaiting source package before publication</p></div><span class="status pending">Pending</span></article>
-      </div>
+      <ul class="records">
+        <li class="record"><span class="record-dot verified" aria-hidden="true"></span><div><h3>StartOn — technology hubs for youth at risk</h3><p>Institutional context · reviewed 12 Jul 2026</p></div><span class="status verified">Verified</span></li>
+        <li class="record"><span class="record-dot verified" aria-hidden="true"></span><div><h3>7YA public source archive</h3><p>Repository and public URLs · reviewed 13 Jul 2026</p></div><span class="status verified">Verified</span></li>
+        <li class="record"><span class="record-dot pending" aria-hidden="true"></span><div><h3>Aggregate reach claim</h3><p>Awaiting source package before publication</p></div><span class="status pending">Pending</span></li>
+      </ul>
     </section>
     <section id="journey" class="section-shell journey-section" aria-labelledby="journey-title">
       <header class="section-heading"><p class="eyebrow">The journey</p><h2 id="journey-title">Eight chapters. No mythology without sources.</h2></header>
