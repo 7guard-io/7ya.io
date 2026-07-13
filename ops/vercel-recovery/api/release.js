@@ -1,19 +1,20 @@
-const representedSourceSha = 'b579599b35258f4cfacf405150eb368367fbdc3f';
-
-const criticalRoutes = [
+const sourceSha = '2c65a181a666b6fad7f0d431877c2154b7bfd3b5';
+const routes = [
   '/',
   '/igor-vepretski/',
+  '/journey/',
+  '/starton/',
+  '/evidence/',
+  '/influence/',
+  '/speaker/',
   '/talk/',
   '/social/',
   '/pass/',
-  '/evidence/',
-  '/starton/',
-  '/contact/',
   '/radar/',
+  '/contact/',
 ];
 
 module.exports = (_request, response) => {
-  const sourceSha = process.env.VERCEL_GIT_COMMIT_SHA || process.env.SOURCE_SHA || representedSourceSha;
   response.setHeader('Content-Type', 'application/json; charset=utf-8');
   response.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   response.statusCode = 200;
@@ -23,8 +24,7 @@ module.exports = (_request, response) => {
     source_repository: '7guard-io/7ya.io',
     source_path: 'ops/vercel-recovery',
     source_sha: sourceSha,
-    environment: process.env.VERCEL_ENV || 'unknown',
-    route_contract_version: '2026-07-14.1',
-    critical_routes: criticalRoutes,
+    release: '2026-07-14.2',
+    critical_routes: routes,
   }));
 };
