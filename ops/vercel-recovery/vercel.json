@@ -1,6 +1,11 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "trailingSlash": true,
+  "alias": [
+    "7ya.io",
+    "www.7ya.io"
+  ],
   "rewrites": [
     { "source": "/release.json", "destination": "/api/release" },
     { "source": "/", "destination": "/api/render?route=/" },
