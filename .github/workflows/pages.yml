@@ -1,7 +1,20 @@
-name: Publish 7YA Redirect
+name: Publish 7YA Site
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'styles/**'
+      - 'assets/**'
+      - 'data/**'
+      - 'scripts/check-site.mjs'
+      - 'scripts/check-links.mjs'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'CNAME'
+      - '.github/workflows/pages.yml'
 
 permissions:
   contents: read
