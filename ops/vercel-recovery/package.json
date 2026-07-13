@@ -1,5 +1,8 @@
 {
   "name": "7ya-vercel-recovery",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "vercel-build": "node scripts/generate-release.js"
+  }
 }
