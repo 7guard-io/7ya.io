@@ -4,6 +4,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'release-manifest.json');
 const SHA_PATTERN = /^[0-9a-f]{40}$/i;
+const DEFAULT_RELEASE = '2026-07-14.6-creatorverse-archive';
 
 function readExistingManifest() {
   try {
@@ -36,7 +37,7 @@ const manifest = {
   source_sha: sourceSha,
   source_repository: '7guard-io/7ya.io',
   source_path: 'ops/vercel-recovery',
-  release: process.env.RELEASE_ID || existing.release || '2026-07-14.4-provenance',
+  release: process.env.RELEASE_ID || existing.release || DEFAULT_RELEASE,
   build_time: new Date().toISOString(),
   environment: process.env.VERCEL_ENV || process.env.NODE_ENV || existing.environment || 'unknown',
   provenance_source:
@@ -48,4 +49,4 @@ const manifest = {
 };
 
 fs.writeFileSync(OUTPUT, `${JSON.stringify(manifest, null, 2)}\n`);
-console.log(`⚡ release-manifest.json bound to ${sourceSha}`);
+console.log(`⚡ ${manifest.release} bound to ${sourceSha} via ${manifest.provenance_source}`);
