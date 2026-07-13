@@ -64,8 +64,12 @@ jobs:
           test -f _site/radar/index.html
           grep -Fq '<link rel="canonical" href="https://7ya.io/">' _site/index.html
           grep -Fq 'Sitemap: https://7ya.io/sitemap.xml' _site/robots.txt
-          if grep -Eqi 'noindex|http-equiv=["'"']refresh["'"']|window\.location\.(replace|assign)' _site/index.html; then
+          if grep -Eqi "noindex|http-equiv=['\"]refresh['\"]|window\.location\.(replace|assign)" _site/index.html; then
             echo 'Release homepage contains a forbidden noindex or redirect directive.' >&2
+            exit 1
+          fi
+          if grep -Eqi "http-equiv=['\"]refresh['\"]|window\.location\.(replace|assign)|igor-7ya-digital-museum\.igor-vepretski\.chatgpt\.site" _site/404.html; then
+            echo 'Release 404 page contains a forbidden redirect or external target.' >&2
             exit 1
           fi
 
