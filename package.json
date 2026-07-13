@@ -10,6 +10,7 @@
     "check-links": "node scripts/check-links.mjs",
     "check-all": "npm run check-site && npm run check-links",
     "verify:routes": "node scripts/verify-routes.mjs",
+    "release:site": "node scripts/assemble-site.mjs",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
