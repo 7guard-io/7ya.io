@@ -62,22 +62,19 @@ const home = read('index.html');
 for (const text of [
   'איגור ופרצקי',
   'IGOR VEPRETSKI',
-  'איש שטח, מייסד StartOn ובונה 7YA.',
-  'Evidence Ledger',
-  'Human first'
+  'Build what can',
+  'The public record, not the promise.',
+  'Technology belongs where opportunity is missing.'
 ]) {
   home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
 }
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/igor-home-portrait-20260712.webp',
-  '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-home-20260712.css?v=2',
-  'igor-first-mobile-20260712-2',
-  '7ya-legacy-cache-retired-20260712',
-  'navigator.serviceWorker.getRegistrations()',
-  'Promise.allSettled(tasks)'
+  '/assets/home.css?v=20260713',
+  '/assets/home.js?v=20260713',
+  'home-redesign-20260713',
+  'https://7ya.io/assets/igor-home-og-20260712.jpg'
 ]) {
   home.includes(technical)
     ? pass(`homepage includes ${technical}`)
