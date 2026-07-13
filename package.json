@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/node": "^25.3.3",
     "docsify-to-pdf": "0.0.5",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "netlify-cli": "^17.38.1"
   },
   "dependencies": {
