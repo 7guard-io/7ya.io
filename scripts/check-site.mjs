@@ -2,11 +2,23 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const routes = [
-  '', 'legacy', 'igor-vepretski', 'evidence', 'journey', 'starton', 'oracle',
-  'business', 'talk', 'contact', 'social', 'pass', 'radar', 'speaker', 'media',
-  '7ya', 'influence', 'articles', 'delta-audit'
+const canonicalRoutes = [
+  '', 'igor-vepretski', 'journey', 'starton', 'influence', 'evidence',
+  '7ya', 'speaker', 'talk', 'media', 'articles', 'contact', 'delta-audit'
 ];
+const aliases = new Map([
+  ['about', '/igor-vepretski/'],
+  ['social', '/influence/'],
+  ['oracle', '/evidence/'],
+  ['business', '/7ya/'],
+  ['pass', '/7ya/'],
+  ['radar', '/evidence/'],
+  ['work', '/#creations'],
+  ['systems', '/7ya/'],
+  ['public-service', '/journey/'],
+  ['music', '/influence/'],
+]);
+const mirroredPages = ['igor-vepretski', 'starton', 'evidence', 'talk', 'contact'];
 
 let failures = 0;
 const fail = message => { failures += 1; console.error(`FAIL ${message}`); };
@@ -37,20 +49,41 @@ function normalizeRecoveryMirror(body) {
     .trim();
 }
 
-for (const route of routes) {
+function validateHtmlShell(file, html) {
+  requireText(html, '<!doctype html>', file);
+  /<meta\s+name="viewport"/i.test(html) ? pass(`${file} includes viewport`) : fail(`${file} missing viewport`);
+  /<title>[^<]+<\/title>/i.test(html) ? pass(`${file} includes title`) : fail(`${file} missing title`);
+}
+
+for (const route of canonicalRoutes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const html = read(file);
   const url = `https://7ya.io/${route ? `${route}/` : ''}`;
 
-  requireText(html, '<!doctype html>', file);
-  /<meta\s+name="viewport"/i.test(html) ? pass(`${file} includes viewport`) : fail(`${file} missing viewport`);
-  /<title>[^<]+<\/title>/i.test(html) ? pass(`${file} includes title`) : fail(`${file} missing title`);
+  validateHtmlShell(file, html);
   /<meta\s+name="description"/i.test(html) ? pass(`${file} includes description`) : fail(`${file} missing description`);
   /<meta\s+name="robots"\s+content="index,\s*follow/i.test(html)
     ? pass(`${file} is indexable`)
     : fail(`${file} missing index, follow robots directive`);
   requireText(html, `<link rel="canonical" href="${url}"`, file);
   if (/noindex/i.test(html)) fail(`${file} contains noindex`);
+}
+
+for (const [route, target] of aliases) {
+  const file = `${route}/index.html`;
+  const html = read(file);
+  const canonical = `https://7ya.io${target}`;
+
+  validateHtmlShell(file, html);
+  /<meta\s+name="robots"\s+content="noindex,\s*follow/i.test(html)
+    ? pass(`${file} is a noindex follow alias`)
+    : fail(`${file} missing noindex, follow`);
+  requireText(html, `<link rel="canonical" href="${canonical}"`, file);
+  requireText(html, 'http-equiv="refresh"', file);
+  requireText(html, 'location.replace(', file);
+  for (const retired of ['Living Proof System', 'Public trust shell', 'Private strategic command room']) {
+    excludeText(html, retired, file);
+  }
 }
 
 const home = read('index.html');
@@ -85,8 +118,7 @@ for (const forbidden of [
 const signatures = (home.match(/class="author-signature"/g) || []).length;
 signatures >= 5 ? pass(`homepage has ${signatures} signed content cards`) : fail(`homepage has only ${signatures} signed content cards`);
 
-const depthPages = ['starton', 'evidence', 'talk', 'contact'];
-for (const route of depthPages) {
+for (const route of mirroredPages) {
   const file = `${route}/index.html`;
   const html = read(file);
   for (const required of [
@@ -97,6 +129,12 @@ for (const route of depthPages) {
     excludeText(html, retired, file);
   }
 }
+
+const identity = read('igor-vepretski/index.html');
+for (const required of [
+  'אדם אחד.', 'IDENTITY MAP', 'לא להיראות מושלם.', 'SELF-ATTESTED',
+  'הביוגרפיה אינה', 'PERSON · MISSION · SYSTEM · EVIDENCE'
+]) requireText(identity, required, 'identity');
 
 const contact = read('contact/index.html');
 for (const required of [
@@ -127,17 +165,21 @@ for (const file of [
 ]) read(file);
 
 const sitemap = read('sitemap.xml');
-for (const route of routes) {
+for (const route of canonicalRoutes) {
   const loc = `https://7ya.io/${route ? `${route}/` : ''}`;
   requireText(sitemap, loc, 'sitemap');
 }
+for (const route of aliases.keys()) {
+  excludeText(sitemap, `https://7ya.io/${route}/`, 'sitemap aliases');
+}
+excludeText(sitemap, 'https://7ya.io/legacy/', 'sitemap legacy');
 
 const robots = read('robots.txt');
 for (const snippet of ['User-agent: *', 'Allow: /', 'Sitemap: https://7ya.io/sitemap.xml']) {
   requireText(robots, snippet, 'robots');
 }
 
-for (const route of routes) {
+for (const route of canonicalRoutes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const body = read(file);
   for (const bad of [
@@ -150,10 +192,7 @@ for (const route of routes) {
 
 for (const file of [
   'ops/vercel-recovery/creatorverse-depth-20260714.css',
-  'ops/vercel-recovery/starton/index.html',
-  'ops/vercel-recovery/evidence/index.html',
-  'ops/vercel-recovery/talk/index.html',
-  'ops/vercel-recovery/contact/index.html'
+  ...mirroredPages.map(route => `ops/vercel-recovery/${route}/index.html`),
 ]) {
   const body = read(file);
   if (file.endsWith('index.html')) {
@@ -162,7 +201,7 @@ for (const file of [
   }
 }
 
-for (const route of depthPages) {
+for (const route of mirroredPages) {
   const source = read(`${route}/index.html`).replace(/\r\n/g, '\n').trim();
   const recovery = normalizeRecoveryMirror(read(`ops/vercel-recovery/${route}/index.html`));
   source === recovery
@@ -180,14 +219,23 @@ try {
   fail(`${vercelPath} invalid JSON: ${error.message}`);
 }
 
+const redirects = Array.isArray(vercelConfig.redirects) ? vercelConfig.redirects : [];
 const rewrites = Array.isArray(vercelConfig.rewrites) ? vercelConfig.rewrites : [];
 const headerRules = Array.isArray(vercelConfig.headers) ? vercelConfig.headers : [];
 const headerMap = new Map(headerRules.map(rule => [rule.source, new Map((rule.headers || []).map(header => [header.key, header.value]))]));
 
-for (const staticRoute of ['/starton/', '/evidence/', '/talk/', '/contact/']) {
+for (const [route, target] of aliases) {
+  const rule = redirects.find(candidate => candidate.source === `/${route}/`);
+  rule?.destination === target && rule.permanent === true
+    ? pass(`Vercel recovery redirects /${route}/ to ${target}`)
+    : fail(`Vercel recovery missing permanent redirect for /${route}/`);
+}
+
+for (const route of mirroredPages) {
+  const staticRoute = `/${route}/`;
   const isRewritten = rewrites.some(rule => rule.source === staticRoute);
   !isRewritten
-    ? pass(`${staticRoute} served as static depth page`)
+    ? pass(`${staticRoute} served as static Creatorverse page`)
     : fail(`${staticRoute} still rewritten through generic renderer`);
 
   const routeHeaders = headerMap.get(staticRoute);
@@ -208,6 +256,14 @@ for (const [key, value] of [
   globalHeaders?.get(key) === value
     ? pass(`Vercel global header ${key} preserved`)
     : fail(`Vercel global header ${key} missing or incorrect`);
+}
+
+const proxy = read('ops/vercel-canonical-proxy/api/proxy.js');
+for (const [route, target] of aliases) {
+  requireText(proxy, `['${route}', '${target}']`, 'canonical proxy aliases');
+}
+for (const required of ['response.statusCode = 308', "response.setHeader('Location', destination)", "'noindex, follow'"]) {
+  requireText(proxy, required, 'canonical proxy redirects');
 }
 
 if (failures) {
