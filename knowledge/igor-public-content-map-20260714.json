@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-14",
+  "subject": {
+    "name": "Igor Vepretski",
+    "aliases": ["איגור ופרצקי", "Игорь Вепрецкий", "Igor Ido Vepretski", "Ido Vepretski"]
+  },
+  "policy": {
+    "scope": "publicly discoverable content only",
+    "rules": [
+      "preserve original public URL and platform",
+      "store dates only when publicly confirmed",
+      "do not invent metrics",
+      "mark platform-restricted items instead of dropping them",
+      "separate original posts, syndicated echoes, press, broadcasts, podcasts and profile seeds"
+    ]
+  },
+  "source_seeds": [
+    {"platform":"Linktree","url":"https://linktr.ee/igor.vepretski","status":"public cross-platform index"},
+    {"platform":"Instagram","url":"https://www.instagram.com/igor.vepretski/","status":"platform-restricted crawler seed"},
+    {"platform":"TikTok","url":"https://www.tiktok.com/@igor.vepretski","status":"robots-restricted crawler seed"},
+    {"platform":"YouTube","url":"https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw","status":"public channel seed"},
+    {"platform":"Facebook","url":"https://www.facebook.com/igor7ya","status":"platform-restricted crawler seed"},
+    {"platform":"X","url":"https://x.com/igorvepretski","status":"JS-restricted crawler seed"},
+    {"platform":"Threads","url":"https://www.threads.net/@igor.vepretski","status":"platform-restricted crawler seed"},
+    {"platform":"Spotify","url":"https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u","status":"embed-ready artist seed"},
+    {"platform":"Apple Music","url":"https://music.apple.com/artist/ido-vepretski/1527248864","status":"public artist seed"},
+    {"platform":"Zman Israel","url":"https://www.zman.co.il/writer/20815/","status":"full-text author archive"}
+  ],
+  "records": [
+    {
+      "id":"IV-2011-001",
+      "date":"2011",
+      "platform":"Makor Rishon / NRG archive",
+      "type":"press-profile",
+      "title":"מקור ראשון – מעריב 2011",
+      "url":"https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "language":"he",
+      "themes":["early-public-footprint"],
+      "verification":"URL confirmed; page body currently not retrievable",
+      "integration":"origins"
+    },
+    {
+      "id":"IV-2022-001",
+      "date":"2022-05-13",
+      "platform":"mynet Holon",
+      "type":"press-feature",
+      "title":"חוזר לשכונה: איגור מחולון עזב הכל כדי להקים מרכז נוער בג'סי כהן",
+      "url":"https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "language":"he",
+      "themes":["childhood","aliyah","public-service","creator-history","starton","youth-at-risk"],
+      "verification":"title, date, author and article body publicly confirmed",
+      "integration":"chronological-story"
+    },
+    {
+      "id":"IV-2022-002",
+      "date":"2022-05-22",
+      "platform":"Channel 13",
+      "type":"tv-interview",
+      "title":"קצין משטרה עזב את העבודה, מכר את הבית והחליט להקים מרכז לנערים בסיכון",
+      "url":"https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44",
+      "duration":"05:57",
+      "language":"he",
+      "themes":["career-transition","starton","youth-at-risk"],
+      "verification":"title, broadcast date and duration publicly confirmed",
+      "integration":"broadcast-wall"
+    },
+    {
+      "id":"IV-2022-003",
+      "date":"2022-09-20",
+      "platform":"Mindset / Podbean",
+      "type":"podcast",
+      "title":"מנער בסיכון ליזם חברתי עם איגור ופרצקי",
+      "url":"https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/",
+      "language":"he",
+      "themes":["aliyah","childhood","army","leadership","starton","mindset"],
+      "verification":"date, summary, topics and audio destinations publicly confirmed",
+      "integration":"podcast-shelf"
+    },
+    {
+      "id":"IV-2022-004",
+      "date":"2022-11-10",
+      "platform":"Zman Israel",
+      "type":"opinion-article",
+      "title":"לבן שלי אין טיקטוק! – המתכון המושלם לפיתוח הפרעות חברתיות",
+      "url":"https://www.zman.co.il/350569/",
+      "language":"he",
+      "themes":["children","technology","social-media","education"],
+      "verification":"title, date, excerpt and full article page publicly confirmed",
+      "integration":"writing-archive"
+    },
+    {
+      "id":"IV-2022-005",
+      "date":"2022-11-27",
+      "platform":"Zman Israel",
+      "type":"opinion-article",
+      "title":"כללי המשחק השתנו – חינוך בעידן המודרני",
+      "url":"https://www.zman.co.il/352289/",
+      "language":"he",
+      "themes":["education","digital-culture","future-skills"],
+      "verification":"title, date, excerpt and full article page publicly confirmed",
+      "integration":"writing-archive"
+    },
+    {
+      "id":"IV-2023-001",
+      "date":"2023-02-20",
+      "platform":"Hidabroot / Facebook echo",
+      "type":"viral-post-coverage",
+      "title":"אבא מושלם – זה אבא ששם",
+      "url":"https://www.hidabroot.org/article/1179015",
+      "language":"he",
+      "themes":["fatherhood","abandonment","family"],
+      "verification":"publication identifies Igor Vepretski's original post as viral",
+      "integration":"viral-posts"
+    },
+    {
+      "id":"IV-2024-001",
+      "date":"2024-01-23",
+      "platform":"Minds in Motion / Podtail",
+      "type":"podcast",
+      "title":"פרק 18 – מנוער בסיכון למנהיגות מעוררת השראה בחינוך",
+      "url":"https://podtail.com/podcast/092cc570/--18/",
+      "language":"he",
+      "themes":["youth-at-risk","education","leadership","starton"],
+      "verification":"title, date and episode description publicly confirmed",
+      "integration":"podcast-shelf"
+    },
+    {
+      "id":"IV-VIDEO-001",
+      "date":null,
+      "platform":"YouTube / NDI podcast",
+      "type":"video-podcast",
+      "title":"Родители чистили картошку в ресторане. Что такое быть ребенком-репатриантом",
+      "url":"https://www.youtube.com/watch?v=EsaD-lVsKHc",
+      "language":"ru",
+      "themes":["aliyah","immigrant-childhood","identity"],
+      "verification":"video ID and public title confirmed",
+      "integration":"russian-origin-story"
+    },
+    {
+      "id":"IV-VIDEO-002",
+      "date":null,
+      "platform":"YouTube",
+      "type":"video-podcast",
+      "title":"מהבריחה מפסטיבל הנובה, להתפכחות",
+      "url":"https://www.youtube.com/watch?v=3h-oEuW8GJI",
+      "language":"he",
+      "themes":["october-7","life-story","public-reflection"],
+      "verification":"video ID and public title confirmed",
+      "integration":"podcast-shelf"
+    },
+    {
+      "id":"IV-VIDEO-003",
+      "date":null,
+      "platform":"YouTube",
+      "type":"campaign-video",
+      "title":"בחולון לא צריכה להיות התלבטות – מצביעים חולון ביתנו",
+      "url":"https://www.youtube.com/watch?v=v7158BaZkiQ",
+      "language":"he",
+      "themes":["holon","municipal-politics"],
+      "verification":"video ID and public title confirmed",
+      "integration":"politics-timeline"
+    },
+    {
+      "id":"IV-VIDEO-004",
+      "date":null,
+      "platform":"YouTube",
+      "type":"interview",
+      "title":"אם לנו קשה עכשיו, מה עובר על נוער בסיכון",
+      "url":"https://www.youtube.com/watch?v=U2d_hulZAC0",
+      "language":"he",
+      "themes":["youth-at-risk","crisis","starton"],
+      "verification":"video ID and public title confirmed",
+      "integration":"starton-video-wall"
+    },
+    {
+      "id":"IV-VIDEO-005",
+      "date":null,
+      "platform":"YouTube",
+      "type":"podcast-clip",
+      "title":"אירועי ה־7/10 שינו את ה־DNA של עם ישראל לנצח",
+      "url":"https://www.youtube.com/watch?v=3mG7qVapcII",
+      "language":"he",
+      "themes":["october-7","israeli-society"],
+      "verification":"video ID and public title confirmed",
+      "integration":"public-voice"
+    }
+  ],
+  "known_viral_items_pending_direct_permalink": [
+    {"title":"אבא מושלם זה אבא ששם","platform":"Facebook / סטטוסים מצייצים","theme":"fatherhood"},
+    {"title":"אבהות בגיל צעיר","platform":"Facebook / הצינור","theme":"fatherhood"},
+    {"title":"להיות שוטר ב\"שומר חומות\"","platform":"Facebook / סטטוסים מצייצים","theme":"public-service"},
+    {"title":"תכירו את הנרי האלוף!","platform":"Facebook / סטטוסים מצייצים","theme":"community"},
+    {"title":"תחילת השבוע הגננת מתקשרת","platform":"Facebook / סטטוסים מצייצים","theme":"parenting"},
+    {"title":"רוסי מסריח","platform":"Facebook / סטטוסים מצייצים","theme":"immigration-and-identity"}
+  ],
+  "next_ingestion_actions": [
+    "recover original direct permalinks and dates for the six known viral Facebook items",
+    "enumerate public YouTube channel videos and preserve canonical video IDs",
+    "index public article text and excerpts with source attribution",
+    "store image and thumbnail provenance separately from content text",
+    "render the website map by year, platform, topic and format"
+  ]
+}
