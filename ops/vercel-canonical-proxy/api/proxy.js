@@ -4,6 +4,19 @@ const SOURCE_REPOSITORY = '7guard-io/7ya.io';
 const SOURCE_SHA = 'a6847e58a447a9cb8203aabf7446952782c7a0ce';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 
+const CANONICAL_ALIASES = new Map([
+  ['about', '/igor-vepretski/'],
+  ['social', '/influence/'],
+  ['oracle', '/evidence/'],
+  ['business', '/7ya/'],
+  ['pass', '/7ya/'],
+  ['radar', '/evidence/'],
+  ['work', '/#creations'],
+  ['systems', '/7ya/'],
+  ['public-service', '/journey/'],
+  ['music', '/influence/'],
+]);
+
 const MIME_TYPES = {
   html: 'text/html; charset=utf-8',
   css: 'text/css; charset=utf-8',
@@ -36,7 +49,7 @@ function extension(file) {
   return index < 0 ? '' : file.slice(index + 1).toLowerCase();
 }
 
-function resolveSourcePath(request) {
+function requestPath(request) {
   let requestUrl;
   try {
     requestUrl = new URL(request.url || '/', 'https://7ya.invalid');
@@ -52,10 +65,32 @@ function resolveSourcePath(request) {
     return null;
   }
 
-  const normalized = segments.join('/');
+  return {
+    raw,
+    normalized: segments.join('/'),
+  };
+}
+
+function resolveSourcePath(pathInfo) {
+  if (!pathInfo) return null;
+  const { raw, normalized } = pathInfo;
   if (!normalized) return 'index.html';
   if (raw.endsWith('/')) return `${normalized}/index.html`;
   return extension(normalized) ? normalized : `${normalized}/index.html`;
+}
+
+function canonicalAlias(pathInfo) {
+  if (!pathInfo) return null;
+  const key = pathInfo.normalized.replace(/\/+$/, '');
+  return CANONICAL_ALIASES.get(key) || null;
+}
+
+function setBaseHeaders(response) {
+  response.setHeader('X-Content-Type-Options', 'nosniff');
+  response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  response.setHeader('X-7YA-Source-Repository', SOURCE_REPOSITORY);
+  response.setHeader('X-7YA-Source-SHA', SOURCE_SHA);
 }
 
 function setResponseHeaders(response, file, statusCode) {
@@ -64,13 +99,9 @@ function setResponseHeaders(response, file, statusCode) {
 
   response.statusCode = statusCode;
   response.setHeader('Content-Type', MIME_TYPES[type] || 'application/octet-stream');
-  response.setHeader('X-Content-Type-Options', 'nosniff');
-  response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  setBaseHeaders(response);
   response.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
   response.setHeader('Access-Control-Allow-Origin', '*');
-  response.setHeader('X-7YA-Source-Repository', SOURCE_REPOSITORY);
-  response.setHeader('X-7YA-Source-SHA', SOURCE_SHA);
   response.setHeader('X-7YA-Source-Path', file);
 
   if (isHtml) {
@@ -83,10 +114,21 @@ function setResponseHeaders(response, file, statusCode) {
   }
 }
 
+function sendRedirect(request, response, destination) {
+  response.statusCode = 308;
+  setBaseHeaders(response);
+  response.setHeader('Location', destination);
+  response.setHeader('X-Robots-Tag', 'noindex, follow');
+  response.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600');
+  response.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  if (request.method === 'HEAD') response.end();
+  else response.end(`Permanent Redirect: ${destination}`);
+}
+
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.1',
+      'User-Agent': '7ya-canonical-recovery/1.2',
       Accept: '*/*',
     },
   });
@@ -100,13 +142,21 @@ module.exports = async (request, response) => {
     return;
   }
 
-  const requestedFile = resolveSourcePath(request);
-  if (!requestedFile) {
+  const pathInfo = requestPath(request);
+  if (!pathInfo) {
     response.statusCode = 400;
     response.setHeader('Content-Type', 'application/json; charset=utf-8');
     response.end(JSON.stringify({ error: 'Invalid path' }));
     return;
   }
+
+  const alias = canonicalAlias(pathInfo);
+  if (alias) {
+    sendRedirect(request, response, alias);
+    return;
+  }
+
+  const requestedFile = resolveSourcePath(pathInfo);
 
   try {
     let upstream = await fetchSource(requestedFile);
