@@ -184,10 +184,16 @@ for (const route of canonicalRoutes) {
   const body = read(file);
   for (const bad of [
     '5.1B+', '10,000+', 'Knesset Candidate', 'Microsoft-backed',
-    'candidate for Knesset', 'verified leader', 'official partner'
+    'candidate for Knesset', 'verified leader', 'official partner',
+    'Ido Vepretski', 'Igor Ido Vepretski', 'עידו ופרצקי'
   ]) {
     if (body.includes(bad)) fail(`${file} contains unsupported snippet: ${bad}`);
   }
+}
+
+const recoveryHome = read('ops/vercel-recovery/index.html');
+for (const unsupportedAlias of ['Ido Vepretski', 'Igor Ido Vepretski', 'עידו ופרצקי']) {
+  excludeText(recoveryHome, unsupportedAlias, 'recovery homepage identity aliases');
 }
 
 for (const file of [
