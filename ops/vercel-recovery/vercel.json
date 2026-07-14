@@ -8,6 +8,7 @@
     { "source": "/oracle/", "destination": "/evidence/", "permanent": true },
     { "source": "/business/", "destination": "/7ya/", "permanent": true },
     { "source": "/pass/", "destination": "/7ya/", "permanent": true },
+    { "source": "/member-pass/", "destination": "/7ya/", "permanent": true },
     { "source": "/radar/", "destination": "/evidence/", "permanent": true },
     { "source": "/work/", "destination": "/#creations", "permanent": true },
     { "source": "/systems/", "destination": "/7ya/", "permanent": true },
