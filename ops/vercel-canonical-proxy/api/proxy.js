@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'a6847e58a447a9cb8203aabf7446952782c7a0ce';
+const SOURCE_SHA = 'f1946e1eca880f82dc766965bbc5f5ea27eeb27b';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 
 const CANONICAL_ALIASES = new Map([
