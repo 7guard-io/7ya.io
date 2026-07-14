@@ -2,19 +2,24 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.7ya.io" }],
+      "destination": "https://7ya.io/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/release.json", "destination": "/api/release" },
     { "source": "/", "destination": "/api/site?route=/" },
     { "source": "/7ya/", "destination": "/api/site?route=/7ya/" },
-    { "source": "/igor-vepretski/", "destination": "/api/site?route=/igor-vepretski/" },
     { "source": "/journey/", "destination": "/api/site?route=/journey/" },
     { "source": "/work/", "destination": "/api/site?route=/work/" },
     { "source": "/systems/", "destination": "/api/site?route=/systems/" },
     { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
     { "source": "/music/", "destination": "/api/site?route=/music/" },
-    { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
-    { "source": "/pass/", "destination": "/api/site?route=/pass/" },
-    { "source": "/radar/", "destination": "/api/site?route=/radar/" }
+    { "source": "/speaker/", "destination": "/api/site?route=/speaker/" }
   ],
   "headers": [
     {
@@ -23,6 +28,13 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/igor-vepretski/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
@@ -47,7 +59,28 @@
       ]
     },
     {
+      "source": "/social/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/pass/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
       "source": "/contact/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/radar/",
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
@@ -61,13 +94,6 @@
       ]
     },
     {
-      "source": "/social/",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "index, follow" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
       "source": "/articles/(.*)",
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
@@ -75,7 +101,27 @@
       ]
     },
     {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
       "source": "/public-archive.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/creatorverse-depth-20260714.css",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
