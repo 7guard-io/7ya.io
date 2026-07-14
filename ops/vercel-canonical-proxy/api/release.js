@@ -1,15 +1,15 @@
 'use strict';
 
 const payload = {
-  release_id: 'creatorverse-depth-20260714-pr190',
+  release_id: 'creatorverse-contact-20260714-pr191',
   source_repository: '7guard-io/7ya.io',
-  source_branch: 'main',
-  source_sha: '322249e6b3ff0171f57697a32b90850575f482de',
-  pull_request: 190,
+  source_branch: 'main-history',
+  source_sha: 'a6847e58a447a9cb8203aabf7446952782c7a0ce',
+  pull_request: 191,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
   custom_domain_attached: false,
-  generated_at: '2026-07-14T18:47:00+03:00',
+  generated_at: '2026-07-14T19:05:00+03:00',
 };
 
 module.exports = (request, response) => {
