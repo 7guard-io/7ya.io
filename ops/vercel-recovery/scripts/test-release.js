@@ -10,6 +10,7 @@ const ENV_KEYS = [
   'SOURCE_SHA',
   'RELEASE_SOURCE_SHA',
   'VERCEL_ENV',
+  'NODE_ENV',
 ];
 
 function invokeRelease() {
@@ -30,38 +31,75 @@ function invokeRelease() {
   return { statusCode: response.statusCode, headers, body: JSON.parse(body) };
 }
 
-const previousEnv = Object.fromEntries(ENV_KEYS.map((key) => [key, process.env[key]]));
+function writeManifest(overrides = {}) {
+  fs.writeFileSync(MANIFEST_PATH, JSON.stringify({
+    source_sha: '0123456789abcdef0123456789abcdef01234567',
+    source_branch: 'fix/p0-public-visibility-20260714',
+    release: 'test-release',
+    build_time: '2026-07-14T00:00:00.000Z',
+    environment: 'preview',
+    provenance_source: 'VERCEL_GIT_COMMIT_SHA',
+    production_verified: false,
+    ...overrides,
+  }));
+}
+
+const previousEnv = Object.fromEntries(ENV_KEYS.map(key => [key, process.env[key]]));
 const previousManifest = fs.existsSync(MANIFEST_PATH) ? fs.readFileSync(MANIFEST_PATH) : null;
 
 try {
-  ENV_KEYS.forEach((key) => delete process.env[key]);
+  ENV_KEYS.forEach(key => delete process.env[key]);
   if (fs.existsSync(MANIFEST_PATH)) fs.unlinkSync(MANIFEST_PATH);
 
   const unbound = invokeRelease();
   assert.equal(unbound.statusCode, 503);
   assert.equal(unbound.body.status, 'PROVENANCE_UNBOUND');
+  assert.equal(unbound.body.production_verified, false);
 
-  const sha = '0123456789abcdef0123456789abcdef01234567';
-  fs.writeFileSync(MANIFEST_PATH, JSON.stringify({
-    source_sha: sha,
-    release: 'test-release',
-    build_time: '2026-07-14T00:00:00.000Z',
-    environment: 'test',
-    provenance_source: 'bundled_manifest',
-  }));
+  writeManifest({
+    provenance_source: 'MANUAL_PREVIEW_SOURCE_SHA',
+    environment: 'preview',
+  });
+  const manual = invokeRelease();
+  assert.equal(manual.statusCode, 503);
+  assert.equal(manual.body.status, 'PROVENANCE_NOT_PROVIDER_BOUND');
+  assert.equal(manual.body.production_verified, false);
 
-  const bound = invokeRelease();
-  assert.equal(bound.statusCode, 200);
-  assert.equal(bound.body.status, 'READY');
-  assert.equal(bound.body.source_sha, sha);
-  assert.equal(bound.body.provenance_source, 'bundled_manifest');
-  assert.equal(bound.headers['x-content-type-options'], 'nosniff');
+  writeManifest({
+    provenance_source: 'VERCEL_GIT_COMMIT_SHA',
+    environment: 'preview',
+  });
+  const preview = invokeRelease();
+  assert.equal(preview.statusCode, 200);
+  assert.equal(preview.body.status, 'PREVIEW_READY');
+  assert.equal(preview.body.production_verified, false);
+  assert.equal(preview.body.source_sha, '0123456789abcdef0123456789abcdef01234567');
+  assert.equal(preview.body.provenance_source, 'VERCEL_GIT_COMMIT_SHA');
 
-  process.env.VERCEL_GIT_COMMIT_SHA = 'fedcba9876543210fedcba9876543210fedcba98';
-  const hostBound = invokeRelease();
-  assert.equal(hostBound.statusCode, 200);
-  assert.equal(hostBound.body.source_sha, process.env.VERCEL_GIT_COMMIT_SHA);
-  assert.equal(hostBound.body.provenance_source, 'VERCEL_GIT_COMMIT_SHA');
+  writeManifest({
+    provenance_source: 'GITHUB_SHA',
+    environment: 'production',
+    production_verified: true,
+  });
+  const production = invokeRelease();
+  assert.equal(production.statusCode, 200);
+  assert.equal(production.body.status, 'READY');
+  assert.equal(production.body.production_verified, true);
+  assert.equal(production.body.provenance_source, 'GITHUB_SHA');
+  assert.deepEqual(production.body.critical_routes, [
+    '/', '/igor-vepretski/', '/talk/', '/social/', '/pass/',
+    '/evidence/', '/starton/', '/contact/', '/radar/',
+  ]);
+
+  process.env.GITHUB_SHA = 'fedcba9876543210fedcba9876543210fedcba98';
+  const mismatch = invokeRelease();
+  assert.equal(mismatch.statusCode, 503);
+  assert.equal(mismatch.body.status, 'PROVENANCE_MISMATCH');
+  assert.equal(mismatch.body.production_verified, false);
+  assert.equal(mismatch.body.runtime_source_sha, process.env.GITHUB_SHA);
+
+  assert.equal(production.headers['x-content-type-options'], 'nosniff');
+  assert.equal(production.headers['cache-control'], 'public, max-age=0, must-revalidate');
 
   console.log('RELEASE_PROVENANCE_TEST: PASS');
 } finally {
