@@ -24,24 +24,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate Creatorverse release contract
+      - name: Validate Rich Media Creatorverse release contract
         shell: bash
         run: |
           set -euo pipefail
           test "$(cat CNAME)" = "7ya.io"
           test -f index.html
           test -f styles/creatorverse-20260714.css
+          test -f styles/igor-rich-media-20260714.css
           test -f scripts/creatorverse-20260714.js
-          grep -Fq 'creatorverse-cosmic-20260714-1' index.html
-          grep -Fq 'CREATOR' index.html
-          grep -Fq 'OF WORLDS.' index.html
-          grep -Fq 'IGOR VEPRETSKI' index.html
-          grep -Fq 'StartOn' index.html
+          grep -Fq 'creatorverse-rich-media-20260714-1' index.html
+          grep -Fq 'ONE PERSON.' index.html
+          grep -Fq 'MANY WORLDS.' index.html
+          grep -Fq 'לא תמונה אחת. נוכחות אמיתית.' index.html
+          grep -Fq 'הקול שלי, לא “בלוג”.' index.html
+          grep -Fq 'לא רק תוכן. תהליך ציבורי.' index.html
+          grep -Fq 'class="visual-bento"' index.html
+          grep -Fq 'class="post-grid"' index.html
+          grep -Fq 'class="process-steps"' index.html
+          grep -Fq 'class="persona-anchor"' index.html
           grep -Fq 'Evidence Ledger' index.html
           grep -Fq 'AGENT COUNCIL' index.html
-          grep -Fq 'Human first' index.html
           ! grep -Eqi 'http-equiv="refresh"|window\.location|location\.replace|noindex' index.html
-          echo 'CREATORVERSE_RELEASE_CONTRACT: PASS'
+          echo 'RICH_MEDIA_CREATORVERSE_RELEASE_CONTRACT: PASS'
 
       - name: Validate static site before publish
         shell: bash
@@ -68,9 +73,13 @@ jobs:
           touch dist/.nojekyll
           test -f dist/index.html
           test -f dist/styles/creatorverse-20260714.css
+          test -f dist/styles/igor-rich-media-20260714.css
           test -f dist/scripts/creatorverse-20260714.js
-          grep -Fq 'creatorverse-cosmic-20260714-1' dist/index.html
-          echo 'PAGES_ARTIFACT: PASS'
+          grep -Fq 'creatorverse-rich-media-20260714-1' dist/index.html
+          grep -Fq 'class="visual-bento"' dist/index.html
+          grep -Fq 'class="post-grid"' dist/index.html
+          grep -Fq 'class="process-steps"' dist/index.html
+          echo 'PAGES_RICH_MEDIA_ARTIFACT: PASS'
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
