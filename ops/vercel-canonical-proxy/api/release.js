@@ -1,15 +1,16 @@
 'use strict';
 
 const payload = {
-  release_id: 'creatorverse-production-repair-20260714',
+  release_id: 'history-song-influence-wall-20260714',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: 'f1946e1eca880f82dc766965bbc5f5ea27eeb27b',
-  pull_request: 193,
+  source_sha: '0dac617e0b1457e48cfed6c969b1366876cd391f',
+  pull_request: 204,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
+  experience: 'IGOR_HISTORY_SONG_PUBLIC_INFLUENCE_WALL',
   custom_domain_attached: false,
-  generated_at: '2026-07-14T21:15:00+03:00',
+  generated_at: '2026-07-14T22:50:30+03:00',
 };
 
 module.exports = (request, response) => {
