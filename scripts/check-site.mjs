@@ -4,6 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const routes = [
   '',
+  'legacy',
   'igor-vepretski',
   'evidence',
   'journey',
@@ -101,11 +102,44 @@ for (const forbidden of [
     : fail(`homepage still includes ${forbidden}`);
 }
 
+const legacy = read('legacy/index.html');
+for (const snippet of [
+  'Legacy Universe',
+  'LEGACY',
+  'EVIDENCE GOVERNED',
+  '/knowledge/igor-vepretski-legacy.json',
+  '/styles/legacy-universe-20260714.css?v=1',
+  '/scripts/legacy-universe-20260714.js',
+  'igor-legacy-universe-20260714-1'
+]) {
+  legacy.includes(snippet)
+    ? pass(`legacy includes ${snippet}`)
+    : fail(`legacy missing ${snippet}`);
+}
+
+const legacyData = read('knowledge/igor-vepretski-legacy.json');
+for (const snippet of [
+  'Evidence before amplification',
+  '2026-06-08',
+  'StartOn',
+  'PILOT_DESIGN',
+  'SELF_ATTESTED',
+  'Music and creative work by Igor Vepretski',
+  'privacy_rules'
+]) {
+  legacyData.includes(snippet)
+    ? pass(`legacy dataset includes ${snippet}`)
+    : fail(`legacy dataset missing ${snippet}`);
+}
+
 for (const file of [
   'assets/igor-home-portrait-20260712.webp',
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
   'styles/igor-personal-20260713.css',
+  'styles/legacy-universe-20260714.css',
+  'scripts/legacy-universe-20260714.js',
+  'knowledge/igor-vepretski-legacy.json',
   'favicon.svg',
   '404.html',
   'sw.js',
