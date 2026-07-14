@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-07-14T17:25:09+03:00",
+  "owner": "Igor Vepretski",
+  "public_domain": "https://7ya.io",
+  "canonical_repository": {
+    "name": "7guard-io/7ya.io",
+    "default_branch": "main",
+    "role": "only canonical source-control and review plane"
+  },
+  "identity_model": {
+    "human_core": "Igor Vepretski",
+    "social_mission": "StartOn",
+    "organizing_system": "7YA",
+    "principles": [
+      "Human First",
+      "Evidence Before Amplification",
+      "Privacy by Default",
+      "A plan is not an outcome",
+      "Membership is not partnership"
+    ]
+  },
+  "active_change": {
+    "pull_request": 190,
+    "branch": "feat/creatorverse-depth-unification-20260714",
+    "purpose": "Unify StartOn, Evidence and Talk under the personal Creatorverse",
+    "mergeable": true,
+    "merged": false,
+    "review_state": "Codex crawl-header finding fixed and review thread resolved",
+    "production_verified": false,
+    "head_resolution_rule": "Read the live PR head from GitHub; do not store a self-referential SHA in this file"
+  },
+  "deployment": {
+    "source_control_plane": "GitHub",
+    "recovery_provider": "Vercel",
+    "canonical_recovery_project": {
+      "name": "7ya-static-site",
+      "root_directory": "ops/vercel-recovery",
+      "framework": "Other",
+      "build_command": null,
+      "output_directory": null,
+      "production_branch": "main",
+      "custom_domain_attached": false
+    },
+    "obsolete_or_misaligned_project": {
+      "name": "7ya.io",
+      "connected_repository": "vepretski/7ya.io",
+      "policy": "Do not treat this project or repository as canonical"
+    },
+    "current_public_source_alignment": "not verified against canonical PR head"
+  },
+  "ci": {
+    "github_actions_state": "blocked before checkout",
+    "cause": "organization account locked due to a billing issue",
+    "last_confirmed": "2026-07-14",
+    "interpretation": "No workflow run is not a code PASS and not a code FAIL"
+  },
+  "release_blockers": [
+    "No repository-backed Vercel preview exists for the canonical PR",
+    "The custom 7ya.io domain is not attached to the canonical recovery project",
+    "GitHub Actions cannot currently execute validation",
+    "The public domain has not been verified against the active PR source SHA"
+  ],
+  "next_safe_gate": [
+    "Run deterministic site and link checks",
+    "Deploy the exact canonical branch to a preview tied to its source SHA",
+    "Verify /starton/, /evidence/ and /talk/ on mobile and desktop",
+    "Verify HTTP 200, canonical metadata, X-Robots-Tag and security headers",
+    "Merge only after the preview passes",
+    "Attach 7ya.io and www.7ya.io to the canonical recovery project before any DNS cutover",
+    "Preserve the previous origin until DNS, TLS and route verification pass"
+  ],
+  "dns_policy": {
+    "provider": "Cloudflare",
+    "nameservers": [
+      "anahi.ns.cloudflare.com",
+      "dakota.ns.cloudflare.com"
+    ],
+    "rule": "Do not change nameservers; preserve all mail-related MX and TXT records"
+  },
+  "public_conversion": {
+    "primary_cta": "לתיאום שיחה",
+    "secondary_cta": "לצפייה בראיות"
+  },
+  "privacy_boundary": [
+    "No identifying information about minors",
+    "No private family, medical, legal or financial information",
+    "No raw private emails, credentials, tokens or account codes",
+    "No operational security methods or protected case information"
+  ]
+}

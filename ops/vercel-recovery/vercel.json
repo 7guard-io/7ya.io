@@ -9,17 +9,45 @@
     { "source": "/igor-vepretski/", "destination": "/api/site?route=/igor-vepretski/" },
     { "source": "/journey/", "destination": "/api/site?route=/journey/" },
     { "source": "/work/", "destination": "/api/site?route=/work/" },
-    { "source": "/starton/", "destination": "/api/site?route=/starton/" },
     { "source": "/systems/", "destination": "/api/site?route=/systems/" },
     { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
-    { "source": "/evidence/", "destination": "/api/site?route=/evidence/" },
     { "source": "/influence/", "destination": "/api/site?route=/influence/" },
     { "source": "/music/", "destination": "/api/site?route=/music/" },
     { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
-    { "source": "/talk/", "destination": "/api/site?route=/talk/" },
     { "source": "/social/", "destination": "/api/site?route=/social/" },
     { "source": "/pass/", "destination": "/api/site?route=/pass/" },
     { "source": "/radar/", "destination": "/api/site?route=/radar/" },
     { "source": "/contact/", "destination": "/api/site?route=/contact/" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/starton/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/evidence/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/talk/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
   ]
 }

@@ -3,25 +3,9 @@ import path from 'node:path';
 
 const root = process.cwd();
 const routes = [
-  '',
-  'legacy',
-  'igor-vepretski',
-  'evidence',
-  'journey',
-  'starton',
-  'oracle',
-  'business',
-  'talk',
-  'contact',
-  'social',
-  'pass',
-  'radar',
-  'speaker',
-  'media',
-  '7ya',
-  'influence',
-  'articles',
-  'delta-audit'
+  '', 'legacy', 'igor-vepretski', 'evidence', 'journey', 'starton', 'oracle',
+  'business', 'talk', 'contact', 'social', 'pass', 'radar', 'speaker', 'media',
+  '7ya', 'influence', 'articles', 'delta-audit'
 ];
 
 let failures = 0;
@@ -38,178 +22,185 @@ function read(file) {
   return fs.readFileSync(resolved, 'utf8');
 }
 
+function requireText(body, text, label) {
+  body.includes(text) ? pass(`${label} includes ${text}`) : fail(`${label} missing ${text}`);
+}
+
+function excludeText(body, text, label) {
+  !body.includes(text) ? pass(`${label} excludes ${text}`) : fail(`${label} contains ${text}`);
+}
+
+function normalizeRecoveryMirror(body) {
+  return body
+    .replace('/creatorverse-depth-20260714.css?v=1', '/styles/creatorverse-depth-20260714.css?v=1')
+    .replace(/\r\n/g, '\n')
+    .trim();
+}
+
 for (const route of routes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const html = read(file);
   const url = `https://7ya.io/${route ? `${route}/` : ''}`;
 
-  for (const snippet of [
-    '<!doctype html>',
-    '<meta name="viewport"',
-    '<title>',
-    '<meta name="description"',
-    '<meta name="robots" content="index, follow',
-    `<link rel="canonical" href="${url}"`
-  ]) {
-    html.includes(snippet)
-      ? pass(`${file} includes ${snippet}`)
-      : fail(`${file} missing ${snippet}`);
-  }
-
-  if (html.includes('noindex')) fail(`${file} contains noindex`);
+  requireText(html, '<!doctype html>', file);
+  /<meta\s+name="viewport"/i.test(html) ? pass(`${file} includes viewport`) : fail(`${file} missing viewport`);
+  /<title>[^<]+<\/title>/i.test(html) ? pass(`${file} includes title`) : fail(`${file} missing title`);
+  /<meta\s+name="description"/i.test(html) ? pass(`${file} includes description`) : fail(`${file} missing description`);
+  /<meta\s+name="robots"\s+content="index,\s*follow/i.test(html)
+    ? pass(`${file} is indexable`)
+    : fail(`${file} missing index, follow robots directive`);
+  requireText(html, `<link rel="canonical" href="${url}"`, file);
+  if (/noindex/i.test(html)) fail(`${file} contains noindex`);
 }
 
 const home = read('index.html');
 for (const text of [
-  'איגור ופרצקי',
-  'IGOR VEPRETSKI',
-  'ONE PERSON.',
-  'StartOn',
-  'Evidence Ledger',
-  'Human first',
-  'לא תמונה אחת. נוכחות אמיתית.',
-  'הקול שלי, לא “בלוג”.',
+  'איגור ופרצקי', 'IGOR VEPRETSKI', 'ONE PERSON.', 'StartOn', 'Evidence Ledger',
+  'Human first', 'לא תמונה אחת. נוכחות אמיתית.', 'הקול שלי, לא “בלוג”.',
   'לא רק תוכן. תהליך ציבורי.'
-]) {
-  home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
-}
+]) requireText(home, text, 'homepage');
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/igor-home-portrait-20260712.webp',
-  '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-personal-20260713.css?v=1',
-  '/styles/creatorverse-20260714.css?v=1',
-  '/styles/igor-rich-media-20260714.css?v=1',
-  'creatorverse-rich-media-20260714-1',
-  '7ya-legacy-cache-retired-20260713',
-  'navigator.serviceWorker.getRegistrations()',
+  '/assets/igor-home-portrait-20260712.webp', '/assets/igor-home-portrait-20260712.jpg',
+  '/styles/igor-personal-20260713.css?v=1', '/styles/creatorverse-20260714.css?v=1',
+  '/styles/igor-rich-media-20260714.css?v=1', 'creatorverse-rich-media-20260714-1',
+  '7ya-legacy-cache-retired-20260713', 'navigator.serviceWorker.getRegistrations()',
   'Promise.allSettled(tasks)'
-]) {
-  home.includes(technical)
-    ? pass(`homepage includes ${technical}`)
-    : fail(`homepage missing ${technical}`);
-}
+]) requireText(home, technical, 'homepage');
 
 for (const visualProof of [
-  'pic1.yitweb.co.il',
-  'צילום: קובי קואנקס',
-  'i.ytimg.com/vi/pzOlz8kGmeU/hqdefault.jpg',
-  'open.spotify.com/embed/artist/0fgRoQ6PoCHlVCIr8a5d6u',
-  'class="visual-bento"',
-  'class="post-grid"',
-  'class="process-steps"',
-  'class="persona-anchor"'
-]) {
-  home.includes(visualProof)
-    ? pass(`homepage includes visual proof ${visualProof}`)
-    : fail(`homepage missing visual proof ${visualProof}`);
-}
+  'pic1.yitweb.co.il', 'צילום: קובי קואנקס', 'i.ytimg.com/vi/pzOlz8kGmeU/hqdefault.jpg',
+  'open.spotify.com/embed/artist/0fgRoQ6PoCHlVCIr8a5d6u', 'class="visual-bento"',
+  'class="post-grid"', 'class="process-steps"', 'class="persona-anchor"'
+]) requireText(home, visualProof, 'homepage visual proof');
 
 for (const forbidden of [
-  'maximum-scale=1',
-  'http-equiv="Cache-Control"',
-  'http-equiv="Pragma"',
-  'http-equiv="Expires"',
-  'rel="manifest"',
-  'bottom-navigation',
-  'floating-bot',
-  'igor-vepretski-portrait.svg',
-  'upload.wikimedia.org/wikipedia/commons/7/7e/Igor_vepretski',
-  'class="satellite"',
-  'class="igor-tile"'
-]) {
-  !home.includes(forbidden)
-    ? pass(`homepage excludes ${forbidden}`)
-    : fail(`homepage still includes ${forbidden}`);
-}
+  'maximum-scale=1', 'http-equiv="Cache-Control"', 'http-equiv="Pragma"',
+  'http-equiv="Expires"', 'rel="manifest"', 'bottom-navigation', 'floating-bot',
+  'igor-vepretski-portrait.svg', 'upload.wikimedia.org/wikipedia/commons/7/7e/Igor_vepretski',
+  'class="satellite"', 'class="igor-tile"'
+]) excludeText(home, forbidden, 'homepage');
 
-const articleSignatures = (home.match(/class="author-signature"/g) || []).length;
-articleSignatures >= 5
-  ? pass(`homepage has ${articleSignatures} signed content cards`)
-  : fail(`homepage has only ${articleSignatures} signed content cards`);
+const signatures = (home.match(/class="author-signature"/g) || []).length;
+signatures >= 5 ? pass(`homepage has ${signatures} signed content cards`) : fail(`homepage has only ${signatures} signed content cards`);
+
+const depthPages = ['starton', 'evidence', 'talk'];
+for (const route of depthPages) {
+  const file = `${route}/index.html`;
+  const html = read(file);
+  for (const required of [
+    'creatorverse-depth-20260714-1', '/styles/creatorverse-depth-20260714.css?v=1',
+    'לתיאום שיחה', 'לצפייה בראיות', 'IGOR VEPRETSKI'
+  ]) requireText(html, required, file);
+  for (const retired of ['Living Proof System', 'Public trust shell', 'Private strategic command room']) {
+    excludeText(html, retired, file);
+  }
+}
 
 const legacy = read('legacy/index.html');
 for (const snippet of [
-  'Legacy Universe',
-  'LEGACY',
-  'EVIDENCE GOVERNED',
-  '/knowledge/igor-vepretski-legacy.json',
-  '/styles/legacy-universe-20260714.css?v=1',
-  '/scripts/legacy-universe-20260714.js',
+  'Legacy Universe', 'LEGACY', 'EVIDENCE GOVERNED', '/knowledge/igor-vepretski-legacy.json',
+  '/styles/legacy-universe-20260714.css?v=1', '/scripts/legacy-universe-20260714.js',
   'igor-legacy-universe-20260714-1'
-]) {
-  legacy.includes(snippet)
-    ? pass(`legacy includes ${snippet}`)
-    : fail(`legacy missing ${snippet}`);
-}
+]) requireText(legacy, snippet, 'legacy');
 
 const legacyData = read('knowledge/igor-vepretski-legacy.json');
 for (const snippet of [
-  'Evidence before amplification',
-  '2026-06-08',
-  'StartOn',
-  'PILOT_DESIGN',
-  'SELF_ATTESTED',
-  'Music and creative work by Igor Vepretski',
-  'privacy_rules'
-]) {
-  legacyData.includes(snippet)
-    ? pass(`legacy dataset includes ${snippet}`)
-    : fail(`legacy dataset missing ${snippet}`);
-}
+  'Evidence before amplification', '2026-06-08', 'StartOn', 'PILOT_DESIGN',
+  'SELF_ATTESTED', 'Music and creative work by Igor Vepretski', 'privacy_rules'
+]) requireText(legacyData, snippet, 'legacy dataset');
 
 for (const file of [
-  'assets/igor-home-portrait-20260712.webp',
-  'assets/igor-home-portrait-20260712.jpg',
-  'assets/igor-home-og-20260712.jpg',
-  'styles/igor-personal-20260713.css',
-  'styles/creatorverse-20260714.css',
-  'styles/igor-rich-media-20260714.css',
-  'styles/legacy-universe-20260714.css',
-  'scripts/legacy-universe-20260714.js',
-  'knowledge/igor-vepretski-legacy.json',
-  'favicon.svg',
-  '404.html',
-  'sw.js',
-  'service-worker.js'
-]) {
-  read(file);
-}
+  'assets/igor-home-portrait-20260712.webp', 'assets/igor-home-portrait-20260712.jpg',
+  'assets/igor-home-og-20260712.jpg', 'styles/igor-personal-20260713.css',
+  'styles/creatorverse-20260714.css', 'styles/igor-rich-media-20260714.css',
+  'styles/creatorverse-depth-20260714.css', 'styles/legacy-universe-20260714.css',
+  'scripts/legacy-universe-20260714.js', 'knowledge/igor-vepretski-legacy.json',
+  'favicon.svg', '404.html', 'sw.js', 'service-worker.js'
+]) read(file);
 
 const sitemap = read('sitemap.xml');
 for (const route of routes) {
   const loc = `https://7ya.io/${route ? `${route}/` : ''}`;
-  sitemap.includes(loc)
-    ? pass(`sitemap includes ${loc}`)
-    : fail(`sitemap missing ${loc}`);
+  requireText(sitemap, loc, 'sitemap');
 }
 
 const robots = read('robots.txt');
-for (const snippet of [
-  'User-agent: *',
-  'Allow: /',
-  'Sitemap: https://7ya.io/sitemap.xml'
-]) {
-  robots.includes(snippet)
-    ? pass(`robots includes ${snippet}`)
-    : fail(`robots missing ${snippet}`);
+for (const snippet of ['User-agent: *', 'Allow: /', 'Sitemap: https://7ya.io/sitemap.xml']) {
+  requireText(robots, snippet, 'robots');
 }
 
 for (const route of routes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const body = read(file);
   for (const bad of [
-    '5.1B+',
-    '10,000+',
-    'Knesset Candidate',
-    'Microsoft-backed',
-    'candidate for Knesset',
-    'verified leader',
-    'official partner'
+    '5.1B+', '10,000+', 'Knesset Candidate', 'Microsoft-backed',
+    'candidate for Knesset', 'verified leader', 'official partner'
   ]) {
     if (body.includes(bad)) fail(`${file} contains unsupported snippet: ${bad}`);
   }
+}
+
+for (const file of [
+  'ops/vercel-recovery/creatorverse-depth-20260714.css',
+  'ops/vercel-recovery/starton/index.html',
+  'ops/vercel-recovery/evidence/index.html',
+  'ops/vercel-recovery/talk/index.html'
+]) {
+  const body = read(file);
+  if (file.endsWith('index.html')) {
+    requireText(body, 'creatorverse-depth-20260714-1', file);
+    requireText(body, '/creatorverse-depth-20260714.css?v=1', file);
+  }
+}
+
+for (const route of depthPages) {
+  const source = read(`${route}/index.html`).replace(/\r\n/g, '\n').trim();
+  const recovery = normalizeRecoveryMirror(read(`ops/vercel-recovery/${route}/index.html`));
+  source === recovery
+    ? pass(`${route} recovery artifact exactly mirrors canonical source`)
+    : fail(`${route} recovery artifact diverges from canonical source`);
+}
+
+const vercelPath = 'ops/vercel-recovery/vercel.json';
+const vercelRaw = read(vercelPath);
+let vercelConfig = {};
+try {
+  vercelConfig = JSON.parse(vercelRaw);
+  pass(`${vercelPath} parses as JSON`);
+} catch (error) {
+  fail(`${vercelPath} invalid JSON: ${error.message}`);
+}
+
+const rewrites = Array.isArray(vercelConfig.rewrites) ? vercelConfig.rewrites : [];
+const headerRules = Array.isArray(vercelConfig.headers) ? vercelConfig.headers : [];
+const headerMap = new Map(headerRules.map(rule => [rule.source, new Map((rule.headers || []).map(header => [header.key, header.value]))]));
+
+for (const staticRoute of ['/starton/', '/evidence/', '/talk/']) {
+  const isRewritten = rewrites.some(rule => rule.source === staticRoute);
+  !isRewritten
+    ? pass(`${staticRoute} served as static depth page`)
+    : fail(`${staticRoute} still rewritten through generic renderer`);
+
+  const routeHeaders = headerMap.get(staticRoute);
+  routeHeaders?.get('X-Robots-Tag') === 'index, follow'
+    ? pass(`${staticRoute} preserves X-Robots-Tag`)
+    : fail(`${staticRoute} missing X-Robots-Tag: index, follow`);
+  routeHeaders?.get('Cache-Control') === 'public, max-age=0, must-revalidate'
+    ? pass(`${staticRoute} preserves revalidation cache policy`)
+    : fail(`${staticRoute} missing must-revalidate cache policy`);
+}
+
+const globalHeaders = headerMap.get('/(.*)');
+for (const [key, value] of [
+  ['X-Content-Type-Options', 'nosniff'],
+  ['Referrer-Policy', 'strict-origin-when-cross-origin'],
+  ['Permissions-Policy', 'camera=(), microphone=(), geolocation=()']
+]) {
+  globalHeaders?.get(key) === value
+    ? pass(`Vercel global header ${key} preserved`)
+    : fail(`Vercel global header ${key} missing or incorrect`);
 }
 
 if (failures) {
