@@ -33,7 +33,7 @@ for(const [route,target] of aliases){
   requireText(html,'http-equiv="refresh"',file);requireText(html,'location.replace(',file);
 }
 
-const home=read('index.html');for(const marker of ['איגור ופרצקי','IGOR VEPRETSKI','StartOn','Evidence Ledger','Human first'])requireText(home,marker,'homepage');
+const home=read('index.html');for(const marker of ['איגור ופרצקי','IGOR VEPRETSKI','StartOn','Evidence Ledger','Human first','assets/igor-home-og-20260712.jpg'])requireText(home,marker,'homepage');
 const identity=read('igor-vepretski/index.html');for(const marker of ['SELF-ATTESTED','הביוגרפיה אינה','PERSON · MISSION · SYSTEM · EVIDENCE'])requireText(identity,marker,'identity');
 const social=read('social/index.html');for(const marker of ['PUBLIC CHANNELS','METRICS REQUIRE SNAPSHOT','tiktok.com/@igor.vepretski'])requireText(social,marker,'social');
 const passPage=read('pass/index.html');for(const marker of ['NO CREDENTIAL','NO AUTHORITY','אינו מחליף תעודת זהות'])requireText(passPage,marker,'pass');
