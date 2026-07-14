@@ -1,21 +1,33 @@
 {
   "service": "7ya-frontend",
-  "provider": "vercel",
-  "status": "READY",
-  "release": "2026-07-14-launch",
+  "provider": "github-pages",
+  "status": "CANDIDATE",
+  "release": "2026-07-14-history-song",
   "source_repository": "7guard-io/7ya.io",
-  "source_path": "ops/vercel-recovery",
-  "source_sha": "d9b819fb29a8f7e12b24eaf5818870f1fcf31318",
+  "source_ref": "main",
+  "source_sha_policy": "The deployed commit SHA is preserved by the GitHub Pages workflow and deployment record.",
   "environment": "production",
-  "experience": "IGOR_CREATORVERSE_RICH_MEDIA",
+  "experience": "IGOR_HISTORY_SONG_PUBLIC_MEDIA_SYSTEM",
   "launch_date": "2026-07-14",
+  "data_contract": {
+    "record_count": 36,
+    "parts": [
+      "/knowledge/history-song-records-1.json",
+      "/knowledge/history-song-records-2.json",
+      "/knowledge/history-song-records-3.json",
+      "/knowledge/history-song-records-4.json"
+    ],
+    "policy": "Evidence before amplification; metrics require dated snapshots."
+  },
   "critical_surfaces": [
     "/",
+    "/history/",
     "/journey/",
     "/starton/",
     "/influence/",
     "/evidence/",
     "/speaker/",
     "/contact/"
-  ]
+  ],
+  "rollback": "GitHub Pages deployment history and the previous main commit remain available for rollback."
 }
