@@ -10,6 +10,7 @@ const CANONICAL_ALIASES = new Map([
   ['oracle', '/evidence/'],
   ['business', '/7ya/'],
   ['pass', '/7ya/'],
+  ['member-pass', '/7ya/'],
   ['radar', '/evidence/'],
   ['work', '/#creations'],
   ['systems', '/7ya/'],
@@ -65,10 +66,7 @@ function requestPath(request) {
     return null;
   }
 
-  return {
-    raw,
-    normalized: segments.join('/'),
-  };
+  return { raw, normalized: segments.join('/') };
 }
 
 function resolveSourcePath(pathInfo) {
