@@ -30,6 +30,13 @@ function excludeText(body, text, label) {
   !body.includes(text) ? pass(`${label} excludes ${text}`) : fail(`${label} contains ${text}`);
 }
 
+function normalizeRecoveryMirror(body) {
+  return body
+    .replace('/creatorverse-depth-20260714.css?v=1', '/styles/creatorverse-depth-20260714.css?v=1')
+    .replace(/\r\n/g, '\n')
+    .trim();
+}
+
 for (const route of routes) {
   const file = route ? `${route}/index.html` : 'index.html';
   const html = read(file);
@@ -146,6 +153,14 @@ for (const file of [
     requireText(body, 'creatorverse-depth-20260714-1', file);
     requireText(body, '/creatorverse-depth-20260714.css?v=1', file);
   }
+}
+
+for (const route of depthPages) {
+  const source = read(`${route}/index.html`).replace(/\r\n/g, '\n').trim();
+  const recovery = normalizeRecoveryMirror(read(`ops/vercel-recovery/${route}/index.html`));
+  source === recovery
+    ? pass(`${route} recovery artifact exactly mirrors canonical source`)
+    : fail(`${route} recovery artifact diverges from canonical source`);
 }
 
 const vercelPath = 'ops/vercel-recovery/vercel.json';
