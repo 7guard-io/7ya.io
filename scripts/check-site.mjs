@@ -103,7 +103,7 @@ for (const technical of [
 ]) requireText(home, technical, 'homepage');
 
 for (const visualProof of [
-  'pic1.yitweb.co.il', 'צילום: קובי קואנקס', 'i.ytimg.com/vi/pzOlz8kGmeU/hqdefault.jpg',
+  'pic1.yitweb.co.il', 'צילום: קובי קואנקס', 'assets/igor-home-og-20260712.jpg',
   'open.spotify.com/embed/artist/0fgRoQ6PoCHlVCIr8a5d6u', 'class="visual-bento"',
   'class="post-grid"', 'class="process-steps"', 'class="persona-anchor"'
 ]) requireText(home, visualProof, 'homepage visual proof');
