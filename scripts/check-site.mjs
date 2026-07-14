@@ -63,10 +63,13 @@ const home = read('index.html');
 for (const text of [
   'איגור ופרצקי',
   'IGOR VEPRETSKI',
-  'לא באתי לבנות',
+  'ONE PERSON.',
   'StartOn',
   'Evidence Ledger',
-  'Human first'
+  'Human first',
+  'לא תמונה אחת. נוכחות אמיתית.',
+  'הקול שלי, לא “בלוג”.',
+  'לא רק תוכן. תהליך ציבורי.'
 ]) {
   home.includes(text) ? pass(`homepage includes ${text}`) : fail(`homepage missing ${text}`);
 }
@@ -76,7 +79,9 @@ for (const technical of [
   '/assets/igor-home-portrait-20260712.webp',
   '/assets/igor-home-portrait-20260712.jpg',
   '/styles/igor-personal-20260713.css?v=1',
-  'igor-personal-editorial-20260713-1',
+  '/styles/creatorverse-20260714.css?v=1',
+  '/styles/igor-rich-media-20260714.css?v=1',
+  'creatorverse-rich-media-20260714-1',
   '7ya-legacy-cache-retired-20260713',
   'navigator.serviceWorker.getRegistrations()',
   'Promise.allSettled(tasks)'
@@ -84,6 +89,21 @@ for (const technical of [
   home.includes(technical)
     ? pass(`homepage includes ${technical}`)
     : fail(`homepage missing ${technical}`);
+}
+
+for (const visualProof of [
+  'pic1.yitweb.co.il',
+  'צילום: קובי קואנקס',
+  'i.ytimg.com/vi/pzOlz8kGmeU/hqdefault.jpg',
+  'open.spotify.com/embed/artist/0fgRoQ6PoCHlVCIr8a5d6u',
+  'class="visual-bento"',
+  'class="post-grid"',
+  'class="process-steps"',
+  'class="persona-anchor"'
+]) {
+  home.includes(visualProof)
+    ? pass(`homepage includes visual proof ${visualProof}`)
+    : fail(`homepage missing visual proof ${visualProof}`);
 }
 
 for (const forbidden of [
@@ -95,12 +115,19 @@ for (const forbidden of [
   'bottom-navigation',
   'floating-bot',
   'igor-vepretski-portrait.svg',
-  'upload.wikimedia.org/wikipedia/commons/7/7e/Igor_vepretski'
+  'upload.wikimedia.org/wikipedia/commons/7/7e/Igor_vepretski',
+  'class="satellite"',
+  'class="igor-tile"'
 ]) {
   !home.includes(forbidden)
     ? pass(`homepage excludes ${forbidden}`)
     : fail(`homepage still includes ${forbidden}`);
 }
+
+const articleSignatures = (home.match(/class="author-signature"/g) || []).length;
+articleSignatures >= 5
+  ? pass(`homepage has ${articleSignatures} signed content cards`)
+  : fail(`homepage has only ${articleSignatures} signed content cards`);
 
 const legacy = read('legacy/index.html');
 for (const snippet of [
@@ -137,6 +164,8 @@ for (const file of [
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
   'styles/igor-personal-20260713.css',
+  'styles/creatorverse-20260714.css',
+  'styles/igor-rich-media-20260714.css',
   'styles/legacy-universe-20260714.css',
   'scripts/legacy-universe-20260714.js',
   'knowledge/igor-vepretski-legacy.json',
