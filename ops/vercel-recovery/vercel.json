@@ -11,10 +11,8 @@
     { "source": "/work/", "destination": "/api/site?route=/work/" },
     { "source": "/systems/", "destination": "/api/site?route=/systems/" },
     { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
-    { "source": "/influence/", "destination": "/api/site?route=/influence/" },
     { "source": "/music/", "destination": "/api/site?route=/music/" },
     { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
-    { "source": "/social/", "destination": "/api/site?route=/social/" },
     { "source": "/pass/", "destination": "/api/site?route=/pass/" },
     { "source": "/radar/", "destination": "/api/site?route=/radar/" }
   ],
@@ -53,6 +51,33 @@
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/influence/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/social/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/articles/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/public-archive.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
