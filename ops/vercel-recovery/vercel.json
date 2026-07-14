@@ -3,16 +3,18 @@
   "version": 2,
   "trailingSlash": true,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.7ya.io" }],
+      "destination": "https://7ya.io/:path*",
+      "permanent": true
+    },
     { "source": "/about/", "destination": "/igor-vepretski/", "permanent": true },
-    { "source": "/social/", "destination": "/influence/", "permanent": true },
     { "source": "/oracle/", "destination": "/evidence/", "permanent": true },
     { "source": "/business/", "destination": "/7ya/", "permanent": true },
-    { "source": "/pass/", "destination": "/7ya/", "permanent": true },
     { "source": "/member-pass/", "destination": "/7ya/", "permanent": true },
-    { "source": "/radar/", "destination": "/evidence/", "permanent": true },
     { "source": "/work/", "destination": "/#creations", "permanent": true },
     { "source": "/systems/", "destination": "/7ya/", "permanent": true },
-    { "source": "/public-service/", "destination": "/journey/", "permanent": true },
     { "source": "/music/", "destination": "/influence/", "permanent": true }
   ],
   "rewrites": [
@@ -34,6 +36,34 @@
     },
     {
       "source": "/igor-vepretski/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/social/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/pass/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/radar/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/public-service/",
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
@@ -65,6 +95,26 @@
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/creatorverse-depth-20260714.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
