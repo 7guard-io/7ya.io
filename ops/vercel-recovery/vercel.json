@@ -17,7 +17,6 @@
     { "source": "/journey/", "destination": "/api/site?route=/journey/" },
     { "source": "/work/", "destination": "/api/site?route=/work/" },
     { "source": "/systems/", "destination": "/api/site?route=/systems/" },
-    { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
     { "source": "/music/", "destination": "/api/site?route=/music/" },
     { "source": "/speaker/", "destination": "/api/site?route=/speaker/" }
   ],
@@ -32,6 +31,13 @@
     },
     {
       "source": "/igor-vepretski/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/public-service/",
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
