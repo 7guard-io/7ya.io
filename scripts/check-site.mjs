@@ -12,7 +12,7 @@ const aliases=new Map([
   ['about','/igor-vepretski/'],['oracle','/evidence/'],['business','/7ya/'],['member-pass','/7ya/'],
   ['work','/#creations'],['systems','/7ya/'],['music','/influence/'],
 ]);
-const mirroredPages=['igor-vepretski','public-service','starton','influence','social','evidence','radar','pass','talk','contact'];
+const mirroredPages=['igor-vepretski','public-service','starton','social','evidence','radar','pass','talk','contact'];
 
 for(const route of canonicalRoutes){
   const file=route?`${route}/index.html`:'index.html';const html=read(file);const url=`https://7ya.io/${route?`${route}/`:''}`;
