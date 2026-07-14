@@ -1,4 +1,4 @@
-name: Publish 7YA Creatorverse
+name: Publish 7YA — The History Song
 
 on:
   push:
@@ -24,29 +24,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate Rich Media Creatorverse release contract
+      - name: Validate History Song release contract
         shell: bash
         run: |
           set -euo pipefail
           test "$(cat CNAME)" = "7ya.io"
           test -f index.html
-          test -f styles/creatorverse-20260714.css
-          test -f styles/igor-rich-media-20260714.css
-          test -f scripts/creatorverse-20260714.js
-          grep -Fq 'creatorverse-rich-media-20260714-1' index.html
-          grep -Fq 'ONE PERSON.' index.html
-          grep -Fq 'MANY WORLDS.' index.html
-          grep -Fq 'לא תמונה אחת. נוכחות אמיתית.' index.html
-          grep -Fq 'הקול שלי, לא “בלוג”.' index.html
-          grep -Fq 'לא רק תוכן. תהליך ציבורי.' index.html
-          grep -Fq 'class="visual-bento"' index.html
-          grep -Fq 'class="post-grid"' index.html
-          grep -Fq 'class="process-steps"' index.html
-          grep -Fq 'class="persona-anchor"' index.html
-          grep -Fq 'Evidence Ledger' index.html
-          grep -Fq 'AGENT COUNCIL' index.html
+          test -f history/index.html
+          test -f styles/history-song-20260714.css
+          test -f scripts/history-song-20260714.js
+          for part in 1 2 3 4; do
+            test -f "knowledge/history-song-records-${part}.json"
+          done
+          grep -Fq 'history-song-editorial-archive-20260714-1' index.html
+          grep -Fq 'כל פוסט הוא שורה.' index.html
+          grep -Fq 'הפלטפורמה מחלקת נראות.' index.html
+          grep -Fq 'הפירורים הפכו לארכיון.' index.html
+          grep -Fq 'id="archiveGrid"' index.html
+          grep -Fq '/history/' index.html
+          grep -Fq 'history-song-archive-20260714-1' history/index.html
           ! grep -Eqi 'http-equiv="refresh"|window\.location|location\.replace|noindex' index.html
-          echo 'RICH_MEDIA_CREATORVERSE_RELEASE_CONTRACT: PASS'
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const records = [1,2,3,4].flatMap(part => JSON.parse(fs.readFileSync(`knowledge/history-song-records-${part}.json`, 'utf8')).records);
+          if (records.length !== 36) throw new Error(`Expected 36 records, received ${records.length}`);
+          const ids = new Set(records.map(record => record.id));
+          if (ids.size !== records.length) throw new Error('Duplicate archive record IDs');
+          for (const record of records) {
+            if (!record.title || !record.url?.startsWith('https://') || !record.evidence_tier) {
+              throw new Error(`Invalid record ${record.id}`);
+            }
+            if (record.metric && !record.metric.as_of) throw new Error(`Undated metric ${record.id}`);
+          }
+          console.log('HISTORY_SONG_DATA_CONTRACT: PASS');
+          NODE
+          echo 'HISTORY_SONG_RELEASE_CONTRACT: PASS'
 
       - name: Validate static site before publish
         shell: bash
@@ -72,14 +84,15 @@ jobs:
             ./ dist/
           touch dist/.nojekyll
           test -f dist/index.html
-          test -f dist/styles/creatorverse-20260714.css
-          test -f dist/styles/igor-rich-media-20260714.css
-          test -f dist/scripts/creatorverse-20260714.js
-          grep -Fq 'creatorverse-rich-media-20260714-1' dist/index.html
-          grep -Fq 'class="visual-bento"' dist/index.html
-          grep -Fq 'class="post-grid"' dist/index.html
-          grep -Fq 'class="process-steps"' dist/index.html
-          echo 'PAGES_RICH_MEDIA_ARTIFACT: PASS'
+          test -f dist/history/index.html
+          test -f dist/styles/history-song-20260714.css
+          test -f dist/scripts/history-song-20260714.js
+          for part in 1 2 3 4; do
+            test -f "dist/knowledge/history-song-records-${part}.json"
+          done
+          grep -Fq 'history-song-editorial-archive-20260714-1' dist/index.html
+          grep -Fq 'id="archiveGrid"' dist/index.html
+          echo 'PAGES_HISTORY_SONG_ARTIFACT: PASS'
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
