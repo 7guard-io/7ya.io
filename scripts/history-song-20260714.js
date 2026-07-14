@@ -100,15 +100,17 @@
 
   const loadArchive = async () => {
     if (!selectors.grid) return;
+    const paths = [1, 2, 3, 4].map(part => `/knowledge/history-song-records-${part}.json`);
     try {
-      const response = await fetch('/knowledge/igor-public-content-map-20260714.json', {
+      const responses = await Promise.all(paths.map(path => fetch(path, {
         headers: { Accept: 'application/json' },
         cache: 'no-store'
-      });
-      if (!response.ok) throw new Error(`archive fetch failed: ${response.status}`);
-      const data = await response.json();
-      if (!Array.isArray(data.records)) throw new Error('archive records missing');
-      state.records = data.records;
+      })));
+      const failed = responses.find(response => !response.ok);
+      if (failed) throw new Error(`archive fetch failed: ${failed.status}`);
+      const parts = await Promise.all(responses.map(response => response.json()));
+      state.records = parts.flatMap(part => Array.isArray(part.records) ? part.records : []);
+      if (!state.records.length) throw new Error('archive records missing');
       render();
     } catch (error) {
       console.error(error);
@@ -117,8 +119,8 @@
           <div class="archive-card-body">
             <div class="archive-card-meta"><span>ARCHIVE</span><span>OFFLINE</span></div>
             <h3>הארכיון לא נטען כרגע</h3>
-            <p>רשומות הליבה נשארות לאורך העמוד. קובץ המקור פתוח להורדה ולבדיקה.</p>
-            <div class="archive-card-footer"><b>FAIL CLOSED</b><a href="/knowledge/igor-public-content-map-20260714.json">פתחו JSON</a></div>
+            <p>רשומות הליבה נשארות לאורך העמוד. קובצי המקור פתוחים לבדיקה ישירה.</p>
+            <div class="archive-card-footer"><b>FAIL CLOSED</b><a href="/knowledge/history-song-records-1.json">פתחו JSON</a></div>
           </div>
         </article>`;
       if (selectors.count) selectors.count.textContent = '—';
