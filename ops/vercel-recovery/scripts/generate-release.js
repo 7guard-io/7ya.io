@@ -1,44 +1,48 @@
 const fs = require('fs');
 const path = require('path');
-
 const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'release-manifest.json');
 const SHA_PATTERN = /^[0-9a-f]{40}$/i;
-const DEFAULT_RELEASE = '2026-07-14.7-direct-runtime';
+const DEFAULT_RELEASE = 'p0-integrity-20260714';
 
-function readExistingManifest() {
-  try { return JSON.parse(fs.readFileSync(OUTPUT, 'utf8')); }
-  catch { return {}; }
+function validSha(value) {
+  const normalized = String(value || '').trim();
+  return SHA_PATTERN.test(normalized) ? normalized : null;
 }
-function firstValidSha(...values) {
-  return values.find((value) => SHA_PATTERN.test(String(value || '').trim())) || null;
+function providerProvenance() {
+  const vercelSha = validSha(process.env.VERCEL_GIT_COMMIT_SHA);
+  if (vercelSha) return { sourceSha: vercelSha, provenanceSource: 'VERCEL_GIT_COMMIT_SHA' };
+  const githubSha = validSha(process.env.GITHUB_SHA);
+  if (githubSha) return { sourceSha: githubSha, provenanceSource: 'GITHUB_SHA' };
+  return null;
+}
+function manualPreviewProvenance(environment) {
+  if (process.env.ALLOW_MANUAL_SOURCE_SHA !== 'true') return null;
+  if (environment === 'production') {
+    throw new Error('Manual source SHA is forbidden for production releases. Deploy from a provider-linked Git commit.');
+  }
+  const sourceSha = validSha(process.env.SOURCE_SHA) || validSha(process.env.RELEASE_SOURCE_SHA);
+  return sourceSha ? { sourceSha, provenanceSource: 'MANUAL_PREVIEW_SOURCE_SHA' } : null;
 }
 
-const existing = readExistingManifest();
-const sourceSha = firstValidSha(
-  process.env.VERCEL_GIT_COMMIT_SHA,
-  process.env.GITHUB_SHA,
-  process.env.SOURCE_SHA,
-  process.env.RELEASE_SOURCE_SHA,
-  existing.source_sha,
-);
-if (!sourceSha) {
-  throw new Error('Release provenance is unbound. Inject a full SHA through the Vercel host, GitHub, SOURCE_SHA, RELEASE_SOURCE_SHA or a bound manifest.');
+const environment = process.env.VERCEL_ENV || process.env.NODE_ENV || 'unknown';
+const provenance = providerProvenance() || manualPreviewProvenance(environment);
+if (!provenance) {
+  throw new Error('Release provenance is unbound. Production requires VERCEL_GIT_COMMIT_SHA or GITHUB_SHA. Manual preview binding additionally requires ALLOW_MANUAL_SOURCE_SHA=true.');
 }
 
+const sourceBranch = process.env.VERCEL_GIT_COMMIT_REF || process.env.GITHUB_REF_NAME || null;
+const productionVerified = environment === 'production' && ['VERCEL_GIT_COMMIT_SHA', 'GITHUB_SHA'].includes(provenance.provenanceSource);
 const manifest = {
-  source_sha: sourceSha,
+  source_sha: provenance.sourceSha,
+  source_branch: sourceBranch,
   source_repository: '7guard-io/7ya.io',
   source_path: 'ops/vercel-recovery',
-  release: process.env.RELEASE_ID || existing.release || DEFAULT_RELEASE,
+  release: process.env.RELEASE_ID || DEFAULT_RELEASE,
   build_time: new Date().toISOString(),
-  environment: process.env.VERCEL_ENV || process.env.NODE_ENV || existing.environment || 'unknown',
-  provenance_source:
-    process.env.VERCEL_GIT_COMMIT_SHA ? 'VERCEL_GIT_COMMIT_SHA' :
-    process.env.GITHUB_SHA ? 'GITHUB_SHA' :
-    process.env.SOURCE_SHA ? 'SOURCE_SHA' :
-    process.env.RELEASE_SOURCE_SHA ? 'RELEASE_SOURCE_SHA' :
-    'bundled_manifest',
+  environment,
+  provenance_source: provenance.provenanceSource,
+  production_verified: productionVerified,
 };
 fs.writeFileSync(OUTPUT, `${JSON.stringify(manifest, null, 2)}\n`);
-console.log(`⚡ ${manifest.release} bound to ${sourceSha} via ${manifest.provenance_source}`);
+console.log(`⚡ ${manifest.release} bound to ${manifest.source_sha} via ${manifest.provenance_source} (${manifest.environment}, production_verified=${manifest.production_verified})`);
