@@ -85,7 +85,7 @@ for (const forbidden of [
 const signatures = (home.match(/class="author-signature"/g) || []).length;
 signatures >= 5 ? pass(`homepage has ${signatures} signed content cards`) : fail(`homepage has only ${signatures} signed content cards`);
 
-const depthPages = ['starton', 'evidence', 'talk'];
+const depthPages = ['starton', 'evidence', 'talk', 'contact'];
 for (const route of depthPages) {
   const file = `${route}/index.html`;
   const html = read(file);
@@ -97,6 +97,12 @@ for (const route of depthPages) {
     excludeText(html, retired, file);
   }
 }
+
+const contact = read('contact/index.html');
+for (const required of [
+  'hello@7ya.io', 'שש דרכי פנייה', 'PRIVACY CONTRACT',
+  'לא לשלוח במייל הראשון', 'המערכת מנתבת. האדם מחליט.'
+]) requireText(contact, required, 'contact');
 
 const legacy = read('legacy/index.html');
 for (const snippet of [
@@ -146,7 +152,8 @@ for (const file of [
   'ops/vercel-recovery/creatorverse-depth-20260714.css',
   'ops/vercel-recovery/starton/index.html',
   'ops/vercel-recovery/evidence/index.html',
-  'ops/vercel-recovery/talk/index.html'
+  'ops/vercel-recovery/talk/index.html',
+  'ops/vercel-recovery/contact/index.html'
 ]) {
   const body = read(file);
   if (file.endsWith('index.html')) {
@@ -177,7 +184,7 @@ const rewrites = Array.isArray(vercelConfig.rewrites) ? vercelConfig.rewrites : 
 const headerRules = Array.isArray(vercelConfig.headers) ? vercelConfig.headers : [];
 const headerMap = new Map(headerRules.map(rule => [rule.source, new Map((rule.headers || []).map(header => [header.key, header.value]))]));
 
-for (const staticRoute of ['/starton/', '/evidence/', '/talk/']) {
+for (const staticRoute of ['/starton/', '/evidence/', '/talk/', '/contact/']) {
   const isRewritten = rewrites.some(rule => rule.source === staticRoute);
   !isRewritten
     ? pass(`${staticRoute} served as static depth page`)
