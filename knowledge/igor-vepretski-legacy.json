@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-14",
+  "entity": {
+    "canonical_name": "Igor Vepretski",
+    "names": ["איגור ופרצקי", "Игорь Вепрецкий", "Igor Vepretski"],
+    "creative_identity": "Music and creative work by Igor Vepretski",
+    "canonical_url": "https://7ya.io/legacy/",
+    "public_roles": [
+      "social entrepreneur",
+      "public creator",
+      "founder of StartOn",
+      "builder of 7YA",
+      "speaker and media participant"
+    ]
+  },
+  "publication_policy": {
+    "principle": "Evidence before amplification",
+    "statuses": {
+      "VERIFIED": "Direct public or institutional source available.",
+      "DOCUMENTED": "Dated public record, archive, export or indexed source available.",
+      "SELF_ATTESTED": "Public biographical statement awaiting a direct institutional source.",
+      "SOURCE_PENDING": "Lead exists, but publication-grade proof is incomplete.",
+      "BUILT": "Public system, route or artifact can be inspected directly.",
+      "PILOT_DESIGN": "Proposed or designed program; not presented as a completed outcome.",
+      "ASPIRATION": "Future goal, not a current achievement.",
+      "PRIVATE": "Not published because it concerns minors, family privacy, health, finances, legal matters or operational information."
+    },
+    "privacy_rules": [
+      "Do not publish names, images or identifying details of minors without explicit public consent.",
+      "Do not publish operational security, intelligence, case or source information.",
+      "Do not convert a planned pilot, partnership conversation or proposal into a completed partnership claim.",
+      "Do not present changing platform metrics without a dated snapshot or export.",
+      "Do not infer political office, list position or formal authority from content distribution alone."
+    ]
+  },
+  "timeline": [
+    {
+      "period": "1990",
+      "title": "Kharkiv",
+      "status": "SELF_ATTESTED",
+      "theme": "identity",
+      "summary": "Birthplace and the beginning of a multilingual identity shaped by migration, memory and culture."
+    },
+    {
+      "period": "1993",
+      "title": "Immigration to Israel",
+      "status": "SELF_ATTESTED",
+      "theme": "identity",
+      "summary": "Immigration at age three and the beginning of a life between languages, neighborhoods and identities."
+    },
+    {
+      "period": "1990s–2000s",
+      "title": "Bat Yam, Holon and Jessie Cohen",
+      "status": "SELF_ATTESTED",
+      "theme": "identity",
+      "summary": "Childhood experiences of adaptation, exclusion, belonging and the search for a safe framework later became part of the StartOn mission."
+    },
+    {
+      "period": "SERVICE ERA",
+      "title": "Military, diplomatic security and public safety",
+      "status": "SELF_ATTESTED",
+      "theme": "service",
+      "summary": "Field responsibility across military, diplomatic-security and public-safety environments, without operational detail."
+    },
+    {
+      "period": "2011",
+      "title": "Early public media profile",
+      "status": "VERIFIED",
+      "theme": "media",
+      "summary": "An early public profile connected life story, immigration and service experience.",
+      "source_ids": ["SRC-NRG-2011"]
+    },
+    {
+      "period": "2015–2021",
+      "title": "Israel Police",
+      "status": "SELF_ATTESTED",
+      "theme": "service",
+      "summary": "Publicly described intelligence and field-service background; sources, methods and cases remain outside the public archive."
+    },
+    {
+      "period": "2015+",
+      "title": "Public digital creation",
+      "status": "DOCUMENTED",
+      "theme": "influence",
+      "summary": "Short-form video, writing and multilingual public storytelling became a sustained publishing practice across owned and amplified channels."
+    },
+    {
+      "period": "2022",
+      "title": "StartOn enters the public record",
+      "status": "DOCUMENTED",
+      "theme": "starton",
+      "summary": "StartOn was publicly framed as a social-technology initiative connecting youth, belonging, advanced tools and safe spaces.",
+      "source_ids": ["SRC-STARTON", "SRC-MYNET-2022", "SRC-NEWS13-2022"]
+    },
+    {
+      "period": "2023",
+      "title": "Fatherhood, identity and public stories",
+      "status": "VERIFIED",
+      "theme": "stories",
+      "summary": "Personal stories about fatherhood, immigration, consumer harm and social responsibility crossed from owned channels into external publishers and professional networks.",
+      "source_ids": ["SRC-FATHERHOOD-FB", "SRC-HIDABROOT-2023"]
+    },
+    {
+      "period": "2023–2025",
+      "title": "Municipal public service",
+      "status": "SELF_ATTESTED",
+      "theme": "service",
+      "summary": "Publicly described leadership in beach security and supervision in Herzliya; employment records remain the appropriate institutional proof layer."
+    },
+    {
+      "period": "2024–2026",
+      "title": "7YA systems and evidence infrastructure",
+      "status": "BUILT",
+      "theme": "systems",
+      "summary": "Public Identity OS, Evidence Wall, Government Radar, AI Guide, release provenance and evidence-oracle architecture were developed as inspectable public-system components."
+    },
+    {
+      "period": "2024–2025",
+      "title": "Music and creative identity",
+      "status": "DOCUMENTED",
+      "theme": "music",
+      "summary": "Music and creative work by Igor Vepretski expanded the public identity beyond civic and professional roles."
+    },
+    {
+      "period": "2030",
+      "title": "Youth-impact ambition",
+      "status": "ASPIRATION",
+      "theme": "future",
+      "summary": "A stated ambition to build internationally significant youth-impact infrastructure. It is presented as a direction, not an achieved award or outcome."
+    }
+  ],
+  "legacy_domains": [
+    {
+      "id": "identity",
+      "title": "Migration, belonging and identity",
+      "status": "DOCUMENTED",
+      "summary": "A multilingual life story shaped by Kharkiv, immigration to Israel, neighborhoods, exclusion and the deliberate construction of belonging."
+    },
+    {
+      "id": "service",
+      "title": "Service and field responsibility",
+      "status": "SELF_ATTESTED",
+      "summary": "Military, diplomatic-security, police and municipal experience translated into a public language of responsibility, safety and execution."
+    },
+    {
+      "id": "starton",
+      "title": "StartOn",
+      "status": "DOCUMENTED",
+      "summary": "An organization-led social-technology mission to build safe technological homes where youth can play, learn, create and belong."
+    },
+    {
+      "id": "fatherhood",
+      "title": "Fatherhood as public creation",
+      "status": "VERIFIED",
+      "summary": "Public stories about presence, childhood and responsibility became a recognizable strand of Igor's public voice. Minor identities and private family details remain protected."
+    },
+    {
+      "id": "influence",
+      "title": "Digital influence and public storytelling",
+      "status": "DOCUMENTED",
+      "summary": "A distributed publishing footprint across social platforms, independent media, professional networks, podcasts and external repost chains."
+    },
+    {
+      "id": "civic",
+      "title": "Civic and political participation",
+      "status": "DOCUMENTED",
+      "summary": "Public civic commentary and content distribution through official political surfaces. Formal roles or candidate positions require direct current documentation."
+    },
+    {
+      "id": "music",
+      "title": "Music and culture",
+      "status": "DOCUMENTED",
+      "summary": "Songs, collaborations and hip-hop identity function as a creative record of language, aspiration and life between worlds."
+    },
+    {
+      "id": "systems",
+      "title": "7YA evidence systems",
+      "status": "BUILT",
+      "summary": "A public infrastructure layer for identity, evidence, provenance, AI guidance, corrections and accountable public memory."
+    }
+  ],
+  "influence_snapshot": {
+    "as_of": "2026-06-08",
+    "status": "DOCUMENTED",
+    "warning": "Platform metrics change. These figures are a dated forensic snapshot, not live counters or a claim of complete internet coverage.",
+    "metrics": [
+      {"label": "Indexed evidence rows", "value": 60},
+      {"label": "Verified indexed rows", "value": 52},
+      {"label": "TikTok followers in canonical baseline", "value": 12655},
+      {"label": "TikTok likes received in canonical baseline", "value": 273860},
+      {"label": "TikTok exported posts", "value": 904},
+      {"label": "LinkedIn followers in indexed crawl", "value": 4283},
+      {"label": "LinkedIn posts in indexed crawl", "value": 326},
+      {"label": "LinkedIn articles in indexed crawl", "value": 5},
+      {"label": "Highlighted Facebook virality chains", "value": 6}
+    ]
+  },
+  "public_story_atlas": [
+    {
+      "title": "אבא מושלם זה אבא ששם",
+      "theme": "fatherhood",
+      "status": "VERIFIED",
+      "summary": "A fatherhood story that travelled through external Facebook amplification, LinkedIn and independent media.",
+      "source_ids": ["SRC-FATHERHOOD-FB", "SRC-FATHERHOOD-LI", "SRC-HIDABROOT-2023"]
+    },
+    {
+      "title": "רוסי מסריח",
+      "theme": "identity",
+      "status": "DOCUMENTED",
+      "summary": "A migration and identity narrative distributed across Facebook, Instagram and LinkedIn surfaces."
+    },
+    {
+      "title": "סבתא שלי נפלה קורבן להונאה",
+      "theme": "consumer-protection",
+      "status": "DOCUMENTED",
+      "summary": "A personal story used to surface consumer harm and institutional responsibility."
+    },
+    {
+      "title": "Youth technology and belonging",
+      "theme": "starton",
+      "status": "DOCUMENTED",
+      "summary": "A recurring public thesis: young people need structured access, mentors, safe space, digital capability and a route to opportunity."
+    },
+    {
+      "title": "AI is not the hero. People are.",
+      "theme": "systems",
+      "status": "BUILT",
+      "summary": "A design principle for 7YA: AI supports clarity, navigation and accountability while people remain the mission."
+    }
+  ],
+  "starton": {
+    "status": "DOCUMENTED",
+    "positioning": "Organization-led social-technology initiative founded by Igor Vepretski and developed with a public team and partner-safe governance.",
+    "three_space_model": [
+      "Training space — skills, guidance and practical pathways.",
+      "Community space — belonging, mentoring and a social safety net.",
+      "Experiential space — interactive technology, curiosity and confident entry into innovation."
+    ],
+    "creative_tech_pilot": {
+      "status": "PILOT_DESIGN",
+      "duration": "90 days",
+      "target_scale": "50–100 youth",
+      "tracks": [
+        "Music + Production",
+        "AI + Coding",
+        "Creator Economy + Media Literacy",
+        "Digital Identity + Safety"
+      ],
+      "governance": [
+        "Youth safeguarding and consent",
+        "Privacy and media-consent controls",
+        "Transparent budget tracking",
+        "Incident escalation",
+        "Attendance, output and final impact reporting",
+        "No partnership or endorsement claim without approval"
+      ]
+    }
+  },
+  "music": {
+    "label": "Music and creative work by Igor Vepretski",
+    "status": "DOCUMENTED",
+    "works": [
+      {"title": "СупаПорп", "status": "ARCHIVE_ENTRY"},
+      {"title": "BIZZI — Vepretski ft. NAWAN", "status": "ARCHIVE_ENTRY"}
+    ],
+    "rights_rule": "Credits, rights, release dates and stream counts are published only with direct distributor or platform evidence."
+  },
+  "sources": [
+    {
+      "id": "SRC-NRG-2011",
+      "title": "Early public profile",
+      "publisher": "Makor Rishon / NRG",
+      "url": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-STARTON",
+      "title": "StartOn official website",
+      "publisher": "StartOn",
+      "url": "https://starton.org.il/",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-MYNET-2022",
+      "title": "Public profile and StartOn",
+      "publisher": "mynet Holon",
+      "url": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-NEWS13-2022",
+      "title": "From public service to social entrepreneurship",
+      "publisher": "News 13",
+      "url": "https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-ZMAN",
+      "title": "Author page",
+      "publisher": "Zman Israel",
+      "url": "https://www.zman.co.il/writer/20815/",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-HIDABROOT-2023",
+      "title": "Fatherhood story coverage",
+      "publisher": "Hidabroot",
+      "url": "https://www.hidabroot.org/article/1179015",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-FATHERHOOD-FB",
+      "title": "Fatherhood story external amplification",
+      "publisher": "סטטוסים מצייצים / Facebook",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/pfbid0icaS4EV3EFHPbtTaexx3X4Lo9UGQD22Nvm8xzkpJRqiJSLro9D3zNp1PX6SJ26iPl",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-FATHERHOOD-LI",
+      "title": "Fatherhood story professional-network mirror",
+      "publisher": "Igor Vepretski / LinkedIn",
+      "url": "https://www.linkedin.com/posts/vepretski_%D7%9B%D7%A9%D7%94%D7%94%D7%95%D7%A8%D7%99%D7%9D-%D7%A9%D7%9C%D7%99-%D7%94%D7%AA%D7%92%D7%A8%D7%A9%D7%95-%D7%90%D7%91%D7%90-%D7%A9%D7%9C%D7%99-%D7%97%D7%AA%D7%9D-%D7%93%D7%99%D7%9C-activity-7032741993654988800-IRtv",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-LINKTREE",
+      "title": "Official public link hub",
+      "publisher": "Igor Vepretski",
+      "url": "https://linktr.ee/igor.vepretski",
+      "status": "VERIFIED"
+    },
+    {
+      "id": "SRC-SPOTIFY",
+      "title": "Music artist surface",
+      "publisher": "Spotify",
+      "url": "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+      "status": "VERIFIED"
+    }
+  ]
+}
