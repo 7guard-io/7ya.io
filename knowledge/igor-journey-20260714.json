@@ -1,0 +1,36 @@
+{
+  "schema_version": "2026-07-14.1",
+  "entity": "Igor Vepretski",
+  "canonical_page": "https://7ya.io/journey/",
+  "experience": "igor-digital-embodiment-20260714-1",
+  "chapter_labels": [
+    "ORIGIN",
+    "SYSTEM_BLIND_SPOT",
+    "SERVICE",
+    "INFLUENCE",
+    "INFRASTRUCTURE",
+    "PUBLIC_PATH",
+    "BUILD"
+  ],
+  "evidence_index_snapshot": {
+    "observed_at": "2026-07-13",
+    "public_source_urls": 94,
+    "source_domains_or_surfaces": 37,
+    "verified_records": 52,
+    "high_confidence_records": 37,
+    "scope_note": "Index coverage counts only; not audience size or causal impact."
+  },
+  "source_registry": [
+    {"publisher": "Makor Rishon / NRG", "url": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html"},
+    {"publisher": "mynet Holon", "url": "https://holon.mynet.co.il/local_news/article/hjxqegkiq"},
+    {"publisher": "Channel 13", "url": "https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44"},
+    {"publisher": "Zman Israel", "url": "https://www.zman.co.il/writer/20815/"},
+    {"publisher": "StartOn", "url": "https://starton.org.il/"}
+  ],
+  "governance": [
+    "APPEND_ONLY",
+    "EVIDENCE_BEFORE_AMPLIFICATION",
+    "NO_UNDATED_VOLATILE_METRICS",
+    "CORRECTIONS_REMAIN_VISIBLE"
+  ]
+}
