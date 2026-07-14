@@ -2,21 +2,26 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "trailingSlash": true,
+  "redirects": [
+    { "source": "/about/", "destination": "/igor-vepretski/", "permanent": true },
+    { "source": "/social/", "destination": "/influence/", "permanent": true },
+    { "source": "/oracle/", "destination": "/evidence/", "permanent": true },
+    { "source": "/business/", "destination": "/7ya/", "permanent": true },
+    { "source": "/pass/", "destination": "/7ya/", "permanent": true },
+    { "source": "/member-pass/", "destination": "/7ya/", "permanent": true },
+    { "source": "/radar/", "destination": "/evidence/", "permanent": true },
+    { "source": "/work/", "destination": "/#creations", "permanent": true },
+    { "source": "/systems/", "destination": "/7ya/", "permanent": true },
+    { "source": "/public-service/", "destination": "/journey/", "permanent": true },
+    { "source": "/music/", "destination": "/influence/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/release.json", "destination": "/api/release" },
     { "source": "/", "destination": "/api/site?route=/" },
     { "source": "/7ya/", "destination": "/api/site?route=/7ya/" },
-    { "source": "/igor-vepretski/", "destination": "/api/site?route=/igor-vepretski/" },
     { "source": "/journey/", "destination": "/api/site?route=/journey/" },
-    { "source": "/work/", "destination": "/api/site?route=/work/" },
-    { "source": "/systems/", "destination": "/api/site?route=/systems/" },
-    { "source": "/public-service/", "destination": "/api/site?route=/public-service/" },
     { "source": "/influence/", "destination": "/api/site?route=/influence/" },
-    { "source": "/music/", "destination": "/api/site?route=/music/" },
-    { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
-    { "source": "/social/", "destination": "/api/site?route=/social/" },
-    { "source": "/pass/", "destination": "/api/site?route=/pass/" },
-    { "source": "/radar/", "destination": "/api/site?route=/radar/" }
+    { "source": "/speaker/", "destination": "/api/site?route=/speaker/" }
   ],
   "headers": [
     {
@@ -25,6 +30,13 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/igor-vepretski/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
