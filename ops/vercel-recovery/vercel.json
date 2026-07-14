@@ -16,8 +16,7 @@
     { "source": "/speaker/", "destination": "/api/site?route=/speaker/" },
     { "source": "/social/", "destination": "/api/site?route=/social/" },
     { "source": "/pass/", "destination": "/api/site?route=/pass/" },
-    { "source": "/radar/", "destination": "/api/site?route=/radar/" },
-    { "source": "/contact/", "destination": "/api/site?route=/contact/" }
+    { "source": "/radar/", "destination": "/api/site?route=/radar/" }
   ],
   "headers": [
     {
@@ -44,6 +43,13 @@
     },
     {
       "source": "/talk/",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/contact/",
       "headers": [
         { "key": "X-Robots-Tag", "value": "index, follow" },
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
