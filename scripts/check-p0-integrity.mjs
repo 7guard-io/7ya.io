@@ -47,6 +47,12 @@ for (const pattern of [/\bcriminologist\b/i,/\bsecurity work\b/i,/official repre
   forbid(read('igor-vepretski/index.html'),pattern,'identity claims');
   forbid(service,pattern,'service claims');
 }
+for (const file of ['index.html','journey/index.html','ops/vercel-recovery/index.html']) {
+  const body = read(file);
+  for (const unsupportedAlias of ['Ido Vepretski','Igor Ido Vepretski','עידו ופרצקי']) {
+    forbid(body,new RegExp(unsupportedAlias,'i'),`${file} identity aliases`);
+  }
+}
 
 for (const crawlFile of ['robots.txt','ops/vercel-recovery/robots.txt']) {
   const body = read(crawlFile);
@@ -103,6 +109,9 @@ const generator = read('ops/vercel-recovery/scripts/generate-release.js');
 for (const marker of ['VERCEL_GIT_COMMIT_SHA','GITHUB_SHA','ALLOW_MANUAL_SOURCE_SHA','Manual source SHA is forbidden for production releases']) requireText(generator,marker,'release generator');
 const releaseTest = read('ops/vercel-recovery/scripts/test-release.js');
 for (const marker of ['PROVENANCE_UNBOUND','PROVENANCE_NOT_PROVIDER_BOUND','PREVIEW_READY','READY','PROVENANCE_MISMATCH']) requireText(releaseTest,marker,'release tests');
+const proxyRelease = read('ops/vercel-canonical-proxy/api/release.js');
+for (const marker of ['PROVENANCE_UNBOUND','SOURCE_BOUND','production_verified: false','CANONICAL_SOURCE_SHA','VERCEL_GIT_COMMIT_SHA','GITHUB_SHA']) requireText(proxyRelease,marker,'proxy release');
+forbid(proxyRelease,/source_sha:\s*['"][0-9a-f]{40}['"]/i,'proxy release hard-coded SHA');
 
 const pages = read('.github/workflows/pages.yml');
 for (const marker of ['push:','branches: [main]','workflow_dispatch:','pages: write','id-token: write','npm run check-all','actions/deploy-pages@v4']) requireText(pages,marker,'Pages workflow');
