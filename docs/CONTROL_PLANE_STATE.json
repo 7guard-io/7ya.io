@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "updated_at": "2026-07-14T17:25:09+03:00",
+  "schema_version": 2,
+  "updated_at": "2026-07-14T19:00:00+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
@@ -20,13 +20,18 @@
       "Membership is not partnership"
     ]
   },
+  "canonical_release": {
+    "merged_pull_request": 190,
+    "source_sha": "322249e6b3ff0171f57697a32b90850575f482de",
+    "scope": "Creatorverse homepage plus human-first StartOn, Evidence and Talk depth pages",
+    "codex_review_findings": 2,
+    "codex_review_findings_resolved": 2
+  },
   "active_change": {
-    "pull_request": 190,
-    "branch": "feat/creatorverse-depth-unification-20260714",
-    "purpose": "Unify StartOn, Evidence and Talk under the personal Creatorverse",
-    "mergeable": true,
+    "pull_request": 191,
+    "branch": "fix/creatorverse-contact-and-recovery-state-20260714",
+    "purpose": "Replace the legacy Contact shell and codify the canonical Vercel recovery deployment",
     "merged": false,
-    "review_state": "Codex crawl-header finding fixed and review thread resolved",
     "production_verified": false,
     "head_resolution_rule": "Read the live PR head from GitHub; do not store a self-referential SHA in this file"
   },
@@ -35,19 +40,42 @@
     "recovery_provider": "Vercel",
     "canonical_recovery_project": {
       "name": "7ya-static-site",
-      "root_directory": "ops/vercel-recovery",
-      "framework": "Other",
-      "build_command": null,
-      "output_directory": null,
-      "production_branch": "main",
+      "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
+      "verified_alias": "https://7ya-static-site.vercel.app",
+      "status": "READY",
+      "deployed_source_sha": "322249e6b3ff0171f57697a32b90850575f482de",
+      "architecture": "canonical-github-sha-proxy",
+      "reproducible_source_directory": "ops/vercel-canonical-proxy",
       "custom_domain_attached": false
     },
+    "verified_runtime_routes": [
+      "/",
+      "/journey/",
+      "/starton/",
+      "/evidence/",
+      "/talk/",
+      "/contact/",
+      "/robots.txt",
+      "/sitemap.xml",
+      "/release.json"
+    ],
+    "verified_runtime_contract": [
+      "HTTP 200",
+      "canonical repository provenance header",
+      "immutable source SHA header",
+      "content-aware MIME type",
+      "X-Robots-Tag for HTML",
+      "security headers",
+      "mobile viewport",
+      "crawlable metadata"
+    ],
+    "known_runtime_content_gap": "Contact is operational but still serves the legacy shell until PR #191 is merged and the proxy source SHA is advanced",
     "obsolete_or_misaligned_project": {
       "name": "7ya.io",
       "connected_repository": "vepretski/7ya.io",
       "policy": "Do not treat this project or repository as canonical"
     },
-    "current_public_source_alignment": "not verified against canonical PR head"
+    "public_domain_alignment": "7ya.io has not been cut over to the verified canonical recovery alias"
   },
   "ci": {
     "github_actions_state": "blocked before checkout",
@@ -56,18 +84,18 @@
     "interpretation": "No workflow run is not a code PASS and not a code FAIL"
   },
   "release_blockers": [
-    "No repository-backed Vercel preview exists for the canonical PR",
+    "PR #191 must be reviewed, merged and deployed",
+    "The recovery proxy SHA must be advanced to the PR #191 merge commit",
+    "The new Contact page must pass runtime verification",
     "The custom 7ya.io domain is not attached to the canonical recovery project",
-    "GitHub Actions cannot currently execute validation",
-    "The public domain has not been verified against the active PR source SHA"
+    "The public domain has not been verified against the canonical recovery source SHA"
   ],
   "next_safe_gate": [
-    "Run deterministic site and link checks",
-    "Deploy the exact canonical branch to a preview tied to its source SHA",
-    "Verify /starton/, /evidence/ and /talk/ on mobile and desktop",
-    "Verify HTTP 200, canonical metadata, X-Robots-Tag and security headers",
-    "Merge only after the preview passes",
-    "Attach 7ya.io and www.7ya.io to the canonical recovery project before any DNS cutover",
+    "Review and merge PR #191",
+    "Deploy ops/vercel-canonical-proxy with the new merge SHA",
+    "Verify the new /contact/ page and the complete route contract",
+    "Check Vercel runtime error clusters",
+    "Attach 7ya.io and www.7ya.io to the canonical recovery project before changing Cloudflare web records",
     "Preserve the previous origin until DNS, TLS and route verification pass"
   ],
   "dns_policy": {
@@ -80,7 +108,8 @@
   },
   "public_conversion": {
     "primary_cta": "לתיאום שיחה",
-    "secondary_cta": "לצפייה בראיות"
+    "secondary_cta": "לצפייה בראיות",
+    "official_contact_route": "hello@7ya.io"
   },
   "privacy_boundary": [
     "No identifying information about minors",
