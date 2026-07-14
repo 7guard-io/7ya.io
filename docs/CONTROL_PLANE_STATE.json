@@ -23,12 +23,12 @@
   "active_change": {
     "pull_request": 190,
     "branch": "feat/creatorverse-depth-unification-20260714",
-    "head_sha": "35caa1290d54c0e89e3fcb8fcd6d5cf46c86e234",
     "purpose": "Unify StartOn, Evidence and Talk under the personal Creatorverse",
     "mergeable": true,
     "merged": false,
     "review_state": "Codex crawl-header finding fixed and review thread resolved",
-    "production_verified": false
+    "production_verified": false,
+    "head_resolution_rule": "Read the live PR head from GitHub; do not store a self-referential SHA in this file"
   },
   "deployment": {
     "source_control_plane": "GitHub",
