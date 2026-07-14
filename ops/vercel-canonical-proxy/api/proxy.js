@@ -37,20 +37,20 @@ function extension(file) {
 }
 
 function resolveSourcePath(request) {
-  const value = Array.isArray(request.query?.path)
-    ? request.query.path[0]
-    : request.query?.path;
-
-  let raw = String(value || '').split('?')[0].split('#')[0];
+  let requestUrl;
   try {
-    raw = decodeURIComponent(raw);
+    requestUrl = new URL(request.url || '/', 'https://7ya.invalid');
   } catch {
     return null;
   }
 
-  raw = raw.replace(/\\/g, '/').replace(/^\/+/, '');
+  const rawValue = requestUrl.searchParams.get('path') || '';
+  const raw = rawValue.replace(/\\/g, '/').replace(/^\/+/, '');
   const segments = raw.split('/').filter(Boolean);
-  if (segments.some(segment => segment === '..' || segment.includes('\0'))) return null;
+
+  if (segments.some(segment => segment === '.' || segment === '..' || segment.includes('\0'))) {
+    return null;
+  }
 
   const normalized = segments.join('/');
   if (!normalized) return 'index.html';
