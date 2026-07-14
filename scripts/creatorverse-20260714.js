@@ -53,6 +53,25 @@
     window.addEventListener('resize', resizeCanvas, { passive: true });
   }
 
+  const nav = document.querySelector('.nav');
+  if (nav && !nav.querySelector('a[href="/legacy/"]')) {
+    const legacyLink = document.createElement('a');
+    legacyLink.href = '/legacy/';
+    legacyLink.textContent = 'מורשת';
+    nav.insertBefore(legacyLink, nav.querySelector('.ai-nav'));
+  }
+
+  const constellation = document.querySelector('.constellations');
+  if (constellation && !constellation.querySelector('[data-legacy-entry]')) {
+    const legacyCard = document.createElement('article');
+    legacyCard.className = 'creation-card';
+    legacyCard.dataset.legacyEntry = 'true';
+    legacyCard.dataset.reveal = '';
+    legacyCard.style.setProperty('--glow', 'rgba(243,209,138,.32)');
+    legacyCard.innerHTML = '<div class="num"><span>LIVING LEGACY</span><b>07</b></div><h3>Legacy Universe</h3><p>ציר הזמן, השירות, StartOn, אבהות, השפעה, מוזיקה, מערכות ומפת המקורות — עם סטטוס ראיה לכל פריט.</p><a href="/legacy/">למורשת המלאה →</a>';
+    constellation.append(legacyCard);
+  }
+
   const reveals = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && !reducedMotion) {
     const observer = new IntersectionObserver((entries) => {
@@ -117,7 +136,7 @@
       addLinks(data.links);
     } catch {
       if (waiting) {
-        waiting.textContent = 'החיבור לסוכנים אינו זמין כרגע. אפשר להמשיך דרך מפת היצירות וקיר הראיות.';
+        waiting.textContent = 'החיבור לסוכנים אינו זמין כרגע. אפשר להמשיך דרך מפת היצירות, Legacy Universe וקיר הראיות.';
       }
     } finally {
       input.disabled = false;
