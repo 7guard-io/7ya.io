@@ -148,10 +148,44 @@ for (const file of [
   }
 }
 
-const vercel = read('ops/vercel-recovery/vercel.json');
+const vercelPath = 'ops/vercel-recovery/vercel.json';
+const vercelRaw = read(vercelPath);
+let vercelConfig = {};
+try {
+  vercelConfig = JSON.parse(vercelRaw);
+  pass(`${vercelPath} parses as JSON`);
+} catch (error) {
+  fail(`${vercelPath} invalid JSON: ${error.message}`);
+}
+
+const rewrites = Array.isArray(vercelConfig.rewrites) ? vercelConfig.rewrites : [];
+const headerRules = Array.isArray(vercelConfig.headers) ? vercelConfig.headers : [];
+const headerMap = new Map(headerRules.map(rule => [rule.source, new Map((rule.headers || []).map(header => [header.key, header.value]))]));
+
 for (const staticRoute of ['/starton/', '/evidence/', '/talk/']) {
-  const rewrite = `\"source\": \"${staticRoute}\"`;
-  excludeText(vercel, rewrite, 'Vercel static depth routing');
+  const isRewritten = rewrites.some(rule => rule.source === staticRoute);
+  !isRewritten
+    ? pass(`${staticRoute} served as static depth page`)
+    : fail(`${staticRoute} still rewritten through generic renderer`);
+
+  const routeHeaders = headerMap.get(staticRoute);
+  routeHeaders?.get('X-Robots-Tag') === 'index, follow'
+    ? pass(`${staticRoute} preserves X-Robots-Tag`)
+    : fail(`${staticRoute} missing X-Robots-Tag: index, follow`);
+  routeHeaders?.get('Cache-Control') === 'public, max-age=0, must-revalidate'
+    ? pass(`${staticRoute} preserves revalidation cache policy`)
+    : fail(`${staticRoute} missing must-revalidate cache policy`);
+}
+
+const globalHeaders = headerMap.get('/(.*)');
+for (const [key, value] of [
+  ['X-Content-Type-Options', 'nosniff'],
+  ['Referrer-Policy', 'strict-origin-when-cross-origin'],
+  ['Permissions-Policy', 'camera=(), microphone=(), geolocation=()']
+]) {
+  globalHeaders?.get(key) === value
+    ? pass(`Vercel global header ${key} preserved`)
+    : fail(`Vercel global header ${key} missing or incorrect`);
 }
 
 if (failures) {
