@@ -1,192 +1,63 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'a6847e58a447a9cb8203aabf7446952782c7a0ce';
-const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
-
+const SHA_PATTERN = /^[0-9a-f]{40}$/i;
 const CANONICAL_ALIASES = new Map([
   ['about', '/igor-vepretski/'],
-  ['social', '/influence/'],
   ['oracle', '/evidence/'],
   ['business', '/7ya/'],
-  ['pass', '/7ya/'],
   ['member-pass', '/7ya/'],
-  ['radar', '/evidence/'],
   ['work', '/#creations'],
   ['systems', '/7ya/'],
-  ['public-service', '/journey/'],
   ['music', '/influence/'],
 ]);
-
 const MIME_TYPES = {
-  html: 'text/html; charset=utf-8',
-  css: 'text/css; charset=utf-8',
-  js: 'application/javascript; charset=utf-8',
-  mjs: 'application/javascript; charset=utf-8',
-  json: 'application/json; charset=utf-8',
-  xml: 'application/xml; charset=utf-8',
-  txt: 'text/plain; charset=utf-8',
-  svg: 'image/svg+xml',
-  png: 'image/png',
-  jpg: 'image/jpeg',
-  jpeg: 'image/jpeg',
-  webp: 'image/webp',
-  gif: 'image/gif',
-  ico: 'image/x-icon',
-  woff: 'font/woff',
-  woff2: 'font/woff2',
-  webmanifest: 'application/manifest+json; charset=utf-8',
-  mp3: 'audio/mpeg',
-  mp4: 'video/mp4',
+  html:'text/html; charset=utf-8', css:'text/css; charset=utf-8', js:'application/javascript; charset=utf-8',
+  mjs:'application/javascript; charset=utf-8', json:'application/json; charset=utf-8', xml:'application/xml; charset=utf-8',
+  txt:'text/plain; charset=utf-8', svg:'image/svg+xml', png:'image/png', jpg:'image/jpeg', jpeg:'image/jpeg', webp:'image/webp',
+  gif:'image/gif', ico:'image/x-icon', woff:'font/woff', woff2:'font/woff2', mp3:'audio/mpeg', mp4:'video/mp4'
 };
+const IMMUTABLE = new Set(['css','js','mjs','svg','png','jpg','jpeg','webp','gif','ico','woff','woff2','mp3','mp4']);
 
-const IMMUTABLE_ASSET_TYPES = new Set([
-  'css', 'js', 'mjs', 'svg', 'png', 'jpg', 'jpeg', 'webp', 'gif',
-  'ico', 'woff', 'woff2', 'mp3', 'mp4',
-]);
-
-function extension(file) {
-  const index = file.lastIndexOf('.');
-  return index < 0 ? '' : file.slice(index + 1).toLowerCase();
+function validSha(value){const normalized=String(value||'').trim();return SHA_PATTERN.test(normalized)?normalized:null;}
+function sourceSha(){return validSha(process.env.CANONICAL_SOURCE_SHA)||validSha(process.env.VERCEL_GIT_COMMIT_SHA)||validSha(process.env.GITHUB_SHA);}
+function extension(file){const index=file.lastIndexOf('.');return index<0?'':file.slice(index+1).toLowerCase();}
+function pathInfo(request){
+  let url; try{url=new URL(request.url||'/','https://7ya.invalid');}catch{return null;}
+  const raw=(url.searchParams.get('path')||'').replace(/\\/g,'/').replace(/^\/+/, '');
+  const segments=raw.split('/').filter(Boolean);
+  if(segments.some(segment=>segment==='.'||segment==='..'||segment.includes('\0'))) return null;
+  return {raw,normalized:segments.join('/')};
+}
+function sourcePath(info){if(!info)return null;if(!info.normalized)return'index.html';if(info.raw.endsWith('/'))return`${info.normalized}/index.html`;return extension(info.normalized)?info.normalized:`${info.normalized}/index.html`;}
+function alias(info){if(!info)return null;return CANONICAL_ALIASES.get(info.normalized.replace(/\/+$/,''))||null;}
+function baseHeaders(response,sha){
+  response.setHeader('X-Content-Type-Options','nosniff');response.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
+  response.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');response.setHeader('X-7YA-Source-Repository',SOURCE_REPOSITORY);
+  if(sha)response.setHeader('X-7YA-Source-SHA',sha);
+}
+function sendJson(response,status,body){response.statusCode=status;baseHeaders(response,null);response.setHeader('Content-Type','application/json; charset=utf-8');response.setHeader('Cache-Control','no-store');response.end(JSON.stringify(body));}
+function redirect(request,response,destination,sha){response.statusCode=308;baseHeaders(response,sha);response.setHeader('Location',destination);response.setHeader('X-Robots-Tag','noindex, follow');response.setHeader('Cache-Control','public, max-age=300, s-maxage=3600');response.setHeader('Content-Type','text/plain; charset=utf-8');request.method==='HEAD'?response.end():response.end(`Permanent Redirect: ${destination}`);}
+function responseHeaders(response,file,status,sha){
+  const type=extension(file);response.statusCode=status;baseHeaders(response,sha);response.setHeader('Content-Type',MIME_TYPES[type]||'application/octet-stream');
+  response.setHeader('Cross-Origin-Resource-Policy','cross-origin');response.setHeader('Access-Control-Allow-Origin','*');response.setHeader('X-7YA-Source-Path',file);
+  if(type==='html'){response.setHeader('X-Robots-Tag','index, follow');response.setHeader('Cache-Control','public, max-age=0, s-maxage=300, stale-while-revalidate=86400');}
+  else if(IMMUTABLE.has(type))response.setHeader('Cache-Control','public, max-age=31536000, immutable');
+  else response.setHeader('Cache-Control','public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
 }
 
-function requestPath(request) {
-  let requestUrl;
-  try {
-    requestUrl = new URL(request.url || '/', 'https://7ya.invalid');
-  } catch {
-    return null;
-  }
-
-  const rawValue = requestUrl.searchParams.get('path') || '';
-  const raw = rawValue.replace(/\\/g, '/').replace(/^\/+/, '');
-  const segments = raw.split('/').filter(Boolean);
-
-  if (segments.some(segment => segment === '.' || segment === '..' || segment.includes('\0'))) {
-    return null;
-  }
-
-  return { raw, normalized: segments.join('/') };
-}
-
-function resolveSourcePath(pathInfo) {
-  if (!pathInfo) return null;
-  const { raw, normalized } = pathInfo;
-  if (!normalized) return 'index.html';
-  if (raw.endsWith('/')) return `${normalized}/index.html`;
-  return extension(normalized) ? normalized : `${normalized}/index.html`;
-}
-
-function canonicalAlias(pathInfo) {
-  if (!pathInfo) return null;
-  const key = pathInfo.normalized.replace(/\/+$/, '');
-  return CANONICAL_ALIASES.get(key) || null;
-}
-
-function setBaseHeaders(response) {
-  response.setHeader('X-Content-Type-Options', 'nosniff');
-  response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  response.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
-  response.setHeader('X-7YA-Source-Repository', SOURCE_REPOSITORY);
-  response.setHeader('X-7YA-Source-SHA', SOURCE_SHA);
-}
-
-function setResponseHeaders(response, file, statusCode) {
-  const type = extension(file);
-  const isHtml = type === 'html';
-
-  response.statusCode = statusCode;
-  response.setHeader('Content-Type', MIME_TYPES[type] || 'application/octet-stream');
-  setBaseHeaders(response);
-  response.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  response.setHeader('Access-Control-Allow-Origin', '*');
-  response.setHeader('X-7YA-Source-Path', file);
-
-  if (isHtml) {
-    response.setHeader('X-Robots-Tag', 'index, follow');
-    response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400');
-  } else if (IMMUTABLE_ASSET_TYPES.has(type)) {
-    response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-  } else {
-    response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
-  }
-}
-
-function sendRedirect(request, response, destination) {
-  response.statusCode = 308;
-  setBaseHeaders(response);
-  response.setHeader('Location', destination);
-  response.setHeader('X-Robots-Tag', 'noindex, follow');
-  response.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600');
-  response.setHeader('Content-Type', 'text/plain; charset=utf-8');
-  if (request.method === 'HEAD') response.end();
-  else response.end(`Permanent Redirect: ${destination}`);
-}
-
-async function fetchSource(file) {
-  return fetch(`${RAW_BASE}${file}`, {
-    headers: {
-      'User-Agent': '7ya-canonical-recovery/1.2',
-      Accept: '*/*',
-    },
-  });
-}
-
-module.exports = async (request, response) => {
-  if (!['GET', 'HEAD'].includes(request.method)) {
-    response.statusCode = 405;
-    response.setHeader('Allow', 'GET, HEAD');
-    response.end();
-    return;
-  }
-
-  const pathInfo = requestPath(request);
-  if (!pathInfo) {
-    response.statusCode = 400;
-    response.setHeader('Content-Type', 'application/json; charset=utf-8');
-    response.end(JSON.stringify({ error: 'Invalid path' }));
-    return;
-  }
-
-  const alias = canonicalAlias(pathInfo);
-  if (alias) {
-    sendRedirect(request, response, alias);
-    return;
-  }
-
-  const requestedFile = resolveSourcePath(pathInfo);
-
-  try {
-    let upstream = await fetchSource(requestedFile);
-    let servedFile = requestedFile;
-    let statusCode = upstream.status;
-
-    if (upstream.status === 404 && extension(requestedFile) === 'html') {
-      upstream = await fetchSource('404.html');
-      servedFile = '404.html';
-      statusCode = 404;
-    }
-
-    if (!upstream.ok && statusCode !== 404) {
-      throw new Error(`Canonical source returned ${upstream.status} for ${requestedFile}`);
-    }
-
-    const body = Buffer.from(await upstream.arrayBuffer());
-    setResponseHeaders(response, servedFile, statusCode);
-    response.setHeader('Content-Length', String(body.length));
-
-    if (request.method === 'HEAD') response.end();
-    else response.end(body);
-  } catch (error) {
-    console.error('7YA canonical proxy failure', error?.message || error);
-    response.statusCode = 502;
-    response.setHeader('Content-Type', 'application/json; charset=utf-8');
-    response.setHeader('Cache-Control', 'no-store');
-    response.setHeader('X-Content-Type-Options', 'nosniff');
-    response.end(JSON.stringify({
-      error: 'Canonical source temporarily unavailable',
-      source_repository: SOURCE_REPOSITORY,
-      source_sha: SOURCE_SHA,
-    }));
-  }
+module.exports=async(request,response)=>{
+  if(!['GET','HEAD'].includes(request.method)){response.statusCode=405;response.setHeader('Allow','GET, HEAD');response.end();return;}
+  const sha=sourceSha();
+  if(!sha){sendJson(response,503,{status:'PROVENANCE_UNBOUND',production_verified:false,repair:'Set CANONICAL_SOURCE_SHA from the exact tested commit or deploy from a provider-linked Git commit.'});return;}
+  const info=pathInfo(request);if(!info){sendJson(response,400,{error:'Invalid path'});return;}
+  const destination=alias(info);if(destination){redirect(request,response,destination,sha);return;}
+  const requested=sourcePath(info);const rawBase=`https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${sha}/`;
+  try{
+    let upstream=await fetch(`${rawBase}${requested}`,{headers:{'User-Agent':'7ya-canonical-recovery/2.0',Accept:'*/*'}});let served=requested;let status=upstream.status;
+    if(upstream.status===404&&extension(requested)==='html'){upstream=await fetch(`${rawBase}404.html`);served='404.html';status=404;}
+    if(!upstream.ok&&status!==404)throw new Error(`Canonical source returned ${upstream.status} for ${requested}`);
+    const body=Buffer.from(await upstream.arrayBuffer());responseHeaders(response,served,status,sha);response.setHeader('Content-Length',String(body.length));
+    request.method==='HEAD'?response.end():response.end(body);
+  }catch(error){sendJson(response,502,{error:'Canonical source unavailable',source_sha:sha,detail:String(error.message||error)});}
 };
