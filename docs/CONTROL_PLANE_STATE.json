@@ -1,6 +1,6 @@
 {
-  "schema_version": 2,
-  "updated_at": "2026-07-14T19:00:00+03:00",
+  "schema_version": 3,
+  "updated_at": "2026-07-14T22:58:00+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
@@ -21,19 +21,23 @@
     ]
   },
   "canonical_release": {
-    "merged_pull_request": 190,
-    "source_sha": "322249e6b3ff0171f57697a32b90850575f482de",
-    "scope": "Creatorverse homepage plus human-first StartOn, Evidence and Talk depth pages",
-    "codex_review_findings": 2,
-    "codex_review_findings_resolved": 2
+    "merged_pull_request": 204,
+    "content_source_sha": "0dac617e0b1457e48cfed6c969b1366876cd391f",
+    "release_control_pull_request": 205,
+    "release_control_sha": "0e6f8d2182d5bc027d792a6eee8f18f67d7e48d1",
+    "release_id": "history-song-influence-wall-20260714",
+    "scope": "History Song homepage, 36-record canonical public archive and Public Influence Wall",
+    "experience": "IGOR_HISTORY_SONG_PUBLIC_INFLUENCE_WALL",
+    "production_recovery_verified": true,
+    "custom_domain_verified": false
   },
   "active_change": {
-    "pull_request": 191,
-    "branch": "fix/creatorverse-contact-and-recovery-state-20260714",
-    "purpose": "Replace the legacy Contact shell and codify the canonical Vercel recovery deployment",
-    "merged": false,
-    "production_verified": false,
-    "head_resolution_rule": "Read the live PR head from GitHub; do not store a self-referential SHA in this file"
+    "issue": 201,
+    "purpose": "Attach and safely cut over 7ya.io to the verified canonical Vercel recovery project",
+    "code_merged": true,
+    "recovery_deployment_verified": true,
+    "custom_domain_cutover_complete": false,
+    "head_resolution_rule": "Deployment provenance is determined from runtime X-7YA-Source-SHA and release.json, not from an unpinned branch name"
   },
   "deployment": {
     "source_control_plane": "GitHub",
@@ -42,61 +46,81 @@
       "name": "7ya-static-site",
       "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
       "verified_alias": "https://7ya-static-site.vercel.app",
+      "deployment_id": "dpl_apvxeLmxz6sbqARSxNxMwU2gEse8",
       "status": "READY",
-      "deployed_source_sha": "322249e6b3ff0171f57697a32b90850575f482de",
+      "deployed_source_sha": "0dac617e0b1457e48cfed6c969b1366876cd391f",
       "architecture": "canonical-github-sha-proxy",
       "reproducible_source_directory": "ops/vercel-canonical-proxy",
       "custom_domain_attached": false
     },
     "verified_runtime_routes": [
       "/",
+      "/history/",
       "/journey/",
       "/starton/",
+      "/influence/",
       "/evidence/",
       "/talk/",
       "/contact/",
+      "/styles/influence-wall-20260714.css",
+      "/scripts/history-song-20260714.js",
       "/robots.txt",
       "/sitemap.xml",
       "/release.json"
     ],
     "verified_runtime_contract": [
-      "HTTP 200",
+      "HTTP 200 on homepage and Public Influence Wall",
       "canonical repository provenance header",
-      "immutable source SHA header",
-      "content-aware MIME type",
+      "immutable source SHA header equals the release content source SHA",
+      "content-aware MIME types for HTML, CSS and JavaScript",
       "X-Robots-Tag for HTML",
       "security headers",
       "mobile viewport",
-      "crawlable metadata"
+      "crawlable metadata",
+      "release.json reports PR 204 and the expected release ID"
     ],
-    "known_runtime_content_gap": "Contact is operational but still serves the legacy shell until PR #191 is merged and the proxy source SHA is advanced",
-    "obsolete_or_misaligned_project": {
-      "name": "7ya.io",
-      "connected_repository": "vepretski/7ya.io",
-      "policy": "Do not treat this project or repository as canonical"
-    },
-    "public_domain_alignment": "7ya.io has not been cut over to the verified canonical recovery alias"
+    "public_domain_alignment": "7ya.io still serves the older public origin and has not been cut over to the verified canonical recovery alias",
+    "rollback": "Previous immutable Vercel deployments and Git source SHAs remain available"
+  },
+  "content_system": {
+    "name": "History Song",
+    "opening_record_count": 36,
+    "record_shards": [
+      "/knowledge/history-song-records-1.json",
+      "/knowledge/history-song-records-2.json",
+      "/knowledge/history-song-records-3.json",
+      "/knowledge/history-song-records-4.json"
+    ],
+    "views": [
+      "/",
+      "/history/",
+      "/influence/"
+    ],
+    "ingestion_contract": "DISCOVER → NORMALIZE → DEDUPLICATE → PROTECT → VERIFY → PUBLISH → SNAPSHOT",
+    "evidence_tiers": [
+      "TIER_1 external source",
+      "TIER_2 official source",
+      "TIER_3 dated export or analytics snapshot"
+    ]
   },
   "ci": {
     "github_actions_state": "blocked before checkout",
     "cause": "organization account locked due to a billing issue",
     "last_confirmed": "2026-07-14",
-    "interpretation": "No workflow run is not a code PASS and not a code FAIL"
+    "interpretation": "No workflow run is not a code PASS and not a code FAIL; changed surfaces were manually inspected before merge"
   },
   "release_blockers": [
-    "PR #191 must be reviewed, merged and deployed",
-    "The recovery proxy SHA must be advanced to the PR #191 merge commit",
-    "The new Contact page must pass runtime verification",
-    "The custom 7ya.io domain is not attached to the canonical recovery project",
-    "The public domain has not been verified against the canonical recovery source SHA"
+    "Attach 7ya.io and www.7ya.io to the canonical recovery project",
+    "Change only Cloudflare web records after Vercel domain verification while preserving mail records",
+    "Verify TLS, redirects, homepage, influence route and source SHA on the custom domain",
+    "Resolve the organization billing lock so automated workflows can run"
   ],
   "next_safe_gate": [
-    "Review and merge PR #191",
-    "Deploy ops/vercel-canonical-proxy with the new merge SHA",
-    "Verify the new /contact/ page and the complete route contract",
-    "Check Vercel runtime error clusters",
-    "Attach 7ya.io and www.7ya.io to the canonical recovery project before changing Cloudflare web records",
-    "Preserve the previous origin until DNS, TLS and route verification pass"
+    "Add 7ya.io and www.7ya.io to Vercel project prj_xpcMFC96JcnasigrvetZetEa1XzU",
+    "Obtain the exact Vercel DNS verification target",
+    "Update Cloudflare web records without changing nameservers, MX or mail-related TXT records",
+    "Verify 7ya.io and www.7ya.io over HTTPS against source SHA 0dac617e0b1457e48cfed6c969b1366876cd391f",
+    "Preserve the previous origin until domain, TLS and route verification pass"
   ],
   "dns_policy": {
     "provider": "Cloudflare",
