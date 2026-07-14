@@ -1,21 +1,24 @@
 {
   "service": "7ya-frontend",
-  "provider": "vercel",
-  "status": "READY",
-  "release": "2026-07-14-launch",
+  "status": "SOURCE_READY",
+  "production_verified": false,
+  "release": "p0-integrity-20260714",
   "source_repository": "7guard-io/7ya.io",
-  "source_path": "ops/vercel-recovery",
-  "source_sha": "d9b819fb29a8f7e12b24eaf5818870f1fcf31318",
-  "environment": "production",
-  "experience": "IGOR_CREATORVERSE_RICH_MEDIA",
-  "launch_date": "2026-07-14",
-  "critical_surfaces": [
+  "source_branch": "main",
+  "source_path": ".",
+  "source_sha": null,
+  "environment": "repository",
+  "critical_routes": [
     "/",
-    "/journey/",
-    "/starton/",
-    "/influence/",
+    "/igor-vepretski/",
+    "/talk/",
+    "/social/",
+    "/pass/",
     "/evidence/",
-    "/speaker/",
-    "/contact/"
-  ]
+    "/starton/",
+    "/contact/",
+    "/radar/"
+  ],
+  "crawl_controls": ["/robots.txt", "/sitemap.xml"],
+  "note": "Repository source is ready. Production is not verified until a provider-generated deployment binds and serves the exact commit SHA."
 }
