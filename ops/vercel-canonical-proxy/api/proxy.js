@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = '322249e6b3ff0171f57697a32b90850575f482de';
+const SOURCE_SHA = 'a6847e58a447a9cb8203aabf7446952782c7a0ce';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 
 const MIME_TYPES = {
