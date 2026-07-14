@@ -8,13 +8,14 @@
     "create-admin": "node scripts/create-admin.mjs",
     "check-site": "node scripts/check-site.mjs",
     "check-links": "node scripts/check-links.mjs",
-    "check-all": "npm run check-site && npm run check-links",
+    "check-p0-integrity": "node scripts/check-p0-integrity.mjs",
+    "check-all": "npm run check-site && npm run check-links && npm run check-p0-integrity",
     "verify:routes": "node scripts/verify-routes.mjs",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js",
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs",
+    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs && node scripts/check-p0-integrity.mjs",
     "serve:static": "python3 -m http.server 4173",
     "test:netlify": "node scripts/test-netlify-chat.mjs",
     "test:smoke": "node scripts/smoke-test.js",
@@ -23,36 +24,13 @@
     "deploy:preview": "npx --yes vercel@latest",
     "deploy:prod": "npx --yes vercel@latest --prod"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/7guard-io/7ya.io.git"
-  },
-  "keywords": [
-    "7ya",
-    "igor-vepretski",
-    "public-site",
-    "evidence"
-  ],
+  "repository": {"type":"git","url":"https://github.com/7guard-io/7ya.io.git"},
+  "keywords": ["7ya","igor-vepretski","public-site","evidence"],
   "author": "Igor Vepretski / 7YA",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/7guard-io/7ya.io/issues"
-  },
+  "bugs": {"url":"https://github.com/7guard-io/7ya.io/issues"},
   "homepage": "https://7ya.io",
-  "devDependencies": {
-    "@types/node": "^25.3.3",
-    "docsify-to-pdf": "0.0.5",
-    "typescript": "^5.9.3",
-    "netlify-cli": "^17.38.1"
-  },
-  "dependencies": {
-    "@azure-rest/ai-inference": "^1.0.0-beta.2",
-    "@azure/core-auth": "^1.10.1",
-    "openai": "^6.44.0",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
-    "pg": "^8.13.1",
-    "zod": "^3.24.1"
-  },
+  "devDependencies": {"@types/node":"^25.3.3","docsify-to-pdf":"0.0.5","typescript":"^5.9.3","netlify-cli":"^17.38.1"},
+  "dependencies": {"@azure-rest/ai-inference":"^1.0.0-beta.2","@azure/core-auth":"^1.10.1","openai":"^6.44.0","bcryptjs":"^2.4.3","jsonwebtoken":"^9.0.2","pg":"^8.13.1","zod":"^3.24.1"},
   "type": "module"
 }
