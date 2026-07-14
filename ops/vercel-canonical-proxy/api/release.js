@@ -3,7 +3,7 @@
 const payload = {
   release_id: 'creatorverse-contact-20260714-pr191',
   source_repository: '7guard-io/7ya.io',
-  source_branch: 'main-history',
+  source_branch: 'main',
   source_sha: 'a6847e58a447a9cb8203aabf7446952782c7a0ce',
   pull_request: 191,
   architecture: 'canonical-github-sha-proxy',
