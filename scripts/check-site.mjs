@@ -79,7 +79,7 @@ for (const required of [
   'igor-infostory-personal-os-20260716-1',
   'id="infostory"', 'data-story-chapter', 'data-story-jump="chapter-human"',
   'VISUAL STORY ART · OWNER-SUPPLIED · NOT EVIDENCE',
-  '7YA CREATOR COMPANION', 'id="companionPanel"', 'id="companionForm"',
+  '7YA CREATOR COMPANION', 'data-companion-prompt',
   'id="archiveGrid"', 'id="archiveSearch"', 'data-filter="Facebook"'
 ]) requireText(home, required, 'homepage');
 
@@ -118,11 +118,22 @@ for (const required of [
 const infostoryScript = read('scripts/igor-infostory-20260716.js');
 for (const required of [
   "const chapters = [...document.querySelectorAll('[data-story-chapter]')]",
-  'activateChapter', 'updateStoryProgress', 'responseFor',
-  '7YA CREATOR COMPANION', "addEventListener('submit'"
+  'activateChapter', 'updateStoryProgress', 'ensureSignalKey',
+  "window.dispatchEvent(new CustomEvent('7ya:creator-seed'",
+  '/scripts/7ya-signal-key-20260715.js'
 ]) requireText(infostoryScript, required, 'infostory script');
 excludeText(infostoryScript, 'OPENAI_API_KEY', 'infostory script');
-excludeText(infostoryScript, 'localStorage.setItem', 'companion privacy contract');
+excludeText(infostoryScript, 'localStorage', 'companion privacy contract');
+excludeText(infostoryScript, 'innerHTML', 'companion rendering contract');
+
+const signalKey = read('scripts/7ya-signal-key-20260715.js');
+for (const required of [
+  "creatorMode: 'create'", "creatorMode: 'momentum'", "creatorMode: 'impact'",
+  "fetch('/api/guide'", "window.addEventListener('7ya:creator-seed'",
+  'navigator.clipboard.writeText', 'אני המלווה החיובי של 7YA'
+]) requireText(signalKey, required, 'Signal Key companion');
+excludeText(signalKey, 'localStorage', 'Signal Key privacy contract');
+excludeText(signalKey, 'innerHTML', 'Signal Key rendering contract');
 
 const history = read('history/index.html');
 for (const required of [
