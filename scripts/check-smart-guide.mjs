@@ -31,10 +31,15 @@ requireText('widget', "event.key === 'Escape'", 'keyboard close behavior missing
 requireText('widget', 'textContent', 'safe text rendering missing');
 requireText('widget', "fetch('/api/guide'", 'guide API integration missing');
 requireText('widget', "data.provider === 'nvidia'", 'provider transparency missing');
+requireText('widget', "creatorMode: 'create'", 'creator mode missing');
+requireText('widget', "creatorMode: 'momentum'", 'fulfilment mode missing');
+requireText('widget', "creatorMode: 'impact'", 'impact mode missing');
+requireText('widget', "window.addEventListener('7ya:creator-seed'", 'content-to-creator bridge missing');
+requireText('widget', 'navigator.clipboard.writeText', 'copyable action plan missing');
 forbidText('widget', 'localStorage', 'public guide must not persist prompts in localStorage');
 forbidText('widget', 'innerHTML', 'public guide must not render model output through innerHTML');
 
-requireText('style', '@media(max-width:560px)', 'mobile layout contract missing');
+requireText('style', '@media(max-width:620px)', 'mobile layout contract missing');
 requireText('style', 'prefers-reduced-motion', 'reduced-motion contract missing');
 requireText('build', 'enhancePublicHtml', 'artifact-wide guide injection missing');
 requireText('proxy', 'enhanceHtml', 'edge-wide guide injection missing');
