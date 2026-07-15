@@ -34,7 +34,7 @@ The gate validates content and evidence contracts, internal links, TypeScript an
 ## Current release surfaces
 
 - Canonical repository `main`: Igor Vepretski Creatorverse is present.
-- Vercel production alias `https://7ya-static-site.vercel.app`: recovery release is deployed and verified from immutable source SHA `c275ff0557727c99e712ae8d57ebd0736dba79e5`.
+- Vercel production alias `https://7ya-static-site.vercel.app`: deployment `dpl_865LWo1VF1vxM1rgDWoyat8oqGBy` is READY and verified from immutable source SHA `b1ff2422430aecff1a8fe12ad0a48c0561c7a97f` (content PR #214, release-control PR #215, runtime hotfix PR #216).
 - Canonical domain `7ya.io`: still serves the earlier GitHub Pages artifact.
 - DNS: unchanged.
 
@@ -44,7 +44,7 @@ The gate validates content and evidence contracts, internal links, TypeScript an
 2. Run `Actions Smoke` manually and require a completed job with visible steps and logs.
 3. Run `Validate 7YA Release` manually and require `npm run release:gate` to pass.
 4. Run `Publish 7YA Living OS` manually with the exact full SHA checked out from `main`.
-5. Verify on `https://7ya.io/`: canonical metadata, robots, security headers, critical routes, CSS, JavaScript, images, `release.json`, controlled 404s and an end-to-end guidance flow.
+5. Verify on `https://7ya.io/`: canonical metadata, robots, security headers, critical routes, CSS, JavaScript, images, `release.json`, controlled 404s (`noindex, nofollow`, `no-store`) and an end-to-end guidance flow.
 6. Restore automatic triggers only after the manual smoke, validation and Pages deployment pass. Reintroduce each event trigger deliberately in a reviewed PR.
 
 ## Alternative cutover
