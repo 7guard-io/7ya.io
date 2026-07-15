@@ -1,14 +1,15 @@
 {
   "service": "7ya-frontend",
   "provider": "github-pages",
-  "status": "PRODUCTION",
+  "status": "CANDIDATE_BLOCKED",
   "release": "2026-07-15-personal-visual-integral-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
-  "environment": "production",
+  "candidate_base_sha": "b5390860533d332c8b895c422ac03f8ffd4b046d",
+  "source_sha_policy": "A release is production only after the exact immutable source revision passes the release gate, deploys successfully and is independently observed on the canonical domain.",
+  "environment": "candidate",
   "experience": "IGOR_VEPRETSKI_PERSONAL_VISUAL_INTEGRAL_LIVING_OS",
-  "launch_date": "2026-07-15",
+  "target_launch_date": "2026-07-15",
   "data_contract": {
     "record_count": 66,
     "parts": [
@@ -34,8 +35,30 @@
     "/response-ai/",
     "/evidence/",
     "/speaker/",
+    "/talk/",
     "/contact/"
   ],
+  "production_observed": {
+    "observed_at": "2026-07-15T18:41:11+03:00",
+    "canonical_domain": "https://7ya.io",
+    "provider": "github-pages",
+    "release": "github-pages-history-song-164c3892",
+    "source_sha": "164c3892f9961aee42ca55ddf1d356d4840a82d2",
+    "experience": "IGOR_HISTORY_SONG_PUBLIC_MEDIA_SYSTEM",
+    "record_count": 36,
+    "drift": true
+  },
+  "blockers": [
+    {
+      "id": "github-actions-pre-run-failure",
+      "workflow": "Publish 7YA Living OS",
+      "run_id": 29394079031,
+      "job_id": 87283540887,
+      "state": "FAILED_BEFORE_STEPS",
+      "evidence": "The job reports no steps and the logs endpoint returns BlobNotFound. This is outside the static-site release artifact."
+    }
+  ],
   "release_intent": "Publish the current canonical homepage and all critical surfaces as a richer, more personal, visually varied and functionally intact Igor Vepretski experience.",
+  "promotion_gate": "Do not set status to PRODUCTION until the deployment completes and the canonical domain, critical routes, assets and release metadata are verified against the same source revision.",
   "rollback": "Provider deployment history and previous source commits remain available for rollback."
 }
