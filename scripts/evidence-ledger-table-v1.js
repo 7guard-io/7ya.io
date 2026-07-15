@@ -28,6 +28,15 @@ function safeText(value) {
   return typeof value === 'string' ? value : '';
 }
 
+function escapeHtml(value) {
+  return safeText(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
 function statusFor(value) {
   return STATUS_MAP[value] || { key: 'documented', label: safeText(value) || 'DOCUMENTED' };
 }
@@ -44,27 +53,27 @@ function sourceHref(record) {
 
 function buildSourceCell(record) {
   const href = sourceHref(record);
-  if (!href) return `<span class="ledger-source-muted">${safeText(record.sourceType) || 'No public source'}</span>`;
-  return `<a class="ledger-source-link" href="${href}" target="_blank" rel="noopener noreferrer">פתיחת מקור ↗</a>`;
+  if (!href) return `<span class="ledger-source-muted">${escapeHtml(record.sourceType) || 'No public source'}</span>`;
+  return `<a class="ledger-source-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">פתיחת מקור ↗</a>`;
 }
 
 function copyButton(hash, id) {
-  return `<button class="ledger-copy" type="button" data-copy-hash="${hash}" aria-label="העתקת hash מלא עבור ${id}" title="העתקת hash מלא"><span aria-hidden="true">⧉</span><span class="ledger-copy-label">COPY</span></button>`;
+  return `<button class="ledger-copy" type="button" data-copy-hash="${escapeHtml(hash)}" aria-label="העתקת hash מלא עבור ${escapeHtml(id)}" title="העתקת hash מלא"><span aria-hidden="true">⧉</span><span class="ledger-copy-label">COPY</span></button>`;
 }
 
 function rowTemplate(record, hash) {
   const state = statusFor(record.status);
   const id = safeText(record.id);
   return `
-    <tr data-ledger-row="${id}">
-      <td class="ledger-time"><time datetime="${safeText(record.date)}">${safeText(record.date)}</time><small>${id}</small></td>
-      <td class="ledger-claim"><strong>${safeText(record.title)}</strong><span>${safeText(record.category)} · ${safeText(record.classification)}</span></td>
-      <td class="ledger-hash-cell"><div class="ledger-hash"><code title="${hash}">${truncateHash(hash)}</code>${copyButton(hash, id)}</div></td>
+    <tr data-ledger-row="${escapeHtml(id)}">
+      <td class="ledger-time"><time datetime="${escapeHtml(record.date)}">${escapeHtml(record.date)}</time><small>${escapeHtml(id)}</small></td>
+      <td class="ledger-claim"><strong>${escapeHtml(record.title)}</strong><span>${escapeHtml(record.category)} · ${escapeHtml(record.classification)}</span></td>
+      <td class="ledger-hash-cell"><div class="ledger-hash"><code title="${escapeHtml(hash)}">${escapeHtml(truncateHash(hash))}</code>${copyButton(hash, id)}</div></td>
       <td>${buildSourceCell(record)}</td>
-      <td class="ledger-state"><span class="ya-badge ya-badge-${state.key}">${state.label}</span></td>
+      <td class="ledger-state"><span class="ya-badge ya-badge-${state.key}">${escapeHtml(state.label)}</span></td>
     </tr>
     <tr class="ledger-detail-row">
-      <td colspan="5"><details><summary>הקשר והסבר</summary><p>${safeText(record.explanation)}</p><div class="ledger-meta"><span>${safeText(record.sourceType)}</span><code>${hash}</code></div></details></td>
+      <td colspan="5"><details><summary>הקשר והסבר</summary><p>${escapeHtml(record.explanation)}</p><div class="ledger-meta"><span>${escapeHtml(record.sourceType)}</span><code>${escapeHtml(hash)}</code></div></details></td>
     </tr>`;
 }
 
@@ -116,8 +125,10 @@ async function renderLedger() {
     if (count) count.textContent = String(rows.length);
 
     host.addEventListener('click', event => {
-      const button = event.target.closest('[data-copy-hash]');
-      if (button) handleCopy(button);
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const button = target.closest('[data-copy-hash]');
+      if (button instanceof HTMLButtonElement) handleCopy(button);
     });
   } catch (cause) {
     console.error('7YA evidence ledger render failed', cause);
