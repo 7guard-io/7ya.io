@@ -29,11 +29,14 @@ const html = read('response-ai/index.html');
 for (const required of [
   '<link rel="canonical" href="https://7ya.io/response-ai/">',
   '<meta name="robots" content="index, follow, max-image-preview:large">',
+  'public-response-ai-20260715-2',
   'PUBLIC RESPONSE AI',
   'הציבור הגיב.',
   'id="responseQuery"',
   'id="responseGrid"',
-  'data-response-mode="positive"',
+  'id="signalCount">11',
+  'data-response-mode="positive">חיזוק חיובי מאומת',
+  'סיווג טקסט תגובות דורש בדיקה אנושית',
   '/scripts/public-response-ai-20260715.js',
   '/styles/public-response-ai-20260715.css?v=1',
 ]) requireText(html, required, 'response AI page');
@@ -58,6 +61,11 @@ const script = read('scripts/public-response-ai-20260715.js');
 for (const required of [
   "fetch('/knowledge/public-response-signals-20260715.json'",
   'scoreSignal',
+  'queryMatches',
+  'modeAllows',
+  'POSITIVE_EXTERNAL_FRAMING',
+  'CONSTRUCTIVE_EXTERNAL_FRAMING',
+  'HUMAN_REVIEW_REQUIRED',
   'buildSummary',
   'אין נתונים — אין טענת השפעה',
 ]) requireText(script, required, 'response AI script');
@@ -73,6 +81,9 @@ try {
 }
 
 if (data) {
+  data.schema_version === '1.1'
+    ? pass('response dataset schema is 1.1')
+    : fail('response dataset schema mismatch');
   data.coverage?.canonical_public_records === 66
     ? pass('response dataset preserves 66-record archive count')
     : fail('response dataset archive count mismatch');
@@ -82,11 +93,22 @@ if (data) {
   data.coverage?.raw_comment_text_publication === false
     ? pass('raw comment publication is disabled')
     : fail('raw comment publication must be false');
+  data.coverage?.human_review_required_for_comment_text === true
+    ? pass('comment stance requires human review')
+    : fail('human review requirement missing');
   const signals = Array.isArray(data.signals) ? data.signals : [];
-  signals.length >= 9 ? pass(`response dataset has ${signals.length} signals`) : fail(`response dataset has only ${signals.length} signals`);
+  signals.length >= 11 ? pass(`response dataset has ${signals.length} signals`) : fail(`response dataset has only ${signals.length} signals`);
   const ids = new Set();
+  const allowedStances = new Set([
+    'POSITIVE_EXTERNAL_FRAMING',
+    'CONSTRUCTIVE_EXTERNAL_FRAMING',
+    'UNDETERMINED_FROM_AGGREGATES',
+    'HUMAN_REVIEW_REQUIRED',
+  ]);
+  let explicitPositive = 0;
+  let aggregateUndetermined = 0;
   for (const signal of signals) {
-    if (!signal.id || !signal.headline || !signal.interpretation || !signal.source_url || !signal.as_of) {
+    if (!signal.id || !signal.headline || !signal.interpretation || !signal.source_url || !signal.as_of || !signal.stance_status) {
       fail(`invalid response signal: ${JSON.stringify(signal)}`);
       continue;
     }
@@ -98,7 +120,19 @@ if (data) {
     ['HIGH', 'MEDIUM', 'LOW'].includes(signal.confidence)
       ? pass(`${signal.id} has confidence label`)
       : fail(`${signal.id} confidence invalid`);
+    allowedStances.has(signal.stance_status)
+      ? pass(`${signal.id} has valid stance status`)
+      : fail(`${signal.id} stance status invalid`);
+    if (['POSITIVE_EXTERNAL_FRAMING', 'CONSTRUCTIVE_EXTERNAL_FRAMING'].includes(signal.stance_status)) {
+      explicitPositive += 1;
+      signal.evidence_tier === 'TIER_1'
+        ? pass(`${signal.id} positive framing is externally sourced`)
+        : fail(`${signal.id} positive framing must be TIER_1`);
+    }
+    if (signal.stance_status === 'UNDETERMINED_FROM_AGGREGATES') aggregateUndetermined += 1;
   }
+  explicitPositive >= 3 ? pass('dataset has at least three explicit positive external signals') : fail('dataset needs more explicit positive external signals');
+  aggregateUndetermined >= 6 ? pass('aggregate engagement remains stance-undetermined') : fail('aggregate stance safeguards are too weak');
 }
 
 const livingOs = read('7ya/index.html');
