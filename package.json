@@ -16,7 +16,8 @@
     "check-collector": "node scripts/check-collector.mjs",
     "check-release-pin": "node scripts/check-release-pin.mjs",
     "check-workflows": "node scripts/check-workflows.mjs",
-    "check-all": "npm run check-site && npm run check-links && npm run check-creator && npm run check-entity && npm run check-response && npm run check-guide && npm run check-collector && npm run check-release-pin && npm run check-workflows",
+    "check:deploy-script": "bash -n scripts/deploy-personal-static.sh",
+    "check-all": "npm run check-site && npm run check-links && npm run check-creator && npm run check-entity && npm run check-response && npm run check-guide && npm run check-collector && npm run check-release-pin && npm run check-workflows && npm run check:deploy-script",
     "verify:routes": "node scripts/verify-routes.mjs",
     "build:site": "node scripts/build-static-site.mjs",
     "check:artifact": "node scripts/check-static-artifact.mjs",
@@ -27,14 +28,15 @@
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs && node scripts/check-positive-creator.mjs && node scripts/check-entity-index.mjs && node scripts/check-public-response-ai.mjs && node scripts/check-smart-guide.mjs && node scripts/check-collector.mjs && node scripts/check-release-pin.mjs && node scripts/check-workflows.mjs",
+    "lint": "node scripts/check-site.mjs && node scripts/check-links.mjs && node scripts/check-positive-creator.mjs && node scripts/check-entity-index.mjs && node scripts/check-public-response-ai.mjs && node scripts/check-smart-guide.mjs && node scripts/check-collector.mjs && node scripts/check-release-pin.mjs && node scripts/check-workflows.mjs && bash -n scripts/deploy-personal-static.sh",
     "serve:static": "python3 -m http.server 4173",
     "test:netlify": "node scripts/test-netlify-chat.mjs",
     "test:smoke": "node scripts/smoke-test.js",
     "smoke:api": "node scripts/smoke-test.js",
     "smoke:api:curl": "bash scripts/smoke-test.sh",
     "deploy:preview": "npx --yes vercel@latest",
-    "deploy:prod": "npx --yes vercel@latest --prod"
+    "deploy:prod": "npx --yes vercel@latest --prod",
+    "deploy:personal-static": "bash scripts/deploy-personal-static.sh"
   },
   "repository": {
     "type": "git",
