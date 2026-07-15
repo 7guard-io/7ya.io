@@ -1,21 +1,28 @@
 'use strict';
 
 const payload = {
-  release_id: 'igor-guided-living-os-20260715',
+  release_id: 'igor-master-entity-atlas-20260715',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: 'b1ff2422430aecff1a8fe12ad0a48c0561c7a97f',
-  pull_request: 214,
+  source_sha: '446e54d98ebd04fc1e1a837f98dce94a8904ae55',
+  pull_request: 218,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
-  experience: 'IGOR_7YA_LIVING_OS_PERSONAL_GUIDANCE_AND_PUBLIC_GOOD',
+  experience: 'IGOR_MASTER_ENTITY_ATLAS_LIVING_OS',
   archive_record_count: 66,
+  distinct_entity_visual_sources: 5,
   critical_routes: [
-    '/', '/museum/', '/create/', '/history/', '/7ya/', '/starton/',
-    '/influence/', '/evidence/', '/talk/', '/contact/'
+    '/', '/museum/', '/entity/', '/create/', '/history/', '/igor-vepretski/',
+    '/journey/', '/7ya/', '/starton/', '/influence/', '/evidence/',
+    '/speaker/', '/talk/', '/media/', '/articles/', '/contact/'
   ],
+  claim_controls: [
+    'VERIFIED', 'DOCUMENTED', 'SELF_ATTESTED', 'CONCEPT', 'PROTOTYPE',
+    'SOURCE_PENDING', 'PRIVATE'
+  ],
+  private_family_identifiers_published: false,
   custom_domain_attached: false,
-  generated_at: '2026-07-15T09:40:00+03:00',
+  generated_at: '2026-07-15T10:35:00+03:00',
 };
 
 module.exports = (request, response) => {
