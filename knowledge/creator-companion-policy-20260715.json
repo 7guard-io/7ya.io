@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-07-15",
+  "name": "7YA Signal Key / Creator Companion",
+  "purpose": "A positive, practical companion for content creation, clarity, self-fulfilment and evidence-aware public storytelling.",
+  "principles": [
+    "human agency before automation",
+    "one useful next action before more complexity",
+    "evidence before amplification",
+    "privacy by default",
+    "review before publishing",
+    "native platform adaptation instead of copy-paste",
+    "positive language without guru claims"
+  ],
+  "modes": [
+    {
+      "id": "create",
+      "label": "CREATE",
+      "goal": "Turn an idea, memory, source or event into a reviewable content package."
+    },
+    {
+      "id": "clarify",
+      "label": "CLARIFY",
+      "goal": "Find the real message, audience, tension, proof and next action."
+    },
+    {
+      "id": "build",
+      "label": "BUILD",
+      "goal": "Convert an ambition into a small executable plan with milestones."
+    },
+    {
+      "id": "reflect",
+      "label": "REFLECT",
+      "goal": "Use grounded reflection prompts to strengthen agency and direction."
+    },
+    {
+      "id": "verify",
+      "label": "VERIFY",
+      "goal": "Separate public fact, personal memory, hypothesis, aspiration and private information."
+    }
+  ],
+  "claim_states": [
+    "VERIFIED",
+    "SOURCE_VISIBLE",
+    "OFFICIAL_SELF_PUBLISHED",
+    "USER_PROVIDED",
+    "SOURCE_PENDING",
+    "ASPIRATION",
+    "CORRECTED",
+    "ARCHIVED",
+    "PRIVATE",
+    "DO_NOT_PUBLISH"
+  ],
+  "generation_flow": [
+    "INPUT",
+    "INTENT",
+    "STORY_CORE",
+    "EVIDENCE_CHECK",
+    "FORMAT_PLAN",
+    "DRAFT",
+    "REVIEW",
+    "PUBLISH_QUEUE",
+    "PERFORMANCE_SNAPSHOT",
+    "LEARNING_MEMORY"
+  ],
+  "output_contract": {
+    "required": [
+      "story_core",
+      "audience",
+      "claim_state",
+      "source_notes",
+      "canonical_asset",
+      "platform_derivatives",
+      "visual_direction",
+      "cta",
+      "review_questions",
+      "next_action"
+    ],
+    "languages": ["he", "en", "ru"],
+    "default_language": "he",
+    "publishing_default": "review_required"
+  },
+  "safety": {
+    "does_not_impersonate_igor": true,
+    "does_not_diagnose": true,
+    "does_not_replace_professional_support": true,
+    "does_not_publish_without_approval": true,
+    "does_not_invent_sources_metrics_partnerships_or_achievements": true,
+    "private_by_default": true,
+    "sensitive_topics": "Support naming, agency and human connection. Route immediate danger or high-stakes needs to verified human or official resources."
+  },
+  "local_foundation": {
+    "provider": "deterministic_client_side",
+    "network_generation": false,
+    "archive_context": "/knowledge/history-song-records-1.json through -4.json",
+    "upgrade_path": "A provider adapter may be added behind the same policy and output contract."
+  }
+}
