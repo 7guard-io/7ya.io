@@ -3,31 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>איגור ופרצקי | 7YA — שיר ההיסטוריה ומערכת היצירה</title>
-  <meta name="description" content="העולם הציבורי של איגור ופרצקי: 66 רשומות תוכן, מוזיאון פוסטים, שיר ההיסטוריה, StartOn, Evidence Ledger, השפעה, מוזיקה ומלווה חיובי ליצירה ולהגשמה מעשית.">
+  <title>איגור ופרצקי | 7YA — אדם, דרך ומערכת חיה</title>
+  <meta name="description" content="האתר האישי והציבורי של איגור ופרצקי: סיפור חיים, StartOn, יצירה, השפעה, שותפויות, ארכיון ציבורי ו-Evidence Ledger מבוסס מקורות.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#070706">
+  <meta name="theme-color" content="#090b0f">
   <meta name="color-scheme" content="dark">
-  <meta name="7ya-build" content="living-os-20260715-2">
-  <meta name="7ya-experience" content="history-song-editorial-archive-20260714-1">
+  <meta name="7ya-build" content="igor-personal-production-20260715">
   <link rel="canonical" href="https://7ya.io/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/igor-home-portrait-20260712.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preconnect" href="https://pic1.yitweb.co.il">
-  <link rel="preconnect" href="https://i.ytimg.com">
-  <link rel="preconnect" href="https://starton.org.il">
   <link rel="stylesheet" href="/styles/history-song-20260714.css?v=1">
 
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA.IO">
   <meta property="og:locale" content="he_IL">
-  <meta property="og:title" content="Igor Vepretski — 7YA Living OS">
-  <meta property="og:description" content="Every post is a line. Every source holds the story. Every idea can become the next practical creation.">
+  <meta property="og:title" content="Igor Vepretski — אדם, דרך ומערכת חיה">
+  <meta property="og:description" content="העולם הציבורי של איגור ופרצקי: סיפור אישי, עשייה חברתית, יצירה וראיות.">
   <meta property="og:url" content="https://7ya.io/">
   <meta property="og:image" content="https://7ya.io/assets/igor-home-og-20260712.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Igor Vepretski — 7YA Living OS">
-  <meta name="twitter:description" content="A sourced public archive, content museum and positive creator companion.">
+  <meta name="twitter:title" content="Igor Vepretski — 7YA">
+  <meta name="twitter:description" content="Person · Story · Evidence · Action">
   <meta name="twitter:image" content="https://7ya.io/assets/igor-home-og-20260712.jpg">
 
   <script type="application/ld+json">
@@ -37,19 +33,10 @@
       {
         "@type":"WebSite",
         "@id":"https://7ya.io/#website",
-        "name":"7YA Living OS",
+        "name":"7YA.IO",
         "url":"https://7ya.io/",
         "inLanguage":["he","ru","en"],
         "publisher":{"@id":"https://7ya.io/#igor"}
-      },
-      {
-        "@type":"CollectionPage",
-        "@id":"https://7ya.io/#history-song",
-        "name":"Igor Vepretski — The History Song and Living OS",
-        "url":"https://7ya.io/",
-        "description":"A sourced public archive, content museum and practical creation system.",
-        "about":{"@id":"https://7ya.io/#igor"},
-        "isPartOf":{"@id":"https://7ya.io/#website"}
       },
       {
         "@type":"Person",
@@ -73,8 +60,96 @@
     ]
   }
   </script>
+
+  <style>
+    :root{
+      --personal-bg:#090b0f;
+      --personal-panel:#11151d;
+      --personal-text:#f6f1e8;
+      --personal-muted:#a9b0bc;
+      --personal-accent:#ff6b2c;
+      --personal-gold:#e6c786;
+      --personal-line:rgba(255,255,255,.14);
+      --personal-max:1480px;
+    }
+    body.personal-home{background:radial-gradient(circle at 82% 4%,rgba(255,107,44,.17),transparent 28%),radial-gradient(circle at 12% 22%,rgba(86,129,255,.12),transparent 24%),var(--personal-bg);color:var(--personal-text)}
+    .personal-home .site-header{background:rgba(9,11,15,.78);border-bottom:1px solid var(--personal-line)}
+    .personal-home .site-header nav{gap:18px}
+    .personal-home .site-header nav a{font-size:12px}
+    .personal-home .personal-shell{max-width:var(--personal-max);margin:auto;padding-inline:var(--pad)}
+    .personal-hero{min-height:calc(100svh - 72px);display:grid;grid-template-columns:minmax(0,.95fr) minmax(420px,1.05fr);gap:clamp(34px,6vw,104px);align-items:center;padding-top:clamp(54px,8vw,112px);padding-bottom:clamp(46px,7vw,90px)}
+    .personal-eyebrow{display:flex;align-items:center;gap:10px;color:var(--personal-gold);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+    .personal-eyebrow::before{content:"";width:44px;height:1px;background:var(--personal-accent)}
+    .personal-hero h1{margin:24px 0 18px;font:900 clamp(72px,10vw,164px)/.78 var(--display);letter-spacing:-.075em}
+    .personal-hero h1 span{display:block;color:var(--personal-gold);font-size:.42em;letter-spacing:.02em}
+    .personal-hero h1 strong{display:block;color:var(--personal-text)}
+    .personal-statement{max-width:760px;margin:0;color:#fff;font-size:clamp(24px,2.7vw,42px);font-weight:850;line-height:1.13}
+    .personal-lead{max-width:760px;margin:22px 0 0;color:var(--personal-muted);font-size:clamp(16px,1.4vw,21px)}
+    .personal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+    .personal-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:1px solid var(--personal-line);border-radius:999px;font-size:13px;font-weight:850;transition:.2s ease}
+    .personal-actions a:hover{transform:translateY(-2px);border-color:#fff}
+    .personal-actions .primary{background:var(--personal-accent);border-color:var(--personal-accent);color:#fff}
+    .personal-actions .quiet{color:var(--personal-gold)}
+    .personal-proof{display:grid;grid-template-columns:repeat(4,1fr);margin-top:38px;border-block:1px solid var(--personal-line)}
+    .personal-proof div{padding:15px 12px;border-inline-start:1px solid var(--personal-line)}
+    .personal-proof div:first-child{border-inline-start:0}
+    .personal-proof b{display:block;font:900 clamp(24px,2.5vw,40px)/1 var(--display)}
+    .personal-proof span{display:block;margin-top:7px;color:var(--personal-muted);font-size:10px}
+    .personal-portrait{position:relative;min-height:690px;border:1px solid var(--personal-line);overflow:hidden;background:#0d1118}
+    .personal-portrait img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.06)}
+    .personal-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(4,6,9,.96))}
+    .portrait-caption{position:absolute;z-index:2;right:28px;left:28px;bottom:26px;display:flex;justify-content:space-between;align-items:end;gap:20px}
+    .portrait-caption b{font:900 clamp(28px,3.2vw,56px)/.9 var(--display)}
+    .portrait-caption span{max-width:250px;text-align:left;color:#c8ced8;font-size:11px;line-height:1.5;letter-spacing:.08em}
+    .portrait-label{position:absolute;z-index:3;top:22px;left:22px;padding:7px 10px;background:rgba(9,11,15,.72);border:1px solid var(--personal-line);font-size:9px;letter-spacing:.16em}
+    .personal-axis{border-block:1px solid var(--personal-line);background:rgba(255,255,255,.025)}
+    .personal-axis .personal-shell{display:grid;grid-template-columns:repeat(5,1fr)}
+    .personal-axis div{padding:24px 18px;border-inline-start:1px solid var(--personal-line)}
+    .personal-axis div:first-child{border-inline-start:0}
+    .personal-axis b{display:block;color:var(--personal-accent);font-size:10px;letter-spacing:.13em}
+    .personal-axis span{display:block;margin-top:8px;font-weight:800}
+    .personal-section{max-width:var(--personal-max);margin:auto;padding:clamp(82px,10vw,150px) var(--pad)}
+    .personal-section-head{display:grid;grid-template-columns:1fr .8fr;gap:clamp(28px,7vw,120px);align-items:end}
+    .personal-section-head small{color:var(--personal-accent);font-weight:900;letter-spacing:.16em}
+    .personal-section-head h2{margin:16px 0 0;font:900 clamp(52px,7vw,116px)/.86 var(--display);letter-spacing:-.06em}
+    .personal-section-head p{margin:0;color:var(--personal-muted);font-size:clamp(16px,1.3vw,20px)}
+    .identity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:56px}
+    .identity-card{min-height:360px;padding:30px;border:1px solid var(--personal-line);background:linear-gradient(145deg,var(--personal-panel),#0d1117);display:flex;flex-direction:column;justify-content:space-between}
+    .identity-card:nth-child(2){background:linear-gradient(145deg,#19150f,#0d1117)}
+    .identity-card:nth-child(3){background:linear-gradient(145deg,#0d1820,#0d1117)}
+    .identity-card span{color:var(--personal-accent);font-size:10px;letter-spacing:.14em}
+    .identity-card h3{margin:20px 0 12px;font:900 clamp(34px,3.4vw,62px)/.95 var(--display)}
+    .identity-card p{margin:0;color:var(--personal-muted)}
+    .identity-card a{margin-top:28px;color:var(--personal-gold);font-weight:850}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:8px;margin-top:54px}
+    .gallery-grid a{position:relative;overflow:hidden;border:1px solid var(--personal-line);background:#111}
+    .gallery-grid a:nth-child(1),.gallery-grid a:nth-child(6){grid-column:span 2;grid-row:span 2}
+    .gallery-grid img{width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.04);transition:.35s ease}
+    .gallery-grid a:hover img{transform:scale(1.025);filter:saturate(1)}
+    .gallery-grid a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 46%,rgba(0,0,0,.9))}
+    .gallery-grid span{position:absolute;z-index:2;right:16px;left:16px;bottom:14px;font-size:10px;font-weight:850;letter-spacing:.08em}
+    .partner-zone{background:linear-gradient(180deg,#0b0e13,#141922 56%,#0b0e13);border-block:1px solid var(--personal-line)}
+    .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:48px}
+    .partner-card{padding:28px;border:1px solid var(--personal-line);background:rgba(255,255,255,.025)}
+    .partner-card .status{display:inline-flex;padding:6px 9px;border:1px solid var(--personal-line);border-radius:999px;color:var(--personal-gold);font-size:9px;font-weight:900;letter-spacing:.12em}
+    .partner-card h3{margin:22px 0 10px;font:900 clamp(28px,2.4vw,44px)/1 var(--display)}
+    .partner-card p{color:var(--personal-muted)}
+    .partner-card small{display:block;margin-top:18px;color:#7f8794}
+    .system-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:50px}
+    .system-rail a{min-height:210px;padding:24px;border:1px solid var(--personal-line);background:var(--personal-panel);display:flex;flex-direction:column;justify-content:space-between;transition:.2s ease}
+    .system-rail a:hover{transform:translateY(-4px);border-color:var(--personal-accent)}
+    .system-rail span{font-size:10px;color:var(--personal-accent);letter-spacing:.13em}
+    .system-rail strong{font:900 clamp(26px,2.5vw,44px)/1 var(--display)}
+    .personal-home .archive{background:#eee7dc;color:#171716}
+    .personal-home .archive-card{background:#fffaf1}
+    .personal-home .archive-head h2{letter-spacing:-.06em}
+    .personal-home .finale{min-height:72svh}
+    .personal-home .finale-bg{background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.9)),url("/assets/igor-home-og-20260712.jpg") center/cover no-repeat}
+    @media(max-width:1100px){.personal-hero{grid-template-columns:1fr}.personal-portrait{min-height:650px}.identity-grid,.partner-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:repeat(2,1fr)}.system-rail{grid-template-columns:repeat(2,1fr)}.personal-section-head{grid-template-columns:1fr}}
+    @media(max-width:720px){.personal-hero{padding-inline:16px}.personal-hero h1{font-size:clamp(72px,24vw,124px)}.personal-proof{grid-template-columns:repeat(2,1fr)}.personal-proof div:nth-child(3){border-inline-start:0;border-top:1px solid var(--personal-line)}.personal-proof div:nth-child(4){border-top:1px solid var(--personal-line)}.personal-portrait{min-height:520px}.portrait-caption{display:block}.portrait-caption span{display:block;margin-top:10px;text-align:right}.personal-axis .personal-shell{grid-template-columns:1fr 1fr}.personal-axis div:nth-child(odd){border-inline-start:0}.gallery-grid{grid-auto-rows:190px}.gallery-grid a:nth-child(1),.gallery-grid a:nth-child(6){grid-column:span 2;grid-row:span 1}.system-rail{grid-template-columns:1fr}}
+  </style>
 </head>
-<body>
+<body class="personal-home">
   <div class="progress" aria-hidden="true"><span></span></div>
   <div class="paper-noise" aria-hidden="true"></div>
   <a class="skip" href="#main">דלג לתוכן</a>
@@ -82,205 +157,67 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="7YA — איגור ופרצקי">
       <span class="mark">7</span>
-      <span><b>7YA.IO</b><small>IGOR VEPRETSKI · LIVING OS</small></span>
+      <span><b>7YA.IO</b><small>IGOR VEPRETSKI · PERSONAL PUBLIC SYSTEM</small></span>
     </a>
     <nav aria-label="ניווט ראשי">
-      <a href="/museum/">מוזיאון תוכן</a>
-      <a href="/history/">שיר ההיסטוריה</a>
-      <a href="/create/">מלווה יצירה</a>
-      <a href="/starton/">StartOn</a>
-      <a href="/influence/">השפעה</a>
-      <a href="/evidence/">ראיות</a>
-      <a href="/7ya/">המערכת</a>
-      <a class="nav-cta" href="/talk/">דברו איתי</a>
+      <a href="#story">הסיפור</a><a href="#work">העשייה</a><a href="#partners">שותפויות</a><a href="/museum/">מוזיאון</a><a href="/evidence/">Evidence Ledger</a><a class="nav-cta" href="/contact/">בואו נבנה</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-copy reveal">
-        <p class="kicker"><span>7YA / LIVING ISSUE</span> PERSON · CONTENT · EVIDENCE · ACTION</p>
-        <h1 id="hero-title"><span>איגור</span><strong>לא תקציר.</strong></h1>
-        <p class="hero-line">כל פוסט הוא שורה. כל סרטון הוא קול. כל שיתוף הוא הד. כל מקור הוא תו שמחזיק את הסיפור.</p>
-        <p class="hero-text">אני איגור ופרצקי. 7YA מחבר את מה שפיזרתי לאורך השנים: עלייה וזהות, שירות, אבהות, פוסטים, וידאו, כתיבה, מוזיקה, StartOn, השפעה ציבורית ומערכות שבונות את הפרק הבא.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="/museum/">ראו הרבה יותר ממני</a>
-          <a class="button" href="/create/">צרו איתי את הצעד הבא</a>
-          <button class="button" type="button" data-scroll="#tracklist">עברו בין הפרקים</button>
-          <a class="button ghost" href="/evidence/">Evidence Ledger</a>
-        </div>
-        <div class="hero-facts" aria-label="צילום מצב מתוארך של הארכיון">
-          <div><b>2011</b><span>רשומת עיתונות מוקדמת</span></div>
-          <div><b>904</b><span>פוסטים בייצוא TikTok · 02.06.26</span></div>
-          <div><b>213K</b><span>צפיות בריל מתועד · 23.11.23</span></div>
-          <div><b>66</b><span>רשומות במפה הציבורית</span></div>
-        </div>
+    <section class="personal-shell personal-hero" aria-labelledby="hero-title">
+      <div class="reveal">
+        <p class="personal-eyebrow">אדם לפני מערכת · מקור לפני הגברה</p>
+        <h1 id="hero-title"><span>איגור ופרצקי</span><strong>באתי לבנות.</strong></h1>
+        <p class="personal-statement">לא תיק עבודות. לא קיר הישגים. מסלול חיים שהפך לשירות, קול ציבורי, StartOn ומערכת שמחברת סיפור לפעולה.</p>
+        <p class="personal-lead">נולדתי בחרקיב, גדלתי בישראל, עברתי דרך שירות, שטח, אבהות, יצירה ועשייה חברתית. 7YA הוא המקום שבו כל החלקים מתחברים — בלי למחוק סתירות ובלי להמציא הוכחות.</p>
+        <div class="personal-actions"><a class="primary" href="/journey/">פתחו את מסלול החיים</a><a href="/museum/">ראו את היקום הציבורי</a><a href="/starton/">הכירו את StartOn</a><a class="quiet" href="/evidence/">בדקו את המקורות</a></div>
+        <div class="personal-proof" aria-label="צילום מצב ציבורי מתוארך"><div><b>2011</b><span>מקור עיתונאי מוקדם</span></div><div><b>66</b><span>רשומות בליבת הראיות</span></div><div><b>904</b><span>פוסטים בייצוא TikTok · 02.06.26</span></div><div><b>3</b><span>שפות של יצירה ושיחה</span></div></div>
       </div>
+      <figure class="personal-portrait reveal"><picture><source srcset="/assets/igor-home-portrait-20260712.webp" type="image/webp"><img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי" width="1600" height="1600" fetchpriority="high"></picture><span class="portrait-label">IGOR VEPRETSKI · 7YA.IO</span><figcaption class="portrait-caption"><b>האדם במרכז.</b><span>PUBLIC CREATOR · SOCIAL ENTREPRENEUR · FATHER · BUILDER</span></figcaption></figure>
+    </section>
 
-      <div class="hero-collage reveal" aria-label="קולאז׳ מקורות ציבוריים של איגור ופרצקי">
-        <figure class="portrait main-portrait">
-          <picture>
-            <source srcset="/assets/igor-home-portrait-20260712.webp" type="image/webp">
-            <img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי" width="1600" height="1600" fetchpriority="high">
-          </picture>
-          <figcaption><b>IGOR VEPRETSKI</b><span>האדם במרכז המערכת</span></figcaption>
-        </figure>
-        <a class="portrait press-portrait" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noopener noreferrer">
-          <img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D850%2Cq%3D82/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="תמונת מקור מכתבת mynet חולון" loading="eager">
-          <span>PRESS · חזרה לשכונה · 2022</span>
-        </a>
-        <a class="portrait broadcast-portrait" href="https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44" target="_blank" rel="noopener noreferrer">
-          <img src="https://starton.org.il/wp-content/uploads/2022/10/Group-2.png" alt="תמונת מקור מראיון טלוויזיה על StartOn" loading="lazy">
-          <span>TELEVISION · שירות → StartOn</span>
-        </a>
-        <a class="portrait video-portrait" href="https://www.youtube.com/watch?v=EsaD-lVsKHc" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.ytimg.com/vi/EsaD-lVsKHc/hqdefault.jpg" alt="תמונת וידאו מפודקאסט ברוסית" loading="lazy">
-          <span>RU · דור 1.5</span>
-        </a>
-        <a class="portrait music-portrait" href="https://www.youtube.com/watch?v=xs_kh5F_PoE" target="_blank" rel="noopener noreferrer">
-          <img src="https://i.ytimg.com/vi/xs_kh5F_PoE/hqdefault.jpg" alt="תמונת וידאו מהקליפ כמו שאת" loading="lazy">
-          <span>MUSIC · כמו שאת</span>
-        </a>
+    <section class="personal-axis" aria-label="צירי החיים והעשייה"><div class="personal-shell"><div><b>01 / ORIGINS</b><span>עלייה, שכונה וזהות</span></div><div><b>02 / SERVICE</b><span>אחריות בעולם האמיתי</span></div><div><b>03 / VOICE</b><span>כתיבה, וידאו ומוזיקה</span></div><div><b>04 / STARTON</b><span>טכנולוגיה לנוער</span></div><div><b>05 / 7YA</b><span>סיפור, ראיה ופעולה</span></div></div></section>
+
+    <section class="personal-section" id="story" aria-labelledby="story-title">
+      <div class="personal-section-head reveal"><div><small>01 / WHO I AM</small><h2 id="story-title">לא דמות אחת.<br>אדם שלם.</h2></div><p>האתר החדש מציג את איגור בלי להפוך אותו לסיסמה. הילד שעלה, איש השטח, האב, היוצר, היזם החברתי והבונה הטכנולוגי מופיעים באותו רצף — עם תאריך, הקשר ומקור.</p></div>
+      <div class="identity-grid">
+        <article class="identity-card reveal"><div><span>HUMAN</span><h3>שורשים, אבהות וחיים אמיתיים</h3><p>הסיפור האישי אינו קישוט. הוא מסביר מאיפה מגיעה הרגישות לשייכות, שירות, נוער ואנשים שנשארים מחוץ למסגרת.</p></div><a href="/journey/">למסע המלא →</a></article>
+        <article class="identity-card reveal"><div><span>PUBLIC VOICE</span><h3>תוכן שמפסיק להיות רק פוסט</h3><p>כל פוסט הוא שורה. כל סרטון הוא קול. כל שיתוף הוא הד. שיר ההיסטוריה מחבר את החומרים למסלול שאפשר לקרוא ולבדוק.</p></div><a href="/history/">לשיר ההיסטוריה →</a></article>
+        <article class="identity-card reveal"><div><span>BUILDER</span><h3>מרעיון למערכת שעובדת</h3><p>StartOn ו־7YA מחברים בין שליחות חברתית, טכנולוגיה, יצירה, מחקר ושרשרת אמון ציבורית.</p></div><a href="/7ya/">למערכת 7YA →</a></article>
       </div>
     </section>
 
-    <div class="marquee" aria-hidden="true"><div>הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · מקור לפני הגברה · תוכן הופך לזיכרון · זיכרון הופך לפעולה · הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · </div></div>
-
-    <section class="section tracklist" id="tracklist" aria-labelledby="tracklist-title">
-      <div class="section-intro reveal">
-        <div><p class="section-number">00 / THE COMPLETE SYSTEM</p><h2 id="tracklist-title">לא אתר אחד.<br>מערכת חיה שלמה.</h2></div>
-        <p>הגרסה המלאה מחזירה את כל השכבות: זהות, שיר ההיסטוריה, מוזיאון תוכן, מלווה חיובי ליצירה, Evidence Ledger, השפעה, Radar, Pass, StartOn, מוזיקה, במה, מחקר ו־Talk.</p>
-      </div>
-      <div class="tracks reveal">
-        <a href="/museum/"><b>01</b><span>66 RECORDS</span><strong>מוזיאון התוכן הציבורי</strong></a>
-        <a href="/create/"><b>02</b><span>CLARITY · CREATE · MOMENTUM</span><strong>מלווה חיובי ליצירה והגשמה</strong></a>
-        <a href="/history/"><b>03</b><span>ORIGINS → NOW</span><strong>שיר ההיסטוריה המלא</strong></a>
-        <a href="/evidence/"><b>04</b><span>SOURCE · DATE · CONTEXT</span><strong>Evidence Ledger</strong></a>
-        <a href="/influence/"><b>05</b><span>PLATFORM → ECHO</span><strong>מפת ההשפעה וההפצה</strong></a>
-        <a href="/starton/"><b>06</b><span>SOCIAL MISSION</span><strong>StartOn</strong></a>
-        <a href="/7ya/"><b>07</b><span>LIVING OS</span><strong>כל המערכות והתהליכים</strong></a>
+    <section class="personal-section" id="work" aria-labelledby="work-title">
+      <div class="personal-section-head reveal"><div><small>02 / LIFE IN FRAMES</small><h2 id="work-title">אלבום חיים.<br>לא קולאז׳ מקרי.</h2></div><p>רגעים ציבוריים ממקורות אמיתיים: ילדות וזהות, שירות, StartOn, ראיונות, מוזיקה, קמפיינים ושיחות עומק. כל מסגרת מובילה למקור שלה.</p></div>
+      <div class="gallery-grid">
+        <a href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noopener noreferrer"><img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D1200%2Cq%3D84/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="איגור ופרצקי חוזר לשכונה" loading="lazy"><span>PRESS · חוזר לשכונה · 2022</span></a>
+        <a href="https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44" target="_blank" rel="noopener noreferrer"><img src="https://starton.org.il/wp-content/uploads/2022/10/Group-2.png" alt="ראיון חדשות 13 על StartOn" loading="lazy"><span>TELEVISION · STARTON</span></a>
+        <a href="https://www.youtube.com/watch?v=EsaD-lVsKHc" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/EsaD-lVsKHc/maxresdefault.jpg" alt="שיחה ברוסית על דור 1.5" loading="lazy"><span>RU · ORIGINS</span></a>
+        <a href="https://www.youtube.com/watch?v=xs_kh5F_PoE" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/xs_kh5F_PoE/maxresdefault.jpg" alt="קליפ מוזיקלי כמו שאת" loading="lazy"><span>MUSIC · כמו שאת</span></a>
+        <a href="https://www.youtube.com/watch?v=3h-oEuW8GJI" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/3h-oEuW8GJI/maxresdefault.jpg" alt="שיחה ציבורית על פסטיבל הנובה" loading="lazy"><span>PUBLIC REFLECTION</span></a>
+        <a href="https://www.youtube.com/watch?v=U2d_hulZAC0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/U2d_hulZAC0/hqdefault.jpg" alt="ראיון על נוער בסיכון" loading="lazy"><span>STARTON · YOUTH</span></a>
+        <a href="https://www.youtube.com/watch?v=v7158BaZkiQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/v7158BaZkiQ/hqdefault.jpg" alt="קמפיין ציבורי בחולון" loading="lazy"><span>PUBLIC CAMPAIGN</span></a>
+        <a href="https://www.youtube.com/watch?v=pzOlz8kGmeU" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/pzOlz8kGmeU/hqdefault.jpg" alt="וידאו ציבורי של איגור ופרצקי" loading="lazy"><span>VIDEO ARCHIVE</span></a>
+        <a href="/igor-vepretski/"><img src="/assets/igor-home-og-20260712.jpg" alt="דיוקן ציבורי של איגור ופרצקי" loading="lazy"><span>IGOR · PUBLIC IDENTITY</span></a>
+        <a href="/museum/"><img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי במוזיאון התוכן" loading="lazy"><span>PUBLIC CONTENT MUSEUM</span></a>
       </div>
     </section>
 
-    <section class="act" id="origins" aria-labelledby="origins-title">
-      <div class="act-sticky reveal">
-        <span class="act-year">ACT I · ORIGINS</span>
-        <h2 id="origins-title">ההיסטוריה נכנסה לישראל בתוך מזוודות.</h2>
-        <p>חרקיב, עלייה בילדות, זהות בין עברית לרוסית וחיים בשכונה. החומרים האלה חוזרים בפוסטים על דור 1.5, שייכות, פערים והיכולת לתרגם בין עולמות.</p>
-        <a href="https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html" target="_blank" rel="noopener noreferrer">למקור העיתונאי המוקדם ↗</a>
-      </div>
-      <div class="stage-reel">
-        <a class="stage-item reveal" href="https://www.youtube.com/watch?v=EsaD-lVsKHc" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/EsaD-lVsKHc/maxresdefault.jpg" alt="פודקאסט ברוסית על דור 1.5" loading="lazy"><div><small>RUSSIAN · ORIGINS</small><h3>Что такое быть ребенком-репатриантом</h3></div></a>
-        <a class="stage-item reveal" href="https://www.facebook.com/lan2lan.sta2sim/posts/812358646926466/" target="_blank" rel="noopener noreferrer"><img src="/assets/igor-home-og-20260712.jpg" alt="תצוגת מקור לפוסט על עלייה וזהות" loading="lazy"><div><small>FACEBOOK · IDENTITY</small><h3>בשנות ה־90 קראו לי ״רוסי מסריח״</h3></div></a>
-      </div>
-    </section>
+    <section class="partner-zone" id="partners" aria-labelledby="partners-title"><div class="personal-section"><div class="personal-section-head reveal"><div><small>03 / RELATIONSHIP DESK</small><h2 id="partners-title">שותפות בלי ניפוח.</h2></div><p>הקשרים מוצגים לפי מצבם האמיתי במיילים: שותף פעיל, שיחה מתמשכת, הזמנה להגיש או שיח מוסדי. אין הפיכת התכתבות ללוגו ניצחון.</p></div><div class="partner-grid"><article class="partner-card reveal"><span class="status">APPLICATION OPEN · JUL 2026</span><h3>AJCatalyst Lab</h3><p>התקבלה הזמנה להגיש מועמדות למחזור הבא לאחר פנייה לפיילוט ישראלי של חוסן דיגיטלי לנוער.</p><small>סטטוס ציבורי מדויק: הזדמנות פעילה, לא שותפות חתומה.</small></article><article class="partner-card reveal"><span class="status">ONGOING RELATIONSHIP</span><h3>ארץ־עיר</h3><p>קיים רצף שיחות ועדכונים סביב StartOn, כולל חידוש קשר ותיאום שיחת היכרות ביוני 2026.</p><small>סטטוס ציבורי מדויק: קשר עבודה ושיח מתמשך.</small></article><article class="partner-card reveal"><span class="status">INSTITUTIONAL CONVERSATION</span><h3>עיריית תל אביב־יפו</h3><p>תועדה שיחה מוסדית סביב הקמת מרחב טכנולוגי לנוער בסיכון וחיבור לגורמי חינוך, רווחה וקידום נוער.</p><small>סטטוס ציבורי מדויק: תהליך בחינה ושיחה, לא התחייבות ביצוע.</small></article></div><div class="personal-actions reveal"><a class="primary" href="/contact/">הציעו שותפות מעשית</a><a href="/starton/">ראו את מודל StartOn</a><a class="quiet" href="/evidence/">בדקו את מסגרת האמינות</a></div></div></section>
 
-    <section class="act dark-act" id="voice" aria-labelledby="voice-title">
-      <div class="act-sticky reveal">
-        <span class="act-year">ACT II · PUBLIC VOICE</span>
-        <h2 id="voice-title">פוסטים שהפסיקו להיות רק שלי.</h2>
-        <p>אבהות, שירות, עלייה, יוקר מחיה, הונאת קשישים ואנשים שפגשתי. ההדהודים החיצוניים נשמרים כהפצה — לא כהוכחה אוטומטית להשפעה.</p>
-        <a href="/museum/">לכל אשכולות התוכן →</a>
-      </div>
-      <div class="viral-wall">
-        <a class="viral-card large reveal" href="https://www.facebook.com/lan2lan.sta2sim/posts/760747985420866/" target="_blank" rel="noopener noreferrer"><span>FB101 · TIER 1 · SNAPSHOT 08.06.26</span><blockquote>״אבא מושלם — זה אבא ששם״</blockquote><p>פוסט אישי שהפך לאשכול הפצה ציבורי בכמה פלטפורמות.</p></a>
-        <a class="viral-card reveal" href="https://www.facebook.com/lan2lan.sta2sim/posts/igorvepretski-%D7%A1%D7%91%D7%AA%D7%90-%D7%A9%D7%9C%D7%99-%D7%A0%D7%A4%D7%9C%D7%94-%D7%A7%D7%95%D7%A8%D7%91%D7%9F-%D7%9C%D7%94%D7%95%D7%A0%D7%90%D7%94%D7%90%D7%91%D7%9C-%D7%9C%D7%A2%D7%95%D7%92%D7%9E%D7%AA-%D7%94%D7%A0%D7%A4%D7%A9-%D7%94%D7%A2%D7%99%D7%A7%D7%A8%D7%99%D7%AA-%D7%91%D7%9B%D7%95%D7%9C-%D7%94%D7%A1%D7%99%D7%A4%D7%95%D7%A8-%D7%94%D7%96%D7%94-/752380882924243/" target="_blank" rel="noopener noreferrer"><span>FB109 · PUBLIC ADVOCACY</span><blockquote>סבתא שלי נפלה קורבן להונאה</blockquote><p>סיפור אנושי שהפך לשיחה על אחריות מערכתית.</p></a>
-        <a class="viral-card reveal" href="https://www.facebook.com/share/p/8re8YuCrThhjPEse/" target="_blank" rel="noopener noreferrer"><span>FB105 · SERVICE</span><blockquote>להיות שוטר בשומר חומות</blockquote><p>עדות אישית ללא מידע מבצעי.</p></a>
-      </div>
-    </section>
+    <section class="personal-section" aria-labelledby="system-title"><div class="personal-section-head reveal"><div><small>04 / ONE PRODUCTION</small><h2 id="system-title">דומיין אחד.<br>מערכת אחת.</h2></div><p>כל שכבה ציבורית חיה תחת 7ya.io. מאגרים, previews וכלי ניסוי אינם מוצגים כ־Production. האתר הוא נקודת הכניסה; המקורות והקוד מחזיקים את האמון.</p></div><div class="system-rail"><a href="/museum/"><span>PUBLIC UNIVERSE</span><strong>מוזיאון התוכן</strong></a><a href="/journey/"><span>HUMAN STORY</span><strong>מסלול החיים</strong></a><a href="/starton/"><span>SOCIAL ACTION</span><strong>StartOn</strong></a><a href="/evidence/"><span>TRUST LAYER</span><strong>Evidence Ledger</strong></a><a href="/influence/"><span>DISTRIBUTION</span><strong>השפעה והדהוד</strong></a><a href="/create/"><span>CREATION</span><strong>מלווה יצירה</strong></a><a href="/talk/"><span>CONVERSATION</span><strong>Talk</strong></a><a href="/contact/"><span>PARTNERSHIP</span><strong>בואו נבנה</strong></a></div></section>
 
-    <section class="act starton-act" id="starton" aria-labelledby="starton-title">
-      <div class="act-sticky reveal">
-        <span class="act-year">ACT III · STARTON</span>
-        <h2 id="starton-title">לחזור לשכונה. לא כדי להצטלם — כדי לבנות.</h2>
-        <p>StartOn הוא השליחות החברתית: טכנולוגיה, יצירה, מנטורים ושייכות לנוער — תוך הפרדה בין חזון, פיילוט ותוצאה מוכחת.</p>
-        <a href="/starton/">ליקום StartOn →</a>
-      </div>
-      <div class="starton-grid">
-        <a class="media-feature wide reveal" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noopener noreferrer"><img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D1200%2Cq%3D84/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="תמונת מקור מכתבת mynet" loading="lazy"><div><small>PR002 · MYNET · 13.05.2022</small><h3>חוזר לשכונה</h3><p>צילום: קובי קואנקס · מקור חיצוני</p></div></a>
-        <a class="media-feature reveal" href="https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44" target="_blank" rel="noopener noreferrer"><img src="https://starton.org.il/wp-content/uploads/2022/10/Group-2.png" alt="ראיון חדשות 13 על StartOn" loading="lazy"><div><small>TV001 · חדשות 13</small><h3>משירות לשליחות</h3><p>ראיון טלוויזיה · 05:57</p></div></a>
-        <a class="media-feature reveal" href="https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/" target="_blank" rel="noopener noreferrer"><img src="https://starton.org.il/wp-content/uploads/2022/10/8ce97d_21be9e2c92e343eeb426c535c82efbf3_mv2-1002x1024.jpg" alt="דיוקן ציבורי באתר StartOn" loading="lazy"><div><small>PC001 · MINDSET</small><h3>מנער בסיכון ליזם חברתי</h3><p>שיחת עומק על הדרך והמערכת.</p></div></a>
-      </div>
-    </section>
+    <section class="archive section" id="archive" aria-labelledby="archive-title"><div class="archive-head reveal"><div><p class="section-number">05 / PUBLIC CONTENT MAP</p><h2 id="archive-title">הסיפור פתוח לבדיקה.</h2><p>ליבת הארכיון כוללת 66 רשומות מאומתות, לצד שכבת Public Universe מתרחבת. חפשו לפי פלטפורמה, נושא, שפה או תקופה.</p></div><div class="archive-count"><b id="recordCount">66</b><span>רשומות בליבה</span></div></div><div class="archive-tools reveal"><label class="search-field"><span>חיפוש בארכיון</span><input id="archiveSearch" type="search" placeholder="אבהות, StartOn, דור 1.5, חינוך..." autocomplete="off"></label><div class="filters" role="group" aria-label="סינון לפי פלטפורמה"><button class="active" data-filter="All">הכול</button><button data-filter="Facebook">Facebook</button><button data-filter="TikTok">TikTok</button><button data-filter="Instagram">Instagram</button><button data-filter="YouTube">YouTube</button><button data-filter="Press">עיתונות</button><button data-filter="Writing">כתיבה</button><button data-filter="Podcast">פודקאסט</button><button data-filter="Music">מוזיקה</button><button data-filter="LinkedIn">LinkedIn</button><button data-filter="Television">טלוויזיה</button></div></div><div class="archive-grid" id="archiveGrid" aria-live="polite"></div><div class="archive-empty" id="archiveEmpty" hidden>לא נמצאו רשומות מתאימות.</div><div class="archive-links"><a href="/museum/">למוזיאון החזותי →</a><a href="/history/">לשיר ההיסטוריה →</a><a href="/evidence/">ל־Evidence Ledger →</a></div></section>
 
-    <section class="act creator-act" id="creator" aria-labelledby="creator-title">
-      <div class="act-sticky reveal">
-        <span class="act-year">ACT IV · CREATE</span>
-        <h2 id="creator-title">הפלטפורמה מחלקת נראות. היוצר בונה משמעות.</h2>
-        <p>7YA Create הופך בלבול לכיוון, מקור לרעיון, ורעיון לצעד בר־ביצוע. זהו מלווה חיובי — לא גורו, לא הבטחת קסם ולא מנגנון שמפרסם בלי אישור.</p>
-        <p><a href="https://www.zman.co.il/352289/" target="_blank" rel="noopener noreferrer">טור המקור: כללי המשחק השתנו — חינוך בעידן המודרני ↗</a></p>
-        <a href="/create/">פתחו את המלווה החיובי →</a>
-      </div>
-      <div class="format-grid">
-        <a class="format-card visual reveal" href="https://www.youtube.com/watch?v=xs_kh5F_PoE" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/xs_kh5F_PoE/maxresdefault.jpg" alt="קליפ כמו שאת" loading="lazy"><div><small>MUSIC VIDEO</small><h3>כמו שאת</h3><p>מוזיקה כחלק מהזהות היצירתית.</p></div></a>
-        <a class="format-card visual reveal" href="https://www.youtube.com/watch?v=3h-oEuW8GJI" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/3h-oEuW8GJI/maxresdefault.jpg" alt="שיחה ציבורית על פסטיבל הנובה" loading="lazy"><div><small>PUBLIC REFLECTION</small><h3>מהבריחה מפסטיבל הנובה, להתפכחות</h3></div></a>
-        <a class="format-card visual reveal" href="https://www.youtube.com/watch?v=U2d_hulZAC0" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/U2d_hulZAC0/hqdefault.jpg" alt="ראיון על נוער בסיכון" loading="lazy"><div><small>STARTON · YOUTH</small><h3>מה עובר על נוער בסיכון?</h3></div></a>
-        <a class="format-card visual reveal" href="https://www.youtube.com/watch?v=v7158BaZkiQ" target="_blank" rel="noopener noreferrer"><img src="https://i.ytimg.com/vi/v7158BaZkiQ/hqdefault.jpg" alt="סרטון ציבורי מתקופת הבחירות בחולון" loading="lazy"><div><small>PUBLIC CAMPAIGN ARCHIVE</small><h3>חולון ביתנו</h3></div></a>
-      </div>
-    </section>
+    <section class="proof section" aria-labelledby="proof-title"><div class="proof-copy reveal"><p class="section-number">EVIDENCE BEFORE AMPLIFICATION</p><h2 id="proof-title">אישי מאוד.<br>מדויק מאוד.</h2><p>7YA אינו מנסה להפוך כל זיכרון לעובדה חיצונית. מקור, תאריך, הקשר ורמת אימות נשמרים לצד הסיפור. כך אפשר לבנות נוכחות ציבורית יפה בלי לוותר על אמת.</p><div class="personal-actions"><a class="primary" href="/evidence/">פתחו Evidence Ledger</a><a href="/contact/">שלחו תיקון או מקור</a></div></div><div class="tier-list reveal"><article><b>TIER 1</b><h3>מקור חיצוני</h3><p>עיתונות, שידור, פודקאסט או גוף ציבורי אחר.</p></article><article><b>TIER 2</b><h3>מקור רשמי</h3><p>פרופיל או פרסום ציבורי בשליטת הזהות.</p></article><article><b>TIER 3</b><h3>Export / Snapshot</h3><p>נתון מתוארך מייצוא חשבון או צילום מצב.</p></article><article><b>OPEN</b><h3>תיקון והקשר</h3><p>מקור חדש מתווסף בלי למחוק את היסטוריית השינוי.</p></article></div></section>
 
-    <section class="archive section" id="archive" aria-labelledby="archive-title">
-      <div class="archive-head reveal">
-        <div>
-          <p class="section-number">ACT V · THE PUBLIC CONTENT MAP</p>
-          <h2 id="archive-title">הפירורים הפכו לארכיון.</h2>
-          <p>66 רשומות פתיחה, מחולקות בין מקור חיצוני, מקור רשמי ו־snapshot. חפשו לפי פלטפורמה, נושא, שפה או תקופה — או עברו למוזיאון החזותי המלא.</p>
-        </div>
-        <div class="archive-count"><b id="recordCount">66</b><span>רשומות במפה</span></div>
-      </div>
-      <div class="archive-tools reveal">
-        <label class="search-field"><span>חיפוש בארכיון</span><input id="archiveSearch" type="search" placeholder="אבהות, דור 1.5, StartOn, חינוך..." autocomplete="off"></label>
-        <div class="filters" role="group" aria-label="סינון לפי פלטפורמה">
-          <button class="active" data-filter="All">הכול</button><button data-filter="Facebook">Facebook</button><button data-filter="TikTok">TikTok</button><button data-filter="Instagram">Instagram</button><button data-filter="YouTube">YouTube</button><button data-filter="Press">עיתונות</button><button data-filter="Writing">כתיבה</button><button data-filter="Podcast">פודקאסט</button><button data-filter="Music">מוזיקה</button><button data-filter="LinkedIn">LinkedIn</button><button data-filter="Television">טלוויזיה</button>
-        </div>
-      </div>
-      <div class="archive-grid" id="archiveGrid" aria-live="polite"></div>
-      <div class="archive-empty" id="archiveEmpty" hidden>לא נמצאו רשומות מתאימות.</div>
-      <div class="archive-links"><a href="/museum/">למוזיאון התוכן החזותי →</a><a href="/history/">למפה הכרונולוגית →</a><a href="/knowledge/history-song-records-5.json">לשכבת המקורות החדשה JSON →</a></div>
-    </section>
-
-    <section class="proof section" id="proof" aria-labelledby="proof-title">
-      <div class="proof-copy reveal">
-        <p class="section-number">EVIDENCE BEFORE AMPLIFICATION</p>
-        <h2 id="proof-title">יופי פותח את הדלת. מקור מחזיק אותה פתוחה.</h2>
-        <p>כל מספר מקבל תאריך. כל כרטיס מקבל מקור. תצוגות־מקור מעוצבות אינן מוצגות כצילום מסך ילידי. תיקונים מתווספים בלי למחוק את ההיסטוריה.</p>
-        <div class="hero-actions"><a class="button primary" href="/evidence/">פתחו Evidence Ledger</a><a class="button" href="/7ya/">ראו את כל מערכת 7YA</a><a class="button" href="/contact/">שלחו תיקון מקור</a></div>
-      </div>
-      <div class="tier-list reveal">
-        <article><b>TIER 1</b><h3>מקור חיצוני</h3><p>עיתונות, שידור, פודקאסט או הפצה של גורם ציבורי אחר.</p></article>
-        <article><b>TIER 2</b><h3>מקור רשמי</h3><p>פרופיל, ערוץ או פוסט ציבורי שנמצא בשליטת הזהות.</p></article>
-        <article><b>TIER 3</b><h3>Export / Snapshot</h3><p>נתון מתוארך מייצוא חשבון או ממסך אנליטיקה.</p></article>
-        <article><b>OPEN</b><h3>תיקון והקשר</h3><p>מקור חדש, תאריך מדויק או תיקון נשמרים עם היסטוריית שינוי.</p></article>
-      </div>
-    </section>
-
-    <section class="finale" aria-labelledby="finale-title">
-      <div class="finale-bg" aria-hidden="true"></div>
-      <div>
-        <p>IGOR VEPRETSKI · STARTON · 7YA LIVING OS</p>
-        <h2 id="finale-title">לא אתר על העבר.<br>מערכת שממשיכה לכתוב.</h2>
-        <p>הפרק הבא מחבר את הארכיון ליצירה, שיחה, שותפות, StartOn, מחקר ומערכות 7YA — בלי למחוק את האדם שהגיע לפני המערכת.</p>
-        <div class="hero-actions"><a class="button primary" href="/create/">מצאו את הקול והצעד שלכם</a><a class="button" href="/museum/">ראו עוד ממני</a><a class="button" href="/talk/">התחילו שיחה</a><a class="button ghost" href="/journey/">למסע החיים</a></div>
-      </div>
-    </section>
+    <section class="finale" aria-labelledby="finale-title"><div class="finale-bg" aria-hidden="true"></div><div><p>IGOR VEPRETSKI · STARTON · 7YA.IO</p><h2 id="finale-title">הפרק הבא<br>צריך לקרות בעולם.</h2><p>שותפות טובה אינה עוד לוגו. היא מקום, אנשים, משאבים, אחריות ותוצאה שאפשר לראות.</p><div class="personal-actions" style="justify-content:center"><a class="primary" href="/contact/">בואו נבנה יחד</a><a href="/starton/">StartOn</a><a href="/museum/">היקום הציבורי</a></div></div></section>
   </main>
 
-  <footer class="site-footer">
-    <div><b>IGOR VEPRETSKI / 7YA.IO</b><span>PERSON · CONTENT · EVIDENCE · ACTION</span></div>
-    <div class="footer-links"><a href="/museum/">מוזיאון</a><a href="/create/">יצירה</a><a href="/starton/">StartOn</a><a href="/influence/">השפעה</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></div>
-    <div><span>RELEASE 2026.07.15</span></div>
-  </footer>
+  <footer class="site-footer"><div><b>IGOR VEPRETSKI / 7YA.IO</b><span>PERSON · STORY · EVIDENCE · ACTION</span></div><div class="footer-links"><a href="/journey/">מסע</a><a href="/museum/">מוזיאון</a><a href="/starton/">StartOn</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></div><div><span>PRODUCTION · 2026.07.15</span></div></footer>
 
   <script src="/scripts/history-song-20260714.js" defer></script>
-  <script>
-    (() => {
-      const cleanupKey = '7ya-history-song-cache-20260714';
-      try { if (localStorage.getItem(cleanupKey) === '1') return; } catch {}
-      const tasks = [];
-      if ('serviceWorker' in navigator) tasks.push(navigator.serviceWorker.getRegistrations().then(registrations => Promise.all(registrations.map(registration => registration.unregister()))));
-      if ('caches' in window) tasks.push(caches.keys().then(keys => Promise.all(keys.map(key => caches.delete(key)))));
-      Promise.allSettled(tasks).finally(() => { try { localStorage.setItem(cleanupKey, '1'); } catch {} });
-    })();
-  </script>
+  <script>(()=>{const cleanupKey='7ya-personal-production-20260715';try{if(localStorage.getItem(cleanupKey)==='1')return}catch{}const tasks=[];if('serviceWorker'in navigator)tasks.push(navigator.serviceWorker.getRegistrations().then(registrations=>Promise.all(registrations.map(registration=>registration.unregister()))));if('caches'in window)tasks.push(caches.keys().then(keys=>Promise.all(keys.map(key=>caches.delete(key)))));Promise.allSettled(tasks).finally(()=>{try{localStorage.setItem(cleanupKey,'1')}catch{}})})();</script>
 </body>
 </html>
