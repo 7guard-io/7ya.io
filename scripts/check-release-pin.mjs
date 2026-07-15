@@ -48,6 +48,25 @@ for (const blockedPath of ['admin/', 'admin/private.json', 'api/private']) {
   }
 }
 
+const originalFetch = globalThis.fetch;
+globalThis.fetch = async url => {
+  if (String(url).endsWith('/missing-route/index.html')) return new Response('', { status: 404 });
+  if (String(url).endsWith('/404.html')) return new Response('<!doctype html><title>Not Found</title>', { status: 200 });
+  throw new Error(`Unexpected test fetch: ${url}`);
+};
+try {
+  const missing = await invokeProxy('missing-route/');
+  if (
+    missing.statusCode !== 404 ||
+    missing.headers['x-robots-tag'] !== 'noindex, nofollow' ||
+    missing.headers['cache-control'] !== 'no-store'
+  ) {
+    failures.push('canonical proxy does not mark controlled HTML 404 responses noindex and no-store');
+  }
+} finally {
+  globalThis.fetch = originalFetch;
+}
+
 if (failures.length) {
   failures.forEach(message => console.error(`FAIL ${message}`));
   console.error(`RELEASE_PIN_CONTRACT: FAIL (${failures.length})`);

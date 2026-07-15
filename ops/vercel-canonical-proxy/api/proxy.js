@@ -109,8 +109,13 @@ function setResponseHeaders(response, file, statusCode) {
   response.setHeader('X-7YA-Source-Path', file);
 
   if (isHtml) {
-    response.setHeader('X-Robots-Tag', 'index, follow');
-    response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400');
+    if (statusCode >= 400) {
+      response.setHeader('X-Robots-Tag', 'noindex, nofollow');
+      response.setHeader('Cache-Control', 'no-store');
+    } else {
+      response.setHeader('X-Robots-Tag', 'index, follow');
+      response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400');
+    }
   } else if (IMMUTABLE_ASSET_TYPES.has(type)) {
     response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   } else {
