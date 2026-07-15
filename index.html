@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>איגור ופרצקי | 7YA — שיר ההיסטוריה ומערכת היצירה</title>
-  <meta name="description" content="העולם הציבורי של איגור ופרצקי: 66 רשומות תוכן, מוזיאון פוסטים, שיר ההיסטוריה, StartOn, Evidence Ledger, השפעה, מוזיקה ומלווה חיובי ליצירה ולהגשמה מעשית.">
+  <title>איגור ופרצקי | 7YA — אדם, מסע, השפעה ומערכת חיה</title>
+  <meta name="description" content="הבית הדיגיטלי האישי של איגור ופרצקי: מסע חיים, שירות, יצירה, StartOn, 7YA, מוזיאון תוכן ו-Evidence Ledger מבוסס מקורות.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#070706">
+  <meta name="theme-color" content="#050a12">
   <meta name="color-scheme" content="dark">
-  <meta name="7ya-build" content="living-os-20260715-2">
+  <meta name="7ya-build" content="igor-personal-living-os-20260715-1">
   <meta name="7ya-experience" content="history-song-editorial-archive-20260714-1">
+  <meta name="7ya-personal-experience" content="cinematic-personal-command-home-20260715-1">
   <link rel="canonical" href="https://7ya.io/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/igor-home-portrait-20260712.webp" as="image" type="image/webp" fetchpriority="high">
@@ -17,17 +18,18 @@
   <link rel="preconnect" href="https://i.ytimg.com">
   <link rel="preconnect" href="https://starton.org.il">
   <link rel="stylesheet" href="/styles/history-song-20260714.css?v=1">
+  <link rel="stylesheet" href="/styles/igor-personal-home-20260715.css?v=1">
 
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA.IO">
   <meta property="og:locale" content="he_IL">
-  <meta property="og:title" content="Igor Vepretski — 7YA Living OS">
-  <meta property="og:description" content="Every post is a line. Every source holds the story. Every idea can become the next practical creation.">
+  <meta property="og:title" content="Igor Vepretski — 7YA Personal Living OS">
+  <meta property="og:description" content="The person, the journey, the public archive and the systems built from it.">
   <meta property="og:url" content="https://7ya.io/">
   <meta property="og:image" content="https://7ya.io/assets/igor-home-og-20260712.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Igor Vepretski — 7YA Living OS">
-  <meta name="twitter:description" content="A sourced public archive, content museum and positive creator companion.">
+  <meta name="twitter:title" content="Igor Vepretski — 7YA Personal Living OS">
+  <meta name="twitter:description" content="A personal, sourced public archive and practical creation system.">
   <meta name="twitter:image" content="https://7ya.io/assets/igor-home-og-20260712.jpg">
 
   <script type="application/ld+json">
@@ -43,12 +45,12 @@
         "publisher":{"@id":"https://7ya.io/#igor"}
       },
       {
-        "@type":"CollectionPage",
-        "@id":"https://7ya.io/#history-song",
-        "name":"Igor Vepretski — The History Song and Living OS",
+        "@type":"ProfilePage",
+        "@id":"https://7ya.io/#profile",
+        "name":"Igor Vepretski — Personal Living OS",
         "url":"https://7ya.io/",
-        "description":"A sourced public archive, content museum and practical creation system.",
-        "about":{"@id":"https://7ya.io/#igor"},
+        "description":"A personal, sourced public archive and practical creation system.",
+        "mainEntity":{"@id":"https://7ya.io/#igor"},
         "isPartOf":{"@id":"https://7ya.io/#website"}
       },
       {
@@ -74,7 +76,7 @@
   }
   </script>
 </head>
-<body>
+<body class="home-personal">
   <div class="progress" aria-hidden="true"><span></span></div>
   <div class="paper-noise" aria-hidden="true"></div>
   <a class="skip" href="#main">דלג לתוכן</a>
@@ -82,12 +84,12 @@
   <header class="site-header">
     <a class="wordmark" href="/" aria-label="7YA — איגור ופרצקי">
       <span class="mark">7</span>
-      <span><b>7YA.IO</b><small>IGOR VEPRETSKI · LIVING OS</small></span>
+      <span><b>7YA.IO</b><small>IGOR VEPRETSKI · PERSONAL LIVING OS</small></span>
     </a>
     <nav aria-label="ניווט ראשי">
-      <a href="/museum/">מוזיאון תוכן</a>
-      <a href="/history/">שיר ההיסטוריה</a>
-      <a href="/create/">מלווה יצירה</a>
+      <a href="#person">האדם</a>
+      <a href="/journey/">המסע</a>
+      <a href="/museum/">מוזיאון</a>
       <a href="/starton/">StartOn</a>
       <a href="/influence/">השפעה</a>
       <a href="/evidence/">ראיות</a>
@@ -97,18 +99,20 @@
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero personal-hero" aria-labelledby="hero-title">
       <div class="hero-copy reveal">
-        <p class="kicker"><span>7YA / LIVING ISSUE</span> PERSON · CONTENT · EVIDENCE · ACTION</p>
-        <h1 id="hero-title"><span>איגור</span><strong>לא תקציר.</strong></h1>
-        <p class="hero-line">כל פוסט הוא שורה. כל סרטון הוא קול. כל שיתוף הוא הד. כל מקור הוא תו שמחזיק את הסיפור.</p>
-        <p class="hero-text">אני איגור ופרצקי. 7YA מחבר את מה שפיזרתי לאורך השנים: עלייה וזהות, שירות, אבהות, פוסטים, וידאו, כתיבה, מוזיקה, StartOn, השפעה ציבורית ומערכות שבונות את הפרק הבא.</p>
+        <p class="kicker"><span>7YA / PERSONAL COMMAND HOME</span> PERSON · STORY · PROOF · ACTION</p>
+        <h1 id="hero-title"><span>IGOR</span><strong>VEPRETSKI</strong></h1>
+        <p class="hero-line">בונה מערכות. שליח ציבור. מייסד StartOn ו־7YA.</p>
+        <p class="hero-text">אני איגור ופרצקי. לא נולדתי לתוך מסלול מוכן — בניתי מסלול מתוך עלייה, שכונה, שירות, אבהות, יצירה וחזרה אל המקומות שבהם מערכת טובה יכולה לשנות חיים.</p>
         <div class="hero-actions">
-          <a class="button primary" href="/museum/">ראו הרבה יותר ממני</a>
-          <a class="button" href="/create/">צרו איתי את הצעד הבא</a>
-          <button class="button" type="button" data-scroll="#tracklist">עברו בין הפרקים</button>
+          <a class="button primary" href="/journey/">הסיפור שלי</a>
+          <a class="button" href="/influence/">השפעה מתועדת</a>
+          <a class="button" href="/museum/">ראו הרבה יותר ממני</a>
           <a class="button ghost" href="/evidence/">Evidence Ledger</a>
+          <button class="button" type="button" data-scroll="#tracklist">עברו בין הפרקים</button>
         </div>
+        <p class="trust-line">כל פוסט הוא שורה. כל מקור הוא עוגן. כל רעיון צריך להפוך לצעד.</p>
         <div class="hero-facts" aria-label="צילום מצב מתוארך של הארכיון">
           <div><b>2011</b><span>רשומת עיתונות מוקדמת</span></div>
           <div><b>904</b><span>פוסטים בייצוא TikTok · 02.06.26</span></div>
@@ -123,7 +127,7 @@
             <source srcset="/assets/igor-home-portrait-20260712.webp" type="image/webp">
             <img src="/assets/igor-home-portrait-20260712.jpg" alt="איגור ופרצקי" width="1600" height="1600" fetchpriority="high">
           </picture>
-          <figcaption><b>IGOR VEPRETSKI</b><span>האדם במרכז המערכת</span></figcaption>
+          <figcaption><b>IGOR VEPRETSKI</b><span>יופי, אופי והאדם במרכז המערכת</span></figcaption>
         </figure>
         <a class="portrait press-portrait" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noopener noreferrer">
           <img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D850%2Cq%3D82/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="תמונת מקור מכתבת mynet חולון" loading="eager">
@@ -144,25 +148,42 @@
       </div>
     </section>
 
-    <div class="marquee" aria-hidden="true"><div>הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · מקור לפני הגברה · תוכן הופך לזיכרון · זיכרון הופך לפעולה · הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · </div></div>
+    <div class="marquee" aria-hidden="true"><div>הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · אדם לפני מותג · מקור לפני הגברה · תוכן הופך לזיכרון · זיכרון הופך לפעולה · הפלטפורמה מחלקת נראות. היוצר בונה משמעות. · </div></div>
 
-    <section class="section tracklist" id="tracklist" aria-labelledby="tracklist-title">
-      <div class="section-intro reveal">
-        <div><p class="section-number">00 / THE COMPLETE SYSTEM</p><h2 id="tracklist-title">לא אתר אחד.<br>מערכת חיה שלמה.</h2></div>
-        <p>הגרסה המלאה מחזירה את כל השכבות: זהות, שיר ההיסטוריה, מוזיאון תוכן, מלווה חיובי ליצירה, Evidence Ledger, השפעה, Radar, Pass, StartOn, מוזיקה, במה, מחקר ו־Talk.</p>
+    <section class="identity-deck section" id="person" aria-labelledby="person-title">
+      <div class="identity-head reveal">
+        <div>
+          <p class="section-number">01 / THE PERSON, NOT THE TEMPLATE</p>
+          <h2 id="person-title">יותר אישי.<br>יותר חי. יותר אני.</h2>
+        </div>
+        <p>לא עוד דף נחיתה גנרי. זהו בית דיגיטלי שמחבר את האדם, הדרך, הקול הציבורי, היצירה והמערכות — בלי למחוק מורכבות ובלי להמציא הוכחות.</p>
       </div>
-      <div class="tracks reveal">
-        <a href="/museum/"><b>01</b><span>66 RECORDS</span><strong>מוזיאון התוכן הציבורי</strong></a>
-        <a href="/create/"><b>02</b><span>CLARITY · CREATE · MOMENTUM</span><strong>מלווה חיובי ליצירה והגשמה</strong></a>
-        <a href="/history/"><b>03</b><span>ORIGINS → NOW</span><strong>שיר ההיסטוריה המלא</strong></a>
-        <a href="/evidence/"><b>04</b><span>SOURCE · DATE · CONTEXT</span><strong>Evidence Ledger</strong></a>
-        <a href="/influence/"><b>05</b><span>PLATFORM → ECHO</span><strong>מפת ההשפעה וההפצה</strong></a>
-        <a href="/starton/"><b>06</b><span>SOCIAL MISSION</span><strong>StartOn</strong></a>
-        <a href="/7ya/"><b>07</b><span>LIVING OS</span><strong>כל המערכות והתהליכים</strong></a>
+      <div class="identity-cards reveal">
+        <article class="identity-card blue"><span>BUILDER</span><h3>אני באתי לבנות.</h3><p>להפוך בעיה למבנה, רעיון למסלול ומסלול למערכת שעובדת גם אחרי שהפוסט נעלם.</p></article>
+        <article class="identity-card photo-card"><img src="/assets/igor-home-og-20260712.jpg" alt="איגור ופרצקי — דיוקן ציבורי" loading="lazy"><div><span>PERSON</span><h3>הפנים לא קישוט.</h3><p>הן נושאות סיפור, אחריות והקשר.</p></div></article>
+        <article class="identity-card cream"><span>SERVICE</span><h3>לפני החשיפה היה שירות.</h3><p>הנוכחות הציבורית נבנתה אחרי שנים של פעולה, שטח ואחריות — לא במקום שלהם.</p></article>
+        <article class="identity-card glass"><span>VOICE</span><h3>לא רק צפיות. השפעה.</h3><p>כל מספר מקבל תאריך, כל טענה מקבלת מקור, וכל תהודה נשמרת בנפרד מתוצאה מוכחת.</p></article>
       </div>
     </section>
 
-    <section class="act" id="origins" aria-labelledby="origins-title">
+    <section class="section tracklist" id="tracklist" aria-labelledby="tracklist-title">
+      <div class="section-intro reveal">
+        <div><p class="section-number">02 / THE COMPLETE SYSTEM</p><h2 id="tracklist-title">לא אתר אחד.<br>מערכת חיה שלמה.</h2></div>
+        <p>הגרסה האישית מחזירה את כל השכבות: זהות, שיר ההיסטוריה, מוזיאון תוכן, מלווה יצירה, Evidence Ledger, השפעה, StartOn, מוזיקה, מחקר, Public Response AI ו־Talk.</p>
+      </div>
+      <div class="tracks reveal">
+        <a href="/journey/"><b>01</b><span>PERSONAL JOURNEY</span><strong>המסע של איגור</strong></a>
+        <a href="/museum/"><b>02</b><span>66 RECORDS</span><strong>מוזיאון התוכן הציבורי</strong></a>
+        <a href="/create/"><b>03</b><span>CLARITY · CREATE · MOMENTUM</span><strong>מלווה יצירה והגשמה</strong></a>
+        <a href="/history/"><b>04</b><span>ORIGINS → NOW</span><strong>שיר ההיסטוריה המלא</strong></a>
+        <a href="/evidence/"><b>05</b><span>SOURCE · DATE · CONTEXT</span><strong>Evidence Ledger</strong></a>
+        <a href="/response-ai/"><b>06</b><span>PUBLIC RESPONSE AI</span><strong>איך הציבור הגיב לאורך הדרך</strong></a>
+        <a href="/starton/"><b>07</b><span>SOCIAL MISSION</span><strong>StartOn</strong></a>
+        <a href="/7ya/"><b>08</b><span>LIVING OS</span><strong>כל המערכות והתהליכים</strong></a>
+      </div>
+    </section>
+
+    <section class="act origins-act" id="origins" aria-labelledby="origins-title">
       <div class="act-sticky reveal">
         <span class="act-year">ACT I · ORIGINS</span>
         <h2 id="origins-title">ההיסטוריה נכנסה לישראל בתוך מזוודות.</h2>
@@ -193,7 +214,7 @@
       <div class="act-sticky reveal">
         <span class="act-year">ACT III · STARTON</span>
         <h2 id="starton-title">לחזור לשכונה. לא כדי להצטלם — כדי לבנות.</h2>
-        <p>StartOn הוא השליחות החברתית: טכנולוגיה, יצירה, מנטורים ושייכות לנוער — תוך הפרדה בין חזון, פיילוט ותוצאה מוכחת.</p>
+        <p>StartOn הוא מסלול ההשפעה החברתי: טכנולוגיה, יצירה, מנטורים ושייכות לנוער — תוך הפרדה ברורה בין חזון, פיילוט ותוצאה מוכחת.</p>
         <a href="/starton/">ליקום StartOn →</a>
       </div>
       <div class="starton-grid">
@@ -244,7 +265,7 @@
         <p class="section-number">EVIDENCE BEFORE AMPLIFICATION</p>
         <h2 id="proof-title">יופי פותח את הדלת. מקור מחזיק אותה פתוחה.</h2>
         <p>כל מספר מקבל תאריך. כל כרטיס מקבל מקור. תצוגות־מקור מעוצבות אינן מוצגות כצילום מסך ילידי. תיקונים מתווספים בלי למחוק את ההיסטוריה.</p>
-        <div class="hero-actions"><a class="button primary" href="/evidence/">פתחו Evidence Ledger</a><a class="button" href="/7ya/">ראו את כל מערכת 7YA</a><a class="button" href="/contact/">שלחו תיקון מקור</a></div>
+        <div class="hero-actions"><a class="button primary" href="/evidence/">פתחו Evidence Ledger</a><a class="button" href="/response-ai/">Public Response AI</a><a class="button" href="/7ya/">ראו את כל מערכת 7YA</a><a class="button" href="/contact/">שלחו תיקון מקור</a></div>
       </div>
       <div class="tier-list reveal">
         <article><b>TIER 1</b><h3>מקור חיצוני</h3><p>עיתונות, שידור, פודקאסט או הפצה של גורם ציבורי אחר.</p></article>
@@ -258,17 +279,17 @@
       <div class="finale-bg" aria-hidden="true"></div>
       <div>
         <p>IGOR VEPRETSKI · STARTON · 7YA LIVING OS</p>
-        <h2 id="finale-title">לא אתר על העבר.<br>מערכת שממשיכה לכתוב.</h2>
-        <p>הפרק הבא מחבר את הארכיון ליצירה, שיחה, שותפות, StartOn, מחקר ומערכות 7YA — בלי למחוק את האדם שהגיע לפני המערכת.</p>
-        <div class="hero-actions"><a class="button primary" href="/create/">מצאו את הקול והצעד שלכם</a><a class="button" href="/museum/">ראו עוד ממני</a><a class="button" href="/talk/">התחילו שיחה</a><a class="button ghost" href="/journey/">למסע החיים</a></div>
+        <h2 id="finale-title">לא תדמית.<br>מסלול.</h2>
+        <p>הפרק הבא מחבר אדם, ארכיון, יצירה, שיחה, שותפות, StartOn, מחקר ומערכות 7YA — בלי למחוק את האדם שהגיע לפני המערכת.</p>
+        <div class="hero-actions"><a class="button primary" href="/talk/">בואו נבנה משהו אמיתי</a><a class="button" href="/museum/">ראו עוד ממני</a><a class="button" href="/journey/">למסע החיים</a><a class="button ghost" href="/contact/">יצירת קשר</a></div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div><b>IGOR VEPRETSKI / 7YA.IO</b><span>PERSON · CONTENT · EVIDENCE · ACTION</span></div>
-    <div class="footer-links"><a href="/museum/">מוזיאון</a><a href="/create/">יצירה</a><a href="/starton/">StartOn</a><a href="/influence/">השפעה</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></div>
-    <div><span>RELEASE 2026.07.15</span></div>
+    <div><b>IGOR VEPRETSKI / 7YA.IO</b><span>PERSON · STORY · EVIDENCE · ACTION</span></div>
+    <div class="footer-links"><a href="/journey/">המסע</a><a href="/museum/">מוזיאון</a><a href="/create/">יצירה</a><a href="/starton/">StartOn</a><a href="/influence/">השפעה</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></div>
+    <div><span>PERSONAL RELEASE 2026.07.15</span></div>
   </footer>
 
   <script src="/scripts/history-song-20260714.js" defer></script>
