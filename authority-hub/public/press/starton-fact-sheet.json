@@ -1,0 +1,26 @@
+{
+  "name": "StartOn",
+  "legal_form": "Israeli Amuta",
+  "registration_number": "580752814",
+  "canonical_url": "https://starton.org.il/",
+  "public_positioning": "Social-technology framework for safe youth spaces",
+  "three_space_model": [
+    {
+      "id": "training",
+      "name": "Training",
+      "purpose": "Practical learning, digital skills, creation and progression pathways"
+    },
+    {
+      "id": "community",
+      "name": "Community",
+      "purpose": "Belonging, mentoring, support networks and a safe right to fail"
+    },
+    {
+      "id": "experience",
+      "name": "Experience",
+      "purpose": "Interactive technology, gaming and media that expand curiosity"
+    }
+  ],
+  "evidence_boundary": "Registration and the published model do not independently prove operating scale, partnerships or causal social outcomes.",
+  "last_updated": "2026-07-15"
+}
