@@ -4,6 +4,8 @@ import path from 'node:path';
 const root = process.cwd();
 const files = [
   'index.html',
+  'museum/index.html',
+  'create/index.html',
   'history/index.html',
   'igor-vepretski/index.html',
   'journey/index.html',
