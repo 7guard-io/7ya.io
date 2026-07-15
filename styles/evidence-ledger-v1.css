@@ -1,0 +1,92 @@
+.ledger-panel{
+  margin-top:42px;
+  border:1px solid var(--ya-border);
+  border-radius:var(--ya-radius-md);
+  background:var(--ya-bg-elevated);
+  box-shadow:var(--ya-shadow-1);
+  overflow:hidden;
+}
+
+.ledger-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:18px 20px;
+  border-bottom:1px solid var(--ya-border);
+  background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);
+}
+
+.ledger-toolbar strong{
+  font:900 18px/1 var(--ya-font-display);
+  letter-spacing:-.01em;
+}
+
+.ledger-toolbar span{
+  color:var(--ya-text-subtle);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.ledger-table-wrap{overflow:auto}
+.ledger-table{width:100%;min-width:980px;border-collapse:collapse;background:var(--ya-bg-elevated)}
+.ledger-table th,.ledger-table td{padding:13px 16px;border-bottom:1px solid var(--ya-border);text-align:start;vertical-align:middle}
+.ledger-table th{position:sticky;top:0;z-index:1;background:#11161e;color:var(--ya-text-subtle);font-size:10px;font-weight:850;letter-spacing:.11em;text-transform:uppercase}
+.ledger-table tbody tr[data-ledger-row]:hover{background:rgba(255,255,255,.025)}
+
+.ledger-time{white-space:nowrap}
+.ledger-time time{display:block;color:var(--ya-text-muted);font-family:var(--ya-font-mono);font-size:12px}
+.ledger-time small{display:block;margin-top:5px;color:var(--ya-text-subtle);font-family:var(--ya-font-mono);font-size:10px}
+
+.ledger-claim{min-width:290px}
+.ledger-claim strong{display:block;color:var(--ya-text);font-size:13px;line-height:1.35}
+.ledger-claim span{display:block;margin-top:5px;color:var(--ya-text-subtle);font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+
+.ledger-hash-cell{min-width:260px}
+.ledger-hash{display:flex;align-items:center;gap:9px;direction:ltr}
+.ledger-hash code{display:block;overflow:hidden;max-width:190px;color:var(--ya-system);font-family:var(--ya-font-mono);font-size:11px;text-overflow:ellipsis;white-space:nowrap}
+
+.ledger-copy{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  min-height:28px;
+  padding:0 8px;
+  border:1px solid var(--ya-border);
+  border-radius:var(--ya-radius-sm);
+  background:transparent;
+  color:var(--ya-text-subtle);
+  cursor:pointer;
+  font-family:var(--ya-font-mono);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.06em;
+  transition:border-color var(--ya-transition),color var(--ya-transition),background var(--ya-transition);
+}
+.ledger-copy:hover{border-color:var(--ya-system);color:var(--ya-text)}
+.ledger-copy.copied{border-color:var(--ya-success);background:rgba(148,231,176,.08);color:var(--ya-success)}
+
+.ledger-source-link{color:var(--ya-evidence);font-size:12px;font-weight:800;white-space:nowrap}
+.ledger-source-muted{display:block;max-width:190px;color:var(--ya-text-subtle);font-size:11px;line-height:1.35}
+.ledger-state{text-align:end!important;white-space:nowrap}
+
+.ya-badge-private{color:#bdaeff;background:rgba(189,174,255,.07)}
+
+.ledger-detail-row td{padding:0!important;background:#0b0f15}
+.ledger-detail-row details{padding:0 16px}
+.ledger-detail-row summary{padding:10px 0;color:var(--ya-text-subtle);cursor:pointer;font-size:11px;font-weight:800}
+.ledger-detail-row p{max-width:880px;margin:0 0 13px;color:var(--ya-text-muted);font-size:12px;line-height:1.6}
+.ledger-meta{display:grid;grid-template-columns:minmax(180px,.45fr) minmax(0,1fr);gap:16px;padding:12px 0 16px;border-top:1px solid var(--ya-border)}
+.ledger-meta span{color:var(--ya-text-subtle);font-size:10px}
+.ledger-meta code{overflow:hidden;color:var(--ya-system);font-family:var(--ya-font-mono);font-size:10px;text-overflow:ellipsis;white-space:nowrap;direction:ltr;text-align:left}
+
+.ledger-error{margin-top:14px;padding:14px 16px;border:1px solid rgba(255,124,134,.34);border-radius:var(--ya-radius-sm);background:rgba(255,124,134,.07);color:var(--ya-danger);font-size:12px}
+.ledger-note{margin-top:16px;color:var(--ya-text-subtle);font-size:11px;line-height:1.5}
+
+@media(max-width:720px){
+  .ledger-toolbar{align-items:flex-start;flex-direction:column}
+  .ledger-table{min-width:860px}
+  .ledger-copy-label{display:none}
+  .ledger-meta{grid-template-columns:1fr}
+}
