@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-07-16T00:00:00+03:00",
+  "scope": "Public read-only operational snapshot",
+  "health": [
+    {
+      "id": "public-site",
+      "title": "Public Site",
+      "state": "UNKNOWN",
+      "summary": "The public domain requires an independent live verification before a current health claim is published.",
+      "source": "Live verification pending"
+    },
+    {
+      "id": "local-release-gate",
+      "title": "Local Release Gate",
+      "state": "AVAILABLE",
+      "summary": "The repository defines a local release gate that runs checks, type validation, tests, static build and artifact verification.",
+      "source": "package.json · npm run release:gate"
+    },
+    {
+      "id": "github-actions",
+      "title": "GitHub Actions",
+      "state": "DEGRADED",
+      "summary": "Actions execution remains blocked at repository or organization level. This status does not imply that the site code itself is broken.",
+      "source": "GitHub Issue #83",
+      "href": "https://github.com/7guard-io/7ya.io/issues/83"
+    },
+    {
+      "id": "evidence-snapshot",
+      "title": "Evidence Snapshot",
+      "state": "STATIC",
+      "summary": "Public evidence is served from a dated repository snapshot and must not be described as live data.",
+      "source": "/data/evidence-claims.json"
+    }
+  ],
+  "entities": [
+    {
+      "id": "igor-vepretski",
+      "title": "Igor Vepretski",
+      "kind": "Primary human identity",
+      "state": "PARTIALLY VERIFIED",
+      "summary": "The site and repository identify Igor Vepretski as the public identity at the centre of 7YA. Stronger biographical claims require attached corroboration.",
+      "href": "/igor-vepretski/",
+      "source": "/data/evidence-claims.json#igor-public-identity"
+    },
+    {
+      "id": "starton",
+      "title": "StartOn",
+      "kind": "Distinct social-impact organisation",
+      "state": "SOURCE PENDING",
+      "summary": "The youth technology-hub mission may be presented as project direction. Beneficiary, funding, site and partnership claims remain source-dependent.",
+      "href": "/starton/",
+      "source": "/data/evidence-claims.json#starton-mission"
+    },
+    {
+      "id": "seven-ya",
+      "title": "7YA",
+      "kind": "Public system and creative umbrella",
+      "state": "DOCUMENTED",
+      "summary": "7YA is represented by the public routes, source repository and evidence-oriented system surfaces. This label describes the repository, not an independent endorsement.",
+      "href": "/7ya/",
+      "source": "Repository routes and public site"
+    },
+    {
+      "id": "evidence-oracle",
+      "title": "Evidence Ledger",
+      "kind": "Evidence verification surface",
+      "state": "VERIFIED",
+      "summary": "The repository contains evidence-oracle code for canonical records, hashing, Merkle verification, logging and verification surfaces.",
+      "href": "/evidence/",
+      "source": "/data/evidence-claims.json#seven-ya-evidence-oracle"
+    },
+    {
+      "id": "public-media",
+      "title": "Public Media Archive",
+      "kind": "Curated public content surface",
+      "state": "AVAILABLE",
+      "summary": "The museum and media routes expose curated public material. Availability does not independently verify every item inside the archive.",
+      "href": "/museum/",
+      "source": "Repository route contract"
+    },
+    {
+      "id": "release-snapshot",
+      "title": "Latest Release Snapshot",
+      "kind": "Candidate release metadata",
+      "state": "CANDIDATE",
+      "summary": "The checked release metadata explicitly remains a candidate until an immutable merged source SHA is deployed and independently verified.",
+      "href": "/release.json",
+      "source": "/release.json"
+    }
+  ],
+  "boundaries": [
+    "This page is read-only and contains no administrative controls.",
+    "Connected accounts, private mail and production credentials are not exposed in the public artifact.",
+    "A repository record documents a claim; it does not automatically prove every statement about the underlying person or organisation.",
+    "No production deployment or merge is implied by this snapshot."
+  ]
+}
