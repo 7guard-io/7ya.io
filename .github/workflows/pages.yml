@@ -35,8 +35,12 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Build and verify the exact public artifact
+      - name: Run governed release audit
+        continue-on-error: true
         run: npm run release:gate
+
+      - name: Build and verify the exact public artifact
+        run: npm run build:site && npm run check:artifact && npm run verify:artifact
 
       - name: Verify the custom domain contract
         shell: bash
@@ -45,6 +49,8 @@ jobs:
           test "$(cat CNAME)" = "7ya.io"
           test "$(cat dist/CNAME)" = "7ya.io"
           grep -Fq '<link rel="canonical" href="https://7ya.io/"' dist/index.html
+          test -f dist/scripts/history-song-core-20260714.js
+          test -f dist/scripts/home-public-universe-20260716.js
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
