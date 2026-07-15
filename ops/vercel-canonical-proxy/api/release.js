@@ -1,21 +1,25 @@
 'use strict';
 
 const payload = {
-  release_id: 'igor-visuomodular-production-20260715',
+  release_id: 'signal-key-creator-universe-20260716',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: 'd4ce4df0a39127571d7f148b0ae040538f7b94d1',
-  pull_request: 237,
+  source_sha: '9d56ab62fb1216515d00b3b7e602f9e3642bdd22',
+  pull_request: 241,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
-  experience: 'IGOR_PERSONAL_PUBLIC_SYSTEM_VISUOMODULAR_EVIDENCE_FIRST',
+  experience: 'IGOR_PERSONAL_PUBLIC_SYSTEM_CREATOR_COMPANION_PUBLIC_UNIVERSE',
   homepage_build: 'igor-personal-production-20260715',
   archive_record_count: 66,
   public_universe: {
     additional_record_count: 26,
     combined_source_records_before_url_dedupe: 92,
     source_path: '/knowledge/public-universe-records-20260715.json',
+    homepage_explorer: true,
+    search_and_filters: true,
+    controlled_pagination: true,
     runtime_url_deduplication: true,
+    content_to_creator_bridge: true,
     fixed_ceiling: false,
     collections: ['VERIFIED_CORE', 'PUBLIC_UNIVERSE'],
   },
@@ -32,6 +36,14 @@ const payload = {
   smart_guide: {
     enabled: true,
     public_name: '7YA Signal Key',
+    role: 'positive creator and fulfilment companion',
+    modes: ['understand', 'create', 'fulfilment', 'impact'],
+    structured_plan_fields: ['reflection', 'goal', 'next_step', 'today', 'this_week', 'hook', 'angle', 'outline', 'evidence_notes'],
+    route_aware_prompts: true,
+    copyable_action_plan: true,
+    creator_seed_bridge: true,
+    prompt_persistence: false,
+    automatic_publishing: false,
     provider_order: ['nvidia', 'openai', 'local'],
     nvidia_activation: 'Requires NVIDIA_API_KEY or NVIDIA_NIM_API_KEY in the deployment environment.',
     default_nvidia_model: 'nvidia/nemotron-3-nano-30b-a3b',
@@ -50,6 +62,8 @@ const payload = {
     '/assets/igor-hero-storm-20260715.webp',
     '/styles/7ya-signal-key-20260715.css',
     '/scripts/7ya-signal-key-20260715.js',
+    '/styles/home-public-universe-20260716.css',
+    '/scripts/home-public-universe-20260716.js',
     '/knowledge/public-universe-records-20260715.json',
   ],
   stance_controls: [
@@ -79,7 +93,7 @@ const payload = {
     dns_provider: 'Cloudflare',
     preserve_mail_records: true,
   },
-  generated_at: '2026-07-15T23:36:00+03:00',
+  generated_at: '2026-07-16T01:48:50+03:00',
 };
 
 module.exports = (request, response) => {
