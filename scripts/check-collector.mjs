@@ -15,6 +15,10 @@ const forbidText = (body, text, message) => {
 requireText(collector, 'MAX_BYTES = 2_000_000', 'collector response cap missing');
 requireText(collector, 'TIMEOUT_MS = 15_000', 'collector timeout missing');
 requireText(collector, "['http:', 'https:']", 'collector protocol allowlist missing');
+requireText(collector, "dns.lookup(hostname, { all: true, verbatim: true })", 'collector DNS validation missing');
+requireText(collector, 'isPrivateAddress', 'collector private-network guard missing');
+requireText(collector, 'Target credentials are not allowed', 'collector credential-in-URL guard missing');
+requireText(collector, 'Only standard web ports are allowed', 'collector port allowlist missing');
 requireText(collector, 'content_sha256', 'collector content hash missing');
 requireText(collector, 'COLLECTOR_NO_CHANGE', 'collector diff-only behavior missing');
 requireText(collector, 'Public metadata only', 'collector evidence policy missing');
