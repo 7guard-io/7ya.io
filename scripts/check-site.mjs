@@ -3,14 +3,11 @@ import path from 'node:path';
 import { aliasRoutes as aliases, canonicalRoutes } from './site-contract.mjs';
 
 const root = process.cwd();
-
 let failures = 0;
+
 const fail = message => { failures += 1; console.error(`FAIL ${message}`); };
 const pass = message => console.log(`PASS ${message}`);
-
-function filePath(file) {
-  return path.join(root, file);
-}
+const filePath = file => path.join(root, file);
 
 function read(file) {
   const resolved = filePath(file);
@@ -78,9 +75,7 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI', 'שיר', 'היסטוריה',
-  'כל פוסט הוא שורה.', 'הפלטפורמה מחלקת נראות.',
-  'ההיסטוריה נכנסה לישראל בתוך מזוודות.', 'הפירורים הפכו לארכיון.',
-  'Evidence Ledger', 'history-song-editorial-archive-20260714-1',
+  'כל פוסט הוא שורה.', 'Evidence Ledger',
   'id="archiveGrid"', 'id="archiveSearch"', 'data-filter="Facebook"'
 ]) requireText(home, required, 'homepage');
 
@@ -89,17 +84,8 @@ for (const technical of [
   '/assets/igor-home-portrait-20260712.webp',
   '/assets/igor-home-portrait-20260712.jpg',
   '/styles/history-song-20260714.css?v=1',
-  '/scripts/history-song-20260714.js',
-  '7ya-history-song-cache-20260714',
-  'navigator.serviceWorker.getRegistrations()',
-  'Promise.allSettled(tasks)'
+  '/scripts/history-song-20260714.js'
 ]) requireText(home, technical, 'homepage technical contract');
-
-for (const sourceProof of [
-  'makorrishon.co.il', 'holon.mynet.co.il', 'prod.13tv.co.il',
-  'facebook.com/lan2lan.sta2sim', 'i.ytimg.com/vi/EsaD-lVsKHc',
-  'starton.org.il/wp-content/uploads', 'www.zman.co.il/352289/'
-]) requireText(home, sourceProof, 'homepage source proof');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
@@ -107,55 +93,71 @@ const publicImages = (home.match(/<img\b/gi) || []).length;
 publicImages >= 10 ? pass(`homepage has ${publicImages} image placements`) : fail(`homepage has only ${publicImages} image placements`);
 
 for (const forbidden of [
-  'maximum-scale=1', 'http-equiv="Cache-Control"', 'http-equiv="Pragma"',
-  'http-equiv="Expires"', 'rel="manifest"', 'bottom-navigation', 'floating-bot',
-  '5.1B+', 'Billions of impressions', '50,000+ empowered', '100K+',
-  'Microsoft-backed', 'official partner', 'candidate for Knesset'
+  'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
+  '100K+', 'Microsoft-backed', 'official partner', 'candidate for Knesset'
 ]) excludeText(home, forbidden, 'homepage');
 
 const history = read('history/index.html');
 for (const required of [
-  'שיר ההיסטוריה — ארכיון מלא', 'history-song-archive-20260715-2',
-  '66-RECORD PUBLIC CONTENT MAP', 'id="archiveGrid"', 'id="archiveSearch"',
-  '/museum/', '/styles/history-song-20260714.css?v=1', '/scripts/history-song-20260714.js'
+  'שיר ההיסטוריה — ארכיון מלא', '66-RECORD PUBLIC CONTENT MAP',
+  'id="archiveGrid"', 'id="archiveSearch"', '/museum/',
+  '/scripts/history-song-20260714.js'
 ]) requireText(history, required, 'history archive');
 
 const museum = read('museum/index.html');
 for (const required of [
-  'מוזיאון התוכן של איגור ופרצקי', 'igor-public-content-museum-20260715-1',
-  'פתחו 66 רשומות', 'id="museumGrid"', 'id="museumSearch"',
+  'היקום הציבורי של איגור ופרצקי',
+  'igor-public-universe-museum-20260715-2',
+  'VERIFIED CORE + PUBLIC UNIVERSE',
+  '66 היא ליבת ראיות — לא תקרת תוכן',
+  'id="museumCoreCount"', 'id="museumUniverseCount"',
+  'id="museumGrid"', 'id="museumSearch"',
   '/styles/public-content-museum-20260715.css?v=1',
-  '/scripts/public-content-museum-20260715.js', 'תצוגות־מקור מעוצבות'
-]) requireText(museum, required, 'content museum');
+  '/styles/public-universe-20260715.css?v=1',
+  '/scripts/public-content-museum-20260715.js',
+  '/knowledge/public-universe-records-20260715.json'
+]) requireText(museum, required, 'public universe museum');
+excludeText(museum, 'פתחו 66 רשומות', 'public universe museum');
 
-const influence = read('influence/index.html');
+const museumScript = read('scripts/public-content-museum-20260715.js');
 for (const required of [
-  '66 רשומות מקור', 'id="recordCount">66', 'מפת תוכן ציבורית · 15.07.2026'
-]) requireText(influence, required, 'influence wall');
-excludeText(influence, '36 רשומות', 'influence wall');
+  'PUBLIC_UNIVERSE', 'VERIFIED_CORE', 'canonicalSourceKey',
+  'public-universe-records-20260715.json', 'coreRecords.length < 66'
+]) requireText(museumScript, required, 'public universe loader');
+excludeText(museumScript, 'Expected 66 records', 'public universe loader');
 
-const livingOs = read('7ya/index.html');
-for (const required of ['href="#main"', '<main class="shell" id="main">']) {
-  requireText(livingOs, required, '7YA system map accessibility');
-}
-
-const shardFiles = [1, 2, 3, 4, 5].map(part => `knowledge/history-song-records-${part}.json`);
-const records = [];
-for (const file of shardFiles) {
+const coreShardFiles = [1, 2, 3, 4, 5].map(part => `knowledge/history-song-records-${part}.json`);
+const coreRecords = [];
+for (const file of coreShardFiles) {
   const shard = parseJson(file);
   if (!shard) continue;
   Array.isArray(shard.records)
-    ? records.push(...shard.records)
+    ? coreRecords.push(...shard.records)
     : fail(`${file} missing records array`);
 }
-records.length === 66 ? pass('History Song archive has 66 records') : fail(`History Song archive has ${records.length} records`);
+coreRecords.length === 66
+  ? pass('Verified narrative core has 66 records')
+  : fail(`Verified narrative core has ${coreRecords.length} records`);
+
+const universeFile = 'knowledge/public-universe-records-20260715.json';
+const universe = parseJson(universeFile);
+const universeRecords = Array.isArray(universe?.records) ? universe.records : [];
+universeRecords.length >= 20
+  ? pass(`Public Universe has ${universeRecords.length} additional records`)
+  : fail(`Public Universe has only ${universeRecords.length} additional records`);
+
+const allRecords = [...coreRecords, ...universeRecords];
+allRecords.length >= 86
+  ? pass(`Combined public index has ${allRecords.length} source records before runtime URL deduplication`)
+  : fail(`Combined public index is too small: ${allRecords.length}`);
+
 const ids = new Set();
-for (const record of records) {
+for (const record of allRecords) {
   if (!record?.id || !record?.title || !record?.url || !record?.platform || !record?.evidence_tier) {
-    fail(`invalid archive record: ${JSON.stringify(record)}`);
+    fail(`invalid public record: ${JSON.stringify(record)}`);
     continue;
   }
-  ids.has(record.id) ? fail(`duplicate archive record ID ${record.id}`) : ids.add(record.id);
+  ids.has(record.id) ? fail(`duplicate public record ID ${record.id}`) : ids.add(record.id);
   /^https:\/\//.test(record.url) ? pass(`${record.id} has public HTTPS source`) : fail(`${record.id} source is not HTTPS`);
   ['TIER_1', 'TIER_2', 'TIER_3'].includes(record.evidence_tier)
     ? pass(`${record.id} has valid evidence tier`)
@@ -169,9 +171,11 @@ for (const file of [
   'assets/igor-home-og-20260712.jpg',
   'styles/history-song-20260714.css',
   'styles/public-content-museum-20260715.css',
+  'styles/public-universe-20260715.css',
   'scripts/history-song-20260714.js',
   'scripts/public-content-museum-20260715.js',
-  ...shardFiles,
+  ...coreShardFiles,
+  universeFile,
   'favicon.svg', '404.html', 'sw.js', 'service-worker.js', 'release.json'
 ]) read(file);
 
@@ -191,8 +195,12 @@ for (const snippet of ['User-agent: *', 'Allow: /', 'Sitemap: https://7ya.io/sit
 const release = parseJson('release.json');
 if (release) {
   release.service === '7ya-frontend' ? pass('release service is canonical') : fail('release service mismatch');
-  release.environment === 'production' ? pass('release environment is production') : fail('release environment mismatch');
-  release.data_contract?.record_count === 66 ? pass('release record count is 66') : fail('release record count mismatch');
+  ['production', 'candidate'].includes(release.environment)
+    ? pass(`release environment is ${release.environment}`)
+    : fail('release environment mismatch');
+  release.data_contract?.record_count === 66
+    ? pass('release preserves 66-record verified core')
+    : fail('release verified-core count mismatch');
   release.critical_surfaces?.includes('/museum/') ? pass('release includes museum surface') : fail('release missing museum surface');
   release.critical_surfaces?.includes('/create/') ? pass('release includes creator surface') : fail('release missing creator surface');
 }

@@ -71,6 +71,7 @@ export const publicStyleFiles = [
   'positive-creator-20260715.css',
   'public-content-museum-20260715.css',
   'public-response-ai-20260715.css',
+  'public-universe-20260715.css',
 ];
 
 export const publicScriptFiles = [
@@ -95,6 +96,7 @@ export const criticalArtifactPaths = [
   'styles/history-song-20260714.css',
   'styles/master-entity-index-20260715.css',
   'styles/public-content-museum-20260715.css',
+  'styles/public-universe-20260715.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'scripts/7ya-signal-key-20260715.js',
@@ -103,6 +105,7 @@ export const criticalArtifactPaths = [
   'scripts/positive-creator-20260715.js',
   'scripts/public-response-ai-20260715.js',
   'knowledge/history-song-records-5.json',
+  'knowledge/public-universe-records-20260715.json',
   'knowledge/public-response-signals-20260715.json',
   'robots.txt',
   'sitemap.xml',
