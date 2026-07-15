@@ -5,8 +5,12 @@ on:
     paths:
       - '.github/workflows/cloudflare-appdeploy-dns-preflight.yml'
       - 'scripts/cloudflare-appdeploy-dns.mjs'
+      - 'scripts/cloudflare-appdeploy-breakglass.sh'
+      - 'scripts/test-cloudflare-appdeploy-dns.mjs'
+      - 'scripts/test-support/cloudflare-fetch-mock.mjs'
       - 'infra/cloudflare-appdeploy/**'
       - 'docs/APPDEPLOY_CUTOVER_RECEIPT_20260716.md'
+      - 'docs/BREAK_GLASS_CUTOVER_20260716.md'
   workflow_dispatch:
 
 permissions:
@@ -54,7 +58,11 @@ jobs:
           }
 
           check "Node syntax" node --check scripts/cloudflare-appdeploy-dns.mjs
+          check "Break-glass shell syntax" bash -n scripts/cloudflare-appdeploy-breakglass.sh
+          check "Mock preload syntax" node --check scripts/test-support/cloudflare-fetch-mock.mjs
+          check "Mock suite syntax" node --check scripts/test-cloudflare-appdeploy-dns.mjs
           check "Desired-state contract" node -e "const fs=require('node:fs');const s=JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/desired-records.json','utf8'));if(s.zone!=='7ya.io')throw new Error('Unexpected zone');if(s.confirmation!=='7YA-APPDEPLOY-20260716')throw new Error('Unexpected confirmation');if(!Array.isArray(s.records)||s.records.length!==2)throw new Error('Expected exactly two records');"
+          check "Stateful Cloudflare mock scenarios" node --test scripts/test-cloudflare-appdeploy-dns.mjs
 
           printf '\n=== Missing-token fail-closed behavior ===\n' | tee -a "$report"
           output="$(env -u CLOUDFLARE_API_TOKEN node scripts/cloudflare-appdeploy-dns.mjs 2>&1)"
@@ -68,8 +76,9 @@ jobs:
           fi
 
           printf '\n=== Workflow mutation-path scan ===\n' | tee -a "$report"
-          if grep -nE '^[[:space:]]*run:[[:space:]]*node[[:space:]]+scripts/cloudflare-appdeploy-dns\.mjs[[:space:]]+--apply([[:space:]]|$)' .github/workflows/cloudflare-appdeploy-dns-preflight.yml >>"$report" 2>&1; then
-            echo "FAIL: unsafe --apply invocation found" | tee -a "$report"
+          needle="--ap""ply"
+          if grep -nF -- "$needle" .github/workflows/cloudflare-appdeploy-dns-preflight.yml >>"$report" 2>&1; then
+            echo "FAIL: unsafe apply token found in workflow" | tee -a "$report"
             failures=$((failures + 1))
           else
             echo "PASS: no workflow apply path exists" | tee -a "$report"
@@ -122,5 +131,5 @@ jobs:
 
       - name: Confirm no mutation was requested
         run: |
-          echo "This workflow never passes --apply."
+          echo "This workflow never invokes the mutation mode."
           echo "No DNS mutation was requested or performed."
