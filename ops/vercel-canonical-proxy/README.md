@@ -16,15 +16,15 @@ The canonical public source is `7guard-io/7ya.io`, while older hosting integrati
 ## Current source contract
 
 - Repository: `7guard-io/7ya.io`
-- Pinned source SHA: `d4ce4df0a39127571d7f148b0ae040538f7b94d1`
-- Release-control pull request: `#237`
-- Release-control branch: `fix/canonical-production-cutover-20260715`
+- Pinned source SHA: `9d56ab62fb1216515d00b3b7e602f9e3642bdd22`
+- Content pull request: `#241`
+- Release-control branch: `release/signal-key-public-universe-20260716`
 - Vercel project: `7ya-static-site`
 - Vercel project ID: `prj_xpcMFC96JcnasigrvetZetEa1XzU`
 - Verified alias target: `https://7ya-static-site.vercel.app`
 - Intended custom domains: `7ya.io`, `www.7ya.io`
 
-The pinned source is the Igor-first personal production experience with the deterministic multi-mode visuomodular homepage, 66-record verified narrative core, append-only Public Universe, 7YA Signal Key, StartOn, evidence routes and public participation surfaces.
+The pinned source is the Igor-first personal public system with a deterministic multi-mode visual homepage, 66-record verified narrative core, append-only Public Universe, four-mode positive creator and fulfilment companion, StartOn, evidence routes and public participation surfaces.
 
 ## Cache contract during cutover
 
@@ -40,12 +40,21 @@ This temporary HTML policy exists to prevent the old GitHub Pages homepage and t
 - Verified core: `/knowledge/history-song-records-1.json` through `/knowledge/history-song-records-5.json`
 - Expansion layer: `/knowledge/public-universe-records-20260715.json`
 - Collections: `VERIFIED_CORE`, `PUBLIC_UNIVERSE`
-- Duplicate URLs collapse at runtime, with the verified-core record retaining priority.
+- The homepage explorer loads the expansion layer with search, filters and controlled pagination.
+- Duplicate URLs collapse at runtime, with the verified-core record retaining priority in the full museum.
+- Every homepage source can be handed to Signal Key through the `7ya:creator-seed` bridge.
 - The verified core remains usable if the optional expansion layer is temporarily unavailable.
 - Private, minor, legal, financial and quarantined records are excluded from publication.
 - Metrics require a dated source snapshot.
 
 ## Smart guide provider contract
+
+Public modes:
+
+1. Understand — evidence-aware navigation and context.
+2. Create — turn a source or idea into a hook, angle and outline.
+3. Fulfilment — turn intention into a practical today/this-week plan.
+4. Impact — start with a beneficiary, validated need and safe small experiment.
 
 Provider order defaults to:
 
@@ -65,7 +74,7 @@ Optional controls:
 - `OPENAI_API_KEY`
 - `OPENAI_MODEL`
 
-The UI reports the actual provider returned by the API. The integration must never be described as an NVIDIA partnership, sponsorship or endorsement without independent evidence.
+The UI reports the actual provider returned by the API. Prompts are not stored in localStorage. Provider output is rendered through safe DOM text nodes. The guide does not publish automatically, does not claim to be Igor and must never be described as an NVIDIA partnership, sponsorship or endorsement without independent evidence.
 
 ## Routes
 
@@ -75,7 +84,7 @@ The UI reports the actual provider returned by the API. The integration must nev
 
 Directory requests resolve to `index.html`. Extension-bearing requests are fetched as assets. Invalid dot or traversal segments fail closed. Private `/admin/` and unhandled repository `/api/*` paths return a controlled 404. Missing HTML routes use the repository's `404.html` with HTTP 404.
 
-The proxy injects the Signal Key stylesheet and script into successful HTML responses when those assets are not already present. The static artifact build performs the same injection.
+The proxy injects the Signal Key stylesheet and script into successful HTML responses when those assets are not already present. Signal Key loads the homepage Public Universe explorer only on `/`. The static artifact build performs the same Signal Key injection.
 
 ## Deployment gate
 
@@ -83,18 +92,19 @@ Before changing the source SHA:
 
 1. Commit and merge the intended source content.
 2. Pin the proxy and release endpoint to that immutable content commit.
-3. Confirm the release metadata names the release-control PR and critical routes.
+3. Confirm the release metadata names the content PR and critical routes.
 4. Run `npm run check-release-pin` from the repository root.
 5. Deploy this directory to the existing `7ya-static-site` project.
-6. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/museum/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
-7. Verify `/scripts/history-song-20260714.js`, `/scripts/history-song-core-20260714.js`, `/assets/igor-hero-storm-20260715.webp`, `/styles/7ya-signal-key-20260715.css` and `/scripts/7ya-signal-key-20260715.js`.
-8. Verify `/release.json` reports release `igor-visuomodular-production-20260715`, PR `#237` and source SHA `d4ce4df0a39127571d7f148b0ae040538f7b94d1`.
+6. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/museum/`, `/entity/`, `/create/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
+7. Verify `/scripts/7ya-signal-key-20260715.js`, `/styles/7ya-signal-key-20260715.css`, `/scripts/home-public-universe-20260716.js`, `/styles/home-public-universe-20260716.css`, `/knowledge/public-universe-records-20260715.json`, `/scripts/history-song-20260714.js`, `/scripts/history-song-core-20260714.js` and `/assets/igor-hero-storm-20260715.webp`.
+8. Verify `/release.json` reports release `igor-signal-key-creator-universe-20260716`, PR `#241` and source SHA `9d56ab62fb1216515d00b3b7e602f9e3642bdd22`.
 9. Verify `/api/guide` accepts POST only and returns `provider` plus `model` without exposing credentials.
-10. Verify controlled 404s are `noindex, nofollow` and `no-store`.
-11. Check runtime error clusters.
-12. Attach `7ya.io` and `www.7ya.io` only to project `prj_xpcMFC96JcnasigrvetZetEa1XzU`.
-13. Change only Cloudflare web records required by Vercel verification. Preserve nameservers, MX and mail-related TXT records.
-14. Verify both custom domains return the pinned `X-7YA-Source-SHA` before retiring the GitHub Pages origin.
+10. Verify the four Signal Key modes, structured action plan, copy action and content-to-creator bridge.
+11. Verify controlled 404s are `noindex, nofollow` and `no-store`.
+12. Check runtime error clusters.
+13. Attach `7ya.io` and `www.7ya.io` only to project `prj_xpcMFC96JcnasigrvetZetEa1XzU`.
+14. Change only Cloudflare web records required by Vercel verification. Preserve nameservers, MX and mail-related TXT records.
+15. Verify both custom domains return the pinned `X-7YA-Source-SHA` before retiring the GitHub Pages origin.
 
 ## Collector boundary
 
