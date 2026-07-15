@@ -1,21 +1,21 @@
 'use strict';
 
 const payload = {
-  release_id: 'living-os-content-museum-20260715',
+  release_id: 'igor-guided-living-os-20260715',
   source_repository: '7guard-io/7ya.io',
-  source_branch: 'feat/positive-creator-companion-20260715',
+  source_branch: 'main',
   source_sha: 'cdc63d83591d84e0a93af953244bed1b8365a458',
   pull_request: 210,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
-  experience: 'IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_AND_CREATOR_COMPANION',
+  experience: 'IGOR_7YA_LIVING_OS_PERSONAL_GUIDANCE_AND_PUBLIC_GOOD',
   archive_record_count: 66,
   critical_routes: [
     '/', '/museum/', '/create/', '/history/', '/7ya/', '/starton/',
     '/influence/', '/evidence/', '/talk/', '/contact/'
   ],
   custom_domain_attached: false,
-  generated_at: '2026-07-15T09:05:00+03:00',
+  generated_at: '2026-07-15T09:07:09+03:00',
 };
 
 module.exports = (request, response) => {

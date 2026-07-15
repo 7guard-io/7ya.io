@@ -17,14 +17,14 @@ The proxy removes both ambiguities:
 ## Source contract
 
 - Repository: `7guard-io/7ya.io`
-- Current verified production source SHA: `322249e6b3ff0171f57697a32b90850575f482de`
-- Next Contact-enabled source SHA: `a6847e58a447a9cb8203aabf7446952782c7a0ce`
-- Contact source PR: `#191`
+- Current deployed production source SHA: `0dac617e0b1457e48cfed6c969b1366876cd391f`
+- Next Igor-led Living OS source SHA: `cdc63d83591d84e0a93af953244bed1b8365a458`
+- Living OS source PR: `#210`
 - Merge requirement: use a regular merge so the pinned source commit remains in `main` history.
 - Vercel project: `7ya-static-site`
 - Verified alias: `https://7ya-static-site.vercel.app`
 
-The proxy code and `/release.json` in this directory are already pinned to the Contact-enabled source SHA. They must not be promoted until PR #191 is merged and that source commit is reachable from `main` history.
+The proxy code and `/release.json` in this directory are pinned to the Igor-led Living OS source SHA. Preview verification may use the immutable PR commit; production promotion must wait until PR #210 is merged and that source commit is reachable from `main` history.
 
 ## Routes
 
