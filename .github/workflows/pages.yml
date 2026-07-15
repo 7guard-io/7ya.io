@@ -1,12 +1,10 @@
 name: Publish 7YA Living OS
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      release_sha:
-        description: Full main commit SHA approved for production
-        required: true
-        type: string
 
 permissions:
   contents: read
@@ -25,7 +23,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout canonical production source
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -34,20 +32,19 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Require the approved immutable main SHA
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "${{ inputs.release_sha }}" = "$GITHUB_SHA" || {
-            echo "::error::Requested SHA does not match the checked-out main revision."
-            exit 1
-          }
-
       - name: Install locked dependencies
         run: npm ci --no-audit --no-fund
 
       - name: Build and verify the exact public artifact
         run: npm run release:gate
+
+      - name: Verify the custom domain contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(cat CNAME)" = "7ya.io"
+          test "$(cat dist/CNAME)" = "7ya.io"
+          grep -Fq '<link rel="canonical" href="https://7ya.io/"' dist/index.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
