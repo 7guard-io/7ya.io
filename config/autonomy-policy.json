@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "system": "7YA Autonomous Orchestrator",
+  "mode": "dry-run",
+  "enabled": false,
+  "kill_switch_env": "AUTONOMY_KILL_SWITCH",
+  "default_model_env": "OPENAI_ORCHESTRATOR_MODEL",
+  "default_model": "gpt-5.6",
+  "budgets": {
+    "max_runs_per_day": 2,
+    "max_sources_per_run": 25,
+    "max_model_calls_per_run": 3,
+    "max_output_tokens_per_run": 4000,
+    "max_cost_usd_per_day": 5
+  },
+  "data_policy": {
+    "public_metadata_only": true,
+    "allow_personal_data": false,
+    "allow_minor_data": false,
+    "allow_credentials": false,
+    "allow_private_documents": false,
+    "retention_days": 30
+  },
+  "actions": {
+    "collect_public_metadata": {
+      "autonomous": true,
+      "approval_required": false
+    },
+    "generate_internal_draft": {
+      "autonomous": true,
+      "approval_required": false
+    },
+    "classify_evidence": {
+      "autonomous": true,
+      "approval_required": false,
+      "allowed_statuses": [
+        "verified",
+        "documented",
+        "self_attested",
+        "source_pending",
+        "rejected"
+      ]
+    },
+    "publish_public_content": {
+      "autonomous": false,
+      "approval_required": true,
+      "minimum_approvals": 1
+    },
+    "open_code_pull_request": {
+      "autonomous": true,
+      "approval_required": false,
+      "constraints": [
+        "branch_only",
+        "no_secret_changes",
+        "no_dependency_major_updates",
+        "tests_required"
+      ]
+    },
+    "merge_code": {
+      "autonomous": false,
+      "approval_required": true,
+      "minimum_approvals": 1
+    },
+    "deploy_production": {
+      "autonomous": false,
+      "approval_required": true,
+      "minimum_approvals": 1
+    },
+    "issue_certificate": {
+      "autonomous": false,
+      "approval_required": true,
+      "minimum_approvals": 2,
+      "requirements": [
+        "human_program_review",
+        "participant_consent",
+        "no_on_chain_personal_data",
+        "revocation_path"
+      ]
+    }
+  },
+  "provider_policy": {
+    "silent_failover_allowed_for": [
+      "generate_internal_draft",
+      "summarize_public_metadata"
+    ],
+    "silent_failover_forbidden_for": [
+      "classify_evidence_final",
+      "publish_public_content",
+      "merge_code",
+      "deploy_production",
+      "issue_certificate"
+    ],
+    "require_pinned_model_for_high_risk": true,
+    "require_eval_pass_before_model_change": true
+  },
+  "audit": {
+    "append_only": true,
+    "hash_each_run": true,
+    "record_prompt_version": true,
+    "record_model": true,
+    "record_source_hashes": true,
+    "record_approvals": true
+  }
+}
