@@ -11,7 +11,10 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "validate:claims": "node scripts/validate-claims.mjs",
+    "validate:structure": "node scripts/validate-structure.mjs",
+    "validate": "npm run validate:structure && npm run validate:claims",
+    "check": "npm run validate && npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "next": "16.2.10",
