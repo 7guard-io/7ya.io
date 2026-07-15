@@ -11,6 +11,8 @@ import {
 
 const root = process.cwd();
 const output = path.join(root, 'dist');
+const guideStyleTag = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
+const guideScriptTag = '<script src="/scripts/7ya-signal-key-20260715.js" data-7ya-signal-key-assets="20260715" defer></script>';
 
 async function requireRegularSource(relative) {
   const source = path.join(root, relative);
@@ -48,6 +50,26 @@ async function walk(directory, prefix = '') {
   return files;
 }
 
+function injectGuideAssets(html, relative) {
+  if (relative === '404.html' || html.includes('data-7ya-signal-key-assets="20260715"')) return html;
+  if (!html.includes('</head>') || !html.includes('</body>')) {
+    throw new Error(`Cannot inject Signal Key into malformed HTML: ${relative}`);
+  }
+  return html
+    .replace('</head>', `  ${guideStyleTag}\n</head>`)
+    .replace('</body>', `  ${guideScriptTag}\n</body>`);
+}
+
+async function enhancePublicHtml() {
+  const files = (await walk(output)).filter(file => file.endsWith('.html'));
+  for (const relative of files) {
+    const target = path.join(output, relative);
+    const html = await fs.readFile(target, 'utf8');
+    const enhanced = injectGuideAssets(html, relative);
+    if (enhanced !== html) await fs.writeFile(target, enhanced, 'utf8');
+  }
+}
+
 await fs.rm(output, { recursive: true, force: true });
 await fs.mkdir(output, { recursive: true });
 
@@ -55,6 +77,7 @@ for (const file of publicRootFiles) await copyFile(file);
 for (const directory of [...publicDataDirectories, ...publicRouteDirectories]) await copyDirectory(directory);
 for (const file of publicStyleFiles) await copyFile(`styles/${file}`);
 for (const file of publicScriptFiles) await copyFile(`scripts/${file}`);
+await enhancePublicHtml();
 
 const artifactFiles = await walk(output);
 const hashes = {};

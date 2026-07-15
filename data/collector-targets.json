@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "policy": "Only explicit public http(s) surfaces may be collected. Presence here is not publication approval or evidence of partnership.",
+  "targets": [
+    {
+      "id": "7ya-canonical",
+      "url": "https://7ya.io/",
+      "enabled": true,
+      "classification": "official-public-surface"
+    },
+    {
+      "id": "starton-official",
+      "url": "https://starton.org.il/",
+      "enabled": true,
+      "classification": "official-public-surface"
+    }
+  ]
+}
