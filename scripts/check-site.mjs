@@ -1,24 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { aliasRoutes as aliases, canonicalRoutes } from './site-contract.mjs';
 
 const root = process.cwd();
-const canonicalRoutes = [
-  '', 'museum', 'create', 'history', 'igor-vepretski', 'journey', 'starton',
-  'influence', 'evidence', '7ya', 'speaker', 'talk', 'media', 'articles',
-  'contact', 'delta-audit'
-];
-const aliases = new Map([
-  ['about', '/igor-vepretski/'],
-  ['social', '/influence/'],
-  ['oracle', '/evidence/'],
-  ['business', '/7ya/'],
-  ['pass', '/7ya/'],
-  ['radar', '/evidence/'],
-  ['work', '/#tracklist'],
-  ['systems', '/7ya/'],
-  ['public-service', '/journey/'],
-  ['music', '/influence/'],
-]);
 
 let failures = 0;
 const fail = message => { failures += 1; console.error(`FAIL ${message}`); };
@@ -143,6 +127,17 @@ for (const required of [
   '/styles/public-content-museum-20260715.css?v=1',
   '/scripts/public-content-museum-20260715.js', 'תצוגות־מקור מעוצבות'
 ]) requireText(museum, required, 'content museum');
+
+const influence = read('influence/index.html');
+for (const required of [
+  '66 רשומות מקור', 'id="recordCount">66', 'מפת תוכן ציבורית · 15.07.2026'
+]) requireText(influence, required, 'influence wall');
+excludeText(influence, '36 רשומות', 'influence wall');
+
+const livingOs = read('7ya/index.html');
+for (const required of ['href="#main"', '<main class="shell" id="main">']) {
+  requireText(livingOs, required, '7YA system map accessibility');
+}
 
 const shardFiles = [1, 2, 3, 4, 5].map(part => `knowledge/history-song-records-${part}.json`);
 const records = [];

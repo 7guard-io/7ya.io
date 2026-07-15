@@ -1,28 +1,16 @@
 import fs from "node:fs/promises";
 import http from "node:http";
 import https from "node:https";
+import { aliasRoutes, canonicalRoutes } from "./site-contract.mjs";
 
 const baseUrl = (process.argv[2] || "https://7ya.io").replace(/\/$/, "");
 const timeoutMs = Number(process.env.TIMEOUT_MS || 15000);
 const maxBodyBytes = 128 * 1024;
 
-const routes = [
-  ["/", "index.html"],
-  ["/museum/", "museum/index.html"],
-  ["/create/", "create/index.html"],
-  ["/igor-vepretski/", "igor-vepretski/index.html"],
-  ["/talk/", "talk/index.html"],
-  ["/social/", "social/index.html"],
-  ["/pass/", "pass/index.html"],
-  ["/evidence/", "evidence/index.html"],
-  ["/influence/", "influence/index.html"],
-  ["/journey/", "journey/index.html"],
-  ["/business/", "business/index.html"],
-  ["/starton/", "starton/index.html"],
-  ["/contact/", "contact/index.html"],
-  ["/radar/", "radar/index.html"],
-  ["/admin/", "admin/index.html"],
-];
+const routes = canonicalRoutes.map(route => [
+  `/${route ? `${route}/` : ''}`,
+  route ? `${route}/index.html` : 'index.html',
+]);
 
 function extractTitle(html) {
   const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -101,14 +89,15 @@ for (const [route] of routes) {
   console.log(`PASS ${result.url}: HTTP 200; title ${JSON.stringify(result.title)}`);
 }
 
-for (const route of ["/about", "/about/"]) {
+for (const [alias, target] of aliasRoutes) {
+  const route = `/${alias}/`;
   const result = await request(`${baseUrl}${route}`);
   if (result.error) {
     failures += 1;
     console.error(`FAIL ${result.url}: ${result.error}`);
   } else if ([301, 302, 307, 308].includes(result.statusCode)) {
     const location = String(result.location || "");
-    if (location.includes("/igor-vepretski/") || (route === "/about" && location.endsWith("/about/"))) {
+    if (location.includes(target)) {
       console.log(`PASS ${result.url}: HTTP ${result.statusCode} -> ${result.location}`);
     } else {
       failures += 1;
@@ -116,14 +105,14 @@ for (const route of ["/about", "/about/"]) {
     }
   } else if (
     result.statusCode === 200 &&
-    (result.title === titles.get("/igor-vepretski/") ||
-      (result.body?.includes('<link rel="canonical" href="https://7ya.io/igor-vepretski/">') &&
+    (result.title === titles.get(target) ||
+      (result.body?.includes(`<link rel="canonical" href="https://7ya.io${target}">`) &&
         result.body?.includes('http-equiv="refresh"')))
   ) {
     console.log(`PASS ${result.url}: HTTP 200 canonical fallback; title ${JSON.stringify(result.title)}`);
   } else {
     failures += 1;
-    console.error(`FAIL ${result.url}: expected redirect to /igor-vepretski/ or matching fallback page, got HTTP ${result.statusCode}`);
+    console.error(`FAIL ${result.url}: expected redirect to ${target} or matching fallback page, got HTTP ${result.statusCode}`);
   }
 }
 

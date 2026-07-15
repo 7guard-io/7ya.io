@@ -1,9 +1,12 @@
 name: Publish 7YA Living OS
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      release_sha:
+        description: Full main commit SHA approved for production
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -17,6 +20,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,82 +28,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate Living OS release contract
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Require the approved immutable main SHA
         shell: bash
         run: |
           set -euo pipefail
-          test "$(cat CNAME)" = "7ya.io"
-          for file in index.html history/index.html museum/index.html create/index.html 7ya/index.html; do
-            test -f "$file" || { echo "Missing public surface: $file"; exit 1; }
-          done
-          for file in styles/history-song-20260714.css styles/public-content-museum-20260715.css styles/positive-creator-20260715.css scripts/history-song-20260714.js scripts/public-content-museum-20260715.js scripts/positive-creator-20260715.js; do
-            test -f "$file" || { echo "Missing public asset: $file"; exit 1; }
-          done
-          for part in 1 2 3 4 5; do
-            test -f "knowledge/history-song-records-${part}.json" || { echo "Missing archive shard: $part"; exit 1; }
-          done
-          grep -Fq 'history-song-editorial-archive-20260714-1' index.html
-          grep -Fq 'כל פוסט הוא שורה.' index.html
-          grep -Fq 'הפירורים הפכו לארכיון.' index.html
-          grep -Fq 'history-song-archive-20260715-2' history/index.html
-          grep -Fq 'igor-public-content-museum-20260715-1' museum/index.html
-          grep -Fq 'positive-creator-companion-20260715-1' create/index.html
-          grep -Fq 'living-os-system-map-20260715-1' 7ya/index.html
-          grep -Fq 'id="museumGrid"' museum/index.html
-          grep -Fq 'id="creatorForm"' create/index.html
-          ! grep -Eqi 'http-equiv="refresh"|window\.location|location\.replace|noindex' index.html
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const records = [1,2,3,4,5].flatMap(part => JSON.parse(fs.readFileSync(`knowledge/history-song-records-${part}.json`, 'utf8')).records);
-          if (records.length !== 66) throw new Error(`Expected 66 records, received ${records.length}`);
-          const ids = new Set(records.map(record => record.id));
-          if (ids.size !== records.length) throw new Error('Duplicate archive record IDs');
-          for (const record of records) {
-            if (!record.title || !record.url?.startsWith('https://') || !record.evidence_tier) {
-              throw new Error(`Invalid record ${record.id}`);
-            }
-            if (record.metric && !record.metric.as_of) throw new Error(`Undated metric ${record.id}`);
+          test "${{ inputs.release_sha }}" = "$GITHUB_SHA" || {
+            echo "::error::Requested SHA does not match the checked-out main revision."
+            exit 1
           }
-          console.log('LIVING_OS_DATA_CONTRACT: PASS');
-          NODE
-          echo 'LIVING_OS_RELEASE_CONTRACT: PASS'
 
-      - name: Validate static site before publish
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm ci
-          npm run check-all
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
 
-      - name: Assemble immutable static artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf dist
-          mkdir -p dist
-          rsync -a \
-            --exclude .git \
-            --exclude .github \
-            --exclude .netlify \
-            --exclude .vercel \
-            --exclude dist \
-            --exclude node_modules \
-            --exclude artifacts \
-            ./ dist/
-          touch dist/.nojekyll
-          for file in dist/index.html dist/history/index.html dist/museum/index.html dist/create/index.html dist/7ya/index.html; do
-            test -f "$file" || { echo "Missing artifact surface: $file"; exit 1; }
-          done
-          for file in dist/styles/history-song-20260714.css dist/styles/public-content-museum-20260715.css dist/styles/positive-creator-20260715.css dist/scripts/history-song-20260714.js dist/scripts/public-content-museum-20260715.js dist/scripts/positive-creator-20260715.js; do
-            test -f "$file" || { echo "Missing artifact asset: $file"; exit 1; }
-          done
-          for part in 1 2 3 4 5; do
-            test -f "dist/knowledge/history-song-records-${part}.json" || { echo "Missing artifact archive shard: $part"; exit 1; }
-          done
-          grep -Fq 'history-song-editorial-archive-20260714-1' dist/index.html
-          grep -Fq 'igor-public-content-museum-20260715-1' dist/museum/index.html
-          grep -Fq 'positive-creator-companion-20260715-1' dist/create/index.html
-          echo 'PAGES_LIVING_OS_ARTIFACT: PASS'
+      - name: Build and verify the exact public artifact
+        run: npm run release:gate
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
