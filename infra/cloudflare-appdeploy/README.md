@@ -28,6 +28,26 @@ The read-only preflight workflow expects:
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ZONE_ID` — optional; the script can resolve the zone by name when the token has Zone Read permission
 
+GitHub Actions is currently blocked by an account-level billing lock. Adding secrets alone will not make the workflow run while that control-plane block remains active.
+
+## Governed break-glass path
+
+For an explicitly authorized out-of-band cutover, use:
+
+```bash
+bash scripts/cloudflare-appdeploy-breakglass.sh
+```
+
+Full procedure:
+
+```text
+docs/BREAK_GLASS_CUTOVER_20260716.md
+```
+
+The wrapper prompts for the token without echoing it, runs dry-run first, requires an exact human approval phrase, invokes the same Node.js reconciler, checks public DNS, unsets sensitive environment variables, and stores a local incident receipt.
+
+Do not use simplified Python or cURL snippets as the production mutation path.
+
 ## Defensive runtime behavior
 
 The reconciler is fail-closed and includes:
