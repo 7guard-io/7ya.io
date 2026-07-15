@@ -26,6 +26,15 @@
 
 ## Required gate
 
+Before the first lockfile exists:
+
+```bash
+npm install
+npm run check
+```
+
+After committing `package-lock.json`, CI must use:
+
 ```bash
 npm ci
 npm run check
