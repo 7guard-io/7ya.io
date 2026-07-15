@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'd4ce4df0a39127571d7f148b0ae040538f7b94d1';
+const SOURCE_SHA = '9d56ab62fb1216515d00b3b7e602f9e3642bdd22';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 const SIGNAL_STYLE_TAG = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
