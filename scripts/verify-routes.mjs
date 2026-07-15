@@ -8,6 +8,8 @@ const maxBodyBytes = 128 * 1024;
 
 const routes = [
   ["/", "index.html"],
+  ["/museum/", "museum/index.html"],
+  ["/create/", "create/index.html"],
   ["/igor-vepretski/", "igor-vepretski/index.html"],
   ["/talk/", "talk/index.html"],
   ["/social/", "social/index.html"],
@@ -55,15 +57,17 @@ function request(url) {
           chunks.push(bounded);
           bytes += bounded.length;
         });
-        res.on("end", () =>
+        res.on("end", () => {
+          const body = Buffer.concat(chunks).toString("utf8");
           resolve({
             url,
             statusCode: res.statusCode,
             location: res.headers.location || null,
             contentType: res.headers["content-type"] || null,
-            title: extractTitle(Buffer.concat(chunks).toString("utf8")),
-          }),
-        );
+            title: extractTitle(body),
+            body,
+          });
+        });
       },
     );
     req.on("timeout", () => req.destroy(new Error("timeout")));
@@ -110,8 +114,13 @@ for (const route of ["/about", "/about/"]) {
       failures += 1;
       console.error(`FAIL ${result.url}: unexpected location ${result.location || "<missing>"}`);
     }
-  } else if (result.statusCode === 200 && result.title === titles.get("/igor-vepretski/")) {
-    console.log(`PASS ${result.url}: HTTP 200 fallback page; title ${JSON.stringify(result.title)}`);
+  } else if (
+    result.statusCode === 200 &&
+    (result.title === titles.get("/igor-vepretski/") ||
+      (result.body?.includes('<link rel="canonical" href="https://7ya.io/igor-vepretski/">') &&
+        result.body?.includes('http-equiv="refresh"')))
+  ) {
+    console.log(`PASS ${result.url}: HTTP 200 canonical fallback; title ${JSON.stringify(result.title)}`);
   } else {
     failures += 1;
     console.error(`FAIL ${result.url}: expected redirect to /igor-vepretski/ or matching fallback page, got HTTP ${result.statusCode}`);

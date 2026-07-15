@@ -7,6 +7,10 @@
   const send = form?.querySelector('.send');
   const promptButtons = [...document.querySelectorAll('[data-prompt]')];
   const modeButtons = [...document.querySelectorAll('[data-mode]')];
+  const journeyGroups = [...document.querySelectorAll('[data-journey-key]')];
+  const journeyButton = document.querySelector('#buildJourney');
+  const journeyStatus = document.querySelector('#journeyStatus');
+  const journeySelections = {};
   let mode = 'clarify';
 
   const escapeHtml = value => String(value ?? '')
@@ -39,7 +43,7 @@
     if (!log) return null;
     const article = document.createElement('article');
     article.className = 'message assistant';
-    article.innerHTML = '<span>7YA CREATE</span><p>מזקק כוונה, סיפור וצעד מעשי…</p>';
+    article.innerHTML = '<span>7YA · WITH IGOR VEPRETSKI</span><p>מקשיב לקול, מזהה למי הוא יכול לעזור ובונה צעד מעשי…</p>';
     log.append(article);
     log.scrollTop = log.scrollHeight;
     return article;
@@ -63,7 +67,7 @@
       : '';
 
     article.innerHTML = `
-      <span>7YA CREATE · ${escapeHtml(data.mode || 'local-coach')}</span>
+      <span>7YA · WITH IGOR VEPRETSKI · ${escapeHtml(data.mode || 'local-coach')}</span>
       <p>${escapeHtml(data.reflection || 'הכוונה ברורה. עכשיו הופכים אותה לצעד.')}</p>
       <div class="answer-grid">
         <section><b>המטרה</b><p>${escapeHtml(data.goal || 'לזקק מסר אחד שניתן ליצור ולפרסם.')}</p></section>
@@ -91,6 +95,8 @@
     const isBlocked = /מפחד|פחד|חושש|תקוע|מחסום|ביקורת|לא יודע|לא מצליח/.test(lower);
     const isDistribution = /הפצה|פלטפורמ|אינסטגרם|טיקטוק|פייסבוק|לינקדאין|telegram|newsletter/.test(lower);
     const isPersonal = /סיפור אישי|עברתי|ילדות|משפחה|חוויה|שינוי/.test(lower);
+    const isImpact = /לעזור|עשיית טוב|קהיל|נוער|חברתי|השפעה|עולם|בעיה ציבורית|התנדב|מיזם/.test(lower);
+    const isTech = /nvidia|מיקרוסופט|microsoft|azure|openai|github|ai|בינה|טכנולוג|כלי דיגיטלי/.test(lower);
     const hasNumbers = /\d/.test(text);
 
     let reflection = 'יש כאן כוונה אמיתית, אבל היא עדיין רחבה. נצמצם אותה לתוצאה אחת שאפשר ליצור.';
@@ -132,6 +138,23 @@
       selectedLinks.splice(0, selectedLinks.length, links.history, links.influence, links.evidence);
     }
 
+    if (isImpact) {
+      reflection = 'יש כאן רצון לעשות טוב. כדי שלא יישאר כסיסמה, נגדיר אדם אחד, צורך אחד וניסוי קטן שאפשר לבדוק בבטחה.';
+      nextStep = 'כתבו במשפט אחד: “אני רוצה לעזור ל___ שמתמודד/ת עם ___ באמצעות ___”. אל תתחילו מהכלי; התחילו מהאדם.';
+      today = 'שוחחו עם אדם אחד מקהל היעד או עם איש מקצוע שמכיר אותו. שאלו מה באמת קשה, בלי להבטיח פתרון.';
+      thisWeek = 'הריצו ניסוי מצומצם עם הסכמה, גבולות פרטיות ומדד אנושי אחד: האם הפעולה חסכה זמן, פתחה קול או יצרה צעד חדש.';
+      hook = 'טכנולוגיה לא עושה טוב מעצמה. אנשים בוחרים איזו בעיה היא תשרת.';
+      angle = 'מתחילים מאדם וצורך, בוחרים כלי רק אחר כך ומפרסמים רק תוצאה שאפשר להוכיח.';
+      outline = ['למי רוצים לעזור', 'מה שמענו ממנו או מאיש מקצוע', 'הניסוי הקטן', 'גבולות בטיחות ופרטיות', 'מה נמדוד ומה נשנה'];
+      selectedLinks.splice(0, selectedLinks.length, links.starton, links.evidence, links.talk);
+      evidenceNotes.push('רצון טוב אינו הוכחת השפעה. הגדירו מראש מה ייחשב אות מועיל ותעדו גם תוצאה שלא הצליחה.');
+    }
+
+    if (isTech) {
+      evidenceNotes.push('גישה לתוכנית, כלי או תשתית אינה שותפות רשמית. ציינו תוכנית, סטטוס ותאריך רק אם יש תיעוד מתאים.');
+      evidenceNotes.push('אל תזינו לשירות חיצוני מידע של קטינים, פרטים רגישים או חומר שלא ניתנה רשות לעבד.');
+    }
+
     if (isPersonal) {
       evidenceNotes.push('הפרידו בין זיכרון אישי לבין עובדה שניתנת לאימות. זיכרון יכול להיות אמיתי גם בלי להציגו כראיה חיצונית.');
       evidenceNotes.push('אל תחשפו פרטים מזהים של ילדים, בני משפחה או אנשים שלא נתנו הסכמה.');
@@ -147,6 +170,12 @@
       nextStep = 'הגדירו משימה של 15 דקות בלבד וסיימו אותה לפני שאתם משפרים.';
       today = 'צרו טיוטה אחת ושמרו אותה בשם ברור עם תאריך.';
       thisWeek = 'השלימו שלושה ניסויים קטנים במקום פרויקט אחד ענק שלא יוצא לאור.';
+    }
+    if (selectedMode === 'impact') {
+      reflection = isImpact ? reflection : 'השפעה מתחילה לא במסר גדול אלא בהבנה מדויקת של אדם, צורך והפעולה הקטנה ביותר שיכולה להועיל.';
+      nextStep = isImpact ? nextStep : 'בחרו אדם או קהילה אחת וכתבו מה הייתם רוצים שיהיה עבורם קל, בטוח או אפשרי יותר.';
+      today = isImpact ? today : 'אמתו את הצורך בשיחה אחת לפני בחירת כלי או פתרון.';
+      thisWeek = isImpact ? thisWeek : 'בנו ניסוי של שבעה ימים, עם הסכמה, גבול פרטיות ומדד אנושי אחד.';
     }
 
     return {
@@ -182,6 +211,42 @@
     });
   });
 
+  function updateJourneyState() {
+    const selectedCount = Object.keys(journeySelections).length;
+    if (journeyButton) journeyButton.disabled = selectedCount !== journeyGroups.length;
+    if (journeyStatus) journeyStatus.textContent = selectedCount === journeyGroups.length
+      ? 'המסלול מוכן. נבנה טקסט פתיחה שתוכלו לערוך.'
+      : `נבחרו ${selectedCount} מתוך ${journeyGroups.length} שלבים.`;
+  }
+
+  journeyGroups.forEach(group => {
+    const key = group.dataset.journeyKey;
+    group.querySelectorAll('button[data-value]').forEach(button => {
+      button.addEventListener('click', () => {
+        group.querySelectorAll('button[data-value]').forEach(item => {
+          item.classList.remove('selected');
+          item.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('selected');
+        button.setAttribute('aria-pressed', 'true');
+        journeySelections[key] = button.dataset.value || '';
+        if (/לעזור|מיזם|קהילה/.test(journeySelections.starting_point || '')) {
+          mode = 'impact';
+          modeButtons.forEach(item => item.classList.toggle('active', item.dataset.mode === 'impact'));
+        }
+        updateJourneyState();
+      });
+    });
+  });
+
+  journeyButton?.addEventListener('click', () => {
+    if (!input || Object.keys(journeySelections).length !== journeyGroups.length) return;
+    input.value = `אני מגיע/ה עכשיו מהמקום הבא: ${journeySelections.starting_point}. דרך הביטוי הטבעית לי היא ${journeySelections.expression}. לצעד הראשון יש לי ${journeySelections.horizon}. עזור לי להבין מה חשוב לי, למי אוכל להועיל ומה הצעד המעשי הראשון שלי.`;
+    input.focus();
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (journeyStatus) journeyStatus.textContent = 'הכנו התחלה אישית. אפשר לערוך אותה ואז ללחוץ “בואו נבנה”.';
+  });
+
   modeButtons.forEach(button => {
     button.addEventListener('click', () => {
       modeButtons.forEach(item => item.classList.remove('active'));
@@ -189,6 +254,21 @@
       mode = button.dataset.mode || 'clarify';
     });
   });
+
+  const requestedPrompt = new URLSearchParams(window.location.search).get('prompt');
+  if (requestedPrompt && input) {
+    const prompts = {
+      'public-good': 'יש לי גישה לכלים טכנולוגיים ואני רוצה להפוך אותם לפעולה טובה עבור אנשים. עזור לי לבחור אדם או קהילה, צורך וניסוי בטוח לשבעה ימים.',
+      youth: 'אני רוצה לבנות ניסוי בטוח לביטוי ויצירה עבור בני נוער, בלי לאסוף מידע רגיש ובלי להציג תכנון כתוצאה שכבר קרתה.',
+      evidence: 'אני רוצה לבנות כלי קהילתי פשוט שמלמד להפריד בין עובדה, זיכרון, דעה ושאיפה לפני פרסום.',
+    };
+    if (prompts[requestedPrompt]) {
+      input.value = prompts[requestedPrompt];
+      mode = 'impact';
+      modeButtons.forEach(item => item.classList.toggle('active', item.dataset.mode === 'impact'));
+      requestAnimationFrame(() => input.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
 
   form?.addEventListener('submit', async event => {
     event.preventDefault();

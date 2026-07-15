@@ -167,6 +167,41 @@ Platform restrictions are represented explicitly. They are not an excuse to drop
 
 The homepage must reveal the system progressively rather than display every module at once.
 
+## Igor-led personal guidance
+
+7YA Create is hosted by Igor's public method and work, while remaining explicit that the software is not Igor and does not speak on his behalf.
+
+The first interaction should establish three user-specific dimensions without requiring sign-up:
+
+1. Current starting point — searching for direction, creating, building a venture/community, or wanting to help others.
+2. Natural expression — writing/story, video/voice/stage, music/art, or technology/action.
+3. Immediate horizon — ten minutes, today, this week, or clarity before a deadline.
+
+For public-good requests, the companion follows this sequence:
+
+`PERSON → VALIDATED NEED → SMALL SAFE EXPERIMENT → CONSENT & PRIVACY → HUMAN SIGNAL → EVIDENCE → ITERATION`
+
+It never starts with a vendor, model or GPU. Technology is selected only after the beneficiary and need are understood.
+
+## Programs and tools status map
+
+- **NVIDIA Developer Program + NGC** — `DOCUMENTED MEMBERSHIP`, owner records dated 2026-06-25 and 2026-06-26. Membership is not funding, sponsorship or partnership.
+- **Microsoft for Startups** — `DOCUMENTED HISTORY`, owner records from 2022–2023 include program/Azure benefit participation. Current benefit status must be checked before use and must not be shown as a current partnership.
+- **GitHub, Cloudflare, Vercel and OpenAI** — `TOOLS IN USE`, not partner claims. Their public role is limited to source history, domain/recovery infrastructure and optional AI guidance as applicable.
+- **NVIDIA Inception, Google for Startups, AWS Activate, GitHub for Startups and Google for Nonprofits** — remain `SOURCE PENDING` unless direct acceptance evidence is attached.
+
+Practical-use doctrine:
+
+- use the least expensive and least data-intensive tool that can validate the need;
+- never send minor or sensitive data to an external AI service;
+- define one human outcome before infrastructure;
+- document unsuccessful pilots as honestly as successful ones;
+- publish program status, observation date and evidence state without logo-wall inflation.
+
+## Visual direction from owner source learning
+
+Owner-provided source learning on 2026-07-15 reinforces a digitally gentle presentation: premium, human, cinematic, calm and credible. Igor's face, name, mission and proof doorway must be visible immediately on mobile. Use subtle evidence-grid, glass and light-line treatment; avoid militarized mood, cartoon aggression, fake celebrity posture, sci-fi clutter and inflated claims.
+
 ## Deployment and governance
 
 - Static-first public frontend.
