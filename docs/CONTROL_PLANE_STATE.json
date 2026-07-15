@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "updated_at": "2026-07-14T22:58:00+03:00",
+  "updated_at": "2026-07-15T09:22:42+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
@@ -21,13 +21,14 @@
     ]
   },
   "canonical_release": {
-    "merged_pull_request": 204,
-    "content_source_sha": "0dac617e0b1457e48cfed6c969b1366876cd391f",
-    "release_control_pull_request": 205,
-    "release_control_sha": "0e6f8d2182d5bc027d792a6eee8f18f67d7e48d1",
-    "release_id": "history-song-influence-wall-20260714",
-    "scope": "History Song homepage, 36-record canonical public archive and Public Influence Wall",
-    "experience": "IGOR_HISTORY_SONG_PUBLIC_INFLUENCE_WALL",
+    "merged_pull_request": 210,
+    "content_source_sha": "c275ff0557727c99e712ae8d57ebd0736dba79e5",
+    "release_control_pull_request": 212,
+    "release_control_sha": "ca1fb8fd6a465eebc8b1624b0e630993c8cfe093",
+    "release_control_merge_sha": "e2e457b97e182de01d38909d876a7e260443e3fc",
+    "release_id": "igor-guided-living-os-20260715",
+    "scope": "Igor-led Living OS, 66-record content museum, personal creator guidance and public-good workflows",
+    "experience": "IGOR_7YA_LIVING_OS_PERSONAL_GUIDANCE_AND_PUBLIC_GOOD",
     "production_recovery_verified": true,
     "custom_domain_verified": false
   },
@@ -46,30 +47,34 @@
       "name": "7ya-static-site",
       "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
       "verified_alias": "https://7ya-static-site.vercel.app",
-      "deployment_id": "dpl_apvxeLmxz6sbqARSxNxMwU2gEse8",
+      "deployment_id": "dpl_DDJfZVBsEotgt4vHu8ahN5boNmH2",
       "status": "READY",
-      "deployed_source_sha": "0dac617e0b1457e48cfed6c969b1366876cd391f",
+      "deployed_source_sha": "c275ff0557727c99e712ae8d57ebd0736dba79e5",
+      "release_control_merge_sha": "e2e457b97e182de01d38909d876a7e260443e3fc",
       "architecture": "canonical-github-sha-proxy",
       "reproducible_source_directory": "ops/vercel-canonical-proxy",
       "custom_domain_attached": false
     },
     "verified_runtime_routes": [
       "/",
+      "/museum/",
+      "/create/?prompt=public-good",
       "/history/",
-      "/journey/",
+      "/7ya/",
       "/starton/",
       "/influence/",
       "/evidence/",
       "/talk/",
       "/contact/",
-      "/styles/influence-wall-20260714.css",
-      "/scripts/history-song-20260714.js",
+      "/styles/positive-creator-20260715.css",
+      "/scripts/positive-creator-20260715.js",
+      "/knowledge/history-song-records-5.json",
       "/robots.txt",
       "/sitemap.xml",
       "/release.json"
     ],
     "verified_runtime_contract": [
-      "HTTP 200 on homepage and Public Influence Wall",
+      "HTTP 200 on every critical route and release asset",
       "canonical repository provenance header",
       "immutable source SHA header equals the release content source SHA",
       "content-aware MIME types for HTML, CSS and JavaScript",
@@ -77,24 +82,31 @@
       "security headers",
       "mobile viewport",
       "crawlable metadata",
-      "release.json reports PR 204 and the expected release ID"
+      "release.json reports PR 211, the expected release ID and source SHA",
+      "personal onboarding enables only after three selections",
+      "impact-mode POST to /api/guide returns a structured local-coach response",
+      "runtime logs show no error or fatal entries after the production gate"
     ],
     "public_domain_alignment": "7ya.io still serves the older public origin and has not been cut over to the verified canonical recovery alias",
     "rollback": "Previous immutable Vercel deployments and Git source SHAs remain available"
   },
   "content_system": {
     "name": "History Song",
-    "opening_record_count": 36,
+    "opening_record_count": 66,
     "record_shards": [
       "/knowledge/history-song-records-1.json",
       "/knowledge/history-song-records-2.json",
       "/knowledge/history-song-records-3.json",
-      "/knowledge/history-song-records-4.json"
+      "/knowledge/history-song-records-4.json",
+      "/knowledge/history-song-records-5.json"
     ],
     "views": [
       "/",
+      "/museum/",
+      "/create/",
       "/history/",
-      "/influence/"
+      "/influence/",
+      "/7ya/"
     ],
     "ingestion_contract": "DISCOVER → NORMALIZE → DEDUPLICATE → PROTECT → VERIFY → PUBLISH → SNAPSHOT",
     "evidence_tiers": [
@@ -106,7 +118,7 @@
   "ci": {
     "github_actions_state": "blocked before checkout",
     "cause": "organization account locked due to a billing issue",
-    "last_confirmed": "2026-07-14",
+    "last_confirmed": "2026-07-15",
     "interpretation": "No workflow run is not a code PASS and not a code FAIL; changed surfaces were manually inspected before merge"
   },
   "release_blockers": [
@@ -119,7 +131,7 @@
     "Add 7ya.io and www.7ya.io to Vercel project prj_xpcMFC96JcnasigrvetZetEa1XzU",
     "Obtain the exact Vercel DNS verification target",
     "Update Cloudflare web records without changing nameservers, MX or mail-related TXT records",
-    "Verify 7ya.io and www.7ya.io over HTTPS against source SHA 0dac617e0b1457e48cfed6c969b1366876cd391f",
+    "Verify 7ya.io and www.7ya.io over HTTPS against source SHA c275ff0557727c99e712ae8d57ebd0736dba79e5",
     "Preserve the previous origin until domain, TLS and route verification pass"
   ],
   "dns_policy": {
