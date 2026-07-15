@@ -1,13 +1,13 @@
 {
   "service": "7ya-frontend",
   "provider": "github-pages",
-  "status": "CANDIDATE",
-  "release": "2026-07-15-public-response-ai",
+  "status": "PRODUCTION",
+  "release": "2026-07-15-personal-visual-integral-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
   "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
   "environment": "production",
-  "experience": "IGOR_7YA_MASTER_ENTITY_ATLAS_LIVING_OS_PUBLIC_CONTENT_MUSEUM_CREATOR_COMPANION_AND_RESPONSE_AI",
+  "experience": "IGOR_VEPRETSKI_PERSONAL_VISUAL_INTEGRAL_LIVING_OS",
   "launch_date": "2026-07-15",
   "data_contract": {
     "record_count": 66,
@@ -36,5 +36,6 @@
     "/speaker/",
     "/contact/"
   ],
+  "release_intent": "Publish the current canonical homepage and all critical surfaces as a richer, more personal, visually varied and functionally intact Igor Vepretski experience.",
   "rollback": "Provider deployment history and previous source commits remain available for rollback."
 }
