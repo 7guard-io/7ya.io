@@ -4,8 +4,8 @@ const payload = {
   release_id: 'igor-guided-living-os-20260715',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: 'cdc63d83591d84e0a93af953244bed1b8365a458',
-  pull_request: 210,
+  source_sha: 'c275ff0557727c99e712ae8d57ebd0736dba79e5',
+  pull_request: 211,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
   experience: 'IGOR_7YA_LIVING_OS_PERSONAL_GUIDANCE_AND_PUBLIC_GOOD',
@@ -15,7 +15,7 @@ const payload = {
     '/influence/', '/evidence/', '/talk/', '/contact/'
   ],
   custom_domain_attached: false,
-  generated_at: '2026-07-15T09:07:09+03:00',
+  generated_at: '2026-07-15T09:17:23+03:00',
 };
 
 module.exports = (request, response) => {
