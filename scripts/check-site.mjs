@@ -76,6 +76,10 @@ const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI', 'שיר', 'היסטוריה',
   'כל פוסט הוא שורה.', 'Evidence Ledger',
+  'igor-infostory-personal-os-20260716-1',
+  'id="infostory"', 'data-story-chapter', 'data-story-jump="chapter-human"',
+  'VISUAL STORY ART · OWNER-SUPPLIED · NOT EVIDENCE',
+  '7YA CREATOR COMPANION', 'id="companionPanel"', 'id="companionForm"',
   'id="archiveGrid"', 'id="archiveSearch"', 'data-filter="Facebook"'
 ]) requireText(home, required, 'homepage');
 
@@ -84,18 +88,41 @@ for (const technical of [
   '/assets/igor-home-portrait-20260712.webp',
   '/assets/igor-home-portrait-20260712.jpg',
   '/styles/history-song-20260714.css?v=1',
-  '/scripts/history-song-20260714.js'
+  '/styles/igor-infostory-20260716.css?v=1',
+  '/scripts/history-song-20260714.js',
+  '/scripts/igor-infostory-20260716.js'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
 const publicImages = (home.match(/<img\b/gi) || []).length;
-publicImages >= 10 ? pass(`homepage has ${publicImages} image placements`) : fail(`homepage has only ${publicImages} image placements`);
+publicImages >= 10 ? pass(`homepage has ${publicImages} documentary image placements`) : fail(`homepage has only ${publicImages} image placements`);
+const chapterCount = (home.match(/data-story-chapter/g) || []).length;
+chapterCount === 5 ? pass('homepage has five hero story chapters') : fail(`homepage has ${chapterCount} hero story chapters`);
 
 for (const forbidden of [
   'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
-  '100K+', 'Microsoft-backed', 'official partner', 'candidate for Knesset'
+  '100K+', 'Microsoft-backed', 'official partner', 'candidate for Knesset',
+  'הסצנות הקולנועיות החדשות הן תיעוד', 'AI הוא איגור'
 ]) excludeText(home, forbidden, 'homepage');
+
+const infostoryCss = read('styles/igor-infostory-20260716.css');
+for (const required of [
+  '--chapter-origins:url(\'/assets/infostory/01-origins.webp\')',
+  '--chapter-voice:url(\'/assets/infostory/02-public-voice.webp\')',
+  '--chapter-creator:url(\'/assets/infostory/03-creator-night.webp\')',
+  '--chapter-system:url(\'/assets/infostory/04-force-system.webp\')',
+  '.hero-chapter', '.companion-panel', '@media(prefers-reduced-motion:reduce)'
+]) requireText(infostoryCss, required, 'infostory stylesheet');
+
+const infostoryScript = read('scripts/igor-infostory-20260716.js');
+for (const required of [
+  "const chapters = [...document.querySelectorAll('[data-story-chapter]')]",
+  'activateChapter', 'updateStoryProgress', 'responseFor',
+  '7YA CREATOR COMPANION', "addEventListener('submit'"
+]) requireText(infostoryScript, required, 'infostory script');
+excludeText(infostoryScript, 'OPENAI_API_KEY', 'infostory script');
+excludeText(infostoryScript, 'localStorage.setItem', 'companion privacy contract');
 
 const history = read('history/index.html');
 for (const required of [
@@ -170,9 +197,15 @@ for (const file of [
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
   'styles/history-song-20260714.css',
+  'styles/igor-infostory-20260716.css',
+  'assets/infostory/01-origins.webp',
+  'assets/infostory/02-public-voice.webp',
+  'assets/infostory/03-creator-night.webp',
+  'assets/infostory/04-force-system.webp',
   'styles/public-content-museum-20260715.css',
   'styles/public-universe-20260715.css',
   'scripts/history-song-20260714.js',
+  'scripts/igor-infostory-20260716.js',
   'scripts/public-content-museum-20260715.js',
   ...coreShardFiles,
   universeFile,
