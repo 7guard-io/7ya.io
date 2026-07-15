@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>7YA Creator Companion — יצירת תוכן והגשמה מעשית</title>
+  <meta name="description" content="מלווה חיובי ליצירת תוכן, בהירות, תכנון והגשמה עצמית — עם פרטיות, מקורות ובדיקה לפני פרסום.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#070807">
+  <meta name="7ya-feature" content="creator-companion-foundation-20260715-1">
+  <link rel="canonical" href="https://7ya.io/create/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/creator-companion-20260715.css?v=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="7YA.IO">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:title" content="7YA Creator Companion">
+  <meta property="og:description" content="רעיון → בהירות → מקור → יצירה → בדיקה → פעולה.">
+  <meta property="og:url" content="https://7ya.io/create/">
+  <meta property="og:image" content="https://7ya.io/assets/igor-home-og-20260712.jpg">
+</head>
+<body>
+  <a class="skip" href="#workspace">דלג למרחב היצירה</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="7YA.IO">
+      <span class="orb">7</span>
+      <span><b>7YA SIGNAL KEY</b><small>CREATOR COMPANION · HUMAN FIRST</small></span>
+    </a>
+    <nav aria-label="ניווט ראשי">
+      <a href="/">שער</a>
+      <a href="/history/">ארכיון</a>
+      <a href="/evidence/">ראיות</a>
+      <a href="/starton/">StartOn</a>
+      <a href="/talk/">שיחה</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">POSITIVE CREATION · GROUNDED SELF-FULFILMENT · REVIEW FIRST</p>
+        <h1>לא עוד צ׳אט שמדבר.<br><em>מלווה שעוזר ליצור.</em></h1>
+        <p class="lead">ספרו מה מסתובב לכם בראש — רעיון, זיכרון, מטרה, פוסט, אירוע או חלום. המלווה יסדר את החומר, יבדיל בין עובדה לשאיפה, יחבר למקורות קיימים ויחזיר צעד מעשי אחד.</p>
+        <div class="principles" aria-label="עקרונות">
+          <span>חיובי, לא מתייפייף</span>
+          <span>פרטי כברירת מחדל</span>
+          <span>מקור לפני הגברה</span>
+          <span>בדיקה לפני פרסום</span>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <b>הבטחה פשוטה</b>
+        <p>המערכת אינה מתחזה לאיגור, אינה ממציאה הישגים ואינה מפרסמת דבר בלי אישור. היא הופכת עומס למבנה, ומבנה לפעולה.</p>
+        <a href="/knowledge/creator-companion-policy-20260715.json">למדיניות המלאה ↗</a>
+      </aside>
+    </section>
+
+    <section class="workspace" id="workspace" aria-labelledby="workspace-title">
+      <div class="mode-panel">
+        <p class="section-code">01 / CHOOSE A MODE</p>
+        <h2 id="workspace-title">מה צריך עכשיו?</h2>
+        <div class="mode-grid" role="group" aria-label="מצבי המלווה">
+          <button class="mode active" data-mode="create"><b>CREATE</b><span>להפוך חומר לתוכן</span></button>
+          <button class="mode" data-mode="clarify"><b>CLARIFY</b><span>למצוא את המסר האמיתי</span></button>
+          <button class="mode" data-mode="build"><b>BUILD</b><span>להפוך יעד לתוכנית</span></button>
+          <button class="mode" data-mode="reflect"><b>REFLECT</b><span>לחדד כיוון ומשמעות</span></button>
+          <button class="mode" data-mode="verify"><b>VERIFY</b><span>להפריד עובדה, זיכרון ושאיפה</span></button>
+        </div>
+        <div class="archive-status" id="archiveStatus" aria-live="polite">
+          <span class="dot"></span>
+          <b>טוען את ארכיון 7YA…</b>
+        </div>
+        <div class="privacy-card">
+          <b>פרטיות</b>
+          <p>הטקסט נשאר בדפדפן. שמירה מקומית מתבצעת רק בלחיצה מפורשת. אין פרסום אוטומטי.</p>
+        </div>
+      </div>
+
+      <div class="chat-panel">
+        <div class="chat-head">
+          <div><small>7YA CREATOR COMPANION</small><b id="modeTitle">CREATE · יצירת תוכן</b></div>
+          <button id="clearChat" type="button">איפוס</button>
+        </div>
+        <div class="messages" id="messages" aria-live="polite">
+          <article class="message assistant">
+            <span class="avatar">7</span>
+            <div><b>מתחילים מחומר אמיתי.</b><p>כתבו רעיון, זיכרון, מטרה או טקסט גולמי. אחזיר ליבה, כיוון, מצב אימות, פורמטים וצעד הבא.</p></div>
+          </article>
+        </div>
+        <form class="composer" id="companionForm">
+          <label for="companionInput">מה אתם רוצים ליצור או להגשים?</label>
+          <textarea id="companionInput" rows="5" maxlength="4000" placeholder="לדוגמה: יש לי סיפור על המעבר מהמשטרה ל־StartOn ואני רוצה להפוך אותו לפוסט חזק, אבל בלי להישמע מתנשא…"></textarea>
+          <div class="prompt-row" aria-label="התחלות מהירות">
+            <button type="button" data-prompt="הפוך את הזיכרון הזה לפוסט עם מסר, מקור וצעד מעשי: ">זיכרון → פוסט</button>
+            <button type="button" data-prompt="עזור לי לחדד את המטרה הזאת ולהפוך אותה לתוכנית של 7 ימים: ">מטרה → 7 ימים</button>
+            <button type="button" data-prompt="בדוק את הטענה הבאה וסווג מה עובדה, מה זיכרון ומה דורש מקור: ">בדיקת טענה</button>
+          </div>
+          <div class="composer-actions">
+            <span id="characterCount">0 / 4000</span>
+            <button class="send" type="submit">צור מהלך</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="output-panel" aria-labelledby="output-title">
+        <div class="output-head">
+          <div><small>REVIEWABLE OUTPUT</small><h2 id="output-title">חבילת העבודה</h2></div>
+          <button id="saveDraft" type="button" disabled>שמור מקומית</button>
+        </div>
+        <div class="empty-output" id="emptyOutput">
+          <span>✦</span>
+          <p>כאן יופיעו ליבת הסיפור, מצב האימות, רעיונות לפלטפורמות, כיוון חזותי וצעד אחד לביצוע.</p>
+        </div>
+        <div class="output-content" id="outputContent" hidden></div>
+      </aside>
+    </section>
+
+    <section class="how-it-works">
+      <div><p class="section-code">02 / THE CREATION LOOP</p><h2>רעיון לא צריך עוד רעש.<br>הוא צריך מסלול.</h2></div>
+      <ol>
+        <li><b>INPUT</b><span>רעיון, זיכרון, מקור, קול או מטרה.</span></li>
+        <li><b>CLARITY</b><span>מה המסר, למי ולמה עכשיו.</span></li>
+        <li><b>EVIDENCE</b><span>מה ידוע, מה אישי ומה עדיין דורש מקור.</span></li>
+        <li><b>CREATION</b><span>נכס קנוני ונגזרות מותאמות לפלטפורמות.</span></li>
+        <li><b>REVIEW</b><span>פרטיות, דיוק, טון והשלכות.</span></li>
+        <li><b>ACTION</b><span>צעד אחד שאפשר לבצע היום.</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div><b>7YA SIGNAL KEY</b><span>POSITIVE CREATION · EVIDENCE-AWARE · PRIVATE BY DEFAULT</span></div>
+    <div><a href="/history/">היסטוריה</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></div>
+  </footer>
+
+  <script src="/scripts/creator-companion-20260715.js" defer></script>
+</body>
+</html>
