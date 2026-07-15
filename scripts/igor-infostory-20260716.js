@@ -38,9 +38,50 @@
   addEventListener('resize', updateStoryProgress);
   updateStoryProgress();
 
+  document.querySelector('#companionLauncher')?.remove();
+  document.querySelector('#companionPanel')?.remove();
+
+  let signalKeyPromise;
+  const ensureSignalKey = () => {
+    if (window.__7yaSignalKeyLoaded) return Promise.resolve();
+    if (signalKeyPromise) return signalKeyPromise;
+
+    if (!document.querySelector('link[data-7ya-signal-key-assets="20260715"]')) {
+      const style = document.createElement('link');
+      style.rel = 'stylesheet';
+      style.href = '/styles/7ya-signal-key-20260715.css';
+      style.dataset.yaSignalKeyAssets = '20260715';
+      document.head.append(style);
+    }
+
+    signalKeyPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-7ya-signal-key-assets="20260715"]');
+      if (existing) {
+        if (window.__7yaSignalKeyLoaded) resolve();
+        else {
+          existing.addEventListener('load', resolve, { once: true });
+          existing.addEventListener('error', reject, { once: true });
+        }
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = '/scripts/7ya-signal-key-20260715.js';
+      script.defer = true;
+      script.dataset.yaSignalKeyAssets = '20260715';
+      script.addEventListener('load', resolve, { once: true });
+      script.addEventListener('error', reject, { once: true });
+      document.body.append(script);
+    });
+
+    return signalKeyPromise;
+  };
+
   const openSignalKey = prompt => {
     const detail = { prompt: String(prompt || '').trim() };
-    window.dispatchEvent(new CustomEvent('7ya:creator-seed', { detail }));
+    ensureSignalKey()
+      .then(() => window.dispatchEvent(new CustomEvent('7ya:creator-seed', { detail })))
+      .catch(error => console.warn('7YA Signal Key load failed', error));
   };
 
   document.querySelectorAll('[data-companion-prompt]').forEach(button => {
@@ -48,4 +89,6 @@
       openSignalKey(button.dataset.companionPrompt || button.textContent || '');
     });
   });
+
+  ensureSignalKey().catch(error => console.warn('7YA Signal Key preload failed', error));
 })();
