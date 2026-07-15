@@ -17,14 +17,14 @@ The proxy removes both ambiguities:
 ## Source contract
 
 - Repository: `7guard-io/7ya.io`
-- Previous production source SHA: `cdc63d83591d84e0a93af953244bed1b8365a458`
-- Pinned Igor-led Living OS source SHA: `c275ff0557727c99e712ae8d57ebd0736dba79e5`
-- Content and release PRs: `#210`, `#211`
+- Previous production source SHA: `c275ff0557727c99e712ae8d57ebd0736dba79e5`
+- Pinned clean Living OS source SHA: `b1ff2422430aecff1a8fe12ad0a48c0561c7a97f`
+- Content and release-control PRs: `#214`, `#215`
 - Merge requirement: use a regular merge so the pinned source commit remains in `main` history.
 - Vercel project: `7ya-static-site`
 - Verified alias: `https://7ya-static-site.vercel.app`
 
-The proxy code and `/release.json` in this directory are pinned to the Igor-led Living OS source SHA. Preview verification may use an immutable PR commit; production promotion must wait until the content and release PRs are merged and the pinned source commit is reachable from `main` history.
+The proxy code and `/release.json` in this directory are pinned to the clean Igor-led Living OS source SHA. Preview verification may use an immutable PR commit; production promotion must wait until the content and release PRs are merged and the pinned source commit is reachable from `main` history.
 
 ## Routes
 
@@ -32,7 +32,7 @@ The proxy code and `/release.json` in this directory are pinned to the Igor-led 
 - `/api/guide` → `api/guide.js`
 - every other path → `api/proxy.js?path=<captured path>`
 
-Directory requests resolve to `index.html`. Extension-bearing requests are fetched as assets. Invalid dot or traversal segments fail closed. Missing HTML routes use the repository's `404.html` with HTTP 404.
+Directory requests resolve to `index.html`. Extension-bearing requests are fetched as assets. Invalid dot or traversal segments fail closed. Private `/admin/` and unhandled repository `/api/*` paths return a controlled 404. Missing HTML routes use the repository's `404.html` with HTTP 404.
 
 ## Deployment gate
 

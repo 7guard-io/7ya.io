@@ -21,7 +21,7 @@ if (!releaseSha) failures.push(`${releasePath} has no full immutable source_sha`
 if (proxySha && releaseSha && proxySha !== releaseSha) failures.push('proxy and release endpoint pin different source SHAs');
 if (releaseSha && !readme.includes(releaseSha)) failures.push('canonical proxy README does not name the pinned source SHA');
 if (!releaseId || !/^igor-guided-living-os-\d{8}$/.test(releaseId)) failures.push('release_id does not describe the Igor-led Living OS release');
-if (pullRequest !== '211') failures.push('release endpoint is not tied to release PR #211');
+if (pullRequest !== '214') failures.push('release endpoint is not tied to content PR #214');
 if (!proxy.includes("const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api'])")) {
   failures.push('canonical proxy does not fail closed for private admin and repository API paths');
 }

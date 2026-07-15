@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'c275ff0557727c99e712ae8d57ebd0736dba79e5';
+const SOURCE_SHA = 'b1ff2422430aecff1a8fe12ad0a48c0561c7a97f';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 
