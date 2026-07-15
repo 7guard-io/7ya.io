@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'a4e2123d14a6b5f69654ab55a6444b9b1bb78ce7';
+const SOURCE_SHA = 'd4ce4df0a39127571d7f148b0ae040538f7b94d1';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 const SIGNAL_STYLE_TAG = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
@@ -117,12 +117,14 @@ function setResponseHeaders(response, file, statusCode) {
       response.setHeader('Cache-Control', 'no-store');
     } else {
       response.setHeader('X-Robots-Tag', 'index, follow');
-      response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300, stale-while-revalidate=86400');
+      response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=0, must-revalidate');
+      response.setHeader('CDN-Cache-Control', 'max-age=0, must-revalidate');
+      response.setHeader('Vercel-CDN-Cache-Control', 'max-age=0, must-revalidate');
     }
   } else if (IMMUTABLE_ASSET_TYPES.has(type)) {
     response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   } else {
-    response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
+    response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=60, must-revalidate');
   }
 }
 
@@ -131,7 +133,7 @@ function sendRedirect(request, response, destination) {
   setBaseHeaders(response);
   response.setHeader('Location', destination);
   response.setHeader('X-Robots-Tag', 'noindex, follow');
-  response.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600');
+  response.setHeader('Cache-Control', 'public, max-age=0, s-maxage=60, must-revalidate');
   response.setHeader('Content-Type', 'text/plain; charset=utf-8');
   if (request.method === 'HEAD') response.end();
   else response.end(`Permanent Redirect: ${destination}`);
@@ -150,7 +152,7 @@ function sendNotFound(request, response) {
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.6',
+      'User-Agent': '7ya-canonical-recovery/1.7',
       Accept: '*/*',
     },
   });
