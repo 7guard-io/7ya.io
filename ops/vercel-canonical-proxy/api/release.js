@@ -1,7 +1,7 @@
 'use strict';
 
 const payload = {
-  release_id: 'signal-key-creator-universe-20260716',
+  release_id: 'igor-signal-key-creator-universe-20260716',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
   source_sha: '9d56ab62fb1216515d00b3b7e602f9e3642bdd22',
