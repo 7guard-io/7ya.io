@@ -15,13 +15,25 @@ The canonical public source is `7guard-io/7ya.io`, while older hosting integrati
 ## Current source contract
 
 - Repository: `7guard-io/7ya.io`
-- Pinned source SHA: `1c599abc2fcf30c95be4465c6242114e7602b2e9`
-- Content pull request: `#226`
-- Release-control branch: `release/smart-nvidia-ux-e2e-20260715`
+- Pinned source SHA: `a4e2123d14a6b5f69654ab55a6444b9b1bb78ce7`
+- Content pull request: `#229`
+- Release-control branch: `release/public-universe-20260715`
 - Vercel project: `7ya-static-site`
-- Verified alias: `https://7ya-static-site.vercel.app`
+- Verified alias target: `https://7ya-static-site.vercel.app`
 
-The release adds the universal `7YA Signal Key`, NVIDIA NIM-first provider routing, OpenAI and deterministic local fallbacks, plus the governed Digital Museum Collector.
+The release preserves the 66-record verified narrative core and adds an append-only Public Universe layer containing 26 additional public profiles, publisher mirrors, media appearances, podcasts, music surfaces, research profiles and distribution nodes. The combined source index contains 92 records before runtime URL deduplication. There is no fixed museum ceiling.
+
+It also preserves the universal `7YA Signal Key`, NVIDIA NIM-first provider routing, OpenAI and deterministic local fallbacks, plus the governed Digital Museum Collector.
+
+## Public Universe contract
+
+- Verified core: `/knowledge/history-song-records-1.json` through `/knowledge/history-song-records-5.json`
+- Expansion layer: `/knowledge/public-universe-records-20260715.json`
+- Collections: `VERIFIED_CORE`, `PUBLIC_UNIVERSE`
+- Duplicate URLs collapse at runtime, with the verified-core record retaining priority.
+- The verified core remains usable if the optional expansion layer is temporarily unavailable.
+- Private, minor, legal, financial and quarantined records are excluded from publication.
+- Metrics require a dated source snapshot.
 
 ## Smart guide provider contract
 
@@ -63,12 +75,14 @@ Before changing the source SHA:
 2. Pin the proxy and release endpoint to that immutable content commit.
 3. Confirm the release metadata names the content PR and critical routes.
 4. Deploy this directory to the existing `7ya-static-site` project.
-5. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
-6. Verify `/styles/7ya-signal-key-20260715.css` and `/scripts/7ya-signal-key-20260715.js`.
-7. Verify `/api/guide` accepts POST only and returns `provider` plus `model` without exposing credentials.
-8. Verify controlled 404s are `noindex, nofollow` and `no-store`.
-9. Check runtime error clusters.
-10. Do not attach or mutate domains, nameservers, MX or mail-related TXT records as part of this package.
+5. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/museum/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
+6. Verify `/styles/public-universe-20260715.css`, `/scripts/public-content-museum-20260715.js` and `/knowledge/public-universe-records-20260715.json` return the same source SHA.
+7. Verify the museum loads the verified core plus the expansion layer, displays dynamic counts, supports search and filters, and does not contain the fixed `Expected 66 records` failure.
+8. Verify `/styles/7ya-signal-key-20260715.css` and `/scripts/7ya-signal-key-20260715.js`.
+9. Verify `/api/guide` accepts POST only and returns `provider` plus `model` without exposing credentials.
+10. Verify controlled 404s are `noindex, nofollow` and `no-store`.
+11. Check runtime error clusters.
+12. Do not attach or mutate domains, nameservers, MX or mail-related TXT records as part of this package.
 
 ## Collector boundary
 
