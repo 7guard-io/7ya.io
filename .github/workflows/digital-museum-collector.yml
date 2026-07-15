@@ -1,0 +1,67 @@
+name: Digital Museum Collector - 12H Evidence Sync
+
+on:
+  schedule:
+    - cron: '17 */12 * * *'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Optional one-time public http(s) target; scheduled runs use data/collector-targets.json
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: digital-museum-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout canonical main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Collect approved public metadata
+        env:
+          MANUAL_TARGET: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          if [ -n "${MANUAL_TARGET:-}" ]; then
+            node scripts/collector/index.js --target "$MANUAL_TARGET" --out data/archives/latest_collection.json
+          else
+            node scripts/collector/index.js --config data/collector-targets.json --out data/archives/latest_collection.json
+          fi
+
+      - name: Validate collector output and public contracts
+        run: |
+          node -e "const d=require('./data/archives/latest_collection.json'); if(!Array.isArray(d.records)||!d.records.length) process.exit(1)"
+          npm run check-guide
+
+      - name: Commit changed evidence snapshot only
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- data/archives/latest_collection.json; then
+            echo "No public metadata change detected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/archives/latest_collection.json
+          git commit -m "chore(data): refresh Digital Museum public metadata [skip ci]"
+          git push origin HEAD:main

@@ -57,6 +57,7 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  '7ya-signal-key-20260715.css',
   'creatorverse-20260714.css',
   'creatorverse-depth-20260714.css',
   'history-song-20260714.css',
@@ -74,6 +75,7 @@ export const publicStyleFiles = [
 ];
 
 export const publicScriptFiles = [
+  '7ya-signal-key-20260715.js',
   'creatorverse-20260714.js',
   'history-song-20260714.js',
   'legacy-universe-20260714.js',
@@ -90,12 +92,14 @@ export const criticalArtifactPaths = [
   'history/index.html',
   'response-ai/index.html',
   '7ya/index.html',
+  'styles/7ya-signal-key-20260715.css',
   'styles/history-song-20260714.css',
   'styles/master-entity-index-20260715.css',
   'styles/public-content-museum-20260715.css',
   'styles/public-universe-20260715.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
+  'scripts/7ya-signal-key-20260715.js',
   'scripts/history-song-20260714.js',
   'scripts/public-content-museum-20260715.js',
   'scripts/positive-creator-20260715.js',

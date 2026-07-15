@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const workflowRoot = path.join(process.cwd(), '.github', 'workflows');
-const allowed = ['actions-smoke.yml', 'ci.yml', 'pages.yml'];
+const allowed = ['actions-smoke.yml', 'ci.yml', 'digital-museum-collector.yml', 'pages.yml'];
 const actual = fs.readdirSync(workflowRoot)
   .filter(file => /\.ya?ml$/i.test(file))
   .sort();
@@ -19,8 +19,11 @@ for (const file of actual) {
   const body = fs.readFileSync(path.join(workflowRoot, file), 'utf8');
   bodies.set(file, body);
   if (!/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
-  for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'schedule', 'release']) {
+  for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'release']) {
     if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables quarantined ${event} automation`);
+  }
+  if (/^\s{2}schedule:/m.test(body) && file !== 'digital-museum-collector.yml') {
+    fail(`${file} enables unauthorized schedule automation`);
   }
 }
 
@@ -40,10 +43,26 @@ for (const required of [
 const smoke = bodies.get('actions-smoke.yml') || '';
 if (!smoke.includes('ACTIONS_SMOKE_PASS')) fail('actions-smoke.yml lost its runner proof marker');
 
+const collector = bodies.get('digital-museum-collector.yml') || '';
+for (const required of [
+  'schedule:',
+  "cron: '17 */12 * * *'",
+  'contents: write',
+  'scripts/collector/index.js',
+  'data/collector-targets.json',
+  'git diff --quiet',
+  '[skip ci]',
+]) {
+  if (!collector.includes(required)) fail(`digital-museum-collector.yml missing ${required}`);
+}
+if (collector.includes('stefanzweifel/git-auto-commit-action')) {
+  fail('digital-museum-collector.yml uses an unnecessary third-party commit action');
+}
+
 if (failures.length) {
   failures.forEach(message => console.error(`FAIL ${message}`));
   console.error(`WORKFLOW_CONTRACT: FAIL (${failures.length})`);
   process.exit(1);
 }
 
-console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} manual workflows)`);
+console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} governed workflows)`);

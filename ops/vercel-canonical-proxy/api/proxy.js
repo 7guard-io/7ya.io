@@ -1,9 +1,11 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = '6c179d0bd0cb334de6d03221d3074ee760f134b4';
+const SOURCE_SHA = '1c599abc2fcf30c95be4465c6242114e7602b2e9';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
+const SIGNAL_STYLE_TAG = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
+const SIGNAL_SCRIPT_TAG = '<script src="/scripts/7ya-signal-key-20260715.js" data-7ya-signal-key-assets="20260715" defer></script>';
 
 const CANONICAL_ALIASES = new Map([
   ['about', '/igor-vepretski/'],
@@ -148,10 +150,23 @@ function sendNotFound(request, response) {
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.5',
+      'User-Agent': '7ya-canonical-recovery/1.6',
       Accept: '*/*',
     },
   });
+}
+
+function enhanceHtml(body, file, statusCode) {
+  if (statusCode !== 200 || extension(file) !== 'html') return body;
+  const html = body.toString('utf8');
+  if (html.includes('data-7ya-signal-key-assets="20260715"')) return body;
+  if (!html.includes('</head>') || !html.includes('</body>')) return body;
+  return Buffer.from(
+    html
+      .replace('</head>', `  ${SIGNAL_STYLE_TAG}\n</head>`)
+      .replace('</body>', `  ${SIGNAL_SCRIPT_TAG}\n</body>`),
+    'utf8',
+  );
 }
 
 module.exports = async (request, response) => {
@@ -198,7 +213,8 @@ module.exports = async (request, response) => {
       throw new Error(`Canonical source returned ${upstream.status} for ${requestedFile}`);
     }
 
-    const body = Buffer.from(await upstream.arrayBuffer());
+    let body = Buffer.from(await upstream.arrayBuffer());
+    body = enhanceHtml(body, servedFile, statusCode);
     setResponseHeaders(response, servedFile, statusCode);
     response.setHeader('Content-Length', String(body.length));
 
