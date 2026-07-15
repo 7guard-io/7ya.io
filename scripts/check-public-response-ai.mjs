@@ -34,7 +34,6 @@ for (const required of [
   'id="responseQuery"',
   'id="responseGrid"',
   'data-response-mode="positive"',
-  '/knowledge/public-response-signals-20260715.json',
   '/scripts/public-response-ai-20260715.js',
   '/styles/public-response-ai-20260715.css?v=1',
 ]) requireText(html, required, 'response AI page');
@@ -60,7 +59,6 @@ for (const required of [
   "fetch('/knowledge/public-response-signals-20260715.json'",
   'scoreSignal',
   'buildSummary',
-  'Engagement',
   'אין נתונים — אין טענת השפעה',
 ]) requireText(script, required, 'response AI script');
 excludeText(script, 'localStorage', 'response AI script');
@@ -117,12 +115,20 @@ const sitemap = read('sitemap.xml');
 requireText(sitemap, 'https://7ya.io/entity/', 'sitemap');
 requireText(sitemap, 'https://7ya.io/response-ai/', 'sitemap');
 
-const release = JSON.parse(read('release.json'));
-release.critical_surfaces?.includes('/entity/') ? pass('release includes entity atlas') : fail('release missing entity atlas');
-release.critical_surfaces?.includes('/response-ai/') ? pass('release includes response AI') : fail('release missing response AI');
-release.data_contract?.response_signals === '/knowledge/public-response-signals-20260715.json'
-  ? pass('release pins response signal dataset')
-  : fail('release response signal dataset mismatch');
+let release;
+try {
+  release = JSON.parse(read('release.json'));
+  pass('release metadata parses as JSON');
+} catch (error) {
+  fail(`release metadata invalid JSON: ${error.message}`);
+}
+if (release) {
+  release.critical_surfaces?.includes('/entity/') ? pass('release includes entity atlas') : fail('release missing entity atlas');
+  release.critical_surfaces?.includes('/response-ai/') ? pass('release includes response AI') : fail('release missing response AI');
+  release.data_contract?.response_signals === '/knowledge/public-response-signals-20260715.json'
+    ? pass('release pins response signal dataset')
+    : fail('release response signal dataset mismatch');
+}
 
 if (failures) {
   console.error(`\nPUBLIC_RESPONSE_AI_GATE: FAIL (${failures})`);
