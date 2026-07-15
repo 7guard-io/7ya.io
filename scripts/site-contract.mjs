@@ -16,6 +16,7 @@ export const canonicalRoutes = [
   'media',
   'articles',
   'contact',
+  'command-center',
   'delta-audit',
 ];
 
@@ -45,6 +46,7 @@ export const publicRootFiles = [
   '.nojekyll',
   '404.html',
   'CNAME',
+  'data/command-center-status.json',
   'data/evidence-claims.json',
   'favicon.svg',
   'index.html',
@@ -58,6 +60,7 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  '7ya-command-center-20260716.css',
   '7ya-signal-key-20260715.css',
   '7ya-visual-system-v1.css',
   'creatorverse-20260714.css',
@@ -78,6 +81,7 @@ export const publicStyleFiles = [
 ];
 
 export const publicScriptFiles = [
+  '7ya-command-center-20260716.js',
   '7ya-signal-key-20260715.js',
   'creatorverse-20260714.js',
   'evidence-ledger-table-v1.js',
@@ -97,6 +101,8 @@ export const criticalArtifactPaths = [
   'response-ai/index.html',
   'evidence/index.html',
   '7ya/index.html',
+  'command-center/index.html',
+  'styles/7ya-command-center-20260716.css',
   'styles/7ya-signal-key-20260715.css',
   'styles/7ya-visual-system-v1.css',
   'styles/evidence-ledger-v1.css',
@@ -106,12 +112,14 @@ export const criticalArtifactPaths = [
   'styles/public-universe-20260715.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
+  'scripts/7ya-command-center-20260716.js',
   'scripts/7ya-signal-key-20260715.js',
   'scripts/evidence-ledger-table-v1.js',
   'scripts/history-song-20260714.js',
   'scripts/public-content-museum-20260715.js',
   'scripts/positive-creator-20260715.js',
   'scripts/public-response-ai-20260715.js',
+  'data/command-center-status.json',
   'data/evidence-claims.json',
   'knowledge/history-song-records-5.json',
   'knowledge/public-universe-records-20260715.json',
