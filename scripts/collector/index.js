@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import crypto from 'node:crypto';
+import dns from 'node:dns/promises';
 import fs from 'node:fs/promises';
+import net from 'node:net';
 import path from 'node:path';
 
 const MAX_BYTES = 2_000_000;
@@ -21,8 +23,39 @@ function args(argv) {
 function normalizeUrl(value) {
   const url = new URL(value);
   if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Only http(s) targets are allowed');
+  if (url.username || url.password) throw new Error('Target credentials are not allowed');
+  if (url.port && !['80', '443'].includes(url.port)) throw new Error('Only standard web ports are allowed');
   url.hash = '';
   return url.toString();
+}
+
+function isPrivateAddress(address) {
+  if (net.isIPv4(address)) {
+    const [a, b] = address.split('.').map(Number);
+    return a === 0 || a === 10 || a === 127 || (a === 100 && b >= 64 && b <= 127) ||
+      (a === 169 && b === 254) || (a === 172 && b >= 16 && b <= 31) ||
+      (a === 192 && b === 168) || a >= 224;
+  }
+  if (net.isIPv6(address)) {
+    const value = address.toLowerCase();
+    return value === '::1' || value === '::' || value.startsWith('fc') || value.startsWith('fd') ||
+      value.startsWith('fe8') || value.startsWith('fe9') || value.startsWith('fea') || value.startsWith('feb') ||
+      value.startsWith('::ffff:127.') || value.startsWith('::ffff:10.') || value.startsWith('::ffff:192.168.');
+  }
+  return true;
+}
+
+async function assertPublicTarget(target) {
+  const url = new URL(target);
+  const hostname = url.hostname.toLowerCase();
+  if (hostname === 'localhost' || hostname.endsWith('.localhost') || hostname.endsWith('.local') || hostname.endsWith('.internal')) {
+    throw new Error('Local or internal targets are not allowed');
+  }
+  if (net.isIP(hostname) && isPrivateAddress(hostname)) throw new Error('Private network targets are not allowed');
+  const resolved = await dns.lookup(hostname, { all: true, verbatim: true });
+  if (!resolved.length || resolved.some(item => isPrivateAddress(item.address))) {
+    throw new Error('Target resolves to a private or invalid network address');
+  }
 }
 
 function decodeEntities(value = '') {
@@ -109,6 +142,7 @@ async function fetchHtml(target) {
 
 async function collect(target) {
   const normalizedTarget = normalizeUrl(target);
+  await assertPublicTarget(normalizedTarget);
   const fetched = await fetchHtml(normalizedTarget);
   const title = firstMatch(fetched.html, [/<title[^>]*>([\s\S]*?)<\/title>/i]);
   const canonical = firstMatch(fetched.html, [/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i]);
