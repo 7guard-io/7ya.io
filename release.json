@@ -2,26 +2,30 @@
   "service": "7ya-frontend",
   "provider": "github-pages",
   "status": "CANDIDATE",
-  "release": "2026-07-14-history-song",
+  "release": "2026-07-15-living-os-content-museum",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha_policy": "The deployed commit SHA is preserved by the GitHub Pages workflow and deployment record.",
+  "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
   "environment": "production",
-  "experience": "IGOR_HISTORY_SONG_PUBLIC_MEDIA_SYSTEM",
-  "launch_date": "2026-07-14",
+  "experience": "IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_AND_CREATOR_COMPANION",
+  "launch_date": "2026-07-15",
   "data_contract": {
-    "record_count": 36,
+    "record_count": 66,
     "parts": [
       "/knowledge/history-song-records-1.json",
       "/knowledge/history-song-records-2.json",
       "/knowledge/history-song-records-3.json",
-      "/knowledge/history-song-records-4.json"
+      "/knowledge/history-song-records-4.json",
+      "/knowledge/history-song-records-5.json"
     ],
-    "policy": "Evidence before amplification; metrics require dated snapshots."
+    "policy": "Evidence before amplification; every metric requires a dated snapshot; visual source cards must not be described as native screenshots unless captured as such."
   },
   "critical_surfaces": [
     "/",
+    "/museum/",
+    "/create/",
     "/history/",
+    "/7ya/",
     "/journey/",
     "/starton/",
     "/influence/",
@@ -29,5 +33,5 @@
     "/speaker/",
     "/contact/"
   ],
-  "rollback": "GitHub Pages deployment history and the previous main commit remain available for rollback."
+  "rollback": "Provider deployment history and previous source commits remain available for rollback."
 }

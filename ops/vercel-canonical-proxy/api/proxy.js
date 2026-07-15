@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = '0dac617e0b1457e48cfed6c969b1366876cd391f';
+const SOURCE_SHA = 'cdc63d83591d84e0a93af953244bed1b8365a458';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 
 const CANONICAL_ALIASES = new Map([
@@ -126,7 +126,7 @@ function sendRedirect(request, response, destination) {
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.2',
+      'User-Agent': '7ya-canonical-recovery/1.3',
       Accept: '*/*',
     },
   });

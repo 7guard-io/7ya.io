@@ -1,16 +1,21 @@
 'use strict';
 
 const payload = {
-  release_id: 'history-song-influence-wall-20260714',
+  release_id: 'living-os-content-museum-20260715',
   source_repository: '7guard-io/7ya.io',
-  source_branch: 'main',
-  source_sha: '0dac617e0b1457e48cfed6c969b1366876cd391f',
-  pull_request: 204,
+  source_branch: 'feat/positive-creator-companion-20260715',
+  source_sha: 'cdc63d83591d84e0a93af953244bed1b8365a458',
+  pull_request: 210,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
-  experience: 'IGOR_HISTORY_SONG_PUBLIC_INFLUENCE_WALL',
+  experience: 'IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_AND_CREATOR_COMPANION',
+  archive_record_count: 66,
+  critical_routes: [
+    '/', '/museum/', '/create/', '/history/', '/7ya/', '/starton/',
+    '/influence/', '/evidence/', '/talk/', '/contact/'
+  ],
   custom_domain_attached: false,
-  generated_at: '2026-07-14T22:50:30+03:00',
+  generated_at: '2026-07-15T09:05:00+03:00',
 };
 
 module.exports = (request, response) => {

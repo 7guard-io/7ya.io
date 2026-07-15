@@ -3,8 +3,9 @@ import path from 'node:path';
 
 const root = process.cwd();
 const canonicalRoutes = [
-  '', 'history', 'igor-vepretski', 'journey', 'starton', 'influence', 'evidence',
-  '7ya', 'speaker', 'talk', 'media', 'articles', 'contact', 'delta-audit'
+  '', 'museum', 'create', 'history', 'igor-vepretski', 'journey', 'starton',
+  'influence', 'evidence', '7ya', 'speaker', 'talk', 'media', 'articles',
+  'contact', 'delta-audit'
 ];
 const aliases = new Map([
   ['about', '/igor-vepretski/'],
@@ -130,12 +131,20 @@ for (const forbidden of [
 
 const history = read('history/index.html');
 for (const required of [
-  'שיר ההיסטוריה — ארכיון מלא', 'history-song-archive-20260714-1',
-  'id="archiveGrid"', 'id="archiveSearch"', '/styles/history-song-20260714.css?v=1',
-  '/scripts/history-song-20260714.js'
+  'שיר ההיסטוריה — ארכיון מלא', 'history-song-archive-20260715-2',
+  '66-RECORD PUBLIC CONTENT MAP', 'id="archiveGrid"', 'id="archiveSearch"',
+  '/museum/', '/styles/history-song-20260714.css?v=1', '/scripts/history-song-20260714.js'
 ]) requireText(history, required, 'history archive');
 
-const shardFiles = [1, 2, 3, 4].map(part => `knowledge/history-song-records-${part}.json`);
+const museum = read('museum/index.html');
+for (const required of [
+  'מוזיאון התוכן של איגור ופרצקי', 'igor-public-content-museum-20260715-1',
+  'פתחו 66 רשומות', 'id="museumGrid"', 'id="museumSearch"',
+  '/styles/public-content-museum-20260715.css?v=1',
+  '/scripts/public-content-museum-20260715.js', 'תצוגות־מקור מעוצבות'
+]) requireText(museum, required, 'content museum');
+
+const shardFiles = [1, 2, 3, 4, 5].map(part => `knowledge/history-song-records-${part}.json`);
 const records = [];
 for (const file of shardFiles) {
   const shard = parseJson(file);
@@ -144,7 +153,7 @@ for (const file of shardFiles) {
     ? records.push(...shard.records)
     : fail(`${file} missing records array`);
 }
-records.length === 36 ? pass('History Song archive has 36 records') : fail(`History Song archive has ${records.length} records`);
+records.length === 66 ? pass('History Song archive has 66 records') : fail(`History Song archive has ${records.length} records`);
 const ids = new Set();
 for (const record of records) {
   if (!record?.id || !record?.title || !record?.url || !record?.platform || !record?.evidence_tier) {
@@ -164,7 +173,9 @@ for (const file of [
   'assets/igor-home-portrait-20260712.jpg',
   'assets/igor-home-og-20260712.jpg',
   'styles/history-song-20260714.css',
+  'styles/public-content-museum-20260715.css',
   'scripts/history-song-20260714.js',
+  'scripts/public-content-museum-20260715.js',
   ...shardFiles,
   'favicon.svg', '404.html', 'sw.js', 'service-worker.js', 'release.json'
 ]) read(file);
@@ -186,6 +197,9 @@ const release = parseJson('release.json');
 if (release) {
   release.service === '7ya-frontend' ? pass('release service is canonical') : fail('release service mismatch');
   release.environment === 'production' ? pass('release environment is production') : fail('release environment mismatch');
+  release.data_contract?.record_count === 66 ? pass('release record count is 66') : fail('release record count mismatch');
+  release.critical_surfaces?.includes('/museum/') ? pass('release includes museum surface') : fail('release missing museum surface');
+  release.critical_surfaces?.includes('/create/') ? pass('release includes creator surface') : fail('release missing creator surface');
 }
 
 for (const route of ['igor-vepretski', 'starton', 'evidence', 'talk', 'contact']) {
