@@ -31,30 +31,52 @@
 
   const compact = value => new Intl.NumberFormat('he-IL', { notation: 'compact', maximumFractionDigits: 1 }).format(value);
 
-  function scoreSignal(signal, query) {
-    const text = normalize([
+  function searchableText(signal) {
+    return normalize([
       signal.headline,
       signal.interpretation,
       signal.topic,
       signal.platform,
       signal.signal_type,
+      signal.stance_status,
       signal.record?.title,
       signal.record?.summary,
       ...(signal.record?.themes || []),
     ].join(' '));
+  }
+
+  function queryMatches(signal, query) {
     const terms = normalize(query).split(' ').filter(term => term.length > 1);
-    const queryScore = terms.length ? terms.reduce((score, term) => score + (text.includes(term) ? 12 : 0), 0) : 0;
+    if (!terms.length) return true;
+    const text = searchableText(signal);
+    return terms.some(term => text.includes(term));
+  }
+
+  function modeAllows(signal) {
+    const metrics = signal.metrics || {};
+    if (mode === 'positive') {
+      return ['POSITIVE_EXTERNAL_FRAMING', 'CONSTRUCTIVE_EXTERNAL_FRAMING'].includes(signal.stance_status);
+    }
+    if (mode === 'discussion') return Number(metrics.comments || metrics.comment_records || 0) > 0;
+    if (mode === 'external') return signal.evidence_tier === 'TIER_1';
+    return true;
+  }
+
+  function scoreSignal(signal, query) {
+    const text = searchableText(signal);
+    const terms = normalize(query).split(' ').filter(term => term.length > 1);
+    const queryScore = terms.reduce((score, term) => score + (text.includes(term) ? 12 : 0), 0);
     const metrics = signal.metrics || {};
     const volume = Object.values(metrics).reduce((sum, value) => sum + (Number(value) || 0), 0);
     const volumeScore = Math.min(40, Math.log10(Math.max(1, volume)) * 9);
     const tierScore = signal.evidence_tier === 'TIER_1' ? 18 : signal.evidence_tier === 'TIER_2' ? 12 : 10;
-    const discussionScore = (metrics.comments || metrics.comment_records || 0) > 0 ? 8 : 0;
+    const discussionScore = Number(metrics.comments || metrics.comment_records || 0) > 0 ? 8 : 0;
     const modeScore = mode === 'discussion'
       ? Math.min(30, Math.log10(Math.max(1, metrics.comments || metrics.comment_records || 0)) * 10)
       : mode === 'external'
-        ? (signal.evidence_tier === 'TIER_1' ? 28 : 0)
+        ? 28
         : mode === 'positive'
-          ? (/positive|resonance|framing|discussion/.test(signal.signal_type || '') ? 22 : 4)
+          ? 32
           : 14;
     return queryScore + volumeScore + tierScore + discussionScore + modeScore;
   }
@@ -69,6 +91,15 @@
       saves: 'שמירות',
       comment_records: 'רשומות תגובה',
     })[key] || key;
+  }
+
+  function stanceLabel(value) {
+    return ({
+      POSITIVE_EXTERNAL_FRAMING: 'מסגור חיובי חיצוני',
+      CONSTRUCTIVE_EXTERNAL_FRAMING: 'מסגור בונה חיצוני',
+      UNDETERMINED_FROM_AGGREGATES: 'עמדה לא נקבעת ממדדים',
+      HUMAN_REVIEW_REQUIRED: 'נדרשת בדיקה אנושית',
+    })[value] || 'סטטוס עמדה לא מוגדר';
   }
 
   function renderMetrics(metrics = {}) {
@@ -86,6 +117,7 @@
         ${renderMetrics(signal.metrics)}
         <div class="response-meta">
           <span>${escapeHtml(signal.evidence_tier)}</span>
+          <span>${escapeHtml(stanceLabel(signal.stance_status))}</span>
           <span>${escapeHtml(signal.confidence)} confidence</span>
           <span>${escapeHtml(signal.as_of)}</span>
         </div>
@@ -95,7 +127,7 @@
 
   function buildSummary(results, query) {
     if (!results.length) {
-      summary.innerHTML = '<h3>לא נמצא בסיס מספיק</h3><p>המערכת לא תמציא היענות. נסו נושא רחב יותר או עברו למצב “הכול”.</p>';
+      summary.innerHTML = '<h3>לא נמצא בסיס מספיק</h3><p>המערכת לא תמציא היענות או עמדה. נסו נושא רחב יותר או מצב ניתוח אחר.</p>';
       return;
     }
     const total = results.reduce((acc, item) => {
@@ -110,17 +142,20 @@
       .slice(0, 3)
       .map(([key, value]) => `${escapeHtml(compact(value))} ${escapeHtml(metricLabel(key))}`)
       .join(' · ');
-    summary.innerHTML = `<h3>תמונת ההיענות ${queryText}</h3><p>${escapeHtml(results.length)} אותות מתועדים נמצאו. הנושאים הבולטים: ${escapeHtml(topTopics)}.${metricParts ? ` מדדים מצטברים בתוצאות: ${metricParts}.` : ''} זהו ניתוח היענות, לא הוכחה שכל המגיבים הסכימו עם המסר.</p>`;
+    const modeNote = mode === 'positive'
+      ? 'התוצאות במצב זה מוגבלות למסגור חיובי או בונה שמופיע במקור חיצוני.'
+      : 'זהו ניתוח היענות, לא הוכחה שכל המגיבים הסכימו עם המסר.';
+    summary.innerHTML = `<h3>תמונת ההיענות ${queryText}</h3><p>${escapeHtml(results.length)} אותות מתועדים נמצאו. הנושאים הבולטים: ${escapeHtml(topTopics)}.${metricParts ? ` מדדים מצטברים בתוצאות: ${metricParts}.` : ''} ${escapeHtml(modeNote)}</p>`;
   }
 
   function analyze(query = '') {
     const ranked = signals
+      .filter(signal => modeAllows(signal) && queryMatches(signal, query))
       .map(signal => ({ ...signal, score: scoreSignal(signal, query) }))
-      .filter(signal => !query || signal.score >= 12)
       .sort((a, b) => b.score - a.score)
       .slice(0, 12);
     buildSummary(ranked, query);
-    grid.innerHTML = ranked.length ? ranked.map(renderCard).join('') : '<div class="response-empty">לא נמצאו אותות מתועדים עבור החיפוש הזה.</div>';
+    grid.innerHTML = ranked.length ? ranked.map(renderCard).join('') : '<div class="response-empty">לא נמצאו אותות מתועדים עבור החיפוש והמצב שנבחרו.</div>';
     status.textContent = `${ranked.length} אותות מוצגים · ניתוח מקומי מהיר · ללא פרסום אוטומטי`;
   }
 
