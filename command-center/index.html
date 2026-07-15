@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>7YA Command Center | תמונת מצב ציבורית</title>
+  <meta name="description" content="תמונת מצב ציבורית, מתוארכת וקריאה בלבד של 7YA: בריאות פריסה, מצבי ראיות, ישויות וגבולות פרסום.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#090a0d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://7ya.io/command-center/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/7ya-command-center-20260716.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">דלג לתוכן</a>
+
+  <header class="command-header">
+    <a class="wordmark" href="/" aria-label="7YA.IO — חזרה לדף הבית">
+      <span class="wordmark-mark">7</span>
+      <span><strong>7YA.IO</strong><small>PUBLIC COMMAND CENTER</small></span>
+    </a>
+    <nav aria-label="ניווט Command Center">
+      <a href="#health">בריאות מערכת</a>
+      <a href="#entities">ישויות וראיות</a>
+      <a href="#boundaries">גבולות</a>
+      <a href="/evidence/">Evidence Ledger</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="command-hero" aria-labelledby="command-title">
+      <div class="hero-copy">
+        <p class="eyebrow">READ-ONLY · EVIDENCE-AWARE · DATED SNAPSHOT</p>
+        <h1 id="command-title">מרכז שליטה ציבורי.<br><span>בלי להעמיד פנים שהכול חי.</span></h1>
+        <p class="hero-lead">שכבת תצוגה ציבורית למצב הפריסה, הישויות והראיות של 7YA. היא אינה Control Plane, אינה קוראת דואר פרטי ואינה מבצעת פעולות ניהול.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#health">פתח תמונת מצב</a>
+          <a class="button secondary" href="/evidence/">בדוק את הראיות</a>
+          <a class="button secondary" href="/">חזרה לאיגור</a>
+        </div>
+      </div>
+      <aside class="hero-status" aria-label="כללי אמון">
+        <div><span>01</span><strong>סטטוס גרנולרי</strong><p>תקלה ב־CI אינה הופכת את כל האתר ל־DEGRADED.</p></div>
+        <div><span>02</span><strong>מקור לפני תווית</strong><p>VERIFIED, PENDING ו־CANDIDATE מוצגים לפי הרשומה, לא לפי שיווק.</p></div>
+        <div><span>03</span><strong>ציבורי בלבד</strong><p>אין מפתחות, חשבונות מחוברים, פעולות כתיבה או מידע פרטי.</p></div>
+      </aside>
+    </section>
+
+    <section class="command-section" id="health" aria-labelledby="health-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / DEPLOYMENT HEALTH</p><h2 id="health-title">מה עובד, מה חסום,<br>ומה עדיין לא נבדק.</h2></div>
+        <p>כל כרטיס מתאר רכיב אחד בלבד. תאריך הבדיקה ומקור הסטטוס נטענים מ־JSON ציבורי שנכלל ב־artifact הסטטי.</p>
+      </div>
+      <p class="snapshot-time">תאריך snapshot: <time id="snapshot-time">טוען…</time></p>
+      <div class="status-grid" id="health-grid" aria-live="polite" aria-busy="true">
+        <article class="loading-card"><span class="loading-pulse"></span><p>טוען את תמונת המצב הציבורית…</p></article>
+      </div>
+    </section>
+
+    <section class="command-section" id="entities" aria-labelledby="entities-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">02 / ENTITY BOUNDARIES</p><h2 id="entities-title">אדם, ארגון ומערכת.<br>לא מערבבים ביניהם.</h2></div>
+        <p>Igor Vepretski הוא הזהות האנושית המרכזית. StartOn נשמרת כישות חברתית נפרדת. 7YA ו־Evidence Ledger מוצגים לפי מה שהמאגר והמקורות מוכיחים בפועל.</p>
+      </div>
+      <div class="entity-grid" id="entity-grid" aria-live="polite" aria-busy="true"></div>
+    </section>
+
+    <section class="command-section boundary-section" id="boundaries" aria-labelledby="boundaries-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">03 / PUBLICATION BOUNDARIES</p><h2 id="boundaries-title">מה הדף הזה<br>בכוונה לא עושה.</h2></div>
+        <p>Command Center אמין מוגדר גם לפי מה שאסור לו לחשוף או לבצע.</p>
+      </div>
+      <ol class="boundary-list" id="boundary-list"></ol>
+    </section>
+
+    <section class="source-note" aria-label="הערת מקור">
+      <p><strong>Evidence before amplification.</strong> הרשומות בדף הן snapshot ציבורי. לקבלת ההקשר המלא יש לפתוח את המקור המצוין בכל כרטיס.</p>
+      <a href="/data/command-center-status.json">פתח JSON גולמי →</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>7YA.IO · IGOR VEPRETSKI · PUBLIC READ-ONLY SURFACE</span>
+    <span>אין כאן פרסום ל־production, הרשאות ניהול או פעולה אוטונומית.</span>
+  </footer>
+
+  <noscript><div class="noscript">JavaScript כבוי. ניתן לפתוח את <a href="/data/command-center-status.json">קובץ ה־JSON הציבורי</a> ישירות.</div></noscript>
+  <script src="/scripts/7ya-command-center-20260716.js" defer></script>
+</body>
+</html>
