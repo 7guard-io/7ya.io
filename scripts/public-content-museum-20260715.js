@@ -1,9 +1,12 @@
 (() => {
   'use strict';
 
-  const state = { records: [], filter: 'All', query: '' };
+  const state = { records: [], filter: 'All', query: '', coreCount: 0, universeCount: 0 };
   const grid = document.querySelector('#museumGrid');
   const count = document.querySelector('#museumCount');
+  const coreCount = document.querySelector('#museumCoreCount');
+  const universeCount = document.querySelector('#museumUniverseCount');
+  const scopeNote = document.querySelector('#museumScopeNote');
   const search = document.querySelector('#museumSearch');
   const empty = document.querySelector('#museumEmpty');
   const buttons = [...document.querySelectorAll('[data-museum-filter]')];
@@ -31,7 +34,27 @@
     TIER_3: 'Export / Snapshot'
   }[tier] || 'מקור ציבורי');
 
+  const collectionLabel = collection => collection === 'PUBLIC_UNIVERSE'
+    ? 'PUBLIC UNIVERSE'
+    : 'VERIFIED CORE';
+
   const yearLabel = record => record.date?.slice(0, 4) || record.year || 'ללא תאריך';
+
+  function canonicalSourceKey(record) {
+    try {
+      const url = new URL(record.url);
+      url.hash = '';
+      for (const key of [...url.searchParams.keys()]) {
+        if (/^(utm_|trk$|mibextid$|hl$|pid$)/i.test(key)) url.searchParams.delete(key);
+      }
+      const host = url.hostname.replace(/^www\./, '').toLowerCase();
+      const path = url.pathname.replace(/\/+$/, '') || '/';
+      const query = [...url.searchParams.entries()].sort().map(([key, value]) => `${key}=${value}`).join('&');
+      return `${host}${path}${query ? `?${query}` : ''}`;
+    } catch {
+      return `id:${record.id}`;
+    }
+  }
 
   function media(record) {
     if (record.image) {
@@ -54,11 +77,12 @@
       catch { return 'source'; }
     })();
     return `
-      <a class="source-capture" data-tier="${escapeHtml(record.evidence_tier)}" href="${escapeHtml(record.url)}" target="_blank" rel="noopener noreferrer">
+      <a class="source-capture" data-tier="${escapeHtml(record.evidence_tier)}" data-collection="${escapeHtml(record.collection)}" href="${escapeHtml(record.url)}" target="_blank" rel="noopener noreferrer">
         <div class="capture-browser"><i></i><i></i><i></i><span>${escapeHtml(host)}</span></div>
         ${media(record)}
         <div class="capture-body">
           <div class="capture-meta"><span>${escapeHtml(record.platform)} · ${escapeHtml(record.id)}</span><span>${escapeHtml(yearLabel(record))}</span></div>
+          <div class="capture-collection">${escapeHtml(collectionLabel(record.collection))}</div>
           <h3>${escapeHtml(record.title)}</h3>
           <p>${escapeHtml(record.summary || '')}</p>
           <div class="capture-tags">${tags}</div>
@@ -73,7 +97,8 @@
     if (!state.query) return true;
     const haystack = normalize([
       record.id, record.title, record.summary, record.platform, record.publisher,
-      record.type, record.language, record.act, record.verification, ...(record.themes || [])
+      record.type, record.language, record.act, record.verification, record.collection,
+      ...(record.themes || [])
     ].join(' '));
     return haystack.includes(state.query);
   }
@@ -83,29 +108,65 @@
     const records = state.records
       .filter(matches)
       .sort((a, b) => {
-        const ay = Number(a.year || 0);
-        const by = Number(b.year || 0);
-        if (ay !== by) return by - ay;
-        return String(b.date || '').localeCompare(String(a.date || ''));
+        const ad = String(a.date || a.year || '');
+        const bd = String(b.date || b.year || '');
+        if (ad !== bd) return bd.localeCompare(ad);
+        return String(a.title || '').localeCompare(String(b.title || ''), 'he');
       });
     grid.innerHTML = records.map(card).join('');
     if (count) count.textContent = String(records.length);
+    if (coreCount) coreCount.textContent = String(state.coreCount);
+    if (universeCount) universeCount.textContent = String(state.universeCount);
     if (empty) empty.hidden = records.length !== 0;
+  }
+
+  async function fetchJson(path, required = true) {
+    const response = await fetch(path, {
+      cache: 'no-store',
+      headers: { Accept: 'application/json' }
+    });
+    if (!response.ok) {
+      if (required) throw new Error(`Museum archive fetch failed: ${path} · ${response.status}`);
+      return null;
+    }
+    return response.json();
   }
 
   async function load() {
     if (!grid) return;
-    const paths = [1, 2, 3, 4, 5].map(part => `/knowledge/history-song-records-${part}.json`);
+    const corePaths = [1, 2, 3, 4, 5].map(part => `/knowledge/history-song-records-${part}.json`);
+    const universePath = '/knowledge/public-universe-records-20260715.json';
+
     try {
-      const responses = await Promise.all(paths.map(path => fetch(path, {
-        cache: 'no-store',
-        headers: { Accept: 'application/json' }
-      })));
-      const failure = responses.find(response => !response.ok);
-      if (failure) throw new Error(`Museum archive fetch failed: ${failure.status}`);
-      const shards = await Promise.all(responses.map(response => response.json()));
-      state.records = shards.flatMap(shard => Array.isArray(shard.records) ? shard.records : []);
-      if (state.records.length !== 66) throw new Error(`Expected 66 records, received ${state.records.length}`);
+      const coreShards = await Promise.all(corePaths.map(path => fetchJson(path, true)));
+      const coreRecords = coreShards.flatMap(shard => Array.isArray(shard.records) ? shard.records : []);
+      if (coreRecords.length < 66) throw new Error(`Verified core is incomplete: ${coreRecords.length}`);
+
+      let universeRecords = [];
+      try {
+        const universe = await fetchJson(universePath, false);
+        universeRecords = Array.isArray(universe?.records) ? universe.records : [];
+      } catch (error) {
+        console.warn('Public Universe layer unavailable; serving verified core only.', error);
+      }
+
+      const merged = [
+        ...coreRecords.map(record => ({ ...record, collection: 'VERIFIED_CORE' })),
+        ...universeRecords.map(record => ({ ...record, collection: 'PUBLIC_UNIVERSE' }))
+      ];
+
+      const unique = new Map();
+      for (const record of merged) {
+        const key = canonicalSourceKey(record);
+        if (!unique.has(key)) unique.set(key, record);
+      }
+
+      state.records = [...unique.values()];
+      state.coreCount = state.records.filter(record => record.collection === 'VERIFIED_CORE').length;
+      state.universeCount = state.records.filter(record => record.collection === 'PUBLIC_UNIVERSE').length;
+      if (scopeNote) {
+        scopeNote.textContent = `ליבת ראיות: ${state.coreCount} · מקורות והדהודים נוספים: ${state.universeCount} · האינדקס ממשיך להתרחב`;
+      }
       render();
     } catch (error) {
       console.error(error);
