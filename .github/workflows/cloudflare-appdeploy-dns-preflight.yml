@@ -30,39 +30,63 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Validate reconciler syntax
-        run: node --check scripts/cloudflare-appdeploy-dns.mjs
-
-      - name: Validate desired-state contract
-        run: |
-          node <<'NODE'
-          const fs = require('node:fs');
-          const state = JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/desired-records.json', 'utf8'));
-          if (state.zone !== '7ya.io') throw new Error('Unexpected zone');
-          if (state.confirmation !== '7YA-APPDEPLOY-20260716') throw new Error('Unexpected confirmation');
-          if (!Array.isArray(state.records) || state.records.length !== 2) throw new Error('Expected exactly two records');
-          console.log('Desired-state JSON and invariants are valid.');
-          NODE
-
-      - name: Prove default mode is fail-closed without credentials
+      - name: Run fail-closed safety suite
+        id: safety
         shell: bash
         run: |
           set +e
-          output="$(env -u CLOUDFLARE_API_TOKEN node scripts/cloudflare-appdeploy-dns.mjs 2>&1)"
-          status=$?
-          set -e
-          printf '%s\n' "$output"
-          test "$status" -eq 2
-          grep -Fq 'CLOUDFLARE_API_TOKEN is required' <<<"$output"
+          report="$RUNNER_TEMP/dns-safety-report.txt"
+          failures=0
+          : > "$report"
 
-      - name: Prove workflow has no apply invocation
-        shell: bash
-        run: |
-          if grep -nE 'node +scripts/cloudflare-appdeploy-dns\.mjs +--apply' .github/workflows/cloudflare-appdeploy-dns-preflight.yml; then
-            echo 'Unsafe --apply invocation found in workflow.'
-            exit 1
+          check() {
+            name="$1"
+            shift
+            printf '\n=== %s ===\n' "$name" | tee -a "$report"
+            "$@" >>"$report" 2>&1
+            code=$?
+            if [ "$code" -eq 0 ]; then
+              echo "PASS ($code)" | tee -a "$report"
+            else
+              echo "FAIL ($code)" | tee -a "$report"
+              failures=$((failures + 1))
+            fi
+          }
+
+          check "Node syntax" node --check scripts/cloudflare-appdeploy-dns.mjs
+          check "Desired-state contract" node -e "const fs=require('node:fs');const s=JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/desired-records.json','utf8'));if(s.zone!=='7ya.io')throw new Error('Unexpected zone');if(s.confirmation!=='7YA-APPDEPLOY-20260716')throw new Error('Unexpected confirmation');if(!Array.isArray(s.records)||s.records.length!==2)throw new Error('Expected exactly two records');"
+
+          printf '\n=== Missing-token fail-closed behavior ===\n' | tee -a "$report"
+          output="$(env -u CLOUDFLARE_API_TOKEN node scripts/cloudflare-appdeploy-dns.mjs 2>&1)"
+          code=$?
+          printf '%s\n' "$output" >> "$report"
+          if [ "$code" -eq 2 ] && grep -Fq 'CLOUDFLARE_API_TOKEN is required' <<<"$output"; then
+            echo "PASS ($code)" | tee -a "$report"
+          else
+            echo "FAIL ($code)" | tee -a "$report"
+            failures=$((failures + 1))
           fi
-          echo 'No workflow apply path exists.'
+
+          printf '\n=== Workflow mutation-path scan ===\n' | tee -a "$report"
+          if grep -nE '^[[:space:]]*run:[[:space:]]*node[[:space:]]+scripts/cloudflare-appdeploy-dns\.mjs[[:space:]]+--apply([[:space:]]|$)' .github/workflows/cloudflare-appdeploy-dns-preflight.yml >>"$report" 2>&1; then
+            echo "FAIL: unsafe --apply invocation found" | tee -a "$report"
+            failures=$((failures + 1))
+          else
+            echo "PASS: no workflow apply path exists" | tee -a "$report"
+          fi
+
+          printf '\nTOTAL_FAILURES=%s\n' "$failures" | tee -a "$report"
+          cp "$report" dns-safety-report.txt
+          exit "$failures"
+
+      - name: Upload safety report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-appdeploy-dns-safety-report
+          path: dns-safety-report.txt
+          if-no-files-found: error
+          retention-days: 7
 
   plan:
     name: Read-only Cloudflare DNS plan
