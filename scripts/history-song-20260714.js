@@ -127,6 +127,29 @@
     }
   };
 
+  const addEntityLink = (container, label, className = '') => {
+    if (!container || container.querySelector('a[href="/entity/"]')) return;
+    const link = document.createElement('a');
+    link.href = '/entity/';
+    link.textContent = label;
+    if (className) link.className = className;
+    container.append(link);
+  };
+
+  const wireEntityAtlas = () => {
+    const nav = document.querySelector('.site-header nav');
+    if (nav && !nav.querySelector('a[href="/entity/"]')) {
+      const link = document.createElement('a');
+      link.href = '/entity/';
+      link.textContent = 'Entity Atlas';
+      const cta = nav.querySelector('.nav-cta');
+      if (cta) nav.insertBefore(link, cta);
+      else nav.append(link);
+    }
+    addEntityLink(document.querySelector('.footer-links'), 'Entity Atlas');
+    addEntityLink(document.querySelector('.proof-copy .hero-actions'), 'Master Entity Index', 'button');
+  };
+
   selectors.filters.forEach(button => {
     button.addEventListener('click', () => {
       selectors.filters.forEach(item => item.classList.remove('active'));
@@ -172,5 +195,6 @@
     document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
   }
 
+  wireEntityAtlas();
   loadArchive();
 })();
