@@ -5,7 +5,8 @@ import path from 'node:path';
 
 const root = process.cwd();
 const policyPath = path.join(root, 'config/autonomy-policy.json');
-const collectionPath = path.join(root, 'data/archives/latest_collection.json');
+const configuredCollectionPath = process.env.AUTONOMY_COLLECTION_PATH || 'data/archives/latest_collection.json';
+const collectionPath = path.isAbsolute(configuredCollectionPath) ? configuredCollectionPath : path.join(root, configuredCollectionPath);
 const runsDirectory = path.join(root, 'data/orchestrator/runs');
 const draftsDirectory = path.join(root, 'data/orchestrator/drafts');
 const promptVersion = '7ya-orchestrator-draft-v1';
@@ -149,10 +150,52 @@ if (!policy.enabled && !hasFlag('--allow-disabled-policy')) {
   process.exit(0);
 }
 
-const collection = await readJson(collectionPath);
+const startedAt = new Date();
+let collection;
+try {
+  collection = await readJson(collectionPath);
+} catch (error) {
+  const runId = `${startedAt.toISOString().replace(/[:.]/g, '-')}_missing-input`;
+  const runPath = path.join(runsDirectory, `${runId}.json`);
+  const message = `Collection input unavailable at ${path.relative(root, collectionPath)}: ${error instanceof Error ? error.message : String(error)}`;
+  await writeJson(runPath, {
+    schema_version: 1,
+    run_id: runId,
+    system: policy.system,
+    mode: policy.mode,
+    status: 'blocked_input',
+    started_at: startedAt.toISOString(),
+    completed_at: new Date().toISOString(),
+    prompt_version: promptVersion,
+    source: {
+      path: path.relative(root, collectionPath),
+      hash_sha256: null,
+      record_count: 0,
+      maximum_records_used: policy.budgets.max_sources_per_run,
+    },
+    model: null,
+    response_id: null,
+    usage: null,
+    actions: {
+      collected: false,
+      synthesized_internal_draft: false,
+      published: false,
+      opened_pull_request: false,
+      merged: false,
+      deployed: false,
+      issued_certificate: false,
+    },
+    approvals: [],
+    errors: [message],
+  });
+  console.log(`AUTONOMY_BLOCKED_INPUT: ${message}`);
+  console.log(`AUTONOMY_AUDIT_WRITTEN: ${path.relative(root, runPath)}`);
+  if (!planOnly) process.exitCode = 1;
+  process.exit();
+}
+
 const sourceCanonical = canonical(publicCollectionView(collection, policy.budgets.max_sources_per_run));
 const sourceHash = sha256(sourceCanonical);
-const startedAt = new Date();
 const runId = `${startedAt.toISOString().replace(/[:.]/g, '-')}_${sourceHash.slice(0, 12)}`;
 const runPath = path.join(runsDirectory, `${runId}.json`);
 
