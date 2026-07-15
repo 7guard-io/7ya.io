@@ -76,7 +76,7 @@
     if (!state.query) return true;
     const haystack = normalize([
       record.title, record.summary, record.platform, record.publisher,
-      record.type, record.language, record.act, ...(record.themes || [])
+      record.type, record.language, record.act, record.verification, ...(record.themes || [])
     ].join(' '));
     return haystack.includes(state.query);
   };
@@ -100,7 +100,7 @@
 
   const loadArchive = async () => {
     if (!selectors.grid) return;
-    const paths = [1, 2, 3, 4].map(part => `/knowledge/history-song-records-${part}.json`);
+    const paths = [1, 2, 3, 4, 5].map(part => `/knowledge/history-song-records-${part}.json`);
     try {
       const responses = await Promise.all(paths.map(path => fetch(path, {
         headers: { Accept: 'application/json' },
@@ -110,7 +110,7 @@
       if (failed) throw new Error(`archive fetch failed: ${failed.status}`);
       const parts = await Promise.all(responses.map(response => response.json()));
       state.records = parts.flatMap(part => Array.isArray(part.records) ? part.records : []);
-      if (!state.records.length) throw new Error('archive records missing');
+      if (state.records.length !== 66) throw new Error(`expected 66 archive records, received ${state.records.length}`);
       render();
     } catch (error) {
       console.error(error);
