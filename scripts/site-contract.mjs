@@ -7,6 +7,7 @@ export const canonicalRoutes = [
   'journey',
   'starton',
   'influence',
+  'response-ai',
   'evidence',
   '7ya',
   'speaker',
@@ -66,6 +67,7 @@ export const publicStyleFiles = [
   'layout.css',
   'positive-creator-20260715.css',
   'public-content-museum-20260715.css',
+  'public-response-ai-20260715.css',
 ];
 
 export const publicScriptFiles = [
@@ -74,6 +76,7 @@ export const publicScriptFiles = [
   'legacy-universe-20260714.js',
   'positive-creator-20260715.js',
   'public-content-museum-20260715.js',
+  'public-response-ai-20260715.js',
 ];
 
 export const criticalArtifactPaths = [
@@ -81,14 +84,18 @@ export const criticalArtifactPaths = [
   'museum/index.html',
   'create/index.html',
   'history/index.html',
+  'response-ai/index.html',
   '7ya/index.html',
   'styles/history-song-20260714.css',
   'styles/public-content-museum-20260715.css',
   'styles/positive-creator-20260715.css',
+  'styles/public-response-ai-20260715.css',
   'scripts/history-song-20260714.js',
   'scripts/public-content-museum-20260715.js',
   'scripts/positive-creator-20260715.js',
+  'scripts/public-response-ai-20260715.js',
   'knowledge/history-song-records-5.json',
+  'knowledge/public-response-signals-20260715.json',
   'robots.txt',
   'sitemap.xml',
   'release.json',
