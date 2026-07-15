@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "lastUpdated": "2026-07-15T00:00:00Z",
+  "baselineDate": "2026-06-02",
+  "claims": [
+    {
+      "id": "C001",
+      "entity": "STARTON",
+      "title": {
+        "he": "רישום עמותה ציבורי",
+        "en": "Public non-profit registration",
+        "ru": "Публичная регистрация некоммерческой организации"
+      },
+      "status": "VERIFIED",
+      "evidenceClass": "DOCUMENTED FACT",
+      "sourceId": "S01",
+      "sourceName": "Ministry of Justice GuideStar Registry",
+      "sourceUrl": "https://www.guidestar.org.il/",
+      "whatItProves": {
+        "he": "StartOn רשומה כעמותה ישראלית מספר 580752814, עם מטרות ציבוריות בתחומי חינוך, העשרה והכשרה טכנולוגית לנוער.",
+        "en": "StartOn is registered as Israeli association 580752814 with public objectives in youth education, enrichment and technology training.",
+        "ru": "StartOn зарегистрирована как израильская ассоциация 580752814 с общественными целями в сфере образования и технологической подготовки молодежи."
+      },
+      "whatItDoesNotProve": {
+        "he": "הרישום המשפטי אינו מוכיח לבדו ביצוע מקומי, היקף פעילות, תקציב, שותפות או תוצאה חברתית.",
+        "en": "Legal registration alone does not prove local execution, operating scale, budget, partnerships or social outcomes.",
+        "ru": "Юридическая регистрация сама по себе не подтверждает масштаб работы, бюджет, партнерства или социальные результаты."
+      }
+    },
+    {
+      "id": "C002",
+      "entity": "STARTON",
+      "title": {
+        "he": "מודל שלושת המרחבים",
+        "en": "Three-Space Model",
+        "ru": "Модель трех пространств"
+      },
+      "status": "VERIFIED_WITH_ATTRIBUTION",
+      "evidenceClass": "ATTRIBUTED SELF-SOURCE",
+      "sourceId": "S02",
+      "sourceName": "StartOn official website",
+      "sourceUrl": "https://starton.org.il/",
+      "whatItProves": {
+        "he": "הארגון מתכנן בית טכנולוגי בטוח המחולק למרחבי Training, Community ו־Experience.",
+        "en": "The organization publicly defines a safe technology home divided into Training, Community and Experience spaces.",
+        "ru": "Организация публично описывает безопасный технологический дом, разделенный на пространства Training, Community и Experience."
+      },
+      "whatItDoesNotProve": {
+        "he": "המודל המוצהר אינו מחקר אמפירי ואינו מוכיח הפחתה בנשירה, אלימות או פשיעה.",
+        "en": "The stated model is not an empirical study and does not prove reductions in dropout, violence or crime.",
+        "ru": "Заявленная модель не является эмпирическим исследованием и не доказывает снижение отсева, насилия или преступности."
+      }
+    },
+    {
+      "id": "C003",
+      "entity": "IGOR",
+      "title": {
+        "he": "עוגן ביוגרפי משנת 2011",
+        "en": "2011 biographical anchor",
+        "ru": "Биографическая опора 2011 года"
+      },
+      "status": "CAPTURE_REQUIRED",
+      "evidenceClass": "LEGACY EDITORIAL TRACE",
+      "sourceId": "S03",
+      "sourceName": "Makor Rishon / NRG",
+      "sourceUrl": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "whatItProves": {
+        "he": "קיים תיעוד תקשורתי פומבי מ־26 באפריל 2011 המחבר את סיפור החיים המוקדם לשירות הצבאי.",
+        "en": "A public editorial record dated 26 April 2011 connects the early life story with military service.",
+        "ru": "Существует публичная публикация от 26 апреля 2011 года, связывающая раннюю биографию с военной службой."
+      },
+      "whatItDoesNotProve": {
+        "he": "הכתבה אינה מאמתת טענות מבצעיות מסווגות, שירות עתידי או מדדי השפעה מאוחרים יותר.",
+        "en": "The article does not verify classified operational claims, later service or later impact metrics.",
+        "ru": "Статья не подтверждает засекреченные оперативные заявления, последующую службу или более поздние показатели влияния."
+      }
+    },
+    {
+      "id": "C004",
+      "entity": "IGOR / STARTON",
+      "title": {
+        "he": "החזרה לג׳סי כהן והקמת מרכז נוער",
+        "en": "Return to Jesse Cohen and youth-center mission",
+        "ru": "Возвращение в Джесси Коэн и миссия молодежного центра"
+      },
+      "status": "VERIFIED",
+      "evidenceClass": "DOCUMENTED MEDIA",
+      "sourceId": "S04",
+      "sourceName": "mynet Holon",
+      "sourceUrl": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "whatItProves": {
+        "he": "כתבה חיצונית תיעדה את החזרה לשכונה ואת הכוונה להקים מסגרת טכנולוגית לנוער.",
+        "en": "Independent coverage documented the return to the neighborhood and the intention to establish a technology framework for youth.",
+        "ru": "Независимая публикация зафиксировала возвращение в район и намерение создать технологическую среду для молодежи."
+      },
+      "whatItDoesNotProve": {
+        "he": "הכתבה אינה דוח ביצוע, תקציב מבוקר, ספירת משתמשים או הוכחת תוצאה.",
+        "en": "The article is not an execution report, audited budget, participant count or outcome evaluation.",
+        "ru": "Публикация не является отчетом о реализации, аудитом бюджета, подсчетом участников или оценкой результатов."
+      }
+    },
+    {
+      "id": "C005",
+      "entity": "IGOR / STARTON",
+      "title": {
+        "he": "המעבר משירות משטרתי ליזמות חברתית",
+        "en": "Transition from police service to social entrepreneurship",
+        "ru": "Переход от полицейской службы к социальному предпринимательству"
+      },
+      "status": "VERIFIED",
+      "evidenceClass": "DOCUMENTED BROADCAST",
+      "sourceId": "S05",
+      "sourceName": "News 13 — HaOlam HaBoker",
+      "sourceUrl": "https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44",
+      "whatItProves": {
+        "he": "שידור טלוויזיה ארצי תיעד את היציאה מהשירות ואת ההקדשה ליוזמת נוער.",
+        "en": "A national television segment documented the exit from service and dedication to the youth initiative.",
+        "ru": "Национальный телевизионный сюжет зафиксировал уход со службы и посвящение молодежной инициативе."
+      },
+      "whatItDoesNotProve": {
+        "he": "השידור אינו מאמת פרטים מבצעיים, שותפויות מסחריות או תוצאות חברתיות כמותיות.",
+        "en": "The broadcast does not verify operational details, commercial partnerships or quantified social outcomes.",
+        "ru": "Сюжет не подтверждает оперативные детали, коммерческие партнерства или количественные социальные результаты."
+      }
+    },
+    {
+      "id": "C006",
+      "entity": "IGOR / 7YA",
+      "title": {
+        "he": "צילום מצב מבוקר של TikTok",
+        "en": "Audited TikTok baseline",
+        "ru": "Проверенный базовый снимок TikTok"
+      },
+      "status": "DATED_BASELINE",
+      "evidenceClass": "INTERNAL AUDITED SNAPSHOT",
+      "sourceId": "I01",
+      "sourceName": "7YA TikTok verification export",
+      "sourceUrl": "internal://evidence/tiktok-baseline-2026-06-02",
+      "snapshotDate": "2026-06-02",
+      "whatItProves": {
+        "he": "נכון ל־2 ביוני 2026 תועדו 12,655 עוקבים, 273,860 לייקים ו־904 פרסומים בפרופיל הרשמי.",
+        "en": "As of 2 June 2026, the official profile snapshot recorded 12,655 followers, 273,860 likes and 904 posts.",
+        "ru": "По состоянию на 2 июня 2026 года снимок официального профиля зафиксировал 12 655 подписчиков, 273 860 лайков и 904 публикации."
+      },
+      "whatItDoesNotProve": {
+        "he": "המספרים משתנים ואינם מוכיחים השפעה חברתית, קהל ייחודי מצטבר או סיבתיות בעולם האמיתי.",
+        "en": "The numbers are fluid and do not prove social outcomes, cumulative unique reach or real-world causality.",
+        "ru": "Показатели меняются и не доказывают социальные результаты, уникальный суммарный охват или причинность в реальном мире."
+      }
+    },
+    {
+      "id": "C007",
+      "entity": "IGOR",
+      "title": {
+        "he": "נוכחות מקצועית ב־LinkedIn",
+        "en": "LinkedIn professional presence",
+        "ru": "Профессиональное присутствие в LinkedIn"
+      },
+      "status": "DATED_BASELINE",
+      "evidenceClass": "PUBLIC PROFILE SNAPSHOT",
+      "sourceId": "S06",
+      "sourceName": "Igor Vepretski on LinkedIn",
+      "sourceUrl": "https://www.linkedin.com/in/vepretski/",
+      "snapshotDate": "2026-06-11",
+      "whatItProves": {
+        "he": "צילום המצב תיעד נוכחות ציבורית מקצועית של כ־4,000+ עוקבים ו־500+ חיבורים.",
+        "en": "The dated snapshot documented a public professional presence of approximately 4,000+ followers and 500+ connections.",
+        "ru": "Датированный снимок зафиксировал профессиональное публичное присутствие примерно с 4 000+ подписчиков и 500+ контактами."
+      },
+      "whatItDoesNotProve": {
+        "he": "מספרי רשת אינם מוכיחים סמכות מוסדית, איכות קהל או השפעה מדידה.",
+        "en": "Network counts do not prove institutional authority, audience quality or measurable impact.",
+        "ru": "Количество связей не доказывает институциональный авторитет, качество аудитории или измеримое влияние."
+      }
+    },
+    {
+      "id": "C008",
+      "entity": "STARTON",
+      "title": {
+        "he": "טענת שותפות מלאה עם Microsoft Israel",
+        "en": "Claimed full Microsoft Israel partnership",
+        "ru": "Заявленное полное партнерство с Microsoft Israel"
+      },
+      "status": "QUARANTINED",
+      "evidenceClass": "PARTNERSHIP CLAIM — SOURCE PENDING",
+      "sourceId": "Q01",
+      "sourceName": "Internal proposal references",
+      "sourceUrl": "internal://quarantine/microsoft-partnership",
+      "whatItProves": {
+        "he": "קיימים אזכורי הצעה ותמיכה טכנולוגית במסמכים פנימיים.",
+        "en": "Internal materials contain proposal-stage references to technology support.",
+        "ru": "Во внутренних материалах присутствуют упоминания технологической поддержки на стадии предложения."
+      },
+      "whatItDoesNotProve": {
+        "he": "אין בכך הוכחה להסכם מאושר, אספקת ציוד מלאה, מימון או הרשאה להשתמש בלוגו כשותף.",
+        "en": "This does not prove an approved agreement, full equipment delivery, funding or permission to present the logo as a partner.",
+        "ru": "Это не доказывает наличие утвержденного соглашения, полной поставки оборудования, финансирования или разрешения использовать логотип как партнера."
+      }
+    },
+    {
+      "id": "C009",
+      "entity": "STARTON",
+      "title": {
+        "he": "טענות להפחתת נשירה או אלימות",
+        "en": "Claims of reduced dropout or violence",
+        "ru": "Заявления о снижении отсева или насилия"
+      },
+      "status": "QUARANTINED",
+      "evidenceClass": "CAUSAL OUTCOME — BLOCKED",
+      "sourceId": "Q02",
+      "sourceName": "No independent outcome study attached",
+      "sourceUrl": "internal://quarantine/social-outcomes",
+      "whatItProves": {
+        "he": "הטענה מבטאת את מטרת התוכנית ואת תיאוריית השינוי שלה.",
+        "en": "The claim expresses the program objective and theory of change.",
+        "ru": "Заявление отражает цель программы и ее теорию изменений."
+      },
+      "whatItDoesNotProve": {
+        "he": "אין כרגע מחקר עצמאי שמוכיח קשר סיבתי בין הפעילות לבין ירידה בנשירה, אלימות או פשיעה.",
+        "en": "No independent study currently proves a causal link between the activity and reductions in dropout, violence or crime.",
+        "ru": "На данный момент нет независимого исследования, доказывающего причинную связь между деятельностью и снижением отсева, насилия или преступности."
+      }
+    }
+  ]
+}
