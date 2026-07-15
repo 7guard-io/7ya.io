@@ -35,9 +35,11 @@ English and Russian use `/en/...` and `/ru/...` equivalents.
 
 ```bash
 cd authority-hub
-npm ci
+npm install
 npm run dev
 ```
+
+Commit the generated lockfile before the first deploy, then use `npm ci` in CI.
 
 ## Release gate
 
