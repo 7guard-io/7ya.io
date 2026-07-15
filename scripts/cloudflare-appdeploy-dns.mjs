@@ -221,6 +221,28 @@ async function verifyHost(zoneId, desired) {
   return matches[0];
 }
 
+function snapshotMatches(current, expected) {
+  return (
+    current.type === expected.type &&
+    normalize(current.name) === normalize(expected.name) &&
+    normalize(current.content) === normalize(expected.content) &&
+    Number(current.ttl) === Number(expected.ttl) &&
+    Boolean(current.proxied) === Boolean(expected.proxied)
+  );
+}
+
+async function verifySnapshot(zoneId, hostname, snapshot) {
+  const current = (await listExactRecords(zoneId, hostname)).filter((entry) => mutableTypes.has(entry.type));
+  assert(current.length === snapshot.length, `Rollback read-back failed for ${hostname}: expected ${snapshot.length} mutable record(s), found ${current.length}.`);
+
+  const unmatched = [...current];
+  for (const expected of snapshot) {
+    const index = unmatched.findIndex((record) => snapshotMatches(record, expected));
+    assert(index >= 0, `Rollback read-back failed for ${hostname}: ${expected.type} ${expected.content} was not restored.`);
+    unmatched.splice(index, 1);
+  }
+}
+
 async function restoreSnapshot(zoneId, hostname, snapshot) {
   console.error(`ROLLBACK ${hostname}: restoring pre-change mutable DNS snapshot.`);
   const current = await listExactRecords(zoneId, hostname);
@@ -236,6 +258,8 @@ async function restoreSnapshot(zoneId, hostname, snapshot) {
       body: JSON.stringify(record),
     });
   }
+
+  await verifySnapshot(zoneId, hostname, snapshot);
 }
 
 async function reconcileHost(zoneId, hostPlan) {
@@ -307,7 +331,27 @@ try {
     process.exit(0);
   }
 
-  for (const hostPlan of hosts) await reconcileHost(zoneId, hostPlan);
+  const completed = [];
+  try {
+    for (const hostPlan of hosts) {
+      await reconcileHost(zoneId, hostPlan);
+      completed.push(hostPlan);
+    }
+  } catch (error) {
+    const rollbackFailures = [];
+    for (const hostPlan of completed.reverse()) {
+      try {
+        await restoreSnapshot(zoneId, hostPlan.desired.name, hostPlan.mutable);
+      } catch (rollbackError) {
+        rollbackFailures.push(`${hostPlan.desired.name}: ${rollbackError instanceof Error ? rollbackError.message : rollbackError}`);
+      }
+    }
+
+    if (rollbackFailures.length > 0) {
+      throw new Error(`Multi-host cutover failed: ${error instanceof Error ? error.message : error}. Global rollback failures: ${rollbackFailures.join('; ')}`);
+    }
+    throw new Error(`Multi-host cutover failed and all previously converged hostnames were restored: ${error instanceof Error ? error.message : error}`);
+  }
 
   const finalState = [];
   for (const desired of desiredState.records) {
