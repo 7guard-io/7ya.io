@@ -1,18 +1,73 @@
-name: Cloudflare AppDeploy DNS Preflight
+name: Cloudflare AppDeploy DNS Safety
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/cloudflare-appdeploy-dns-preflight.yml'
+      - 'scripts/cloudflare-appdeploy-dns.mjs'
+      - 'infra/cloudflare-appdeploy/**'
+      - 'docs/APPDEPLOY_CUTOVER_RECEIPT_20260716.md'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: cloudflare-appdeploy-dns-preflight
-  cancel-in-progress: false
+  group: cloudflare-appdeploy-dns-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
+  validate:
+    name: Validate DNS reconciler
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Use supported Node.js runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate reconciler syntax
+        run: node --check scripts/cloudflare-appdeploy-dns.mjs
+
+      - name: Validate desired-state contract
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const state = JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/desired-records.json', 'utf8'));
+          if (state.zone !== '7ya.io') throw new Error('Unexpected zone');
+          if (state.confirmation !== '7YA-APPDEPLOY-20260716') throw new Error('Unexpected confirmation');
+          if (!Array.isArray(state.records) || state.records.length !== 2) throw new Error('Expected exactly two records');
+          console.log('Desired-state JSON and invariants are valid.');
+          NODE
+
+      - name: Prove default mode is fail-closed without credentials
+        shell: bash
+        run: |
+          set +e
+          output="$(env -u CLOUDFLARE_API_TOKEN node scripts/cloudflare-appdeploy-dns.mjs 2>&1)"
+          status=$?
+          set -e
+          printf '%s\n' "$output"
+          test "$status" -eq 2
+          grep -Fq 'CLOUDFLARE_API_TOKEN is required' <<<"$output"
+
+      - name: Prove workflow has no apply invocation
+        shell: bash
+        run: |
+          if grep -nE 'node +scripts/cloudflare-appdeploy-dns\.mjs +--apply' .github/workflows/cloudflare-appdeploy-dns-preflight.yml; then
+            echo 'Unsafe --apply invocation found in workflow.'
+            exit 1
+          fi
+          echo 'No workflow apply path exists.'
+
   plan:
-    name: Read-only DNS plan
+    name: Read-only Cloudflare DNS plan
+    if: github.event_name == 'workflow_dispatch'
+    needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -29,12 +84,6 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Validate reconciler syntax
-        run: node --check scripts/cloudflare-appdeploy-dns.mjs
-
-      - name: Validate desired-state JSON syntax
-        run: node -e "JSON.parse(require('node:fs').readFileSync('infra/cloudflare-appdeploy/desired-records.json', 'utf8')); console.log('Desired-state JSON is valid.')"
-
       - name: Require least-privilege token
         shell: bash
         run: |
@@ -47,7 +96,7 @@ jobs:
       - name: Print read-only reconciliation plan
         run: node scripts/cloudflare-appdeploy-dns.mjs
 
-      - name: Confirm no mutation path exists in workflow
+      - name: Confirm no mutation was requested
         run: |
           echo "This workflow never passes --apply."
           echo "No DNS mutation was requested or performed."
