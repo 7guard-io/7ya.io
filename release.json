@@ -2,12 +2,12 @@
   "service": "7ya-frontend",
   "provider": "github-pages",
   "status": "CANDIDATE",
-  "release": "2026-07-15-living-os-content-museum",
+  "release": "2026-07-15-public-response-ai",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
   "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
   "environment": "production",
-  "experience": "IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_AND_CREATOR_COMPANION",
+  "experience": "IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_CREATOR_COMPANION_AND_RESPONSE_AI",
   "launch_date": "2026-07-15",
   "data_contract": {
     "record_count": 66,
@@ -18,7 +18,8 @@
       "/knowledge/history-song-records-4.json",
       "/knowledge/history-song-records-5.json"
     ],
-    "policy": "Evidence before amplification; every metric requires a dated snapshot; visual source cards must not be described as native screenshots unless captured as such."
+    "response_signals": "/knowledge/public-response-signals-20260715.json",
+    "policy": "Evidence before amplification; every metric requires a dated snapshot; response analysis distinguishes engagement, discussion, external framing and verified owner exports; raw commenter identity is minimized."
   },
   "critical_surfaces": [
     "/",
@@ -29,6 +30,7 @@
     "/journey/",
     "/starton/",
     "/influence/",
+    "/response-ai/",
     "/evidence/",
     "/speaker/",
     "/contact/"
