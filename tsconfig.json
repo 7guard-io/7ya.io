@@ -13,6 +13,8 @@
   "include": [
     "packages/evidence-oracle/src/**/*.ts",
     "packages/evidence-oracle/test/**/*.ts",
+    "packages/rag-core/src/**/*.ts",
+    "packages/rag-core/test/**/*.ts",
     "api/**/*.ts"
   ]
 }
