@@ -1,0 +1,29 @@
+{
+  "zone": "7ya.io",
+  "provider": "cloudflare",
+  "target": "appdeploy-v2",
+  "records": [
+    {
+      "type": "A",
+      "name": "7ya.io",
+      "content": "18.232.7.146",
+      "ttl": 1,
+      "proxied": false,
+      "purpose": "AppDeploy apex verification and routing"
+    },
+    {
+      "type": "CNAME",
+      "name": "www.7ya.io",
+      "content": "proxy-v2.appdeploy.ai",
+      "ttl": 1,
+      "proxied": false,
+      "purpose": "AppDeploy www verification and routing"
+    }
+  ],
+  "protected_record_types": ["MX", "TXT", "SRV", "CAA"],
+  "protected_nameservers": [
+    "anahi.ns.cloudflare.com",
+    "dakota.ns.cloudflare.com"
+  ],
+  "confirmation": "7YA-APPDEPLOY-20260716"
+}
