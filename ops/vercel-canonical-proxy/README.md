@@ -10,20 +10,30 @@ The canonical public source is `7guard-io/7ya.io`, while older hosting integrati
 - HTML, CSS, JavaScript, JSON, XML, fonts, images and media use the same source commit.
 - Response headers expose repository, source path and source SHA.
 - `/release.json` publishes the same provenance contract.
+- Private `/admin/` and unhandled repository `/api/*` paths fail closed.
 - No custom-domain, nameserver, MX or mail mutation is performed by this package.
 
 ## Current source contract
 
 - Repository: `7guard-io/7ya.io`
-- Pinned source SHA: `a4e2123d14a6b5f69654ab55a6444b9b1bb78ce7`
-- Content pull request: `#229`
-- Release-control branch: `release/public-universe-20260715`
+- Pinned source SHA: `d4ce4df0a39127571d7f148b0ae040538f7b94d1`
+- Release-control pull request: `#237`
+- Release-control branch: `fix/canonical-production-cutover-20260715`
 - Vercel project: `7ya-static-site`
+- Vercel project ID: `prj_xpcMFC96JcnasigrvetZetEa1XzU`
 - Verified alias target: `https://7ya-static-site.vercel.app`
+- Intended custom domains: `7ya.io`, `www.7ya.io`
 
-The release preserves the 66-record verified narrative core and adds an append-only Public Universe layer containing 26 additional public profiles, publisher mirrors, media appearances, podcasts, music surfaces, research profiles and distribution nodes. The combined source index contains 92 records before runtime URL deduplication. There is no fixed museum ceiling.
+The pinned source is the Igor-first personal production experience with the deterministic multi-mode visuomodular homepage, 66-record verified narrative core, append-only Public Universe, 7YA Signal Key, StartOn, evidence routes and public participation surfaces.
 
-It also preserves the universal `7YA Signal Key`, NVIDIA NIM-first provider routing, OpenAI and deterministic local fallbacks, plus the governed Digital Museum Collector.
+## Cache contract during cutover
+
+- Successful HTML responses revalidate immediately and must not remain stale at the edge.
+- `/release.json` revalidates immediately.
+- Versioned CSS, JavaScript, images, fonts and media remain immutable.
+- Controlled error responses remain `no-store` and `noindex, nofollow`.
+
+This temporary HTML policy exists to prevent the old GitHub Pages homepage and the canonical Vercel homepage from appearing interchangeably during domain migration. A longer HTML edge TTL may be restored only after both custom domains consistently report the same source SHA.
 
 ## Public Universe contract
 
@@ -73,16 +83,18 @@ Before changing the source SHA:
 
 1. Commit and merge the intended source content.
 2. Pin the proxy and release endpoint to that immutable content commit.
-3. Confirm the release metadata names the content PR and critical routes.
-4. Deploy this directory to the existing `7ya-static-site` project.
-5. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/museum/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
-6. Verify `/styles/public-universe-20260715.css`, `/scripts/public-content-museum-20260715.js` and `/knowledge/public-universe-records-20260715.json` return the same source SHA.
-7. Verify the museum loads the verified core plus the expansion layer, displays dynamic counts, supports search and filters, and does not contain the fixed `Expected 66 records` failure.
-8. Verify `/styles/7ya-signal-key-20260715.css` and `/scripts/7ya-signal-key-20260715.js`.
+3. Confirm the release metadata names the release-control PR and critical routes.
+4. Run `npm run check-release-pin` from the repository root.
+5. Deploy this directory to the existing `7ya-static-site` project.
+6. Verify HTTP 200 and `X-7YA-Source-SHA` for `/`, `/museum/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
+7. Verify `/scripts/history-song-20260714.js`, `/scripts/history-song-core-20260714.js`, `/assets/igor-hero-storm-20260715.webp`, `/styles/7ya-signal-key-20260715.css` and `/scripts/7ya-signal-key-20260715.js`.
+8. Verify `/release.json` reports release `igor-visuomodular-production-20260715`, PR `#237` and source SHA `d4ce4df0a39127571d7f148b0ae040538f7b94d1`.
 9. Verify `/api/guide` accepts POST only and returns `provider` plus `model` without exposing credentials.
 10. Verify controlled 404s are `noindex, nofollow` and `no-store`.
 11. Check runtime error clusters.
-12. Do not attach or mutate domains, nameservers, MX or mail-related TXT records as part of this package.
+12. Attach `7ya.io` and `www.7ya.io` only to project `prj_xpcMFC96JcnasigrvetZetEa1XzU`.
+13. Change only Cloudflare web records required by Vercel verification. Preserve nameservers, MX and mail-related TXT records.
+14. Verify both custom domains return the pinned `X-7YA-Source-SHA` before retiring the GitHub Pages origin.
 
 ## Collector boundary
 
