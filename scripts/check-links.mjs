@@ -1,36 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { publicRouteDirectories } from './site-contract.mjs';
 
 const root = process.cwd();
 const files = [
   'index.html',
-  'museum/index.html',
-  'create/index.html',
-  'history/index.html',
-  'igor-vepretski/index.html',
-  'journey/index.html',
-  'starton/index.html',
-  'influence/index.html',
-  'evidence/index.html',
-  '7ya/index.html',
-  'speaker/index.html',
-  'talk/index.html',
-  'media/index.html',
-  'articles/index.html',
-  'contact/index.html',
-  'delta-audit/index.html',
-  'legacy/index.html',
-  'about/index.html',
-  'social/index.html',
-  'oracle/index.html',
-  'business/index.html',
-  'pass/index.html',
-  'member-pass/index.html',
-  'radar/index.html',
-  'work/index.html',
-  'systems/index.html',
-  'public-service/index.html',
-  'music/index.html',
+  ...publicRouteDirectories.map(route => `${route}/index.html`),
 ];
 
 let failures = 0;

@@ -19,9 +19,9 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 - Repository: `7guard-io/7ya.io`
 - Default branch: `main`
 - Public domain: `https://7ya.io`
-- Current recovery runtime source: `ops/vercel-recovery`
+- Current recovery runtime source: `ops/vercel-canonical-proxy`
 - Vercel recovery project: `7ya-static-site`
-- Vercel project root directory: `ops/vercel-recovery`
+- Vercel project root directory: `ops/vercel-canonical-proxy`
 - Production branch contract: `main`
 
 The separate Vercel project named `7ya.io` has historically been connected to the older repository `vepretski/7ya.io`. It must not be treated as the canonical source-control plane.
@@ -99,8 +99,8 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 The public site is static-first and provider-independent wherever practical.
 
 - Root public files are the canonical content source.
-- `ops/vercel-recovery` is a deployable recovery artifact, not a separate editorial universe.
-- When a public page is mirrored into the recovery artifact, update both surfaces in the same PR and add a test that prevents divergence.
+- `ops/vercel-canonical-proxy` is a deployable recovery bridge pinned to one immutable canonical source SHA, not a separate editorial universe.
+- Update public content only in the root canonical source. A release-control PR must pin the recovery bridge to the merged content SHA before production deployment.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
 - Keep provider configuration isolated from content.
 - Preserve rollback paths; do not destroy the previous working origin before the replacement passes all gates.
@@ -111,10 +111,7 @@ The public site is static-first and provider-independent wherever practical.
 Before requesting merge, run or structurally validate:
 
 ```bash
-npm run check-site
-npm run check-links
-npm run check-all
-npm run verify:routes
+npm run release:gate
 ```
 
 When the environment cannot execute commands, state that clearly and use repository-level deterministic checks. Never invent a local PASS.

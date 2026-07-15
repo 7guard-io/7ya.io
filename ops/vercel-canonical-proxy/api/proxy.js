@@ -3,6 +3,7 @@
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
 const SOURCE_SHA = 'c275ff0557727c99e712ae8d57ebd0736dba79e5';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
+const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 
 const CANONICAL_ALIASES = new Map([
   ['about', '/igor-vepretski/'],
@@ -83,6 +84,11 @@ function canonicalAlias(pathInfo) {
   return CANONICAL_ALIASES.get(key) || null;
 }
 
+function isBlockedPublicPath(pathInfo) {
+  if (!pathInfo?.normalized) return false;
+  return BLOCKED_PUBLIC_PREFIXES.has(pathInfo.normalized.split('/')[0]);
+}
+
 function setBaseHeaders(response) {
   response.setHeader('X-Content-Type-Options', 'nosniff');
   response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
@@ -123,6 +129,16 @@ function sendRedirect(request, response, destination) {
   else response.end(`Permanent Redirect: ${destination}`);
 }
 
+function sendNotFound(request, response) {
+  response.statusCode = 404;
+  setBaseHeaders(response);
+  response.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  response.setHeader('X-Robots-Tag', 'noindex, nofollow');
+  response.setHeader('Cache-Control', 'no-store');
+  if (request.method === 'HEAD') response.end();
+  else response.end('Not Found');
+}
+
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
@@ -145,6 +161,11 @@ module.exports = async (request, response) => {
     response.statusCode = 400;
     response.setHeader('Content-Type', 'application/json; charset=utf-8');
     response.end(JSON.stringify({ error: 'Invalid path' }));
+    return;
+  }
+
+  if (isBlockedPublicPath(pathInfo)) {
+    sendNotFound(request, response);
     return;
   }
 

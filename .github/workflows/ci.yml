@@ -1,4 +1,4 @@
-name: 7YA CI
+name: Validate 7YA Release
 
 # GitHub Actions is currently blocked before runner startup at the account/org level.
 # Keep the full validation suite available manually without creating false red
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Typecheck, site health, links, routes
+    name: Shared local and CI release gate
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -29,35 +29,17 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Print diagnostic context
-        run: |
-          node --version
-          npm --version
-          pwd
-          ls -la
+      - name: Install locked dependencies
+        run: npm ci --no-audit --no-fund
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
+      - name: Run the exact release gate
+        run: npm run release:gate
 
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Site process health
-        run: npm run check-site
-
-      - name: Link audit
-        run: npm run check-links
-
-      - name: Static route verification
-        run: |
-          python3 -m http.server 4173 > /tmp/7ya-static-server.log 2>&1 &
-          echo $! > /tmp/7ya-static-server.pid
-          sleep 2
-          npm run verify:routes -- http://127.0.0.1:4173
-
-      - name: Upload static server log
+      - name: Upload deterministic artifact manifest
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: static-server-log
-          path: /tmp/7ya-static-server.log
+          name: 7ya-static-artifact-manifest
+          path: dist/artifact-manifest.json
+          if-no-files-found: warn
+          retention-days: 30
