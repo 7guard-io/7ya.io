@@ -17,7 +17,7 @@ export function personSchema(locale: Locale) {
         ? 'Социальный предприниматель, публичный автор, основатель StartOn и создатель 7YA.'
         : 'Social entrepreneur, public creator, founder of StartOn and builder of 7YA.',
     knowsLanguage: ['he', 'en', 'ru'],
-    founder: { '@id': `${siteUrl}/starton/#organization` },
+    affiliation: { '@id': `${siteUrl}/starton/#organization` },
     sameAs: [
       'https://www.linkedin.com/in/vepretski/',
       'https://linktr.ee/igor.vepretski',
