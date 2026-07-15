@@ -7,7 +7,14 @@ import { getDictionary, type Locale, type PageSlug } from '@/lib/i18n';
 import { personSchema, startonSchema } from '@/lib/schema';
 import type { ClaimsDataset } from '@/types/claim';
 
-const dataset = claimsData as ClaimsDataset;
+const dataset = claimsData as unknown as ClaimsDataset;
+
+const pressAssets = [
+  { href: '/press/igor-vepretski-bio-he.txt', label: 'Igor Vepretski bio · HE', format: 'TXT' },
+  { href: '/press/igor-vepretski-bio-en.txt', label: 'Igor Vepretski bio · EN', format: 'TXT' },
+  { href: '/press/igor-vepretski-bio-ru.txt', label: 'Igor Vepretski bio · RU', format: 'TXT' },
+  { href: '/press/starton-fact-sheet.json', label: 'StartOn fact sheet', format: 'JSON' }
+] as const;
 
 function localizedHome(locale: Locale) {
   return locale === 'he' ? '/' : `/${locale}`;
@@ -17,6 +24,7 @@ export function AuthorityPage({ locale, slug }: { locale: Locale; slug: PageSlug
   const dictionary = getDictionary(locale);
   const page = dictionary.pages[slug];
   const isEvidence = slug === 'evidence-wall';
+  const isPress = slug === 'press';
   const schema = slug === 'igor-vepretski'
     ? personSchema(locale)
     : slug === 'starton'
@@ -77,6 +85,24 @@ export function AuthorityPage({ locale, slug }: { locale: Locale; slug: PageSlug
             ))}
           </section>
         )}
+
+        {isPress ? (
+          <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+            <div className="border-b border-zinc-800 pb-7">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">DOWNLOADABLE ASSETS</p>
+              <h2 className="mt-3 text-3xl font-black uppercase text-white">Press kit files</h2>
+            </div>
+            <div className="mt-8 grid gap-px bg-zinc-800 sm:grid-cols-2 lg:grid-cols-4">
+              {pressAssets.map((asset) => (
+                <a key={asset.href} href={asset.href} download className="group min-h-52 bg-black p-6 transition hover:bg-zinc-950">
+                  <span className="font-mono text-xs text-zinc-600">{asset.format}</span>
+                  <h3 className="mt-20 text-lg font-black uppercase text-white">{asset.label}</h3>
+                  <p className="mt-3 text-sm text-zinc-500 transition group-hover:text-zinc-300">Download →</p>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </main>
       <footer className="border-t border-zinc-900 px-5 py-8 text-center font-mono text-xs uppercase tracking-[0.18em] text-zinc-600">
         7YA.IO · NOT FASHION. FORCE. · EVIDENCE BEFORE AMPLIFICATION
