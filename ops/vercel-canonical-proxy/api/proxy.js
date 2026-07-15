@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = '446e54d98ebd04fc1e1a837f98dce94a8904ae55';
+const SOURCE_SHA = '6c179d0bd0cb334de6d03221d3074ee760f134b4';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 
@@ -148,7 +148,7 @@ function sendNotFound(request, response) {
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.4',
+      'User-Agent': '7ya-canonical-recovery/1.5',
       Accept: '*/*',
     },
   });
