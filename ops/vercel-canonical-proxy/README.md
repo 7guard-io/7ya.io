@@ -17,14 +17,15 @@ The proxy removes both ambiguities:
 ## Source contract
 
 - Repository: `7guard-io/7ya.io`
-- Previous production source SHA: `c275ff0557727c99e712ae8d57ebd0736dba79e5`
-- Pinned clean Living OS source SHA: `b1ff2422430aecff1a8fe12ad0a48c0561c7a97f`
-- Content and release-control PRs: `#214`, `#215`
-- Merge requirement: use a regular merge so the pinned source commit remains in `main` history.
+- Previous production source SHA: `446e54d98ebd04fc1e1a837f98dce94a8904ae55`
+- Pinned Public Response AI source SHA: `6c179d0bd0cb334de6d03221d3074ee760f134b4`
+- Content pull request: `#219`
+- Release-control branch: `release/public-response-ai-20260715`
+- Merge requirement: preserve the pinned source commit in `main` history.
 - Vercel project: `7ya-static-site`
 - Verified alias: `https://7ya-static-site.vercel.app`
 
-The proxy code and `/release.json` in this directory are pinned to the clean Igor-led Living OS source SHA. Preview verification may use an immutable PR commit; production promotion must wait until the content and release PRs are merged and the pinned source commit is reachable from `main` history.
+The proxy code and `/release.json` in this directory are pinned to the merged Public Response AI source SHA. Production promotion must verify that `/response-ai/`, its JavaScript, stylesheet and signal dataset all return the same `X-7YA-Source-SHA`.
 
 ## Routes
 
@@ -38,14 +39,16 @@ Directory requests resolve to `index.html`. Extension-bearing requests are fetch
 
 Before changing the source SHA:
 
-1. Commit the intended source content.
-2. Pin the proxy to that immutable content commit.
-3. Merge with a strategy that preserves the pinned commit in `main` history.
+1. Commit and merge the intended source content.
+2. Pin the proxy and release endpoint to that immutable content commit.
+3. Confirm the release metadata names the content PR and critical routes.
 4. Deploy this directory to the existing `7ya-static-site` project.
-5. Verify HTTP 200, canonical metadata and `X-7YA-Source-SHA` for `/`, `/journey/`, `/starton/`, `/evidence/`, `/talk/` and `/contact/`.
-6. Verify CSS, JavaScript, image, `robots.txt`, `sitemap.xml` and `/release.json` responses.
-7. Check runtime error clusters.
-8. Do not attach `7ya.io` or modify Cloudflare until the complete gate passes.
+5. Verify HTTP 200, canonical metadata and `X-7YA-Source-SHA` for `/`, `/entity/`, `/7ya/`, `/response-ai/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/`.
+6. Verify `/styles/public-response-ai-20260715.css`, `/scripts/public-response-ai-20260715.js`, `/knowledge/public-response-signals-20260715.json`, `robots.txt`, `sitemap.xml` and `/release.json`.
+7. Verify the positive mode is limited to explicit external framing and that aggregate records remain stance-undetermined.
+8. Verify controlled 404s are `noindex, nofollow` and `no-store`; private `/admin/` and unhandled `/api/*` paths fail closed.
+9. Check runtime error clusters.
+10. Do not attach or mutate domains, nameservers, MX or mail-related TXT records as part of this package.
 
 ## Limitations
 
