@@ -19,8 +19,11 @@ for (const file of actual) {
   const body = fs.readFileSync(path.join(workflowRoot, file), 'utf8');
   bodies.set(file, body);
   if (!/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
-  for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'release']) {
+  for (const event of ['pull_request', 'pull_request_target', 'issues', 'release']) {
     if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables quarantined ${event} automation`);
+  }
+  if (/^\s{2}push:/m.test(body) && file !== 'pages.yml') {
+    fail(`${file} enables unauthorized push automation`);
   }
   if (/^\s{2}schedule:/m.test(body) && file !== 'digital-museum-collector.yml') {
     fail(`${file} enables unauthorized schedule automation`);
@@ -32,7 +35,9 @@ if (!ci.includes('npm run release:gate')) fail('ci.yml does not execute the shar
 
 const pages = bodies.get('pages.yml') || '';
 for (const required of [
-  'release_sha:',
+  'push:',
+  '- main',
+  'workflow_dispatch:',
   'npm run release:gate',
   'actions/upload-pages-artifact@v3',
   'actions/deploy-pages@v4',
@@ -53,7 +58,7 @@ for (const required of [
   'git diff --quiet',
   '[skip ci]',
 ]) {
-  if (!collector.includes(required)) fail(`digital-museum-collector.yml missing ${required}`);
+  if (!collector.includes(required)) fail(`${file} missing ${required}`);
 }
 if (collector.includes('stefanzweifel/git-auto-commit-action')) {
   fail('digital-museum-collector.yml uses an unnecessary third-party commit action');
