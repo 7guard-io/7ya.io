@@ -1,16 +1,17 @@
 {
   "service": "7ya-frontend",
-  "provider": "github-pages",
-  "status": "PRODUCTION",
-  "release": "2026-07-15-personal-visual-integral-v1",
+  "provider": "canonical-source",
+  "status": "CANDIDATE",
+  "release": "2026-07-15-public-universe-v1",
   "source_repository": "7guard-io/7ya.io",
-  "source_ref": "main",
-  "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
-  "environment": "production",
-  "experience": "IGOR_VEPRETSKI_PERSONAL_VISUAL_INTEGRAL_LIVING_OS",
-  "launch_date": "2026-07-15",
+  "source_ref": "feat/public-universe-ingestion-20260715",
+  "source_sha_policy": "Promotion requires one immutable merged source SHA, a verified deployment and independent production checks across routes, assets and release metadata.",
+  "environment": "candidate",
+  "experience": "IGOR_VEPRETSKI_VERIFIED_CORE_PLUS_EXPANDING_PUBLIC_UNIVERSE",
+  "target_launch_date": "2026-07-15",
   "data_contract": {
     "record_count": 66,
+    "record_count_role": "verified narrative core",
     "parts": [
       "/knowledge/history-song-records-1.json",
       "/knowledge/history-song-records-2.json",
@@ -18,8 +19,16 @@
       "/knowledge/history-song-records-4.json",
       "/knowledge/history-song-records-5.json"
     ],
+    "public_universe": {
+      "path": "/knowledge/public-universe-records-20260715.json",
+      "additional_record_count": 26,
+      "combined_source_records_before_url_dedupe": 92,
+      "runtime_url_deduplication": true,
+      "fixed_ceiling": false,
+      "collection_model": ["VERIFIED_CORE", "PUBLIC_UNIVERSE"]
+    },
     "response_signals": "/knowledge/public-response-signals-20260715.json",
-    "policy": "Evidence before amplification; every metric requires a dated snapshot; response analysis distinguishes engagement, discussion, external framing and verified owner exports; raw commenter identity is minimized."
+    "policy": "Evidence before amplification; every metric requires a dated snapshot; duplicate URLs collapse at runtime; private, minor, legal, financial and quarantined records are excluded from the public universe."
   },
   "critical_surfaces": [
     "/",
@@ -34,8 +43,10 @@
     "/response-ai/",
     "/evidence/",
     "/speaker/",
+    "/talk/",
     "/contact/"
   ],
-  "release_intent": "Publish the current canonical homepage and all critical surfaces as a richer, more personal, visually varied and functionally intact Igor Vepretski experience.",
-  "rollback": "Provider deployment history and previous source commits remain available for rollback."
+  "release_intent": "Replace the fixed 66-record museum ceiling with a verified core plus an append-only, multilingual and cross-platform public universe that can grow without breaking the site.",
+  "promotion_gate": "Do not call this production until the exact merged SHA is deployed and the public domain serves the expanding museum, JSON layer, styles, search, filters and source counts correctly on desktop and mobile.",
+  "rollback": "The current immutable Vercel production and prior source commits remain available for rollback."
 }
