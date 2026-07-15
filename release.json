@@ -7,7 +7,7 @@
   "source_ref": "main",
   "source_sha_policy": "The deployed commit SHA is preserved by the provider deployment record and immutable fallback proxy.",
   "environment": "production",
-  "experience": "IGOR_7YA_LIVING_OS_PUBLIC_CONTENT_MUSEUM_CREATOR_COMPANION_AND_RESPONSE_AI",
+  "experience": "IGOR_7YA_MASTER_ENTITY_ATLAS_LIVING_OS_PUBLIC_CONTENT_MUSEUM_CREATOR_COMPANION_AND_RESPONSE_AI",
   "launch_date": "2026-07-15",
   "data_contract": {
     "record_count": 66,
@@ -24,6 +24,7 @@
   "critical_surfaces": [
     "/",
     "/museum/",
+    "/entity/",
     "/create/",
     "/history/",
     "/7ya/",
