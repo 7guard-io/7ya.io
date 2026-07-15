@@ -101,6 +101,13 @@ if (data) {
   }
 }
 
+const livingOs = read('7ya/index.html');
+for (const required of [
+  '<a href="/response-ai/">הד AI</a>',
+  '<span>PUBLIC RESPONSE AI</span>',
+  '<a href="/response-ai/">לניתוח ההיענות →</a>',
+]) requireText(livingOs, required, 'Living OS response integration');
+
 const contract = read('scripts/site-contract.mjs');
 for (const required of [
   "'entity'",
