@@ -1,7 +1,7 @@
 'use strict';
 
 const SOURCE_REPOSITORY = '7guard-io/7ya.io';
-const SOURCE_SHA = 'b1ff2422430aecff1a8fe12ad0a48c0561c7a97f';
+const SOURCE_SHA = '446e54d98ebd04fc1e1a837f98dce94a8904ae55';
 const RAW_BASE = `https://raw.githubusercontent.com/${SOURCE_REPOSITORY}/${SOURCE_SHA}/`;
 const BLOCKED_PUBLIC_PREFIXES = new Set(['admin', 'api']);
 
@@ -17,6 +17,7 @@ const CANONICAL_ALIASES = new Map([
   ['systems', '/7ya/'],
   ['public-service', '/journey/'],
   ['music', '/influence/'],
+  ['entity-index', '/entity/'],
 ]);
 
 const MIME_TYPES = {
@@ -147,7 +148,7 @@ function sendNotFound(request, response) {
 async function fetchSource(file) {
   return fetch(`${RAW_BASE}${file}`, {
     headers: {
-      'User-Agent': '7ya-canonical-recovery/1.3',
+      'User-Agent': '7ya-canonical-recovery/1.4',
       Accept: '*/*',
     },
   });
