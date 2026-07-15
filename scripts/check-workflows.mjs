@@ -58,7 +58,7 @@ for (const required of [
   'git diff --quiet',
   '[skip ci]',
 ]) {
-  if (!collector.includes(required)) fail(`${file} missing ${required}`);
+  if (!collector.includes(required)) fail(`digital-museum-collector.yml missing ${required}`);
 }
 if (collector.includes('stefanzweifel/git-auto-commit-action')) {
   fail('digital-museum-collector.yml uses an unnecessary third-party commit action');
