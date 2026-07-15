@@ -41,7 +41,9 @@ The reconciler is fail-closed and includes:
 - request-attempt audit metadata using Cloudflare request IDs when available;
 - a pre-change mutable-record snapshot for each exact hostname;
 - compensating rollback when reconciliation fails after a mutation begins;
-- post-write read-back requiring exactly one desired mutable record and no conflicting `A`, `AAAA`, or `CNAME` records;
+- transactional rollback across both apex and `www` when a later hostname fails after an earlier hostname converged;
+- read-back verification after successful writes and after every rollback;
+- post-write convergence requiring exactly one desired mutable record and no conflicting `A`, `AAAA`, or `CNAME` records;
 - fail-closed handling when a protected record coexists at `www.7ya.io` and would make a CNAME unsafe.
 
 Optional runtime controls:
