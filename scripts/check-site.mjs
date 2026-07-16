@@ -75,7 +75,7 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI', 'Evidence Ledger',
-  'igor-story-cinema-guide-20260716-2',
+  'igor-story-cinema-guide-20260716-3',
   'id="opening"', 'id="origins"', 'id="service"', 'id="voice"',
   'id="human"', 'id="starton"', 'id="system"',
   'id="discover"', 'id="contentResults"', 'id="contentSearch"',
@@ -85,9 +85,9 @@ for (const required of [
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/igor-hero-storm-20260715.webp',
+  '/assets/igor-hero-storm-20260716.webp',
   '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-story-cinema-20260716.css?v=1',
+  '/styles/igor-story-cinema-20260716.css?v=2',
   '/styles/7ya-experience-guide-20260716.css?v=1',
   '/scripts/igor-story-cinema-20260716.js',
   '/scripts/7ya-experience-guide-20260716.js'
@@ -107,7 +107,7 @@ for (const forbidden of [
 const infostoryCss = read('styles/igor-story-cinema-20260716.css');
 for (const required of [
   '.hero-media', '.chapter', '.chapter-human', '.chapter-system',
-  '/assets/igor-hero-storm-20260715.webp', '@media(prefers-reduced-motion:reduce)'
+  '/assets/igor-hero-storm-20260716.webp', '@media(prefers-reduced-motion:reduce)'
 ]) requireText(infostoryCss, required, 'infostory stylesheet');
 
 const infostoryScript = read('scripts/igor-story-cinema-20260716.js');
