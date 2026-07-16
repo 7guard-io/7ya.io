@@ -8,11 +8,12 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#090b0f">
   <meta name="color-scheme" content="dark">
-  <meta name="7ya-build" content="igor-story-cinema-20260716-1">
+  <meta name="7ya-build" content="igor-story-cinema-guide-20260716-2">
   <link rel="canonical" href="https://7ya.io/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/igor-hero-storm-20260715.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="/styles/igor-story-cinema-20260716.css?v=1">
+  <link rel="stylesheet" href="/styles/7ya-experience-guide-20260716.css?v=1">
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA.IO">
   <meta property="og:locale" content="he_IL">
@@ -36,7 +37,7 @@
     <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="פתיחת תפריט"><span></span><span></span></button>
     <nav class="main-nav" id="mainNav" aria-label="ניווט ראשי">
       <a href="#story">הסיפור</a>
-      <a href="/museum/">מוזיאון</a>
+      <a href="#discover">כל התוכן</a>
       <a href="/starton/">StartOn</a>
       <a href="/evidence/">ראיות</a>
       <a href="/create/">יצירה</a>
@@ -69,6 +70,21 @@
       </div>
       <div class="hero-foot">
         <span>SCROLL TO ENTER</span><i></i><span>1990 — NOW</span>
+      </div>
+    </section>
+
+    <section class="visitor-paths" aria-labelledby="visitor-paths-title">
+      <div class="visitor-paths-copy reveal">
+        <p class="chapter-number">YOUR WAY IN / 7YA</p>
+        <h2 id="visitor-paths-title">מה הביא אתכם לכאן?</h2>
+        <p>הסיפור אחד. הדרך להיכנס אליו משתנה לפי מה שאתם מחפשים עכשיו.</p>
+      </div>
+      <div class="visitor-paths-grid reveal" role="list">
+        <button type="button" data-guide-path="story" role="listitem"><span>01</span><b>להכיר את איגור</b><small>המסע האנושי, התחנות והבחירות</small></button>
+        <button type="button" data-guide-path="starton" role="listitem"><span>02</span><b>להבין את StartOn</b><small>נוער, טכנולוגיה, שייכות ושותפות</small></button>
+        <button type="button" data-guide-path="evidence" role="listitem"><span>03</span><b>לראות את הראיות</b><small>מקורות, תאריכים וסטטוס אימות</small></button>
+        <button type="button" data-guide-path="media" role="listitem"><span>04</span><b>לצפות ולקרוא</b><small>וידאו, פוסטים, מוזיקה וכתבות</small></button>
+        <button type="button" data-guide-path="build" role="listitem"><span>05</span><b>לבנות משהו יחד</b><small>שיחה, יצירה ושותפות מעשית</small></button>
       </div>
     </section>
 
@@ -135,6 +151,36 @@
       <p class="human-statement reveal">לא גיבור מושלם.<br><strong>אדם שבוחר שוב.</strong></p>
     </section>
 
+    <section class="content-intelligence" id="discover" aria-labelledby="discover-title">
+      <div class="content-intelligence-head reveal">
+        <div>
+          <p class="chapter-number">PUBLIC CONTENT INTELLIGENCE</p>
+          <h2 id="discover-title">כל התוכן.<br><em>בלי ללכת לאיבוד.</em></h2>
+        </div>
+        <div class="content-intelligence-summary">
+          <p>7YA מחבר את ליבת הראיות ואת היקום הציבורי, מאחד כפילויות ומציג בכל רגע את המקור, ההקשר והמסלול הבא.</p>
+          <div class="content-stats" aria-live="polite"><span><b id="contentTotal">92</b> רשומות באינדקס</span><span><b>HE · RU · EN</b> שלוש שפות</span><span><b>3</b> מדרגות מקור</span></div>
+        </div>
+      </div>
+      <div class="content-tools reveal">
+        <label><span>חיפוש חכם</span><input id="contentSearch" type="search" placeholder="אבהות, StartOn, שירות, מוזיקה..." autocomplete="off"></label>
+        <div class="content-filters" role="group" aria-label="סינון תוכן">
+          <button class="is-active" type="button" data-content-filter="all">הכול</button>
+          <button type="button" data-content-filter="story">המסע</button>
+          <button type="button" data-content-filter="starton">StartOn</button>
+          <button type="button" data-content-filter="video">וידאו</button>
+          <button type="button" data-content-filter="social">רשתות</button>
+          <button type="button" data-content-filter="press">עיתונות</button>
+          <button type="button" data-content-filter="music">מוזיקה</button>
+        </div>
+      </div>
+      <div class="content-results" id="contentResults" aria-live="polite" aria-busy="true"></div>
+      <div class="content-intelligence-foot">
+        <p id="contentStatus">טוען את מפת התוכן הציבורית…</p>
+        <a href="/museum/">למוזיאון המלא ולכל המסננים →</a>
+      </div>
+    </section>
+
     <section class="chapter chapter-starton scene" id="starton" data-scene="05">
       <div class="chapter-copy reveal">
         <p class="chapter-number">05 / StartOn</p>
@@ -183,8 +229,31 @@
   <footer class="footer">
     <a class="brand footer-brand" href="/"><span class="brand-seven">7</span><span class="brand-copy"><b>7YA.IO</b><small>STORY · EVIDENCE · ACTION</small></span></a>
     <p>איגור ופרצקי · StartOn · 7YA</p>
-    <nav aria-label="קישורי רשת"><a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.tiktok.com/@igor.vepretski" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/contact/">Contact</a></nav>
+    <nav aria-label="קישורי רשת"><a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.tiktok.com/@igor.vepretski" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw" target="_blank" rel="noopener noreferrer">YouTube</a><a href="/entity/">זהות קנונית</a><a href="/contact/">Contact</a></nav>
   </footer>
+  <button class="guide-launcher" id="guideLauncher" type="button" aria-expanded="false" aria-controls="guidePanel">
+    <span class="guide-mark" aria-hidden="true"><i></i><b>7</b></span>
+    <span><b>השומר</b><small>מלווה המסע של 7YA</small></span>
+  </button>
+  <aside class="guide-panel" id="guidePanel" hidden aria-labelledby="guideTitle">
+    <div class="guide-panel-head">
+      <div class="guide-identity"><span class="guide-mark" aria-hidden="true"><i></i><b>7</b></span><div><b id="guideTitle">7 / השומר</b><small>שומר ההקשר, הראיות והדרך</small></div></div>
+      <button id="guideClose" type="button" aria-label="סגירת המלווה">×</button>
+    </div>
+    <div class="guide-dialogue" id="guideDialogue" aria-live="polite">
+      <p><span>WELCOME</span>אני לא איגור ולא מדבר במקומו. אני כאן כדי לעזור לכם למצוא את הסיפור, המקור או הצעד שמתאים לכם.</p>
+    </div>
+    <div class="guide-choices" id="guideChoices">
+      <button type="button" data-guide-path="story">להכיר את איגור</button>
+      <button type="button" data-guide-path="starton">להבין את StartOn</button>
+      <button type="button" data-guide-path="evidence">לבדוק מקור</button>
+      <button type="button" data-guide-path="media">למצוא תוכן</button>
+      <button type="button" data-guide-path="build">לבנות יחד</button>
+    </div>
+    <div class="guide-actions" id="guideActions"></div>
+    <p class="guide-privacy">ללא התחזות · ללא פרסום אוטומטי · ההעדפה נשמרת רק לביקור הנוכחי</p>
+  </aside>
   <script src="/scripts/igor-story-cinema-20260716.js" defer></script>
+  <script src="/scripts/7ya-experience-guide-20260716.js" defer></script>
 </body>
 </html>

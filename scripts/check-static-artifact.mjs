@@ -72,7 +72,7 @@ for (const relative of forbiddenArtifactEntries) {
 }
 
 const allowedTopLevel = new Set([
-  ...publicRootFiles,
+  ...publicRootFiles.map(entry => entry.split('/')[0]),
   ...publicDataDirectories,
   ...publicRouteDirectories,
   'styles',

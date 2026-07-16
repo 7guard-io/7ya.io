@@ -28,26 +28,21 @@ function excludeText(body, text, label) {
 }
 
 const home = read('index.html');
-const runtime = read('scripts/igor-infostory-20260716.js');
-const signalKey = read('scripts/7ya-signal-key-20260715.js');
+const runtime = read('scripts/igor-story-cinema-20260716.js');
+const guide = read('scripts/7ya-experience-guide-20260716.js');
 
-const chapterIds = ['chapter-human', 'chapter-origins', 'chapter-voice', 'chapter-creator', 'chapter-system'];
+const chapterIds = ['opening', 'origins', 'service', 'voice', 'human', 'starton', 'system'];
 for (const id of chapterIds) {
   requireText(home, `id="${id}"`, 'Infostory homepage');
-  requireText(home, `data-story-jump="${id}"`, 'Infostory chapter navigation');
+  if (id !== 'system') requireText(home, `href="#${id}"`, 'Infostory chapter navigation');
 }
 
-const chapterCount = (home.match(/data-story-chapter/g) || []).length;
-chapterCount === 5 ? pass('Infostory has exactly five chapters') : fail(`Infostory has ${chapterCount} chapters`);
+const chapterCount = (home.match(/data-scene=/g) || []).length;
+chapterCount >= 7 ? pass('Infostory has at least seven scenes') : fail(`Infostory has ${chapterCount} scenes`);
 
 for (const marker of [
-  "window.matchMedia('(prefers-reduced-motion: reduce)')",
-  "button.setAttribute('aria-current', 'step')",
-  'window.requestAnimationFrame(updateStoryProgress)',
-  "style.setAttribute('data-7ya-signal-key-assets', '20260715')",
-  "script.setAttribute('data-7ya-signal-key-assets', '20260715')",
-  "window.dispatchEvent(new CustomEvent('7ya:creator-seed'",
-  "window.location.assign('/create/')",
+  "matchMedia('(prefers-reduced-motion: reduce)')",
+  'IntersectionObserver', 'updatePage', 'is-visible'
 ]) requireText(runtime, marker, 'Infostory runtime');
 
 for (const forbidden of [
@@ -59,13 +54,11 @@ for (const forbidden of [
 ]) excludeText(runtime, forbidden, 'Infostory runtime');
 
 for (const marker of [
-  "creatorMode: 'create'",
-  "creatorMode: 'momentum'",
-  "creatorMode: 'impact'",
-  "fetch('/api/guide'",
-  "window.addEventListener('7ya:creator-seed'",
-  'navigator.clipboard.writeText',
-]) requireText(signalKey, marker, 'Signal Key');
+  '7 / השומר', "sessionStorage.setItem('7ya-guide-path'",
+  'history-song-records-', 'public-universe-records-20260715.json',
+  'replaceChildren', 'canonicalUrl',
+]) requireText(guide, marker, 'Experience guide');
+for (const forbidden of ['innerHTML', 'localStorage', 'OPENAI_API_KEY']) excludeText(guide, forbidden, 'Experience guide');
 
 if (failures) {
   console.error(`\nINFOSTORY_RUNTIME_GATE: FAIL (${failures})`);

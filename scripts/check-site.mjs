@@ -74,57 +74,58 @@ for (const [route, target] of aliases) {
 
 const home = read('index.html');
 for (const required of [
-  'איגור ופרצקי', 'IGOR VEPRETSKI', 'שיר', 'היסטוריה',
-  'כל פוסט הוא שורה.', 'Evidence Ledger',
-  'igor-infostory-personal-os-20260716-1',
-  'id="infostory"', 'data-story-chapter', 'data-story-jump="chapter-human"',
-  'VISUAL STORY ART · OWNER-SUPPLIED · NOT EVIDENCE',
-  '7YA CREATOR COMPANION', 'data-companion-prompt',
-  'id="archiveGrid"', 'id="archiveSearch"', 'data-filter="Facebook"'
+  'איגור ופרצקי', 'IGOR VEPRETSKI', 'Evidence Ledger',
+  'igor-story-cinema-guide-20260716-2',
+  'id="opening"', 'id="origins"', 'id="service"', 'id="voice"',
+  'id="human"', 'id="starton"', 'id="system"',
+  'id="discover"', 'id="contentResults"', 'id="contentSearch"',
+  'data-guide-path="story"', 'data-guide-path="starton"',
+  'id="guideLauncher"', 'id="guidePanel"', '7 / השומר'
 ]) requireText(home, required, 'homepage');
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/igor-home-portrait-20260712.webp',
+  '/assets/igor-hero-storm-20260715.webp',
   '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/history-song-20260714.css?v=1',
-  '/styles/igor-infostory-20260716.css?v=1',
-  '/scripts/history-song-20260714.js',
-  '/scripts/igor-infostory-20260716.js'
+  '/styles/igor-story-cinema-20260716.css?v=1',
+  '/styles/7ya-experience-guide-20260716.css?v=1',
+  '/scripts/igor-story-cinema-20260716.js',
+  '/scripts/7ya-experience-guide-20260716.js'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
-const publicImages = (home.match(/<img\b/gi) || []).length;
-publicImages >= 10 ? pass(`homepage has ${publicImages} documentary image placements`) : fail(`homepage has only ${publicImages} image placements`);
-const chapterCount = (home.match(/data-story-chapter/g) || []).length;
-chapterCount === 5 ? pass('homepage has five hero story chapters') : fail(`homepage has ${chapterCount} hero story chapters`);
+const sceneCount = (home.match(/data-scene=/g) || []).length;
+sceneCount >= 7 ? pass(`homepage has ${sceneCount} cinematic story scenes`) : fail(`homepage has only ${sceneCount} story scenes`);
 
 for (const forbidden of [
   'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
   '100K+', 'Microsoft-backed', 'official partner', 'candidate for Knesset',
-  'הסצנות הקולנועיות החדשות הן תיעוד', 'AI הוא איגור'
+  'הסצנות הקולנועיות החדשות הן תיעוד', 'AI הוא איגור', 'השומר הוא איגור'
 ]) excludeText(home, forbidden, 'homepage');
 
-const infostoryCss = read('styles/igor-infostory-20260716.css');
+const infostoryCss = read('styles/igor-story-cinema-20260716.css');
 for (const required of [
-  '--chapter-origins:url(\'/assets/infostory/01-origins.webp\')',
-  '--chapter-voice:url(\'/assets/infostory/02-public-voice.webp\')',
-  '--chapter-creator:url(\'/assets/infostory/03-creator-night.webp\')',
-  '--chapter-system:url(\'/assets/infostory/04-force-system.webp\')',
-  '.hero-chapter', '.companion-panel', '@media(prefers-reduced-motion:reduce)'
+  '.hero-media', '.chapter', '.chapter-human', '.chapter-system',
+  '/assets/igor-hero-storm-20260715.webp', '@media(prefers-reduced-motion:reduce)'
 ]) requireText(infostoryCss, required, 'infostory stylesheet');
 
-const infostoryScript = read('scripts/igor-infostory-20260716.js');
+const infostoryScript = read('scripts/igor-story-cinema-20260716.js');
 for (const required of [
-  "const chapters = [...document.querySelectorAll('[data-story-chapter]')]",
-  'activateChapter', 'updateStoryProgress', 'ensureSignalKey',
-  "window.dispatchEvent(new CustomEvent('7ya:creator-seed'",
-  '/scripts/7ya-signal-key-20260715.js'
+  "const scenes = [...document.querySelectorAll('.scene[id]')]",
+  'updatePage', 'IntersectionObserver', 'prefers-reduced-motion'
 ]) requireText(infostoryScript, required, 'infostory script');
 excludeText(infostoryScript, 'OPENAI_API_KEY', 'infostory script');
-excludeText(infostoryScript, 'localStorage', 'companion privacy contract');
 excludeText(infostoryScript, 'innerHTML', 'companion rendering contract');
+
+const experienceGuide = read('scripts/7ya-experience-guide-20260716.js');
+for (const required of [
+  '7 / השומר', "sessionStorage.setItem('7ya-guide-path'", 'history-song-records-',
+  'public-universe-records-20260715.json', 'canonicalUrl', 'replaceChildren',
+  'אני לא איגור ולא מדבר במקומו'
+]) requireText(experienceGuide, required, 'experience guide');
+excludeText(experienceGuide, 'localStorage', 'experience guide privacy contract');
+excludeText(experienceGuide, 'innerHTML', 'experience guide rendering contract');
 
 const signalKey = read('scripts/7ya-signal-key-20260715.js');
 for (const required of [
