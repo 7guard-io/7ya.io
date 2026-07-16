@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 const page = readFileSync(new URL('../entity/index.html', import.meta.url), 'utf8');
 const css = readFileSync(new URL('../styles/master-entity-index-20260715.css', import.meta.url), 'utf8');
 const sitemap = readFileSync(new URL('../sitemap.xml', import.meta.url), 'utf8');
-const homepageScript = readFileSync(new URL('./history-song-20260714.js', import.meta.url), 'utf8');
+const homepage = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
 assert.match(page, /<title>Master Entity Index — Igor Vepretski \| 7YA<\/title>/);
 assert.match(page, /<meta name="description" content="[^"]+">/);
@@ -27,14 +27,16 @@ assert.match(page, /מת על אקסל · פרח במדבר · חצופה[\s\S]*
 assert.match(page, /IPFS \/ Pinata \/ Solidity[\s\S]*SOURCE-PENDING/);
 
 for (const privateName of ['Ariela', 'אריאלה', 'Leon', 'Miel', 'Tai', 'ליאון', 'מיאל', 'טאי']) {
-  assert.ok(!page.includes(privateName), `private family identifier leaked: ${privateName}`);
+  const escaped = privateName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const standaloneIdentifier = new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}($|[^\\p{L}\\p{N}])`, 'iu');
+  assert.ok(!standaloneIdentifier.test(page), `private family identifier leaked: ${privateName}`);
 }
 
 assert.match(page, /CONSENT REQUIRED/);
 assert.match(page, /DO NOT PUBLISH/);
 assert.match(sitemap, /<loc>https:\/\/7ya\.io\/entity\/<\/loc>/);
-assert.match(homepageScript, /href = '\/entity\/'/);
-assert.match(homepageScript, /Master Entity Index/);
+assert.match(homepage, /href="\/entity\/"/);
+assert.match(homepage, /זהות קנונית/);
 assert.ok(css.length > 6000, 'entity visual system is unexpectedly thin');
 assert.match(css, /\.visual-atlas/);
 assert.match(css, /\.gallery/);

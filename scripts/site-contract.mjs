@@ -58,12 +58,14 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  '7ya-experience-guide-20260716.css',
   '7ya-signal-key-20260715.css',
   '7ya-visual-system-v1.css',
   'creatorverse-20260714.css',
   'creatorverse-depth-20260714.css',
   'evidence-ledger-v1.css',
   'history-song-20260714.css',
+  'igor-story-cinema-20260716.css',
   'home-public-universe-20260716.css',
   'igor-embodiment-20260714.css',
   'igor-personal-20260713.css',
@@ -79,11 +81,13 @@ export const publicStyleFiles = [
 ];
 
 export const publicScriptFiles = [
+  '7ya-experience-guide-20260716.js',
   '7ya-signal-key-20260715.js',
   'creatorverse-20260714.js',
   'evidence-ledger-table-v1.js',
   'history-song-20260714.js',
   'history-song-core-20260714.js',
+  'igor-story-cinema-20260716.js',
   'home-public-universe-20260716.js',
   'legacy-universe-20260714.js',
   'positive-creator-20260715.js',
@@ -100,10 +104,12 @@ export const criticalArtifactPaths = [
   'response-ai/index.html',
   'evidence/index.html',
   '7ya/index.html',
+  'styles/7ya-experience-guide-20260716.css',
   'styles/7ya-signal-key-20260715.css',
   'styles/7ya-visual-system-v1.css',
   'styles/evidence-ledger-v1.css',
   'styles/history-song-20260714.css',
+  'styles/igor-story-cinema-20260716.css',
   'styles/home-public-universe-20260716.css',
   'styles/master-entity-index-20260715.css',
   'styles/public-content-museum-20260715.css',
@@ -111,9 +117,11 @@ export const criticalArtifactPaths = [
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'scripts/7ya-signal-key-20260715.js',
+  'scripts/7ya-experience-guide-20260716.js',
   'scripts/evidence-ledger-table-v1.js',
   'scripts/history-song-20260714.js',
   'scripts/history-song-core-20260714.js',
+  'scripts/igor-story-cinema-20260716.js',
   'scripts/home-public-universe-20260716.js',
   'scripts/public-content-museum-20260715.js',
   'scripts/positive-creator-20260715.js',
