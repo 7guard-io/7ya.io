@@ -28,41 +28,37 @@ function excludeText(body, text, label) {
 }
 
 const home = read('index.html');
-const runtime = read('scripts/igor-story-cinema-20260716.js');
-const guide = read('scripts/7ya-experience-guide-20260716.js');
+const runtime = read('scripts/igor-personal-hero-20260716.js');
+const style = read('styles/igor-personal-hero-20260716.css');
 
-const chapterIds = ['opening', 'origins', 'service', 'voice', 'human', 'starton', 'system'];
-for (const id of chapterIds) {
-  requireText(home, `id="${id}"`, 'Infostory homepage');
-  if (id !== 'system') requireText(home, `href="#${id}"`, 'Infostory chapter navigation');
+const sectionIds = ['impact', 'person', 'sources', 'starton'];
+for (const id of sectionIds) {
+  requireText(home, `id="${id}"`, 'Personal homepage');
 }
 
-const chapterCount = (home.match(/data-scene=/g) || []).length;
-chapterCount >= 7 ? pass('Infostory has at least seven scenes') : fail(`Infostory has ${chapterCount} scenes`);
+const portraitCount = (home.match(/assets\/personal-hero-20260716\//g) || []).length;
+portraitCount >= 7 ? pass('Personal homepage uses varied owner-supplied imagery') : fail(`Personal homepage has only ${portraitCount} image references`);
 
 for (const marker of [
   "matchMedia('(prefers-reduced-motion: reduce)')",
-  'IntersectionObserver', 'updatePage', 'is-visible'
-]) requireText(runtime, marker, 'Infostory runtime');
+  'IntersectionObserver', 'requestAnimationFrame', 'is-visible', 'aria-expanded'
+]) requireText(runtime, marker, 'Personal homepage runtime');
 
 for (const forbidden of [
-  'dataset.yaSignalKeyAssets',
   'innerHTML',
   'localStorage',
   'OPENAI_API_KEY',
   'NVIDIA_API_KEY',
-]) excludeText(runtime, forbidden, 'Infostory runtime');
+]) excludeText(runtime, forbidden, 'Personal homepage runtime');
 
 for (const marker of [
-  '7 / השומר', "sessionStorage.setItem('7ya-guide-path'",
-  'history-song-records-', 'public-universe-records-20260715.json',
-  'replaceChildren', 'canonicalUrl',
-]) requireText(guide, marker, 'Experience guide');
-for (const forbidden of ['innerHTML', 'localStorage', 'OPENAI_API_KEY']) excludeText(guide, forbidden, 'Experience guide');
+  '.hero-image', '.source-grid', '.starton-model',
+  '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
+]) requireText(style, marker, 'Personal homepage style');
 
 if (failures) {
   console.error(`\nINFOSTORY_RUNTIME_GATE: FAIL (${failures})`);
   process.exit(1);
 }
 
-console.log('\nINFOSTORY_RUNTIME_GATE: PASS');
+console.log('\nPERSONAL_HOMEPAGE_RUNTIME_GATE: PASS');
