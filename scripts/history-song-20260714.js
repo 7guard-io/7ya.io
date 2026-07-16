@@ -104,7 +104,7 @@
     const img = portrait.querySelector('img');
     picture?.querySelector('source')?.remove();
     if (img) {
-      img.src = '/assets/igor-hero-storm-20260715.webp';
+      img.src = '/assets/igor-hero-storm-20260716.webp';
       img.width = 1672;
       img.height = 941;
       img.alt = 'איגור ופרצקי — אחריות, יצירה ומנהיגות ישראלית';
