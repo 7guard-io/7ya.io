@@ -5,16 +5,16 @@ This directory is the reproducible production bridge for the Vercel project `7ya
 ## Current source contract
 
 - Canonical repository: `7guard-io/7ya.io`
-- Pinned source SHA: `0db02d129724a8e16b4104c8ac4cad1a0864c63f`
-- Content pull request: `#246`
-- Release-control branch: `release/infostory-cinematic-20260716`
-- Release ID: `igor-cinematic-infostory-20260716`
+- Pinned source SHA: `3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7`
+- Content pull request: `#249`
+- Release-control branch: `release/infostory-signal-runtime-20260716`
+- Release ID: `igor-infostory-signal-runtime-20260716`
 - Vercel project: `7ya-static-site`
 - Vercel project ID: `prj_xpcMFC96JcnasigrvetZetEa1XzU`
 - Verified alias target: `https://7ya-static-site.vercel.app`
 - Intended custom domains: `7ya.io`, `www.7ya.io`
 
-The pinned source is the Igor-first cinematic Digital Life Infostory: five full-screen chapters, black/bronze/gold editorial styling, the canonical public portrait, four owner-supplied visual scenes explicitly marked as non-evidence, the 66-record verified core, Public Universe, StartOn, Evidence Ledger and the 7YA Signal Key creator companion.
+The pinned source is the Igor-first cinematic Digital Life Infostory: five full-screen chapters, black/bronze/gold editorial styling, the canonical public portrait, four owner-supplied visual scenes explicitly marked as non-evidence, the 66-record verified core, Public Universe, StartOn, Evidence Ledger and the 7YA Signal Key creator companion. This release hardens the runtime that connects Infostory prompts to Signal Key.
 
 ## Why the proxy exists
 
@@ -33,6 +33,7 @@ Required homepage assets:
 
 - `/styles/igor-infostory-20260716.css`
 - `/scripts/igor-infostory-20260716.js`
+- `/scripts/check-infostory-runtime.mjs`
 - `/assets/infostory/01-origins.webp`
 - `/assets/infostory/02-public-voice.webp`
 - `/assets/infostory/03-creator-night.webp`
@@ -40,6 +41,16 @@ Required homepage assets:
 - `/assets/igor-home-portrait-20260712.webp`
 
 The visual scenes are design assets supplied by the owner and are not presented as documentary evidence. Public metrics remain dated snapshots. AI is a helper, never the public identity or hero.
+
+Runtime guarantees in this release:
+
+- exact `data-7ya-signal-key-assets` markers;
+- stable active-chapter selection across IntersectionObserver callbacks;
+- `aria-current="step"` for chapter navigation;
+- reduced-motion-aware scrolling;
+- requestAnimationFrame-throttled progress updates;
+- `/create/` fallback when Signal Key cannot load after a user action;
+- deterministic Infostory runtime gate included in `check-all` and `lint`.
 
 ## Content and trust contract
 
@@ -82,11 +93,11 @@ Directory requests resolve to `index.html`. Invalid traversal segments fail clos
 1. Merge the intended public content.
 2. Pin `api/proxy.js` and `api/release.js` to the immutable content SHA.
 3. Confirm this README names the same SHA and content PR.
-4. Run `npm run check-release-pin` and `npm run check-text-integrity`.
+4. Run `npm run check-release-pin`, `npm run check-infostory` and `npm run check-text-integrity`.
 5. Deploy this directory to project `7ya-static-site`.
-6. Verify `/`, `/museum/`, `/create/`, `/starton/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/` return HTTP 200 and `X-7YA-Source-SHA: 0db02d129724a8e16b4104c8ac4cad1a0864c63f`.
-7. Verify `/release.json` reports `igor-cinematic-infostory-20260716`, PR `#246` and the same SHA.
-8. Verify the Infostory CSS, script and all four scene assets return HTTP 200.
+6. Verify `/`, `/museum/`, `/create/`, `/starton/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/` return HTTP 200 and `X-7YA-Source-SHA: 3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7`.
+7. Verify `/release.json` reports `igor-infostory-signal-runtime-20260716`, PR `#249` and the same SHA.
+8. Verify the Infostory CSS, script, focused runtime gate and all four scene assets return HTTP 200.
 9. Verify `/api/guide` returns provider and model without exposing credentials.
 10. Verify controlled 404s remain private to search engines.
 11. Check Vercel runtime errors.
