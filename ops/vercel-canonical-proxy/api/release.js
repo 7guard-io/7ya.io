@@ -1,11 +1,11 @@
 'use strict';
 
 const payload = {
-  release_id: 'igor-cinematic-infostory-20260716',
+  release_id: 'igor-infostory-signal-runtime-20260716',
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: '0db02d129724a8e16b4104c8ac4cad1a0864c63f',
-  pull_request: 246,
+  source_sha: '3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7',
+  pull_request: 249,
   architecture: 'canonical-github-sha-proxy',
   deployed_surface: '7ya-static-site',
   experience: 'IGOR_CINEMATIC_DIGITAL_LIFE_INFOSTORY',
@@ -33,6 +33,15 @@ const payload = {
     owner_supplied_visuals_are_not_evidence: true,
     mobile_layout: true,
     reduced_motion: true,
+  },
+  runtime_hardening: {
+    exact_signal_key_asset_marker: true,
+    stable_chapter_visibility_map: true,
+    accessible_active_step: true,
+    request_animation_frame_progress: true,
+    reduced_motion_scroll_behavior: true,
+    creator_fallback_route: '/create/',
+    deterministic_gate: '/scripts/check-infostory-runtime.mjs',
   },
   visual_system: {
     enabled: true,
@@ -77,6 +86,7 @@ const payload = {
     '/scripts/history-song-20260714.js',
     '/scripts/history-song-core-20260714.js',
     '/scripts/igor-infostory-20260716.js',
+    '/scripts/check-infostory-runtime.mjs',
     '/assets/infostory/01-origins.webp',
     '/assets/infostory/02-public-voice.webp',
     '/assets/infostory/03-creator-night.webp',
@@ -113,7 +123,7 @@ const payload = {
     dns_provider: 'Cloudflare',
     preserve_mail_records: true,
   },
-  generated_at: '2026-07-16T04:00:00+03:00',
+  generated_at: '2026-07-16T03:46:54+03:00',
 };
 
 module.exports = (request, response) => {
