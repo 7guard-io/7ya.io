@@ -1,7 +1,8 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import { extname, join, relative } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = new URL('..', import.meta.url);
+const root = fileURLToPath(new URL('..', import.meta.url));
 const allowedExtensions = new Set(['.html', '.css', '.js', '.mjs', '.json', '.md', '.txt', '.xml', '.svg']);
 const ignoredDirectories = new Set(['.git', 'node_modules', 'dist', '.release-evidence']);
 const failures = [];
@@ -28,7 +29,7 @@ async function inspect(path) {
   if (metadata.size > 5_000_000) return;
 
   const buffer = await readFile(path);
-  const displayPath = relative(new URL('..', import.meta.url).pathname, path);
+  const displayPath = relative(root, path);
 
   if (buffer.includes(0)) {
     failures.push(`${displayPath}: contains a NUL byte`);
@@ -57,7 +58,7 @@ async function inspect(path) {
   }
 }
 
-await walk(new URL('..', import.meta.url));
+await walk(root);
 
 if (failures.length) {
   console.error('Text integrity check failed:');
