@@ -74,35 +74,51 @@ for (const [route, target] of aliases) {
 
 const home = read('index.html');
 for (const required of [
-  'איגור ופרצקי', 'IGOR VEPRETSKI', 'Evidence Ledger',
-  'igor-story-cinema-guide-20260716-3',
-  'id="opening"', 'id="origins"', 'id="service"', 'id="voice"',
-  'id="human"', 'id="starton"', 'id="system"',
-  'id="discover"', 'id="contentResults"', 'id="contentSearch"',
-  'data-guide-path="story"', 'data-guide-path="starton"',
-  'id="guideLauncher"', 'id="guidePanel"', '7 / השומר'
+  'איגור ופרצקי', 'IGOR VEPRETSKI',
+  'igor-personal-hero-20260716-1',
+  'אדם.', 'ראיות.', 'פעולה.',
+  'id="impact"', 'id="person"', 'id="sources"', 'id="starton"',
+  'לתיאום שיחה', 'לצפייה בראיות',
+  'DOCUMENTED · OWNER EXPORT', 'TIER 1 · מקור חיצוני',
+  'STARTON · INDEPENDENT SOCIAL MISSION'
 ]) requireText(home, required, 'homepage');
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/igor-hero-storm-20260716.webp',
-  '/assets/igor-home-portrait-20260712.jpg',
-  '/styles/igor-story-cinema-20260716.css?v=2',
-  '/styles/7ya-experience-guide-20260716.css?v=1',
-  '/scripts/igor-story-cinema-20260716.js',
-  '/scripts/7ya-experience-guide-20260716.js'
+  '/assets/personal-hero-20260716/igor-hero.webp',
+  '/assets/personal-hero-20260716/igor-executive.webp',
+  '/assets/personal-hero-20260716/igor-public-service.webp',
+  '/assets/personal-hero-20260716/igor-speaker.webp',
+  '/assets/personal-hero-20260716/igor-closeup.webp',
+  '/styles/igor-personal-hero-20260716.css?v=1',
+  '/scripts/igor-personal-hero-20260716.js'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
-const sceneCount = (home.match(/data-scene=/g) || []).length;
-sceneCount >= 7 ? pass(`homepage has ${sceneCount} cinematic story scenes`) : fail(`homepage has only ${sceneCount} story scenes`);
+const publicSourceCount = (home.match(/class="source-card reveal"/g) || []).length;
+publicSourceCount === 4 ? pass('homepage has four source-linked records') : fail(`homepage has ${publicSourceCount} source-linked records`);
 
 for (const forbidden of [
   'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
   '100K+', 'Microsoft-backed', 'official partner', 'candidate for Knesset',
-  'הסצנות הקולנועיות החדשות הן תיעוד', 'AI הוא איגור', 'השומר הוא איגור'
+  'הסצנות הקולנועיות החדשות הן תיעוד', 'AI הוא איגור', 'השומר הוא איגור',
+  'שותף רשמי', 'מגובה על ידי Microsoft'
 ]) excludeText(home, forbidden, 'homepage');
+
+const personalHeroCss = read('styles/igor-personal-hero-20260716.css');
+for (const required of [
+  '.hero-image', '.metric-grid', '.manifesto', '.source-grid', '.starton',
+  '.ecosystem-grid', '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
+]) requireText(personalHeroCss, required, 'personal hero stylesheet');
+
+const personalHeroScript = read('scripts/igor-personal-hero-20260716.js');
+for (const required of [
+  'requestAnimationFrame', 'IntersectionObserver', 'prefers-reduced-motion',
+  "setAttribute('aria-expanded'", 'is-visible'
+]) requireText(personalHeroScript, required, 'personal hero script');
+excludeText(personalHeroScript, 'innerHTML', 'personal hero script');
+excludeText(personalHeroScript, 'localStorage', 'personal hero script');
 
 const infostoryCss = read('styles/igor-story-cinema-20260716.css');
 for (const required of [
