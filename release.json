@@ -2,16 +2,16 @@
   "service": "7ya-frontend",
   "provider": "github-pages",
   "status": "PRODUCTION_PUBLICATION_REQUESTED",
-  "release": "2026-07-17-tactical-ontology-v1",
+  "release": "2026-07-18-personal-static-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "b56fd11d3b7319e6d9d2377c511acee17f978cbf",
-  "source_sha_policy": "Production must serve the exact immutable merged source SHA and preserve independently verifiable route, metadata and artifact receipts.",
+  "source_sha": "dfea9e987d2a724f3a3f11b06b7ac74a0707352e",
+  "source_sha_policy": "Production must serve the exact immutable homepage source SHA and preserve independently verifiable route, metadata and artifact receipts.",
   "environment": "production",
-  "experience": "IGOR_VEPRETSKI_TACTICAL_ONTOLOGY_IDENTITY_OS",
-  "target_launch_date": "2026-07-17",
-  "publication_requested_at": "2026-07-17T12:02:41+03:00",
-  "build_marker": "7ya-tactical-ontology-20260717-1",
+  "experience": "IGOR_VEPRETSKI_PERSONAL_STATIC_HOMEPAGE",
+  "target_launch_date": "2026-07-18",
+  "publication_requested_at": "2026-07-18T02:30:00+03:00",
+  "build_marker": "igor-personal-hero-20260716-1",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -53,7 +53,7 @@
     "/response-ai/",
     "/speaker/"
   ],
-  "release_intent": "Publish the Tactical Ontology homepage from canonical main while preserving the verified public archive, evidence boundaries, critical routes and mail-related DNS records.",
-  "promotion_gate": "The release is accepted only when 7ya.io serves build marker 7ya-tactical-ontology-20260717-1 and the critical routes, robots.txt and sitemap.xml pass public verification.",
-  "rollback": "The prior History Song public artifact and immutable Vercel releases remain available as rollback references."
+  "release_intent": "Restore the personal hero-led static homepage, remove the broken runtime ontology dependency and keep the verified archive and critical routes intact.",
+  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-hero-20260716-1, the title אדם. ראיות. פעולה., and the critical routes, robots.txt and sitemap.xml pass public verification.",
+  "rollback": "The prior Tactical Ontology and History Song source commits remain available as immutable rollback references."
 }
