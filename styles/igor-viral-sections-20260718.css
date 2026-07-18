@@ -1,0 +1,68 @@
+:root{--viral-gold:#d2aa67;--viral-ink:#07090c;--viral-card:#11151a;--viral-line:rgba(210,170,103,.28)}
+
+/* Personal continuity: Igor is physically present in every major narrative section. */
+.section-with-igor{position:relative;overflow:hidden}
+.section-with-igor>.section-igor{position:absolute;z-index:0;pointer-events:none;filter:saturate(.82) contrast(1.08)}
+.section-with-igor>.section-igor img{width:100%;height:100%;object-fit:cover;display:block}
+.section-with-igor>.section-igor::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,12,.96),rgba(7,9,12,.2)),linear-gradient(0deg,rgba(7,9,12,.9),transparent 55%)}
+.section-with-igor>.section-content{position:relative;z-index:2}
+
+.sources-personal{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);gap:52px;align-items:stretch}
+.sources-personal .section-portrait{position:relative;min-height:680px;margin:0;border:1px solid var(--line);overflow:hidden;background:#0d1014}
+.sources-personal .section-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.sources-personal .section-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,10,13,.78),transparent 55%)}
+.sources-personal .section-portrait figcaption{position:absolute;z-index:2;bottom:24px;right:24px;left:24px;display:flex;justify-content:space-between;color:#e8dfd0;font-size:9px;letter-spacing:.16em;direction:ltr}
+
+/* Verified viral archive */
+.viral{position:relative;padding:clamp(90px,11vw,160px) clamp(22px,7vw,110px);background:linear-gradient(180deg,#0c0f13,#07090c 72%);border-block:1px solid var(--line);overflow:hidden}
+.viral::before{content:"7";position:absolute;left:-2vw;top:-8vw;color:rgba(210,170,103,.035);font:900 min(42vw,620px)/1 Georgia,serif;pointer-events:none}
+.viral-layout{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr);gap:42px;align-items:start}
+.viral-copy h2{margin:0;font:800 clamp(55px,7.5vw,120px)/.86 Georgia,serif;letter-spacing:-.065em}
+.viral-copy h2 em{display:block;color:var(--viral-gold);font-style:normal}
+.viral-copy>p{max-width:720px;color:#aaa49b;font-size:16px;line-height:1.8}
+.viral-portrait{position:sticky;top:96px;min-height:650px;border:1px solid var(--viral-line);background:#0a0c0f;overflow:hidden}
+.viral-portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.viral-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080a0d 0%,transparent 48%)}
+.viral-portrait blockquote{position:absolute;z-index:2;right:28px;left:28px;bottom:28px;margin:0;font:700 28px/1.25 Georgia,serif}
+.viral-portrait small{display:block;margin-top:14px;color:var(--viral-gold);font:700 9px/1 Arial,sans-serif;letter-spacing:.18em;direction:ltr}
+.viral-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:44px}
+.viral-card{position:relative;min-height:285px;padding:24px;display:flex;flex-direction:column;text-decoration:none;border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.014));transition:.25s;overflow:hidden}
+.viral-card::before{content:attr(data-index);position:absolute;left:16px;top:8px;color:rgba(255,255,255,.035);font:900 84px/1 Georgia,serif}
+.viral-card:hover{transform:translateY(-6px);border-color:var(--viral-gold);background:rgba(210,170,103,.075)}
+.viral-card .platform{color:var(--viral-gold);font-size:9px;font-weight:850;letter-spacing:.16em;direction:ltr}
+.viral-card h3{position:relative;margin:22px 0 10px;font:750 28px/1.12 Georgia,serif}
+.viral-card p{margin:0;color:#aaa49b;font-size:12px;line-height:1.65}
+.viral-metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:22px}
+.viral-metrics span{padding:8px 10px;border:1px solid var(--viral-line);background:rgba(0,0,0,.18);color:#ded8cf;font-size:10px;direction:ltr}
+.viral-card footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;color:#77736c;font-size:8px;letter-spacing:.09em}
+.viral-disclaimer{margin-top:20px;padding:16px 18px;border-right:3px solid var(--viral-gold);background:rgba(210,170,103,.06);color:#9f9a91;font-size:11px;line-height:1.7}
+.viral-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+
+/* Make ecosystem feel like a personal guided system rather than generic cards. */
+.ecosystem-personal{display:grid;grid-template-columns:minmax(280px,.65fr) minmax(0,1.35fr);gap:42px;align-items:stretch}
+.ecosystem-guide{position:relative;min-height:650px;margin:0;border:1px solid var(--line);overflow:hidden}
+.ecosystem-guide img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.ecosystem-guide::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0c0f13,transparent 55%)}
+.ecosystem-guide figcaption{position:absolute;z-index:2;right:24px;left:24px;bottom:24px;font:700 24px/1.25 Georgia,serif}
+.ecosystem-guide figcaption small{display:block;margin-top:11px;color:var(--viral-gold);font:700 9px/1 Arial,sans-serif;letter-spacing:.17em;direction:ltr}
+.ecosystem-personal .ecosystem-grid{grid-template-columns:repeat(2,1fr);margin-top:0}
+
+/* Archive page */
+.viral-page{min-height:100vh;background:#07090c;color:#f5efe5;font-family:Inter,Arial,"Noto Sans Hebrew",sans-serif}
+.viral-page main{padding-top:78px}
+.viral-page-hero{position:relative;min-height:72vh;display:grid;align-items:end;padding:clamp(100px,12vw,180px) clamp(22px,7vw,110px) 70px;overflow:hidden}
+.viral-page-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%}
+.viral-page-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,9,12,.98),rgba(7,9,12,.3)),linear-gradient(0deg,#07090c,transparent 50%)}
+.viral-page-hero .inner{position:relative;z-index:2;max-width:880px}
+.viral-page-hero h1{margin:0;font:850 clamp(64px,10vw,155px)/.82 Georgia,serif;letter-spacing:-.07em}
+.viral-page-hero h1 span{display:block;color:var(--viral-gold)}
+.viral-page-hero p{max-width:680px;color:#c6c0b7;font-size:17px;line-height:1.75}
+.archive-controls{position:sticky;z-index:20;top:78px;padding:15px clamp(22px,7vw,110px);display:flex;gap:9px;flex-wrap:wrap;border-block:1px solid var(--line);background:rgba(7,9,12,.9);backdrop-filter:blur(14px)}
+.archive-controls button{padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:transparent;color:#d8d2c8;cursor:pointer}
+.archive-controls button.is-active{background:var(--viral-gold);color:#080a0d;border-color:var(--viral-gold);font-weight:850}
+.archive-wrap{padding:60px clamp(22px,7vw,110px) 120px}
+.archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.archive-card[hidden]{display:none}
+
+@media(max-width:1050px){.sources-personal,.viral-layout,.ecosystem-personal{grid-template-columns:1fr}.viral-portrait{position:relative;top:auto;min-height:720px}.ecosystem-personal .ecosystem-grid{grid-template-columns:repeat(2,1fr)}.archive-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.viral-grid,.archive-grid,.ecosystem-personal .ecosystem-grid{grid-template-columns:1fr}.viral-card{min-height:250px}.viral-portrait,.sources-personal .section-portrait,.ecosystem-guide{min-height:560px}.archive-controls{top:68px}.viral-page main{padding-top:68px}.viral-page-hero{min-height:82vh}.viral-page-hero h1{font-size:clamp(58px,18vw,96px)}}
