@@ -1,17 +1,17 @@
 {
   "service": "7ya-frontend",
   "provider": "github-pages",
-  "status": "PRODUCTION_PUBLICATION_REQUESTED",
-  "release": "2026-07-18-personal-static-v1",
+  "status": "READY",
+  "release": "2026-07-18-command-home-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "dfea9e987d2a724f3a3f11b06b7ac74a0707352e",
+  "source_sha": "8d32ab349dde799b271c8cb27cba3ef2a3f2c39f",
   "source_sha_policy": "Production must serve the exact immutable homepage source SHA and preserve independently verifiable route, metadata and artifact receipts.",
   "environment": "production",
-  "experience": "IGOR_VEPRETSKI_PERSONAL_STATIC_HOMEPAGE",
+  "experience": "IGOR_VEPRETSKI_COMMAND_HOMEPAGE",
   "target_launch_date": "2026-07-18",
-  "publication_requested_at": "2026-07-18T02:30:00+03:00",
-  "build_marker": "igor-personal-hero-20260716-1",
+  "publication_requested_at": "2026-07-18T14:27:28Z",
+  "build_marker": "igor-personal-command-20260718-1",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -51,9 +51,10 @@
     "/journey/",
     "/influence/",
     "/response-ai/",
-    "/speaker/"
+    "/speaker/",
+    "/api/health"
   ],
-  "release_intent": "Restore the personal hero-led static homepage, remove the broken runtime ontology dependency and keep the verified archive and critical routes intact.",
-  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-hero-20260716-1, the title אדם. ראיות. פעולה., and the critical routes, robots.txt and sitemap.xml pass public verification.",
+  "release_intent": "Publish the approved black-and-gold command homepage with Living Identity and Human First AI sections, keep the verified archive intact and remove the production dependency on Replit.",
+  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-command-20260718-1, the title אדם. ראיות. פעולה., Living Identity, Command Center, /api/health and the critical static routes.",
   "rollback": "The prior Tactical Ontology and History Song source commits remain available as immutable rollback references."
 }

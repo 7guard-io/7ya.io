@@ -5,16 +5,16 @@ This directory is the reproducible production bridge for the Vercel project `7ya
 ## Current source contract
 
 - Canonical repository: `7guard-io/7ya.io`
-- Pinned source SHA: `3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7`
-- Content pull request: `#249`
-- Release-control branch: `release/infostory-signal-runtime-20260716`
-- Release ID: `igor-infostory-signal-runtime-20260716`
+- Pinned source SHA: `a451e681ea571ad94ebbd84b3f09c5e0e26d137e`
+- Content pull request: `#258`
+- Release-control branch: `main`
+- Release ID: `igor-command-home-20260718`
 - Vercel project: `7ya-static-site`
 - Vercel project ID: `prj_xpcMFC96JcnasigrvetZetEa1XzU`
 - Verified alias target: `https://7ya-static-site.vercel.app`
 - Intended custom domains: `7ya.io`, `www.7ya.io`
 
-The pinned source is the Igor-first cinematic Digital Life Infostory: five full-screen chapters, black/bronze/gold editorial styling, the canonical public portrait, four owner-supplied visual scenes explicitly marked as non-evidence, the 66-record verified core, Public Universe, StartOn, Evidence Ledger and the 7YA Signal Key creator companion. This release hardens the runtime that connects Infostory prompts to Signal Key.
+The pinned source is the approved black-and-gold Igor-first homepage with Living Identity and Human First AI Command Center sections, the 66-record verified core, Public Universe, StartOn, Evidence Ledger and the 7YA Signal Key creator companion.
 
 ## Why the proxy exists
 
@@ -95,8 +95,8 @@ Directory requests resolve to `index.html`. Invalid traversal segments fail clos
 3. Confirm this README names the same SHA and content PR.
 4. Run `npm run check-release-pin`, `npm run check-infostory` and `npm run check-text-integrity`.
 5. Deploy this directory to project `7ya-static-site`.
-6. Verify `/`, `/museum/`, `/create/`, `/starton/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/` return HTTP 200 and `X-7YA-Source-SHA: 3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7`.
-7. Verify `/release.json` reports `igor-infostory-signal-runtime-20260716`, PR `#249` and the same SHA.
+6. Verify `/`, `/museum/`, `/create/`, `/starton/`, `/influence/`, `/evidence/`, `/talk/` and `/contact/` return HTTP 200 and `X-7YA-Source-SHA: a451e681ea571ad94ebbd84b3f09c5e0e26d137e`.
+7. Verify `/release.json` reports `igor-command-home-20260718`, PR `#258` and the same SHA.
 8. Verify the Infostory CSS, script, focused runtime gate and all four scene assets return HTTP 200.
 9. Verify `/api/guide` returns provider and model without exposing credentials.
 10. Verify controlled 404s remain private to search engines.

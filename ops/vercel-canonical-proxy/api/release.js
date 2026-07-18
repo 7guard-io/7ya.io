@@ -1,14 +1,15 @@
 'use strict';
 
 const payload = {
-  release_id: 'igor-personal-life-album-20260718',
+  release_id: 'igor-command-home-20260718',
+  pull_request: 258,
   source_repository: '7guard-io/7ya.io',
   source_branch: 'main',
-  source_sha: '7263e187ed468394d7866412ee365fcbb3d4105b',
+  source_sha: 'a451e681ea571ad94ebbd84b3f09c5e0e26d137e',
   architecture: 'canonical-github-sha-proxy-v2',
   deployed_surface: '7ya.io',
-  experience: 'IGOR_VEPRETSKI_PERSONAL_LIFE_ALBUM',
-  homepage_build: 'igor-personal-hero-20260716-1',
+  experience: 'IGOR_VEPRETSKI_COMMAND_HOMEPAGE',
+  homepage_build: 'igor-personal-command-20260718-1',
   canonical_url: 'https://7ya.io/',
   visual_system: {
     palette: 'black, charcoal, cream and warm gold',
@@ -22,7 +23,14 @@ const payload = {
     public_universe_records: 26,
     combined_records_before_url_dedupe: 92,
     runtime_url_deduplication: true,
-    evidence_before_amplification: true
+    evidence_before_amplification: true,
+    response_signal_count: 11,
+    positive_external_signal_count: 3,
+    validated_tiktok_live_comment_records: 10273,
+    raw_comment_text_publication: false,
+    human_review_required_for_comment_text: true,
+    aggregate_stance: 'UNDETERMINED_FROM_AGGREGATES',
+    comment_text_stance: 'HUMAN_REVIEW_REQUIRED'
   },
   critical_routes: [
     '/', '/igor-vepretski/', '/journey/', '/starton/', '/influence/',
@@ -40,7 +48,7 @@ const payload = {
     branch: 'rollback/vercel-proxy-before-personal-20260718',
     prior_live_source_sha: '3f6f1ff5572e0f2776b2bc22ae5f9162f6ae5bd7'
   },
-  generated_at: '2026-07-18T16:15:00+03:00'
+  generated_at: '2026-07-18T14:27:28Z'
 };
 
 module.exports = (request, response) => {

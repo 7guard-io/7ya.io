@@ -75,9 +75,10 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
-  'igor-personal-hero-20260716-1',
+  'igor-personal-command-20260718-1',
   'אדם.', 'ראיות.', 'פעולה.',
   'id="impact"', 'id="person"', 'id="sources"', 'id="starton"',
+  'id="identity"', 'id="command"', 'LIVING IDENTITY', 'COMMAND CENTER · HUMAN FIRST AI',
   'לתיאום שיחה', 'לצפייה בראיות',
   'DOCUMENTED · OWNER EXPORT', 'TIER 1 · מקור חיצוני',
   'STARTON · INDEPENDENT SOCIAL MISSION'
@@ -90,7 +91,7 @@ for (const technical of [
   '/assets/personal-hero-20260716/igor-public-service.webp',
   '/assets/personal-hero-20260716/igor-speaker.webp',
   '/assets/personal-hero-20260716/igor-closeup.webp',
-  '/styles/igor-personal-hero-20260716.css?v=1',
+  '/styles/igor-personal-hero-20260716.css?v=2',
   '/scripts/igor-personal-hero-20260716.js'
 ]) requireText(home, technical, 'homepage technical contract');
 
@@ -109,7 +110,8 @@ for (const forbidden of [
 const personalHeroCss = read('styles/igor-personal-hero-20260716.css');
 for (const required of [
   '.hero-image', '.metric-grid', '.manifesto', '.source-grid', '.starton',
-  '.ecosystem-grid', '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
+  '.ecosystem-grid', '.living-identity', '.command-center',
+  '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
 ]) requireText(personalHeroCss, required, 'personal hero stylesheet');
 
 const personalHeroScript = read('scripts/igor-personal-hero-20260716.js');

@@ -31,6 +31,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Run the exact release gate
+        run: npm run release:gate
+
       - name: Build immutable static artifact
         run: node scripts/build-static-site.mjs
 
