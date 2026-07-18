@@ -1,0 +1,4 @@
+7YA GitHub Pages deployment trigger
+release=2026-07-18-command-home-v1
+source_commit=91fac5f33c571808959e4ea289cce14e97ea407f
+requested_at=2026-07-18T14:36:00Z
