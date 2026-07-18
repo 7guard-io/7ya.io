@@ -9,6 +9,7 @@ export const canonicalRoutes = [
   'starton',
   'influence',
   'response-ai',
+  'viral',
   'evidence',
   '7ya',
   'speaker',
@@ -69,6 +70,7 @@ export const publicStyleFiles = [
   'history-song-20260714.css',
   'igor-story-cinema-20260716.css',
   'igor-personal-hero-20260716.css',
+  'igor-viral-sections-20260718.css',
   'home-public-universe-20260716.css',
   'igor-embodiment-20260714.css',
   'igor-personal-20260713.css',
@@ -102,6 +104,7 @@ export const publicScriptFiles = [
 
 export const criticalArtifactPaths = [
   'index.html',
+  'viral/index.html',
   'museum/index.html',
   'entity/index.html',
   'create/index.html',
@@ -117,6 +120,7 @@ export const criticalArtifactPaths = [
   'styles/history-song-20260714.css',
   'styles/igor-story-cinema-20260716.css',
   'styles/igor-personal-hero-20260716.css',
+  'styles/igor-viral-sections-20260718.css',
   'styles/home-public-universe-20260716.css',
   'styles/master-entity-index-20260715.css',
   'styles/public-content-museum-20260715.css',
