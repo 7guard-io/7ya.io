@@ -1,17 +1,17 @@
 {
   "service": "7ya-frontend",
   "provider": "github-pages",
-  "status": "PRODUCTION_PUBLICATION_REQUESTED",
-  "release": "2026-07-18-personal-static-v1",
+  "status": "CANDIDATE_REVIEW_READY",
+  "release": "2026-07-18-igor-viral-personal-v1",
   "source_repository": "7guard-io/7ya.io",
-  "source_ref": "main",
-  "source_sha": "dfea9e987d2a724f3a3f11b06b7ac74a0707352e",
-  "source_sha_policy": "Production must serve the exact immutable homepage source SHA and preserve independently verifiable route, metadata and artifact receipts.",
-  "environment": "production",
-  "experience": "IGOR_VEPRETSKI_PERSONAL_STATIC_HOMEPAGE",
+  "source_ref": "feat/igor-hero-viral-sections",
+  "source_sha": "57280fba29ec9c6ce4caba18b45294a677922930",
+  "source_sha_policy": "Production must serve the reviewed immutable homepage and viral archive source, preserve route and metadata receipts, and expose no unsupported metrics.",
+  "environment": "candidate",
+  "experience": "IGOR_VEPRETSKI_PERSONAL_HERO_AND_VERIFIED_VIRAL_ARCHIVE",
   "target_launch_date": "2026-07-18",
-  "publication_requested_at": "2026-07-18T02:30:00+03:00",
-  "build_marker": "igor-personal-hero-20260716-1",
+  "publication_requested_at": null,
+  "build_marker": "igor-hero-viral-sections-20260718-1",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -35,6 +35,7 @@
   },
   "critical_surfaces": [
     "/",
+    "/viral/",
     "/igor-vepretski/",
     "/talk/",
     "/social/",
@@ -53,7 +54,7 @@
     "/response-ai/",
     "/speaker/"
   ],
-  "release_intent": "Restore the personal hero-led static homepage, remove the broken runtime ontology dependency and keep the verified archive and critical routes intact.",
-  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-hero-20260716-1, the title אדם. ראיות. פעולה., and the critical routes, robots.txt and sitemap.xml pass public verification.",
-  "rollback": "The prior Tactical Ontology and History Song source commits remain available as immutable rollback references."
+  "release_intent": "Make Igor visibly present across the homepage, surface verified viral moments with source and date boundaries, and add a dedicated public response archive without inventing engagement metrics.",
+  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-hero-viral-sections-20260718-1, the homepage exposes the verified viral section, /viral/ is indexable and filterable, critical routes pass, and robots.txt plus sitemap.xml return successfully.",
+  "rollback": "The prior personal-static source commit dfea9e987d2a724f3a3f11b06b7ac74a0707352e remains the immutable rollback reference."
 }
