@@ -1,4 +1,4 @@
-name: Publish 7YA Living OS
+name: Publish 7YA Static Production
 
 on:
   push:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,19 +30,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
 
-      - name: Install locked dependencies
-        run: npm ci --no-audit --no-fund
+      - name: Build immutable static artifact
+        run: node scripts/build-static-site.mjs
 
-      - name: Run governed release audit
-        continue-on-error: true
-        run: npm run release:gate
+      - name: Verify artifact integrity and routes
+        run: |
+          node scripts/check-static-artifact.mjs
+          node scripts/verify-static-artifact.mjs
 
-      - name: Build and verify the exact public artifact
-        run: npm run build:site && npm run check:artifact && npm run verify:artifact
-
-      - name: Verify the custom domain contract
+      - name: Verify custom domain and personal release markers
         shell: bash
         run: |
           set -euo pipefail
@@ -52,10 +49,10 @@ jobs:
           test -f dist/scripts/history-song-core-20260714.js
           test -f dist/scripts/home-public-universe-20260716.js
 
-      - name: Configure Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
+      - name: Upload production artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
