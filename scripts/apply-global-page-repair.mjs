@@ -23,6 +23,8 @@ const footer = `
   <small>7YA GLOBAL PAGE REPAIR · ${BUILD}</small>
 </footer>`;
 
+const placeholderPattern = /<(p|span|div|li)([^>]*)>\s*(?:טוען…|טוען\.\.\.|טוען את מפת המערכת…?|טוען מדדים…?|טוען מדדי מבנה…?|טוען את מסלול ההתפתחות…?|טוען את מפת הקשרים…?)\s*<\/\1>/gi;
+
 async function walk(directory, prefix = '') {
   const files = [];
   for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
@@ -54,17 +56,19 @@ for (const relative of htmlFiles) {
   const isAlias = /http-equiv=["']refresh["']/i.test(html) || (/noindex/i.test(html) && /redirect/i.test(html));
   const bodyClass = isHome ? 'seven-global seven-home' : 'seven-global seven-subpage';
 
+  html = html.replace(placeholderPattern, '');
   html = html.replace('</head>', `  <meta name="7ya-global-repair" content="${BUILD}">\n  <link rel="stylesheet" href="${STYLE}">\n</head>`);
   html = html.replace(/<body[^>]*>/i, (opening) => mergeBodyClass(opening, bodyClass));
 
   if (isHome) {
     html = html.replace(/<body[^>]*>/i, (opening) => `${opening}\n<div class="seven-global-progress" aria-hidden="true"><span id="sevenGlobalProgress"></span></div>`);
+    html = html.replace('</body>', `<script src="${SCRIPT}" defer></script>\n</body>`);
   } else if (!isAlias) {
     html = html.replace(/<body[^>]*>/i, (opening) => `${opening}\n${header}`);
+    html = html.replace('</body>', `${footer}\n<script src="${SCRIPT}" defer></script>\n</body>`);
+  } else {
+    html = html.replace('</body>', `<script src="${SCRIPT}" defer></script>\n</body>`);
   }
-
-  if (!isAlias) html = html.replace('</body>', `${footer}\n<script src="${SCRIPT}" defer></script>\n</body>`);
-  else html = html.replace('</body>', `<script src="${SCRIPT}" defer></script>\n</body>`);
 
   await fs.writeFile(absolute, html, 'utf8');
   repaired += 1;
