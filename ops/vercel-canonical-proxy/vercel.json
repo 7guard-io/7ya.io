@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/api/proxy?path=$1",
+      "dest": "/api/proxy-v2?path=$1",
       "headers": {
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
