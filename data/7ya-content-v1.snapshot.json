@@ -1,0 +1,146 @@
+{
+  "schema_version": "7ya-content-v1",
+  "generated_at": "2026-07-21T14:00:00+03:00",
+  "release_marker": "phase-c-zone-shells-20260721",
+  "source": {
+    "control_plane": "Coda",
+    "document": "תוכנית האב וישות התוכן עבור 7ya.io V2",
+    "retrieval_status": "pending_connector_visibility",
+    "runtime_dependency": false
+  },
+  "payload_hash": "sha256:048d5524b7762cf1c01fb01fc597f2e58b085d234033ad7b6bafbc330c8e2b9b",
+  "payload": {
+    "zones": {
+      "identity": {
+        "label": "Identity",
+        "he_label": "זהות",
+        "routes": [
+          "/",
+          "/influence/"
+        ],
+        "source_tables": [
+          "tbl_biography"
+        ],
+        "status": "ready",
+        "purpose": "האדם, הביוגרפיה הציבורית ומפת ההשפעה המחוברת למקורות.",
+        "items": [
+          {
+            "title": "האדם לפני המערכת",
+            "description": "זהות קנונית, סיפור חיים ותפקידים ציבוריים רק ברמת פירוט הנתמכת במקור."
+          },
+          {
+            "title": "השפעה עם תאריך",
+            "description": "מדדים מוצגים כצילום מצב מתוארך ולא כהצהרה נצחית."
+          }
+        ]
+      },
+      "ontology": {
+        "label": "Ontology",
+        "he_label": "אונטולוגיה",
+        "routes": [
+          "/research/"
+        ],
+        "source_tables": [
+          "tbl_tactical_ontology"
+        ],
+        "status": "shell_ready",
+        "purpose": "הרעיונות, המודלים והקשרים המחקריים שמסבירים כיצד 7YA מארגנת אדם, פעולה וראיה.",
+        "items": [
+          {
+            "title": "Gastocratic Governance",
+            "description": "מסגרת מחקרית להצגת קשרים בין מידע, ממשל דיגיטלי ואחריות ציבורית, ללא טענת הכרה חיצונית שאינה מתועדת."
+          },
+          {
+            "title": "אדם → רעיון → פעולה → ראיה → חוויה",
+            "description": "שרשרת התוכן הקנונית של המערכת."
+          }
+        ]
+      },
+      "starton": {
+        "label": "StartOn",
+        "he_label": "סטארטאון",
+        "routes": [
+          "/starton/",
+          "/radar/"
+        ],
+        "source_tables": [
+          "tbl_starton"
+        ],
+        "status": "shell_ready",
+        "purpose": "הישות החברתית והמעקב האופרטיבי אחר כוונה, אישור, הקצאה, ביצוע ותוצאה.",
+        "items": [
+          {
+            "title": "משימה חברתית עצמאית",
+            "description": "מרחבי טכנולוגיה, יצירה וליווי עבור בני נוער בסיכון."
+          },
+          {
+            "title": "Government Failure Radar",
+            "description": "הפרדה שיטתית בין הצהרה, תקצוב, ביצוע ותוצאה בפועל."
+          }
+        ]
+      },
+      "evidence": {
+        "label": "Evidence",
+        "he_label": "ראיות",
+        "routes": [
+          "/evidence/",
+          "/verify/",
+          "/ledger/"
+        ],
+        "source_tables": [
+          "evidence_ledger"
+        ],
+        "status": "shell_ready",
+        "purpose": "אימות טענות, הצגת מקור, תאריך, מדרג ראיה ורישום append-only.",
+        "items": [
+          {
+            "title": "Verify",
+            "description": "כניסה ממוקדת לבדיקת טענה מול מקור קנוני."
+          },
+          {
+            "title": "Ledger",
+            "description": "רישום בלתי־מוחק של פריטי ראיה ושינויי סטטוס."
+          }
+        ]
+      },
+      "experience": {
+        "label": "Experience",
+        "he_label": "חוויה",
+        "routes": [
+          "/media/"
+        ],
+        "source_tables": [
+          "media_snapshot"
+        ],
+        "status": "ready",
+        "purpose": "וידאו, אודיו ומסמכים כנקודות כניסה חווייתיות המחוברות להקשר ולמקור.",
+        "items": [
+          {
+            "title": "מדיה עם הקשר",
+            "description": "כל פריט נשאר קשור למקור, לתאריך ולתפקידו בסיפור."
+          },
+          {
+            "title": "Last Known Good",
+            "description": "האתר נשאר שמיש גם כאשר Control Plane או שירות חיצוני אינם זמינים."
+          }
+        ]
+      }
+    },
+    "governance": {
+      "render_mode": "build_time_snapshot",
+      "runtime_dependency": false,
+      "control_plane": "Coda",
+      "production_gate": {
+        "requires_ci": true,
+        "requires_apex_www_release_match": true,
+        "requires_snapshot_hash": true
+      },
+      "resilience_states": [
+        "loading",
+        "empty",
+        "error",
+        "last_known_good"
+      ]
+    }
+  }
+}
