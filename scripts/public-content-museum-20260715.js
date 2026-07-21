@@ -282,9 +282,9 @@
       }
 
       state.records = [...unique.values()];
-      state.coreCount = state.records.filter(record => record.collection === 'VERIFIED_CORE').length;
-      state.universeCount = state.records.filter(record => record.collection === 'PUBLIC_UNIVERSE').length;
-      state.forensicCount = state.records.filter(record => record.collection === 'DRIVE_FORENSIC').length;
+      state.coreCount = coreRecords.length;
+      state.universeCount = universeRecords.length;
+      state.forensicCount = forensicRecords.length;
       state.forensic = forensic;
 
       const stats = forensic?.stats || {};
@@ -319,6 +319,16 @@
     state.query = normalize(event.target.value.trim());
     render();
   });
+
+  const requestedPlatform = new URLSearchParams(window.location.search).get('platform');
+  if (requestedPlatform) {
+    const requestedButton = buttons.find(button => button.dataset.museumFilter === requestedPlatform);
+    if (requestedButton) {
+      buttons.forEach(button => button.classList.remove('active'));
+      requestedButton.classList.add('active');
+      state.filter = requestedPlatform;
+    }
+  }
 
   const updateProgress = () => {
     if (!progress) return;
