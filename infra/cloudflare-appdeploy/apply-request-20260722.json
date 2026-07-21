@@ -1,0 +1,25 @@
+{
+  "confirmation": "7YA-APPDEPLOY-20260716",
+  "approved_by": "Igor Vepretski",
+  "approved_on": "2026-07-22",
+  "intent": "Replace the current GitHub Pages production origin with the verified AppDeploy release",
+  "app_id": "697a008fddc309b142",
+  "build_marker": "igor-life-archive-integrated-20260721-1",
+  "expected_records": [
+    {
+      "type": "A",
+      "name": "7ya.io",
+      "content": "18.232.7.146",
+      "proxied": false
+    },
+    {
+      "type": "CNAME",
+      "name": "www.7ya.io",
+      "content": "proxy-v2.appdeploy.ai",
+      "proxied": false
+    }
+  ],
+  "preserve_record_types": ["MX", "TXT", "CAA", "NS", "SOA"],
+  "rollback_required": true,
+  "single_use": true
+}
