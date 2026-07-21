@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>מחקר ואונטולוגיה | 7YA.IO</title>
-  <meta name="description" content="האונטולוגיה הטקטית של 7YA: אדם, רעיון, פעולה, ראיה וחוויה במבנה מחקרי הניתן לבקרה.">
+  <meta name="description" content="האונטולוגיה הטקטית של 7YA: SUPERNOAH, משילות מידע, StartOn, Merkle Trees והשרשרת אדם → רעיון → פעולה → ראיה → חוויה.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#070807">
   <meta name="color-scheme" content="dark">
@@ -28,7 +28,7 @@
   <main id="main" data-zone-shell data-zone-key="ontology" data-state="loading">
     <section class="zone-hero" aria-labelledby="zone-title">
       <p class="kicker">ONTOLOGY / RESEARCH</p>
-      <h1 id="zone-title">רעיונות צריכים מבנה.</h1>
+      <h1 id="zone-title">רעיונות צריכים מבנה.<br>טענות צריכות מקור.</h1>
       <p class="lead" data-zone-purpose>אזור המחקר מארגן את המודלים, המונחים והקשרים של 7YA בלי להפוך השערה לעובדה ובלי לנתק טענה מן המקור שלה.</p>
       <div class="pipeline" aria-label="שרשרת התוכן">
         <span>אדם</span><span>רעיון</span><span>פעולה</span><span>ראיה</span><span><strong>חוויה</strong></span>
@@ -38,26 +38,40 @@
     <section class="zone-grid" aria-label="מצב האזור">
       <div class="panel">
         <div class="status-line"><span class="kicker">מחקר</span><span class="state-badge" data-zone-state>Loading snapshot</span></div>
-        <h2>Snapshot יציב. שירותים חיצוניים אינם תנאי לרינדור.</h2>
-        <p>התוכן נטען מקובץ build-time מקומי ונבדק מול SHA-256. במקרה של כשל נשמרת תצוגת Last Known Good המוטמעת בעמוד.</p>
+        <h2>Snapshot יציב. מקור Drive נמשך ונבדק.</h2>
+        <p>התוכן נטען מקובץ build-time מקומי ונבדק מול SHA-256. מסמך המקור נשמר ב־Google Drive; אין קריאת API חיה בזמן טעינת העמוד.</p>
         <div class="zone-items" data-zone-items>
-          <article class="zone-item"><h3>שרשרת התוכן</h3><p>אדם → רעיון → פעולה → ראיה → חוויה.</p></article>
-          <article class="zone-item"><h3>משילות מידע</h3><p>הצגת מסגרות מחקריות בזהירות, עם הפרדה בין יצירה עצמאית לבין הכרה חיצונית מתועדת.</p></article>
+          <article class="zone-item"><h3>SUPERNOAH — Independent Preprint</h3><p>מסגרת עצמאית שטרם עברה ביקורת עמיתים. שלושה שערים: Foundation, Integration ו־Evolution.</p></article>
+          <article class="zone-item"><h3>StartOn — Methodological Implementation</h3><p>שלושה שלבים: מיפוי משאבים קהילתיים, פריסת תשתית דיגיטלית והתרחבות בת־קיימא.</p></article>
+          <article class="zone-item"><h3>Cryptographic Integrity</h3><p>Merkle Tree ו־SHA-256 משמשים לזיהוי שינוי ולחיבור בין Snapshot מאושר ל־Artifact ציבורי.</p></article>
+          <article class="zone-item"><h3>משילות מידע</h3><p>הפרדה מפורשת בין יצירה עצמאית, מקור ציבורי, הכרה חיצונית וביקורת עמיתים.</p></article>
         </div>
         <p hidden data-zone-error></p>
-        <div class="action-row"><a class="button primary" href="/articles/">למאמרים</a><a class="button" href="/evidence/">לראיות</a></div>
+        <div class="action-row"><a class="button primary" href="/articles/">למאמרים</a><a class="button" href="/verify/">לאימות טענות</a><a class="button" href="/ledger/">ל־Ledger</a></div>
       </div>
 
       <aside class="panel" aria-label="מטא־נתונים">
         <p class="kicker">CONTROL PLANE CONTRACT</p>
         <dl class="meta-list">
           <div><dt>Routes</dt><dd data-zone-routes>/research/</dd></div>
-          <div><dt>Sources</dt><dd data-zone-sources>Snapshot local</dd></div>
+          <div><dt>Primary source</dt><dd>Google Drive document · reviewed 21.07.2026</dd></div>
+          <div><dt>Publication status</dt><dd>Independent preprint · not peer reviewed</dd></div>
           <div><dt>Generated</dt><dd data-zone-generated>2026-07-21</dd></div>
           <div><dt>Payload hash</dt><dd data-zone-hash>sha256: pending runtime check</dd></div>
           <div><dt>Runtime API</dt><dd>None required</dd></div>
         </dl>
       </aside>
+    </section>
+
+    <section class="resilience" aria-labelledby="research-model-title">
+      <p class="kicker">SUPERNOAH / THREE GATES</p>
+      <h2 id="research-model-title">מסגרת עבודה, לא תואר סמכות.</h2>
+      <div class="resilience-grid">
+        <article><b>Foundation</b><p>קביעת קו בסיס למדדים ולהתנהגות מערכתית.</p></article>
+        <article><b>Integration</b><p>חיבור בין מגבלות ארכיטקטוניות לבין פעולה אנושית.</p></article>
+        <article><b>Evolution</b><p>בניית מסגרות פרואקטיביות לשיפור מבני.</p></article>
+        <article><b>Disclosure</b><p>המסגרת מוצגת כ־preprint עצמאי עד שיוצג מקור חיצוני לשדרוג הסטטוס.</p></article>
+      </div>
     </section>
 
     <section class="resilience" aria-labelledby="resilience-title">
