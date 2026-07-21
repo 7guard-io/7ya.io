@@ -20,6 +20,14 @@ const snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
 requireCondition(snapshot.schema_version === '7ya-content-v1', 'zone snapshot uses 7ya-content-v1');
 requireCondition(snapshot.source?.runtime_dependency === false, 'snapshot has no runtime Control Plane dependency');
 requireCondition(snapshot.payload?.governance?.render_mode === 'build_time_snapshot', 'render mode is build-time snapshot');
+requireCondition(
+  snapshot.source?.documents?.some(document => document.drive_file_id === '1h5g4rfdUz-Ifxru98VRivb6KojhNrhcrnebg4Spi0R0' && document.retrieval_status === 'retrieved_and_reviewed'),
+  'verified Drive ontology source is recorded'
+);
+requireCondition(
+  snapshot.payload?.governance?.claim_policy?.supernoah === 'independent_preprint_not_peer_reviewed',
+  'SUPERNOAH disclosure remains conservative'
+);
 
 const expectedZones = ['identity', 'ontology', 'starton', 'evidence', 'experience'];
 for (const zone of expectedZones) {
@@ -37,6 +45,12 @@ for (const route of ['research', 'radar', 'verify', 'ledger']) {
   requireCondition(html.includes('/scripts/zone-shells-v1.js'), `${route} loads zone shell runtime`);
   requireCondition(!html.includes('[VERIFY BEFORE PUBLISHING]'), `${route} excludes unresolved verification markers`);
 }
+
+const research = fs.readFileSync('research/index.html', 'utf8');
+for (const required of ['SUPERNOAH — Independent Preprint', 'not peer reviewed', 'Foundation', 'Integration', 'Evolution']) {
+  requireCondition(research.includes(required), `research disclosure includes ${required}`);
+}
+requireCondition(!research.includes('peer-reviewed research'), 'research page does not overstate peer review');
 
 requireCondition(!aliasRoutes.has('radar'), 'radar is no longer an alias');
 const runtime = fs.readFileSync('scripts/zone-shells-v1.js', 'utf8');
