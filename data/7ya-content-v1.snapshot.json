@@ -21,86 +21,12 @@
   "payload_hash": "sha256:fecc6020969b6af03618a98168e1e4301e5725db496046fbc8806838370b01ff",
   "payload": {
     "zones": {
-      "identity": {
-        "label": "Identity",
-        "he_label": "זהות",
-        "routes": ["/", "/influence/"],
-        "source_tables": ["tbl_biography"],
-        "status": "ready",
-        "purpose": "האדם, הביוגרפיה הציבורית ומפת ההשפעה המחוברת למקורות.",
-        "items": [
-          {"title": "האדם לפני המערכת", "description": "זהות קנונית, סיפור חיים ותפקידים ציבוריים רק ברמת פירוט הנתמכת במקור."},
-          {"title": "השפעה עם תאריך", "description": "מדדים מוצגים כצילום מצב מתוארך ולא כהצהרה נצחית."}
-        ]
-      },
-      "ontology": {
-        "label": "Ontology",
-        "he_label": "אונטולוגיה",
-        "routes": ["/research/"],
-        "source_tables": ["tbl_tactical_ontology"],
-        "status": "source_enriched",
-        "purpose": "הרעיונות, המודלים והקשרים המחקריים שמסבירים כיצד 7YA מארגנת אדם, פעולה וראיה.",
-        "items": [
-          {"title": "SUPERNOAH — Independent Preprint", "description": "מסגרת עצמאית שטרם עברה ביקורת עמיתים. שלושה שערים: Foundation, Integration ו‑Evolution."},
-          {"title": "Gastocratic Governance", "description": "מסגרת מחקרית להצגת קשרים בין מידע, ממשל דיגיטלי ואחריות ציבורית, ללא טענת הכרה חיצונית שאינה מתועדת."},
-          {"title": "אדם → רעיון → פעולה → ראיה → חוויה", "description": "שרשרת התוכן הקנונית של המערכת."}
-        ]
-      },
-      "starton": {
-        "label": "StartOn",
-        "he_label": "סטארטאון",
-        "routes": ["/starton/", "/radar/"],
-        "source_tables": ["tbl_starton"],
-        "status": "source_enriched",
-        "purpose": "הישות החברתית והמעקב האופרטיבי אחר כוונה, אישור, הקצאה, ביצוע ותוצאה.",
-        "items": [
-          {"title": "Phase I — Community Resource Mapping", "description": "מיפוי משאבים והקמת צמתים פעילים."},
-          {"title": "Phase II — Digital Infrastructure Deployment", "description": "פריסת תשתית דיגיטלית ומדידת זמינות וטרנזקציות מאומתות."},
-          {"title": "Phase III — Sustainable Expansion", "description": "התרחבות בת־קיימא הנמדדת בקצב צמיחת היוזמות."},
-          {"title": "Government Failure Radar", "description": "הפרדה שיטתית בין הצהרה, תקצוב, ביצוע ותוצאה בפועל."}
-        ]
-      },
-      "evidence": {
-        "label": "Evidence",
-        "he_label": "ראיות",
-        "routes": ["/evidence/", "/verify/", "/ledger/"],
-        "source_tables": ["evidence_ledger"],
-        "status": "shell_ready",
-        "purpose": "אימות טענות, הצגת מקור, תאריך, מדרג ראיה ורישום append-only.",
-        "items": [
-          {"title": "Verify", "description": "כניסה ממוקדת לבדיקת טענה מול מקור קנוני."},
-          {"title": "Ledger", "description": "רישום בלתי־מוחק של פריטי ראיה ושינויי סטטוס."},
-          {"title": "Merkle Root", "description": "אימות שינוי באמצעות SHA‑256 על זוגות עלים עד לשורש קנוני."}
-        ]
-      },
-      "experience": {
-        "label": "Experience",
-        "he_label": "חוויה",
-        "routes": ["/media/"],
-        "source_tables": ["media_snapshot"],
-        "status": "ready",
-        "purpose": "וידאו, אודיו ומסמכים כנקודות כניסה חווייתיות המחוברות להקשר ולמקור.",
-        "items": [
-          {"title": "מדיה עם הקשר", "description": "כל פריט נשאר קשור למקור, לתאריך ולתפקידו בסיפור."},
-          {"title": "Last Known Good", "description": "האתר נשאר שמיש גם כאשר Control Plane או שירות חיצוני אינם זמינים."}
-        ]
-      }
+      "identity": {"label":"Identity","he_label":"זהות","routes":["/","/influence/"],"source_tables":["tbl_biography"],"status":"ready","purpose":"האדם, הביוגרפיה הציבורית ומפת ההשפעה המחוברת למקורות.","items":[{"title":"האדם לפני המערכת","description":"זהות קנונית, סיפור חיים ותפקידים ציבוריים רק ברמת פירוט הנתמכת במקור."},{"title":"השפעה עם תאריך","description":"מדדים מוצגים כצילום מצב מתוארך ולא כהצהרה נצחית."}]},
+      "ontology": {"label":"Ontology","he_label":"אונטולוגיה","routes":["/research/"],"source_tables":["tbl_tactical_ontology"],"status":"source_enriched","purpose":"הרעיונות, המודלים והקשרים המחקריים שמסבירים כיצד 7YA מארגנת אדם, פעולה וראיה.","items":[{"title":"SUPERNOAH — Independent Preprint","description":"מסגרת עצמאית שטרם עברה ביקורת עמיתים. שלושה שערים: Foundation, Integration ו‑Evolution."},{"title":"Gastocratic Governance","description":"מסגרת מחקרית להצגת קשרים בין מידע, ממשל דיגיטלי ואחריות ציבורית, ללא טענת הכרה חיצונית שאינה מתועדת."},{"title":"אדם → רעיון → פעולה → ראיה → חוויה","description":"שרשרת התוכן הקנונית של המערכת."}]},
+      "starton": {"label":"StartOn","he_label":"סטארטאון","routes":["/starton/","/radar/"],"source_tables":["tbl_starton"],"status":"source_enriched","purpose":"הישות החברתית והמעקב האופרטיבי אחר כוונה, אישור, הקצאה, ביצוע ותוצאה.","items":[{"title":"Phase I — Community Resource Mapping","description":"מיפוי משאבים והקמת צמתים פעילים."},{"title":"Phase II — Digital Infrastructure Deployment","description":"פריסת תשתית דיגיטלית ומדידת זמינות וטרנזקציות מאומתות."},{"title":"Phase III — Sustainable Expansion","description":"התרחבות בת־קיימא הנמדדת בקצב צמיחת היוזמות."},{"title":"Government Failure Radar","description":"הפרדה שיטתית בין הצהרה, תקצוב, ביצוע ותוצאה בפועל."}]},
+      "evidence": {"label":"Evidence","he_label":"ראיות","routes":["/evidence/","/verify/","/ledger/"],"source_tables":["evidence_ledger"],"status":"shell_ready","purpose":"אימות טענות, הצגת מקור, תאריך, מדרג ראיה ורישום append-only.","items":[{"title":"Verify","description":"כניסה ממוקדת לבדיקת טענה מול מקור קנוני."},{"title":"Ledger","description":"רישום בלתי־מוחק של פריטי ראיה ושינויי סטטוס."},{"title":"Merkle Root","description":"אימות שינוי באמצעות SHA‑256 על זוגות עלים עד לשורש קנוני."}]},
+      "experience": {"label":"Experience","he_label":"חוויה","routes":["/media/"],"source_tables":["media_snapshot"],"status":"ready","purpose":"וידאו, אודיו ומסמכים כנקודות כניסה חווייתיות המחוברות להקשר ולמקור.","items":[{"title":"מדיה עם הקשר","description":"כל פריט נשאר קשור למקור, לתאריך ולתפקידו בסיפור."},{"title":"Last Known Good","description":"האתר נשאר שמיש גם כאשר Control Plane או שירות חיצוני אינם זמינים."}]}
     },
-    "governance": {
-      "render_mode": "build_time_snapshot",
-      "runtime_dependency": false,
-      "control_plane": "Coda",
-      "content_sources": ["Google Drive", "Coda"],
-      "claim_policy": {
-        "supernoah": "independent_preprint_not_peer_reviewed",
-        "external_recognition_required_for_upgrade": true
-      },
-      "production_gate": {
-        "requires_ci": true,
-        "requires_apex_www_release_match": true,
-        "requires_snapshot_hash": true
-      },
-      "resilience_states": ["loading", "empty", "error", "last_known_good"]
-    }
+    "governance": {"render_mode":"build_time_snapshot","runtime_dependency":false,"control_plane":"Coda","content_sources":["Google Drive","Coda"],"claim_policy":{"supernoah":"independent_preprint_not_peer_reviewed","external_recognition_required_for_upgrade":true},"production_gate":{"requires_ci":true,"requires_apex_www_release_match":true,"requires_snapshot_hash":true},"resilience_states":["loading","empty","error","last_known_good"]}
   }
 }
