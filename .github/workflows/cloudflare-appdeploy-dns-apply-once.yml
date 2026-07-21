@@ -1,0 +1,197 @@
+name: Apply AppDeploy DNS Cutover Once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/cloudflare-appdeploy/apply-request-20260722.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 7ya-appdeploy-dns-cutover-production
+  cancel-in-progress: false
+
+jobs:
+  cutover:
+    name: Replace GitHub Pages origin with AppDeploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+      CLOUDFLARE_REQUEST_TIMEOUT_MS: '15000'
+      CLOUDFLARE_MAX_ATTEMPTS: '5'
+      CONFIRM_7YA_DNS_CUTOVER: '7YA-APPDEPLOY-20260716'
+      EXPECTED_BUILD: 'igor-life-archive-integrated-20260721-1'
+      APPDEPLOY_IPV4: '18.232.7.146'
+      APPDEPLOY_HOST: 'proxy-v2.appdeploy.ai'
+    steps:
+      - name: Check out approved revision
+        uses: actions/checkout@v4
+
+      - name: Use supported Node.js runtime
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate one-time owner approval
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const p = JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/apply-request-20260722.json', 'utf8'));
+          const expected = {
+            confirmation: '7YA-APPDEPLOY-20260716',
+            approved_by: 'Igor Vepretski',
+            app_id: '697a008fddc309b142',
+            build_marker: 'igor-life-archive-integrated-20260721-1'
+          };
+          for (const [key, value] of Object.entries(expected)) {
+            if (p[key] !== value) throw new Error(`Approval mismatch for ${key}`);
+          }
+          if (p.single_use !== true || p.rollback_required !== true) throw new Error('Safety flags are missing.');
+          if (!Array.isArray(p.expected_records) || p.expected_records.length !== 2) throw new Error('Exactly two site records are required.');
+          const preserved = new Set(p.preserve_record_types || []);
+          for (const type of ['MX', 'TXT', 'CAA', 'NS', 'SOA']) if (!preserved.has(type)) throw new Error(`Missing protected type ${type}`);
+          NODE
+
+      - name: Require least-privilege Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${CLOUDFLARE_API_TOKEN:-}" ]; then
+            echo 'CLOUDFLARE_API_TOKEN is not configured.' >&2
+            exit 1
+          fi
+
+      - name: Run reconciler safety suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/cloudflare-appdeploy-dns.mjs
+          bash -n scripts/cloudflare-appdeploy-breakglass.sh
+          node --test scripts/test-cloudflare-appdeploy-dns.mjs
+
+      - name: Verify AppDeploy TLS and release before DNS mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          apex="$(curl -fsS --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+            --resolve "7ya.io:443:${APPDEPLOY_IPV4}" \
+            -H 'Cache-Control: no-cache' \
+            "https://7ya.io/release.json?preflight=${GITHUB_SHA}")"
+          printf '%s\n' "$apex" | tee appdeploy-apex-preflight.json
+          grep -Fq "$EXPECTED_BUILD" appdeploy-apex-preflight.json
+
+          www="$(curl -fsS --retry 3 --retry-delay 2 --connect-timeout 10 --max-time 30 \
+            --resolve "www.7ya.io:443:${APPDEPLOY_IPV4}" \
+            -H 'Cache-Control: no-cache' \
+            "https://www.7ya.io/release.json?preflight=${GITHUB_SHA}")"
+          printf '%s\n' "$www" | tee appdeploy-www-preflight.json
+          grep -Fq "$EXPECTED_BUILD" appdeploy-www-preflight.json
+
+      - name: Capture read-only Cloudflare plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cloudflare-appdeploy-dns.mjs | tee cloudflare-plan-before.txt
+
+      - name: Apply exact two-record cutover with transactional rollback
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cloudflare-appdeploy-dns.mjs --apply | tee cloudflare-apply.txt
+
+      - name: Verify Cloudflare read-back is converged
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/cloudflare-appdeploy-dns.mjs | tee cloudflare-plan-after.txt
+          noop_count="$(grep -c '"action": "noop"' cloudflare-plan-after.txt || true)"
+          if [ "$noop_count" -ne 2 ]; then
+            echo "Expected two no-op records after cutover, found $noop_count" >&2
+            exit 1
+          fi
+          if grep -Eq '"action": "(create|update|delete_conflict)"' cloudflare-plan-after.txt; then
+            echo 'DNS did not converge to the exact desired state.' >&2
+            exit 1
+          fi
+
+      - name: Verify public DNS propagation
+        shell: bash
+        run: |
+          set -euo pipefail
+          propagated=0
+          for attempt in $(seq 1 36); do
+            apex="$(curl -fsS --max-time 20 -H 'accept: application/dns-json' 'https://cloudflare-dns.com/dns-query?name=7ya.io&type=A' || true)"
+            www="$(curl -fsS --max-time 20 -H 'accept: application/dns-json' 'https://cloudflare-dns.com/dns-query?name=www.7ya.io&type=CNAME' || true)"
+            printf '%s\n' "$apex" > dns-apex.json
+            printf '%s\n' "$www" > dns-www.json
+            if grep -Fq "$APPDEPLOY_IPV4" dns-apex.json && grep -Fq "$APPDEPLOY_HOST" dns-www.json; then
+              propagated=1
+              break
+            fi
+            sleep 10
+          done
+          if [ "$propagated" -ne 1 ]; then
+            echo 'Public DNS did not expose the AppDeploy targets within the verification window.' >&2
+            exit 1
+          fi
+
+      - name: Verify canonical HTTPS build marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          verified=0
+          for attempt in $(seq 1 36); do
+            payload="$(curl -fsS --connect-timeout 10 --max-time 30 \
+              -H 'Cache-Control: no-cache, no-store' \
+              "https://7ya.io/release.json?cutover=${GITHUB_SHA}-${attempt}" || true)"
+            printf '%s\n' "$payload" > canonical-release.json
+            if grep -Fq "$EXPECTED_BUILD" canonical-release.json; then
+              verified=1
+              break
+            fi
+            sleep 10
+          done
+          if [ "$verified" -ne 1 ]; then
+            echo 'Canonical domain did not serve the approved AppDeploy build marker.' >&2
+            cat canonical-release.json >&2 || true
+            exit 1
+          fi
+
+      - name: Write immutable cutover receipt
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "commit=${GITHUB_SHA}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "expected_build=${EXPECTED_BUILD}"
+            echo "apex_target=${APPDEPLOY_IPV4}"
+            echo "www_target=${APPDEPLOY_HOST}"
+            echo "completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > cutover-receipt.txt
+
+      - name: Upload cutover evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 7ya-appdeploy-dns-cutover-${{ github.run_id }}
+          path: |
+            cutover-receipt.txt
+            appdeploy-apex-preflight.json
+            appdeploy-www-preflight.json
+            cloudflare-plan-before.txt
+            cloudflare-apply.txt
+            cloudflare-plan-after.txt
+            dns-apex.json
+            dns-www.json
+            canonical-release.json
+          if-no-files-found: warn
+          retention-days: 30
