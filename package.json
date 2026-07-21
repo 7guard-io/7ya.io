@@ -10,6 +10,7 @@
     "check-site": "node scripts/check-site.mjs",
     "check-links": "node scripts/check-links.mjs",
     "check-creator": "node scripts/check-positive-creator.mjs",
+    "check-archive-v2": "node scripts/check-public-archive-v2.mjs",
     "check-entity": "node scripts/check-entity-index.mjs",
     "check-response": "node scripts/check-public-response-ai.mjs",
     "check-guide": "node scripts/check-smart-guide.mjs",
@@ -21,7 +22,7 @@
     "check-text-integrity": "node scripts/check-text-integrity.mjs",
     "check:zones": "node scripts/check-zone-shells.mjs",
     "check:deploy-script": "bash -n scripts/deploy-personal-static.sh",
-    "check-all": "npm run check-text-integrity && npm run check:zones && npm run check-site && npm run check-links && npm run check-creator && npm run check-entity && npm run check-response && npm run check-guide && npm run check-infostory && npm run check-home-universe && npm run check-collector && npm run check-release-pin && npm run check-workflows && npm run check:deploy-script",
+    "check-all": "npm run check-text-integrity && npm run check:zones && npm run check-site && npm run check-links && npm run check-creator && npm run check-archive-v2 && npm run check-entity && npm run check-response && npm run check-guide && npm run check-infostory && npm run check-home-universe && npm run check-collector && npm run check-release-pin && npm run check-workflows && npm run check:deploy-script",
     "verify:routes": "node scripts/verify-routes.mjs",
     "build:site": "node scripts/build-static-site.mjs",
     "check:artifact": "node scripts/check-static-artifact.mjs",
@@ -32,7 +33,7 @@
     "convert": "node_modules/.bin/docsify-to-pdf",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "node scripts/check-text-integrity.mjs && node scripts/check-zone-shells.mjs && node scripts/check-site.mjs && node scripts/check-links.mjs && node scripts/check-positive-creator.mjs && node scripts/check-entity-index.mjs && node scripts/check-public-response-ai.mjs && node scripts/check-smart-guide.mjs && node scripts/check-infostory-runtime.mjs && node scripts/check-home-universe-20260716.mjs && node scripts/check-collector.mjs && node scripts/check-release-pin.mjs && node scripts/check-workflows.mjs && bash -n scripts/deploy-personal-static.sh",
+    "lint": "node scripts/check-text-integrity.mjs && node scripts/check-zone-shells.mjs && node scripts/check-site.mjs && node scripts/check-links.mjs && node scripts/check-positive-creator.mjs && node scripts/check-public-archive-v2.mjs && node scripts/check-entity-index.mjs && node scripts/check-public-response-ai.mjs && node scripts/check-smart-guide.mjs && node scripts/check-infostory-runtime.mjs && node scripts/check-home-universe-20260716.mjs && node scripts/check-collector.mjs && node scripts/check-release-pin.mjs && node scripts/check-workflows.mjs && bash -n scripts/deploy-personal-static.sh",
     "serve:static": "python3 -m http.server 4173",
     "test:netlify": "node scripts/test-netlify-chat.mjs",
     "test:smoke": "node scripts/smoke-test.js",
@@ -42,21 +43,11 @@
     "deploy:prod": "npx --yes vercel@latest --prod",
     "deploy:personal-static": "bash scripts/deploy-personal-static.sh"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/7guard-io/7ya.io.git"
-  },
-  "keywords": [
-    "7ya",
-    "igor-vepretski",
-    "public-site",
-    "evidence"
-  ],
+  "repository": {"type": "git", "url": "https://github.com/7guard-io/7ya.io.git"},
+  "keywords": ["7ya", "igor-vepretski", "public-site", "evidence"],
   "author": "Igor Vepretski / 7YA",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/7guard-io/7ya.io/issues"
-  },
+  "bugs": {"url": "https://github.com/7guard-io/7ya.io/issues"},
   "homepage": "https://7ya.io",
   "devDependencies": {
     "@types/node": "^25.3.3",
