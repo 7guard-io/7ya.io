@@ -59,7 +59,7 @@ const promptCount = (page.match(/data-prompt=/g) || []).length;
 promptCount >= 10 ? pass(`creator page has ${promptCount} guided prompts`) : fail(`creator page has only ${promptCount} guided prompts`);
 
 for (const required of [
-  '@media(max-width:680px)',
+  '@media(max-width:720px)',
   '@media(prefers-reduced-motion:reduce)',
   '.chat-shell',
   '.composer',
