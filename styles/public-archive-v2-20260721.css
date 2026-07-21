@@ -1,0 +1,105 @@
+/* 7YA Public Archive V2 — clean Igor hero + forensic masonry */
+.archive-v2-hero{grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr)}
+.clean-portrait{isolation:isolate}
+.clean-portrait::before{content:"IGOR / PERSON FIRST";position:absolute;z-index:4;top:24px;left:24px;padding:9px 13px;border:1px solid rgba(255,255,255,.17);border-radius:999px;background:rgba(7,7,7,.55);backdrop-filter:blur(12px);font-size:9px;font-weight:900;letter-spacing:.16em}
+.clean-portrait .hero-portrait img{object-position:center 18%;filter:saturate(.78) contrast(1.05) brightness(.84)}
+.clean-portrait .hero-portrait:after{background:linear-gradient(to top,rgba(0,0,0,.94),transparent 58%),linear-gradient(90deg,rgba(0,0,0,.2),transparent 52%)}
+.hero-source{display:none!important}
+.archive-snapshot-strip{grid-template-columns:repeat(6,1fr)}
+.archive-snapshot-strip article{min-height:165px}
+.archive-snapshot-strip b{font-size:clamp(34px,4vw,64px)}
+.archive-intelligence{width:min(1500px,calc(100% - 32px));margin:0 auto 130px;padding-top:20px}
+.archive-intelligence-head{display:grid;grid-template-columns:1.25fr .75fr;gap:42px;align-items:end;margin-bottom:34px}
+.archive-intelligence-head h2{margin:0;font-size:clamp(52px,7vw,108px);line-height:.86;letter-spacing:-.07em}
+.archive-intelligence-head>p{margin:0;color:var(--muted);font-size:17px}
+.archive-intelligence-grid{display:grid;grid-template-columns:1.08fr .92fr;grid-template-areas:"press map" "press ledger" "policy ledger";gap:12px}
+.press-wall-panel,.archive-map-panel,.tiktok-ledger-panel,.capture-policy-panel{margin:0;border:1px solid var(--line);border-radius:25px;overflow:hidden;background:#0e0d0b}
+.press-wall-panel{grid-area:press;display:flex;flex-direction:column;min-height:900px}
+.press-wall-panel img{display:block;width:100%;height:100%;min-height:780px;object-fit:cover;object-position:top center;background:#eee}
+.press-wall-panel figcaption{display:grid;gap:4px;padding:18px 20px;border-top:1px solid var(--line)}
+.press-wall-panel figcaption b{color:var(--orange);font-size:10px;letter-spacing:.15em}
+.press-wall-panel figcaption span{color:var(--muted);font-size:12px}
+.archive-map-panel{grid-area:map;padding:32px;background:radial-gradient(circle at 85% 0,rgba(94,168,255,.16),transparent 28rem),#0e0d0b}
+.archive-map-panel>span,.capture-policy-panel>span{color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.16em}
+.archive-map-panel h3,.capture-policy-panel h3{margin:55px 0 24px;font-size:clamp(31px,3.5vw,58px);line-height:.94;letter-spacing:-.045em}
+.archive-map-steps{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.archive-map-steps div{min-height:145px;padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);display:flex;flex-direction:column}
+.archive-map-steps b{color:var(--orange);font-size:11px}
+.archive-map-steps strong{margin:auto 0 5px;font-size:18px}
+.archive-map-steps small{color:var(--muted);font-size:11px}
+.archive-data-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.archive-data-links a{padding:8px 11px;border:1px solid var(--line);border-radius:999px;color:var(--blue);font-size:10px}
+.tiktok-ledger-panel{grid-area:ledger;padding:27px;background:radial-gradient(circle at 90% 0,rgba(255,90,40,.14),transparent 27rem),#0e0d0b}
+.ledger-heading{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;align-items:center;margin-bottom:17px}
+.ledger-heading span{color:var(--orange);font-size:10px;font-weight:900;letter-spacing:.15em}
+.ledger-heading strong{font-size:21px}
+.ledger-heading small{grid-column:1/-1;color:var(--muted)}
+.tiktok-ledger{display:grid;gap:6px}
+.tiktok-ledger-row{display:grid;grid-template-columns:34px 88px 78px 1fr;gap:9px;align-items:center;padding:10px 11px;border:1px solid rgba(255,255,255,.09);border-radius:12px;background:rgba(255,255,255,.025)}
+.tiktok-ledger-row b{color:var(--orange);font-size:10px}
+.tiktok-ledger-row span{color:var(--muted);font-size:10px}
+.tiktok-ledger-row strong{font-size:15px;text-align:left;direction:ltr}
+.tiktok-ledger-row small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#c8c0b5;font-size:10px;direction:ltr;text-align:left}
+.capture-policy-panel{grid-area:policy;padding:30px;background:radial-gradient(circle at 15% 0,rgba(185,239,134,.12),transparent 25rem),#0e0d0b}
+.capture-policy-panel>span{color:var(--green)}
+.capture-policy-panel h3{margin-top:38px;font-size:clamp(29px,3vw,48px)}
+.capture-policy-panel ul{margin:0;padding-right:20px;color:var(--muted)}
+.capture-policy-panel li+li{margin-top:9px}
+.capture-policy-panel b{color:var(--text)}
+.source-wall{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:dense;align-items:stretch;gap:12px}
+.source-capture{grid-column:span 3;min-height:440px}
+.source-capture.weight-wide{grid-column:span 6}
+.source-capture.weight-feature{grid-column:span 6;grid-row:span 2;min-height:650px}
+.source-capture.weight-feature .capture-media{min-height:330px}
+.source-capture.weight-feature .capture-media img{height:360px}
+.source-capture.weight-feature .capture-body h3{font-size:clamp(30px,3vw,48px)}
+.source-capture.weight-wide .capture-body h3{font-size:31px}
+.capture-label-row{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:12px}
+.capture-collection{display:inline-flex;width:max-content;padding:5px 8px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--blue);font-size:8px;font-weight:900;letter-spacing:.1em}
+.capture-badge{display:inline-flex;width:max-content;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.07);color:#d9d1c7;font-size:8px;font-weight:900;letter-spacing:.06em}
+.capture-badge.screenshot-required,.capture-badge.screenshot-queued{background:rgba(245,207,103,.11);color:var(--yellow)}
+.capture-badge.official-page,.capture-badge.official-thumbnail,.capture-badge.youtube-thumbnail{background:rgba(185,239,134,.1);color:var(--green)}
+.capture-media{min-height:205px}
+.capture-media img{height:235px}
+.media-origin{position:absolute;z-index:3;left:10px;bottom:10px;padding:6px 9px;border:1px solid rgba(255,255,255,.15);border-radius:999px;background:rgba(5,5,5,.74);backdrop-filter:blur(10px);color:#e7dfd4;font-size:8px;font-weight:900;letter-spacing:.09em}
+.source-poster{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;background:radial-gradient(circle at 82% 8%,rgba(255,255,255,.1),transparent 40%),linear-gradient(145deg,#1a1815,#080706)}
+.source-poster small{margin-bottom:auto;color:var(--orange);font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.source-poster strong{max-width:95%;font-size:clamp(26px,2.6vw,44px);line-height:.92;letter-spacing:-.045em}
+.source-poster span{margin-top:13px;color:rgba(255,255,255,.5);font-size:9px;direction:ltr;text-align:left}
+.source-poster.facebook{background:radial-gradient(circle at 80% 10%,rgba(82,137,255,.3),transparent 45%),linear-gradient(145deg,#102653,#07101f)}
+.source-poster.instagram{background:radial-gradient(circle at 80% 10%,rgba(255,164,70,.35),transparent 40%),linear-gradient(145deg,#6c238e,#c33867 55%,#111)}
+.source-poster.research{background:linear-gradient(145deg,#eee6d8,#aaa092);color:#1b1510}
+.source-poster.research small,.source-poster.research span{color:#473d34}
+.source-poster.youtube,.source-poster.television,.source-poster.music{background:radial-gradient(circle at 80% 10%,rgba(255,60,60,.24),transparent 45%),linear-gradient(145deg,#5d1111,#130606)}
+.source-poster.press,.source-poster.writing{background:linear-gradient(145deg,#f1eadf,#aaa094);color:#18130f}
+.source-poster.press small,.source-poster.press span,.source-poster.writing small,.source-poster.writing span{color:#4c4036}
+.archive-error-card{grid-column:1/-1;min-height:280px}
+@media(max-width:1250px){
+  .archive-snapshot-strip{grid-template-columns:repeat(3,1fr)}
+  .archive-snapshot-strip article{border-bottom:1px solid var(--line)}
+  .source-capture{grid-column:span 4}
+  .source-capture.weight-wide,.source-capture.weight-feature{grid-column:span 8}
+}
+@media(max-width:980px){
+  .archive-intelligence-head{grid-template-columns:1fr}
+  .archive-intelligence-grid{grid-template-columns:1fr;grid-template-areas:"press" "map" "ledger" "policy"}
+  .press-wall-panel{min-height:0}
+  .press-wall-panel img{min-height:0;height:auto;object-fit:contain}
+  .source-capture{grid-column:span 6}
+  .source-capture.weight-wide,.source-capture.weight-feature{grid-column:span 12;grid-row:auto}
+}
+@media(max-width:650px){
+  .archive-v2-hero{grid-template-columns:1fr}
+  .archive-snapshot-strip{grid-template-columns:1fr 1fr}
+  .archive-intelligence{width:calc(100% - 20px);margin-bottom:85px}
+  .archive-intelligence-head h2{font-size:54px}
+  .archive-map-panel,.tiktok-ledger-panel,.capture-policy-panel{padding:21px}
+  .archive-map-steps{grid-template-columns:1fr}
+  .tiktok-ledger-row{grid-template-columns:28px 76px 64px 1fr}
+  .tiktok-ledger-row small{max-width:90px}
+  .source-wall{grid-template-columns:1fr}
+  .source-capture,.source-capture.weight-wide,.source-capture.weight-feature{grid-column:1;min-height:410px}
+  .source-capture.weight-feature .capture-media{min-height:220px}
+  .source-capture.weight-feature .capture-media img{height:250px}
+}
+@media(prefers-reduced-motion:reduce){.source-capture{transition:none}}
