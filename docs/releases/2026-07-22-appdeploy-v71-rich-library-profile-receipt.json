@@ -1,0 +1,46 @@
+{
+  "release": "igor-rich-library-profile-20260722-2",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v71",
+    "version_id": "1784739958214",
+    "feature_version_name": "v70",
+    "feature_version_id": "1784738913810",
+    "rollback_safe_version_name": "v69",
+    "rollback_safe_version_id": "1784737413045",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "scope": [
+    "replaced the sparse first fold with a populated editorial split hero",
+    "added a sixty-second founder dossier and a clear Igor-StartOn-7YA thesis",
+    "added four selected-work universes for StartOn, evidence architecture, media studio and culture",
+    "added a current-work desk with explicit active, proposal and concept statuses",
+    "added a governed source-library wall for Drive, Notion, Gmail, GitHub, public web and owner exports",
+    "added a dedicated speaker and press room with topics, formats, languages, bios and booking actions",
+    "enriched the fulfillment companion context without exposing private library links or correspondence",
+    "repaired mobile first-fold composition and print CSS to prevent blank black pages",
+    "updated SEO metadata, sitemap.xml and llms.txt"
+  ],
+  "truth_boundaries": [
+    "private libraries inform editorial context but private links, addresses and correspondence are not exposed",
+    "media outlets are sources and are not represented as partners",
+    "ecosystem membership is not represented as a commercial partnership",
+    "a proposal is not represented as approved or active",
+    "AI thematic visuals remain disclosed as non-historical imagery"
+  ],
+  "qa": {
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "stale_test_contracts_corrected": 2
+  },
+  "source_note": "AppDeploy v71 is the production runtime snapshot. This receipt records the release and QA result; it does not assert that GitHub main is byte-identical to the AppDeploy snapshot.",
+  "published_at": "2026-07-22T17:05:58Z"
+}
