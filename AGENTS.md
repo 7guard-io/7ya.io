@@ -19,22 +19,26 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 - Repository: `7guard-io/7ya.io`
 - Default branch: `main`
 - Public domain: `https://7ya.io`
-- Current recovery runtime source: `ops/vercel-canonical-proxy`
-- Vercel recovery project: `7ya-static-site`
-- Vercel project root directory: `ops/vercel-canonical-proxy`
+- Current production provider: AppDeploy v2
+- Current production app: `697a008fddc309b142`
+- Current verified version: `v49` / `1784701523083`
+- Current build marker: `igor-integrated-personal-system-20260722-1`
 - Production branch contract: `main`
+- Production receipt: `docs/releases/2026-07-22-appdeploy-v49-production-receipt.json`
 
-The separate Vercel project named `7ya.io` has historically been connected to the older repository `vepretski/7ya.io`. It must not be treated as the canonical source-control plane.
+GitHub remains the canonical source-control and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
 
-Never copy changes from an old repository into the canonical repository without comparing provenance, routes and content first.
+The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
+
+Never copy changes from an old repository or provider snapshot into the canonical repository without comparing provenance, routes and content first.
 
 ## 3. Current control-plane state
 
-Read `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata.
+Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
 
 GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
 
-Vercel is the independent recovery deployment plane while GitHub remains the source-control and review plane.
+AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving export and comparison of the verified AppDeploy snapshot against `main`.
 
 ## 4. Public experience contract
 
@@ -49,6 +53,7 @@ Required principles:
 - The primary conversion action is **לתיאום שיחה**.
 - The secondary conversion action is **לצפייה בראיות**.
 - Every depth page must remain coherent with the Creatorverse homepage.
+- The digital companion must identify itself as a 7YA tool; it is not Igor and must not speak on his behalf.
 
 Critical public surfaces include:
 
@@ -96,14 +101,15 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 
 ## 7. Architecture and modularity
 
-The public site is static-first and provider-independent wherever practical.
+The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
 
-- Root public files are the canonical content source.
-- `ops/vercel-canonical-proxy` is a deployable recovery bridge pinned to one immutable canonical source SHA, not a separate editorial universe.
-- Update public content only in the root canonical source. A release-control PR must pin the recovery bridge to the merged content SHA before production deployment.
+- GitHub is the canonical governance, review and long-term source-control plane.
+- AppDeploy version `1784701523083` is the verified production runtime snapshot.
+- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
+- Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
 - Keep provider configuration isolated from content.
-- Preserve rollback paths; do not destroy the previous working origin before the replacement passes all gates.
+- Preserve rollback paths; do not destroy the previous working version before the replacement passes all gates.
 - Do not add a second production source without an explicit cutover and rollback plan.
 
 ## 8. Required validation
@@ -130,18 +136,28 @@ For every critical route, require:
 - no unsupported claims;
 - usable mobile and desktop rendering.
 
+For AppDeploy production, additionally require:
+
+- terminal deployment status `ready`;
+- all acceptance tests passed;
+- no frontend or backend errors;
+- active custom-domain records;
+- a unique, no-cache server-side probe that proves `7ya.io` serves the intended build marker;
+- an immutable release receipt and explicit rollback version.
+
 ## 9. Deployment discipline
 
 1. Work on a focused branch.
 2. Make the smallest coherent change.
-3. Update source and recovery artifact together when applicable.
+3. Update source, provider snapshot and release receipt together when applicable.
 4. Add or update deterministic gates.
 5. Open a PR with scope, evidence, privacy and rollback notes.
 6. Address review comments in code and resolve their threads.
-7. Obtain a real preview or manual runtime verification before production merge when CI is unavailable.
-8. Merge only when the source SHA, artifact and intended deployment can be tied together.
-9. Do not change DNS until the exact repository-backed deployment is READY and the complete route gate passes.
+7. Obtain a real preview or manual runtime verification before production promotion when CI is unavailable.
+8. Tie the intended build marker, provider version, custom domain and repository receipt together.
+9. Do not claim production success until `7ya.io` itself passes the canonical build probe.
 10. Preserve Cloudflare mail-related records and existing nameservers during web-origin changes.
+11. After an AppDeploy-first emergency release, export the exact runtime source back to GitHub before beginning the next broad redesign.
 
 ## 10. Agent behavior toward the owner
 
@@ -153,7 +169,7 @@ Agents must:
 - distinguish code completion from publication;
 - distinguish a PR from a deployed release;
 - identify the exact blocker and the exact next safe action;
-- use connected GitHub, Gmail and Vercel evidence instead of guessing;
+- use connected GitHub, AppDeploy, Gmail and provider evidence instead of guessing;
 - avoid asking Igor for information already available in the repository, email or provider state;
 - never say the site is updated until the public URL has been verified.
 
@@ -167,6 +183,7 @@ Do not restore:
 - copied instructions from unrelated repositories or courses;
 - repeated portrait walls;
 - unsupported political, institutional, partnership or audience claims;
-- production configuration pointing silently at an obsolete repository.
+- production configuration pointing silently at an obsolete repository;
+- an assistant that impersonates Igor or implies that automated text is his personal speech.
 
 The objective is one coherent public system: **a real person, real work, visible sources and a clear invitation to act.**
