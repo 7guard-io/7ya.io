@@ -14,7 +14,7 @@
   },
   "scope": [
     "replaced the shallow homepage media-logo rail with a deep searchable media library",
-    "curated 36 public media records spanning television, podcasts, press, authored columns, viral moments, music, social platforms and StartOn",
+    "curated 37 public media records spanning television, podcasts, press, authored columns, viral moments, music, social platforms and StartOn",
     "added category filters, search, evidence status, dated metrics and an editorial year index",
     "added a privacy-enhanced inline YouTube player that loads only after explicit user action",
     "added resilient image fallbacks to prevent blocked publisher screenshots from leaving blank cards",
