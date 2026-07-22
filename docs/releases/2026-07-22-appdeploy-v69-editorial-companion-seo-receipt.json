@@ -1,0 +1,41 @@
+{
+  "release": "igor-editorial-companion-seo-20260722-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v69",
+    "version_id": "1784737413045",
+    "rollback_version_name": "v68",
+    "rollback_version_id": "1784733990197",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "scope": [
+    "premium editorial visual system inspired by senior business journalism without copying a publisher brand",
+    "floating interactive #7YA fulfillment companion connected to the existing server-side AI route",
+    "dedicated fulfillment route with seven-gate action map",
+    "dedicated media route with privacy-enhanced embedded YouTube player",
+    "shorter homepage media selections using a shared media catalog",
+    "relationship status labels separating active systems, documented workflows, ecosystem membership and proposals",
+    "SEO metadata, Schema.org graph, robots.txt, sitemap.xml and llms.txt"
+  ],
+  "truth_boundaries": [
+    "the companion is not Igor and does not speak on his behalf",
+    "media outlets are sources and are not represented as partners",
+    "ecosystem membership is not represented as a commercial partnership",
+    "a pilot proposal is not represented as approved or active",
+    "AI thematic visuals remain disclosed as non-historical imagery"
+  ],
+  "qa": {
+    "suite_status": "passed",
+    "reported_total_jobs": 10,
+    "reported_passed_jobs": 9,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0
+  },
+  "source_note": "AppDeploy v69 is the production runtime snapshot. This receipt records the release; it does not assert that GitHub main is byte-identical to the AppDeploy snapshot.",
+  "published_at": "2026-07-22T16:23:33Z"
+}
