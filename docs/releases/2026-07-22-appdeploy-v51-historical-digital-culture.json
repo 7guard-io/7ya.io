@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "service": "7ya-frontend",
+  "environment": "production",
+  "status": "READY",
+  "verified_on": "2026-07-22",
+  "verified_at_asia_jerusalem": "2026-07-22T10:49:06+03:00",
+  "provider": {
+    "name": "appdeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v51",
+    "version": "1784706055999"
+  },
+  "release": {
+    "id": "igor-historical-digital-culture-20260722-1",
+    "build_marker": "igor-historical-digital-culture-20260722-1",
+    "experience": "IGOR_HISTORICAL_DIGITAL_CULTURE_ARCHIVE",
+    "primary_surface": "#historical-impact",
+    "public_navigation_label_he": "השפעה היסטורית",
+    "covered_period": "2011-2026",
+    "filters": [
+      "culture",
+      "society",
+      "public service",
+      "systems"
+    ],
+    "eras": [
+      "2011 early public record",
+      "2015-2021 field to feed",
+      "2020-2024 Ido Vepretski music",
+      "2022 StartOn: attention to institution",
+      "2022-2023 writing about the digital generation",
+      "2023 cross-platform fatherhood story",
+      "2023-2024 short video and multilingual civic voice",
+      "2025-2026 public memory and 7YA system"
+    ]
+  },
+  "evidence_basis": {
+    "owner_archive": "Igor_Vepretski_Public_Influence_AUDITED_v4_FORENSIC_PASS_III_2026-06-08.xlsx",
+    "historical_album": "Igor Vepretski / #7YA life album and 7YA Song of History",
+    "public_sources": [
+      "external press archive",
+      "publisher pages",
+      "official social profiles",
+      "owner-export snapshots",
+      "music catalogues",
+      "StartOn official site"
+    ],
+    "selected_dated_signals": [
+      "2011 earliest indexed press record",
+      "TikTok owner snapshot 2026-06-02: 904 posts, 12,655 followers, 273,860 likes",
+      "Instagram owner snapshot 2023-11-23: 213K views, 7.4K likes, 1.1K comments, 53 shares",
+      "external Facebook index for the fatherhood story: 4,100 reactions, 148 comments, 26 shares"
+    ]
+  },
+  "claim_boundary": {
+    "approved_summary": "Documented influence reached audiences in the tens of thousands over time, with individual documented items reaching hundreds of thousands.",
+    "forbidden_summary": "Do not manufacture one cumulative total reach number by adding incompatible views, followers, likes, duplicates or cross-platform distributions.",
+    "method": "Show each dated metric separately and distinguish owned telemetry, external distribution, publisher coverage and institutional outcome."
+  },
+  "acceptance": {
+    "historical_archive_visible": true,
+    "historical_filters_interactive": true,
+    "direct_sources_visible": true,
+    "mobile_and_desktop_checked": true,
+    "frontend_errors": [],
+    "backend_errors": [],
+    "initial_v51_qa": {
+      "status": "passed",
+      "passed": 10,
+      "total": 10,
+      "qa_run_group_id": "634186220113011e"
+    },
+    "canonical_build_probe": {
+      "status": "MATCH",
+      "expected": "igor-historical-digital-culture-20260722-1",
+      "visible_status": "LIVE · CANONICAL VERIFIED"
+    }
+  },
+  "custom_domains": [
+    {
+      "hostname": "7ya.io",
+      "status": "active"
+    },
+    {
+      "hostname": "www.7ya.io",
+      "status": "active"
+    }
+  ],
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_exported_to_repository": false,
+    "alignment_status": "RELEASE_RECEIPT_RECORDED_RUNTIME_SOURCE_EXPORT_PENDING",
+    "note": "This receipt records the verified AppDeploy runtime and editorial claim boundaries. It does not claim the complete v51 runtime source has already been exported to GitHub."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version_name": "v49",
+    "version": "1784701523083",
+    "label": "integrated personal system before historical influence archive"
+  },
+  "tracking": {
+    "master_issue": 268
+  }
+}
