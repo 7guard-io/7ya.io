@@ -1,0 +1,37 @@
+{
+  "receipt_type": "appdeploy_production_release",
+  "released_at": "2026-07-22T15:26:30.197Z",
+  "public_domain": "https://7ya.io",
+  "provider": "AppDeploy v2",
+  "app_id": "697a008fddc309b142",
+  "version_name": "v68",
+  "version": "1784733990197",
+  "build_marker": "igor-media-flow-20260722-1",
+  "rollback": {
+    "version_name": "v67",
+    "version": "1784732024681"
+  },
+  "scope": [
+    "distributed press and podcast flow across the homepage",
+    "source-linked television, podcast and interview cards",
+    "media outlet logo rail with direct source links",
+    "partnership and framework rail with explicit evidence statuses",
+    "mobile-responsive media layout and navigation entry"
+  ],
+  "truth_boundaries": [
+    "media outlets are not presented as partners",
+    "ecosystem membership is not presented as a commercial partnership",
+    "documented workflow is not presented as institutional endorsement",
+    "pilot proposal is not presented as approved or active"
+  ],
+  "verification": {
+    "deployment_status": "ready",
+    "e2e_tests": "10/10 passed",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "apex_domain": "active and verified",
+    "www_domain": "active and verified"
+  },
+  "source_control_note": "The exact AppDeploy v68 runtime snapshot remains the production source for this release. GitHub records governance and receipt metadata until the runtime snapshot is exported and compared against main."
+}
