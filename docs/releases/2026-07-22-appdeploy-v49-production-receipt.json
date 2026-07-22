@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "service": "7ya-frontend",
+  "environment": "production",
+  "status": "READY",
+  "verified_on": "2026-07-22",
+  "verified_at_utc": "2026-07-22T06:31:29Z",
+  "verified_at_asia_jerusalem": "2026-07-22T09:31:29+03:00",
+  "provider": {
+    "name": "appdeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v49",
+    "version": "1784701523083"
+  },
+  "release": {
+    "id": "igor-integrated-personal-system-20260722-1",
+    "build_marker": "igor-integrated-personal-system-20260722-1",
+    "experience": "IGOR_INTEGRATED_PERSONAL_SYSTEM",
+    "identity_hierarchy": [
+      "Igor Vepretski — human core",
+      "StartOn — social mission",
+      "7YA — organizing and action system"
+    ],
+    "assistant_identity": "7YA Personal Companion; explicitly not Igor and does not speak on his behalf"
+  },
+  "acceptance": {
+    "e2e_tests": {
+      "status": "passed",
+      "passed": 10,
+      "total": 10,
+      "qa_run_group_id": "4299bf991116478b"
+    },
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": [],
+    "canonical_domain_probe": {
+      "status": "MATCH",
+      "expected": "igor-integrated-personal-system-20260722-1",
+      "visible_status": "LIVE · CANONICAL VERIFIED",
+      "method": "server-side no-store HTTP request to a unique canonical proof endpoint"
+    }
+  },
+  "custom_domains": [
+    {
+      "hostname": "7ya.io",
+      "status": "active",
+      "dns_mode": "apex_address",
+      "fallback_ipv4": "18.232.7.146"
+    },
+    {
+      "hostname": "www.7ya.io",
+      "status": "active",
+      "dns_mode": "subdomain_cname",
+      "target": "proxy-v2.appdeploy.ai"
+    }
+  ],
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_exported_to_repository": false,
+    "alignment_status": "RELEASE_RECEIPT_RECORDED_RUNTIME_SOURCE_EXPORT_PENDING",
+    "note": "This receipt records the independently verified production runtime. It does not claim that the full AppDeploy source snapshot has already been exported back to GitHub."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version_name": "v46",
+    "version": "1784699727642",
+    "label": "integrated personal system before canonical HTTP proof"
+  },
+  "tracking": {
+    "master_issue": 268
+  }
+}
