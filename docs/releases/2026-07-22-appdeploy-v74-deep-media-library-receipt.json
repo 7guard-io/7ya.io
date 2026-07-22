@@ -1,0 +1,40 @@
+{
+  "release": "igor-deep-media-library-20260722-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v74",
+    "version_id": "1784747273463",
+    "rollback_version_name": "v73",
+    "rollback_version_id": "1784743688208",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "scope": [
+    "replaced the shallow homepage media-logo rail with a deep searchable media library",
+    "curated 36 public media records spanning television, podcasts, press, authored columns, viral moments, music, social platforms and StartOn",
+    "added category filters, search, evidence status, dated metrics and an editorial year index",
+    "added a privacy-enhanced inline YouTube player that loads only after explicit user action",
+    "added resilient image fallbacks to prevent blocked publisher screenshots from leaving blank cards",
+    "added source-governance labels while keeping private Drive, Notion and Gmail URLs out of the public interface",
+    "updated homepage navigation, SEO metadata, release markers and visual QA expectations"
+  ],
+  "truth_boundaries": [
+    "private source libraries inform curation but are not exposed as public links",
+    "metrics are shown as dated item-level snapshots and are not summed into an unsupported total reach claim",
+    "media outlets remain sources and are not represented as partners",
+    "owner snapshots, public publisher records and indexed records remain visibly distinct"
+  ],
+  "qa": {
+    "suite_status": "passed",
+    "total_jobs": 9,
+    "passed_jobs": 9,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0
+  },
+  "source_note": "AppDeploy v74 is the production runtime snapshot. This receipt records the release and QA result; it does not assert that GitHub main is byte-identical to the AppDeploy snapshot.",
+  "published_at": "2026-07-22T19:07:53Z"
+}
