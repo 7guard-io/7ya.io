@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "service": "7ya-frontend",
+  "environment": "production",
+  "status": "READY",
+  "verified_on": "2026-07-22",
+  "provider": {
+    "name": "appdeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v52",
+    "version": "1784707643651"
+  },
+  "release": {
+    "id": "igor-knowledge-footage-home-20260722-1",
+    "build_marker": "igor-knowledge-footage-home-20260722-1",
+    "experience": "IGOR_KNOWLEDGE_FOOTAGE_HOME",
+    "primary_surface": "#knowledge-footage",
+    "public_navigation_label_he": "ארכיון חזותי",
+    "frame_count": 12,
+    "production_methods": [
+      "SOURCE CAPTURE",
+      "VIDEO FRAME",
+      "EDITORIAL RECONSTRUCTION"
+    ],
+    "editorial_pipeline": [
+      "CAPTURE",
+      "CROP",
+      "CONTEXT",
+      "PROOF"
+    ],
+    "filters": [
+      "society",
+      "media",
+      "writing",
+      "music",
+      "StartOn"
+    ]
+  },
+  "content_strategy": {
+    "goal": "Move Igor Vepretski's real public archive onto the homepage as a dense visual narrative rather than a buried list of links.",
+    "source_capture": "Render a new public-page capture when an accessible source page can be represented visually.",
+    "video_frame": "Use a public video poster frame when it communicates the source more clearly than a page capture.",
+    "editorial_reconstruction": "When a platform blocks a reliable preview, generate a complete 7YA editorial card from verified metadata and label it explicitly as a reconstruction.",
+    "direct_source_requirement": "Every visual unit must retain a direct link to its public source.",
+    "no_empty_slot_rule": true
+  },
+  "editorial_boundaries": {
+    "capture_is_not_original_screenshot": "A newly rendered page capture must be labelled SOURCE CAPTURE and must not be described as the original historical screenshot.",
+    "reconstruction_disclosure": "Every regenerated or metadata-built visual must be labelled EDITORIAL RECONSTRUCTION.",
+    "prohibited": [
+      "bypassing authentication or paywalls",
+      "removing watermarks",
+      "presenting regenerated visuals as original evidence",
+      "inventing metrics, quotations or source relationships"
+    ],
+    "claims": "Metrics remain dated, source-specific and separate; the visual layer does not create a new cumulative reach claim."
+  },
+  "acceptance": {
+    "knowledge_footage_visible": true,
+    "homepage_position": "immediately after Igor's personal chapter and before the historical influence analysis",
+    "filtering_interactive": true,
+    "source_links_visible": true,
+    "mobile_horizontal_carousel": true,
+    "desktop_editorial_grid": true,
+    "frontend_errors": [],
+    "backend_errors": [],
+    "pre_promotion_qa": {
+      "status": "passed",
+      "passed": 10,
+      "total": 10,
+      "qa_run_group_id": "a4e4003e27703f0c"
+    },
+    "post_promotion_status": "READY",
+    "canonical_build_probe": {
+      "status": "MATCH",
+      "expected": "igor-knowledge-footage-home-20260722-1",
+      "visible_status": "LIVE · CANONICAL VERIFIED"
+    }
+  },
+  "custom_domains": [
+    {
+      "hostname": "7ya.io",
+      "status": "active"
+    },
+    {
+      "hostname": "www.7ya.io",
+      "status": "active"
+    }
+  ],
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_exported_to_repository": false,
+    "alignment_status": "RELEASE_RECEIPT_RECORDED_RUNTIME_SOURCE_EXPORT_PENDING",
+    "note": "This receipt preserves the verified runtime behavior and editorial method. It does not claim that the full AppDeploy v52 source snapshot has already been exported into GitHub."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version_name": "v51",
+    "version": "1784706055999",
+    "label": "historical digital culture archive before Knowledge Footage"
+  },
+  "tracking": {
+    "master_issue": 268
+  }
+}
