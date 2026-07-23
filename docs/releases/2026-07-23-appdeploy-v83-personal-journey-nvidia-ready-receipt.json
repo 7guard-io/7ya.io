@@ -1,0 +1,61 @@
+{
+  "release": "igor-nvidia-personal-journey-chat-20260723-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v83",
+    "version_id": "1784806680282",
+    "status": "ready",
+    "stable_rollback_version_name": "v81",
+    "stable_rollback_version_id": "1784794174778"
+  },
+  "companion": {
+    "experience": "personal shared journey",
+    "public_method": "Igor Vepretski's public story is used as a reflective lens, never as impersonation",
+    "progressive_fields": [
+      "name",
+      "northStar",
+      "reality",
+      "strength",
+      "barrier",
+      "firstProof"
+    ],
+    "memory_scope": "device-local",
+    "mobile_keyboard_strategy": "visualViewport synchronized full-height panel",
+    "provider_order": [
+      "nvidia",
+      "appdeploy-ai",
+      "local"
+    ]
+  },
+  "nvidia": {
+    "runtime_ready": true,
+    "endpoint": "NVIDIA NIM chat-completions endpoint",
+    "default_model": "nvidia/nemotron-3-nano-30b-a3b",
+    "secret_names_supported": [
+      "NVIDIA_API_KEY",
+      "NVIDIA_NIM_API_KEY"
+    ],
+    "configured_at_release": false,
+    "truth_boundary": "NVIDIA is displayed as active only after a valid backend secret is configured and a response is returned by that provider"
+  },
+  "privacy": [
+    "No live Gmail access is available to public visitors",
+    "Private email text, addresses and private URLs are not exposed",
+    "The personal profile and conversation memory are stored in the visitor's browser",
+    "The companion is not Igor and is not a replacement for human, medical, mental-health or professional advice"
+  ],
+  "qa": {
+    "qa_run_group_id": "3bea5edce0da8004",
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "mobile_companion_test": "passed: greeting, name capture, progress advance, goal question, visible composer, no horizontal overflow, truthful provider boundary",
+    "desktop_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784806731689/web.png",
+    "mobile_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784806731689/mobile.png"
+  },
+  "source_note": "AppDeploy v83 is the production runtime snapshot. This receipt records release intent and QA results; it does not assert that GitHub main is byte-identical to the AppDeploy source snapshot.",
+  "published_at": "2026-07-23T11:38:00Z"
+}
