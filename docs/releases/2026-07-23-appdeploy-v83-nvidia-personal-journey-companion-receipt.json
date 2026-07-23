@@ -1,0 +1,84 @@
+{
+  "release": "igor-nvidia-personal-journey-chat-20260723-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v83",
+    "version_id": "1784806680282",
+    "previous_version_name": "v82",
+    "previous_version_id": "1784800598705",
+    "known_visual_baseline_name": "v81",
+    "known_visual_baseline_id": "1784794174778",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "companion_experience": {
+    "public_name": "7YA Companion — המסע המשותף",
+    "entry_label": "המסע שלי",
+    "purpose": "A progressive self-actualization journey centered on the visitor and informed by principles from Igor Vepretski's public story without impersonating Igor.",
+    "journey_fields": [
+      "preferred name",
+      "north star",
+      "current reality",
+      "existing strength",
+      "real barrier",
+      "first visible proof within 24 hours"
+    ],
+    "outputs": [
+      "precise recognition",
+      "one relevant Igor public-story mirror",
+      "24-hour action",
+      "short route",
+      "seven-day check-in",
+      "visible progress checkpoint"
+    ]
+  },
+  "mobile_fix": [
+    "Uses window.visualViewport height to keep the companion inside the visible iPhone viewport when the keyboard opens",
+    "Locks background scroll while the companion is open",
+    "Keeps the composer visible above the keyboard",
+    "Supports Enter to send and Shift+Enter for a new line",
+    "Uses an auto-growing textarea and a clear enabled or disabled send state",
+    "Removes horizontal overflow and keeps the mobile panel full-screen"
+  ],
+  "provider_router": {
+    "order": [
+      "NVIDIA NIM when NVIDIA_API_KEY or NVIDIA_NIM_API_KEY is securely configured",
+      "AppDeploy AI structured reasoning",
+      "deterministic local journey engine"
+    ],
+    "nvidia_endpoint": "https://integrate.api.nvidia.com/v1/chat/completions",
+    "default_nvidia_model": "nvidia/nemotron-3-nano-30b-a3b",
+    "nvidia_secret_status_at_release": "not_attached",
+    "secure_secret_entry": "refreshed outside chat",
+    "truth_boundary": "The UI does not label NVIDIA as active unless the backend confirms a configured secret. NVIDIA integration does not imply partnership, sponsorship or endorsement."
+  },
+  "gmail_context_boundary": {
+    "used_privately_for_architecture": true,
+    "live_public_gmail_access": false,
+    "published_private_urls_or_correspondence": false,
+    "note": "Owner email context informed the methodology and NVIDIA routing requirement. The public companion cannot browse the owner's mailbox."
+  },
+  "privacy_and_identity": [
+    "The journey profile and conversation resume state are stored in the visitor's browser on that device",
+    "The companion explicitly states that it is not Igor and does not imply that Igor personally knows the visitor",
+    "The system avoids empty flattery, emotional dependency, diagnosis and claims of being a substitute for therapy or professional advice",
+    "Private Gmail, Drive and Notion URLs, addresses and correspondence are not exposed"
+  ],
+  "qa": {
+    "qa_run_group_id": "3bea5edce0da8004",
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors_in_release_snapshot": 0,
+    "mobile_companion_test": "Passed: opened המסע שלי, verified progress and privacy, sent היי, supplied a name, advanced to the goal question, and retained a visible working composer without horizontal overflow or false NVIDIA or Gmail claims.",
+    "desktop_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784806731689/web.png",
+    "mobile_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784806731689/mobile.png"
+  },
+  "source_note": "AppDeploy v83 is the production runtime snapshot. This receipt records release intent, architecture and QA evidence; it does not assert that GitHub main is byte-identical to the AppDeploy source snapshot.",
+  "published_at": "2026-07-23T11:38:00Z"
+}
