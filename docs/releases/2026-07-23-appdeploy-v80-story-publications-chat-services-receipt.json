@@ -1,0 +1,61 @@
+{
+  "release": "igor-story-publications-chat-services-20260723-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v80",
+    "version_id": "1784791069402",
+    "rollback_version_name": "v79",
+    "rollback_version_id": "1784788629783",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "public_center": [
+    "Igor Vepretski life story",
+    "authored publications and opinion columns",
+    "public posts and visual evidence",
+    "television, podcasts and media appearances",
+    "music and cultural work",
+    "StartOn social mission",
+    "public research and creation profiles"
+  ],
+  "service_layer_only": [
+    "archive search assistance",
+    "post and content drafting",
+    "media, podcast, panel and speaker proposals",
+    "analysis of pasted email or opportunities",
+    "claim and evidence-status checking",
+    "content planning and editorial workflows"
+  ],
+  "removed_from_public_homepage": [
+    "Google Drive, Gmail, Notion and GitHub source-library cards",
+    "current desk and operational status cards",
+    "Command Center and internal process language",
+    "public fulfillment tool route and large homepage companion section",
+    "Learning Nodes and private owner-archive process records",
+    "partnership and systems rails unrelated to the central public story"
+  ],
+  "visual_scope": [
+    "created an asymmetric publications-first editorial grid",
+    "assigned all eight existing 7YA visual assets distinct narrative roles in a visual biography",
+    "kept approved portrait, AI visual and editorial asset disclosures visible",
+    "preserved the governed first-party post and media visual system"
+  ],
+  "gmail_boundary": [
+    "Gmail was used privately to understand categories of speaker proposals, pilot outreach, publication activity, media pitches and podcast invitations",
+    "no email addresses, private correspondence or Gmail links are exposed publicly",
+    "the public chatbot explicitly states it has no live Gmail access and asks users to paste content for analysis"
+  ],
+  "qa": {
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0
+  },
+  "source_note": "AppDeploy v80 is the production runtime snapshot. This receipt records the release and QA result; it does not assert that GitHub main is byte-identical to the AppDeploy snapshot.",
+  "published_at": "2026-07-23T07:17:49Z"
+}
