@@ -1,0 +1,46 @@
+{
+  "release": "igor-first-party-evidence-visuals-20260723-4",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v79",
+    "version_id": "1784788629783",
+    "rollback_baseline_version_name": "v75",
+    "rollback_baseline_version_id": "1784751294208",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "scope": [
+    "replaced automated third-party post screenshots with first-party editorial evidence posters",
+    "kept original YouTube thumbnails only for verified public video and standardized them to stable hqdefault assets",
+    "added local visual fallbacks so blocked external publishers cannot create blank media cards",
+    "made Igor Vepretski the persistent human thread across post, portrait, media and StartOn visuals",
+    "distinguished approved public portraits, disclosed 7YA editorial or AI scenes, public video frames and source-linked evidence posters",
+    "rebuilt the post and portrait wall with filters for posts, Igor Vepretski and broadcasts",
+    "updated the deep media library and compact homepage media chapters to use the same governed visual system",
+    "fixed SPA navigation for speaker, media and fulfillment pages and added canonical subpath redirect documents to prevent HTTP 403",
+    "fixed a verified missing YouTube max-resolution thumbnail by using stable high-quality thumbnail URLs",
+    "updated mobile behavior, SEO release markers and deterministic visual tests"
+  ],
+  "truth_boundaries": [
+    "an editorial evidence poster is labeled and is not represented as an original post screenshot",
+    "an AI or editorial scene is disclosed and is not represented as historical event documentation",
+    "a YouTube thumbnail is used only as a public video frame and links to the original source",
+    "private Drive, Notion and Gmail URLs remain excluded from the public interface",
+    "item-level dated metrics are not summed into an unsupported total reach claim",
+    "media outlets remain sources and are not represented as partners"
+  ],
+  "qa": {
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "verified_route_regression_fixed": "speaker static subpath HTTP 403"
+  },
+  "source_note": "AppDeploy v79 is the production runtime snapshot. This receipt records the release and QA result; it does not assert that GitHub main is byte-identical to the AppDeploy snapshot.",
+  "published_at": "2026-07-23T06:37:09Z"
+}
