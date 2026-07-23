@@ -1,0 +1,73 @@
+{
+  "release": "igor-real-visual-archive-20260723-1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "version_name": "v81",
+    "version_id": "1784794174778",
+    "rollback_version_name": "v80",
+    "rollback_version_id": "1784791069402",
+    "status": "ready"
+  },
+  "canonical_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "visual_direction": [
+    "Replaced the AI-led homepage hero with a real public Wikimedia Commons portrait of Igor Vepretski",
+    "Replaced the repeated eight-frame AI visual biography with seven public moments based on press photography, publisher imagery and original video frames",
+    "Rebuilt the visual archive around real portraits, public press images, publisher images and original YouTube frames",
+    "Removed the synthetic human-thread overlays and editorial evidence posters from the public visual wall",
+    "Kept approved portrait fallbacks explicitly labelled when an original publication image is unavailable"
+  ],
+  "public_archive": {
+    "indexed_public_records": 37,
+    "real_or_explicitly_approved_visual_assets": 12,
+    "initial_visual_assets_visible": 8,
+    "additional_visual_assets_on_expand": 4,
+    "additional_public_shelf_records": 16,
+    "categories": [
+      "television",
+      "podcasts",
+      "press",
+      "authored writing",
+      "viral posts",
+      "music",
+      "social platforms",
+      "StartOn"
+    ]
+  },
+  "homepage_simplification": [
+    "Removed the old giant life-path node render and saved-route interface",
+    "Removed repeated AI photo chapters and the AI visual biography from the homepage render",
+    "Removed the public deep-media application block while preserving the searchable public archive",
+    "Kept operational services inside the chatbot only",
+    "Reduced frontend source from 1116 to 985 lines and total source from 1268 to 1137 lines"
+  ],
+  "optimization": [
+    "Added content-visibility and intrinsic-size containment to below-fold editorial sections",
+    "Added lazy loading and async decoding for below-fold public imagery",
+    "Defined source-specific object positioning and responsive aspect treatment",
+    "Converted the mobile public shelf into a horizontal snap carousel",
+    "Limited the visual wall to eight initial assets with four available on explicit expansion",
+    "Added first-party fallback handling for every external public image"
+  ],
+  "truth_boundaries": [
+    "No AI scene is presented as historical documentation in the new homepage visual system",
+    "Media publishers are sources, not partners",
+    "Private Drive, Notion and Gmail links or correspondence are not exposed",
+    "Approved portrait fallback use is labelled when it is not the original article or event photograph"
+  ],
+  "qa": {
+    "qa_run_group_id": "0486a2c011997165",
+    "suite_status": "passed",
+    "total_jobs": 10,
+    "passed_jobs": 10,
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "desktop_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784794234403/web.png",
+    "mobile_screenshot": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1784794234403/mobile.png"
+  },
+  "source_note": "AppDeploy v81 is the production runtime snapshot. This receipt records release intent and QA results; it does not assert that GitHub main is byte-identical to the AppDeploy source snapshot.",
+  "published_at": "2026-07-23T08:09:34Z"
+}
