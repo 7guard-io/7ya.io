@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>7YA Control | מצב אתר, גרסה ותקינות</title>
+  <meta name="description" content="לוח בקרה ציבורי לקריאת מצב 7ya.io: גרסה, בריאות, מסלולים, PWA וייצוא דוח אבחון — ללא מידע רגיש או הרשאות כתיבה.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#06080b">
+  <link rel="canonical" href="https://7ya.io/control/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/styles/7ya-control-page-20260726.css?v=1">
+  <link rel="stylesheet" href="/styles/7ya-control-layer-20260726.css?v=1">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="/"><span class="brand-mark">7</span><span><b>7YA CONTROL</b><small>READ-ONLY OPERATIONS</small></span></a>
+      <div class="top-actions">
+        <a class="button" href="https://github.com/7guard-io/7ya.io" rel="noopener noreferrer">Source ↗</a>
+        <button class="button primary" id="refreshButton" type="button">רענון בדיקות</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero">
+      <p class="hero-code">7YA.IO · PUBLIC OPERATIONS CONTROL</p>
+      <h1>אתר שלא רק נראה טוב.<br><span>אתר שיודע לדווח.</span></h1>
+      <p>לוח קריאה תפעולי לבדיקת גרסה, בריאות, מסלולים, PWA וחיבור. אין כאן סודות, כתיבה לשרת או הרשאות מנהל — רק תמונת מצב שאפשר לבדוק ולייצא.</p>
+      <div class="status-line">
+        <span class="status-chip" id="releaseChip">RELEASE · CHECKING</span>
+        <span class="status-chip" id="healthChip">HEALTH · CHECKING</span>
+        <span class="status-chip" id="routesChip">ROUTES · CHECKING</span>
+        <span class="status-chip" id="swChip">PWA · CHECKING</span>
+        <span class="status-chip" id="networkChip">NETWORK · CHECKING</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head"><h2>מצב מערכת.</h2><p>הנתונים נטענים מהאתר עצמו בזמן אמת. אם רכיב אינו זמין, הלוח מסמן כשל במקום להסתיר אותו.</p></div>
+        <div class="dashboard">
+          <article class="panel"><small>RELEASE</small><h3>גרסה פעילה</h3><p id="releaseName">טוען…</p><div class="value" id="releaseSha">—</div></article>
+          <article class="panel"><small>PROVIDER</small><h3>סביבת פרסום</h3><p id="releaseProvider">טוען…</p><div class="value" id="releaseLatency">—</div></article>
+          <article class="panel"><small>HEALTH</small><h3>נקודת בריאות</h3><p id="healthValue">טוען…</p><div class="value" id="healthLatency">—</div></article>
+          <article class="panel"><small>PWA</small><h3>Service Worker</h3><p id="swValue">טוען…</p><div class="value" id="swScope">—</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head"><h2>בדיקת מסלולים.</h2><p>בדיקה מקבילית של עמודי הליבה. התוצאה כוללת קוד HTTP וזמן תגובה מהדפדפן הנוכחי.</p></div>
+        <div class="route-grid" id="routeGrid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head"><h2>אבחון וייצוא.</h2><p>ניתן להעתיק או להוריד snapshot טכני לשיתוף עם מפתח, תמיכה או כלי AI — ללא cookies, tokens או מידע אישי שמור.</p></div>
+        <div class="ops-grid">
+          <pre class="log" id="opsLog" aria-live="polite"></pre>
+          <aside class="action-panel">
+            <h3>פעולות.</h3>
+            <div class="action-list">
+              <button class="button primary" id="checkRoutesButton" type="button"><span>בדיקת מסלולים מחדש</span><span>↻</span></button>
+              <button class="button" id="copyReportButton" type="button"><span>העתקת דוח JSON</span><span>⌘C</span></button>
+              <button class="button" id="downloadReportButton" type="button"><span>הורדת דוח אבחון</span><span>↓</span></button>
+              <a class="button" href="/release.json"><span>פתיחת release.json</span><span>↗</span></a>
+              <a class="button" href="/api/health/"><span>פתיחת Health API</span><span>↗</span></a>
+              <a class="button" href="/"><span>חזרה לאתר</span><span>←</span></a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">7YA CONTROL · READ ONLY · NO SECRETS · NO WRITE ACCESS · 2026</footer>
+
+  <script src="/scripts/7ya-control-layer-20260726.js" defer></script>
+  <script src="/scripts/7ya-control-page-20260726.js" defer></script>
+</body>
+</html>

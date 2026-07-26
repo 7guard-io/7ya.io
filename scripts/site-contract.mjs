@@ -20,6 +20,7 @@ export const canonicalRoutes = [
   'media',
   'articles',
   'contact',
+  'control',
   'delta-audit',
 ];
 
@@ -57,6 +58,7 @@ export const publicRootFiles = [
   'release.json',
   'robots.txt',
   'service-worker.js',
+  'site.webmanifest',
   'sitemap.xml',
   'sw.js',
 ];
@@ -64,7 +66,10 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  '7ya-control-layer-20260726.css',
+  '7ya-control-page-20260726.css',
   '7ya-experience-guide-20260716.css',
+  '7ya-page-upgrade-20260726.css',
   '7ya-signal-key-20260715.css',
   '7ya-tactical-ontology-20260717.css',
   '7ya-visual-system-v1.css',
@@ -90,6 +95,8 @@ export const publicStyleFiles = [
 ];
 
 export const publicScriptFiles = [
+  '7ya-control-layer-20260726.js',
+  '7ya-control-page-20260726.js',
   '7ya-experience-guide-20260716.js',
   '7ya-signal-key-20260715.js',
   '7ya-tactical-ontology-20260717.js',
@@ -120,8 +127,13 @@ export const criticalArtifactPaths = [
   'verify/index.html',
   'ledger/index.html',
   '7ya/index.html',
+  'control/index.html',
   'api/health/index.html',
+  'site.webmanifest',
+  'styles/7ya-control-layer-20260726.css',
+  'styles/7ya-control-page-20260726.css',
   'styles/7ya-experience-guide-20260716.css',
+  'styles/7ya-page-upgrade-20260726.css',
   'styles/7ya-signal-key-20260715.css',
   'styles/7ya-tactical-ontology-20260717.css',
   'styles/7ya-visual-system-v1.css',
@@ -136,6 +148,8 @@ export const criticalArtifactPaths = [
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
+  'scripts/7ya-control-layer-20260726.js',
+  'scripts/7ya-control-page-20260726.js',
   'scripts/7ya-signal-key-20260715.js',
   'scripts/7ya-experience-guide-20260716.js',
   'scripts/7ya-tactical-ontology-20260717.js',
@@ -144,6 +158,7 @@ export const criticalArtifactPaths = [
   'scripts/history-song-core-20260714.js',
   'scripts/igor-story-cinema-20260716.js',
   'scripts/igor-personal-hero-20260716.js',
+  'assets/7ya-app-icon.svg',
   'assets/personal-hero-20260716/igor-hero.webp',
   'assets/personal-hero-20260716/igor-executive.webp',
   'assets/personal-hero-20260716/igor-public-service.webp',

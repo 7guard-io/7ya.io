@@ -1,0 +1,44 @@
+{
+  "id": "/",
+  "name": "7YA — Igor Vepretski",
+  "short_name": "7YA",
+  "description": "הבית הציבורי של איגור ופרצקי: מסע, StartOn, ראיות ופעולה.",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#080a0d",
+  "theme_color": "#080a0d",
+  "categories": ["social", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/assets/7ya-app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "איגור ופרצקי",
+      "short_name": "איגור",
+      "url": "/igor-vepretski/",
+      "icons": [{"src": "/assets/7ya-app-icon.svg", "sizes": "any", "type": "image/svg+xml"}]
+    },
+    {
+      "name": "StartOn",
+      "short_name": "StartOn",
+      "url": "/starton/",
+      "icons": [{"src": "/assets/7ya-app-icon.svg", "sizes": "any", "type": "image/svg+xml"}]
+    },
+    {
+      "name": "Control",
+      "short_name": "Control",
+      "url": "/control/",
+      "icons": [{"src": "/assets/7ya-app-icon.svg", "sizes": "any", "type": "image/svg+xml"}]
+    }
+  ]
+}
