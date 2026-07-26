@@ -23,7 +23,8 @@ One clean route map. Complexity opens only when needed.
 
 ## Social
 
-- [Instagram](https://www.instagram.com/igor.vepretski/)
+- [Instagram — @igor.vepretski](https://www.instagram.com/igor.vepretski/)
+- [Instagram — @vepretski.igor](https://www.instagram.com/vepretski.igor/)
 - [TikTok](https://www.tiktok.com/@igor.vepretski)
 - [YouTube](https://www.youtube.com/@IgorVepretski)
 - [Facebook](https://www.facebook.com/vepretski)
