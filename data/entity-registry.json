@@ -1,0 +1,66 @@
+{
+  "version": "2026-07-26",
+  "canonicalBundle": "Igor Vepretski | #7YA | Founder of StartOn",
+  "descriptors": {
+    "en": "Systems builder connecting youth opportunity, civic power, public media and digital culture.",
+    "he": "בונה מערכות המחברות בין הזדמנות לנוער, כוח אזרחי, מדיה ציבורית ותרבות דיגיטלית.",
+    "ru": "Создатель систем для молодежных возможностей, гражданского влияния и цифровой культуры."
+  },
+  "ids": {
+    "person": "https://7ya.io/#igor",
+    "website": "https://7ya.io/#website",
+    "organization": "https://starton.org.il/#organization"
+  },
+  "person": {
+    "name": "Igor Vepretski",
+    "alternateName": [
+      "איגור ופרצקי",
+      "Игорь Вепрецкий",
+      "Ido Vepretski",
+      "Igor Ido Vepretski",
+      "עידו ופרצקי"
+    ],
+    "url": "https://7ya.io/igor-vepretski/",
+    "image": "https://7ya.io/assets/igor-home-portrait-20260712.jpg",
+    "description": "איגור ופרצקי הוא מייסד StartOn ובונה #7YA — מערכות המחברות בין הזדמנות לנוער, כוח אזרחי, מדיה ציבורית ותרבות דיגיטלית.",
+    "jobTitle": "Founder of StartOn · #7YA Systems Builder",
+    "sameAs": [
+      "https://www.instagram.com/igor.vepretski/",
+      "https://www.instagram.com/vepretski.igor/",
+      "https://www.tiktok.com/@igor.vepretski",
+      "https://www.youtube.com/@IgorVepretski",
+      "https://www.facebook.com/vepretski",
+      "https://x.com/igorvepretski",
+      "https://www.linkedin.com/in/vepretski/",
+      "https://github.com/vepretski",
+      "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u"
+    ]
+  },
+  "organization": {
+    "name": "StartOn",
+    "url": "https://starton.org.il/",
+    "description": "יוזמה חברתית לפיתוח מרחבי טכנולוגיה, יצירה, קהילה ושייכות עבור בני ובנות נוער."
+  },
+  "pages": {
+    "home": {
+      "path": "index.html",
+      "url": "https://7ya.io/",
+      "title": "7YA.IO | אדם. ראיות. פעולה.",
+      "description": "7YA.IO הוא שער המותג, המסע וארכיון הראיות של איגור ופרצקי — מחוויה למערכת, וממערכת לפעולה.",
+      "ogType": "website",
+      "ogTitle": "7YA.IO — אדם. ראיות. פעולה.",
+      "ogDescription": "שער למערכת המחברת את איגור ופרצקי, StartOn, סיפור חיים וראיות ציבוריות.",
+      "image": "https://7ya.io/assets/personal-hero-20260716/igor-hero.webp"
+    },
+    "person": {
+      "path": "igor-vepretski/index.html",
+      "url": "https://7ya.io/igor-vepretski/",
+      "title": "איגור ופרצקי — Igor Vepretski | #7YA | מייסד StartOn",
+      "description": "עמוד הזהות הקנוני של איגור ופרצקי — Igor Vepretski: מייסד StartOn, בונה #7YA, יוצר ציבורי ומפתח מערכות המחברות נוער, כוח אזרחי ותרבות דיגיטלית.",
+      "ogType": "profile",
+      "ogTitle": "איגור ופרצקי — Igor Vepretski | #7YA",
+      "ogDescription": "העמוד הקנוני של איגור ופרצקי: StartOn, #7YA, מסע חיים, מדיה, מוזיקה וראיות פתוחות.",
+      "image": "https://7ya.io/assets/igor-home-og-20260712.jpg"
+    }
+  }
+}
