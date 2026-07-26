@@ -27,7 +27,7 @@ for (const required of [
   "navigator.share",
   "navigator.clipboard.writeText",
   "fetch('/release.json'",
-  "href: '/control/'",
+  "url: '/control/'",
 ]) assert.ok(controlRuntime.includes(required), `control runtime missing ${required}`);
 assert.doesNotMatch(controlRuntime, /localStorage|sessionStorage|OPENAI_API_KEY|GITHUB_TOKEN|VERCEL_TOKEN/);
 
