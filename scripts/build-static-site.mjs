@@ -13,6 +13,9 @@ const root = process.cwd();
 const output = path.join(root, 'dist');
 const guideStyleTag = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
 const guideScriptTag = '<script src="/scripts/7ya-signal-key-20260715.js" data-7ya-signal-key-assets="20260715" defer></script>';
+const manifestTag = '<link rel="manifest" href="/site.webmanifest" data-7ya-pwa="20260726">';
+const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-20260726.css?v=1" data-7ya-control-assets="20260726">';
+const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
 async function requireRegularSource(relative) {
   const source = path.join(root, relative);
@@ -50,14 +53,26 @@ async function walk(directory, prefix = '') {
   return files;
 }
 
-function injectGuideAssets(html, relative) {
-  if (relative === '404.html' || html.includes('data-7ya-signal-key-assets="20260715"')) return html;
+function injectSharedAssets(html, relative) {
+  if (relative === '404.html') return html;
   if (!html.includes('</head>') || !html.includes('</body>')) {
-    throw new Error(`Cannot inject Signal Key into malformed HTML: ${relative}`);
+    throw new Error(`Cannot inject shared assets into malformed HTML: ${relative}`);
   }
-  return html
-    .replace('</head>', `  ${guideStyleTag}\n</head>`)
-    .replace('</body>', `  ${guideScriptTag}\n</body>`);
+
+  const headTags = [];
+  const bodyTags = [];
+  if (!html.includes('data-7ya-signal-key-assets="20260715"')) {
+    headTags.push(guideStyleTag);
+    bodyTags.push(guideScriptTag);
+  }
+  if (!html.includes('rel="manifest"')) headTags.push(manifestTag);
+  if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
+  if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
+
+  let enhanced = html;
+  if (headTags.length) enhanced = enhanced.replace('</head>', `  ${headTags.join('\n  ')}\n</head>`);
+  if (bodyTags.length) enhanced = enhanced.replace('</body>', `  ${bodyTags.join('\n  ')}\n</body>`);
+  return enhanced;
 }
 
 async function enhancePublicHtml() {
@@ -65,7 +80,7 @@ async function enhancePublicHtml() {
   for (const relative of files) {
     const target = path.join(output, relative);
     const html = await fs.readFile(target, 'utf8');
-    const enhanced = injectGuideAssets(html, relative);
+    const enhanced = injectSharedAssets(html, relative);
     if (enhanced !== html) await fs.writeFile(target, enhanced, 'utf8');
   }
 }
