@@ -1,0 +1,46 @@
+name: Entity Consistency
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "igor-vepretski/index.html"
+      - "data/entity-registry.json"
+      - "scripts/entity_consistency.py"
+      - ".github/workflows/entity-consistency.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "index.html"
+      - "igor-vepretski/index.html"
+      - "data/entity-registry.json"
+      - "scripts/entity_consistency.py"
+      - ".github/workflows/entity-consistency.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  entity-consistency:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile auditor
+        run: python3 -m py_compile scripts/entity_consistency.py
+
+      - name: Audit canonical entity architecture
+        run: python3 scripts/entity_consistency.py --check
+
+      - name: Verify generated metadata is committed
+        run: |
+          python3 scripts/entity_consistency.py --write
+          git diff --exit-code -- index.html igor-vepretski/index.html
