@@ -1,5 +1,6 @@
 name: Entity Consistency
 
+# Validation commit: verifies the workflow after removing marketplace-action dependencies.
 on:
   workflow_dispatch:
   pull_request:
