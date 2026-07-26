@@ -5,6 +5,31 @@
   const mainNav = document.getElementById('mainNav');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  const loadControlLayer = () => {
+    if (!document.querySelector('link[rel="manifest"]')) {
+      const manifest = document.createElement('link');
+      manifest.rel = 'manifest';
+      manifest.href = '/site.webmanifest';
+      document.head.append(manifest);
+    }
+
+    if (!document.querySelector('link[href*="7ya-control-layer-20260726.css"]')) {
+      const stylesheet = document.createElement('link');
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = '/styles/7ya-control-layer-20260726.css?v=1';
+      document.head.append(stylesheet);
+    }
+
+    if (!document.querySelector('script[src*="7ya-control-layer-20260726.js"]')) {
+      const script = document.createElement('script');
+      script.src = '/scripts/7ya-control-layer-20260726.js';
+      script.defer = true;
+      document.body.append(script);
+    }
+  };
+
+  loadControlLayer();
+
   const officialProfiles = [
     {
       label: 'Instagram · @igor.vepretski',
@@ -53,6 +78,13 @@
         );
         footerNav.insertBefore(link, firstInternalLink || null);
       });
+
+      if (![...footerNav.querySelectorAll('a')].some(link => link.getAttribute('href') === '/control/')) {
+        const controlLink = document.createElement('a');
+        controlLink.href = '/control/';
+        controlLink.textContent = 'Control';
+        footerNav.append(controlLink);
+      }
     }
 
     document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
