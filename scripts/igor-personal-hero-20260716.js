@@ -5,6 +5,85 @@
   const mainNav = document.getElementById('mainNav');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  const officialProfiles = [
+    {
+      label: 'Instagram · @igor.vepretski',
+      href: 'https://www.instagram.com/igor.vepretski/',
+      platform: 'instagram-primary'
+    },
+    {
+      label: 'Instagram · @vepretski.igor',
+      href: 'https://www.instagram.com/vepretski.igor/',
+      platform: 'instagram-secondary'
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/vepretski/',
+      platform: 'linkedin'
+    }
+  ];
+
+  const connectOfficialProfiles = () => {
+    const footerNav = document.querySelector('.footer nav[aria-label="קישורי רשת"]');
+    if (footerNav) {
+      const existingPrimaryInstagram = [...footerNav.querySelectorAll('a')].find(link =>
+        link.href.includes('instagram.com/igor.vepretski')
+      );
+
+      if (existingPrimaryInstagram) {
+        existingPrimaryInstagram.textContent = officialProfiles[0].label;
+        existingPrimaryInstagram.dataset.socialAccount = officialProfiles[0].platform;
+      }
+
+      officialProfiles.forEach(profile => {
+        const alreadyConnected = [...footerNav.querySelectorAll('a')].some(link =>
+          link.href.replace(/\/$/, '') === profile.href.replace(/\/$/, '')
+        );
+        if (alreadyConnected) return;
+
+        const link = document.createElement('a');
+        link.href = profile.href;
+        link.textContent = profile.label;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer me';
+        link.dataset.socialAccount = profile.platform;
+
+        const firstInternalLink = [...footerNav.querySelectorAll('a')].find(item =>
+          item.getAttribute('href')?.startsWith('/')
+        );
+        footerNav.insertBefore(link, firstInternalLink || null);
+      });
+    }
+
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+      try {
+        const data = JSON.parse(script.textContent);
+        const nodes = Array.isArray(data['@graph']) ? data['@graph'] : [data];
+        const people = [];
+
+        nodes.forEach(node => {
+          if (node?.['@type'] === 'Person') people.push(node);
+          if (node?.mainEntity?.['@type'] === 'Person') people.push(node.mainEntity);
+        });
+
+        people.forEach(person => {
+          const current = Array.isArray(person.sameAs) ? person.sameAs : [];
+          const normalized = current.filter(url => !url.includes('il.linkedin.com/in/vepretski'));
+          officialProfiles.forEach(profile => {
+            if (!normalized.includes(profile.href)) normalized.push(profile.href);
+          });
+          person.sameAs = normalized;
+        });
+
+        script.textContent = JSON.stringify(data);
+      } catch (error) {
+        console.warn('7YA social identity metadata could not be updated.', error);
+      }
+    });
+  };
+
+  connectOfficialProfiles();
+
   const updateFrame = () => {
     const scrollable = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     progress.style.transform = `scaleX(${Math.min(1, window.scrollY / scrollable)})`;
