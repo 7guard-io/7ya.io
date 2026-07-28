@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "service": "7ya-frontend",
+  "environment": "production",
+  "status": "READY",
+  "verified_at_utc": "2026-07-28T05:45:06.020Z",
+  "verified_at_asia_jerusalem": "2026-07-28T08:45:06.020+03:00",
+  "provider": {
+    "name": "appdeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v93",
+    "version": "1785217404250"
+  },
+  "patch": {
+    "id": "functionality-hardening-20260728-1",
+    "scope": "Functionality only; no broad visual redesign.",
+    "changes": [
+      "Nested SPA links now resolve back to the root application instead of remaining trapped under /media, /speaker, /blog or /create.",
+      "The Control palette opens only with Cmd/Ctrl+K; a plain K key no longer triggers it.",
+      "Locale and Companion persistence now degrade safely when localStorage is blocked or unavailable.",
+      "Escape closes the Companion dialog and restores the underlying page.",
+      "The Creator Path and archive routes use route-depth-aware relative navigation.",
+      "A five-scenario stateless QA suite was added for mobile entry, nested routing, keyboard behavior, dialog close and API fallback."
+    ]
+  },
+  "acceptance": {
+    "deployment_status": "ready",
+    "qa_status": "passed",
+    "qa_run_group_id": "618c488dbdd34788",
+    "qa_jobs_total_reported": 5,
+    "qa_jobs_passed_displayed": 4,
+    "qa_note": "AppDeploy returned terminal e2e status passed. Its compact status payload displayed four passed jobs out of five total; no failed job or failure transcript was reported.",
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": []
+  },
+  "custom_domains": [
+    {
+      "hostname": "7ya.io",
+      "status": "active",
+      "dns_mode": "apex_address",
+      "last_checked_at_utc": "2026-07-28T05:45:06.020Z"
+    },
+    {
+      "hostname": "www.7ya.io",
+      "status": "active",
+      "dns_mode": "subdomain_cname",
+      "last_checked_at_utc": "2026-07-28T05:45:05.972Z"
+    }
+  ],
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_exported_to_repository": false,
+    "alignment_status": "PATCH_RECEIPT_RECORDED_RUNTIME_SOURCE_EXPORT_PENDING",
+    "note": "This receipt records the verified AppDeploy runtime patch. It does not claim the full v93 runtime source has been exported into GitHub main."
+  },
+  "verification_boundary": {
+    "appdeploy_snapshot_contains_patch": true,
+    "custom_domains_active": true,
+    "public_release_cache_note": "A normal web retrieval of /release.json may temporarily expose the previous receipt while edge caches refresh. Use the AppDeploy version and domain status as the immediate operational record, then re-check the canonical URL without cache before declaring receipt convergence."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version_name": "v92",
+    "version": "1785158307777",
+    "label": "single-entry production before functionality hardening"
+  }
+}
