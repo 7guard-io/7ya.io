@@ -1,0 +1,103 @@
+{
+  "release": "7ya-media-impact-registry-20260730-1",
+  "policy": {
+    "no_cross_platform_total": true,
+    "private_evidence_excluded": true,
+    "disputed_metrics_quarantined": true,
+    "canonical_post_required": true
+  },
+  "summary": {
+    "total_records": 9,
+    "public_claims": 6,
+    "quarantined_claims": 3,
+    "platform_surfaces": 25,
+    "archive_records": 71,
+    "snapshot": "2026-07-30"
+  },
+  "records": [
+    {
+      "canonical_id": "tiktok-current-exported-items-20260602",
+      "platform": "TikTok",
+      "account": "@igor.vepretski",
+      "scope": "account",
+      "url": "https://www.tiktok.com/@igor.vepretski",
+      "metric_name": "exported_items",
+      "metric_value": 904,
+      "metric_unit": "items",
+      "verification_status": "metric_verified",
+      "collected_at": "2026-06-02T00:00:00+03:00",
+      "metric_definition_version": "tiktok-owner-export-items-v1",
+      "public_claim_ok": true
+    },
+    {
+      "canonical_id": "tiktok-current-followers-20260602",
+      "platform": "TikTok",
+      "account": "@igor.vepretski",
+      "scope": "account",
+      "url": "https://www.tiktok.com/@igor.vepretski",
+      "metric_name": "followers",
+      "metric_value": 12655,
+      "metric_unit": "followers",
+      "verification_status": "metric_verified",
+      "collected_at": "2026-06-02T00:00:00+03:00",
+      "metric_definition_version": "tiktok-followers-snapshot-v1",
+      "public_claim_ok": true
+    },
+    {
+      "canonical_id": "tiktok-current-account-likes-20260602",
+      "platform": "TikTok",
+      "account": "@igor.vepretski",
+      "scope": "account",
+      "url": "https://www.tiktok.com/@igor.vepretski",
+      "metric_name": "account_likes",
+      "metric_value": 273860,
+      "metric_unit": "likes",
+      "verification_status": "metric_verified",
+      "collected_at": "2026-06-02T00:00:00+03:00",
+      "metric_definition_version": "tiktok-account-likes-v1",
+      "public_claim_ok": true
+    },
+    {
+      "canonical_id": "linkedin-followers-20260608",
+      "platform": "LinkedIn",
+      "account": "/in/vepretski",
+      "scope": "account",
+      "url": "https://www.linkedin.com/in/vepretski/",
+      "metric_name": "followers",
+      "metric_value": 4283,
+      "metric_unit": "followers",
+      "verification_status": "documented",
+      "collected_at": "2026-06-08T00:00:00+03:00",
+      "metric_definition_version": "linkedin-public-followers-snapshot-v1",
+      "public_claim_ok": true
+    },
+    {
+      "canonical_id": "youtube-subscribers-20260608",
+      "platform": "YouTube",
+      "account": "UCyxk2AupRjm7KQ5EeWrV1Fw",
+      "scope": "account",
+      "url": "https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw",
+      "metric_name": "subscribers",
+      "metric_value": 2570,
+      "metric_unit": "subscribers",
+      "verification_status": "documented",
+      "collected_at": "2026-06-08T00:00:00+03:00",
+      "metric_definition_version": "youtube-subscriber-public-snapshot-v1",
+      "public_claim_ok": true
+    },
+    {
+      "canonical_id": "7ya-ga4-active-users-20260709",
+      "platform": "7YA.IO",
+      "account": "7ya.io",
+      "scope": "site",
+      "url": "https://7ya.io/",
+      "metric_name": "active_users",
+      "metric_value": 676,
+      "metric_unit": "active_users",
+      "verification_status": "metric_verified",
+      "collected_at": "2026-07-09T23:59:59+03:00",
+      "metric_definition_version": "ga4-active-users-2026-v1",
+      "public_claim_ok": true
+    }
+  ]
+}
