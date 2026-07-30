@@ -1,0 +1,62 @@
+{
+  "date": "2026-07-30",
+  "product": "7YA",
+  "environment": "production",
+  "provider": "appdeploy",
+  "app_id": "697a008fddc309b142",
+  "version": "1785424748982",
+  "release_marker": "7ya-modular-companion-20260730-2",
+  "intent": "Make the Companion breathable and modular on desktop while preserving mobile progressive disclosure.",
+  "production_urls": [
+    "https://7ya.io",
+    "https://www.7ya.io"
+  ],
+  "domains": [
+    {
+      "domain": "7ya.io",
+      "status": "active"
+    },
+    {
+      "domain": "www.7ya.io",
+      "status": "active"
+    }
+  ],
+  "changes": [
+    "Reduced the desktop Companion width to 480px and maximum height to 760px.",
+    "Collapsed profile, privacy and workflow context behind an accessible information-and-tools drawer.",
+    "Made quick prompts a two-column desktop module while preserving horizontal mobile prompts.",
+    "Removed horizontal message overflow and retained one stable vertical message scroll.",
+    "Kept privacy and tool details in the modular drawer instead of a persistent footer."
+  ],
+  "qa": {
+    "status": "passed",
+    "run_group_id": "c079a7fb10a4ff2b",
+    "total_jobs": 10,
+    "passed_jobs": 9,
+    "excluded_jobs": 1,
+    "excluded_reason": "One unrelated execution-interest scenario was classified by QA as bad_test because it expected a form element that does not exist.",
+    "companion_desktop_test": "passed",
+    "companion_mobile_test": "passed",
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": [],
+    "screenshots": {
+      "mobile": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1785424802421/mobile.png",
+      "web": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1785424802421/web.png"
+    }
+  },
+  "production_verification": {
+    "release_json_status": "READY",
+    "build_marker": "7ya-modular-companion-20260730-2",
+    "checked_url": "https://7ya.io/release.json?build=7ya-modular-companion-20260730-2"
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version": "1785420863953",
+    "note": "Immutable pre-modular-desktop Companion snapshot."
+  },
+  "source_alignment": {
+    "status": "pending",
+    "note": "This receipt records the exact production snapshot; the AppDeploy source export remains separate from GitHub main."
+  }
+}
