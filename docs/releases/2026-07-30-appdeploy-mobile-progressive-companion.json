@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "service": "7ya-frontend",
+  "environment": "production",
+  "status": "READY",
+  "verified_at_utc": "2026-07-30T14:19:07Z",
+  "verified_at_asia_jerusalem": "2026-07-30T17:19:07+03:00",
+  "provider": {
+    "name": "appdeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v92",
+    "version": "1785420863953"
+  },
+  "patch": {
+    "id": "mobile-progressive-companion-20260730-1",
+    "scope": "Mobile UX optimization with progressive disclosure; no broad visual redesign.",
+    "changes": [
+      "The mobile Companion now opens with the conversation, quick starts and composer as the primary layer.",
+      "Public profile links, privacy context and workflow tools moved into an explicit Info & tools drawer on mobile.",
+      "The first assistant message was shortened in Hebrew, English and Russian.",
+      "The mobile launcher now clears the bottom navigation dock and iOS safe area.",
+      "Mobile controls use touch-friendly sizing and the composer keeps a 16px text size to avoid iOS focus zoom.",
+      "Desktop information structure remains expanded and unchanged.",
+      "HTML, runtime health and release metadata share one build marker.",
+      "The Hebrew mobile sanity test now uses the canonical lang=he parameter."
+    ]
+  },
+  "acceptance": {
+    "deployment_status": "ready",
+    "qa_status": "passed",
+    "qa_run_group_id": "98a9a082e8ba0aa3",
+    "qa_jobs_total": 10,
+    "qa_jobs_passed": 10,
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": [],
+    "mobile_companion_test": "passed",
+    "release_marker": "7ya-mobile-progressive-companion-20260730-1",
+    "public_release_probe": "https://7ya.io/release.json?build=7ya-mobile-progressive-companion-20260730-1",
+    "screenshots": {
+      "mobile": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1785420924988/mobile.png",
+      "web": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1785420924988/web.png"
+    }
+  },
+  "custom_domains": [
+    {
+      "hostname": "7ya.io",
+      "status": "active",
+      "dns_mode": "apex_address",
+      "last_checked_at_epoch_ms": 1785420900963
+    },
+    {
+      "hostname": "www.7ya.io",
+      "status": "active",
+      "dns_mode": "subdomain_cname",
+      "last_checked_at_epoch_ms": 1785420900833
+    }
+  ],
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_exported_to_repository": false,
+    "alignment_status": "PATCH_RECEIPT_RECORDED_RUNTIME_SOURCE_EXPORT_PENDING",
+    "note": "This receipt records the verified AppDeploy runtime patch. It does not claim that the full AppDeploy source snapshot has been exported into GitHub."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version_name": "v89",
+    "version": "1785338311444",
+    "label": "pre-progressive-mobile-Companion production snapshot"
+  }
+}
