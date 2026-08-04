@@ -34,25 +34,21 @@ Converted to Draft:
 - `#283` — blocked by missing Instagram OAuth authorization, replay resistance, encryption, allowlisting, lifecycle controls and tests.
 - `#284` — blocked by stale control-plane state, missing canonical build proof, version-label mismatch and rebase requirement.
 
-Closed without merge as obsolete, empty, incomplete or duplicated Copilot WIP streams:
+Closed without merge: `25`.
 
-- `#55`
-- `#57`
-- `#58`
-- `#59`
-- `#60`
-- `#61`
-- `#62`
-- `#63`
-- `#64`
-- `#65`
-- `#66`
-- `#67`
-- `#68`
+- Superseded Copilot WIPs: `#55`, `#57`, `#58`, `#59`, `#60`, `#61`, `#62`, `#63`, `#64`, `#65`, `#66`, `#67`, `#68`.
+- Stale or superseded product branches: `#113`, `#127`, `#235`, `#239`, `#263`, `#264`, `#273`.
+- Historical or obsolete runtime/API receipts: `#90`, `#139`, `#149`, `#265`, `#280`.
 
 New control-plane PR opened: `#286`.
 
-Open PR count after actions: `20`.
+Verified open PR count after actions: `8`.
+
+Remaining queue:
+
+- Control plane: `#286`.
+- Security/provenance review: `#121`, `#283`, `#284`.
+- Rebase/rebuild candidates: `#107`, `#134`, `#232`, `#277`.
 
 ## Validation
 
@@ -60,7 +56,9 @@ Open PR count after actions: `20`.
 
 Result: `7YA control-plane contract passed for 32 open PR records`.
 
-The phrase “32 open PR records” describes the complete inventory observed before closures, not the post-action live count.
+The phrase “32 open PR records” describes the complete initial inventory, not the post-action live count.
+
+GitHub reported no hosted status contexts for the checked #286 head at the time of review. Full `npm run ci:local` has not yet been executed on the exact final SHA, so #286 remains Draft and unmerged.
 
 ## Next safe action
 
