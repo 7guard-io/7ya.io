@@ -1,5 +1,6 @@
 {
   "observed_at": "2026-08-04T16:06:00+03:00",
+  "updated_after_governance_actions_at": "2026-08-04T16:15:00+03:00",
   "repository": "7guard-io/7ya.io",
   "default_branch": "main",
   "github_permissions_observed": "admin",
@@ -29,11 +30,15 @@
     "www.7ya.io": 1785848700793
   },
   "github_source_alignment": "PENDING_EXPORT_AND_COMPARE",
-  "open_pull_requests_observed": 32,
+  "pull_request_inventory_before_actions": 32,
+  "superseded_wips_closed_without_merge": 13,
+  "new_control_plane_pull_request": 286,
+  "open_pull_requests_after_actions": 20,
   "blocked_pull_requests": {
     "283": "Draft: security controls incomplete",
     "284": "Draft: control-plane and canonical-build proof incomplete"
   },
+  "closed_without_merge": [55, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68],
   "next_safe_action": "Export and compare the complete AppDeploy v95 source against current main on an isolated branch before broad product changes.",
   "rollback_policy": "Use an immutable AppDeploy version only after identifying the exact last-known-good target and recording the reason."
 }
