@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-08-04T16:06:00+03:00",
+  "repository": "7guard-io/7ya.io",
+  "default_branch": "main",
+  "github_permissions_observed": "admin",
+  "app_id": "697a008fddc309b142",
+  "runtime_provider": "AppDeploy v2",
+  "deployment_status": "ready",
+  "observed_label": "v95",
+  "observed_appdeploy_version": "1785837698202",
+  "observed_version_created_at": "2026-08-04T13:01:38+03:00",
+  "e2e": {
+    "status": "passed",
+    "total_jobs": 9,
+    "passed_jobs": 8,
+    "interpretation": "Terminal status is passed, but the 8/9 counter discrepancy is preserved and is not represented as a complete 9/9 pass."
+  },
+  "errors": {
+    "frontend": 0,
+    "backend": 0,
+    "network": 0
+  },
+  "custom_domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "domain_last_checked_epoch_ms": {
+    "7ya.io": 1785848702940,
+    "www.7ya.io": 1785848700793
+  },
+  "github_source_alignment": "PENDING_EXPORT_AND_COMPARE",
+  "open_pull_requests_observed": 32,
+  "blocked_pull_requests": {
+    "283": "Draft: security controls incomplete",
+    "284": "Draft: control-plane and canonical-build proof incomplete"
+  },
+  "next_safe_action": "Export and compare the complete AppDeploy v95 source against current main on an isolated branch before broad product changes.",
+  "rollback_policy": "Use an immutable AppDeploy version only after identifying the exact last-known-good target and recording the reason."
+}
