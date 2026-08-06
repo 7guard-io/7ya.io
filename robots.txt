@@ -1,5 +1,18 @@
+# 7YA.IO crawler policy — official public site of Igor Vepretski and #7YA
+# Explicitly allow Meta retrieval agents used by Meta AI and link previews.
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
 User-agent: *
 Allow: /
 
 Sitemap: https://7ya.io/sitemap.xml
-# deployment trigger: 2026-07-10T16:32+03:00
