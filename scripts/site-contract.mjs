@@ -1,5 +1,6 @@
 export const canonicalRoutes = [
   '',
+  'go',
   'museum',
   'entity',
   'create',
@@ -25,6 +26,7 @@ export const canonicalRoutes = [
 ];
 
 export const aliasRoutes = new Map([
+  ['links', '/go/'],
   ['about', '/igor-vepretski/'],
   ['social', '/influence/'],
   ['oracle', '/evidence/'],
@@ -77,6 +79,7 @@ export const publicStyleFiles = [
   'creatorverse-depth-20260714.css',
   'evidence-ledger-v1.css',
   'history-song-20260714.css',
+  'igor-links-20260806.css',
   'igor-story-cinema-20260716.css',
   'igor-personal-hero-20260716.css',
   'home-public-universe-20260716.css',
@@ -116,6 +119,8 @@ export const publicScriptFiles = [
 
 export const criticalArtifactPaths = [
   'index.html',
+  'go/index.html',
+  'links/index.html',
   'museum/index.html',
   'entity/index.html',
   'create/index.html',
@@ -139,6 +144,7 @@ export const criticalArtifactPaths = [
   'styles/7ya-visual-system-v1.css',
   'styles/evidence-ledger-v1.css',
   'styles/history-song-20260714.css',
+  'styles/igor-links-20260806.css',
   'styles/igor-story-cinema-20260716.css',
   'styles/igor-personal-hero-20260716.css',
   'styles/home-public-universe-20260716.css',
