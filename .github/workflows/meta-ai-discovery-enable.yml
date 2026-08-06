@@ -1,0 +1,175 @@
+name: Enable Meta AI Discovery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'robots.txt'
+      - 'llms.txt'
+      - 'scripts/cloudflare-meta-ai-discovery.mjs'
+      - 'infra/cloudflare-meta-ai/apply-request-20260806.json'
+      - '.github/workflows/meta-ai-discovery-enable.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 7ya-meta-ai-discovery-production
+  cancel-in-progress: false
+
+jobs:
+  enable:
+    name: Allow Meta retrieval and verify production
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+      CONFIRM_7YA_META_AI_DISCOVERY: '7YA-META-AI-DISCOVERY-20260806'
+    steps:
+      - name: Check out approved revision
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate owner approval and policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const request = JSON.parse(fs.readFileSync('infra/cloudflare-meta-ai/apply-request-20260806.json', 'utf8'));
+          if (request.confirmation !== '7YA-META-AI-DISCOVERY-20260806') throw new Error('Confirmation mismatch');
+          if (request.approved_by !== 'Igor Vepretski') throw new Error('Owner approval mismatch');
+          if (request.single_use !== true) throw new Error('single_use must be true');
+          const desired = request.desired_cloudflare_state || {};
+          if (desired.ai_bots_protection !== 'disabled') throw new Error('AI bots must be allowed');
+          if (desired.cf_robots_variant !== 'off') throw new Error('Managed robots variant must be off');
+          if (desired.is_robots_txt_managed !== false) throw new Error('Managed robots must be disabled');
+          const agents = new Set(request.required_meta_agents || []);
+          for (const agent of ['meta-externalagent', 'meta-externalfetcher', 'FacebookBot', 'facebookexternalhit']) {
+            if (!agents.has(agent)) throw new Error(`Missing required agent ${agent}`);
+          }
+          const robots = fs.readFileSync('robots.txt', 'utf8');
+          for (const agent of agents) {
+            if (!robots.toLowerCase().includes(`user-agent: ${agent.toLowerCase()}`)) throw new Error(`robots.txt missing ${agent}`);
+          }
+          if (!robots.includes('Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference')) {
+            throw new Error('robots.txt missing the approved AI usage signal');
+          }
+          const llms = fs.readFileSync('llms.txt', 'utf8');
+          if (!llms.includes('Official website: https://7ya.io/')) throw new Error('llms.txt missing canonical website');
+          if (!llms.includes('Machine-readable entity registry: https://7ya.io/data/entity-registry.json')) {
+            throw new Error('llms.txt missing entity registry');
+          }
+          NODE
+
+      - name: Require Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo 'CLOUDFLARE_API_TOKEN is not configured' >&2; exit 1; }
+          test -n "${CLOUDFLARE_ZONE_ID:-}" || { echo 'CLOUDFLARE_ZONE_ID is not configured' >&2; exit 1; }
+
+      - name: Compile reconciler
+        run: node --check scripts/cloudflare-meta-ai-discovery.mjs
+
+      - name: Capture Cloudflare plan
+        run: node scripts/cloudflare-meta-ai-discovery.mjs | tee meta-ai-plan-before.json
+
+      - name: Apply Cloudflare discovery settings
+        run: node scripts/cloudflare-meta-ai-discovery.mjs --apply | tee meta-ai-apply.json
+
+      - name: Wait for canonical files to reach production
+        shell: bash
+        run: |
+          set -euo pipefail
+          ready=0
+          for attempt in $(seq 1 60); do
+            robots="$(curl -fsSL --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache, no-store' "https://7ya.io/robots.txt?meta_ai=${GITHUB_SHA}-${attempt}" || true)"
+            llms="$(curl -fsSL --connect-timeout 10 --max-time 30 -H 'Cache-Control: no-cache, no-store' "https://7ya.io/llms.txt?meta_ai=${GITHUB_SHA}-${attempt}" || true)"
+            printf '%s\n' "$robots" > live-robots.txt
+            printf '%s\n' "$llms" > live-llms.txt
+            if grep -Fq 'Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference' live-robots.txt \
+              && grep -Fq 'User-agent: meta-externalagent' live-robots.txt \
+              && grep -Fq 'User-agent: meta-externalfetcher' live-robots.txt \
+              && grep -Fq 'Official website: https://7ya.io/' live-llms.txt; then
+              ready=1
+              break
+            fi
+            sleep 10
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo 'Canonical Meta AI discovery files did not reach production in time.' >&2
+            cat live-robots.txt >&2 || true
+            cat live-llms.txt >&2 || true
+            exit 1
+          fi
+
+      - name: Verify Meta user agents receive open directives
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > meta-user-agent-checks.txt
+          for ua in 'meta-externalagent/1.1' 'meta-externalfetcher/1.1' 'FacebookBot/1.0' 'facebookexternalhit/1.1'; do
+            echo "===== $ua =====" | tee -a meta-user-agent-checks.txt
+            code="$(curl -sS -L -A "$ua" -o ua-robots.txt -w '%{http_code}' --connect-timeout 10 --max-time 30 "https://7ya.io/robots.txt?ua=${GITHUB_SHA}")"
+            echo "HTTP $code" | tee -a meta-user-agent-checks.txt
+            cat ua-robots.txt >> meta-user-agent-checks.txt
+            echo >> meta-user-agent-checks.txt
+            test "$code" = '200'
+            ! grep -Fq 'Disallow: /' ua-robots.txt
+            grep -Fq 'Allow: /' ua-robots.txt
+            grep -Fq 'ai-input=yes' ua-robots.txt
+          done
+
+      - name: Verify Cloudflare parsed state
+        shell: bash
+        run: |
+          set -euo pipefail
+          verified=0
+          for attempt in $(seq 1 30); do
+            if node scripts/cloudflare-meta-ai-discovery.mjs --verify > meta-ai-cloudflare-verify.json 2> meta-ai-cloudflare-verify.err; then
+              verified=1
+              break
+            fi
+            sleep 10
+          done
+          if [ "$verified" -ne 1 ]; then
+            cat meta-ai-cloudflare-verify.err >&2 || true
+            exit 1
+          fi
+
+      - name: Write deployment receipt
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "commit=${GITHUB_SHA}"
+            echo "run_id=${GITHUB_RUN_ID}"
+            echo "purpose=Meta AI official entity discovery"
+            echo "completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > meta-ai-discovery-receipt.txt
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 7ya-meta-ai-discovery-${{ github.run_id }}
+          path: |
+            meta-ai-plan-before.json
+            meta-ai-apply.json
+            meta-ai-cloudflare-verify.json
+            meta-ai-cloudflare-verify.err
+            meta-user-agent-checks.txt
+            live-robots.txt
+            live-llms.txt
+            meta-ai-discovery-receipt.txt
+          if-no-files-found: warn
+          retention-days: 30
