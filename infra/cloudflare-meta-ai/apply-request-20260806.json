@@ -1,0 +1,24 @@
+{
+  "confirmation": "7YA-META-AI-DISCOVERY-20260806",
+  "approved_by": "Igor Vepretski",
+  "approved_at": "2026-08-06T12:32:00+03:00",
+  "single_use": true,
+  "intent": "Allow Meta AI retrieval and entity discovery for the official 7YA.IO public site.",
+  "desired_cloudflare_state": {
+    "ai_bots_protection": "disabled",
+    "cf_robots_variant": "off",
+    "is_robots_txt_managed": false
+  },
+  "required_meta_agents": [
+    "meta-externalagent",
+    "meta-externalfetcher",
+    "FacebookBot",
+    "facebookexternalhit"
+  ],
+  "content_policy": {
+    "search": "yes",
+    "ai-input": "yes",
+    "ai-train": "no",
+    "use": "reference"
+  }
+}
