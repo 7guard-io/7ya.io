@@ -88,27 +88,39 @@ The operational optimization target is:
 
 ---
 
-## 4. Human model
+## 4. Actor and human model
 
-Each participant receives one canonical internal `Person` identity. A person is not permanently classified as a single persona.
+The system distinguishes **people** from **organizations**. An organization is never modeled as a role of a person.
 
-### 4.1 Dynamic roles
+### 4.1 Canonical actor types
 
-A person can hold one or more current roles:
+- **Person** — one canonical internal identity per human participant.
+- **Organization** — a company, municipality, nonprofit, educational institution, community, funder, or other institutional actor.
+
+A Person may be linked to one or more Organizations through explicit relationships such as `member_of`, `works_for`, `represents`, `mentor_for`, or `partner_contact_for`. Those relationships must not be inferred as institutional commitments.
+
+### 4.2 Dynamic human roles
+
+A Person can hold one or more current roles:
 
 - **Grower** — seeking personal progress, direction, capability, or transition.
 - **Builder / Creator** — making a project, product, work, piece of art, research, or initiative.
 - **Guide** — able to mentor, teach, review, advise, or support.
 - **Catalyst** — able to unlock high-leverage access, expertise, capital, institutional reach, or opportunity.
-- **Institution** — an organization that can provide infrastructure, programs, opportunities, resources, or scale.
 
 Roles are contextual, not hierarchical. A senior engineer may be a Guide in software and a Grower in public speaking. A teenager may be a Grower in coding and a Guide in gaming, music, or youth culture.
 
-### 4.2 Human Growth Graph
+Organizations participate through explicit capabilities such as providing opportunities, infrastructure, funding, programs, venues, tools, jobs, or institutional scale.
+
+### 4.3 Human Growth Graph
 
 The core internal graph is:
 
 `Person ↔ Goal ↔ Skill ↔ Need ↔ Offer ↔ Opportunity ↔ Project ↔ Relationship ↔ Progress Event`
+
+Organizations connect to this graph through:
+
+`Organization ↔ Opportunity / Program / Resource / Project / Representative`
 
 Minimum person-level data domains:
 
@@ -248,7 +260,7 @@ Primary match types:
 - `Person ↔ Opportunity`
 - `Person ↔ Project`
 - `Builder ↔ Collaborator`
-- `Institution ↔ Need cohort`
+- `Organization ↔ Cohort Need`
 
 ### 8.2 Progressive automation
 
@@ -421,6 +433,17 @@ Scope:
 
 Human operators manually review a meaningful sample of sessions.
 
+**Provisional pilot decision thresholds** (targets for learning, not claims of efficacy):
+
+- ≥60% of people who start the short intake complete it;
+- ≥70% of first-value recipients rate the output as useful or very useful;
+- ≥35% of saved participants report or verify a first meaningful action within 7 days;
+- ≥25% of saved participants return within 7 days;
+- 100% of critical privacy/safeguarding defects are blocking defects; pilot expansion stops until resolved;
+- operator time per MPE is measured from the first cohort so automation decisions are evidence-based.
+
+If these thresholds are badly missed, the default action is to improve the loop rather than acquire more traffic.
+
 Exit criteria:
 
 - users consistently understand the first-value output;
@@ -442,9 +465,11 @@ Scope:
 - small Circles;
 - basic match outcome measurement.
 
+**Provisional match decision threshold:** among accepted adult-to-adult pilot matches, ≥60% should be rated by at least one participant as materially useful and no critical safety defect may remain unresolved. Youth matching remains separately governed and does not inherit the adult automation threshold.
+
 Exit criteria:
 
-- accepted matches generate meaningful outcomes above a defined baseline;
+- accepted matches generate meaningful outcomes at or above the pilot threshold;
 - users voluntarily contribute after receiving value;
 - operator burden is measurable and declining for repeated patterns;
 - safeguarding controls remain effective.
@@ -470,7 +495,7 @@ This design intentionally does not choose technology merely for novelty. Impleme
 
 Required boundaries:
 
-- canonical identity store;
+- canonical Person and Organization identity stores or logically separated entity types;
 - consent/privacy state separated from public profile state;
 - progress-event ledger;
 - AI inference fields distinguishable from user facts;
