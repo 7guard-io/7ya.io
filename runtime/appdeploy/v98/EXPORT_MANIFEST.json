@@ -1,0 +1,693 @@
+{
+  "export_schema": 1,
+  "provider": "AppDeploy",
+  "app_id": "697a008fddc309b142",
+  "version_name": "v98",
+  "version": "1786725878821",
+  "exported_at_utc": "2026-08-14T16:44:38.821Z",
+  "source_of_truth": "AppDeploy runtime snapshot at export time",
+  "file_count": 169,
+  "path_prefix": "runtime/appdeploy/v98",
+  "qa": {
+    "run_group_id": "303e71f6bce7fc18",
+    "test_file": "tests/tests.txt",
+    "mobile_posts_first_test": "Test 6 - Mobile posts-first remains visible after the hero",
+    "result": "pass"
+  },
+  "files": [
+    {
+      "path": "appdeploy.auth-login.json",
+      "blob_sha": "abb4da90f059355540e7f70a525bc70183a016b7"
+    },
+    {
+      "path": "backend/counter.ts",
+      "blob_sha": "d44734a2429c5c7bf28b1aa5224030bc6c2f1ce0"
+    },
+    {
+      "path": "backend/growth.ts",
+      "blob_sha": "21e14639d0e8a20f4de6367f2950fdae42e50904"
+    },
+    {
+      "path": "backend/index.ts",
+      "blob_sha": "c12a5a87b75721bc1704b6b8fd3ea265cd294d5a"
+    },
+    {
+      "path": "backend/realtime-subscribers.ts",
+      "blob_sha": "26bb722bc5e9c4785daf1a794af21b6474dce16a"
+    },
+    {
+      "path": "backend/realtime.ts",
+      "blob_sha": "4b791d872a322e628d61c76b8cb9ffcbe563b91f"
+    },
+    {
+      "path": "index.html",
+      "blob_sha": "ca39750978bcd180190d2b7add47ec96f360f862"
+    },
+    {
+      "path": "package.json",
+      "blob_sha": "92e93c8b2d7e9d6675d7bd3725e4cffbfdb65891"
+    },
+    {
+      "path": "postcss.config.js",
+      "blob_sha": "2e7af2b7f1a6f391da1631d93968a9d487ba977d"
+    },
+    {
+      "path": "public/about/index.html",
+      "blob_sha": "0207bdda7255c239557312864d3e70b9a2c58b00"
+    },
+    {
+      "path": "public/api/health",
+      "blob_sha": "bb891bbe3de07087168c8cde2a67b04a0d67e761"
+    },
+    {
+      "path": "public/blog/index.html",
+      "blob_sha": "2c05a7c0cf84de07a06d10deafdeb78b1a97aff4"
+    },
+    {
+      "path": "public/companion-growth-mobile.css",
+      "blob_sha": "20708ffb2896b58dc2d321a4df2ab1849dfa5092"
+    },
+    {
+      "path": "public/companion-growth-polish.js",
+      "blob_sha": "ea4b33e016a89497a990d8d956452f1e0cdfa160"
+    },
+    {
+      "path": "public/contact/index.html",
+      "blob_sha": "34fc5baf996b58700dd057fa0ba2f722865bedc3"
+    },
+    {
+      "path": "public/control/index.html",
+      "blob_sha": "e18fbd2880ef7b104bbd67aaf10eddfccca59cd3"
+    },
+    {
+      "path": "public/data/entity-registry.json",
+      "blob_sha": "3d4759e328b30e264df642cb79d041cd51055096"
+    },
+    {
+      "path": "public/data/evidence-wall.json",
+      "blob_sha": "2de70f15d7fc469647d6a04fb57f01867a320bb1"
+    },
+    {
+      "path": "public/entity/index.html",
+      "blob_sha": "5f7c13c10df5ae08fc48002e3dac704a876e81d8"
+    },
+    {
+      "path": "public/evidence/index.html",
+      "blob_sha": "ca369a177beb0fdb695d2bddcf8857ed230a6b2d"
+    },
+    {
+      "path": "public/go/index.html",
+      "blob_sha": "078ea7e156a78cfac1d529d78cfd15e54ed7eb9e"
+    },
+    {
+      "path": "public/igor-vepretski/index.html",
+      "blob_sha": "53fd0c381bfcd81f840e428012ed4b89fbab559f"
+    },
+    {
+      "path": "public/influence/index.html",
+      "blob_sha": "5dce56f13a3a54a4021ef74a51b72086eec3390c"
+    },
+    {
+      "path": "public/integrity/index.html",
+      "blob_sha": "c6abc95fa0e0d0fcf7867404473cb7e7cafb699b"
+    },
+    {
+      "path": "public/links/index.html",
+      "blob_sha": "603ac29a66ebdf6b4842b7bbf60373ef0a923fed"
+    },
+    {
+      "path": "public/llms.txt",
+      "blob_sha": "ee1c994500eda4c1d0bf01bf12a201de174e0106"
+    },
+    {
+      "path": "public/media/index.html",
+      "blob_sha": "ee86858684df0ab502bc147b3b3c133e7bbc3fc8"
+    },
+    {
+      "path": "public/museum/index.html",
+      "blob_sha": "f589a112bda37c1dd3ecc06eca3bde36c81e93c9"
+    },
+    {
+      "path": "public/music/index.html",
+      "blob_sha": "f7900fc56dad65e6c687e6d0febd78075d2c5db8"
+    },
+    {
+      "path": "public/pass/index.html",
+      "blob_sha": "c95ea7a97a26c0f82a84fba2d25baba38b4e16f0"
+    },
+    {
+      "path": "public/press/index.html",
+      "blob_sha": "bbef0378b14d218ce1f46d17332d58af0efe643d"
+    },
+    {
+      "path": "public/privacy/index.html",
+      "blob_sha": "fbcfa76f6ca4b645b647e65a4f7dde0401ba6f16"
+    },
+    {
+      "path": "public/radar/index.html",
+      "blob_sha": "3aaaaedd5628b41c334644170f42da4c2bccd91c"
+    },
+    {
+      "path": "public/release.json",
+      "blob_sha": "229a6e625fc4f3c5807036bbcdbd449f8d4f1f66"
+    },
+    {
+      "path": "public/resources/7ya-launch.webp",
+      "blob_sha": "67b3ca10d230233d2f4ef03ba664f7de75bf6a42"
+    },
+    {
+      "path": "public/resources/7ya-logo.svg",
+      "blob_sha": "6d1831d9b9cdb85b54a5d47bbad11e3712b11c70"
+    },
+    {
+      "path": "public/resources/7ya-research.webp",
+      "blob_sha": "ebc1b5ae3e357cae7f373bf562353159d70597aa"
+    },
+    {
+      "path": "public/resources/7ya-starton.webp",
+      "blob_sha": "6057659646596ac9f8f3067c4c29a48f5f82140a"
+    },
+    {
+      "path": "public/resources/chapter-music.webp",
+      "blob_sha": "e97425b81e0d6672a14e92f5be7692f1e4c3296d"
+    },
+    {
+      "path": "public/resources/chapter-starton.webp",
+      "blob_sha": "8bbaae2f35fbf462fca34800f7d9e10d995a3b6b"
+    },
+    {
+      "path": "public/resources/chapter-voice.webp",
+      "blob_sha": "066cb527d48c60401e9e37d9f67201fb70dd1bf5"
+    },
+    {
+      "path": "public/resources/hero-story.webp",
+      "blob_sha": "54920fd730ef0878e5bda4aad74a9fa97e4952f1"
+    },
+    {
+      "path": "public/resources/igor-hero.jpg",
+      "blob_sha": "1b23244cd84628c4632cd16fde65b7a12da48478"
+    },
+    {
+      "path": "public/robots.txt",
+      "blob_sha": "0cc0be3aad7bec49afe96ad127afd181d3c15170"
+    },
+    {
+      "path": "public/schemas/evidence-manifest.schema.json",
+      "blob_sha": "6591c4ff30dd976b2a32cdd754f97bfdff50f6bf"
+    },
+    {
+      "path": "public/schemas/media-impact.schema.json",
+      "blob_sha": "5b1e72b2d9b212056532a873a37a2be3ec23b0d9"
+    },
+    {
+      "path": "public/scripts/starton-rooms.js",
+      "blob_sha": "ae37dab73e38ac20b8d2b10c77df7da87b4e5454"
+    },
+    {
+      "path": "public/site.webmanifest",
+      "blob_sha": "edf7e602d97fcba800026d1104f1536c0f71086b"
+    },
+    {
+      "path": "public/sitemap.xml",
+      "blob_sha": "f92f974e4e14e685dc839f35a027666ffd8ba2a0"
+    },
+    {
+      "path": "public/social/index.html",
+      "blob_sha": "923e88970a6cca3fda0d70720e7e5fe0bc015c96"
+    },
+    {
+      "path": "public/speaker/index.html",
+      "blob_sha": "3db01354e5701262d201b7bdf006450495f52595"
+    },
+    {
+      "path": "public/starton/index.html",
+      "blob_sha": "c45636edfb20614c2e53d35081d0ac02b31c3472"
+    },
+    {
+      "path": "public/starton/rooms/index.html",
+      "blob_sha": "7153ca4748f0370aa9332a408f41a94fdffb102b"
+    },
+    {
+      "path": "public/static-health.json",
+      "blob_sha": "a9e7a06a6d72b5940e6fdd114b55214187342914"
+    },
+    {
+      "path": "public/styles/igor-links-20260806.css",
+      "blob_sha": "fdb1843852d843c68ea82d44648292edb8ae5244"
+    },
+    {
+      "path": "public/styles/music-route.css",
+      "blob_sha": "52c5111f58b9eadf11ceb95c1f39521fb252ae2f"
+    },
+    {
+      "path": "public/styles/starton-rooms.css",
+      "blob_sha": "7fbbaa557c14128e489773487ecd56ff8c38e62b"
+    },
+    {
+      "path": "public/styles/trust-routes-20260804.css",
+      "blob_sha": "8b025c34fbce84792d8c8b47bd37cdc9124facaa"
+    },
+    {
+      "path": "public/styles/visual-system-v2.css",
+      "blob_sha": "72077eed466852bfb241c35445897a64b99d02fa"
+    },
+    {
+      "path": "public/sw.js",
+      "blob_sha": "b5bd8ada721bfd647a5b941b926981f72da9d7c6"
+    },
+    {
+      "path": "public/talk/index.html",
+      "blob_sha": "3f30f2f15ed768e7220cf9c29191c173b2a197bc"
+    },
+    {
+      "path": "public/terms/index.html",
+      "blob_sha": "fd8827ac1a9b04e690e5bc142f1595bef68c9183"
+    },
+    {
+      "path": "public/timeline/index.html",
+      "blob_sha": "6b2a3fadce61125ab2db5752342fbc7da987cf1d"
+    },
+    {
+      "path": "shared/media-impact.ts",
+      "blob_sha": "94b57bc4fb60affc09e8cb0ec2b95fedc966503a"
+    },
+    {
+      "path": "src/App.tsx",
+      "blob_sha": "8a0a8adf3b7c1d9368c8174dc96120f9427e7895"
+    },
+    {
+      "path": "src/Archive.tsx",
+      "blob_sha": "0147dec1a1d10a52bb9cd0940e44e6f67f928efd"
+    },
+    {
+      "path": "src/BlogPage.tsx",
+      "blob_sha": "0cf9ca6b8e363a4c5daebc8c407e0d0a962d9855"
+    },
+    {
+      "path": "src/ConversionHome.tsx",
+      "blob_sha": "5aaf7656b5a0d70e2129a99323a771b11f17420d"
+    },
+    {
+      "path": "src/CreatorPathPage.tsx",
+      "blob_sha": "36f384b15534aa15f9fd9026a03de33b7aa90204"
+    },
+    {
+      "path": "src/DeepMediaLibrary.tsx",
+      "blob_sha": "1e88a110f89a5d60e36cd5840c49d13c18f09ef9"
+    },
+    {
+      "path": "src/EditorialEnrichment.tsx",
+      "blob_sha": "6530f0afeb1a46ad664124b192fbf491ccb1161e"
+    },
+    {
+      "path": "src/FutureHero.tsx",
+      "blob_sha": "3ae2d6bb6ce84ad181053d8bac76612037dfb18b"
+    },
+    {
+      "path": "src/GalaxyHome.tsx",
+      "blob_sha": "7f1652d21a63e910ecd7050d21bed815180b4e28"
+    },
+    {
+      "path": "src/GlobalNav.tsx",
+      "blob_sha": "600c9edd291dd463271fc56278a4e8259c0b71ef"
+    },
+    {
+      "path": "src/GrowthPathPage.tsx",
+      "blob_sha": "6c06ed266bc8b58cd1a825e338b1d2c4d8040614"
+    },
+    {
+      "path": "src/HistoricalInfluence.tsx",
+      "blob_sha": "354127ba0a4cfc82d7472122fe05b77548bb5da7"
+    },
+    {
+      "path": "src/HomeMediaFlow.tsx",
+      "blob_sha": "b9a4b88340114a2de3a648db853da5c6f0fb349c"
+    },
+    {
+      "path": "src/IgorExperience.tsx",
+      "blob_sha": "7c47146dc1ab536f6b8edd68503e6c529eb0788c"
+    },
+    {
+      "path": "src/ImpactDashboard.tsx"
+    },
+    {
+      "path": "src/InfluenceArticle.tsx",
+      "blob_sha": "13550dba582a2c285e6a848a0e85fad29d38432e"
+    },
+    {
+      "path": "src/InfluenceMemory.tsx",
+      "blob_sha": "f1bfac18f70a5cede30ee6db9ecfc13f550ed09d"
+    },
+    {
+      "path": "src/IntegrityPage.tsx",
+      "blob_sha": "5e92ae877f8cc6f558b51f62776cf07a27edb540"
+    },
+    {
+      "path": "src/InteractivePositionArticle.tsx",
+      "blob_sha": "c13431b133600eac248f502e0a3eee9c0094e8a6"
+    },
+    {
+      "path": "src/KnowledgeFootage.tsx",
+      "blob_sha": "85e4e96dd245ddf37fd1c1942b866a46b6b74948"
+    },
+    {
+      "path": "src/LifeArchive.tsx",
+      "blob_sha": "ea9ece0b396707298a2b627a6236ed69bbf61035"
+    },
+    {
+      "path": "src/LifeMapNavigation.tsx",
+      "blob_sha": "547d5b10a5521e4592d317139045ec8eb9059489"
+    },
+    {
+      "path": "src/MediaEvidenceVisual.tsx",
+      "blob_sha": "e645e0e9420229d757c5bf1e842607fecb9c47bc"
+    },
+    {
+      "path": "src/MediaFrame.tsx",
+      "blob_sha": "7b37214615d0262005dedfd52b89e0eb9d4c4f5e"
+    },
+    {
+      "path": "src/MediaPage.tsx",
+      "blob_sha": "3cb12a7f1250a14953d82360620d173104d2f8d7"
+    },
+    {
+      "path": "src/MediaWall.tsx",
+      "blob_sha": "5803da1b455b052d8e6b490313baea8e045112ed"
+    },
+    {
+      "path": "src/MuseumPage.tsx",
+      "blob_sha": "6972ac9f91bdd989a629739ff876dc575148f36e"
+    },
+    {
+      "path": "src/MusicSpotlight.tsx",
+      "blob_sha": "8c4515367e9f42d970c0cd305d6ce8f18f9cbf3f"
+    },
+    {
+      "path": "src/PersonalCommand.tsx",
+      "blob_sha": "daead521285340a82acbd2aa900fc2b29d2efe97"
+    },
+    {
+      "path": "src/PersonalGrowthGateway.tsx",
+      "blob_sha": "06af39306ae0c5cf1e74e302646ff13877d2294c"
+    },
+    {
+      "path": "src/PlatformUniverse.tsx",
+      "blob_sha": "0d6df9ae19550378884d3386e18b984382a8ecee"
+    },
+    {
+      "path": "src/PostPortraitWall.tsx",
+      "blob_sha": "b660f70c47edad3cf2958b457cb8545cd1365088"
+    },
+    {
+      "path": "src/ResearchChapter.tsx",
+      "blob_sha": "b4560911dc4eade0c30dfaeaa5f3e4e723fa4c9d"
+    },
+    {
+      "path": "src/SiteControl.tsx",
+      "blob_sha": "e26d9c22b8ca74d71f989757e3fbf4ace08f51c2"
+    },
+    {
+      "path": "src/SpeakerPage.tsx",
+      "blob_sha": "b2012eb11bb53785e393c2a26c11888a7f5f55a1"
+    },
+    {
+      "path": "src/StoryCompanion.tsx",
+      "blob_sha": "55054b5f3b6961928e3331634db04d7e2fab1f4e"
+    },
+    {
+      "path": "src/StoryStage.tsx",
+      "blob_sha": "73ff15bb000a7b24cf941c4260172701856181f3"
+    },
+    {
+      "path": "src/ViralAlbums.tsx",
+      "blob_sha": "cc5e54b70c8bebac88e96c705facc46fdc378bc3"
+    },
+    {
+      "path": "src/ViralFeed.tsx",
+      "blob_sha": "934d6737d225d22bd9fcdfde287fa3ded1e589db"
+    },
+    {
+      "path": "src/ViralFrontispiece.tsx",
+      "blob_sha": "c1f6ffc68a10b4bf8483d5b29c6b6366949d6995"
+    },
+    {
+      "path": "src/ViralMediaGallery.tsx",
+      "blob_sha": "8d9607bb15d2b746b845b2a4c8b2f7a8de2c0d88"
+    },
+    {
+      "path": "src/VisualSection.tsx",
+      "blob_sha": "235b4f42e9ae2d0824776dcfe168772b5c06f606"
+    },
+    {
+      "path": "src/blog-page.css",
+      "blob_sha": "8a0d7b847ac46059bb02c7aefe1f2134a43a074e"
+    },
+    {
+      "path": "src/content-registry.ts",
+      "blob_sha": "cb6854704913c4409a47f6917f89133445b3fd35"
+    },
+    {
+      "path": "src/conversion-home.css"
+    },
+    {
+      "path": "src/creator-path.css",
+      "blob_sha": "2fd6f44e1dd6bcdc4c3b2e604b66011684e9bc5d"
+    },
+    {
+      "path": "src/deep-media-data.ts",
+      "blob_sha": "0a582ea0000dcc2fd6cddb996b2e9913ea3ef5c2"
+    },
+    {
+      "path": "src/deep-media-library.css",
+      "blob_sha": "dcfb4cacc5b906c3db77aec0659ea2023e5ce2b6"
+    },
+    {
+      "path": "src/editorial-enrichment.css",
+      "blob_sha": "45131a687ece659c8618dc1b7b9cb38a6ae06d1d"
+    },
+    {
+      "path": "src/editorial-premium.css",
+      "blob_sha": "8dbc3f0adfca7ce91ac1546791249915f191b22f"
+    },
+    {
+      "path": "src/future-hero.css",
+      "blob_sha": "01096d20afd1ed00b8786b7cd9f502ccc26dcee6"
+    },
+    {
+      "path": "src/galaxy-home.css",
+      "blob_sha": "b49bbccb0d0362eb3c73d90228c582126affd5a0"
+    },
+    {
+      "path": "src/global-nav.css",
+      "blob_sha": "d975c3ceb80343f4311762449c97a6de4e815866"
+    },
+    {
+      "path": "src/growth-path.css",
+      "blob_sha": "6c60f09632a2ffd23f8aa1e286b1b53f0e50ac3d"
+    },
+    {
+      "path": "src/hero-brand.css",
+      "blob_sha": "30efd4407256e5aca9acee6e93cf87a8b0dc7c11"
+    },
+    {
+      "path": "src/historical-influence.css",
+      "blob_sha": "dc8514a4615295b564729558b62c5b9063d663b6"
+    },
+    {
+      "path": "src/home-media-flow.css",
+      "blob_sha": "dc45cca261797b3a030bc24bb1400d59b70a40e1"
+    },
+    {
+      "path": "src/home-simplify.css",
+      "blob_sha": "a7ff54ce716625ebed0206bc5e392df5b3ddf0c1"
+    },
+    {
+      "path": "src/igor-experience.css",
+      "blob_sha": "b67fd0c297f5b037ac9c6d7b118f3b4d23aafcb9"
+    },
+    {
+      "path": "src/impact-dashboard.css",
+      "blob_sha": "cf3c8374d83743d5f41afb350e6e45123ffb0bf8"
+    },
+    {
+      "path": "src/index.css",
+      "blob_sha": "b7d7a82bdee91581c1afc365eac7677b06144ce5"
+    },
+    {
+      "path": "src/influence-memory.css",
+      "blob_sha": "f10aeef5ef6802d0447947ab3f70074955a2e6c5"
+    },
+    {
+      "path": "src/influence.css",
+      "blob_sha": "7cb5c3e3b89520218acd8409596d697b427fe44c"
+    },
+    {
+      "path": "src/interactive-position-article.css",
+      "blob_sha": "c86fbfe25d452c3ea3c1f307ec9f86bdc950c5c2"
+    },
+    {
+      "path": "src/journey.css",
+      "blob_sha": "a1a771065486ceb964744bb423d14b2e7d72792c"
+    },
+    {
+      "path": "src/knowledge-footage.css",
+      "blob_sha": "8eb9aff9acdae9f99c77f9ca877c064730e524c1"
+    },
+    {
+      "path": "src/life-archive.css",
+      "blob_sha": "dc62ad9798e3c68250a034a7589efcb9c2a9d872"
+    },
+    {
+      "path": "src/life-map-flow.css",
+      "blob_sha": "1db64e429161bc83e24f518f50ba8a9426202fe7"
+    },
+    {
+      "path": "src/locale.css",
+      "blob_sha": "af4fc95a45e056a564353f4c3acad7bf5df62685"
+    },
+    {
+      "path": "src/locale.tsx",
+      "blob_sha": "b1229e9c937ec12bc5982f73a2e01566ff5effad"
+    },
+    {
+      "path": "src/loop.css",
+      "blob_sha": "617c3de8813e006dfb08904a80804a654370f651"
+    },
+    {
+      "path": "src/main.tsx",
+      "blob_sha": "c8f3a83cb79d73e4853b7287264b93ed1e6bc87f"
+    },
+    {
+      "path": "src/media-catalog.ts",
+      "blob_sha": "25349c16a12185299b6d7240847c68c12d9b846b"
+    },
+    {
+      "path": "src/media-corpus.ts",
+      "blob_sha": "a38c00f1100932e6c5505777dee45631bba99fed"
+    },
+    {
+      "path": "src/media-evidence-system.css",
+      "blob_sha": "8b1dbcefdf46a96e7d8deeaee3f02a9b6966ba0a"
+    },
+    {
+      "path": "src/media-experience.css",
+      "blob_sha": "37021ff7ed283761437ed9ccccdae077ea0bb64a"
+    },
+    {
+      "path": "src/media-page.css",
+      "blob_sha": "741ee1de4e87192441660678e09ef822bb83f4a5"
+    },
+    {
+      "path": "src/media-wall.css",
+      "blob_sha": "ab906e91dc0dd398fb4c002e1475a274a30b17ca"
+    },
+    {
+      "path": "src/museum-chapters-v2.css",
+      "blob_sha": "8342d204b6bf727378a1c33b625fd94147df2339"
+    },
+    {
+      "path": "src/museum-page.css",
+      "blob_sha": "56d081383bf31ab1e38b83f6517388a5c021fc5e"
+    },
+    {
+      "path": "src/music-spotlight.css",
+      "blob_sha": "9df7f65c334c927100abe3c22f6f1425f57f30d8"
+    },
+    {
+      "path": "src/personal-command.css",
+      "blob_sha": "f440194d818670190f7c7bd1d39c198468c0342c"
+    },
+    {
+      "path": "src/personal-growth-gateway.css",
+      "blob_sha": "8fbc898d43f9b3998dff40ad2f308942db2f78e7"
+    },
+    {
+      "path": "src/platform-universe.css",
+      "blob_sha": "342e0ee12c47b416a330948e82e4721b7e894e13"
+    },
+    {
+      "path": "src/position-articles.ts",
+      "blob_sha": "5111049d5602dea238e0dbc3ba5c535bc28fe695"
+    },
+    {
+      "path": "src/post-portrait-wall.css",
+      "blob_sha": "4658fa66575d31914fc6d68a07f187d7283b58b7"
+    },
+    {
+      "path": "src/press.css",
+      "blob_sha": "e10498307267c7f524e56277f594137a17114fb5"
+    },
+    {
+      "path": "src/research-chapter.css",
+      "blob_sha": "8fa3170951bc5474e7170781ea1482e96fa19703"
+    },
+    {
+      "path": "src/signal.css",
+      "blob_sha": "58c1efb5253a8e4820e365df5d5056ffc26e93b2"
+    },
+    {
+      "path": "src/site-control.css",
+      "blob_sha": "25de3cacbc8b6c50adf55281a0767fdb9584822e"
+    },
+    {
+      "path": "src/site.css",
+      "blob_sha": "86cbf03fa7a726ce8a93093b5c933ef510844ccc"
+    },
+    {
+      "path": "src/speaker-page.css",
+      "blob_sha": "53d890d28f09b22103a6df262625d65e52ecf586"
+    },
+    {
+      "path": "src/story-companion.css",
+      "blob_sha": "2803f547f70d57e77d7a1703ca2b30949e419b1e"
+    },
+    {
+      "path": "src/story-publications.css",
+      "blob_sha": "799a14a3e00419886edd697ddfbdc59db6b0267b"
+    },
+    {
+      "path": "src/story-stage.css",
+      "blob_sha": "3024cd988c004cd7b6ae26541dbe4260141b308b"
+    },
+    {
+      "path": "src/v81-visual.css",
+      "blob_sha": "d539c67f327e2c11d32bc90d25b229c28eb16583"
+    },
+    {
+      "path": "src/viral-albums.css",
+      "blob_sha": "f23d451b05865e3e4248ad98b7fe5622a79e4769"
+    },
+    {
+      "path": "src/viral-frontispiece.css",
+      "blob_sha": "dcdef8d8894d3c5f1bf8f7a284bc7f27363d14b5"
+    },
+    {
+      "path": "src/viral-media-gallery.css",
+      "blob_sha": "460ded828120a5d850277fea6383ad511d3c1866"
+    },
+    {
+      "path": "src/viral.css",
+      "blob_sha": "d8ed76fa7535cf4bcd3ca0cfa032048cca314620"
+    },
+    {
+      "path": "src/visual-system.css",
+      "blob_sha": "e4fdebf300eda051f04f634ed261c8e996688fb9"
+    },
+    {
+      "path": "tailwind.config.js",
+      "blob_sha": "eb549eb7cd400c789594c92140a09e18051b7218"
+    },
+    {
+      "path": "tests/tests.txt",
+      "blob_sha": "c4e10b253e9e14fe0b397392e7bda31187fde45f"
+    },
+    {
+      "path": "tsconfig.json",
+      "blob_sha": "40ab35e705d2257d181678644c5d0829004b8679"
+    },
+    {
+      "path": "vite.config.ts",
+      "blob_sha": "1be021caa68fa7c6e231ae035e4bd908ce3d0835"
+    }
+  ]
+}

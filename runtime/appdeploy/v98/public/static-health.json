@@ -1,0 +1,11 @@
+{
+  "status": "ok",
+  "service": "7ya-independent",
+  "provider": "appdeploy",
+  "release": "7ya-media-corpus-20260814-1",
+  "build": "7ya-media-corpus-20260814-1",
+  "environment": "production",
+  "static_fallback": true,
+  "authoritative": false,
+  "note": "The live backend /api/health response is authoritative."
+}
