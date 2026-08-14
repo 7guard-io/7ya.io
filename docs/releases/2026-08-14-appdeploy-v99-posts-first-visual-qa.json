@@ -1,0 +1,68 @@
+{
+  "receipt_type": "appdeploy_visual_qa",
+  "schema_version": 1,
+  "verified_at_utc": "2026-08-14T16:30:25.017Z",
+  "scope": "Minimal desktop and mobile proof for the homepage #posts-first sequence; no product-code change.",
+  "provider": {
+    "name": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v99",
+    "version": "1786715086480",
+    "preview_url": "https://697a008fddc309b142.v2.appdeploy.ai/"
+  },
+  "release_action": {
+    "action": "Re-applied the unchanged v99 artifact to generate a fresh QA run.",
+    "product_source_changed": false,
+    "rollback_required": false
+  },
+  "visual_qa_pack": {
+    "desktop": {
+      "status": "PASS",
+      "proof": [
+        "The section with id #posts-first follows the hero in the rendered homepage.",
+        "AppDeploy Test 4 passed: the Hebrew posts heading and five source-backed stories were found before Music & Clips.",
+        "Fresh desktop snapshot: https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1786724948851/web.png"
+      ]
+    },
+    "mobile": {
+      "status": "CONDITIONAL_PASS",
+      "proof": [
+        "AppDeploy Test 3 passed at a mobile viewport: hero, actions, navigation, and overflow guardrail are responsive with no frontend or network errors.",
+        "The v99 responsive source keeps #posts-first directly after the hero and uses a dedicated narrow-screen layout.",
+        "Fresh mobile snapshot: https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1786724948851/mobile.png"
+      ],
+      "strict_remaining_gap": "The platform's mobile test does not scroll into #posts-first, so it does not yet produce a mobile screenshot of the heading and first source-backed card."
+    }
+  },
+  "acceptance": {
+    "deployment_status": "ready",
+    "e2e_status": "passed",
+    "e2e_jobs": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0
+    },
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": [],
+    "strict_summary": "PASS for the deployed v99 experience and desktop #posts-first proof. The only unproven assertion is the dedicated mobile scrolled visual evidence for #posts-first; this is a QA-evidence gap, not an observed product defect."
+  },
+  "smallest_remaining_gap": {
+    "type": "coverage",
+    "description": "One mobile QA scenario: scroll from the hero to #posts-first and verify the visible heading plus the first source-backed card/link are unobscured and tappable."
+  },
+  "next_safe_move": {
+    "action": "After the v99 runtime source is exported and aligned with GitHub main, add that single mobile #posts-first scenario to the versioned E2E suite and run it against the unchanged artifact.",
+    "do_not_do": [
+      "Do not modify the visual UI.",
+      "Do not redeploy only to manufacture a screenshot."
+    ]
+  },
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_alignment": "PENDING_GITHUB_EXPORT",
+    "note": "This receipt records deployed-runtime verification only; it does not claim that the complete v99 runtime source is already present in GitHub main."
+  }
+}
