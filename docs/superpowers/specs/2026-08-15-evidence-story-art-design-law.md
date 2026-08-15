@@ -1,7 +1,7 @@
 # 7YA Design Law — Evidence × Story × Art
 
 **Date:** 2026-08-15  
-**Status:** Approved design direction  
+**Status:** Approved design direction, expanded through user review  
 **Applies to:** 7ya.io public experience, Influence Graph, Digital Museum, Life Journey Engine, evidence-led story scenes  
 **Branch:** `feat/influence-graph-20260815`
 
@@ -18,7 +18,44 @@ The public site uses **Evidence × Story × Art** as the mandatory composition m
 - **Art** turns the item into a coherent, personal and memorable visual experience without falsifying history.
 - **Action** gives the visitor a meaningful next step: reflection, exploration, conversation, creation, contribution or self-development.
 
-## 2. Selection rule
+## 2. Primary learning source — interaction power
+
+The system must learn Igor's public significance from **interaction power**, not from chronology, follower totals or self-description alone.
+
+Chronology answers *when something happened*. Interaction power answers *where the public actually engaged with Igor's life, ideas and actions*.
+
+Every discovered life station, publication, appearance or project should therefore accumulate an **Interaction Power Profile** using observable signals such as:
+
+- views / impressions / reach when available;
+- repeat consumption or watch depth when available;
+- reactions and likes;
+- saves and bookmarks;
+- comments, especially substantive comments;
+- reply depth and multi-person discussion chains;
+- shares and reposts;
+- quotes, stitches, duets, mirrors and syndication;
+- external publication or media pickup;
+- profile visits, follows or subscription actions attributable to a content event when measurable;
+- direct public statements of changed thinking;
+- declared behavioral intention;
+- joining, donating, volunteering, voting, collaborating, attending or creating something in response;
+- institutional response or adoption;
+- persistence over time: later resurfacing, rediscovery or re-publication;
+- cross-platform migration of the same story or idea.
+
+Signals are weighted by **depth, intentionality, persistence and downstream effect**. A view is not equivalent to a share; a share is not equivalent to a declared behavioral change.
+
+The learning hierarchy is:
+
+`ATTENTION → ENGAGEMENT → DISCUSSION → AMPLIFICATION → ADOPTION → ACTION → INSTITUTIONAL EFFECT`
+
+The system should use this hierarchy to discover which life stations deserve greater narrative emphasis, which themes repeatedly activate people, and which moments are historically important even when their raw reach is modest.
+
+Negative, critical or polarized interactions remain valid influence signals. Sentiment and influence are separate dimensions.
+
+No single interaction score may be presented as scientific causality. Public output must preserve the distinction between **observed**, **inferred**, **attributed** and **declared-action** evidence.
+
+## 3. Selection rule
 
 The archive is intentionally larger than the public experience. Discovery does not imply publication.
 
@@ -26,15 +63,15 @@ Each candidate asset receives an internal editorial score:
 
 | Dimension | Weight | Question |
 |---|---:|---|
-| Story relevance | 30% | Does this advance a meaningful life chapter, transformation or public theme? |
-| Evidence strength | 25% | Can the public claim be defended with a dated, attributable source? |
-| Personal / emotional significance | 20% | Does this reveal the human being rather than merely a metric? |
-| Public accessibility | 15% | Can a visitor understand and, where appropriate, inspect the evidence safely? |
-| Visual potential | 10% | Can it become a strong visual scene without distortion or clutter? |
+| Interaction / influence significance | 30% | Did people materially engage, amplify, adopt or act? |
+| Story relevance | 25% | Does this advance a meaningful life chapter, transformation or public theme? |
+| Evidence strength | 20% | Can the public claim be defended with a dated, attributable source? |
+| Personal / emotional significance | 15% | Does this reveal the human being rather than merely a metric? |
+| Public accessibility + visual potential | 10% | Can a visitor safely understand and experience it visually? |
 
 The score is a ranking aid, not an automatic publisher. Editorial judgment may override the numerical rank when a lower-volume asset carries substantially greater human or historical meaning.
 
-## 3. Public Story Scene contract
+## 4. Public Story Scene contract
 
 A selected item should render as a **Personal Story Scene**, not a generic data card.
 
@@ -51,13 +88,13 @@ A complete scene contains, when available:
 
 No scene is required to expose all eight elements at once. The visual hierarchy should reveal them progressively.
 
-## 4. Visual treatment hierarchy
+## 5. Visual treatment hierarchy
 
-### 4.1 Original-first
+### 5.1 Original-first
 
 When a strong authentic source exists, it is the primary visual. The source should not be replaced by synthetic imagery merely to make the page look more cinematic.
 
-### 4.2 Hero Frames from interviews, television, podcasts and lectures
+### 5.2 Hero Frames from interviews, television, podcasts and lectures
 
 Long-form appearances must not be represented by weak platform thumbnails when a stronger authentic frame can be recovered.
 
@@ -69,21 +106,55 @@ For every important interview, TV appearance, video podcast, public lecture or s
 - improve exposure, white balance, local contrast, denoise and restrained sharpening;
 - create desktop and mobile crops from the same authentic source frame;
 - preserve visible contextual elements that matter to the story, such as studio, stage, microphone, host, audience or institutional setting;
-- retain the source video URL and timestamp so the frame remains auditable.
+- retain the source video URL and timestamp so the frame remains auditable;
+- prioritize appearances whose surrounding interaction power shows meaningful public resonance, not merely appearances with prestigious branding.
 
 Permitted enhancement is **restorative and presentational**, not generative identity alteration. Do not change face shape, body structure, age, expression, clothing identity, other participants or the historical setting. If a visual is generated or reconstructed rather than extracted from the real interview, it must be explicitly treated as illustrative and must not masquerade as a frame from the event.
 
 The result should feel like premium editorial photography built from real footage: personal, flattering, cinematic and credible.
 
-### 4.3 Weak-source composition
+### 5.3 Weak-source composition
 
 When the source is historically important but visually weak, build a composed scene around it using typography, spatial framing, archival texture, maps, waveform, timeline, excerpts or secondary verified visuals. The original evidence remains visible or one interaction away.
 
-### 4.4 Illustrative generation
+### 5.4 Illustrative generation
 
 When no adequate historic visual exists, a new symbolic or conceptual visual may be created if it materially improves comprehension or emotional resonance. It must never be presented as historical documentation.
 
-## 5. Influence as story, not vanity metrics
+## 6. Life-route granularity
+
+The life journey should be modeled as a **dense network of stations**, not a small set of broad chapters.
+
+Broad chapters remain useful for navigation, but beneath them the system should recover as many meaningful stations as evidence supports, including:
+
+- childhood locations and homes;
+- immigration and adaptation;
+- family turning points;
+- schools, teachers and formative conflicts;
+- neighborhood experiences;
+- first public recognition or external coverage;
+- military service and role transitions;
+- security and diplomatic-security work;
+- police / intelligence service milestones;
+- academic study and intellectual formation;
+- relationships, fatherhood and family identity where public-safe;
+- creator-era platform launches and account migrations;
+- viral posts and recurring narrative families;
+- deleted, blocked or renamed profiles;
+- interviews, television, radio, podcasts and lectures;
+- music, hip-hop, releases and collaborations;
+- civic and political participation;
+- municipal service and leadership;
+- StartOn concept formation, pilots, partners and physical-space development;
+- research, writing, books and conceptual frameworks;
+- crises, failures, closures, legal/public setbacks when public-safe and narratively relevant;
+- recoveries and rebuilding periods;
+- 7YA formation and product evolution;
+- partnerships, international links and future-facing initiatives.
+
+A station earns prominence through the combination of **documented biographical importance + interaction power + downstream consequence**.
+
+## 7. Influence as story, not vanity metrics
 
 A metric enters the public narrative only when it explains behavior or distribution.
 
@@ -100,7 +171,7 @@ Examples:
 
 A large number is not itself a story. The site should prefer an understandable influence path over a maximal aggregate.
 
-## 6. Removed and historical surfaces
+## 8. Removed and historical surfaces
 
 Blocked, removed, renamed, inactive or otherwise lost profiles remain part of the historical record when evidence survives.
 
@@ -117,7 +188,7 @@ A **Ghost Profile / Removed Surface** scene may include:
 
 The disappearance itself can be narratively meaningful: digital loss, resilience, rebuilding, platform dependence and the persistence of public memory.
 
-## 7. Drive and private-source firewall
+## 9. Drive and private-source firewall
 
 Google Drive is an internal evidence reservoir, not a public publishing surface.
 
@@ -131,7 +202,7 @@ Never publish private correspondence, phone lists, minors' information, credenti
 
 Where a private owner export validates a public aggregate, the site may publish the dated aggregate and evidence class without exposing the raw file.
 
-## 8. Authenticity and enhancement
+## 10. Authenticity and enhancement
 
 The visual system may improve presentation but must not rewrite history.
 
@@ -157,7 +228,7 @@ Not allowed for evidence imagery:
 - changing uniforms, insignia, institutional branding or historical setting;
 - presenting generated imagery as archival imagery.
 
-## 9. Story sequencing
+## 11. Story sequencing
 
 The preferred visitor loop is:
 
@@ -165,7 +236,7 @@ The preferred visitor loop is:
 
 Evidence should appear at the moment it resolves doubt or deepens meaning, not as an unrelated ledger dumped below the narrative.
 
-## 10. Quality gate
+## 12. Quality gate
 
 A scene fails publication when any of the following is true:
 
@@ -176,9 +247,10 @@ A scene fails publication when any of the following is true:
 - a Hero Frame has been modified beyond restorative enhancement;
 - the scene exposes private-source material;
 - its mobile crop destroys the human subject or key context;
-- the visitor leaves knowing a fact but not understanding why it matters.
+- the visitor leaves knowing a fact but not understanding why it matters;
+- the system ignores strong interaction evidence that materially changes the interpretation of the station.
 
-## 11. Success criterion
+## 13. Success criterion
 
 The public experience should make a visitor feel that they are entering a documented human life rather than browsing a résumé or content archive.
 
