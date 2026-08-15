@@ -1,0 +1,4 @@
+import {useLocale} from '../locale';
+type ProofProps={source:string;date:string;context:string;status:string;href:string};
+const labels={he:{source:'מקור',date:'תאריך',context:'הקשר',status:'מצב ראיה',open:'פתיחת המקור'},en:{source:'Source',date:'Date',context:'Context',status:'Evidence state',open:'Open source'},ru:{source:'Источник',date:'Дата',context:'Контекст',status:'Статус доказательства',open:'Открыть источник'}} as const;
+export default function ProofDisclosure({source,date,context,status,href}:ProofProps){const {locale}=useLocale();const l=labels[locale];return <details className='lf-proof'><summary>✓ {l.source}</summary><div className='lf-proof-panel'><dl><div><dt>{l.source}</dt><dd>{source}</dd></div><div><dt>{l.date}</dt><dd dir='ltr'>{date}</dd></div><div><dt>{l.status}</dt><dd>{status}</dd></div><div><dt>{l.context}</dt><dd>{context}</dd></div></dl><a href={href} target='_blank' rel='noreferrer'>{l.open} ↗</a></div></details>}
