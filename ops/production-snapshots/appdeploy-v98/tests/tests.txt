@@ -1,0 +1,84 @@
+# Tests
+
+## Test 1 - Clear personal homepage entry [sanity]
+Viewport: desktop
+Covers: homepage first impression, personal hero, Igor portrait, primary contact action, secondary evidence action, removal of code-like dossier treatment
+Description: Verifies the first screen introduces Igor clearly and gives visitors two intelligible next steps without turning interface metadata into visual decoration.
+Steps:
+1. Open /
+2. Inspect the hero before scrolling
+3. Activate the primary action, then return and inspect the secondary action
+Expected: The hero visibly names Igor Vepretski, uses the concise story/work/impact message, shows the personal portrait, contains no 'PUBLIC RECORD / 07', numbered portrait label or identity-axis pills, and links first to contact and second to the evidence route.
+
+## Test 2 - Navigation connects the public identity to music
+Viewport: desktop
+Covers: global navigation, person route, music route, media route, evidence route, StartOn route, contact conversion, language selection, duplicate-route continuity
+Description: Verifies music is a first-class destination rather than an archive item, while core public paths stay coherent even when a visitor reaches an older deep URL.
+Steps:
+1. Open /
+2. Inspect the header navigation
+3. Select Music and inspect the music route
+4. Open /media/ and confirm it continues into the current media experience
+5. Return and visit Igor, Media, Evidence and StartOn, then use the contact action
+Expected: The header keeps the 7YA brand link, a visible Music destination, person/media/evidence/StartOn routes, a visible contact action and the language selector. The same compact navigation grammar remains readable on Igor, StartOn, Music, Social, Evidence, Contact and Rooms routes. The Music route visibly offers official BIZZI, 'מת על אקסל' and 'פרח במדבר' source links, and /media/ resolves to the current Media page.
+
+## Test 3 - Mobile homepage remains direct and tappable
+Viewport: mobile
+Covers: responsive hero, portrait crop, primary and secondary actions, mobile navigation, page-level overflow guardrail
+Description: Verifies the simplified entrance remains usable on a narrow screen.
+Steps:
+1. Open /
+2. Inspect the hero, portrait and actions
+3. Open and close the mobile menu, then use one core navigation link
+Expected: Copy is readable without overlap, the portrait stays in frame, both actions are full-width and tappable, the mobile navigation exposes the main destinations, and the page has no horizontal overflow.
+
+## Test 4 - High-impact publications and music are visible before the deep archive
+Viewport: desktop
+Covers: homepage public-impact path, source-backed publication highlights, official music and clips, LinkedIn profile access, removal of collage-style visual archive
+Description: Verifies the homepage makes Igor's consequential public work and creative work visible without reverting to a dense mosaic.
+Steps:
+1. Open /?lang=he
+2. Scroll below the hero through the public-impact and music sections
+3. Inspect the publication section, Music & Clips section, the LinkedIn profile link and one official clip link
+Expected: The homepage shows 'הפוסטים שמסבירים את ההשפעה.' with five source-backed stories, then a Music & Clips section with official BIZZI, 'מת על אקסל' and 'פרח במדבר' links. A clear path to the full media archive and to all music remains visible, and no archive-mosaic or PostPortraitWall visual section is rendered.
+
+## Test 5 - Full platform archive continues the homepage impact path
+Viewport: desktop
+Covers: media route, complete social-publication archive, platform filtering, LinkedIn source access, music-route bridge
+Description: Verifies a visitor can continue from the featured homepage stories into a usable cross-platform publication index and then reach music without losing context.
+Steps:
+1. Open /?page=media&lang=he#publications
+2. Inspect the publication archive heading and the platform controls
+3. Select LinkedIn and inspect one displayed source
+4. Open the Music & Clips bridge
+Expected: The page shows 'כל הקול הציבורי, לפי פלטפורמה.' before the press archive, exposes filters for Facebook, Instagram, TikTok, YouTube and LinkedIn, lists source-backed publications for the selected platform, provides a direct path to the Music & Clips route, and shows each selected video as a readable source card rather than a blank or broken remote-thumbnail tile.
+
+## Test 6 - Mobile posts-first remains visible after the hero
+Viewport: mobile
+Covers: direct hero-to-posts hierarchy, #posts-first heading, first source-backed story, source-link reachability, fixed-UI clearance, page-level overflow guardrail
+Description: Verifies a visitor on a narrow screen reaches the real posts immediately after the hero and can inspect the first evidence-backed story without an overlay or fixed navigation concealing it.
+Steps:
+1. Open /?lang=he and inspect the hero.
+2. Scroll to the section headed 'הפוסטים שמסבירים את ההשפעה.' (#posts-first).
+3. Inspect the heading, the first visible source-backed post and its source link.
+Expected: #posts-first is the first content section after the hero; the Hebrew heading and first post card are fully visible in the mobile viewport; the first source link is visible and tappable; no fixed navigation, prompt or overflow conceals the heading or card.
+
+## Test 7 - StartOn rooms reward real progress locally
+Viewport: desktop
+Covers: StartOn rooms focus selection, local-only progress, reward unlock, creator-path handoff
+Description: Verifies the room journey rewards deliberate actions without sending a draft or creating a public profile.
+Steps:
+1. Open /starton/rooms/
+2. Select a focus, confirm it, write a next step, choose a tool and complete the three actions
+3. Inspect the rewards and use the unlocked creation brief action
+Expected: Progress is visibly stored only in the current device, the 60-point reward reveals a clear creation-brief action, that action opens the Creator Path, and no submission or publication is triggered automatically.
+
+## Test 8 - Homepage is curated instead of repeating the archive
+Viewport: desktop
+Covers: homepage editorial hierarchy, curated media count, depth-route handoff, duplicate-section guardrail
+Description: Verifies the homepage stays a focused public front door while detailed dossier, archive and mission material remains on dedicated depth routes.
+Steps:
+1. Open /?lang=he and move from the hero through #posts-first, Music & Clips and the curated media section
+2. Continue through the personal growth gateway, StartOn section and final action
+3. Inspect the page for repeated dossier, defining-moments, three-chapter or second personal-agent sections
+Expected: The homepage shows exactly 8 curated media cards and a visible path to the full Media room; it does not render the three-chapter block, the repeated dossier/SEVEN DEFINING PUBLIC MOMENTS block, or a second #digital-igor panel; one personal growth gateway remains, followed by one dedicated StartOn mission section and the closing action.
