@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-15",
+  "purpose": "Use Google Drive as a private evidence reservoir for historical influence reconstruction without leaking private source material into the public 7YA graph.",
+  "private_drive_material_publication": false,
+  "private_source_urls_publication": false,
+  "raw_private_correspondence_publication": false,
+  "raw_contact_data_publication": false,
+  "raw_legal_financial_material_publication": false,
+  "raw_minor_or_family_identifiers_publication": false,
+  "source_classes": [
+    {
+      "id": "DRIVE_FORENSIC_WORKBOOK",
+      "role": "Audited internal workbook for entity resolution, metrics, amplification, archive capture and claim control.",
+      "public_safe": false,
+      "public_reference_mode": "INTERNAL_SOURCE_KEY_ONLY"
+    },
+    {
+      "id": "DRIVE_CANONICAL_WORK_INDEX",
+      "role": "Controlled internal index of published works, public surfaces, dated metrics and publication state.",
+      "public_safe": false,
+      "public_reference_mode": "INTERNAL_SOURCE_KEY_ONLY"
+    },
+    {
+      "id": "DRIVE_HISTORICAL_MASTER_CANON",
+      "role": "Historical editorial canon connecting evidence to life chapters and archive decisions.",
+      "public_safe": false,
+      "public_reference_mode": "INTERNAL_SOURCE_KEY_ONLY"
+    },
+    {
+      "id": "DRIVE_EVIDENCE_REGISTRY",
+      "role": "Append-only evidence registry separating documented, review, internal and public-safe artifacts.",
+      "public_safe": false,
+      "public_reference_mode": "INTERNAL_SOURCE_KEY_ONLY"
+    },
+    {
+      "id": "OWNER_EXPORT",
+      "role": "Owner-provided platform export or native insights used for dated aggregate metrics.",
+      "public_safe": true,
+      "public_reference_mode": "PUBLIC_SAFE_AGGREGATE_ONLY"
+    },
+    {
+      "id": "PUBLIC_WEB",
+      "role": "Publicly accessible post, profile, media page, archive or independent syndication source.",
+      "public_safe": true,
+      "public_reference_mode": "CANONICAL_PUBLIC_URL"
+    }
+  ],
+  "deduplication": {
+    "enabled": true,
+    "selection_rule": "MOST_RECENT_VERIFIED_CANONICAL",
+    "duplicate_converted_workbooks_count_as_new_evidence": false,
+    "cross_platform_publications_count_as_unique_people": false,
+    "same_person_cross_platform_interactions_require_entity_resolution": true
+  },
+  "claim_resolution": {
+    "prefer_stronger_number": false,
+    "quarantine_conflicts": true,
+    "preserve_historical_metric_when_surface_removed": true,
+    "current_status_never_overwrites_historical_status": true,
+    "causal_claim_requires_declared_or_independently_supported_action": true
+  },
+  "drive_census": {
+    "mode": "INVENTORY_THEN_RELEVANCE_CLASSIFICATION",
+    "categories": [
+      "PUBLIC_INFLUENCE",
+      "PLATFORM_EXPORT",
+      "MEDIA_AND_PRESS",
+      "STARTON",
+      "RESEARCH_AND_WRITING",
+      "MUSIC_AND_CULTURE",
+      "PUBLIC_SERVICE",
+      "LEGACY_AND_GHOST_SURFACE",
+      "PRIVATE_CONTEXT",
+      "IRRELEVANT_TO_PUBLIC_INFLUENCE"
+    ],
+    "private_context_default_publication": false,
+    "irrelevant_files_are_not_mined_for_public_content": true
+  },
+  "public_graph_forbidden_markers": [
+    "PRIVATE_CORRESPONDENCE",
+    "PRIVATE_LEGAL_FILE",
+    "PRIVATE_FINANCIAL_FILE",
+    "MINOR_IDENTIFIER"
+  ],
+  "publication_pipeline": [
+    "DISCOVER",
+    "NORMALIZE",
+    "RESOLVE_ENTITY",
+    "DEDUPLICATE",
+    "CLASSIFY_PRIVACY",
+    "CLASSIFY_CLAIM",
+    "LINK_PROPAGATION",
+    "HUMAN_REVIEW_WHEN_REQUIRED",
+    "PUBLIC_SAFE_EXPORT",
+    "RELEASE_GATE"
+  ]
+}
