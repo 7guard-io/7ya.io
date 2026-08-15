@@ -82,7 +82,7 @@ One to four source objects that prove or contextualize the chapter: article, pub
 A short interpretation of what changed: a skill, belief, responsibility, system insight or transformation.
 
 ### YOU
-An optional micro-reflection. One tap or one short text response is enough. It is not a test and should never block progress.
+An optional micro-reflection. One tap or one short text response is enough. It is not a test and should never block progress. Only 4–6 of the seven chapters should surface a reflection prompt so that the experience remains breathable.
 
 Example:
 
@@ -165,6 +165,28 @@ Do not create a standalone homepage logo wall. Use a contextual “PEOPLE & SYST
 
 Media companies remain in Media/Proof surfaces and are explicitly labeled as publishers/coverage, not partners.
 
+### 7.5 Single source of truth
+
+Partnership/relationship status must come from one typed registry consumed by every surface. The same organization must not be described differently in the homepage, Media, StartOn, Blog or any future route.
+
+Minimum shape:
+
+```ts
+type RelationshipRecord = {
+  id: string;
+  name: string;
+  status: 'BUILT_ACTIVE_SYSTEM'|'DOCUMENTED_WORKFLOW'|'ACTIVE_PARTNERSHIP'|'ECOSYSTEM_MEMBERSHIP'|'PROGRAM_PARTICIPATION'|'PILOT'|'PILOT_PROPOSAL'|'MEDIA_COVERAGE'|'PUBLIC_SOURCE';
+  title: string;
+  note: string;
+  url: string;
+  journeyChapter?: string;
+  evidenceUrl?: string;
+  asOf?: string;
+}
+```
+
+The UI derives human-readable status labels from this registry. Status wording must not be duplicated as arbitrary component strings.
+
 ## 8. Proof of Movement
 
 The site should make influence understandable as a sequence rather than as a large aggregate reach number.
@@ -240,6 +262,8 @@ Primary:
 - `CREATE`
 - `MY PATH`
 
+The 7YA/Igor brand mark remains the Home control, so a fifth “Home” item is unnecessary on desktop.
+
 Secondary/full menu:
 
 - Archive / All Content
@@ -267,6 +291,10 @@ The current combination of fixed top nav, expanded menu, five-item bottom dock, 
 
 The Companion trigger should become contextual after the user enters the journey. On the opening hero it should not compete with the primary “enter journey” action.
 
+### 10.4 Guest and signed-in semantics
+
+`MY PATH` must not imply that an anonymous visitor already has an account or saved data. Guest state should communicate “Start / continue on this device”; authenticated state may communicate “My Path” and persisted progress. The route must degrade cleanly when no saved path exists.
+
 ## 11. Progressive disclosure and content density
 
 The site should feel abundant without behaving like a warehouse.
@@ -284,7 +312,7 @@ Rules:
 
 ### 12.1 Reflection frequency
 
-Use approximately 4–6 reflection moments across the complete journey, not one after every card.
+Use 4–6 reflection moments across the complete journey, not one after every card.
 
 ### 12.2 Reflection UI
 
@@ -382,7 +410,7 @@ The current AppDeploy runtime already contains useful pieces that should be reus
 - `StoryCompanion.tsx` — extend into GUIDE / REFLECT / BUILD modes and contextual launch.
 - `CreatorPathPage.tsx` — existing structured personal-path handoff.
 - `HomeMediaFlow.tsx` — contains `PartnershipRail` and media relationship logic.
-- `media-catalog.ts` — current relationship data and status labels.
+- `media-catalog.ts` — current relationship data and status labels; migrate to the relationship registry instead of duplicating strings.
 - `HistoricalInfluence.tsx`, `ViralAlbums.tsx`, `InfluenceArticle.tsx` — source material for Proof of Movement clusters.
 
 Targeted refactor: partnership and media logic must become contextual journey components rather than standalone surfaces hidden from the main experience.
@@ -401,16 +429,17 @@ A new mobile or desktop visitor can state, without opening a menu:
 
 - The first meaningful CTA is the journey.
 - All seven transformations remain discoverable.
-- At least four chapters contain a clear LIFE → EVIDENCE → MEANING sequence.
-- 4–6 reflection moments exist, all optional.
+- **All seven chapters** contain a clear LIFE → EVIDENCE → MEANING sequence.
+- **Exactly 4–6 chapters** surface an optional YOU/reflection moment.
 - Source objects link to real public evidence.
 
 ### Partnerships
 
 - Contextual relationship rail is visible inside the relevant journey chapter.
-- Every organization has an explicit relationship status.
+- Every organization has an explicit relationship status from the shared registry.
 - Media publishers are never labeled partners.
 - Proposals/memberships are not presented as active partnerships.
+- The same organization cannot display contradictory statuses on different routes.
 
 ### Companion
 
@@ -421,10 +450,11 @@ A new mobile or desktop visitor can state, without opening a menu:
 
 ### Navigation
 
-- Desktop primary nav has four high-level destinations.
+- Desktop primary nav has four high-level destinations plus the brand/Home control.
 - Mobile dock has exactly four high-level destinations.
 - Full archive/depth routes remain accessible in secondary navigation.
 - No fixed UI overlaps the main CTA, reflection controls or form submit controls.
+- Guest users are not falsely shown as having a persisted account/path.
 
 ### Visual integrity
 
@@ -443,7 +473,7 @@ A new mobile or desktop visitor can state, without opening a menu:
 
 1. Journey shell + navigation simplification.
 2. Convert existing seven rooms into LIFE → EVIDENCE → MEANING chapters.
-3. Add contextual partnership rail to StartOn/Build chapters.
+3. Add the shared relationship registry and contextual partnership rail to StartOn/Build chapters.
 4. Add 4–6 reflection interactions and local `JourneyContext`.
 5. Contextual Companion launch + GUIDE/REFLECT/BUILD modes.
 6. Proof of Movement chains.
