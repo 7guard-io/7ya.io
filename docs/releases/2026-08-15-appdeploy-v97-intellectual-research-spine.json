@@ -1,0 +1,12 @@
+{
+  "date": "2026-08-15",
+  "provider": "AppDeploy v2",
+  "app_id": "697a008fddc309b142",
+  "version_name": "v97",
+  "version": "1786793394679",
+  "release_marker": "7ya-intellectual-research-spine-20260815-1",
+  "scope": "Approved B intellectual positioning: hero descriptor, homepage Research Spine, native multilingual Research room, structured Research Objects, navigation/SEO, Museum handoff, StartOn field-application framing and 7YA evidence-governance framing.",
+  "qa": {"status": "passed", "passed_jobs": 5, "total_jobs": 5, "frontend_errors": 0, "backend_errors": 0, "network_errors": 0},
+  "backend_endpoint_coverage_note": "QA reports 2/26 backend endpoints covered. This release changed no backend endpoints; the unused endpoints pre-existed and remain outside this focused frontend/research release scope.",
+  "rollback": {"version_name": "v96", "version": "1786792706393"}
+}
