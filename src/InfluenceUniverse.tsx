@@ -1,0 +1,44 @@
+import {useMemo,useState,type SyntheticEvent} from 'react';
+import {echoStories,type EchoEvidenceState,type EchoResponseType} from './echo-records';
+import {useLocale} from './locale';
+import './influence-universe.css';
+
+const metrics=[
+ {value:'213K',label:'REEL VIEWS',detail:'IG owner insights · 23.11.2023',url:'https://www.instagram.com/igor.vepretski/'},
+ {value:'1.1K',label:'COMMENTS',detail:'same verified snapshot',url:'https://www.instagram.com/igor.vepretski/'},
+ {value:'53',label:'SHARES',detail:'same verified snapshot',url:'https://www.instagram.com/igor.vepretski/'},
+ {value:'4.1K',label:'REACTIONS',detail:'fatherhood external repost snapshot',url:'https://www.hidabroot.org/article/1179015'},
+ {value:'148',label:'COMMENTS',detail:'fatherhood external repost snapshot',url:'https://www.hidabroot.org/article/1179015'},
+ {value:'904',label:'TIKTOK POSTS',detail:'owner export · 02.06.2026',url:'https://www.tiktok.com/@igor.vepretski'}
+] as const;
+
+const copy={
+ he:{bar:'ההדהוד המתועד ברחבי הרשת',barNote:'מקור → הפצה → תגובה · בלי total reach מומצא',title:'מה קורה אחרי שאני לוחץ “פרסם”.',promise:'THE ECHO / ההדהוד',body:'לא עוד פיד ולא עוד קיר מספרים. כאן רואים איך סיפור יצא מהמקור, עבר לעמודים אחרים, קיבל תגובות והמשיך למדיה — עם מצב ראיה בכל צומת.',selector:'בחרו סיפור ועקבו אחרי המסלול',visual:'SOURCE OBJECT',world:'THE WORLD ANSWERED',response:'סוגי תגובה שניתן לתמוך בהם מתוך הרשומה',none:'בצומת הזה אין עדיין taxonomy תגובות מאומת.',snapshots:'DATED SOURCE SNAPSHOTS · NEVER SUMMED',open:'פתיחת הראיה',depth:'לכל שכבת המדיה והראיות',note:'מקור, פרשנות ומדד נשארים מופרדים. תגובה חסרה אינה אפס; היא נשארת לא ידועה או לשחזור.'},
+ en:{bar:'Documented echo across the public web',barNote:'origin → distribution → response · no fabricated total reach',title:'What happens after I press Publish.',promise:'THE ECHO',body:'Not another feed and not another wall of numbers. Follow a story as it leaves the source, moves through other pages, receives public response and continues into media — with an evidence state at every node.',selector:'Choose a story and follow the path',visual:'SOURCE OBJECT',world:'THE WORLD ANSWERED',response:'Response types supported by the record',none:'No verified response taxonomy is available for this node yet.',snapshots:'DATED SOURCE SNAPSHOTS · NEVER SUMMED',open:'Open evidence',depth:'Open the full media & evidence layer',note:'Source, interpretation and metric stay separate. A missing response is not zero; it remains unknown or a recovery target.'},
+ ru:{bar:'Документированное эхо по публичной сети',barNote:'источник → распространение → реакция · без выдуманного total reach',title:'Что происходит после того, как я нажимаю «Опубликовать».',promise:'ЭХО / THE ECHO',body:'Не очередная лента и не стена цифр. Здесь видно, как история выходит из источника, переходит на другие страницы, получает публичную реакцию и продолжается в медиа — со статусом доказательности каждого узла.',selector:'Выберите историю и проследите путь',visual:'SOURCE OBJECT',world:'THE WORLD ANSWERED',response:'Типы реакции, подтверждаемые записью',none:'Для этого узла пока нет проверенной taxonomy реакции.',snapshots:'DATED SOURCE SNAPSHOTS · NEVER SUMMED',open:'Открыть доказательство',depth:'Открыть весь слой медиа и доказательств',note:'Источник, интерпретация и метрика остаются раздельными. Отсутствующая реакция — не ноль; она остаётся неизвестной или целью восстановления.'}
+} as const;
+
+const stateLabels:Record<'he'|'en'|'ru',Record<EchoEvidenceState,string>>={he:{verified:'מאומת',documented:'מתועד',estimated:'הערכה',recovery:'לשחזור'},en:{verified:'VERIFIED',documented:'DOCUMENTED',estimated:'ESTIMATED',recovery:'RECOVERY'},ru:{verified:'ПРОВЕРЕНО',documented:'ДОКУМЕНТ',estimated:'ОЦЕНКА',recovery:'ВОССТАНОВИТЬ'}};
+const responseLabels:Record<'he'|'en'|'ru',Record<EchoResponseType,string>>={he:{felt:'הרגישו',thought:'חשבו מחדש',discussed:'דנו',shared:'שיתפו',acted:'פעלו',grew:'צמחו',challenged:'אתגרו'},en:{felt:'FELT',thought:'THOUGHT',discussed:'DISCUSSED',shared:'SHARED',acted:'ACTED',grew:'GREW',challenged:'CHALLENGED'},ru:{felt:'ПОЧУВСТВОВАЛИ',thought:'ПЕРЕОСМЫСЛИЛИ',discussed:'ОБСУЖДАЛИ',shared:'ДЕЛИЛИСЬ',acted:'ДЕЙСТВОВАЛИ',grew:'РОСЛИ',challenged:'СПОРИЛИ'}};
+const kindLabels={origin:'ORIGIN',distribution:'DISTRIBUTION',media:'MEDIA PICKUP',response:'RESPONSE',action:'ACTION'} as const;
+const removeImage=(event:SyntheticEvent<HTMLImageElement>)=>{const figure=event.currentTarget.closest('figure');figure?.classList.add('source-failed');event.currentTarget.remove()};
+
+type Props={mode:'bar'|'cinematic';view?:string};
+export default function InfluenceUniverse({mode,view}:Props){const {locale,dir}=useLocale();const c=copy[locale];const [activeStoryId,setActiveStoryId]=useState(echoStories[0].id);const activeStory=echoStories.find(story=>story.id===activeStoryId)??echoStories[0];const responseTypes=useMemo(()=>Array.from(new Set(activeStory.nodes.flatMap(node=>node.responses??[]))),[activeStory]);if(mode==='bar'){const href=view==='home'?'#echo':'?page=media&lang='+locale;return <aside className='influence-global-bar' dir={dir} aria-label={c.bar}><a href={href}><b dir='ltr'>THE ECHO</b><span>{c.bar}</span></a><div className='influence-global-signals' dir='ltr'><span>ORIGIN</span><span>REPOST</span><span>COMMENT</span><span>SHARE</span><span>MEDIA PICKUP</span><em>{String(view||'home').toUpperCase()}</em></div><small>{c.barNote}</small></aside>}
+ return <section className='influence-universe' id='echo' dir={dir} aria-labelledby='influence-universe-title'>
+  <div className='iu-shell'>
+   <header className='iu-head'><div><p dir='ltr'>#7YA / THE ECHO / PUBLIC WEB TRACE · 2011→NOW</p><span className='echo-promise' dir='ltr'>{c.promise}</span><h2 id='influence-universe-title'>{c.title}</h2></div><p>{c.body}</p></header>
+   <div className='echo-selector-head'><span dir='ltr'>01 / STORY SELECTOR</span><b>{c.selector}</b></div>
+   <nav className='echo-story-tabs' aria-label={c.selector}>{echoStories.map((story,index)=><button type='button' key={story.id} className={story.id===activeStory.id?'active':''} aria-pressed={story.id===activeStory.id} onClick={()=>setActiveStoryId(story.id)}><small dir='ltr'>{String(index+1).padStart(2,'0')}</small><strong>{story.title[locale]}</strong><span>{story.nodes[0].date}</span></button>)}</nav>
+   <div className='echo-stage'>
+    <figure className={'echo-visual'+(activeStory.visual.image?'':' source-failed')}>
+     {activeStory.visual.image&&<img src={activeStory.visual.image} alt={activeStory.visual.caption[locale]} loading='lazy' onError={removeImage} referrerPolicy='no-referrer'/>}
+     <figcaption><small dir='ltr'>{c.visual} / {activeStory.visual.source}</small><strong>{activeStory.title[locale]}</strong><p>{activeStory.summary[locale]}</p>{activeStory.visual.url&&<a href={activeStory.visual.url} target='_blank' rel='noreferrer'>{c.open} ↗</a>}</figcaption>
+    </figure>
+    <div className='echo-chain' aria-live='polite'>{activeStory.nodes.map((node,index)=><article className={'echo-node echo-'+node.kind} key={node.id}><span className='echo-node-index' dir='ltr'>{String(index+1).padStart(2,'0')}</span><div className='echo-node-copy'><small dir='ltr'>{kindLabels[node.kind]} · {node.date} · {node.source}</small><b>{node.label[locale]}</b>{node.metric&&<strong dir='ltr'>{node.metric}</strong>}<div className='echo-node-meta'><span className={'echo-state state-'+node.evidence}>{stateLabels[locale][node.evidence]}</span>{node.url&&<a href={node.url} target='_blank' rel='noreferrer'>{c.open} ↗</a>}</div>{node.responses&&<div className='echo-responses'>{node.responses.map(type=><span key={type}>{responseLabels[locale][type]}</span>)}</div>}</div>{index<activeStory.nodes.length-1&&<i className='echo-signal' aria-hidden='true'>↓</i>}</article>)}</div>
+   </div>
+   <section className='echo-world' aria-labelledby='echo-world-title'><div><small dir='ltr'>{c.world}</small><h3 id='echo-world-title'>{c.response}</h3><p>{responseTypes.length?activeStory.summary[locale]:c.none}</p></div><div className='echo-taxonomy'>{responseTypes.length?responseTypes.map(type=><span key={type}>{responseLabels[locale][type]}</span>):<span className='echo-empty'>{c.none}</span>}</div></section>
+   <div className='iu-metrics'><header><small dir='ltr'>{c.snapshots}</small><b dir='ltr'>SOURCE ≠ INTERPRETATION ≠ TOTAL</b></header>{metrics.map((metric,index)=><a href={metric.url} target='_blank' rel='noreferrer' key={metric.label+metric.value+index}><strong dir='ltr'>{metric.value}</strong><span dir='ltr'>{metric.label}</span><small dir='ltr'>{metric.detail}</small></a>)}</div>
+   <footer className='iu-foot'><span dir='ltr'>NO DOUBLE COUNTING · NO FABRICATED QUOTES</span><p>{c.note}</p><a href={'?page=media&lang='+locale}>{c.depth} ↗</a></footer>
+  </div>
+ </section>}
