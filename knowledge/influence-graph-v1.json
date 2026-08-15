@@ -1,0 +1,405 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-15",
+  "title": "7YA Historical Influence Graph — Igor Vepretski",
+  "method": "Evidence-first graph separating exposure, resonance, propagation and transformation. Historical/deleted/blocked surfaces remain nodes with explicit evidence state.",
+  "privacy": {
+    "raw_private_interactions_published": false,
+    "raw_private_commenter_identities_published": false,
+    "unique_person_totals_require_deduplication": true,
+    "public_comment_outcomes_may_be_paraphrased": true
+  },
+  "coverage": {
+    "grand_total_unique_people": null,
+    "audited_visible_views_floor": 227000,
+    "audited_visible_engagement_floor": 353829,
+    "audited_floor_as_of": "2026-06-20",
+    "publication_instance_floor": 2753,
+    "publication_instance_note": "Platform-instance count; cross-posted material may appear more than once and must not be treated as unique people.",
+    "historical_rule": "A removed, blocked or renamed account does not lose previously verified metrics; freshness/status changes while historical evidence remains attributable at its original evidence tier."
+  },
+  "surface_nodes": [
+    {
+      "id": "surface-tiktok-legacy-igor-vepretski",
+      "platform": "TikTok",
+      "label": "Legacy TikTok — @igor_vepretski",
+      "handle": "@igor_vepretski",
+      "status": "BLOCKED",
+      "status_evidence_class": "OWNER_REPORT",
+      "confidence": "HIGH",
+      "historical_note": "Legacy viral account reported blocked by owner; public third-party indexes and authored pages still preserve the handle and historical content URLs.",
+      "metrics": [
+        {"name": "followers_external_index", "value": 66700, "unit": "followers", "as_of": "external snapshot", "evidence_class": "PUBLIC_INDEX", "confidence": "HIGH", "source_url": "https://tikbuddy.com/tiktok/igor_vepretski"},
+        {"name": "videos_external_index", "value": 352, "unit": "videos", "as_of": "external snapshot", "evidence_class": "PUBLIC_INDEX", "confidence": "HIGH", "source_url": "https://tikbuddy.com/tiktok/igor_vepretski"},
+        {"name": "likes_external_index", "value": 2900000, "unit": "likes", "as_of": "external snapshot", "evidence_class": "PUBLIC_INDEX", "confidence": "HIGH", "source_url": "https://tikbuddy.com/tiktok/igor_vepretski"},
+        {"name": "peak_followers_owner_report", "value": 80000, "unit": "followers_approx", "as_of": "pre-block peak", "evidence_class": "OWNER_REPORT", "confidence": "MEDIUM", "source_url": "https://7ya.io/"}
+      ],
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://tikbuddy.com/tiktok/igor_vepretski", "note": "Third-party historical profile index."},
+        {"evidence_class": "HISTORICAL_REFERENCE", "url": "https://www.zman.co.il/352289/", "note": "Authored 2022 article retains a TikTok video URL under the old handle."},
+        {"evidence_class": "HISTORICAL_REFERENCE", "url": "https://slaps.com/user/igor_vepretski", "note": "External identity mirror preserves old handle and cross-platform links."}
+      ]
+    },
+    {
+      "id": "surface-tiktok-current-igor-dot-vepretski",
+      "platform": "TikTok",
+      "label": "Current TikTok — @igor.vepretski",
+      "handle": "@igor.vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "OWNER_EXPORT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "followers", "value": 12655, "unit": "followers", "as_of": "2026-06-02", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://7ya.io/"},
+        {"name": "posts_exported", "value": 904, "unit": "posts", "as_of": "2026-06-02", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://7ya.io/"},
+        {"name": "likes_received", "value": 273860, "unit": "likes", "as_of": "2026-06-02", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://7ya.io/"},
+        {"name": "live_comment_records", "value": 10273, "unit": "records", "as_of": "2026-06-02", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://7ya.io/"}
+      ],
+      "sources": [
+        {"evidence_class": "OWNER_EXPORT", "url": "https://7ya.io/", "note": "7YA publishes the dated owner-export baseline and keeps the raw export outside the public web layer."},
+        {"evidence_class": "CANONICAL_LINK", "url": "https://www.tiktok.com/@igor.vepretski", "note": "Current canonical profile."}
+      ]
+    },
+    {
+      "id": "surface-instagram-primary",
+      "platform": "Instagram",
+      "label": "Instagram — @igor.vepretski",
+      "handle": "@igor.vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_SNAPSHOT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "followers", "value": 8200, "unit": "followers", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://www.instagram.com/igor.vepretski/"},
+        {"name": "posts", "value": 1188, "unit": "posts", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://www.instagram.com/igor.vepretski/"}
+      ],
+      "sources": [
+        {"evidence_class": "CANONICAL_LINK", "url": "https://www.instagram.com/igor.vepretski/", "note": "Primary public Instagram surface."}
+      ]
+    },
+    {
+      "id": "surface-instagram-secondary",
+      "platform": "Instagram",
+      "label": "Instagram — @vepretski.igor",
+      "handle": "@vepretski.igor",
+      "status": "ACTIVE",
+      "status_evidence_class": "OWNER_EXPORT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "followers", "value": 679, "unit": "followers", "as_of": "2026-08-01", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://www.instagram.com/vepretski.igor/"},
+        {"name": "reel_views_sample", "value": 5000, "unit": "views", "as_of": "2026-08-01", "evidence_class": "OWNER_EXPORT", "confidence": "HIGH", "source_url": "https://www.instagram.com/vepretski.igor/"}
+      ],
+      "sources": [
+        {"evidence_class": "CANONICAL_LINK", "url": "https://www.instagram.com/vepretski.igor/", "note": "Second official Instagram surface; owner insight captured 1 Aug 2026."},
+        {"evidence_class": "HISTORICAL_REFERENCE", "url": "https://slaps.com/user/igor_vepretski", "note": "2022 identity mirror linked the same Instagram handle."}
+      ]
+    },
+    {
+      "id": "surface-facebook-page",
+      "platform": "Facebook",
+      "label": "Facebook public page — /igor7vepretski",
+      "handle": "/igor7vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_SNAPSHOT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "page_likes", "value": 15566, "unit": "likes", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://www.facebook.com/igor7vepretski/"}
+      ],
+      "sources": [
+        {"evidence_class": "PUBLIC_SNAPSHOT", "url": "https://www.facebook.com/igor7vepretski/", "note": "Audited public page snapshot."}
+      ]
+    },
+    {
+      "id": "surface-facebook-profile-vepretski",
+      "platform": "Facebook",
+      "label": "Facebook historical/public profile — /vepretski",
+      "handle": "/vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_INDEX",
+      "confidence": "HIGH",
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://www.facebook.com/vepretski/", "note": "Long-running public profile path and original-source layer for repost chains."},
+        {"evidence_class": "HISTORICAL_REFERENCE", "url": "https://slaps.com/user/igor_vepretski", "note": "External 2022 identity mirror preserves the Facebook path."}
+      ]
+    },
+    {
+      "id": "surface-facebook-alias-igor-dot-vepretski",
+      "platform": "Facebook",
+      "label": "Facebook alternate path — /igor.vepretski",
+      "handle": "/igor.vepretski",
+      "status": "UNKNOWN_HISTORICAL",
+      "status_evidence_class": "PUBLIC_INDEX",
+      "confidence": "MEDIUM",
+      "historical_note": "Indexed alternate Facebook path; mapped as an alias until independently proven to be a distinct surface.",
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://www.facebook.com/igor.vepretski/", "note": "Preserved alternate public path."}
+      ]
+    },
+    {
+      "id": "surface-linkedin",
+      "platform": "LinkedIn",
+      "label": "LinkedIn — /in/vepretski",
+      "handle": "/in/vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_SNAPSHOT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "followers", "value": 4285, "unit": "followers", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://il.linkedin.com/in/vepretski"},
+        {"name": "posts", "value": 325, "unit": "posts", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://il.linkedin.com/in/vepretski"}
+      ],
+      "sources": [
+        {"evidence_class": "PUBLIC_SNAPSHOT", "url": "https://il.linkedin.com/in/vepretski", "note": "Professional profile and indexed activity."}
+      ]
+    },
+    {
+      "id": "surface-youtube",
+      "platform": "YouTube",
+      "label": "YouTube — Igor Vepretski #7YA",
+      "handle": "@IgorVepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_SNAPSHOT",
+      "confidence": "HIGH",
+      "metrics": [
+        {"name": "subscribers", "value": 2570, "unit": "subscribers", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://www.youtube.com/@IgorVepretski"},
+        {"name": "videos", "value": 334, "unit": "videos", "as_of": "2026-06-08", "evidence_class": "PUBLIC_SNAPSHOT", "confidence": "HIGH", "source_url": "https://www.youtube.com/@IgorVepretski"}
+      ],
+      "sources": [
+        {"evidence_class": "CANONICAL_LINK", "url": "https://www.youtube.com/@IgorVepretski", "note": "Long-form video archive."}
+      ]
+    },
+    {
+      "id": "surface-x",
+      "platform": "X",
+      "label": "X — @igorvepretski",
+      "handle": "@igorvepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_INDEX",
+      "confidence": "HIGH",
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://x.com/igorvepretski", "note": "Indexed public profile; no unsupported follower total included."}
+      ]
+    },
+    {
+      "id": "surface-threads",
+      "platform": "Threads",
+      "label": "Threads — @igor.vepretski",
+      "handle": "@igor.vepretski",
+      "status": "ACTIVE",
+      "status_evidence_class": "CANONICAL_LINK",
+      "confidence": "HIGH",
+      "sources": [
+        {"evidence_class": "CANONICAL_LINK", "url": "https://www.threads.net/@igor.vepretski", "note": "Canonical profile."},
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://gravatar.com/igorvepretski", "note": "Gravatar lists Threads among verified accounts."}
+      ]
+    },
+    {
+      "id": "surface-blog-vepretski",
+      "platform": "Web",
+      "label": "Historical WordPress/domain — vepretski.blog",
+      "handle": "vepretski.blog",
+      "status": "UNKNOWN_HISTORICAL",
+      "status_evidence_class": "HISTORICAL_REFERENCE",
+      "confidence": "MEDIUM",
+      "historical_note": "Used publicly in 2025 and still preserved by identity mirrors; current publication status requires direct archival capture before stronger claims.",
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://gravatar.com/igorvepretski", "note": "Gravatar lists WordPress vepretski.blog as a verified account."},
+        {"evidence_class": "HISTORICAL_REFERENCE", "url": "https://www.linkedin.com/posts/vepretski_igor-vepretski-a-journey-of-resilience-and-activity-7291070058649288704-Dv8T", "note": "LinkedIn post publicly references vepretski.blog."}
+      ]
+    },
+    {
+      "id": "surface-web-igorvepretski-com",
+      "platform": "Web",
+      "label": "Personal web surface — igorvepretski.com",
+      "handle": "igorvepretski.com",
+      "status": "ACTIVE",
+      "status_evidence_class": "PUBLIC_INDEX",
+      "confidence": "MEDIUM",
+      "sources": [
+        {"evidence_class": "PUBLIC_INDEX", "url": "https://www.igorvepretski.com/interactive-user-experience", "note": "Indexed personal-site page found in public search."}
+      ]
+    },
+    {
+      "id": "surface-hidabroot",
+      "platform": "Media",
+      "label": "Hidabroot external media surface",
+      "handle": "hidabroot.org",
+      "status": "ACTIVE",
+      "status_evidence_class": "MEDIA_RECORD",
+      "confidence": "HIGH",
+      "sources": [
+        {"evidence_class": "MEDIA_RECORD", "url": "https://www.hidabroot.org/article/1179015", "note": "Independent article carrying the fatherhood story beyond the original social distribution."}
+      ]
+    },
+    {
+      "id": "surface-time-israel",
+      "platform": "Media",
+      "label": "Zman Yisrael authored archive",
+      "handle": "zman.co.il",
+      "status": "ACTIVE",
+      "status_evidence_class": "MEDIA_RECORD",
+      "confidence": "HIGH",
+      "sources": [
+        {"evidence_class": "MEDIA_RECORD", "url": "https://www.zman.co.il/352289/", "note": "Authored article preserves an old TikTok content URL and therefore bridges deleted-platform memory."}
+      ]
+    }
+  ],
+  "content_families": [
+    {
+      "id": "family-fatherhood-presence",
+      "title": "אבא מושלם — זה אבא ששם",
+      "themes": ["fatherhood", "abandonment", "presence"],
+      "surface_ids": ["surface-facebook-profile-vepretski", "surface-linkedin", "surface-hidabroot"],
+      "deduplication_rule": "Treat cross-platform instances as one story family; do not sum audiences as unique people."
+    },
+    {
+      "id": "family-digital-education",
+      "title": "כללי המשחק השתנו — חינוך בעידן המודרני",
+      "themes": ["education", "youth", "digital culture"],
+      "surface_ids": ["surface-tiktok-legacy-igor-vepretski", "surface-time-israel", "surface-linkedin"],
+      "deduplication_rule": "Old TikTok embed/reference and authored article are linked evidence objects, not separate unique-person totals."
+    },
+    {
+      "id": "family-starton-opportunity",
+      "title": "StartOn — from lived experience to opportunity infrastructure",
+      "themes": ["StartOn", "youth at risk", "opportunity", "technology"],
+      "surface_ids": ["surface-linkedin", "surface-youtube", "surface-instagram-primary"],
+      "deduplication_rule": "Cross-platform content supports continuity and propagation; unique audience overlap remains unknown."
+    }
+  ],
+  "interaction_signals": [
+    {
+      "id": "signal-ig-reel-views-20231123",
+      "dimension": "EXPOSURE",
+      "claim_class": "OBSERVED",
+      "surface_id": "surface-instagram-primary",
+      "content_family_id": null,
+      "metric": {"name": "views", "value": 213000, "unit": "views"},
+      "as_of": "2023-11-23",
+      "confidence": "HIGH",
+      "source_url": "https://www.instagram.com/igor.vepretski/",
+      "raw_private_identity": false,
+      "interpretation": "A dated owner insight establishes exposure for one reel; views are not equated with persuasion."
+    },
+    {
+      "id": "signal-ig-reel-comments-20231123",
+      "dimension": "RESONANCE",
+      "claim_class": "OBSERVED",
+      "surface_id": "surface-instagram-primary",
+      "content_family_id": null,
+      "metric": {"name": "comments", "value": 1100, "unit": "comments"},
+      "as_of": "2023-11-23",
+      "confidence": "HIGH",
+      "source_url": "https://www.instagram.com/igor.vepretski/",
+      "raw_private_identity": false,
+      "interpretation": "High comment volume demonstrates response depth but does not by itself establish sentiment."
+    },
+    {
+      "id": "signal-ig-reel-shares-20231123",
+      "dimension": "PROPAGATION",
+      "claim_class": "OBSERVED",
+      "surface_id": "surface-instagram-primary",
+      "content_family_id": null,
+      "metric": {"name": "shares", "value": 53, "unit": "shares"},
+      "as_of": "2023-11-23",
+      "confidence": "HIGH",
+      "source_url": "https://www.instagram.com/igor.vepretski/",
+      "raw_private_identity": false,
+      "interpretation": "Shares represent deliberate redistribution beyond passive viewing."
+    },
+    {
+      "id": "signal-tiktok-live-comments-20260602",
+      "dimension": "RESONANCE",
+      "claim_class": "OBSERVED",
+      "surface_id": "surface-tiktok-current-igor-dot-vepretski",
+      "content_family_id": null,
+      "metric": {"name": "validated_live_comment_records", "value": 10273, "unit": "records"},
+      "as_of": "2026-06-02",
+      "confidence": "HIGH",
+      "source_url": "https://7ya.io/",
+      "raw_private_identity": false,
+      "interpretation": "Validated interaction records demonstrate sustained live participation; raw commenter identities remain private."
+    },
+    {
+      "id": "signal-fatherhood-cross-platform",
+      "dimension": "PROPAGATION",
+      "claim_class": "ATTRIBUTED",
+      "surface_id": "surface-facebook-profile-vepretski",
+      "content_family_id": "family-fatherhood-presence",
+      "metric": {"name": "documented_distribution_layers", "value": 3, "unit": "layers"},
+      "as_of": "2026-08-15",
+      "confidence": "HIGH",
+      "source_url": "https://www.hidabroot.org/article/1179015",
+      "raw_private_identity": false,
+      "interpretation": "The same story is documented across social distribution, professional-network discussion and independent media coverage."
+    },
+    {
+      "id": "signal-declared-vote-intention",
+      "dimension": "TRANSFORMATION",
+      "claim_class": "DECLARED_ACTION",
+      "surface_id": "surface-linkedin",
+      "content_family_id": null,
+      "metric": {"name": "public_declared_action", "value": 1, "unit": "declaration"},
+      "as_of": "public LinkedIn record",
+      "confidence": "HIGH",
+      "source_url": "https://www.linkedin.com/posts/vepretski_%D7%91%D7%99%D7%98%D7%97%D7%95%D7%9F%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%99%D7%9D-%D7%90%D7%99%D7%AA%D7%9E%D7%A8%D7%91%D7%A0%D7%92%D7%91%D7%99%D7%A8-activity-7256304767130357760-Bud0",
+      "raw_private_identity": false,
+      "interpretation": "A public commenter explicitly states an intention to vote for Igor despite saying they had never voted before. This is a declared intention, not proof of a completed ballot."
+    }
+  ],
+  "propagation_edges": [
+    {
+      "id": "edge-fatherhood-facebook-to-linkedin",
+      "from": "surface-facebook-profile-vepretski",
+      "to": "surface-linkedin",
+      "content_family_id": "family-fatherhood-presence",
+      "edge_type": "CROSS_PLATFORM_MIRROR",
+      "claim_class": "ATTRIBUTED",
+      "confidence": "HIGH",
+      "source_url": "https://www.linkedin.com/posts/vepretski_%D7%9B%D7%A9%D7%94%D7%94%D7%95%D7%A8%D7%99%D7%9D-%D7%A9%D7%9C%D7%99-%D7%94%D7%AA%D7%92%D7%A8%D7%A9%D7%95-%D7%90%D7%91%D7%90-%D7%A9%D7%9C%D7%99-%D7%97%D7%AA%D7%9D-%D7%93%D7%99%D7%9C-activity-7032741993654988800-IRtv"
+    },
+    {
+      "id": "edge-fatherhood-social-to-media",
+      "from": "surface-facebook-profile-vepretski",
+      "to": "surface-hidabroot",
+      "content_family_id": "family-fatherhood-presence",
+      "edge_type": "MEDIA_PICKUP",
+      "claim_class": "ATTRIBUTED",
+      "confidence": "HIGH",
+      "source_url": "https://www.hidabroot.org/article/1179015"
+    },
+    {
+      "id": "edge-legacy-tiktok-to-authored-archive",
+      "from": "surface-tiktok-legacy-igor-vepretski",
+      "to": "surface-time-israel",
+      "content_family_id": "family-digital-education",
+      "edge_type": "HISTORICAL_REFERENCE_PRESERVED",
+      "claim_class": "OBSERVED",
+      "confidence": "HIGH",
+      "source_url": "https://www.zman.co.il/352289/"
+    }
+  ],
+  "declared_outcomes": [
+    {
+      "id": "outcome-linkedin-student-election-support",
+      "dimension": "TRANSFORMATION",
+      "claim_class": "DECLARED_ACTION",
+      "surface_id": "surface-linkedin",
+      "outcome_type": "DECLARED_VOTE_SUPPORT",
+      "public_actor_label": "Public LinkedIn commenter",
+      "paraphrase": "The commenter explicitly says Igor has their vote and expresses hope that the platform becomes broadly adopted.",
+      "confidence": "HIGH",
+      "source_url": "https://www.linkedin.com/posts/vepretski_%D7%94%D7%92%D7%A9%D7%AA%D7%99-%D7%90%D7%AA-%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%95%D7%AA%D7%99-%D7%9C%D7%95%D7%95%D7%A2%D7%93%D7%AA-%D7%94%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA-%D7%A9%D7%9C-%D7%90%D7%92%D7%95%D7%93%D7%AA-activity-7007644424650297344-kqPK",
+      "raw_private_identity": false
+    },
+    {
+      "id": "outcome-linkedin-national-vote-intention",
+      "dimension": "TRANSFORMATION",
+      "claim_class": "DECLARED_ACTION",
+      "surface_id": "surface-linkedin",
+      "outcome_type": "DECLARED_VOTE_INTENTION",
+      "public_actor_label": "Public LinkedIn commenter",
+      "paraphrase": "The commenter says Igor has their vote and adds that they had never voted before.",
+      "confidence": "HIGH",
+      "source_url": "https://www.linkedin.com/posts/vepretski_%D7%91%D7%99%D7%98%D7%97%D7%95%D7%9F%D7%9C%D7%90%D7%95%D7%9E%D7%99-%D7%9E%D7%95%D7%A2%D7%9E%D7%93%D7%99%D7%9D-%D7%90%D7%99%D7%AA%D7%9E%D7%A8%D7%91%D7%A0%D7%92%D7%91%D7%99%D7%A8-activity-7256304767130357760-Bud0",
+      "raw_private_identity": false
+    }
+  ]
+}
