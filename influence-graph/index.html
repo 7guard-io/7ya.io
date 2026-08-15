@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Influence Graph | איגור ופרצקי — 7YA.IO</title>
+  <meta name="description" content="מפת השפעה היסטורית מבוססת ראיות: חשיפה, תהודה, הפצה ושינוי — כולל חשבונות שנחסמו, הוחלפו או נעלמו מהפלטפורמות.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#070706">
+  <link rel="canonical" href="https://7ya.io/influence-graph/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/history-song-20260714.css?v=1">
+  <link rel="stylesheet" href="/styles/influence-graph-v1.css?v=1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="7YA.IO">
+  <meta property="og:title" content="Igor Vepretski — Evidence-First Influence Graph">
+  <meta property="og:description" content="Active and historical surfaces, interaction depth, propagation cascades and declared outcomes — with evidence labels.">
+  <meta property="og:url" content="https://7ya.io/influence-graph/">
+</head>
+<body class="influence-graph-page" data-graph-source="/knowledge/influence-graph-v1.json">
+  <a class="skip" href="#main">דלג לתוכן</a>
+  <header class="graph-header">
+    <a class="graph-brand" href="/" aria-label="7YA.IO — בית"><b>7YA.IO</b><span>INFLUENCE GRAPH</span></a>
+    <nav aria-label="ניווט">
+      <a href="/influence/">ארכיון</a>
+      <a href="/response-ai/">תגובות</a>
+      <a href="/evidence/">ראיות</a>
+      <a href="/">איגור</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="graph-hero">
+      <p class="eyebrow">INFLUENCE GRAPH / MEMORY → RESPONSE → PROPAGATION → ACTION</p>
+      <h1>מה נשאר אחרי<br><strong>שהפיד מוחק?</strong></h1>
+      <p class="hero-copy">השפעה דיגיטלית אינה מספר עוקבים. היא מסלול שניתן לעקוב אחריו: מי נחשף, מי עצר והגיב, מי העביר הלאה, ואיפה התוכן הפך לכוונה או פעולה. גם חשבון שנחסם או נעלם נשאר חלק מההיסטוריה — אם קיימות ראיות ציבוריות שמוכיחות אותו.</p>
+      <div class="hero-contract">
+        <span>OBSERVED ≠ INFERRED</span>
+        <span>REACH ≠ UNIQUE PEOPLE</span>
+        <span>COMMENT ≠ AGREEMENT</span>
+        <span>DELETED ≠ ERASED</span>
+      </div>
+      <div class="hero-actions">
+        <a class="graph-button primary" href="#surfaces">פתחו את הזיכרון הדיגיטלי</a>
+        <a class="graph-button" href="/knowledge/influence-graph-v1.json">פתחו את נתוני המקור</a>
+      </div>
+    </section>
+
+    <section class="graph-section" aria-labelledby="coverage-title">
+      <div class="section-head">
+        <div><p class="eyebrow">01 / AUDITED FLOORS</p><h2 id="coverage-title">רצפה מוכחת.<br>לא מספר קסם.</h2></div>
+        <p>המספרים כאן הם מינימום שמגובה בשורות ראיה קיימות. אין חיבור אוטומטי בין צפיות, לייקים, תגובות ועוקבים — ואין טענה למספר אנשים ייחודיים בלי deduplication.</p>
+      </div>
+      <div class="coverage-grid" id="coverageGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="graph-section" aria-labelledby="dimensions-title">
+      <div class="section-head">
+        <div><p class="eyebrow">02 / FOUR DIMENSIONS</p><h2 id="dimensions-title">ארבעה סוגים<br>של השפעה.</h2></div>
+        <p>המודל מפריד בין עצם החשיפה, תגובה עמוקה יותר, הפצה לרשת חדשה, ותוצאה שבה אדם מצהיר על שינוי בכוונה או בפעולה.</p>
+      </div>
+      <div class="dimension-grid" id="dimensionGrid"></div>
+    </section>
+
+    <section class="graph-section" id="surfaces" aria-labelledby="surfaces-title">
+      <div class="section-head">
+        <div><p class="eyebrow">03 / ACTIVE + GHOST SURFACES</p><h2 id="surfaces-title">גם מה שנמחק<br>נשאר במפה.</h2></div>
+        <p>חשבונות פעילים, handles ישנים, נתיבים חלופיים, חשבונות חסומים ודומיינים היסטוריים מקבלים מצב ראיה נפרד. מדד ישן אינו הופך לעדכני — אבל הוא גם לא נעלם מההיסטוריה.</p>
+      </div>
+      <div class="surface-toolbar">
+        <label><span>חיפוש במשטחים</span><input id="surfaceSearch" type="search" placeholder="TikTok, Facebook, handle, domain…" autocomplete="off"></label>
+        <div class="surface-filters" aria-label="סינון">
+          <button class="active" type="button" data-surface-filter="ALL">הכול</button>
+          <button type="button" data-surface-filter="ACTIVE">פעיל</button>
+          <button type="button" data-surface-filter="HISTORICAL">היסטורי / נעלם</button>
+        </div>
+      </div>
+      <div class="surface-grid" id="surfaceGrid"></div>
+    </section>
+
+    <section class="graph-section" aria-labelledby="cascade-title">
+      <div class="section-head">
+        <div><p class="eyebrow">04 / PROPAGATION CASCADES</p><h2 id="cascade-title">פוסט אינו סוף.<br>הוא נקודת התחלה.</h2></div>
+        <p>כאן מחברים סיפור אחד בין פלטפורמות, reposts, כתבות ושיחות — בלי לספור את אותו אדם פעמיים ובלי להעמיד פנים שכל הפצה היא הסכמה.</p>
+      </div>
+      <div class="cascade-grid" id="cascadeGrid"></div>
+    </section>
+
+    <section class="graph-section" aria-labelledby="outcome-title">
+      <div class="section-head">
+        <div><p class="eyebrow">05 / DECLARED OUTCOMES</p><h2 id="outcome-title">כשהתגובה הופכת<br>לכוונה מפורשת.</h2></div>
+        <p>רק הצהרות פומביות וברורות נכנסות לשכבה הזאת. כוונת הצבעה אינה הוכחה להצבעה בפועל; שיתוף אינו הוכחה לשינוי עמדה.</p>
+      </div>
+      <div class="outcome-grid" id="outcomeGrid"></div>
+    </section>
+
+    <section class="method-section">
+      <p class="eyebrow">METHOD / FAIL CLOSED</p>
+      <h2>אין נתון — אין טענה.</h2>
+      <p>כל node ו־edge מחזיקים מקור, evidence class ו־confidence. OWNER_REPORT נשאר OWNER_REPORT; PUBLIC_INDEX אינו owner export; והסקה מסומנת כהסקה. המטרה היא לבנות זיכרון ציבורי שניתן לבדיקה, לא ביוגרפיה שמבקשת אמון.</p>
+      <a class="graph-button" href="/evidence/">לשכבת הראיות →</a>
+    </section>
+  </main>
+
+  <footer class="graph-footer"><span>7YA.IO · IGOR VEPRETSKI</span><span>Evidence before amplification.</span></footer>
+  <script src="/scripts/influence-graph-v1.js" defer></script>
+</body>
+</html>
