@@ -4,9 +4,9 @@
 
 **Goal:** Replace the current dossier-first 7YA homepage hierarchy with the approved life-first experience while preserving evidence, archive, research, StartOn, influence, multilingual behavior, deep routes, and the existing 7YA Companion.
 
-**Architecture:** Keep AppDeploy app `697a008fddc309b142` as the live runtime and `7guard-io/7ya.io` as canonical durable source. Build a new small homepage composition layer instead of extending `IgorLivingRecordHome.tsx`: human/source-backed hero → current activity → visual world rooms → lived scenes → creator layer → StartOn → THE ECHO → research → visitor handoff, with archive/deep surfaces after the experiential layer. Existing source registries, `LiveSocial`, `InfluenceUniverse`, research data, Companion, deep routes, and evidence semantics are reused rather than rebuilt.
+**Architecture:** Keep AppDeploy app `697a008fddc309b142` as the live runtime and `7guard-io/7ya.io` as canonical durable source. Build a new small homepage composition layer instead of extending `IgorLivingRecordHome.tsx`: human/source-backed hero → current activity → visual world rooms → lived scenes → THE ECHO → creator layer → StartOn → research → visitor handoff, with archive/deep surfaces after the experiential layer. Existing source registries, `LiveSocial`, `InfluenceUniverse`, research data, Companion, deep routes, and evidence semantics are reused rather than rebuilt.
 
-**Tech Stack:** React 19, TypeScript 5.7, Vite 6, AppDeploy frontend+backend runtime, `@appdeploy/client` existing API transport, CSS modules-by-file convention, AppDeploy E2E QA, VisualInspector.
+**Tech Stack:** React 19, TypeScript 5.7, Vite 6, AppDeploy frontend+backend runtime, `@appdeploy/client` existing API transport, CSS-by-file convention, AppDeploy E2E QA, VisualInspector.
 
 ## Global Constraints
 
@@ -28,9 +28,9 @@
 - Current activity — existing `/api/social-feed` rendered as content-first `Right Now` stream.
 - Visual world navigation — Life, Feed/Voice, Create, StartOn, Lab/Research, Echo/Impact, Archive.
 - Life scenes — real press/broadcast/source objects with proof-on-demand.
+- THE ECHO — existing propagation/evidence interaction preserved after the lived story.
 - Create — music and creator identity before deep archive.
 - StartOn — lived mission first, research/relationship depth second.
-- THE ECHO — existing propagation/evidence interaction preserved.
 - Research — existing independent research objects preserved.
 - Visitor handoff — existing Companion/Creator Path entry points preserved.
 - Visual QA — overflow, broken media, fixed overlap, repeated imagery, touch targets.
@@ -50,7 +50,7 @@
 
 - Existing app update: `app_id=697a008fddc309b142`, `app_type=frontend+backend`.
 - `get_deploy_instructions` reviewed for this feature.
-- `get_appdeploy_sdk_reference(feature='api')` reviewed because current/modified social-feed code uses `@appdeploy/client`.
+- `get_appdeploy_sdk_reference(feature='api')` reviewed because current social-feed code uses `@appdeploy/client`.
 - Only changed files are sent to `deploy_app`; existing unchanged files are not resent.
 - `tests/tests.txt` is reconciled with changed user-visible behavior and remains 3–5 tests with exactly one `[sanity]`.
 - Every new `diffs[].from` anchor is unique and context-rich; otherwise use full file content replacement.
@@ -110,16 +110,17 @@ Steps:
 4. Verify the underlying scene remains content-first and does not present owner-authored evidence as independent verification
 Expected: Proof details expand on demand from the scene, retain precise source semantics and do not replace the lived visual with a proof wall.
 
-## Test 4 - Create and StartOn appear before THE ECHO and research depth
+## Test 4 - THE ECHO, Create and StartOn remain intact in the approved order
 Viewport: desktop
-Covers: creator identity, music visibility, StartOn lived mission, section order
-Description: Verifies creation and social mission are visible before deep influence/research systems.
+Covers: THE ECHO, creator identity, music visibility, StartOn lived mission, approved section order
+Description: Verifies the lived story flows into influence, then creation and social mission, before research depth.
 Steps:
-1. Open ?lang=en and move through the homepage after the world rooms
-2. Verify a CREATE section contains at least one official music/video source object
-3. Verify STARTON / RETURN appears with a real press or broadcast visual and human mission framing
-4. Verify THE ECHO and LAB / RESEARCH remain reachable after those sections
-Expected: Creator identity and StartOn are visible before influence/research depth, while THE ECHO and research remain intact later in the journey.
+1. Open ?lang=en and move through the homepage after LIFE
+2. Verify THE ECHO appears after LIFE and before CREATE
+3. Verify CREATE contains at least one official music/video source object
+4. Verify STARTON / RETURN follows CREATE with a real press or broadcast visual and human mission framing
+5. Verify LAB / RESEARCH remains reachable after STARTON / RETURN
+Expected: The approved sequence LIFE → THE ECHO → CREATE → STARTON / RETURN → LAB / RESEARCH is preserved without turning any section into a technical proof wall.
 
 ## Test 5 - Three languages and visitor handoff remain intact
 Viewport: desktop
@@ -200,13 +201,13 @@ Owner-authored evidence must be labeled exactly as owner-authored/supporting whe
 Desktop: asymmetric editorial hero, generous media, restrained black/white/green accents.
 Mobile: one dominant visual, stacked copy, room doorways one-per-row, no fixed elements from this component, no horizontal grids that escape the viewport.
 
-- [ ] **Step 4: Verify GREEN for the structural portion**
+- [ ] **Step 4: Validate component compilation before routing**
 
-Deploy these new files only; they are not routed yet, so build/type validation must pass but Test 1 should remain RED until Task 4 switches the home route.
+Deploy these new files only after Task 1 has demonstrated RED. They are not routed yet, so the application build must pass while the life-first acceptance tests remain RED until Task 4 switches the home route.
 
 ---
 
-### Task 3: Add Right Now, life scenes, creator, StartOn, research and visitor handoff
+### Task 3: Add Right Now, life scenes, THE ECHO placement, creator, StartOn, research and visitor handoff
 
 **Files:**
 - Create: `src/life-first/RightNow.tsx`
@@ -221,6 +222,7 @@ Deploy these new files only; they are not routed yet, so build/type validation m
 **Interfaces:**
 - `RightNow` consumes existing `LiveSocial` so `/api/social-feed` behavior and fallback logic remain canonical.
 - `LifeScenes` uses source-backed public press/broadcast/owner-source records already present in the runtime.
+- `LifeFirstHome` places existing `InfluenceUniverse mode='cinematic'` after LIFE.
 - `CreateRoom` links official videos/music routes.
 - `StartOnRoom` uses the existing Mynet/StartOn broadcast sources and links the canonical StartOn route.
 - `ResearchRoom` links the existing research route and does not recreate research data.
@@ -228,13 +230,23 @@ Deploy these new files only; they are not routed yet, so build/type validation m
 
 - [ ] **Step 1: Build Right Now around the existing live social capability**
 
-Do not duplicate `/api/social-feed` networking logic. Render a compact content-first wrapper around the existing `LiveSocial` component and place it immediately after the hero.
+Do not duplicate `/api/social-feed` networking logic. Render an outer `#right-now` content-first frame around the existing `LiveSocial` component. Use descendant CSS to suppress technical account-registry/footer treatment in this early-home placement while preserving the actual feed cards and API fallback behavior.
 
 - [ ] **Step 2: Build source-backed life scenes**
 
 Use at least four visually distinct records from the existing source set: Mynet/StartOn, Channel 14 service-to-mission frame, Hidabroot/public viral record, and one designed source object for a record without reliable photography. Each scene gets `ProofDisclosure`.
 
-- [ ] **Step 3: Build Create before deep influence/research**
+- [ ] **Step 3: Place THE ECHO immediately after LIFE**
+
+Reuse the existing component:
+
+```tsx
+<InfluenceUniverse mode='cinematic'/>
+```
+
+Do not modify its evidence-state semantics, response taxonomy or source totals in this release.
+
+- [ ] **Step 4: Build Create after THE ECHO**
 
 Render at least the existing official music/video records:
 
@@ -246,21 +258,21 @@ Igor Vepretski — פרח במדבר
 
 Use YouTube thumbnails and canonical public links already present in the runtime.
 
-- [ ] **Step 4: Build StartOn lived-mission section**
+- [ ] **Step 5: Build StartOn lived-mission section after Create**
 
 Lead with the human return/opportunity story. Use real press/broadcast imagery. Keep research framing and relationship verification as secondary links/proof rather than first-order copy.
 
-- [ ] **Step 5: Build research bridge, not a second research page**
+- [ ] **Step 6: Build research bridge, not a second research page**
 
 Render only a concise LAB / RESEARCH bridge that names the existing domains and links to the canonical research route. Do not duplicate `ResearchPage` logic or claim peer review/university appointment.
 
-- [ ] **Step 6: Build visitor handoff**
+- [ ] **Step 7: Build visitor handoff**
 
 The final visible action layer must say, in localized copy, that the site now turns toward the visitor and offers an optional next move. Link to the existing Companion with `chat=open&journeyChapter=build` and to Creator Path.
 
 ---
 
-### Task 4: Switch the homepage and preserve THE ECHO/deep archive as later depth
+### Task 4: Switch the homepage and preserve deep archive as later depth
 
 **Files:**
 - Modify: `src/App.tsx`
@@ -269,14 +281,14 @@ The final visible action layer must say, in localized copy, that the site now tu
 
 **Interfaces:**
 - `App.tsx` imports `LifeFirstHome` and renders it only for `view==='home'`.
-- `InfluenceUniverse mode='bar'` remains global unless it visually compromises the first viewport; if it does, suppress the global bar on home and keep full cinematic THE ECHO inside `LifeFirstHome`.
-- `LifeFirstHome` reuses `<InfluenceUniverse mode='cinematic'/>` after Create and StartOn, then a Research bridge, UserHandoff, and finally optional `DeepArchiveRiver` depth.
+- The global `InfluenceUniverse mode='bar'` is suppressed on home so THE ECHO no longer occupies the opening hierarchy; full cinematic THE ECHO remains inside `LifeFirstHome` after LIFE.
+- `LifeFirstHome` ends with Research bridge, UserHandoff, then optional `DeepArchiveRiver` depth.
 
 - [ ] **Step 1: Route home to `LifeFirstHome`**
 
 Change only the home case in `App.tsx`. Preserve every other route and global control.
 
-- [ ] **Step 2: Remove global THE ECHO bar from the home first viewport if needed**
+- [ ] **Step 2: Suppress the global THE ECHO bar on home**
 
 Use this behavior:
 
@@ -284,7 +296,7 @@ Use this behavior:
 {view!=='home' && <InfluenceUniverse mode='bar' view={view==='growth'?'create':view}/>} 
 ```
 
-The home still contains the full cinematic THE ECHO later in its sequence.
+The home still contains full cinematic THE ECHO in the approved sequence.
 
 - [ ] **Step 3: Update release marker**
 
@@ -299,7 +311,7 @@ const release='7ya-life-first-home-20260815-1';
 Replace the old thesis-order IDs with the new sequence:
 
 ```ts
-['you-are-here','right-now','world-rooms','life','create','starton-return','echo','lab-research','your-room','deep-archive']
+['you-are-here','right-now','world-rooms','life','echo','create','starton-return','lab-research','your-room','deep-archive']
 ```
 
 Keep broken-image, overflow, repeated-image, touch-target and fixed-overlap checks.
