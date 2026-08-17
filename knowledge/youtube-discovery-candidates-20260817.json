@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-17",
+  "purpose": "Discovery queue only. Candidate IDs are not counted as verified reach until deduplicated and promoted with evidence.",
+  "source": "Archived 7YA one-paste embed inventory recovered from Google Drive",
+  "candidate_video_count": 27,
+  "candidate_playlist_count": 2,
+  "canonicalization_rule": "youtube.com/watch?v=ID, youtu.be/ID, youtube.com/shorts/ID and youtube.com/embed/ID collapse to one video asset by ID",
+  "videos": [
+    {"id":"AE5hDzLM5XU","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"3XxoBtSL2pg","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"SOpAglwkJ8I","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"c6ueWxKXNg0","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"kS2CRiqRaXo","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"NX5NHRfDNUQ","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"D8E876SaWpI","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"KFbjQv243x8","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"3mG7qVapcII","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"v7158BaZkiQ","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"xyNS6o07uEo","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"hDcKJ46PBJ4","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"UfvyxFbILHc","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"5th6T8wIYWk","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"tL8ofb9d2dY","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"qj6HcVSw8_Q","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"iJyEgWnGA5M","status":"PROMOTED_ARCHIVED_CAPTURE_VERIFIED","record_id":"YT-iJyEgWnGA5M"},
+    {"id":"jRjZjpqAgEw","status":"PROMOTED_ARCHIVED_CAPTURE_VERIFIED","record_id":"YT-jRjZjpqAgEw"},
+    {"id":"2HGMUN2jDwQ","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"0O3tpLwJg4Y","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"OlRQXxjvTfA","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"vgIdB58f8QA","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"5qxA4hgUhV8","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"zKe8u4HdGXE","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"U2d_hulZAC0","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"H9tn761ou3Y","status":"SOURCE_LISTED_NEEDS_DEDUPE"},
+    {"id":"ASlpxqylMSg","status":"SOURCE_LISTED_NEEDS_DEDUPE"}
+  ],
+  "playlists": [
+    {"id":"PLvXOwJ42abaROQ2aWxZJNH8HlJmON5caA","status":"SOURCE_LISTED_NEEDS_INVENTORY"},
+    {"id":"PLvXOwJ42abaQQ3JIwCUundzdXSUJCBMv8","status":"SOURCE_LISTED_NEEDS_INVENTORY"}
+  ],
+  "new_external_short_outside_legacy_inventory": {
+    "id":"k9haTADKG3M",
+    "record_id":"YT-k9haTADKG3M",
+    "status":"PROMOTED_DATED_SCREENSHOT_VERIFIED"
+  }
+}
