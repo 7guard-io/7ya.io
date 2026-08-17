@@ -13,7 +13,11 @@ const root = process.cwd();
 const output = path.join(root, 'dist');
 const guideStyleTag = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
 const guideScriptTag = '<script src="/scripts/7ya-signal-key-20260715.js" data-7ya-signal-key-assets="20260715" defer></script>';
-const manifestTag = '<link rel="manifest" href="/site.webmanifest" data-7ya-pwa="20260726">';
+const manifestTag = '<link rel="manifest" href="/site.webmanifest" data-7ya-pwa="20260817">';
+const appleTouchIconTag = '<link rel="apple-touch-icon" sizes="180x180" href="/assets/7ya-app-icon-180.png" data-7ya-app-icon="20260817">';
+const appleWebAppTitleTag = '<meta name="apple-mobile-web-app-title" content="7YA" data-7ya-app-icon="20260817">';
+const appleWebAppCapableTag = '<meta name="apple-mobile-web-app-capable" content="yes" data-7ya-app-icon="20260817">';
+const mobileWebAppCapableTag = '<meta name="mobile-web-app-capable" content="yes" data-7ya-app-icon="20260817">';
 const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-20260726.css?v=1" data-7ya-control-assets="20260726">';
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
@@ -66,6 +70,10 @@ function injectSharedAssets(html, relative) {
     bodyTags.push(guideScriptTag);
   }
   if (!html.includes('rel="manifest"')) headTags.push(manifestTag);
+  if (!html.includes('rel="apple-touch-icon"')) headTags.push(appleTouchIconTag);
+  if (!html.includes('apple-mobile-web-app-title')) headTags.push(appleWebAppTitleTag);
+  if (!html.includes('apple-mobile-web-app-capable')) headTags.push(appleWebAppCapableTag);
+  if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
 
