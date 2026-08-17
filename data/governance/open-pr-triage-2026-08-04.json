@@ -1,0 +1,290 @@
+[
+  {
+    "number": 284,
+    "title": "Document native 7YA digital museum integration",
+    "classification": "review",
+    "reason": "Documentation-only provenance work is current enough to preserve, but its control-plane state, canonical-domain proof and AppDeploy version label are incomplete.",
+    "required_action": "Keep as Draft, correct the receipt, update the control-plane state, rebase onto current main, and preserve the source-export boundary.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 283,
+    "title": "Add authenticated Instagram owned-media access",
+    "classification": "review",
+    "reason": "The feature handles OAuth, access tokens and owned media but lacks admin authorization, replay resistance, token encryption, account allowlisting and lifecycle controls.",
+    "required_action": "Keep as Draft and require a security redesign plus deterministic tests before any staging or production deployment.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 280,
+    "title": "Record modular Companion release",
+    "classification": "archive",
+    "reason": "This is a historical runtime receipt for an older AppDeploy snapshot and has been superseded by later production versions including v95.",
+    "required_action": "Close without merge after preserving the runtime receipt reference in the stabilization record.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 277,
+    "title": "feat(archive): ingest verified public LinkedIn batch with safety gates",
+    "classification": "rebase",
+    "reason": "The archive batch may contain useful public records, but it is based on an old main and overlaps newer museum and media-impact structures.",
+    "required_action": "Rebuild the data-only portion on current main after deduplication and privacy review; do not merge the stale branch.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 273,
+    "title": "fix(seo): valid ProfilePage dateModified",
+    "classification": "close",
+    "reason": "The one-field SEO fix is based on stale architecture and should not be merged without confirming the warning still exists in the current runtime and source.",
+    "required_action": "Close and recreate as a minimal current-main patch only if the canonical page still contains an invalid date.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 265,
+    "title": "docs: record verified AppDeploy life archive release",
+    "classification": "archive",
+    "reason": "The receipt predates the completed AppDeploy cutover and is superseded by newer verified runtime versions and domain state.",
+    "required_action": "Close without merge and preserve only as historical provenance.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 264,
+    "title": "Creator Path V2: Igor-inspired big brother and modular action handoffs",
+    "classification": "close",
+    "reason": "This stacked draft depends on stale PR #263, references obsolete Vercel recovery paths and overlaps the current AppDeploy Companion implementation.",
+    "required_action": "Close as superseded; extract any still-useful copy or action-handoff concepts into a fresh current-runtime design.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 263,
+    "title": "Archive V2: restore Igor’s full public universe and remove hero overlays",
+    "classification": "close",
+    "reason": "The branch is unmergeable, based on a stale source snapshot and materially overlaps the already deployed museum and archive evolution.",
+    "required_action": "Close as superseded and use current AppDeploy source as the only basis for future archive work.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 239,
+    "title": "feat(command-center): add evidence-aware public mission control",
+    "classification": "close",
+    "reason": "The proposed public command center is based on an old static architecture and duplicates the current read-only Control surface and command navigation.",
+    "required_action": "Close as superseded by the current Control implementation; preserve useful evidence-state language in documentation.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 235,
+    "title": "feat(authority-hub): scaffold multilingual Next.js canonical hub",
+    "classification": "close",
+    "reason": "The isolated Next.js authority hub creates a second architecture that conflicts with the active React and Vite AppDeploy runtime and current source-alignment priority.",
+    "required_action": "Close without merge; no framework migration should proceed before runtime source export and a separately approved migration design.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 232,
+    "title": "feat: add bounded autonomy orchestrator with human approval gates",
+    "classification": "rebase",
+    "reason": "The bounded autonomy policy is strategically useful, but the implementation is based on a stale repository and must be aligned with the current AppDeploy control plane.",
+    "required_action": "Recreate the policy and audit contract on current main after source alignment, keeping publication, merge and deployment approval-gated.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 149,
+    "title": "ops: enforce deterministic API release manifest and SHA gate",
+    "classification": "archive",
+    "reason": "The deterministic manifest design is valuable, but the PR targets an older Netlify API release model and is deeply behind current production architecture.",
+    "required_action": "Close without merge and port only the provider-neutral manifest and SHA verification ideas into the current release pipeline.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 139,
+    "title": "fix(api): sync chat CORS and validation contract",
+    "classification": "archive",
+    "reason": "The Netlify chat contract targets an obsolete deployment path and cannot be merged safely into the current AppDeploy backend without revalidation.",
+    "required_action": "Close without merge; reimplement only needed CORS and validation rules against the current backend source.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 134,
+    "title": "Add local-first RAG core with Evidence Ledger ingestion",
+    "classification": "rebase",
+    "reason": "The local-first retrieval core may remain useful, but the branch is unmergeable and predates the current evidence schemas and public archive structure.",
+    "required_action": "Rebuild as an isolated package on current main with current evidence classifications and privacy tests.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 127,
+    "title": "feat(code-master): add immutable personal code master",
+    "classification": "close",
+    "reason": "The standalone Gemini code-generation container is unrelated to the active 7YA product path and adds maintenance and secret surface without current operational need.",
+    "required_action": "Close as out of scope; retain the branch only as historical experimentation.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 121,
+    "title": "Fix GitHub App user-to-server authentication",
+    "classification": "review",
+    "reason": "The authentication work may provide useful admin patterns, but it is security-sensitive, stale and requires real OAuth, encryption and session verification.",
+    "required_action": "Keep Draft, compare against current admin auth, and require a dedicated current-main security plan before reuse.",
+    "security_sensitive": true,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 113,
+    "title": "feat: add static social embedded tech layer",
+    "classification": "close",
+    "reason": "The static social embed layer predates the current React and AppDeploy social routes and would reintroduce duplicate publication paths.",
+    "required_action": "Close as superseded by the current social and media surfaces.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 107,
+    "title": "Add third-party notices compliance route",
+    "classification": "rebase",
+    "reason": "A third-party notices register is useful compliance work, but the branch is unmergeable and its dependency inventory is stale.",
+    "required_action": "Recreate from the current lockfile and runtime dependency graph on current main.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 90,
+    "title": "feat: add platform alignment kit for 7YA identity nodes",
+    "classification": "archive",
+    "reason": "The documentation is tied to obsolete phase gates and an older identity architecture, though parts of its platform-governance language may remain useful.",
+    "required_action": "Close without merge and preserve useful policy language in the current governance documents.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 67,
+    "title": "[WIP] Verify accessibility and responsiveness for Life Tree V0",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 68,
+    "title": "[WIP] Add /igor-vepretski standalone route with documentary biography",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 65,
+    "title": "[WIP] Add reusable empty states for media slots",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 66,
+    "title": "[WIP] Run build checks and create preview deployment for Life Tree V0",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 63,
+    "title": "[WIP] Add responsive navigation tiles for approved page sections",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 62,
+    "title": "[WIP] Implement responsive route map and timeline skeleton for /igor-vepretski",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 64,
+    "title": "[WIP] Add source-status legend and evidence wall to Life Tree V0",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 61,
+    "title": "[WIP] Add hero section with bilingual opening and RTL support",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 59,
+    "title": "[WIP] Implement and publish landing page for Igor Vepretski",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 60,
+    "title": "[WIP] Add design system and editorial shell for /igor-vepretski",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 58,
+    "title": "[WIP] Add RTL documentary landing shell, hero, and life map",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 57,
+    "title": "[WIP] Implement and publish V0 landing page for Igor Vepretski",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  },
+  {
+    "number": 55,
+    "title": "[WIP] Update UX/UI for public 7ya.io experience",
+    "classification": "close",
+    "reason": "This Copilot WIP is an old, incomplete or duplicate implementation stream that has been superseded by the current Igor route, AppDeploy runtime and later UX work.",
+    "required_action": "Close without merge and require any future work to start from current main with explicit tests and runtime alignment.",
+    "security_sensitive": false,
+    "review_after": "2026-08-04"
+  }
+]
