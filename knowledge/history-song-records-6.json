@@ -1,5 +1,5 @@
 {
-  "schema_version": "2.4",
+  "schema_version": "2.5",
   "part": 6,
   "generated_at": "2026-08-17",
   "scope": "Newly discovered public content and identity surfaces; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots or public-source verification.",
@@ -84,6 +84,23 @@
         "value": "7",
         "as_of": "2026-08-17"
       }
+    },
+    {
+      "id": "WIKIMEDIA-STARTON-ONEPAGER-001",
+      "year": 2022,
+      "date": "2022-12-29",
+      "platform": "Wikimedia Commons",
+      "publisher": "Igorvepretski",
+      "type": "public-document",
+      "language": "he",
+      "title": "One pager starton new — interactive spaces for youth at risk",
+      "summary": "מסמך StartOn ציבורי המתאר פרויקט להקמת חללים אינטראקטיביים לנוער בסיכון. דף Wikimedia מציין Source: Own work, Author: Igorvepretski ותאריך 29.12.2022. זהו נכס תוכן ציבורי נפרד מהפורטרט שכבר היה באינדקס.",
+      "url": "https://commons.wikimedia.org/wiki/File:One_pager_starton_new.pdf",
+      "discovered_at": "2026-08-17",
+      "themes": ["StartOn", "youth at risk", "public document", "Wikimedia Commons"],
+      "act": "STARTON",
+      "evidence_tier": "TIER_2",
+      "verification": "PUBLIC_INDEXED"
     }
   ]
 }
