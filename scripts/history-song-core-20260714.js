@@ -30,7 +30,8 @@
   const tierLabel = tier => ({
     TIER_1: 'TIER 1 · מקור חיצוני',
     TIER_2: 'TIER 2 · מקור רשמי',
-    TIER_3: 'TIER 3 · snapshot'
+    TIER_3: 'TIER 3 · snapshot',
+    SOURCE_PENDING: 'SOURCE · אימות מטא־דאטה ממתין'
   }[tier] || tier || 'SOURCE');
 
   const getYear = record => record.date ? record.date.slice(0, 4) : (record.year || 'ללא תאריך');
@@ -76,9 +77,22 @@
     if (!state.query) return true;
     const haystack = normalize([
       record.title, record.summary, record.platform, record.publisher,
-      record.type, record.language, record.act, record.verification, ...(record.themes || [])
+      record.type, record.language, record.act, record.verification, record.platform_id,
+      ...(record.themes || [])
     ].join(' '));
     return haystack.includes(state.query);
+  };
+
+  const syncDisplayedTotal = total => {
+    const totalText = String(total);
+    const firstSnapshot = document.querySelector('.snapshot-grid a:first-child b');
+    if (firstSnapshot) firstSnapshot.textContent = totalText;
+
+    const archiveCopy = document.querySelector('.archive-head > div > p:last-child');
+    if (archiveCopy) archiveCopy.textContent = archiveCopy.textContent.replace(/^\d+\s+רשומות מקור/, `${totalText} רשומות מקור`);
+
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.content = description.content.replace(/\d+ רשומות מקור/, `${totalText} רשומות מקור`);
   };
 
   const render = () => {
@@ -100,7 +114,7 @@
 
   const loadArchive = async () => {
     if (!selectors.grid) return;
-    const paths = [1, 2, 3, 4, 5].map(part => `/knowledge/history-song-records-${part}.json`);
+    const paths = [1, 2, 3, 4, 5, 6].map(part => `/knowledge/history-song-records-${part}.json`);
     try {
       const responses = await Promise.all(paths.map(path => fetch(path, {
         headers: { Accept: 'application/json' },
@@ -110,7 +124,8 @@
       if (failed) throw new Error(`archive fetch failed: ${failed.status}`);
       const parts = await Promise.all(responses.map(response => response.json()));
       state.records = parts.flatMap(part => Array.isArray(part.records) ? part.records : []);
-      if (state.records.length !== 66) throw new Error(`expected 66 archive records, received ${state.records.length}`);
+      if (!state.records.length) throw new Error('archive contains no records');
+      syncDisplayedTotal(state.records.length);
       render();
     } catch (error) {
       console.error(error);
