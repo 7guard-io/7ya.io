@@ -56,6 +56,17 @@ function referencesFrom(file, body) {
   if (file.endsWith('.css')) {
     for (const match of body.matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/gi)) references.push(match[1].trim());
   }
+  if (file === 'site.webmanifest') {
+    try {
+      const webManifest = JSON.parse(body);
+      for (const icon of webManifest.icons || []) if (icon?.src) references.push(icon.src);
+      for (const shortcut of webManifest.shortcuts || []) {
+        for (const icon of shortcut?.icons || []) if (icon?.src) references.push(icon.src);
+      }
+    } catch {
+      fail('site.webmanifest is invalid JSON');
+    }
+  }
   return references;
 }
 
@@ -99,7 +110,7 @@ for (const [relative, expectedHash] of manifestEntries) {
   const actualHash = crypto.createHash('sha256').update(body).digest('hex');
   if (actualHash !== expectedHash) fail(`hash mismatch for ${relative}`);
 
-  if (relative.endsWith('.html') || relative.endsWith('.css')) {
+  if (relative.endsWith('.html') || relative.endsWith('.css') || relative === 'site.webmanifest') {
     for (const reference of referencesFrom(relative, body.toString('utf8'))) {
       const candidates = localCandidates(relative, reference);
       if (candidates.length && !candidates.some(candidate => manifest.files?.[candidate])) {
@@ -107,6 +118,34 @@ for (const [relative, expectedHash] of manifestEntries) {
       }
     }
   }
+}
+
+const brandAssets = [
+  'assets/7ya-app-icon-180.png',
+  'assets/7ya-app-icon-192.png',
+  'assets/7ya-app-icon-512.png',
+  'assets/7ya-app-icon-maskable-512.png',
+];
+for (const relative of brandAssets) {
+  if (!manifest.files?.[relative]) fail(`missing branded app icon ${relative}`);
+}
+
+const webManifest = JSON.parse(await fs.readFile(path.join(output, 'site.webmanifest'), 'utf8'));
+const manifestIcons = webManifest.icons || [];
+const hasIcon = (sizes, purpose) => manifestIcons.some(icon =>
+  icon.type === 'image/png' &&
+  icon.sizes === sizes &&
+  String(icon.purpose || 'any').split(/\s+/).includes(purpose)
+);
+if (!hasIcon('192x192', 'any')) fail('web manifest missing 192x192 PNG icon');
+if (!hasIcon('512x512', 'any')) fail('web manifest missing 512x512 PNG icon');
+if (!hasIcon('512x512', 'maskable')) fail('web manifest missing dedicated maskable 512x512 PNG icon');
+
+for (const relative of artifactFiles.filter(file => file.endsWith('.html') && file !== '404.html')) {
+  const html = await fs.readFile(path.join(output, relative), 'utf8');
+  if (!html.includes('rel="manifest"')) fail(`${relative} missing web manifest link`);
+  if (!html.includes('rel="apple-touch-icon"')) fail(`${relative} missing apple touch icon link`);
+  if (!html.includes('apple-mobile-web-app-title')) fail(`${relative} missing iOS app title metadata`);
 }
 
 const cname = (await fs.readFile(path.join(output, 'CNAME'), 'utf8')).trim();
