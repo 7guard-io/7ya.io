@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.5",
+  "schema_version": "2.6",
   "part": 6,
   "generated_at": "2026-08-17",
-  "scope": "Newly discovered public content and identity surfaces; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots or public-source verification.",
+  "scope": "Newly discovered public content and identity surfaces; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots, archived captures or public-source verification.",
   "records": [
     {
       "id": "YT-k9haTADKG3M",
@@ -23,22 +23,48 @@
       "act": "CREATOR",
       "evidence_tier": "TIER_1",
       "verification": "DATED_SCREENSHOT_VERIFIED",
-      "metric": {
-        "label": "YouTube public UI snapshot",
-        "value": "5.1M views · 82K likes · 717 comments",
-        "as_of": "2026-08-17"
-      },
-      "metric_components": {
-        "views_displayed": "5.1M",
-        "likes_displayed": "82K",
-        "comments_displayed": "717",
-        "age_displayed": "1y ago"
-      },
-      "evidence_notes": [
-        "Screenshot 1: YouTube search result for 'joystick nawan1' shows Nawan1, title 'Joy stick 🕹️ @Igor.vepretski', 5.1M views, 1y ago.",
-        "Screenshot 2: Short playback screen shows ID k9haTADKG3M, @nawan1379, caption 'Joy stick 🕹️ @Igor.vepretski', location Tutzing, 82K likes and 717 comments.",
-        "Displayed metrics are snapshots and may change; rounded values remain strings to avoid false precision."
-      ]
+      "metric": {"label": "YouTube public UI snapshot", "value": "5.1M views · 82K likes · 717 comments", "as_of": "2026-08-17"},
+      "metric_components": {"views_displayed": "5.1M", "likes_displayed": "82K", "comments_displayed": "717", "age_displayed": "1y ago"}
+    },
+    {
+      "id": "YT-iJyEgWnGA5M",
+      "year": 2025,
+      "date": null,
+      "platform": "YouTube",
+      "publisher": "Igor Vepretski #7YA🥷",
+      "publisher_handle": "@Igor.vepretski",
+      "type": "owned-video-collaboration",
+      "language": "multi",
+      "title": "@Nawan #7YA🥷🏼",
+      "summary": "וידאו בבעלות ערוץ Igor Vepretski #7YA המקשר במפורש ל־@nawan1379 ולמשמעות #7YA. Capture שמור בדרייב מציג 234 views ומקשר ל־vepretski.blog/2025/01/28/7ya/.",
+      "url": "https://www.youtube.com/watch?v=iJyEgWnGA5M",
+      "platform_id": "iJyEgWnGA5M",
+      "discovered_at": "2026-08-17",
+      "themes": ["Nawan", "7YA", "collaboration", "owned YouTube"],
+      "act": "7YA",
+      "evidence_tier": "TIER_2",
+      "verification": "ARCHIVED_DRIVE_CAPTURE_VERIFIED",
+      "metric": {"label": "Archived YouTube capture", "value": "234 views", "as_of": "2025-10-18"}
+    },
+    {
+      "id": "YT-jRjZjpqAgEw",
+      "year": 2025,
+      "date": "2025-08-15",
+      "platform": "YouTube",
+      "publisher": "Nawan1",
+      "publisher_handle": "@nawan1379",
+      "type": "external-music-video-collaboration",
+      "language": "ru",
+      "title": "NAWAN ft. VEPRETSKI - BIZZI (Премьера клипа)",
+      "summary": "קליפ רשמי חיצוני של NAWAN ft. VEPRETSKI. Capture שמור בדרייב מתעד Public, תאריך פרסום 15.08.2025, אורך 02:49, 19,304 views ו־409 likes, וכן קישור ישיר ל־Instagram של Igor Vepretski.",
+      "url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "platform_id": "jRjZjpqAgEw",
+      "discovered_at": "2026-08-17",
+      "themes": ["BIZZI", "Nawan", "Vepretski", "music video", "external collaboration"],
+      "act": "CREATOR",
+      "evidence_tier": "TIER_1",
+      "verification": "ARCHIVED_DRIVE_CAPTURE_VERIFIED",
+      "metric": {"label": "Archived YouTube capture", "value": "19,304 views · 409 likes", "as_of": "2025-10-18"}
     },
     {
       "id": "SURFACE-SLAPS-001",
@@ -57,11 +83,7 @@
       "act": "CREATOR",
       "evidence_tier": "TIER_2",
       "verification": "PUBLIC_INDEXED",
-      "metric": {
-        "label": "Indexed profile snapshot",
-        "value": "0 tracks · 0 plays · 0 followers",
-        "as_of": "2026-08-17"
-      }
+      "metric": {"label": "Indexed profile snapshot", "value": "0 tracks · 0 plays · 0 followers", "as_of": "2026-08-17"}
     },
     {
       "id": "SURFACE-GRAVATAR-001",
@@ -79,11 +101,7 @@
       "act": "7YA",
       "evidence_tier": "TIER_2",
       "verification": "PUBLIC_INDEXED",
-      "metric": {
-        "label": "Verified connections displayed",
-        "value": "7",
-        "as_of": "2026-08-17"
-      }
+      "metric": {"label": "Verified connections displayed", "value": "7", "as_of": "2026-08-17"}
     },
     {
       "id": "WIKIMEDIA-STARTON-ONEPAGER-001",
