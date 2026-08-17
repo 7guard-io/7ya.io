@@ -1,0 +1,60 @@
+# Tests
+
+## Test 1 - Homepage opens as a first-person life story before knowledge or public-action layers [sanity]
+Viewport: desktop
+Covers: first-person hero, autobiographical chronology hierarchy, pain-to-responsibility leadership thesis, knowledge/public-action demotion
+Description: Verifies the homepage opens with Igor speaking as a person rather than a dossier, knowledge portal or editorial instruction sheet.
+Steps:
+1. Open ?lang=he and inspect the hero and the first chronology section
+2. Verify the hero says Igor was born in Kharkiv in 1990, came to Israel at three, grew up across Bat Yam, Holon and Jesse Cohen, and explicitly connects pain to responsibility and building
+3. Verify the first primary CTA links to #life-chronology and the chronology title begins in first person with אני לא תיק
+4. Verify 7YA / KNOWLEDGE COMMONS and PUBLIC LIFE / ACTION appear only after the autobiographical entry rather than before it
+Expected: The first visit is unmistakably a first-person life story with a responsibility-and-building thesis, while knowledge and public-action layers remain secondary.
+
+## Test 2 - Life chapters connect lived experience to sources and practical learning
+Viewport: desktop
+Covers: origin knowledge lens, StartOn knowledge lens, public-voice knowledge lens, contextual sources, practical actions
+Description: Verifies three core chapters demonstrate the approved pattern: lived story → public/source context → Learn From This → practical action.
+Steps:
+1. Open ?lang=en and navigate to the childhood/origin chapter
+2. Verify the body is first person and a LEARN FROM THIS card titled Belonging, migration and youth risk is present with schools/frameworks, source links and What can I do now?
+3. Navigate to the 2022 StartOn return chapter and verify the first-person line about leaving Jesse Cohen for a future and returning because success without return is half a success; verify the Youth opportunity, belonging and digital inclusion lens is attached
+4. Navigate to the 2023 public-voice chapter and verify its first-person post-to-news narrative plus the Virality, framing and public impact lens
+5. Open each lens details and verify at least one external research source and at least one practical action are visible
+Expected: Personal narrative remains dominant while each selected chapter gives the visitor evidence, competing interpretation and a useful next action.
+
+## Test 3 - Knowledge Commons exposes five lenses without pretending consensus
+Viewport: desktop
+Covers: five-lens index, evidence-state labeling, school disagreement, Igor-framework boundary, cross-site learning paths
+Description: Verifies the first Knowledge Commons release contains all five approved lenses and makes disagreement and evidence status explicit.
+Steps:
+1. Navigate to 7YA / KNOWLEDGE COMMONS
+2. Verify exactly five main lens entries are visible: belonging/youth risk, institutions/trust, youth opportunity/digital inclusion, virality/public impact, and research/meaning
+3. Open the virality lens in its life chapter and verify the detailed section includes Where the schools diverge plus separate strengths and limits for multiple frameworks
+4. Open the research/meaning lens and verify its evidence label explicitly marks Igor framework / not consensus and the body distinguishes empirical evidence from spiritual tradition
+5. Verify the StartOn practical path links to https://starton.org.il and research paths do not claim institutional endorsement
+Expected: The site gives knowledge away while preserving disagreement, provenance and the boundary between established literature and Igor-originated frameworks.
+
+## Test 4 - Mobile and multilingual story stay readable and hide technical provenance captions
+Viewport: mobile
+Covers: Hebrew English Russian localization, mobile knowledge layout, horizontal-overflow guardrail, technical-caption demotion, visual fallback safety
+Description: Verifies the richer story and knowledge modules remain mobile-first and do not reintroduce backend/provenance jargon into the default reading path.
+Steps:
+1. Open ?lang=he&visualQA=1 and navigate through the hero, origin chapter and its Knowledge Lens
+2. Verify the knowledge schools and source list stack to one column and no horizontal overflow is reported
+3. Switch to ?lang=en and ?lang=ru and verify hero, chronology and Knowledge Commons headings are localized rather than copied from Hebrew
+4. Verify visible chronology image captions do not show OWNER ARCHIVE, CAPTURE DATE UNASSERTED, SOURCE-LINKED or ANALYTICAL MONOGRAPH-ESSAY as visitor-facing prose
+5. After imagery loads, verify Visual QA reports 0 HORIZONTAL OVERFLOW, 0 FIXED OVERLAP and 0 BROKEN IMAGES
+Expected: The deep autobiographical and knowledge experience remains readable on mobile in all three languages and technical provenance stays behind the content.
+
+## Test 5 - Canonical corpus, research status and admin safety remain intact
+Viewport: desktop
+Covers: canonical corpus v2, public visibility guardrail, research publication-status labeling, protected admin dry-run, source-local metrics
+Description: Verifies the new narrative and Knowledge Commons presentation does not weaken the existing evidence and research safety layer.
+Steps:
+1. Open ?page=corpus&corpusLimit=50 and verify release CANONICAL-CORPUS-20260817-2, schemaVersion 2 and the expected canonical items including hebrew-university-criminology-2018-2020 and the verified 2022 StartOn/media/writing records
+2. Open ?page=research&lang=en and verify The Resonant Self remains MANUSCRIPT · INDEPENDENT · PEER REVIEW UNESTABLISHED and Opportunity / Adversity remains RESEARCH PROGRAM · ACTIVE
+3. Open ?page=media&lang=he&q=לבן%20שלי%20אין%20טיקטוק and verify the זמן ישראל result is CANONICAL CORPUS · VERIFIED
+4. Open ?page=corpus&corpusType=research&corpusVerification=verified&corpusLimit=20&corpusAdminDryRun=1 and verify ADMIN WRITE GUARD reports dryRun true, protected true and writePerformed false
+5. Return to the public-voice/now presentation and verify social figures remain attached to dated source objects rather than being combined into a total-reach claim
+Expected: Canonical provenance, research-status honesty, private-safe filtering, admin protection and source-local metric rules remain unchanged.
