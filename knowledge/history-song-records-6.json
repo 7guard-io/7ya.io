@@ -1,24 +1,44 @@
 {
-  "schema_version": "2.2",
+  "schema_version": "2.3",
   "part": 6,
   "generated_at": "2026-08-17",
-  "scope": "Newly discovered public content supplied by Igor Vepretski; preserve canonical URLs immediately while metadata and metrics remain verification-gated",
+  "scope": "Newly discovered public content supplied by Igor Vepretski; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots or public-source verification.",
   "records": [
     {
       "id": "YT-k9haTADKG3M",
+      "year": 2025,
+      "date": null,
       "platform": "YouTube",
-      "publisher": "YouTube",
-      "type": "short-video",
-      "language": "unknown",
-      "title": "YouTube Short — k9haTADKG3M",
-      "summary": "Short ציבורי שנמצא מחדש ב־17.08.2026 ונוסף לארכיון ההשפעה. הכותרת, מועד הפרסום ומדדי הצפייה אינם מנוחשים ונשארים ללא ערך עד אימות ישיר ממקור YouTube.",
+      "publisher": "Nawan1",
+      "publisher_handle": "@nawan1379",
+      "type": "external-short-video",
+      "language": "multi",
+      "title": "Joy stick 🕹️ @Igor.vepretski",
+      "summary": "YouTube Short חיצוני של Nawan1 שבו @Igor.vepretski מתויג בכיתוב. צילום מסך מ־17.08.2026 מציג את הסרטון בתוצאות YouTube עם 5.1M views, ובמסך הסרטון עצמו 82K likes ו־717 comments. המספרים נשמרים כפי שמוצגים בממשק ואינם מומרים למספרים מדויקים יותר מהתצוגה.",
       "url": "https://www.youtube.com/shorts/k9haTADKG3M",
       "platform_id": "k9haTADKG3M",
+      "location_label": "Tutzing",
       "discovered_at": "2026-08-17",
-      "themes": ["YouTube Shorts", "וידאו", "השפעה דיגיטלית"],
+      "themes": ["YouTube Shorts", "external amplification", "creator appearance", "gaming", "viral video"],
       "act": "CREATOR",
-      "evidence_tier": "SOURCE_PENDING",
-      "verification": "USER_SUPPLIED_PUBLIC_URL_METADATA_PENDING"
+      "evidence_tier": "TIER_1",
+      "verification": "DATED_SCREENSHOT_VERIFIED",
+      "metric": {
+        "label": "YouTube public UI snapshot",
+        "value": "5.1M views · 82K likes · 717 comments",
+        "as_of": "2026-08-17"
+      },
+      "metric_components": {
+        "views_displayed": "5.1M",
+        "likes_displayed": "82K",
+        "comments_displayed": "717",
+        "age_displayed": "1y ago"
+      },
+      "evidence_notes": [
+        "Screenshot 1: YouTube search result for 'joystick nawan1' shows Nawan1, title 'Joy stick 🕹️ @Igor.vepretski', 5.1M views, 1y ago.",
+        "Screenshot 2: Short playback screen shows ID k9haTADKG3M, @nawan1379, caption 'Joy stick 🕹️ @Igor.vepretski', location Tutzing, 82K likes and 717 comments.",
+        "Displayed metrics are snapshots and may change; rounded values remain strings to avoid false precision."
+      ]
     }
   ]
 }
