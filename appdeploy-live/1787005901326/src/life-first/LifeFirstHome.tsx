@@ -1,0 +1,22 @@
+import DeepArchiveRiver from '../DeepArchiveRiver';
+import InfluenceUniverse from '../InfluenceUniverse';
+import PostPortraitWall from '../PostPortraitWall';
+import LifeFirstHero from './LifeFirstHero';
+import PublicActionStage from './PublicActionStage';
+import PersonalChronology from './PersonalChronology';
+import PersonalArchive from './PersonalArchive';
+import LifeGeography from './LifeGeography';
+import RightNow from './RightNow';
+import WorldRooms from './WorldRooms';
+import LifeScenes from './LifeScenes';
+import LongformVoice from './LongformVoice';
+import CreateRoom from './CreateRoom';
+import StartOnRoom from './StartOnRoom';
+import ResearchRoom from './ResearchRoom';
+import UserHandoff from './UserHandoff';
+import KnowledgeCommons from './KnowledgeCommons';
+import {useLocale} from '../locale';
+import './life-first.css';
+import './album-polish.css';
+import './public-action-stage.css';
+export default function LifeFirstHome(){const {dir}=useLocale();return <main className='life-first-home' dir={dir}><LifeFirstHero/><PersonalChronology/><InfluenceUniverse mode='cinematic'/><PublicActionStage/><RightNow/><LifeGeography/><PostPortraitWall/><WorldRooms/><StartOnRoom/><ResearchRoom/><KnowledgeCommons/><CreateRoom/><LifeScenes/><LongformVoice/><PersonalArchive/><UserHandoff/><DeepArchiveRiver/></main>}
