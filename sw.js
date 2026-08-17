@@ -1,4 +1,4 @@
-const CACHE_VERSION = '7ya-shell-20260726-v1';
+const CACHE_VERSION = '7ya-shell-20260817-brand-v1';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = '/';
@@ -13,6 +13,10 @@ const PRECACHE = [
   '/site.webmanifest',
   '/favicon.svg',
   '/assets/7ya-app-icon.svg',
+  '/assets/7ya-app-icon-180.png',
+  '/assets/7ya-app-icon-192.png',
+  '/assets/7ya-app-icon-512.png',
+  '/assets/7ya-app-icon-maskable-512.png',
   '/styles/7ya-page-upgrade-20260726.css',
   '/styles/7ya-control-layer-20260726.css',
   '/styles/7ya-control-page-20260726.css',
