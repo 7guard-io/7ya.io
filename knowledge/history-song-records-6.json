@@ -1,8 +1,8 @@
 {
-  "schema_version": "2.3",
+  "schema_version": "2.4",
   "part": 6,
   "generated_at": "2026-08-17",
-  "scope": "Newly discovered public content supplied by Igor Vepretski; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots or public-source verification.",
+  "scope": "Newly discovered public content and identity surfaces; preserve canonical URLs immediately, then promote metadata and metrics only when supported by dated screenshots or public-source verification.",
   "records": [
     {
       "id": "YT-k9haTADKG3M",
@@ -39,6 +39,51 @@
         "Screenshot 2: Short playback screen shows ID k9haTADKG3M, @nawan1379, caption 'Joy stick 🕹️ @Igor.vepretski', location Tutzing, 82K likes and 717 comments.",
         "Displayed metrics are snapshots and may change; rounded values remain strings to avoid false precision."
       ]
+    },
+    {
+      "id": "SURFACE-SLAPS-001",
+      "year": 2022,
+      "date": "2022-07-08",
+      "platform": "Slaps",
+      "publisher": "Igor Vepretski",
+      "publisher_handle": "@igor_vepretski",
+      "type": "public-profile",
+      "language": "multi",
+      "title": "Igor Vepretski — Slaps public artist profile",
+      "summary": "משטח ציבורי ותיק תחת handle ה־TikTok ההיסטורי @igor_vepretski. הפרופיל מקשר ל־Instagram, YouTube ו־Facebook ומספק עקבת זהות נוספת שלא הופיעה באינדקס 68 הרשומות.",
+      "url": "https://slaps.com/user/igor_vepretski",
+      "discovered_at": "2026-08-17",
+      "themes": ["legacy handle", "music", "identity graph", "public profile"],
+      "act": "CREATOR",
+      "evidence_tier": "TIER_2",
+      "verification": "PUBLIC_INDEXED",
+      "metric": {
+        "label": "Indexed profile snapshot",
+        "value": "0 tracks · 0 plays · 0 followers",
+        "as_of": "2026-08-17"
+      }
+    },
+    {
+      "id": "SURFACE-GRAVATAR-001",
+      "year": 2025,
+      "date": null,
+      "platform": "Gravatar",
+      "publisher": "Igor Vepretski",
+      "type": "public-identity-profile",
+      "language": "en",
+      "title": "Igor Vepretski — Gravatar identity profile",
+      "summary": "משטח זהות ציבורי המחבר את Igor Vepretski לחשבונות ציבוריים מאומתים/מקושרים, ובהם WordPress, Threads, TikTok, GitHub, Facebook, YouTube ו־Instagram. נשמר כצומת entity-resolution ולא כמדד reach.",
+      "url": "https://gravatar.com/igorvepretski",
+      "discovered_at": "2026-08-17",
+      "themes": ["identity graph", "account resolution", "public profile", "cross-platform"],
+      "act": "7YA",
+      "evidence_tier": "TIER_2",
+      "verification": "PUBLIC_INDEXED",
+      "metric": {
+        "label": "Verified connections displayed",
+        "value": "7",
+        "as_of": "2026-08-17"
+      }
     }
   ]
 }
