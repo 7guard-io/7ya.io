@@ -26,7 +26,8 @@ Verified metrics are read only from the canonical `7ya-now-snapshot-2026` event.
 - Canonical Echo fail-closed regression: passed in AppDeploy QA group `32acf098e18ea4c6`.
 - Mobile visual-memory diversity regression: passed in QA group `32acf098e18ea4c6`; eight distinct canonical events and 0px horizontal overflow were observed.
 - YOUR PATH → StartOn without identity capture: passed in QA group `999df7280e0d0de2`.
-- Contextual handoffs and StartOn/Create/Deep Archive were additionally source-verified against this exact runtime snapshot. Two visual QA workers for those combined scenarios exceeded the provider execution window without returning a functional failure.
+- The combined contextual-handoff QA scenario was classified `bad_test / stale_content`: it incorrectly required all three handoffs to be visible together. Runtime source confirms the home renders `ContextualHandoff` three times in sequence — influence after the Echo stack, research after ResearchRoom, and StartOn after StartOnRoom — with their distinct primary actions.
+- The combined StartOn/Create/Deep Archive QA worker exceeded the provider execution limit; those three surfaces were source-verified against the same runtime snapshot.
 
 ## Rollback
 
