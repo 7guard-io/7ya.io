@@ -212,6 +212,8 @@ Use the existing canonical 7YA vocabulary:
 
 These statuses answer **what may be said and how it must be framed**, not merely how good one source is.
 
+`verification_status` is a **resolver output**, not a mutable property duplicated on the base claim. The base claim stores what was asserted; the current and historical resolutions store how 7YA has evaluated that assertion.
+
 ### 5.3 `resolution_state`
 
 Add a separate resolver state:
@@ -224,7 +226,7 @@ Add a separate resolver state:
 
 These answer **where the claim sits in the current canon**.
 
-A valid combination may therefore be:
+A valid resolved combination may therefore be:
 
 ```json
 {
@@ -265,7 +267,6 @@ Minimum fields:
 - `claim_statement text`
 - `valid_from timestamptz/date null`
 - `valid_to timestamptz/date null`
-- `verification_status text`
 - `publication_class text`
 - `created_at timestamptz`
 
@@ -307,13 +308,12 @@ Represents the current and historical resolver result.
 - `verification_status text`
 - `canonical_value jsonb`
 - `public_wording jsonb`
-- `confidence numeric null`
 - `resolver_policy_version text`
 - `reason_codes jsonb`
 - `resolved_at timestamptz`
 - `supersedes_resolution_id uuid null`
 
-Do not treat a confidence score as a substitute for source explanation.
+A resolver decision must be explainable through evidence relationships and reason codes. No opaque scalar “truth score” is part of the canonical contract.
 
 ### 6.6 `claim_events`
 
@@ -474,9 +474,9 @@ Example envelope:
   "schemaVersion": "1.0",
   "resolverPolicyVersion": "1.0",
   "generatedAt": "2026-08-19T00:00:00Z",
-  "snapshotId": "...",
-  "payloadSha256": "...",
-  "merkleRoot": "...",
+  "snapshotId": "example-snapshot-id",
+  "payloadSha256": "example-sha256",
+  "merkleRoot": "example-merkle-root",
   "entities": [],
   "claims": [],
   "resolutions": []
