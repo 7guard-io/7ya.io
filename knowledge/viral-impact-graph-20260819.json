@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-08-19T19:47:00+03:00",
+  "source_policy": "PUBLIC_WEB_FIRST; ARCHIVE_RECOVERY_ONLY_WHEN_PUBLIC_OBJECT_IS_BLOCKED_DELETED_OR_INACCESSIBLE",
+  "executive": {
+    "claimed_global_reach": {
+      "display": "6.2B+",
+      "value_floor": 6200000000,
+      "unit": "reach",
+      "status": "PUBLIC_SELF_CLAIM_RECONSTRUCTION_REQUIRED",
+      "source": "https://x.com/igorvepretski/with_replies"
+    },
+    "documented_public_view_event_floor": 12777477,
+    "documented_high_scale_interaction_floor_gt": 434566,
+    "selected_linkedin_comment_floor": 652,
+    "facebook_viral_objects_explicitly_listed": 6
+  },
+  "high_scale_nodes": [
+    {
+      "id": "YT-k9haTADKG3M",
+      "cluster": "nawan-joystick",
+      "platform": "YouTube Shorts",
+      "publisher": "Nawan1",
+      "publisher_handle": "@nawan1379",
+      "title": "Joy stick 🕹️ @Igor.vepretski",
+      "url": "https://www.youtube.com/shorts/k9haTADKG3M",
+      "owned_or_external": "external_amplification",
+      "views": 5100000,
+      "likes_displayed": 82000,
+      "comments": 717,
+      "captured_at": "2026-08-17",
+      "evidence_class": "DATED_USER_PROVIDED_PUBLIC_UI_SCREENSHOT",
+      "current_delta": {
+        "status": "USER_REPORTED",
+        "statement": "approaching 6M",
+        "measured_refresh_pending": true
+      }
+    },
+    {
+      "id": "TT-2024-PUBLIC-RECAP",
+      "cluster": "tiktok-2024-portfolio",
+      "platform": "TikTok",
+      "publisher": "Igor Vepretski",
+      "owned_or_external": "owned",
+      "period": "2024",
+      "views": 3800000,
+      "likes_gt": 129000,
+      "comments_gt": 20000,
+      "shares_gt": 21000,
+      "profile_visits": 41000,
+      "interaction_floor_gt": 170000,
+      "evidence_class": "OWNER_PUBLISHED_PUBLIC_ANALYTICS",
+      "source": "https://www.linkedin.com/posts/vepretski_%D7%98%D7%99%D7%A7%D7%98%D7%95%D7%A7-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%91%D7%99%D7%AA%D7%A0%D7%95-%D7%AA%D7%95%D7%9B%D7%9F%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99-activity-7281298986928328705-ELZL"
+    },
+    {
+      "id": "TT-14D-VIRAL-WINDOW",
+      "cluster": "tiktok-14d-viral-window",
+      "platform": "TikTok",
+      "publisher": "Igor Vepretski",
+      "owned_or_external": "owned",
+      "period": "later 14-day window",
+      "views": 3877477,
+      "interactions": 181849,
+      "engagement_rate_pct": 4.92,
+      "evidence_class": "OWNER_PUBLISHED_PUBLIC_ANALYTICS",
+      "source": "https://www.linkedin.com/posts/vepretski_tiktokmarketing-digitalinfluence-personalbranding-activity-7316474020063760384-0aAl"
+    }
+  ],
+  "facebook_viral_inventory": [
+    {"cluster":"perfect-father","title":"אבא מושלם — זה אבא ששם","publisher":"סטטוסים מצייצים","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"},
+    {"cluster":"young-fatherhood","title":"אבהות בגיל צעיר","publisher":"הצינור","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"},
+    {"cluster":"shomer-homot-police","title":"להיות שוטר בשומר חומות","publisher":"סטטוסים מצייצים","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"},
+    {"cluster":"henry-champion","title":"תכירו את הנרי האלוף!","publisher":"סטטוסים מצייצים","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"},
+    {"cluster":"kindergarten-call","title":"תחילת השבוע הגננת מתקשרת","publisher":"סטטוסים מצייצים","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"},
+    {"cluster":"russian-identity","title":"רוסי מסריח","publisher":"סטטוסים מצייצים","status":"PUBLIC_LINKTREE_CANONICAL_ROUTE"}
+  ],
+  "propagation_nodes": [
+    {
+      "cluster":"grandmother-fraud",
+      "platform":"LinkedIn",
+      "publisher":"משרות חבר מביא חבר בהייטק - רשת פנימית",
+      "publisher_followers_at_index":91300,
+      "metric_semantics":"publisher_audience_context_not_post_reach",
+      "status":"PUBLIC_INDEXED"
+    },
+    {
+      "cluster":"kindergarten-call",
+      "platform":"LinkedIn",
+      "publisher":"משרות הייטק בין חברים",
+      "publisher_followers_at_index":166002,
+      "metric_semantics":"publisher_audience_context_not_post_reach",
+      "status":"PUBLIC_INDEXED"
+    }
+  ],
+  "linkedin_discussion_nodes": [
+    {"cluster":"teacher-childhood-opportunity","comments":191},
+    {"cluster":"ben-gvir-critique","comments":190},
+    {"cluster":"perfect-father","comments":80},
+    {"cluster":"student-election","comments":51},
+    {"cluster":"henry-champion","comments":51},
+    {"cluster":"microsoft-starton","comments":47},
+    {"cluster":"linkedin-70k-interactions-story","comments":42}
+  ],
+  "governance": {
+    "do_not_sum": ["followers", "publisher_followers", "views", "impressions", "reach", "unique_people"],
+    "view_floor_rule": "sum only distinct object/time-window view events with no known measurement overlap",
+    "claim_rule": "6.2B+ remains claimed scale until object-attributed reconstruction is complete",
+    "drive_rule": "archive/recovery only"
+  }
+}
