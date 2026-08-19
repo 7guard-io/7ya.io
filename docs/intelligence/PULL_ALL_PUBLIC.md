@@ -4,70 +4,61 @@
 
 `PULL_ALL_PUBLIC` is the canonical modular refresh operation for Igor Vepretski / #7YA public-impact measurement.
 
-The operation does not create a second evidence store. It updates the existing Google Drive forensic workbook and relies on the `ONE_OPERATION` sheet as the single visual control surface.
+## Source priority — public-web-first
+
+The live operational source is the public internet itself.
+
+1. **LIVE PUBLIC WEB / PLATFORM PUBLIC SURFACE** — first choice for current profiles, posts, videos, articles, public metrics, reactions, reposts, media coverage and third-party telemetry.
+2. **PUBLIC THIRD-PARTY INDEX / SEARCH CACHE** — use when the platform blocks direct crawling; preserve crawl date and metric definition.
+3. **OWNED PUBLIC WEB PAGE / PUBLIC ANALYTICS POST** — usable as a public first-party source, explicitly labeled as owner-published when it contains analytics or self-reported totals.
+4. **GOOGLE DRIVE / PRIVATE EXPORT / ARCHIVE** — recovery-only. Use only for deleted, blocked, inaccessible, historical or otherwise unrecoverable public material. Drive must never be the default source for a live metric when a current public-web observation exists.
+
+Drive is therefore an **archive and recovery lane**, not the primary telemetry database.
 
 ## Pipeline
 
-`DISCOVER → PULL → NORMALIZE → IDENTITY-RESOLVE → CLASSIFY → DEDUPE → APPEND → RECALCULATE → DELTA → QA`
+`DISCOVER → PULL WEB → NORMALIZE → IDENTITY-RESOLVE → CLASSIFY → DEDUPE → MEASURE → DELTA → QA → ARCHIVE-RECOVERY-IF-NEEDED`
 
 ## Modules
 
 1. **Inventory** — originals, articles, videos, audio, research artifacts, public records and derivative objects.
-2. **Audience** — current and historical follower/subscriber/page-relationship snapshots by platform; raw sums are never described as unique people.
-3. **Exposure** — source-local views/impressions/reach events, owned and external, preserved by node and time window.
-4. **Interactions** — reactions, likes, comments, shares, LIVE records and other observable audience-response events.
-5. **Propagation** — origin → repost → mirror → publisher → media → secondary discussion graph.
-6. **Identity** — handles, aliases, legacy accounts, creator/music identities and platform connections.
-7. **Evidence** — source provenance, capture date, exactness, evidence class and publication status.
-8. **Delta** — every refresh records additions, changes, stale values and unresolved gaps.
+2. **Audience** — current/historical follower, subscriber and page-relationship snapshots by platform.
+3. **Exposure** — source-local views, impressions and reach events, owned and external, preserved by node and time window.
+4. **Interactions** — reactions, likes, comments, shares and observable response events.
+5. **Propagation** — origin → repost → mirror → publisher → media → secondary-discussion graph.
+6. **Identity** — handles, aliases, legacy accounts, creator/music identities and verified platform connections.
+7. **Evidence** — source URL, capture/crawl date, exactness, source class and method.
+8. **Delta** — every refresh reports additions, changes, stale values and unresolved gaps.
+9. **Recovery** — only when public material is deleted, blocked, inaccessible or historically absent from the live web.
 
-## Canonical outputs
+## Executive quantities
 
-- `ONE_OPERATION` — executive control surface.
-- `ABSOLUTE_METRICS` — controlled hard-number ledger.
-- `PLATFORM_SNAPSHOTS` — time-series telemetry.
-- `SOURCE_LEDGER` — provenance registry.
-- `INTERACTION_EVENTS` — reaction/event corpus.
-- `AMPLIFICATION_GRAPH` — derivative distribution graph.
-- `GAP_REGISTER` — explicit unresolved evidence.
-- `DISCOVERY_QUERY_LOG` — search memory.
+Always keep these separate:
 
-## Four executive numbers
+- `PUBLIC_OBJECTS_DISCOVERED`
+- `CURRENT_PUBLIC_AUDIENCE_RELATIONSHIPS`
+- `DOCUMENTED_PUBLIC_VIEW_EVENTS`
+- `DOCUMENTED_PUBLIC_INTERACTIONS`
+- `INDEPENDENT_AMPLIFICATION_NODES`
+- `PUBLIC_SOURCE_COUNT`
+- `RECOVERY_ONLY_OBJECT_COUNT`
 
-The control surface must always expose these four separate quantities:
-
-- `PUBLIC_OBJECTS_FLOOR`
-- `RAW_OWNED_AUDIENCE_RELATIONSHIPS`
-- `DOCUMENTED_VIEW_EVENT_FLOOR`
-- `SOURCE_RECORD_COUNT`
-
-They must never be collapsed into one fake “total reach” number.
-
-## Current baseline — 2026-08-19
-
-- `PUBLIC_OBJECTS_FLOOR = 2,753+`
-- `RAW_OWNED_AUDIENCE_RELATIONSHIPS = 42,954`
-- `DOCUMENTED_VIEW_EVENT_FLOOR = 12,920,477`
-- `SOURCE_RECORD_COUNT = 33`
-- `AUDITED_EVIDENCE_ROWS = 66`
-- `OPEN_P0_GAPS = 5`
-
-Historical `30M+ organic views` and `310M social reach` remain preserved as reconstruction targets until their source-chain arithmetic is rebuilt. They are not discarded.
+Never collapse followers, views, impressions, reach and unique people into one synthetic total.
 
 ## Refresh contract
 
-Every execution of `PULL_ALL_PUBLIC` must:
+Every execution must:
 
-1. read existing state first;
-2. scan registered platform/surface modules;
-3. add only new or changed observations;
-4. preserve source-local dates and metric definitions;
-5. avoid double-counting derivative or overlapping metrics;
-6. append search memory and unresolved gaps;
-7. recalculate `ONE_OPERATION` automatically;
-8. report delta from the previous run;
-9. run QA on formulas, IDs and source references.
+1. search the public web first in HE / EN / RU and known aliases;
+2. query current platform/public-index surfaces;
+3. discover originals and derivative propagation independently of 7YA and Drive;
+4. use owned public pages only as first-party public evidence, not as independent corroboration;
+5. use Drive only after a public-web recovery failure or for blocked/deleted historical material;
+6. preserve source-local dates and definitions;
+7. dedupe by object identity and propagation relationship;
+8. report a fresh public-web baseline and delta;
+9. maintain unresolved gaps explicitly.
 
 ## User-facing shorthand
 
-When Igor says **“רענן מדדים”**, **“תמשוך הכול”**, **“כמה אני מחזיק?”**, or **“PULL_ALL_PUBLIC”**, execute this pipeline against the same canonical workbook rather than starting a new analysis.
+When Igor says **“רענן מדדים”**, **“תמשוך הכול”**, **“כמה אני מחזיק?”**, **“תבדוק מחדש לבד”**, or **“PULL_ALL_PUBLIC”**, perform a fresh public-web-first pass. Do not begin from Drive-derived metrics. Only invoke archive recovery when the live public web cannot recover a known object.
