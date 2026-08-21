@@ -6,6 +6,29 @@
 **Branch:** `feat/personal-marketing-album-system`  
 **Builds on:** `docs/superpowers/specs/2026-08-15-life-journey-engine-ux-design.md`
 
+## 0. Relationship to the prior Life Journey spec
+
+This specification **extends and partially supersedes the presentation layer** of the 2026-08-15 Life Journey Engine design.
+
+Preserved without dilution:
+
+- the seven transformation chapters;
+- the journey/reflection/build logic;
+- source-backed evidence rules;
+- truthful relationship taxonomy;
+- privacy and public-safety boundaries;
+- Companion disclosure and contextual handoff;
+- poster-first media loading, accessibility and performance constraints;
+- deep Media, Music, Research, StartOn, Evidence, Speaker and Blog routes.
+
+Superseded by this document:
+
+- the homepage's dominant visual/marketing grammar;
+- the top-level navigation labels and intent hierarchy;
+- the balance between story, evidence and conversion on the first visit.
+
+The reflective 7YA journey is still part of the product. The change is that **the first impression is now explicitly Igor's personal marketing album**, with the journey becoming the mechanism that turns that album into reflection and action.
+
 ## 1. Product thesis
 
 7ya.io must stop feeling like a collection of routes and start feeling like **Igor Vepretski's living personal album — curated to market the person, the work, the ideas, the credibility and the invitation to act**.
