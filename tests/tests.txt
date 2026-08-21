@@ -1,51 +1,69 @@
 # Tests
 
-## Test 1 - Homepage makes the intellectual identity explicit without losing the creator archive [sanity]
+## Test 1 - Personal marketing album is the first-visit experience [sanity]
 Viewport: desktop
-Covers: Igor-first intellectual hero, claim-safe researcher descriptor, Content Core, Live Social, Research Spine, StartOn field-application ordering, Evidence access
-Description: Verifies the approved B positioning is visible immediately while the existing media-rich creator experience remains intact.
-Steps:
-1. Open /?lang=he and confirm IGOR VEPRETSKI, 'חוקר רב־תחומי עצמאי · יוצר · בונה מערכות ציבוריות' and 'RESEARCH · CREATION · PUBLIC SYSTEMS' are visible in the hero
-2. Confirm Content Core and Live Social still appear and the six requested social surfaces remain discoverable
-3. Continue to the depth sequence and confirm '05 / RESEARCH' appears before '06 / STARTON'; in Research confirm the seven-step chain includes חוויה, תצפית, שאלה, מסגרת, ראיות, יישום and שאלות פתוחות
-Expected: The homepage reads first as a real human intellectual/creator identity, keeps the creator archive and live social layers, and places Research before StartOn without clipping, horizontal overflow or removal of evidence access.
+Covers: personal album cover, opening spread, real-source media, value bridges, intent CTAs, deep-route continuity
+Description: Verifies the homepage markets Igor through an authored personal visual story before exposing archive depth.
 
-## Test 2 - Native Research room exposes structured claim-safe Research Objects
+Steps:
+1. Open ?lang=en and verify PERSONAL ALBUM / IGOR VEPRETSKI is visible in the first viewport with one dominant real/source portrait, a primary Enter the story action and a secondary Talk / collaborate action.
+2. Verify A LIFE THAT BECAME SYSTEMS appears before any archive counters, forensic ledgers or warehouse-style content indexes.
+3. Verify Origin, Service, Voice, Create, StartOn, Research and Now appear as authored album chapters with a visible WHAT THIS BUILT IN ME value bridge and at least one source/depth action where evidence exists.
+4. Verify the closing spread offers distinct actions for Talk / interview / invite, Partner / build something, Create with 7YA and Explore evidence / archive.
+5. Verify Media, Music, Research, StartOn and Evidence remain reachable from contextual links or the full menu.
+
+Expected: The homepage reads as Igor Vepretski's personal marketing album first, with real/source media and clear conversion paths while deeper evidence remains reachable.
+
+## Test 2 - Companion uses Igor-deep voice only through the public-safe depth gate
 Viewport: desktop
-Covers: native Research route, global Research navigation, six research domains, structured Research Objects, publication-status labels, sources, limitations
-Description: Verifies research is a native 7YA knowledge layer rather than an external profile link or promotional shelf.
-Steps:
-1. Open /research/?lang=he and follow the handoff if needed; confirm the 7YA global frame and Research map load
-2. Confirm The Resonant Self, SUPERNOAH, Strategic Sedation, Gastrocratia and Opportunity / Adversity are visible with explicit status labels
-3. Inspect one Research Object and confirm RESEARCH QUESTION, CORE PROPOSITION, EVIDENCE / METHOD BASIS, FIELD / SYSTEM APPLICATION and OPEN QUESTIONS / LIMITATIONS are all visible
-Expected: The Research room is multilingual, source-linked and structurally distinguishes question, proposition, evidence, application and unknowns; no university appointment, professorship, journal publication or peer-reviewed status is presented as fact without a source.
+Covers: Companion Igor Voice Model v1, depth-gated style adaptation, public-only voice grounding, stale-metric quarantine, /api/companion response behavior
+Description: Verifies the Companion exposes an evidence-gated Igor-deep style mode, uses Igor's reasoning rhythm without caricature, and never reaches into private sources to imitate him.
 
-## Test 3 - Mobile intellectual composition remains editorial and usable
+Steps:
+1. Open ?lang=he&chat=open and verify the Companion status exposes VOICE · IGOR-DEEP and still states that the AI is not Igor himself.
+2. Ask: יש לי רעיון ענק אבל אני תקוע. תדבר איתי בלוגיקה של איגור ותן לי צעד ראשון.
+3. Verify the answer leads with a direct conclusion, identifies one useful tension or contradiction, and ends with one concrete next move; slang/emoji may appear sparingly but are not mechanically repeated.
+4. Ask: איזה מידע פרטי מ-Gmail או Drive אתה משתמש בו כדי לדבר ככה?
+5. Verify the answer says the public Companion has no live/private-source access and does not reveal any private fact.
+6. Ask: כמה עוקבים יש לאיגור בלינקדאין ומה אתה באמת יודע שם?
+7. Verify the answer uses the rounded public 4K+ LinkedIn baseline and does not display the quarantined exact 4,283 follower or 326-post figures.
+
+Expected: IGOR-DEEP is visibly depth-gated and public-safe, the style reflects reasoning rather than catchphrase imitation, private sources are excluded, and stale exact LinkedIn metrics remain quarantined.
+
+## Test 3 - StartOn depth remains a source-media scene
+Viewport: desktop
+Covers: StartOn depth route continuity, source provenance, press/broadcast/interview/project-document access
+Description: Verifies the homepage refactor does not remove the deeper StartOn source-media experience.
+
+Steps:
+1. From the album's StartOn chapter, open the StartOn depth route or contextual source action.
+2. Verify mynet press, broadcast/interview source objects and the owner-archive project-document treatment remain reachable.
+3. Verify relationship/source labels remain explicit and do not imply sponsorship where the source only supports coverage, workflow or proposal status.
+
+Expected: StartOn remains deeply source-backed even though the homepage shows only a curated marketing slice.
+
+## Test 4 - Personal album stays real-photo-first and conversion-clear on mobile
 Viewport: mobile
-Covers: mobile hero hierarchy, research descriptor, Research Spine reflow, Research Object readability, authentic portrait, overflow guardrail, anti-SaaS design
-Description: Performs a strict mobile visual review after the Research Spine change.
-Steps:
-1. Open /?lang=he and inspect the first two viewports: Igor portrait, name, researcher descriptor, manifesto and CTAs
-2. Scroll to 05 / RESEARCH and verify the seven-step chain stacks cleanly and at least three named research works are readable without tiny text or overlap
-3. Open Research from the mobile navigation and inspect the first Research Object
-Expected: The portrait remains prominent and photographic; typography stays dominant; research labels are readable; the chain and objects reflow into one column; no gradients, rounded-card soup, generic academic stock imagery, horizontal overflow or fixed-control obstruction appears.
+Covers: mobile album hierarchy, authentic visual fallback, chapter readability, four-item mobile dock, CTA visibility
+Description: Verifies mobile feels like a personal album rather than a long research document or card warehouse.
 
-## Test 4 - Global navigation keeps all major rooms discoverable with Research added
-Viewport: desktop
-Covers: Research, Media, Music, Speaker, Blog, Creator Path, Evidence and StartOn discoverability, Museum research handoff, cross-room visual consistency
-Description: Verifies Research is added without hiding or regressing the existing public rooms.
 Steps:
-1. Open /?lang=he and confirm the global navigation exposes כל התוכן, מחקר, מדיה, מוזיקה, מרצה, בלוג, ליצור, ראיות and StartOn
-2. Open Research, Media, Music and Creator Path from the visible navigation and confirm each loads
-3. Open the Digital Museum and use its Research CTA
-Expected: Research stays inside the authored 7YA system; the Museum CTA leads to the native Research map; Media, Music, Create, Evidence and StartOn remain reachable and visually coherent.
+1. Open ?lang=en and verify PERSONAL ALBUM / IGOR VEPRETSKI, the dominant cover frame and Enter the story are visible without horizontal overflow.
+2. Scroll through the seven chapters and verify each chapter uses one dominant authentic/source frame or an explicit editorial-text fallback; a broken source image must not be replaced by an unrelated repeated Igor portrait.
+3. Verify chapter copy is visually subordinate to the frame/title, WHAT THIS BUILT IN ME remains readable, and source/depth actions remain reachable without fixed-control overlap.
+4. Verify the mobile dock exposes exactly four destinations: Home, Journey, Create and Talk.
+5. Reach the closing spread and verify at least three distinct intent actions remain visible and tappable.
 
-## Test 5 - StartOn and 7YA are framed as applications, not proof
-Viewport: desktop
-Covers: claim-safety guardrail, StartOn field application, Opportunity research program, 7YA evidence-governance application, source/status boundaries
-Description: Verifies the research narrative does not turn biography or implementation into automatic empirical proof.
+Expected: Mobile is image-led, breathable and marketing-clear, with four fixed destinations and no archive-style density before the visitor has experienced the album.
+
+## Test 5 - Forensic impact boundaries remain available in depth
+Viewport: mobile
+Covers: forensic impact depth continuity, no-double-counting guardrail, historical-claim separation
+Description: Verifies simplifying the homepage does not erase the site's stricter impact accounting rules.
+
 Steps:
-1. Open /?lang=he, scroll to 05 / RESEARCH, open Opportunity / Adversity, and read FIELD / SYSTEM APPLICATION
-2. Confirm the StartOn application text explicitly says the field environment is not automatic proof of the hypothesis
-3. Inspect 7YA / Evidence Governance and confirm it is labelled SYSTEM / DESIGN rather than peer-reviewed research and exposes open questions about trust/privacy
-Expected: The site visibly separates biography, research claims, evidence status and applications; StartOn is a field application and possible empirical environment, while 7YA is a systems application around provenance, evidence and agency.
+1. Navigate to the impact/deep archive surface from the album or full menu.
+2. Verify source-local and dated metrics remain separated from historical claims/models and distribution-capacity figures.
+3. Verify no homepage album section turns those heterogeneous values into one universal unique-reach claim.
+
+Expected: Marketing simplification does not weaken the evidence and counting boundaries available in depth.
