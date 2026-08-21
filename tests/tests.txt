@@ -2,7 +2,7 @@
 
 ## Test 1 - Personal marketing album is the first-visit experience [sanity]
 Viewport: desktop
-Covers: personal album cover, opening spread, real-source media, value bridges, intent CTAs, deep-route continuity
+Covers: personal album cover, opening spread, real-source media, value bridges, connected platform wall, lazy native embeds, intent CTAs, deep-route continuity
 Description: Verifies the homepage markets Igor through an authored personal visual story before exposing archive depth.
 
 Steps:
@@ -10,9 +10,10 @@ Steps:
 2. Verify A LIFE THAT BECAME SYSTEMS appears before any archive counters, forensic ledgers or warehouse-style content indexes.
 3. Verify Origin, Service, Voice, Create, StartOn, Research and Now appear as authored album chapters with a visible WHAT THIS BUILT IN ME value bridge and at least one source/depth action where evidence exists.
 4. Verify the closing spread offers distinct actions for Talk / interview / invite, Partner / build something, Create with 7YA and Explore evidence / archive.
-5. Verify Media, Music, Research, StartOn and Evidence remain reachable from contextual links or the full menu.
+5. Scroll to CONNECTED PLATFORMS / ONE HOME and verify the selector includes Instagram, TikTok, YouTube, Facebook, LinkedIn, X, Threads, Telegram, Spotify, Apple Music, SoundCloud, Medium, Academia, StartOn and the additional canonical surfaces; verify TikTok Legacy is explicitly Archive only rather than presented as the current account.
+6. Select YouTube and verify no iframe exists before Load embed; activate Load embed and verify one YouTube player mounts. Select LinkedIn and verify it stays a stable source card with an Open source action rather than a fabricated iframe. Verify Media, Music, Research, StartOn and Evidence remain reachable.
 
-Expected: The homepage reads as Igor Vepretski's personal marketing album first, with real/source media and clear conversion paths while deeper evidence remains reachable.
+Expected: The homepage reads as Igor Vepretski's personal marketing album first and includes one evidence-aware connected-platform system with lazy native embeds, stable source-card fallbacks and clear conversion paths.
 
 ## Test 2 - Companion uses Igor-deep voice only through the public-safe depth gate
 Viewport: desktop
@@ -44,7 +45,7 @@ Expected: StartOn remains deeply source-backed even though the homepage shows on
 
 ## Test 4 - Personal album stays real-photo-first and conversion-clear on mobile
 Viewport: mobile
-Covers: mobile album hierarchy, authentic visual fallback, chapter readability, four-item mobile dock, CTA visibility
+Covers: mobile album hierarchy, authentic visual fallback, chapter readability, connected platform selector, lazy embed performance, four-item mobile dock, CTA visibility
 Description: Verifies mobile feels like a personal album rather than a long research document or card warehouse.
 
 Steps:
@@ -52,9 +53,10 @@ Steps:
 2. Scroll through the seven chapters and verify each chapter uses one dominant authentic/source frame or an explicit editorial-text fallback; a broken source image must not be replaced by an unrelated repeated Igor portrait.
 3. Verify chapter copy is visually subordinate to the frame/title, WHAT THIS BUILT IN ME remains readable, and source/depth actions remain reachable without fixed-control overlap.
 4. Verify the mobile dock exposes exactly four destinations: Home, Journey, Create and Talk.
-5. Reach the closing spread and verify at least three distinct intent actions remain visible and tappable.
+5. Reach CONNECTED PLATFORMS / ONE HOME and verify the platform selector scrolls horizontally, only the selected platform occupies the player stage, and third-party iframes are absent until Load embed is activated; verify there is no horizontal page overflow.
+6. Reach the closing spread and verify at least three distinct intent actions remain visible and tappable.
 
-Expected: Mobile is image-led, breathable and marketing-clear, with four fixed destinations and no archive-style density before the visitor has experienced the album.
+Expected: Mobile is image-led, breathable and marketing-clear, with one lazy platform player at a time, four fixed destinations and no archive-style density before the visitor has experienced the album.
 
 ## Test 5 - Forensic impact boundaries remain available in depth
 Viewport: mobile
