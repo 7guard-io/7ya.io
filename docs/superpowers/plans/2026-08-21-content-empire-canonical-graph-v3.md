@@ -39,6 +39,9 @@
 - [x] Deduplicate source/media objects by deterministic canonical locator.
 - [x] Add only explicit canonical `RELATED_TO` edges.
 - [x] Exclude private Canon events and private sources.
+- [x] Make output independent of canonical-event input order.
+- [x] Make metric ids independent of metric-array order.
+- [x] Prevent media-kind collisions on shared source URLs.
 
 ### Task 3: Query and reusable projections
 
@@ -53,14 +56,14 @@
 
 **Files:** `packages/content-graph/src/index.ts`, root `tsconfig.json`, root `package.json`
 
-- [ ] Include package source in TypeScript build.
-- [ ] Add `test:content-graph` and include it in the normal test gate without duplicate builds.
-- [ ] Run local TypeScript compile and Node tests.
+- [x] Include package source in TypeScript build.
+- [x] Add `test:content-graph` and include it in the normal test gate without duplicate builds.
+- [x] Run local TypeScript compile and Node tests against exact Git blob content.
 
 ### Task 5: Migration boundary
 
 **Files:** `docs/architecture/CONTENT_GRAPH_V3.md`
 
-- [ ] Document Canon-v2 authority and v3 projection rules.
-- [ ] Mark `media-corpus.ts`, `content-registry.ts` and hard-coded AI knowledge as migration targets, not sources of truth.
-- [ ] Record runtime/GitHub alignment as a prerequisite for production integration.
+- [x] Document Canon-v2 authority and v3 projection rules.
+- [x] Mark `media-corpus.ts`, `content-registry.ts` and hard-coded AI knowledge as migration targets, not sources of truth.
+- [x] Record runtime/GitHub alignment as a prerequisite for production integration.
