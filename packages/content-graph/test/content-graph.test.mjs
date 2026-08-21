@@ -7,6 +7,7 @@ import {
   projectCoverage,
   queryGraph,
   relatedNodes,
+  validateGraph,
 } from '../../../dist/packages/content-graph/src/index.js';
 
 const L=(he,en,ru)=>({he,en,ru});
@@ -99,4 +100,23 @@ test('different media kinds sharing one source URL do not collide',()=>{
   const mediaB={kind:'source-card',sourceUrl:'https://publisher.example/story',authenticity:'source-object',label:'Source card'};
   const graph=projectCanonicalV2([{...events[0],media:[mediaA,mediaB]}]);
   assert.equal(graph.nodes.filter(n=>n.id.startsWith('media:')).length,2);
+});
+
+test('integrity validator accepts the canonical projection',()=>{
+  const report=validateGraph(projectCanonicalV2(events));
+  assert.equal(report.valid,true);
+  assert.deepEqual(report.issues,[]);
+});
+
+test('integrity validator rejects orphan edges, duplicate ids and forbidden aggregate reach',()=>{
+  const graph=projectCanonicalV2(events);
+  const duplicate={...graph.nodes[0]};
+  const poisoned={...graph.nodes[1],id:'poisoned',data:{...graph.nodes[1].data,aggregateReach:999999}};
+  const orphan={...graph.edges[0],id:'edge:orphan',to:'event:missing'};
+  const report=validateGraph({...graph,nodes:[...graph.nodes,duplicate,poisoned],edges:[...graph.edges,orphan]});
+  const codes=new Set(report.issues.map(issue=>issue.code));
+  assert.equal(report.valid,false);
+  assert.equal(codes.has('DUPLICATE_NODE_ID'),true);
+  assert.equal(codes.has('ORPHAN_EDGE'),true);
+  assert.equal(codes.has('FORBIDDEN_AGGREGATE_METRIC'),true);
 });
