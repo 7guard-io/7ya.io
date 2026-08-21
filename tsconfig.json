@@ -13,6 +13,7 @@
   "include": [
     "packages/evidence-oracle/src/**/*.ts",
     "packages/evidence-oracle/test/**/*.ts",
+    "packages/content-graph/src/**/*.ts",
     "api/**/*.ts"
   ]
 }
