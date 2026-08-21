@@ -39,6 +39,9 @@ const hashText=(value:string)=>{
   return hash.toString(36);
 };
 const stableExternalId=(prefix:string,value:string)=>prefix+':'+hashText(normalizeUrl(value));
+const truthRank:Record<TruthStatus,number>={VERIFIED:0,STRONGLY_INFERRED:1,REQUIRES_CONFIRMATION:2};
+const weakerTruth=(a:TruthStatus,b:TruthStatus):TruthStatus=>truthRank[a]>=truthRank[b]?a:b;
+const mergeDuplicateNode=(existing:ContentNode,incoming:ContentNode):ContentNode=>({...existing,truthStatus:weakerTruth(existing.truthStatus,incoming.truthStatus),topics:unique([...existing.topics,...incoming.topics]).sort(),platforms:unique([...existing.platforms,...incoming.platforms]).sort(),sourceUrls:unique([...existing.sourceUrls,...incoming.sourceUrls]).sort()});
 const edgeId=(type:ContentEdgeType,from:string,to:string)=>'edge:'+hashText([type,from,to].join('|'));
 
 function eventNode(event:CanonicalEventV2Like):ContentNode{
@@ -52,11 +55,11 @@ function sourceNode(source:CanonicalSourceV2Like,truthStatus:TruthStatus):Conten
 }
 function mediaNode(media:CanonicalMediaV2Like,truthStatus:TruthStatus):ContentNode{
   const locator=media.url||media.sourceUrl;
-  return{id:stableExternalId('media',locator),kind:mediaKindToNode(media.kind),title:blankTitle(media.label),date:media.captureDate||media.publicationDate,truthStatus,topics:[],platforms:[],sourceUrls:unique([media.sourceUrl]),publicationStatus:'published',data:{primary:false,mediaKind:media.kind,url:media.url,sourceUrl:media.sourceUrl,authenticity:media.authenticity,captureDate:media.captureDate,publicationDate:media.publicationDate}};
+  return{id:stableExternalId('media',media.kind+'|'+locator),kind:mediaKindToNode(media.kind),title:blankTitle(media.label),date:media.captureDate||media.publicationDate,truthStatus,topics:[],platforms:[],sourceUrls:unique([media.sourceUrl]),publicationStatus:'published',data:{primary:false,mediaKind:media.kind,url:media.url,sourceUrl:media.sourceUrl,authenticity:media.authenticity,captureDate:media.captureDate,publicationDate:media.publicationDate}};
 }
-function metricNode(metric:CanonicalMetricV2Like,eventId:string,index:number):ContentNode{
+function metricNode(metric:CanonicalMetricV2Like,eventId:string):ContentNode{
   const truthStatus:TruthStatus=metric.verification==='verified'?'VERIFIED':'REQUIRES_CONFIRMATION';
-  const locator=[eventId,metric.metricType,metric.snapshotDate,metric.sourceUrl,metric.platform||'',String(index)].join('|');
+  const locator=[eventId,metric.metricType,metric.snapshotDate,normalizeUrl(metric.sourceUrl),metric.platform||'',metric.unit,String(metric.value)].join('|');
   return{id:'metric:'+hashText(locator),kind:'Metric',title:blankTitle(metric.metricType),date:metric.snapshotDate,truthStatus,topics:[],platforms:unique([metric.platform]),sourceUrls:[metric.sourceUrl],publicationStatus:'published',data:{primary:false,metricType:metric.metricType,value:metric.value,unit:metric.unit,snapshotDate:metric.snapshotDate,sourceUrl:metric.sourceUrl,platform:metric.platform,verification:metric.verification}};
 }
 function makeEdge(type:ContentEdgeType,from:string,to:string,truthStatus:TruthStatus,sourceUrls:string[],data:Record<string,unknown>={}):ContentEdge{
@@ -64,7 +67,7 @@ function makeEdge(type:ContentEdgeType,from:string,to:string,truthStatus:TruthSt
 }
 
 export function projectCanonicalV2(events:CanonicalEventV2Like[]):ContentGraph{
-  const publicEvents=events.filter(event=>event.visibility==='public');
+  const publicEvents=events.filter(event=>event.visibility==='public').sort((a,b)=>a.storyOrder-b.storyOrder||a.canonicalDate.localeCompare(b.canonicalDate)||a.id.localeCompare(b.id));
   const publicEventIds=new Set(publicEvents.map(event=>event.id));
   const nodeMap=new Map<string,ContentNode>();
   const edgeMap=new Map<string,ContentEdge>();
@@ -73,18 +76,18 @@ export function projectCanonicalV2(events:CanonicalEventV2Like[]):ContentGraph{
     nodeMap.set(primary.id,primary);
     for(const source of event.sources.filter(item=>item.public!==false)){
       const node=sourceNode(source,primary.truthStatus);
-      if(!nodeMap.has(node.id))nodeMap.set(node.id,node);
+      const existing=nodeMap.get(node.id);nodeMap.set(node.id,existing?mergeDuplicateNode(existing,node):node);
       const edge=makeEdge('SUPPORTED_BY',primary.id,node.id,primary.truthStatus,[source.url],{sourceKind:source.kind});
       edgeMap.set(edge.id,edge);
     }
     for(const media of event.media){
       const node=mediaNode(media,primary.truthStatus);
-      if(!nodeMap.has(node.id))nodeMap.set(node.id,node);
+      const existing=nodeMap.get(node.id);nodeMap.set(node.id,existing?mergeDuplicateNode(existing,node):node);
       const edge=makeEdge('HAS_MEDIA',primary.id,node.id,primary.truthStatus,[media.sourceUrl],{authenticity:media.authenticity});
       edgeMap.set(edge.id,edge);
     }
-    (event.metrics||[]).forEach((metric,index)=>{
-      const node=metricNode(metric,event.id,index);
+    (event.metrics||[]).forEach(metric=>{
+      const node=metricNode(metric,event.id);
       nodeMap.set(node.id,node);
       const edge=makeEdge('HAS_METRIC',primary.id,node.id,node.truthStatus,[metric.sourceUrl],{platform:metric.platform});
       edgeMap.set(edge.id,edge);
