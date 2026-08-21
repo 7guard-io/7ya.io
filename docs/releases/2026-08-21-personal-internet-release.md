@@ -1,0 +1,126 @@
+# 7YA Personal Internet — Production Release Receipt
+
+Date: 2026-08-21 (Asia/Jerusalem)
+Owner: Igor Vepretski
+Production app: AppDeploy `697a008fddc309b142`
+Release marker: `7ya-personal-internet-20260821-1`
+Applied AppDeploy version: `1787340993260` (`v100` in the current version list)
+Immediate rollback version: `1787340269205` (`v99`)
+Production hostnames: `7ya.io`, `www.7ya.io`
+
+## What changed
+
+The default 7YA homepage is no longer the linear personal album. It now mounts a new Personal Internet experience in this order:
+
+`NOW / PULSE → HUMAN ECHO → IGOR GRAPH → STARTON / WALK INSIDE → THE FUTURE → MEMORY / DEEP ARCHIVE`
+
+The existing source-backed personal album is preserved as an explicit Memory layer at `?page=album&lang=<he|en|ru>`.
+
+New runtime files:
+
+- `src/personal-internet/PersonalInternetHome.tsx`
+- `src/personal-internet/LivingPulse.tsx`
+- `src/personal-internet/HumanEchoMap.tsx`
+- `src/personal-internet/IgorGraph.tsx`
+- `src/personal-internet/StartOnWalkthrough.tsx`
+- `src/personal-internet/FutureLayer.tsx`
+- `src/personal-internet/MemoryPortal.tsx`
+- `src/personal-internet/personal-internet-data.ts`
+- `src/personal-internet/personal-internet.css`
+
+Modified runtime files:
+
+- `src/App.tsx`
+- `src/locale.tsx`
+- `tests/tests.txt`
+
+## Experience behavior verified from the applied runtime
+
+### Living Pulse
+
+The opening surface is present in Hebrew, English and Russian under `NOW / PULSE`. It presents the current public-source edge and four active lanes: public voice, StartOn, research and creation. It explicitly avoids presenting a fabricated real-time counter.
+
+### Human Echo
+
+`HUMAN ECHO` is present and contains three distinct source-first propagation paths:
+
+1. personal fatherhood story → public article / wider conversation;
+2. elder-fraud public story → television coverage;
+3. return to Jesse Cohen → StartOn / opportunity model.
+
+The new layer uses qualitative audience vocabulary (resonance, conversation, sharing, disagreement) without assigning unsourced percentages. A source scan of `src/personal-internet` found no hard-coded view/reach quantities; references to reach or percentages are integrity copy explaining when such numbers may be shown.
+
+### Igor Graph
+
+`IGOR GRAPH` is present. Public nodes include Igor, Kharkiv/origin, Holon/Jesse Cohen, public service, fatherhood/voice, StartOn, media, music, research, 7YA and memory. Nodes are implemented as anchors rather than visual-only objects. Mobile CSS replaces the desktop constellation with a vertical flow and hides decorative rings.
+
+### StartOn walkthrough
+
+`STARTON / WALK INSIDE` is present with five rooms:
+
+1. Play / Create
+2. Learn / Tools
+3. Transparent Studio
+4. Social / Mentoring
+5. Progress
+
+The surface is explicitly labelled `MODEL / BUILDING` in all three locales and states that it is a prototype operating model rather than proof of an unmeasured outcome.
+
+### Future layer
+
+`THE FUTURE` is present. Runtime records distinguish:
+
+- `NOW` — 7YA Personal Internet;
+- `BUILDING` — StartOn opportunity space;
+- `BUILDING` — Opportunity Research;
+- `OPEN QUESTION` — public tools for creators/builders.
+
+Each record carries both a desired change and a limiting constraint, preventing aspiration from being rendered as completed achievement.
+
+### Memory layer
+
+`MEMORY / DEEP ARCHIVE` is present and routes to the preserved album with the active locale through `pageHref('album', locale)`. Evidence and media remain separate depth routes.
+
+## Production status
+
+AppDeploy reports the applied version as `ready`.
+
+Observed after deployment:
+
+- frontend errors: none;
+- backend errors: none;
+- network errors in the AppDeploy QA snapshot: none;
+- desktop QA screenshot: generated;
+- mobile QA screenshot: generated;
+- `7ya.io`: active on the AppDeploy v2 proxy;
+- `www.7ya.io`: active on the AppDeploy v2 proxy.
+
+## Automated E2E status
+
+AppDeploy did **not** create E2E jobs for version `1787340993260`; status returned `not_found` with zero jobs. This receipt therefore does **not** claim an automated E2E PASS.
+
+`tests/tests.txt` was nevertheless reconciled to the new user-visible workflows with five tests and exactly one sanity test, covering:
+
+1. Living OS default home → preserved Memory album;
+2. source-first Human Echo and no invented audience math;
+3. responsive Igor Graph and deep-route navigation;
+4. StartOn model-status integrity;
+5. Future state honesty and regression of deep routes.
+
+## Rollback
+
+Immediate rollback target: AppDeploy version `1787340269205` (`v99`), which was the applied runtime inspected before this release.
+
+No production source was reconstructed from the older GitHub root snapshot. The applied AppDeploy snapshot remains the runtime source of truth until an intentional reconciliation is performed.
+
+## Known limitations / next QA focus
+
+- No automated E2E job was generated for this release, so interaction-path PASS status remains unclaimed.
+- QA screenshots were generated by AppDeploy and the platform reported no frontend/network errors; this receipt does not substitute that for a complete visual review of every breakpoint and locale.
+- The album currently reuses the homepage SEO data for its canonical meta while alternate hreflang links preserve `page=album`; this is a low-risk SEO polish item and does not affect the runtime experience.
+
+## Governing product correction
+
+The archive remains essential, but it is now the Memory/database layer rather than the mandatory first experience. The default product posture is forward-operating:
+
+`OBSERVE → IMAGINE → INVENT → PROTOTYPE → TEST → KEEP/KILL → INTEGRATE`
