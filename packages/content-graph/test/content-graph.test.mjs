@@ -77,3 +77,26 @@ test('coverage distinguishes known, published, weak, unverified and missing doma
   assert.equal(byDomain.Research.unverified,1);
   assert.equal(byDomain.Music.missing,true);
 });
+
+test('graph is deterministic when canonical event order changes',()=>{
+  const shared={...events[1],id:'supported-shared-source',storyOrder:6,sources:[source('shared','https://facebook.example/post','Facebook')]};
+  const forward=projectCanonicalV2([...events,shared]);
+  const reverse=projectCanonicalV2([...events,shared].reverse());
+  assert.deepEqual(forward,reverse);
+});
+
+test('metric ids are stable when metric array order changes',()=>{
+  const second={metricType:'comments',value:148,unit:'comments',snapshotDate:'2026-06-08',sourceUrl:'https://facebook.example/post',platform:'Facebook',verification:'verified'};
+  const withTwo={...events[0],metrics:[...events[0].metrics,second]};
+  const reversed={...withTwo,metrics:[...withTwo.metrics].reverse()};
+  const idsA=projectCanonicalV2([withTwo]).nodes.filter(n=>n.kind==='Metric').map(n=>n.id).sort();
+  const idsB=projectCanonicalV2([reversed]).nodes.filter(n=>n.kind==='Metric').map(n=>n.id).sort();
+  assert.deepEqual(idsA,idsB);
+});
+
+test('different media kinds sharing one source URL do not collide',()=>{
+  const mediaA={kind:'image',sourceUrl:'https://publisher.example/story',authenticity:'publisher-source',label:'Image'};
+  const mediaB={kind:'source-card',sourceUrl:'https://publisher.example/story',authenticity:'source-object',label:'Source card'};
+  const graph=projectCanonicalV2([{...events[0],media:[mediaA,mediaB]}]);
+  assert.equal(graph.nodes.filter(n=>n.id.startsWith('media:')).length,2);
+});
