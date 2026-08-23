@@ -1,6 +1,6 @@
 {
   "schema_version": 4,
-  "updated_at": "2026-08-24T01:01:06+03:00",
+  "updated_at": "2026-08-24T01:04:27+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
@@ -18,14 +18,15 @@
   "active_production": {
     "provider": "AppDeploy v2",
     "app_id": "697a008fddc309b142",
-    "immutable_snapshot": "1787522422712",
-    "snapshot_time": "2026-08-24T01:00:22+03:00",
+    "immutable_snapshot": "1787522629672",
+    "snapshot_time": "2026-08-24T01:03:49+03:00",
     "provider_version_label_at_verification": "v98",
     "version_label_policy": "AppDeploy vNN labels are rolling display labels; use immutable snapshot ids for receipts and provenance.",
     "global_release_id": "7ya-production-truth-20260824-1",
     "repair_anchor_snapshot": "1787521959471",
     "repair_anchor_time": "2026-08-24T00:52:39+03:00",
-    "successor_note": "A later concurrent AppDeploy deployment became current after the recovery repair. Fresh source verification confirmed it preserved the native /journey/ route and all active global release surfaces.",
+    "intermediate_successor_snapshot": "1787522422712",
+    "final_followup": "Snapshot 1787522629672 changes only tests/tests.txt formatting so Journey Test 8 is parser-visible. Fresh source verification confirmed /journey/ and all active global release surfaces remain intact.",
     "custom_domains": {"7ya.io": "active", "www.7ya.io": "active"},
     "runtime_qa": {
       "status": "ready",
@@ -40,7 +41,8 @@
       "route": "/journey/",
       "status": "present in current immutable snapshot",
       "crawlable_source_verified": true,
-      "meta_refresh": false
+      "meta_refresh": false,
+      "qa_contract_parser_visible": true
     }
   },
   "source_alignment": {
@@ -48,7 +50,7 @@
     "recovery_branch": "recovery/appdeploy-1787521286005",
     "frozen_pre_repair_snapshot": "1787521286005",
     "repair_snapshot": "1787521959471",
-    "current_verified_successor_snapshot": "1787522422712",
+    "current_verified_snapshot": "1787522629672",
     "rule": "Do not claim GitHub main is deployment-identical until recovered runtime source and binary resources pass parity review. Before every production claim, query AppDeploy again because concurrent deployments may advance runtime truth.",
     "next_gate": "complete text/binary parity, compare recovered runtime against the older root application, reconcile the recovery branch with newer main commits, then choose the canonical GitHub application tree before any GitHub-driven cutover"
   },
