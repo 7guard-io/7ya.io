@@ -2,49 +2,48 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Prove one end-to-end LIFE ATLAS projection path by publishing at least ten evidence-backed first-person life moments through the existing static artifact pipeline onto both the homepage and museum.
+**Goal:** Prove one end-to-end LIFE ATLAS projection path by publishing ten evidence-backed first-person life moments through the existing static artifact pipeline onto both the homepage and museum.
 
-**Architecture:** Add one canonical JSON slice under `knowledge/`, one dependency-free browser renderer, and one scoped stylesheet. Home and Museum expose lightweight mount points; `site-contract.mjs` explicitly includes the renderer/style in `dist`, while a dedicated contract check verifies the dataset, mounts, artifact registration, source links, and first-person narrative fields before release.
+**Architecture:** Keep the source HTML stable. Add one canonical JSON slice under `knowledge/`, one dependency-free browser renderer, and one scoped stylesheet. `build-static-site.mjs` injects the LIFE ATLAS assets only into the generated `dist/index.html` and `dist/museum/index.html`; the renderer then creates the section next to existing anchors (`#sources` on Home, `.editorial-picks` on Museum). `site-contract.mjs` makes the JSON/JS/CSS mandatory artifact paths, and a focused Node check guards the complete projection contract.
 
-**Tech Stack:** Static HTML, vanilla JavaScript ES modules/browser APIs, JSON, CSS, Node.js validation scripts, existing `npm run release:gate` pipeline.
+**Tech Stack:** Static HTML, vanilla JavaScript/browser APIs, JSON, CSS, Node.js validation scripts, existing deterministic `build:site` / `release:gate` pipeline.
 
 **Spec:** `docs/superpowers/specs/2026-08-23-7ya-life-atlas-design.md`
 
 ## Global Constraints
 
 - The workbook/archive remain upstream; the site is downstream.
-- Every public moment requires a source URL and explicit verification/date status.
+- Every public moment requires an HTTPS source URL and explicit verification/date status.
 - First-person copy may not invent memory, opinion, feeling, or exact chronology.
 - Metrics remain source-local and are not aggregated in this slice.
 - No Supabase dependency is introduced until a real connected project exists.
 - The slice must be included in the deterministic `dist` static artifact.
+- LIFE ATLAS assets are injected only into Home and Museum.
 - The renderer must fail quietly and preserve the existing page if JSON cannot load.
 
 ---
 
-### Task 1: Add a failing LIFE ATLAS artifact contract check
+### Task 1: Define and prove the failing LIFE ATLAS contract
 
 **Files:**
 - Create: `scripts/check-life-atlas-slice.mjs`
 - Modify: `package.json`
 
 **Interfaces:**
-- Consumes: repository files under `knowledge/`, `scripts/`, `styles/`, `index.html`, `museum/index.html`, and `scripts/site-contract.mjs`.
-- Produces: process exit status plus `LIFE_ATLAS_SLICE: PASS` on success.
+- Consumes: `knowledge/life-atlas-slice-v1.json`, `scripts/life-atlas-slice-v1.js`, `styles/life-atlas-slice-v1.css`, `scripts/build-static-site.mjs`, and `scripts/site-contract.mjs`.
+- Produces: process exit status plus `LIFE_ATLAS_SLICE: PASS (<n> moments, 2 surfaces)` on success.
 
-- [ ] **Step 1: Write the failing check**
+- [x] **Step 1: Write the failing check**
 
-The check must assert all of the following: `knowledge/life-atlas-slice-v1.json` exists; it contains at least 10 moments; every moment has `id`, `dateLabel`, `dateStatus`, `verification`, `headline.he`, `livedVoice.he`, and an HTTPS `sourceHref`; Home and Museum contain `data-life-atlas-mount`; `site-contract.mjs` includes `life-atlas-slice-v1.css` and `life-atlas-slice-v1.js`; the renderer fetches `/knowledge/life-atlas-slice-v1.json`; and the stylesheet/renderer files exist.
+The check requires at least ten unique moments with `id`, `dateLabel`, approved `dateStatus`, approved `verification`, `headline.he`, `livedVoice.he`, and HTTPS `sourceHref`; it also requires Home/Museum build injection, artifact registration, and renderer dataset/surface wiring.
 
-- [ ] **Step 2: Run the check and verify RED**
+- [x] **Step 2: Verify RED before production implementation**
 
-Run: `node scripts/check-life-atlas-slice.mjs`
+Observed pre-implementation failures: `LIFE_ATLAS_SLICE: FAIL (12)`, then `FAIL (15)` after tightening the build-layer contract.
 
-Expected: non-zero exit because the LIFE ATLAS dataset/renderer/style/mounts do not exist yet.
+- [x] **Step 3: Register the check in the release gate**
 
-- [ ] **Step 3: Register the check in the release gate**
-
-Add `check:life-atlas` and place it inside `check-all` before build/typecheck.
+`check:life-atlas` is included in `check-all`, so an available `release:gate` cannot omit this projection check.
 
 ---
 
@@ -54,73 +53,66 @@ Add `check:life-atlas` and place it inside `check-all` before build/typecheck.
 - Create: `knowledge/life-atlas-slice-v1.json`
 - Create: `scripts/life-atlas-slice-v1.js`
 - Create: `styles/life-atlas-slice-v1.css`
-- Modify: `index.html`
-- Modify: `museum/index.html`
+- Modify: `scripts/build-static-site.mjs`
 - Modify: `scripts/site-contract.mjs`
 
 **Interfaces:**
 - Consumes: `/knowledge/life-atlas-slice-v1.json` with `{ schemaVersion, generatedAt, moments[] }`.
-- Produces: accessible timeline cards inside every `[data-life-atlas-mount]` element, with source links opening in a new tab.
+- Produces: one LIFE ATLAS section on `/` and one on `/museum/`, each rendering ten accessible chronological cards with source links.
 
-- [ ] **Step 1: Create the canonical JSON slice**
+- [x] **Step 1: Create the canonical JSON slice**
 
-Use ten already-supported public moments spanning identity/aliyah, early public record, creator identity, StartOn, media, fatherhood/writing, creator education, music/video, research/public systems, and current 7YA. Each object must carry conservative date/verification labels and a direct source URL. Do not include unsupported reach totals.
+Ten conservative public-source moments span origin/identity, StartOn, media, public narrative, research, creator education, and the emergence of 7YA. Unsupported aggregate reach totals are excluded. The Mindset date discrepancy is explicitly marked `conflict` rather than silently resolved.
 
-- [ ] **Step 2: Add two mount points**
+- [x] **Step 2: Implement the renderer**
 
-Homepage: place the LIFE ATLAS section after the Human Core/person section and before Public Record.
+The renderer maps `/` to `#sources` and `/museum/` to `.editorial-picks`, creates the mount at runtime, fetches the canonical JSON once, renders ten cards, opens evidence links safely in a new tab, and exposes a quiet error state without breaking the existing page.
 
-Museum: place the LIFE ATLAS section after the snapshot strip and before the existing editorial source clusters.
+- [x] **Step 3: Add scoped responsive CSS**
 
-Each mount contains a server-rendered heading/description so the section remains meaningful if JavaScript fails.
+All selectors are `.life-atlas-*`. Desktop uses a horizontal chronological rail; mobile collapses to a vertical sequence. The visual vocabulary stays within the existing dark/paper system with restrained amber evidence accents.
 
-- [ ] **Step 3: Implement the renderer**
+- [x] **Step 4: Inject assets through the real static build path**
 
-On `DOMContentLoaded`, fetch the JSON once, validate `moments` is an array, and render each mount according to `data-life-atlas-limit` (`10` home, `10` museum). Each card exposes date, verification label, Hebrew first-person headline/voice, and `מקור ↗`. On failure, retain fallback copy and set `data-life-atlas-state="error"`; do not throw uncaught errors.
+`build-static-site.mjs` injects LIFE ATLAS CSS/JS only into `index.html` and `museum/index.html` while generating `dist`. Source HTML pages are intentionally untouched.
 
-- [ ] **Step 4: Add scoped responsive CSS**
+- [x] **Step 5: Make the projection part of the artifact contract**
 
-Use `.life-atlas-*` selectors only. Desktop renders a horizontal/compact chronological track; mobile becomes a vertical track. Match the existing dark/paper visual vocabulary without replacing page-level styles.
+`life-atlas-slice-v1.css`, `life-atlas-slice-v1.js`, and `knowledge/life-atlas-slice-v1.json` are registered as public/critical artifact paths.
 
-- [ ] **Step 5: Register assets in the static artifact contract**
+- [x] **Step 6: Verify focused GREEN**
 
-Add `life-atlas-slice-v1.css` to `publicStyleFiles`, `life-atlas-slice-v1.js` to `publicScriptFiles`, and both plus `knowledge/life-atlas-slice-v1.json` to `criticalArtifactPaths`.
-
-- [ ] **Step 6: Run the focused check and verify GREEN**
-
-Run: `node scripts/check-life-atlas-slice.mjs`
-
-Expected: `LIFE_ATLAS_SLICE: PASS (10 moments, 2 mounts)`.
+Observed: `LIFE_ATLAS_SLICE: PASS (10 moments, 2 surfaces)` plus JavaScript syntax checks.
 
 ---
 
-### Task 3: Verify artifact integration and review the change
+### Task 3: Verify integration and hold integration until the full gate is available
 
 **Files:**
-- No new production files.
+- No additional production files.
 
 **Interfaces:**
 - Consumes: all Task 1–2 changes.
-- Produces: reviewable feature branch/PR; merge is allowed only after available gates pass.
+- Produces: a reviewable isolated GitHub branch; merge remains gated by full repository verification.
 
-- [ ] **Step 1: Run repository release verification where available**
+- [x] **Step 1: Verify deterministic build-layer behavior in an isolated fixture**
 
-Preferred: `npm run release:gate`.
+Observed build result: `STATIC_ARTIFACT_BUILD: PASS (6 files + manifest)`. Assertions passed for Home injection, Museum injection, exclusion from a third route, and copying of JSON/CSS/JS into the artifact.
 
-If GitHub Actions cannot start because of the documented account/org runner block, record that infrastructure limitation explicitly and do not label the full gate as passed.
+- [x] **Step 2: Perform browser rendering QA**
 
-- [ ] **Step 2: Inspect the branch diff**
+The environment blocks Chromium navigation to localhost/hostnames (`ERR_BLOCKED_BY_ADMINISTRATOR`), so route serving could not be browser-tested directly. A no-network Playwright harness using the same renderer/card DOM and CSS successfully rendered 10 cards and 10 source links for both Home and Museum; screenshots were inspected for RTL hierarchy and layout. Route scoping itself is covered by the deterministic build assertions above.
 
-Confirm only the planned files changed; confirm no secrets, owner-private data, or Supabase credentials were introduced.
+- [x] **Step 3: Inspect branch scope**
 
-- [ ] **Step 3: Open a pull request**
+The branch changes only this plan, the LIFE ATLAS dataset/renderer/style/check, `package.json`, `build-static-site.mjs`, and `site-contract.mjs`. No Supabase credentials, private owner data, or unrelated refactors are introduced.
 
-Base: `main`.
+- [ ] **Step 4: Run the full repository release gate**
 
-Head: `feat/life-atlas-vertical-slice`.
+Required command: `npm run release:gate`.
 
-The PR body must state the focused contract result, full-gate status, static artifact paths, and manual visual QA targets (`/` and `/museum/`).
+Current infrastructure blocker: the sandbox cannot resolve GitHub for a clone, the repository's `ci.yml` documents that GitHub Actions is blocked before runner startup at account/org level, and the feature commit has no external status checks. Therefore the full release gate is **not claimed as passed**.
 
-- [ ] **Step 4: Merge only with evidence**
+- [ ] **Step 5: Open/merge only after the full gate is green**
 
-Do not merge if the focused contract is red, the diff contains scope drift, or an available release gate reports a code failure.
+Do not merge this branch into `main` until the full repository gate can run successfully. After that gate, open the PR against `main`, verify the generated Home/Museum preview visually, and merge with the verified head SHA.
