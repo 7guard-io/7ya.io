@@ -27,6 +27,8 @@ async function exists(relative) {
 const datasetPath = 'knowledge/life-atlas-slice-v1.json';
 const rendererPath = 'scripts/life-atlas-slice-v1.js';
 const stylePath = 'styles/life-atlas-slice-v1.css';
+const rendererHref = '/scripts/life-atlas-slice-v1.js';
+const styleHref = '/styles/life-atlas-slice-v1.css';
 
 const [indexHtml, museumHtml, siteContract, renderer] = await Promise.all([
   readText('index.html'),
@@ -71,10 +73,15 @@ const museumMounts = (museumHtml.match(mountPattern) || []).length;
 if (homeMounts < 1) fail('index.html missing LIFE ATLAS mount');
 if (museumMounts < 1) fail('museum/index.html missing LIFE ATLAS mount');
 
+for (const [page, html] of [['index.html', indexHtml], ['museum/index.html', museumHtml]]) {
+  if (!html.includes(styleHref)) fail(`${page} missing LIFE ATLAS stylesheet reference`);
+  if (!html.includes(rendererHref)) fail(`${page} missing LIFE ATLAS renderer reference`);
+}
+
 if (!siteContract.includes("'life-atlas-slice-v1.css'")) fail('site contract missing LIFE ATLAS stylesheet');
 if (!siteContract.includes("'life-atlas-slice-v1.js'")) fail('site contract missing LIFE ATLAS renderer');
 if (!siteContract.includes("'knowledge/life-atlas-slice-v1.json'")) fail('site contract missing LIFE ATLAS dataset as critical artifact');
-if (!renderer.includes("/knowledge/life-atlas-slice-v1.json")) fail('renderer must fetch canonical LIFE ATLAS dataset');
+if (!renderer.includes('/knowledge/life-atlas-slice-v1.json')) fail('renderer must fetch canonical LIFE ATLAS dataset');
 
 if (failures.length) {
   failures.forEach(message => console.error(`FAIL ${message}`));
