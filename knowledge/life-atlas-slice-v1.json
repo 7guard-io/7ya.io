@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-24",
+  "scope": "public-evidence vertical slice",
+  "moments": [
+    {
+      "id": "mindset-episode-102",
+      "dateLabel": "2022 · פרק 102",
+      "dateStatus": "conflict",
+      "verification": "public-source",
+      "topic": "origin",
+      "headline": {"he": "כאן סיפרתי את הדרך מנער בסיכון ליזם חברתי."},
+      "livedVoice": {"he": "בשיחת העומק הזו חיברתי בין העלייה, הילדות בג׳סי כהן, השירות והבחירה להפוך את החוויה למיזם עבור בני נוער."},
+      "sourceLabel": "Mindset / Zradio · פרק 102",
+      "sourceHref": "https://zradio.live/podcast/mindset/episode/59b4ca8e4143b90320334c70ff676191",
+      "disclosure": "קיימת אי־התאמה בין תאריכי פרסום שמופיעים במקורות השונים; לכן השנה בלבד מוצגת כאן."
+    },
+    {
+      "id": "mynet-jessie-cohen-2022-05-13",
+      "dateLabel": "13.05.2022",
+      "dateStatus": "verified",
+      "verification": "verified",
+      "topic": "starton",
+      "headline": {"he": "חזרתי לשכונה שבה גדלתי עם רעיון ל־StartOn."},
+      "livedVoice": {"he": "זה הרגע שבו הסיפור האישי התחיל לקבל כתובת ציבורית: לחזור לג׳סי כהן ולבנות לנוער נקודת כניסה טובה יותר דרך טכנולוגיה, יצירה וקהילה."},
+      "sourceLabel": "mynet חולון",
+      "sourceHref": "https://holon.mynet.co.il/local_news/article/hjxqegkiq"
+    },
+    {
+      "id": "channel13-starton-2022-05-22",
+      "dateLabel": "22.05.2022",
+      "dateStatus": "verified",
+      "verification": "verified",
+      "topic": "media",
+      "headline": {"he": "הסיפור עבר מהשכונה למסך."},
+      "livedVoice": {"he": "בראיון הזה חיברתי בפומבי בין שנות השירות לבין הבחירה לעבור לשליחות חברתית עם בני נוער."},
+      "sourceLabel": "חדשות 13",
+      "sourceHref": "https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44"
+    },
+    {
+      "id": "starton-location-call-2023-01-31",
+      "dateLabel": "31.01.2023",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "starton",
+      "headline": {"he": "ביקשתי מהציבור לעזור למצוא ל־StartOn מקום ראשון."},
+      "livedVoice": {"he": "פרסמתי קריאה ישירה לרשויות ולאנשים ברשת: לא עוד מצגת — צריך לפתוח דלת אמיתית לפיילוט הראשון."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_startups-microsoft-comunity-activity-7026093086778798080-Jcrl"
+    },
+    {
+      "id": "identity-ukraine-israel-2024-11-05",
+      "dateLabel": "05.11.2024",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "identity",
+      "headline": {"he": "חזרתי לספר את המעבר מאוקראינה לישראל דרך העיניים שלי."},
+      "livedVoice": {"he": "כתבתי על המעבר כקפיצה אל הלא־נודע — שפה חדשה, תרבות חדשה והבנה שהחיכוך הזה הפך לחלק מהזהות שלי."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_culturalshift-expatlife-fromukrainetoisrael-activity-7259473559117254657-vJ0E"
+    },
+    {
+      "id": "resonant-self-2025-03-25",
+      "dateLabel": "25.03.2025",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "research",
+      "headline": {"he": "החוויה עם נוער ודיגיטל הפכה אצלי גם לשאלה מחקרית."},
+      "livedVoice": {"he": "בפוסט הזה הצגתי את רעיון ה־Self הרזוננטי: ניסיון להבין איך בני נוער משתמשים בפלטפורמות לא רק כדי לצרוך תוכן, אלא כדי לחפש השתקפות ושייכות."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_%D7%94%D7%90-%D7%A0%D7%95%D7%A2%D7%A8%D7%95%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C-%D7%98%D7%99%D7%A7%D7%98%D7%95%D7%A7-activity-7310318568649150464-JTjk"
+    },
+    {
+      "id": "youth-at-risk-public-story-2025-04-15",
+      "dateLabel": "15.04.2025",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "public-life",
+      "headline": {"he": "אמרתי בפומבי: הייתי נער בסיכון."},
+      "livedVoice": {"he": "בחרתי לחבר בפוסט אחד בין הילדות, השירות והשאיפה לקחת אחריות ציבורית. זה לא תחליף למסמכים — זו העדות שלי על הדרך שבה אני מבין את עצמי."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_7ya-%D7%99%D7%A9%D7%A8%D7%90%D7%9C%D7%91%D7%99%D7%AA%D7%A0%D7%95-7ya-activity-7317907773361467393-BAA8"
+    },
+    {
+      "id": "7ya-long-term-impact-2025-12-23",
+      "dateLabel": "23.12.2025",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "7ya",
+      "headline": {"he": "התחלתי למסגר את 7YA כעבודה מצטברת, לא כרגע ויראלי."},
+      "livedVoice": {"he": "כתבתי שהמספרים הם תוצר לוואי; מה שאני רוצה לבנות הוא רצף של עקביות, אמון וחיבור בין אנשים, רעיונות ומערכות."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_7ya-leadership-digitalpresence-activity-7409358491695480833-W174"
+    },
+    {
+      "id": "nitzotzot-creator-education-2026-06-04",
+      "dateLabel": "04.06.2026",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "creator-education",
+      "headline": {"he": "הניסיון כיוצר חזר אל בני נוער ככלי מעשי."},
+      "livedVoice": {"he": "במקום לדבר על ויראליות כמטרה, השתמשתי בה כנקודת פתיחה לשיחה עם צעירים על אמונה בעתיד, אחריות ויכולת ליצור."},
+      "sourceLabel": "LinkedIn · Igor Vepretski / Nitzotzot",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_5-comments-nitzotzot-%D7%97%D7%95%D7%95%D7%99%D7%94-%D7%9E%D7%A2%D7%A6%D7%99%D7%9E%D7%94-%D7%9C%D7%94%D7%9B%D7%99%D7%A8-activity-7468245110409949184-e04o"
+    },
+    {
+      "id": "7ya-evidence-first-system-2026-07-01",
+      "dateLabel": "01.07.2026",
+      "dateStatus": "verified",
+      "verification": "public-source",
+      "topic": "7ya",
+      "headline": {"he": "כאן 7YA קיבל ניסוח ברור כמערכת ראיות ציבורית."},
+      "livedVoice": {"he": "הגדרתי את 7YA כמערכת שמחברת בין הרקע שלי בביטחון ציבורי, StartOn, מדיה ומחקר — עם אחריות למקור לפני הגברה."},
+      "sourceLabel": "LinkedIn · Igor Vepretski",
+      "sourceHref": "https://www.linkedin.com/posts/vepretski_7ya-starton-civicai-activity-7478082731424337921-NJEU"
+    }
+  ]
+}
