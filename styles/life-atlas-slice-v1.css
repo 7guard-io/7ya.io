@@ -1,0 +1,261 @@
+.life-atlas-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(64px, 8vw, 120px) clamp(20px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 85% 0%, rgba(255, 191, 72, 0.14), transparent 30%),
+    linear-gradient(180deg, #0a0b0f 0%, #11131a 100%);
+  color: #f7f4ec;
+  border-block: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.life-atlas-section::before {
+  content: "7";
+  position: absolute;
+  inset-inline-end: 3vw;
+  top: -0.16em;
+  z-index: -1;
+  font-size: clamp(180px, 31vw, 520px);
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+}
+
+.life-atlas-head,
+.life-atlas-track,
+.life-atlas-footer {
+  width: min(1480px, 100%);
+  margin-inline: auto;
+}
+
+.life-atlas-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+  margin-bottom: 34px;
+}
+
+.life-atlas-eyebrow {
+  grid-column: 1 / -1;
+  margin: 0 0 -8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  color: #f3b84a;
+}
+
+.life-atlas-title {
+  margin: 0;
+  max-width: 13ch;
+  font-size: clamp(2.1rem, 5vw, 4.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.life-atlas-intro {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.72;
+  color: rgba(247, 244, 236, 0.74);
+}
+
+.life-atlas-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 28vw);
+  gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 8px 0 22px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(243, 184, 74, 0.55) rgba(255, 255, 255, 0.08);
+}
+
+.life-atlas-card {
+  scroll-snap-align: start;
+  min-height: 360px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(16px);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.life-atlas-card-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: 22px;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.life-atlas-index {
+  writing-mode: vertical-rl;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: rgba(247, 244, 236, 0.45);
+}
+
+.life-atlas-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #f3b84a;
+  box-shadow: 0 0 0 6px rgba(243, 184, 74, 0.1);
+}
+
+.life-atlas-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 22px 24px;
+}
+
+.life-atlas-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.life-atlas-date,
+.life-atlas-status {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.life-atlas-date {
+  color: #f3b84a;
+}
+
+.life-atlas-status {
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  color: rgba(247, 244, 236, 0.62);
+}
+
+.life-atlas-card-title {
+  margin: 0 0 14px;
+  font-size: clamp(1.28rem, 2vw, 1.72rem);
+  line-height: 1.16;
+}
+
+.life-atlas-voice {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: rgba(247, 244, 236, 0.75);
+}
+
+.life-atlas-disclosure {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.13);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: rgba(247, 244, 236, 0.5);
+}
+
+.life-atlas-source {
+  margin-top: auto;
+  padding-top: 22px;
+  color: #f7f4ec;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.life-atlas-source:hover,
+.life-atlas-source:focus-visible,
+.life-atlas-archive-link:hover,
+.life-atlas-archive-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.life-atlas-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding-top: 12px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.life-atlas-note {
+  color: rgba(247, 244, 236, 0.42);
+}
+
+.life-atlas-archive-link {
+  color: #f3b84a;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.life-atlas-loading,
+.life-atlas-error {
+  min-height: 160px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: rgba(247, 244, 236, 0.58);
+}
+
+@media (max-width: 760px) {
+  .life-atlas-section {
+    padding-inline: 18px;
+  }
+
+  .life-atlas-head {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .life-atlas-eyebrow {
+    grid-column: auto;
+  }
+
+  .life-atlas-title {
+    max-width: 11ch;
+  }
+
+  .life-atlas-track {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-bottom: 10px;
+  }
+
+  .life-atlas-card {
+    min-height: 0;
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .life-atlas-card-body {
+    padding: 18px 17px 20px;
+  }
+
+  .life-atlas-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .life-atlas-track {
+    scroll-behavior: auto;
+  }
+}
