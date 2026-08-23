@@ -5,6 +5,11 @@
   "product": {
     "definition": "living-visual-biography",
     "northStar": "ONE IGOR / ONE CANON / ONE VISUAL LANGUAGE / MANY OUTPUTS",
+    "identityHierarchy": {
+      "primary": "IGOR VEPRETSKI",
+      "container": "#7YA",
+      "socialExecutionLayer": "StartOn"
+    },
     "publicPlane": "story",
     "internalPlane": "control",
     "canonicalCodeTarget": "git-after-live-source-reconciliation"
@@ -31,11 +36,33 @@
     "metricRequiresSnapshotDate": true,
     "metricRequiresSourceUrl": true,
     "privateEvidenceMayVerifyWithoutPublication": true,
-    "siteMaySelfProveClaim": false
+    "siteMaySelfProveClaim": false,
+    "appendOnlyCorrections": true
   },
   "visual": {
+    "sourceAuthority": "7YA Visual Source of Truth via binding execution packet",
+    "coreRule": ["RESTRAINT_BEATS_DECORATION", "CONSISTENCY_BEATS_CREATIVITY", "CLARITY_BEATS_NOISE"],
+    "palette": {
+      "black": "#0B0B0B",
+      "offWhite": "#F2F2EE",
+      "grey": "#8A8A8A",
+      "accent": "#FF5A1F",
+      "accentName": "Hazard Orange",
+      "accentUse": ["metadata", "drop-number", "status", "separator", "active-state"]
+    },
+    "typography": {
+      "headingsUi": ["Inter", "IBM Plex Sans"],
+      "metadataIds": "IBM Plex Mono"
+    },
+    "emojiInUi": "fail",
+    "motion": ["fade", "slide", "reveal"],
+    "showyMotion": "fail",
+    "aiPortraitAsPersonalMemory": "fail",
+    "stockPhotoAsPersonalMemory": "fail",
+    "fakePublicationLogo": "fail",
     "authenticMediaFirst": true,
     "genericDocumentaryFallbackWhenRealMediaExists": "fail",
+    "whenApprovedPhotoMissing": "written-memory-card-with-metadata-and-source-state",
     "brokenMajorStoryMedia": "fail",
     "horizontalOverflowMobile": "fail",
     "repeatedDocumentaryImageWhenAlternativesExist": "fail",
@@ -45,6 +72,7 @@
     "targetSharesAreGuidanceNotArithmeticGate": true
   },
   "story": {
+    "creativeRule": "FACE_FIRST_PROOF_IMMEDIATELY_AFTER",
     "chapters": ["NOW", "LIFE", "CREATE", "STARTON", "IDEAS_LAB", "MEDIA_ECHO", "ARCHIVE"],
     "controlPlaneTermsBlockedFromPrimaryFlow": [
       "OAUTH NEXT",
