@@ -27,13 +27,10 @@ async function exists(relative) {
 const datasetPath = 'knowledge/life-atlas-slice-v1.json';
 const rendererPath = 'scripts/life-atlas-slice-v1.js';
 const stylePath = 'styles/life-atlas-slice-v1.css';
-const rendererHref = '/scripts/life-atlas-slice-v1.js';
-const styleHref = '/styles/life-atlas-slice-v1.css';
 
-const [indexHtml, museumHtml, siteContract, renderer] = await Promise.all([
-  readText('index.html'),
-  readText('museum/index.html'),
+const [siteContract, buildScript, renderer] = await Promise.all([
   readText('scripts/site-contract.mjs'),
+  readText('scripts/build-static-site.mjs'),
   readText(rendererPath),
 ]);
 
@@ -67,21 +64,17 @@ for (const [index, moment] of moments.entries()) {
   if (!moment?.sourceHref || !/^https:\/\//.test(moment.sourceHref)) fail(`${label} sourceHref must be https`);
 }
 
-const mountPattern = /data-life-atlas-mount(?:=|\s|>)/g;
-const homeMounts = (indexHtml.match(mountPattern) || []).length;
-const museumMounts = (museumHtml.match(mountPattern) || []).length;
-if (homeMounts < 1) fail('index.html missing LIFE ATLAS mount');
-if (museumMounts < 1) fail('museum/index.html missing LIFE ATLAS mount');
-
-for (const [page, html] of [['index.html', indexHtml], ['museum/index.html', museumHtml]]) {
-  if (!html.includes(styleHref)) fail(`${page} missing LIFE ATLAS stylesheet reference`);
-  if (!html.includes(rendererHref)) fail(`${page} missing LIFE ATLAS renderer reference`);
-}
-
 if (!siteContract.includes("'life-atlas-slice-v1.css'")) fail('site contract missing LIFE ATLAS stylesheet');
 if (!siteContract.includes("'life-atlas-slice-v1.js'")) fail('site contract missing LIFE ATLAS renderer');
 if (!siteContract.includes("'knowledge/life-atlas-slice-v1.json'")) fail('site contract missing LIFE ATLAS dataset as critical artifact');
+
+if (!buildScript.includes("new Set(['index.html', 'museum/index.html'])")) fail('build must scope LIFE ATLAS injection to home and museum');
+if (!buildScript.includes('/styles/life-atlas-slice-v1.css')) fail('build missing LIFE ATLAS stylesheet injection');
+if (!buildScript.includes('/scripts/life-atlas-slice-v1.js')) fail('build missing LIFE ATLAS renderer injection');
+
 if (!renderer.includes('/knowledge/life-atlas-slice-v1.json')) fail('renderer must fetch canonical LIFE ATLAS dataset');
+if (!renderer.includes("'/'") || !renderer.includes("'/museum/'")) fail('renderer must define home and museum projection surfaces');
+if (!renderer.includes('data-life-atlas-mount')) fail('renderer must create a LIFE ATLAS mount');
 
 if (failures.length) {
   failures.forEach(message => console.error(`FAIL ${message}`));
@@ -89,4 +82,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`LIFE_ATLAS_SLICE: PASS (${moments.length} moments, ${homeMounts + museumMounts} mounts)`);
+console.log(`LIFE_ATLAS_SLICE: PASS (${moments.length} moments, 2 surfaces)`);
