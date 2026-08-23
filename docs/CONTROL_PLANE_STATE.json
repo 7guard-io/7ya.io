@@ -1,6 +1,6 @@
 {
   "schema_version": 4,
-  "updated_at": "2026-08-24T00:52:39+03:00",
+  "updated_at": "2026-08-24T01:01:06+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
@@ -13,26 +13,20 @@
     "human_core": "Igor Vepretski",
     "social_mission": "StartOn",
     "organizing_system": "7YA",
-    "principles": [
-      "Human First",
-      "Evidence Before Amplification",
-      "Privacy by Default",
-      "A plan is not an outcome",
-      "Membership is not partnership"
-    ]
+    "principles": ["Human First", "Evidence Before Amplification", "Privacy by Default", "A plan is not an outcome", "Membership is not partnership"]
   },
   "active_production": {
     "provider": "AppDeploy v2",
     "app_id": "697a008fddc309b142",
-    "immutable_snapshot": "1787521959471",
-    "snapshot_time": "2026-08-24T00:52:39+03:00",
+    "immutable_snapshot": "1787522422712",
+    "snapshot_time": "2026-08-24T01:00:22+03:00",
     "provider_version_label_at_verification": "v98",
     "version_label_policy": "AppDeploy vNN labels are rolling display labels; use immutable snapshot ids for receipts and provenance.",
     "global_release_id": "7ya-production-truth-20260824-1",
-    "custom_domains": {
-      "7ya.io": "active",
-      "www.7ya.io": "active"
-    },
+    "repair_anchor_snapshot": "1787521959471",
+    "repair_anchor_time": "2026-08-24T00:52:39+03:00",
+    "successor_note": "A later concurrent AppDeploy deployment became current after the recovery repair. Fresh source verification confirmed it preserved the native /journey/ route and all active global release surfaces.",
+    "custom_domains": {"7ya.io": "active", "www.7ya.io": "active"},
     "runtime_qa": {
       "status": "ready",
       "frontend_errors": 0,
@@ -44,8 +38,8 @@
     },
     "critical_route_repair": {
       "route": "/journey/",
-      "status": "present in immutable snapshot",
-      "crawlable": true,
+      "status": "present in current immutable snapshot",
+      "crawlable_source_verified": true,
       "meta_refresh": false
     }
   },
@@ -53,42 +47,26 @@
     "state": "RECOVERY_IN_PROGRESS",
     "recovery_branch": "recovery/appdeploy-1787521286005",
     "frozen_pre_repair_snapshot": "1787521286005",
-    "post_repair_snapshot": "1787521959471",
-    "rule": "Do not claim GitHub main is deployment-identical until recovered runtime source and binary resources pass parity review.",
-    "next_gate": "complete text/binary parity, compare recovered runtime against the older root application, then choose the canonical GitHub application tree before any GitHub-driven cutover"
+    "repair_snapshot": "1787521959471",
+    "current_verified_successor_snapshot": "1787522422712",
+    "rule": "Do not claim GitHub main is deployment-identical until recovered runtime source and binary resources pass parity review. Before every production claim, query AppDeploy again because concurrent deployments may advance runtime truth.",
+    "next_gate": "complete text/binary parity, compare recovered runtime against the older root application, reconcile the recovery branch with newer main commits, then choose the canonical GitHub application tree before any GitHub-driven cutover"
   },
   "deployment": {
     "source_control_plane": "GitHub",
-    "runtime_source_of_truth": "AppDeploy immutable source snapshot",
+    "runtime_source_of_truth": "latest independently verified AppDeploy immutable source snapshot",
     "provider": "AppDeploy v2",
-    "verified_runtime_routes": [
-      "/",
-      "/about/",
-      "/evidence/",
-      "/press/",
-      "/timeline/",
-      "/journey/",
-      "/igor-vepretski/",
-      "/starton/",
-      "/influence/",
-      "/speaker/",
-      "/talk/",
-      "/contact/",
-      "/integrity/",
-      "/api/health"
-    ],
-    "rollback": "Use immutable AppDeploy snapshot ids from get_app_versions/apply_app_version; preserve prior working snapshots until the replacement passes runtime and route gates."
+    "verified_runtime_routes": ["/", "/about/", "/evidence/", "/press/", "/timeline/", "/journey/", "/igor-vepretski/", "/starton/", "/influence/", "/speaker/", "/talk/", "/contact/", "/integrity/", "/api/health"],
+    "rollback": "Use immutable AppDeploy snapshot ids from get_app_versions/apply_app_version; preserve prior working snapshots until replacements pass runtime and route gates."
   },
-  "historical_control_planes": [
-    {
-      "provider": "Vercel",
-      "project": "7ya-static-site",
-      "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
-      "state": "HISTORICAL_RECOVERY_REFERENCE_ONLY",
-      "last_active_record": "2026-07-15",
-      "warning": "Do not cut production back to this project unless an explicit rollback/cutover plan is approved and current AppDeploy production has been independently compared."
-    }
-  ],
+  "historical_control_planes": [{
+    "provider": "Vercel",
+    "project": "7ya-static-site",
+    "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
+    "state": "HISTORICAL_RECOVERY_REFERENCE_ONLY",
+    "last_active_record": "2026-07-15",
+    "warning": "Do not cut production back to this project unless an explicit rollback/cutover plan is approved and current AppDeploy production has been independently compared."
+  }],
   "ci": {
     "github_actions_state": "may be blocked before checkout by organization billing/account state",
     "interpretation": "No workflow run is not a code PASS and not a code FAIL. Never claim CI passed when no job executed.",
@@ -96,10 +74,7 @@
   },
   "dns_policy": {
     "provider": "Cloudflare",
-    "nameservers": [
-      "anahi.ns.cloudflare.com",
-      "dakota.ns.cloudflare.com"
-    ],
+    "nameservers": ["anahi.ns.cloudflare.com", "dakota.ns.cloudflare.com"],
     "rule": "Do not change nameservers; preserve all mail-related MX and TXT records."
   },
   "public_conversion": {
@@ -113,10 +88,5 @@
     "No raw private emails, credentials, tokens or account codes",
     "No operational security methods or protected case information"
   ],
-  "deferred_until_source_truth_is_stable": [
-    "Supabase migration",
-    "Windsor.ai ingestion",
-    "vidIQ ingestion",
-    "broad visual redesign"
-  ]
+  "deferred_until_source_truth_is_stable": ["Supabase migration", "Windsor.ai ingestion", "vidIQ ingestion", "broad visual redesign"]
 }
