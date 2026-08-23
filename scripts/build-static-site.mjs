@@ -20,6 +20,9 @@ const appleWebAppCapableTag = '<meta name="apple-mobile-web-app-capable" content
 const mobileWebAppCapableTag = '<meta name="mobile-web-app-capable" content="yes" data-7ya-app-icon="20260817">';
 const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-20260726.css?v=1" data-7ya-control-assets="20260726">';
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
+const lifeAtlasPages = new Set(['index.html', 'museum/index.html']);
+const lifeAtlasStyleTag = '<link rel="stylesheet" href="/styles/life-atlas-slice-v1.css?v=1" data-life-atlas-assets="v1">';
+const lifeAtlasScriptTag = '<script src="/scripts/life-atlas-slice-v1.js?v=1" data-life-atlas-assets="v1" defer></script>';
 
 async function requireRegularSource(relative) {
   const source = path.join(root, relative);
@@ -76,6 +79,10 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
+  if (lifeAtlasPages.has(relative) && !html.includes('data-life-atlas-assets="v1"')) {
+    headTags.push(lifeAtlasStyleTag);
+    bodyTags.push(lifeAtlasScriptTag);
+  }
 
   let enhanced = html;
   if (headTags.length) enhanced = enhanced.replace('</head>', `  ${headTags.join('\n  ')}\n</head>`);
