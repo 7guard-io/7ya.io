@@ -21,16 +21,19 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 - Public domain: `https://7ya.io`
 - Current production provider: AppDeploy v2
 - Current production app: `697a008fddc309b142`
-- Current immutable production snapshot: `1787521959471`
-- Snapshot verified at: `2026-08-24 00:52:39 Asia/Jerusalem`
-- AppDeploy display label at verification: `v98` — **informational only; vNN labels are rolling and must never be used as immutable provenance**
+- Current independently verified immutable runtime snapshot: `1787522422712`
+- Current snapshot verified at: `2026-08-24 01:00:22 Asia/Jerusalem`
+- Production-truth repair anchor snapshot: `1787521959471` (`2026-08-24 00:52:39 Asia/Jerusalem`)
+- AppDeploy display label at final verification: `v98` — **informational only; vNN labels are rolling and must never be used as immutable provenance**
 - Current global build marker: `7ya-production-truth-20260824-1`
 - Active recovery branch: `recovery/appdeploy-1787521286005`
 - Current production-truth receipt: `docs/releases/2026-08-24-production-source-recovery.md`
 
-GitHub is the canonical governance, review and long-term source-control plane. **GitHub `main` is not yet deployment-identical.** The live AppDeploy source snapshot remains runtime truth until the recovered source and binary resources pass parity review and a GitHub-driven deployment cutover is explicitly approved.
+GitHub is the canonical governance, review and long-term source-control plane. **GitHub `main` is not yet deployment-identical.** The latest independently verified AppDeploy source snapshot remains runtime truth until recovered source and binary resources pass parity review and a GitHub-driven deployment cutover is explicitly approved.
 
-Before stating a production version, call the provider and record the immutable AppDeploy snapshot id. Never reuse a prior `vNN` label as proof of identity.
+The repair anchor `1787521959471` is the immutable snapshot created by the production-truth repair. A later concurrent deployment advanced runtime truth to `1787522422712`; fresh verification confirmed that successor preserved `/journey/` and the global release id. Before making any future production claim, query AppDeploy again rather than assuming this document is still the newest runtime observation.
+
+Never reuse a prior `vNN` label as proof of identity.
 
 The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as active production.
 
@@ -115,7 +118,8 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 The public site should remain provider-independent wherever practical, but the current verified runtime is an AppDeploy frontend-and-backend application.
 
 - GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy snapshot `1787521959471` is the currently verified runtime snapshot for release `7ya-production-truth-20260824-1`.
+- AppDeploy snapshot `1787522422712` is the currently verified runtime successor for global release `7ya-production-truth-20260824-1`.
+- Production-truth repair anchor: `1787521959471`.
 - Frozen pre-repair recovery baseline: `1787521286005`.
 - Preserve recovered runtime source under immutable `appdeploy-live/<snapshot>/` paths before choosing a new root application tree.
 - The full AppDeploy source snapshot and public binary resources must be compared against `main` before the repository can be described as an exact production source.
