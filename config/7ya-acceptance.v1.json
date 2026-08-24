@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "7ya-acceptance-v1",
+  "updatedAt": "2026-08-23",
+  "product": {
+    "definition": "living-visual-biography",
+    "northStar": "ONE IGOR / ONE CANON / ONE VISUAL LANGUAGE / MANY OUTPUTS",
+    "identityHierarchy": {
+      "primary": "IGOR VEPRETSKI",
+      "container": "#7YA",
+      "socialExecutionLayer": "StartOn"
+    },
+    "publicPlane": "story",
+    "internalPlane": "control",
+    "canonicalCodeTarget": "git-after-live-source-reconciliation"
+  },
+  "digitalIgor": {
+    "brand": "IGOR / 7YA AI",
+    "visitorLabelHe": "לדבר עם איגור",
+    "disclosure": {
+      "he": "הגרסה הדיגיטלית שלי — AI שנבנה מהקאנון הציבורי והמאומת שלי.",
+      "en": "My digital representation — AI built from my verified public canon.",
+      "ru": "Моя цифровая версия — ИИ, построенный на моём проверенном публичном каноне."
+    },
+    "mustDiscloseAI": true,
+    "mayClaimToBeLiveHuman": false,
+    "firstPersonRequiresCanon": true,
+    "mayInventPrivateMemory": false,
+    "modes": ["EXPLORE", "VERIFY", "BUILD", "CONNECT"]
+  },
+  "truth": {
+    "primary": "canonical-corpus-v2",
+    "allowedPublicStates": ["verified", "supported", "inferred", "owner-reported"],
+    "assertiveMetricStates": ["verified"],
+    "blockedAssertiveStates": ["unresolved", "contradicted", "quarantined"],
+    "metricRequiresSnapshotDate": true,
+    "metricRequiresSourceUrl": true,
+    "privateEvidenceMayVerifyWithoutPublication": true,
+    "siteMaySelfProveClaim": false,
+    "appendOnlyCorrections": true
+  },
+  "visual": {
+    "sourceAuthority": "7YA Visual Source of Truth via binding execution packet",
+    "coreRule": ["RESTRAINT_BEATS_DECORATION", "CONSISTENCY_BEATS_CREATIVITY", "CLARITY_BEATS_NOISE"],
+    "palette": {
+      "black": "#0B0B0B",
+      "offWhite": "#F2F2EE",
+      "grey": "#8A8A8A",
+      "accent": "#FF5A1F",
+      "accentName": "Hazard Orange",
+      "accentUse": ["metadata", "drop-number", "status", "separator", "active-state"]
+    },
+    "typography": {
+      "headingsUi": ["Inter", "IBM Plex Sans"],
+      "metadataIds": "IBM Plex Mono"
+    },
+    "emojiInUi": "fail",
+    "motion": ["fade", "slide", "reveal"],
+    "showyMotion": "fail",
+    "aiPortraitAsPersonalMemory": "fail",
+    "stockPhotoAsPersonalMemory": "fail",
+    "fakePublicationLogo": "fail",
+    "authenticMediaFirst": true,
+    "genericDocumentaryFallbackWhenRealMediaExists": "fail",
+    "whenApprovedPhotoMissing": "written-memory-card-with-metadata-and-source-state",
+    "brokenMajorStoryMedia": "fail",
+    "horizontalOverflowMobile": "fail",
+    "repeatedDocumentaryImageWhenAlternativesExist": "fail",
+    "targetMediaShare": 0.7,
+    "targetEditorialShare": 0.2,
+    "targetUiShare": 0.1,
+    "targetSharesAreGuidanceNotArithmeticGate": true
+  },
+  "story": {
+    "creativeRule": "FACE_FIRST_PROOF_IMMEDIATELY_AFTER",
+    "chapters": ["NOW", "LIFE", "CREATE", "STARTON", "IDEAS_LAB", "MEDIA_ECHO", "ARCHIVE"],
+    "controlPlaneTermsBlockedFromPrimaryFlow": [
+      "OAUTH NEXT",
+      "METADATA RECOVERY",
+      "PROVENANCE RULE",
+      "INGESTION QUEUE",
+      "SOURCE OBJECT",
+      "CONTROL MATRIX"
+    ],
+    "antiGenericQuestion": "Could another public figure replace Igor's name and keep essentially the same experience?",
+    "antiGenericFailWhenTrue": true
+  },
+  "qa": {
+    "failClosed": true,
+    "required": [
+      "SOURCE_ALIGNMENT",
+      "UNIT_TESTS",
+      "BUILD",
+      "E2E_DESKTOP",
+      "E2E_MOBILE",
+      "CURRENT_VERSION_VISUAL_QA",
+      "EVIDENCE_GATE",
+      "CONTROL_PLANE_LEAKAGE",
+      "MEDIA_DIVERSITY",
+      "REGRESSION"
+    ],
+    "currentVersionScreenshotRequired": true,
+    "historicalHardcodedScreenshotMayPass": false,
+    "builderSelfApprovalSufficient": false,
+    "judges": ["CREATIVE", "NARRATIVE", "EVIDENCE", "STRANGER", "MOBILE", "REGRESSION"]
+  },
+  "deployment": {
+    "primaryAppId": "697a008fddc309b142",
+    "productionDomains": ["7ya.io", "www.7ya.io"],
+    "productionWriteFromThisBranch": false,
+    "requireRollbackTarget": true,
+    "requireGitCommitToAppVersionMapping": true,
+    "verifyLiveAfterDeploy": true
+  }
+}
