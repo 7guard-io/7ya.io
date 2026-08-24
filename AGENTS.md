@@ -17,28 +17,35 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 ## 2. Canonical source of truth
 
 - Repository: `7guard-io/7ya.io`
-- Default branch: `main`
+- Integration target: `main`
 - Public domain: `https://7ya.io`
 - Current production provider: AppDeploy v2
 - Current production app: `697a008fddc309b142`
-- Current verified version: `v49` / `1784701523083`
-- Current build marker: `igor-integrated-personal-system-20260722-1`
-- Production branch contract: `main`
-- Production receipt: `docs/releases/2026-07-22-appdeploy-v49-production-receipt.json`
+- Current independently verified immutable runtime snapshot: `1787522629672`
+- Current snapshot verified at: `2026-08-24 01:03:49 Asia/Jerusalem`
+- Production-truth repair anchor snapshot: `1787521959471` (`2026-08-24 00:52:39 Asia/Jerusalem`)
+- AppDeploy display label at final verification: `v98` — **informational only; vNN labels are rolling and must never be used as immutable provenance**
+- Current global build marker: `7ya-production-truth-20260824-1`
+- Active recovery branch: `recovery/appdeploy-1787521286005`
+- Current production-truth receipt: `docs/releases/2026-08-24-production-source-recovery.md`
 
-GitHub remains the canonical source-control and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
+GitHub is the canonical governance, review and long-term source-control plane. **GitHub `main` is not yet deployment-identical.** The latest independently verified AppDeploy source snapshot remains runtime truth until recovered source and binary resources pass parity review and a GitHub-driven deployment cutover is explicitly approved.
 
-The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
+The repair anchor `1787521959471` is the immutable snapshot created by the production-truth repair. Later snapshots advanced runtime truth; final snapshot `1787522629672` only repaired `tests/tests.txt` formatting so Journey Test 8 is parser-visible. Fresh source verification confirmed that `/journey/` and the global release id remained intact. Before making any future production claim, query AppDeploy again rather than assuming this document is still the newest runtime observation.
+
+Never reuse a prior `vNN` label as proof of identity.
+
+The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as active production.
 
 Never copy changes from an old repository or provider snapshot into the canonical repository without comparing provenance, routes and content first.
 
 ## 3. Current control-plane state
 
-Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
+Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified immutable AppDeploy snapshot wins and the stale repository document must be corrected in the same focused change.
 
-GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
+GitHub Actions may fail before checkout because of organization billing/account state. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
 
-AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving export and comparison of the verified AppDeploy snapshot against `main`.
+AppDeploy is the active production runtime. GitHub remains the review/recovery plane until parity is complete. The next source-control priority is a provenance-preserving recovery and comparison of the live AppDeploy tree against `main`.
 
 ## 4. Public experience contract
 
@@ -53,7 +60,7 @@ Required principles:
 - The primary conversion action is **לתיאום שיחה**.
 - The secondary conversion action is **לצפייה בראיות**.
 - Every depth page must remain coherent with the Creatorverse homepage.
-- The digital companion must identify itself as a 7YA tool; it is not Igor and must not speak on his behalf.
+- The digital companion must visibly disclose that it is AI and must not invent private memory or unsupported claims.
 
 Critical public surfaces include:
 
@@ -66,6 +73,13 @@ Critical public surfaces include:
 - `/speaker/`
 - `/talk/`
 - `/contact/`
+- `/about/`
+- `/press/`
+- `/timeline/`
+- `/integrity/`
+- `/api/health`
+
+`/journey/` is a native crawlable critical route. It must never regress to a missing path or meta-refresh shim.
 
 ## 5. Evidence and language rules
 
@@ -101,18 +115,30 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 
 ## 7. Architecture and modularity
 
-The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
+The public site should remain provider-independent wherever practical, but the current verified runtime is an AppDeploy frontend-and-backend application.
 
 - GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy version `1784701523083` is the verified production runtime snapshot.
-- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
-- Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
+- AppDeploy snapshot `1787522629672` is the currently verified runtime for global release `7ya-production-truth-20260824-1`.
+- Production-truth repair anchor: `1787521959471`.
+- Frozen pre-repair recovery baseline: `1787521286005`.
+- Preserve recovered runtime source under immutable `appdeploy-live/<snapshot>/` paths before choosing a new root application tree.
+- The full AppDeploy source snapshot and public binary resources must be compared against `main` before the repository can be described as an exact production source.
+- Do not overwrite root public/source files with the runtime snapshot without route, content, privacy and provenance comparison.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
 - Keep provider configuration isolated from content.
 - Preserve rollback paths; do not destroy the previous working version before the replacement passes all gates.
 - Do not add a second production source without an explicit cutover and rollback plan.
+- Defer Supabase migration, Windsor.ai ingestion and vidIQ ingestion until source truth is stable unless a separately approved slice explicitly changes that order.
 
-## 8. Required validation
+## 8. Release identity
+
+One **global production release id** must agree across the active application entrypoint, backend `/api/release`/health surfaces, homepage release metadata and `public/release.json`.
+
+Component releases may retain their own historical identifiers when they describe a bounded subsystem or artifact. Do not rewrite historical component provenance merely to make every string identical.
+
+Current global production release id: `7ya-production-truth-20260824-1`.
+
+## 9. Required validation
 
 Before requesting merge, run or structurally validate:
 
@@ -120,18 +146,18 @@ Before requesting merge, run or structurally validate:
 npm run release:gate
 ```
 
-When the environment cannot execute commands, state that clearly and use repository-level deterministic checks. Never invent a local PASS.
+When the environment cannot execute commands, state that clearly and use repository/provider-level deterministic checks. Never invent a local PASS.
 
 For every critical route, require:
 
-- HTTP 200;
+- HTTP 200 or provider-equivalent route proof;
 - crawlable HTML;
 - title and description;
 - canonical URL;
 - mobile viewport;
 - no `noindex`;
-- `X-Robots-Tag: index, follow` where required by the runtime contract;
-- security headers;
+- no meta-refresh on critical routes;
+- security headers where controlled by the runtime;
 - working internal links;
 - no unsupported claims;
 - usable mobile and desktop rendering.
@@ -139,27 +165,31 @@ For every critical route, require:
 For AppDeploy production, additionally require:
 
 - terminal deployment status `ready`;
-- all acceptance tests passed;
-- no frontend or backend errors;
+- zero release-critical frontend, backend and network errors;
 - active custom-domain records;
-- a unique, no-cache server-side probe that proves `7ya.io` serves the intended build marker;
-- an immutable release receipt and explicit rollback version.
+- fresh desktop and mobile QA captures;
+- source-level proof that the intended immutable snapshot contains the changed route/files;
+- a unique release/build marker across the global release surfaces;
+- an immutable release receipt and explicit rollback snapshot.
 
-## 9. Deployment discipline
+AppDeploy currently reports `e2e_tests=null` for this application. **Do not claim E2E passed when the runner did not report a run.** Keep `tests/tests.txt` as the user-visible QA contract, and treat executable E2E as a separate gate when the provider exposes it.
+
+## 10. Deployment discipline
 
 1. Work on a focused branch.
 2. Make the smallest coherent change.
-3. Update source, provider snapshot and release receipt together when applicable.
-4. Add or update deterministic gates.
+3. Update source recovery evidence, provider snapshot and release receipt together when applicable.
+4. Add or update deterministic gates before behavior changes.
 5. Open a PR with scope, evidence, privacy and rollback notes.
 6. Address review comments in code and resolve their threads.
-7. Obtain a real preview or manual runtime verification before production promotion when CI is unavailable.
-8. Tie the intended build marker, provider version, custom domain and repository receipt together.
-9. Do not claim production success until `7ya.io` itself passes the canonical build probe.
+7. Obtain real provider/runtime verification before production promotion when CI is unavailable.
+8. Tie the intended build marker, immutable provider snapshot, custom domain and repository receipt together.
+9. Do not claim production success until the public domain and provider state support the claim.
 10. Preserve Cloudflare mail-related records and existing nameservers during web-origin changes.
-11. After an AppDeploy-first emergency release, export the exact runtime source back to GitHub before beginning the next broad redesign.
+11. After an AppDeploy-first emergency release, preserve the exact runtime delta in GitHub before beginning the next broad redesign.
+12. Never merge a recovery branch merely because production is healthy; parity/review and cutover are separate decisions.
 
-## 10. Agent behavior toward the owner
+## 11. Agent behavior toward the owner
 
 Igor is the product owner, not the deployment operator. Do not make him translate vague infrastructure language.
 
@@ -171,9 +201,9 @@ Agents must:
 - identify the exact blocker and the exact next safe action;
 - use connected GitHub, AppDeploy, Gmail and provider evidence instead of guessing;
 - avoid asking Igor for information already available in the repository, email or provider state;
-- never say the site is updated until the public URL has been verified.
+- never say the site is updated until the public/provider state has been freshly verified.
 
-## 11. Forbidden regressions
+## 12. Forbidden regressions
 
 Do not restore:
 
@@ -183,7 +213,9 @@ Do not restore:
 - copied instructions from unrelated repositories or courses;
 - repeated portrait walls;
 - unsupported political, institutional, partnership or audience claims;
-- production configuration pointing silently at an obsolete repository;
-- an assistant that impersonates Igor or implies that automated text is his personal speech.
+- production configuration pointing silently at an obsolete repository/provider;
+- an assistant that impersonates Igor or invents undocumented personal speech;
+- a missing `/journey/` route;
+- contradictory global release identifiers.
 
 The objective is one coherent public system: **a real person, real work, visible sources and a clear invitation to act.**

@@ -1,169 +1,83 @@
 {
-  "schema_version": 3,
-  "updated_at": "2026-07-15T09:47:00+03:00",
+  "schema_version": 4,
+  "updated_at": "2026-08-24T01:04:27+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io",
   "canonical_repository": {
     "name": "7guard-io/7ya.io",
     "default_branch": "main",
-    "role": "only canonical source-control and review plane"
+    "role": "canonical governance, review and long-term source-control plane",
+    "deployment_identical": false
   },
   "identity_model": {
     "human_core": "Igor Vepretski",
     "social_mission": "StartOn",
     "organizing_system": "7YA",
-    "principles": [
-      "Human First",
-      "Evidence Before Amplification",
-      "Privacy by Default",
-      "A plan is not an outcome",
-      "Membership is not partnership"
-    ]
+    "principles": ["Human First", "Evidence Before Amplification", "Privacy by Default", "A plan is not an outcome", "Membership is not partnership"]
   },
-  "canonical_release": {
-    "merged_pull_request": 214,
-    "content_source_sha": "b1ff2422430aecff1a8fe12ad0a48c0561c7a97f",
-    "release_control_pull_request": 215,
-    "release_control_sha": "ccc2dd5bfeef764198dffc3ff6a1b5bd31d74207",
-    "release_control_merge_sha": "a3ac5722b536af0a9640af595572004769273cc8",
-    "runtime_hotfix_pull_request": 216,
-    "runtime_hotfix_sha": "6cbaf88cbdf1d2ddd1c1a5fcbf0b51b11fe0fd71",
-    "runtime_hotfix_merge_sha": "8654c388f749e7674103981d9dc208a146f74d86",
-    "release_id": "igor-guided-living-os-20260715",
-    "scope": "Clean Igor-led Living OS release, 66-record content museum, personal creator guidance, public-good workflows and fail-closed private routes",
-    "experience": "IGOR_7YA_LIVING_OS_PERSONAL_GUIDANCE_AND_PUBLIC_GOOD",
-    "production_recovery_verified": true,
-    "custom_domain_verified": false
+  "active_production": {
+    "provider": "AppDeploy v2",
+    "app_id": "697a008fddc309b142",
+    "immutable_snapshot": "1787522629672",
+    "snapshot_time": "2026-08-24T01:03:49+03:00",
+    "provider_version_label_at_verification": "v98",
+    "version_label_policy": "AppDeploy vNN labels are rolling display labels; use immutable snapshot ids for receipts and provenance.",
+    "global_release_id": "7ya-production-truth-20260824-1",
+    "repair_anchor_snapshot": "1787521959471",
+    "repair_anchor_time": "2026-08-24T00:52:39+03:00",
+    "intermediate_successor_snapshot": "1787522422712",
+    "final_followup": "Snapshot 1787522629672 changes only tests/tests.txt formatting so Journey Test 8 is parser-visible. Fresh source verification confirmed /journey/ and all active global release surfaces remain intact.",
+    "custom_domains": {"7ya.io": "active", "www.7ya.io": "active"},
+    "runtime_qa": {
+      "status": "ready",
+      "frontend_errors": 0,
+      "network_errors": 0,
+      "backend_errors": 0,
+      "desktop_capture": true,
+      "mobile_capture": true,
+      "e2e_runner": "not reported by current AppDeploy QA (e2e_tests=null)"
+    },
+    "critical_route_repair": {
+      "route": "/journey/",
+      "status": "present in current immutable snapshot",
+      "crawlable_source_verified": true,
+      "meta_refresh": false,
+      "qa_contract_parser_visible": true
+    }
   },
-  "active_change": {
-    "issue": 201,
-    "purpose": "Attach and safely cut over 7ya.io to the verified canonical Vercel recovery project",
-    "code_merged": true,
-    "recovery_deployment_verified": true,
-    "custom_domain_cutover_complete": false,
-    "head_resolution_rule": "Deployment provenance is determined from runtime X-7YA-Source-SHA and release.json, not from an unpinned branch name"
+  "source_alignment": {
+    "state": "RECOVERY_IN_PROGRESS",
+    "recovery_branch": "recovery/appdeploy-1787521286005",
+    "frozen_pre_repair_snapshot": "1787521286005",
+    "repair_snapshot": "1787521959471",
+    "current_verified_snapshot": "1787522629672",
+    "rule": "Do not claim GitHub main is deployment-identical until recovered runtime source and binary resources pass parity review. Before every production claim, query AppDeploy again because concurrent deployments may advance runtime truth.",
+    "next_gate": "complete text/binary parity, compare recovered runtime against the older root application, reconcile the recovery branch with newer main commits, then choose the canonical GitHub application tree before any GitHub-driven cutover"
   },
   "deployment": {
     "source_control_plane": "GitHub",
-    "recovery_provider": "Vercel",
-    "canonical_recovery_project": {
-      "name": "7ya-static-site",
-      "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
-      "verified_alias": "https://7ya-static-site.vercel.app",
-      "deployment_id": "dpl_865LWo1VF1vxM1rgDWoyat8oqGBy",
-      "status": "READY",
-      "deployed_source_sha": "b1ff2422430aecff1a8fe12ad0a48c0561c7a97f",
-      "release_control_merge_sha": "a3ac5722b536af0a9640af595572004769273cc8",
-      "runtime_hotfix_merge_sha": "8654c388f749e7674103981d9dc208a146f74d86",
-      "architecture": "canonical-github-sha-proxy",
-      "reproducible_source_directory": "ops/vercel-canonical-proxy",
-      "custom_domain_attached": false
-    },
-    "verified_runtime_routes": [
-      "/",
-      "/museum/",
-      "/create/?prompt=public-good",
-      "/history/",
-      "/igor-vepretski/",
-      "/journey/",
-      "/7ya/",
-      "/starton/",
-      "/influence/",
-      "/evidence/",
-      "/speaker/",
-      "/talk/",
-      "/media/",
-      "/articles/",
-      "/contact/",
-      "/delta-audit/",
-      "/styles/positive-creator-20260715.css",
-      "/scripts/positive-creator-20260715.js",
-      "/knowledge/history-song-records-5.json",
-      "/robots.txt",
-      "/sitemap.xml",
-      "/release.json"
-    ],
-    "verified_failure_routes": {
-      "/admin/": "404 noindex, nofollow; no-store",
-      "/api/private": "404 noindex, nofollow; no-store",
-      "/definitely-missing-7ya-gate/": "404 noindex, nofollow; no-store"
-    },
-    "verified_runtime_contract": [
-      "HTTP 200 on every critical route and release asset",
-      "canonical repository provenance header",
-      "immutable source SHA header equals the release content source SHA",
-      "content-aware MIME types for HTML, CSS and JavaScript",
-      "X-Robots-Tag for HTML",
-      "security headers",
-      "mobile viewport",
-      "crawlable metadata",
-      "release.json reports PR 214, the expected release ID and source SHA",
-      "personal onboarding enables only after three selections",
-      "impact-mode POST to /api/guide returns a structured local-coach response",
-      "controlled HTML 404 responses are noindex, nofollow and no-store",
-      "runtime logs show no error or fatal entries after the production gate"
-    ],
-    "public_domain_alignment": "7ya.io still serves the older public origin and has not been cut over to the verified canonical recovery alias",
-    "rollback": "Previous immutable Vercel deployments and Git source SHAs remain available"
+    "runtime_source_of_truth": "latest independently verified AppDeploy immutable source snapshot",
+    "provider": "AppDeploy v2",
+    "verified_runtime_routes": ["/", "/about/", "/evidence/", "/press/", "/timeline/", "/journey/", "/igor-vepretski/", "/starton/", "/influence/", "/speaker/", "/talk/", "/contact/", "/integrity/", "/api/health"],
+    "rollback": "Use immutable AppDeploy snapshot ids from get_app_versions/apply_app_version; preserve prior working snapshots until replacements pass runtime and route gates."
   },
-  "content_system": {
-    "name": "History Song",
-    "opening_record_count": 66,
-    "record_shards": [
-      "/knowledge/history-song-records-1.json",
-      "/knowledge/history-song-records-2.json",
-      "/knowledge/history-song-records-3.json",
-      "/knowledge/history-song-records-4.json",
-      "/knowledge/history-song-records-5.json"
-    ],
-    "views": [
-      "/",
-      "/museum/",
-      "/create/",
-      "/history/",
-      "/influence/",
-      "/7ya/"
-    ],
-    "ingestion_contract": "DISCOVER → NORMALIZE → DEDUPLICATE → PROTECT → VERIFY → PUBLISH → SNAPSHOT",
-    "evidence_tiers": [
-      "TIER_1 external source",
-      "TIER_2 official source",
-      "TIER_3 dated export or analytics snapshot"
-    ]
-  },
+  "historical_control_planes": [{
+    "provider": "Vercel",
+    "project": "7ya-static-site",
+    "project_id": "prj_xpcMFC96JcnasigrvetZetEa1XzU",
+    "state": "HISTORICAL_RECOVERY_REFERENCE_ONLY",
+    "last_active_record": "2026-07-15",
+    "warning": "Do not cut production back to this project unless an explicit rollback/cutover plan is approved and current AppDeploy production has been independently compared."
+  }],
   "ci": {
-    "github_actions_state": "blocked before checkout",
-    "cause": "organization account locked due to a billing issue",
-    "last_confirmed": "2026-07-15",
-    "interpretation": "No workflow run is not a code PASS and not a code FAIL; the shared local release gate, immutable preview and production route gate provide the current release evidence",
-    "manual_workflow_allowlist": [
-      "actions-smoke.yml",
-      "ci.yml",
-      "pages.yml"
-    ],
-    "local_release_gate": "npm run release:gate",
-    "static_artifact_file_count": 66
+    "github_actions_state": "may be blocked before checkout by organization billing/account state",
+    "interpretation": "No workflow run is not a code PASS and not a code FAIL. Never claim CI passed when no job executed.",
+    "local_release_gate": "npm run release:gate"
   },
-  "release_blockers": [
-    "Attach 7ya.io and www.7ya.io to the canonical recovery project",
-    "Change only Cloudflare web records after Vercel domain verification while preserving mail records",
-    "Verify TLS, redirects, homepage, influence route and source SHA on the custom domain",
-    "Resolve the organization billing lock so automated workflows can run"
-  ],
-  "next_safe_gate": [
-    "Add 7ya.io and www.7ya.io to Vercel project prj_xpcMFC96JcnasigrvetZetEa1XzU",
-    "Obtain the exact Vercel DNS verification target",
-    "Update Cloudflare web records without changing nameservers, MX or mail-related TXT records",
-    "Verify 7ya.io and www.7ya.io over HTTPS against source SHA b1ff2422430aecff1a8fe12ad0a48c0561c7a97f",
-    "Preserve the previous origin until domain, TLS and route verification pass"
-  ],
   "dns_policy": {
     "provider": "Cloudflare",
-    "nameservers": [
-      "anahi.ns.cloudflare.com",
-      "dakota.ns.cloudflare.com"
-    ],
-    "rule": "Do not change nameservers; preserve all mail-related MX and TXT records"
+    "nameservers": ["anahi.ns.cloudflare.com", "dakota.ns.cloudflare.com"],
+    "rule": "Do not change nameservers; preserve all mail-related MX and TXT records."
   },
   "public_conversion": {
     "primary_cta": "לתיאום שיחה",
@@ -175,5 +89,6 @@
     "No private family, medical, legal or financial information",
     "No raw private emails, credentials, tokens or account codes",
     "No operational security methods or protected case information"
-  ]
+  ],
+  "deferred_until_source_truth_is_stable": ["Supabase migration", "Windsor.ai ingestion", "vidIQ ingestion", "broad visual redesign"]
 }

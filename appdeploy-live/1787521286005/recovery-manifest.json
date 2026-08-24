@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "appId": "697a008fddc309b142",
+  "snapshot": "1787521286005",
+  "snapshotTime": "2026-08-24T00:41:26+03:00",
+  "role": "frozen-pre-repair-runtime-baseline",
+  "sourceRepository": "7guard-io/7ya.io",
+  "recoveryBranch": "recovery/appdeploy-1787521286005",
+  "baseCommit": "c4ca90dcf150fce007bfa1178f9280c1454ecd78",
+  "productionDomains": ["7ya.io", "www.7ya.io"],
+  "treeInventoryObserved": {
+    "root": ["package.json", "vite.config.ts", "index.html", "src/", "backend/", "shared/", "public/", "tests/"],
+    "backendFilesObserved": ["backend/corpus-store.ts", "backend/counter.ts", "backend/evidence-ingestion.ts", "backend/growth.ts", "backend/index.ts", "backend/life-scenes.ts", "backend/realtime-subscribers.ts", "backend/realtime.ts"],
+    "sharedFilesObserved": ["shared/canonical-corpus.ts", "shared/canonical-entities.ts", "shared/content-graph.ts", "shared/evidence-first-ingestion.ts", "shared/life-scenes.ts", "shared/media-impact.ts", "shared/public-internet-graph.ts", "shared/public-register-canon.ts", "shared/recovered-publications.ts"],
+    "journeyRouteObserved": false
+  },
+  "globalReleaseIdsObserved": {
+    "frontendApp": "7ya-life-atlas-100-primary-20260824-1",
+    "backend": "7ya-orchestrator-nvidia-super-20260824-1",
+    "homepageMetadata": "7ya-spanish-visual-polish-20260823-1",
+    "publicReleaseManifest": "7ya-spanish-visual-polish-20260823-1"
+  },
+  "preservation": {
+    "status": "PARTIAL_CRITICAL_SOURCE_RECOVERY",
+    "fullTextParity": false,
+    "binaryResourceParity": false,
+    "rootOverwriteAllowed": false,
+    "policy": "Preserve immutable runtime evidence before choosing a canonical GitHub application tree. Missing full parity must remain explicit."
+  },
+  "knownCorrection": {
+    "planOriginallyNamedNonexistentFiles": ["backend/server.ts", "shared/canon.ts", "shared/publicDiscovery.ts"],
+    "actualArchitectureNote": "The frozen runtime uses backend/index.ts as entrypoint; canonical/discovery logic is distributed across shared/canonical-corpus.ts, shared/public-internet-graph.ts and backend/index.ts."
+  },
+  "successorRepairSnapshot": "1787521959471",
+  "successorGlobalRelease": "7ya-production-truth-20260824-1"
+}

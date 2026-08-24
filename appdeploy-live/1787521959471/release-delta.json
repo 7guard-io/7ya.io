@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "appId": "697a008fddc309b142",
+  "preRepairBaseline": "1787521286005",
+  "testContractSnapshot": "1787521792664",
+  "postRepairSnapshot": "1787521959471",
+  "postRepairTime": "2026-08-24T00:52:39+03:00",
+  "globalReleaseId": "7ya-production-truth-20260824-1",
+  "changedRuntimeSurfaces": [
+    "tests/tests.txt",
+    "public/journey/index.html",
+    "src/App.tsx",
+    "backend/index.ts",
+    "index.html",
+    "public/release.json"
+  ],
+  "verification": {
+    "deploymentStatus": "ready",
+    "frontendErrors": 0,
+    "networkErrors": 0,
+    "backendErrors": 0,
+    "desktopCapture": true,
+    "mobileCapture": true,
+    "e2eTests": null,
+    "journeyRoutePresent": true,
+    "globalReleaseFilesObserved": [
+      "src/App.tsx",
+      "backend/index.ts",
+      "index.html",
+      "public/journey/index.html",
+      "public/release.json"
+    ],
+    "domains": {
+      "7ya.io": "active",
+      "www.7ya.io": "active"
+    }
+  },
+  "tddNote": "The Journey QA contract was deployed before route implementation. AppDeploy did not report an executable E2E run (e2e_tests=null), so RED is evidenced structurally by the test contract existing while public/journey was absent, not by a provider-reported failed test run.",
+  "parity": {
+    "fullTextSourceParity": false,
+    "binaryResourceParity": false,
+    "githubMainDeploymentIdentical": false,
+    "mergeAllowedByThisReceipt": false
+  }
+}
