@@ -4,29 +4,37 @@ Date: 2026-08-24
 Production app: AppDeploy `697a008fddc309b142`
 Primary domain: `https://7ya.io`
 
-## Change
+## Released experience
 
-Implemented the approved human-first homepage shell over the existing Living Biography runtime:
+The approved human-first Living Digital Identity shell is now implemented over the existing public corpus:
 
-- public world navigation: `IGOR · STORY · ATLAS · NOW · TALK`;
-- three primary cover actions aligned to Watch / Explore / Talk;
+- one public world model: `IGOR · STORY · ATLAS · NOW · TALK`;
+- documentary cover with three primary actions: Watch / Explore / Talk;
 - `STORY` enters the chronological biography;
-- `ATLAS` enters the existing source-backed 100 Moments experience;
-- `NOW` jumps to the live edge;
+- `ATLAS` enters the source-backed 100 Moments time machine;
+- `NOW` enters the live edge and public-source feed;
 - `TALK` opens Digital Igor;
-- retained the authentic portrait, chronology rail, 100 Moments corpus, Canon/Discovery boundaries, NVIDIA agent and deeper archive layers.
+- desktop uses one persistent five-world navigator; the compact cover navigator is mobile-only;
+- deep system/evidence machinery is deferred until after NOW inside a closed `SYSTEM · EVIDENCE ON DEMAND` vault.
 
-## Second production slice
+## Atlas → conversation
 
-The shell was then tightened against the active production snapshot rather than treated as a one-off hero patch:
+100 Moments is no longer only a source gallery:
 
-- unified the persistent desktop navigation to the same five-world model;
-- unified secondary-route mobile navigation to five items: `IGOR · STORY · ATLAS · NOW · TALK`;
-- kept the five-world cover navigator mobile-only so desktop has one visible five-item navigator instead of duplicating navigation;
-- added a per-moment `Ask Digital Igor about this moment` action to the 100 Moments atlas;
-- the atlas launch carries the selected moment title as journey context;
-- Digital Igor now recognizes `ARCHIVE / MOMENT` as an `archive_moment` intent and opens with source/evidence-oriented prompts instead of the generic journey-reflection opening;
-- preserved the editorial order: person → 100 Moments → chronological life → Digital History → StartOn / creation / research → NOW → system/evidence depth.
+- every active moment can launch `Ask Digital Igor about this moment`;
+- the selected title is carried into `journeyChapter=archive`;
+- Digital Igor opens an `ARCHIVE / MOMENT` context with source/evidence, before/after and wider-story prompts;
+- `archive_moment` is preserved for neutral follow-up questions;
+- archive-moment requests are routed to `INVESTIGATOR`;
+- NVIDIA retrieval is mandatory for `archive_moment`, forcing `search_content_graph` before a factual final response;
+- the AppDeploy tool-agent fallback is also instructed to search the content graph before answering archive-moment factual questions;
+- during dynamic Atlas loading, evidence-layer counters show an indeterminate state instead of misleading factual zeros.
+
+## NVIDIA state
+
+The production app has a configured `NVIDIA_API_KEY` secret name. The backend uses `nvidia/nemotron-3-super-120b-a12b` as the primary tool agent, with canonical graph, public Discovery, entity, related-content, public-page and action tools. Provider fallback remains NVIDIA → AppDeploy tool agent → local deterministic router.
+
+This release does **not** claim NVIDIA NeMo Retriever is deployed. Retrieval is currently performed through 7YA's own Canon / Public Internet Graph / Discovery / Entity tools, orchestrated by Nemotron. NeMo-specific multimodal indexing remains a separate infrastructure phase.
 
 ## Runtime files changed
 
@@ -37,34 +45,29 @@ The shell was then tightened against the active production snapshot rather than 
 - `src/GlobalNav.tsx`
 - `src/global-nav.css`
 - `src/StoryCompanion.tsx`
+- `backend/index.ts`
 - `tests/tests.txt`
 
-## AppDeploy versions
+## Production verification
 
-Observed during this release sequence:
+Production was updated from more than one active execution path during this release. Follow-up changes were therefore applied as narrow semantic diffs against the current AppDeploy source instead of stale whole-file overwrites.
 
-- pre-change applied source: `1787549720516`
-- first test-first acceptance snapshot: `1787550672886`
-- first visible shell snapshot: `1787550770531`
-- atlas / global-navigation slice: `1787550932484`
-- archive-aware / single-visible-nav slice: `1787551295757`
-- post-concurrency active source verified: `1787551368300`
+Latest post-concurrency source verification observed active source version `1787551985973` and confirmed:
 
-Production was being updated from more than one active execution path during the release. Every follow-up patch was therefore rebased semantically against the current AppDeploy snapshot before applying; no stale full-file overwrite was used.
+- `archive_moment` remains present in the backend in six relevant routing/retrieval locations;
+- the Atlas loading-count guard remains present;
+- `SYSTEM · EVIDENCE ON DEMAND` remains a closed `<details>` vault after NOW;
+- the five-world navigation remains in GlobalNav;
+- the Atlas-to-chat archive context remains present.
 
-## Verification
+Fresh AppDeploy terminal status after that verification was `ready` with zero frontend, backend and network errors. Fresh desktop and mobile QA screenshots were generated in QA snapshot `1787552032941`.
 
-Fresh AppDeploy status after the final observed concurrent deployment reported `ready` with zero frontend, backend and network errors. Fresh desktop and mobile QA snapshots were generated.
+AppDeploy did not surface an end-to-end result object (`e2e_tests` remained null), so this receipt deliberately does **not** claim a green e2e suite or a machine-inspected pixel audit. Runtime QA, source assertions and generated QA screenshots are the available verification evidence for this release.
 
-Post-concurrency source verification on active version `1787551368300` confirmed:
+## Domain
 
-- desktop and secondary mobile navigation both use `IGOR · STORY · ATLAS · NOW · TALK`;
-- the cover world navigator is hidden by default and enabled only under the mobile breakpoint;
-- 100 Moments carries the selected moment into `journeyChapter=archive`;
-- Digital Igor contains the `archive_moment` intent plus source/evidence, before/after and wider-story suggestions.
-
-No end-to-end result object was surfaced by AppDeploy (`e2e_tests` remained null), so this receipt deliberately does **not** claim a green e2e suite. Runtime/QA status and source assertions are the verification evidence available for this release.
+Both `7ya.io` and `www.7ya.io` are active on the AppDeploy v2 custom-domain stage.
 
 ## Source-of-truth note
 
-The live application source remains managed by the AppDeploy production snapshot. GitHub currently records the design, plan and release evidence, but this receipt does **not** claim that GitHub has yet recovered the full live application tree. Production-source reconciliation remains a separate architectural task.
+The live application source remains managed by the AppDeploy production snapshot. GitHub records the design, plans and release evidence, but this receipt does **not** claim that GitHub has yet recovered the full live application tree. Production-source reconciliation remains a separate architectural task.
