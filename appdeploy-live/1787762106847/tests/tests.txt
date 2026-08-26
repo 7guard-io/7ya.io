@@ -1,0 +1,103 @@
+# Tests
+
+## Test 1 - Understand Igor from the first screen [sanity]
+Viewport: desktop (1280x800)
+Covers: first-person hero, immediate identity clarity, visible life-chapter strip, three simple visitor paths, jargon removal above the fold
+Description: Verifies a first-time visitor can understand who Igor is, see the major phases of the life, and choose how to continue without learning 7YA system terminology.
+
+Steps:
+1. Open the Hebrew home page.
+2. Inspect the first viewport without scrolling.
+3. Inspect the life-chapter strip and primary actions in the hero.
+
+Expected: The first viewport speaks in Igor's first person, visibly identifies Igor Vepretski, shows a compact life strip from Kharkiv/Israel through service, StartOn and 7YA, gives a concise human explanation of current public/social/media work, and offers clear paths into story, current work and conversation. The hero does not foreground internal architecture vocabulary.
+
+## Test 2 - Follow one coherent personal story and reach the public-good book
+Viewport: desktop (1280x800)
+Covers: life-story hierarchy, chronological narrative, Living Inspiration Book, NVIDIA disclosure, public work before technical internals
+Description: Verifies the homepage reads as one personal documentary that turns lived experience into reusable public-good principles without becoming a technical dashboard.
+
+Steps:
+1. Open the Hebrew home page and scroll through the personal story.
+2. Reach the section titled "ספר השראה חי · לקידום הכלל".
+3. Inspect the six principle pages and the live infrastructure strip.
+4. Continue toward the public archive.
+
+Expected: The Living Inspiration Book is part of the story flow; it contains six readable principles, visibly distinguishes source-bound material from the NVIDIA reasoning layer, shows a connected NVIDIA NIM state when configured, and provides clear actions into the living archive and Digital Igor.
+
+## Test 3 - Explore the complete open-ended public life archive with evidence guardrails
+Viewport: desktop (1280x800)
+Covers: full canonical-corpus fetch, public projection pagination, canon/discovery/live source layers, source provenance, archive continuation without fixed ceiling, unverified-source guardrail
+Description: Verifies public content is presented as an expandable personal life archive with no fixed item target while unclear material is not promoted as verified canon.
+
+Steps:
+1. Open the Hebrew home page and continue into the public-content archive.
+2. Inspect the layer counts and original-source actions.
+3. Load more content when a next page exists.
+4. Compare Canon and Discovery labels on several items.
+
+Expected: The archive loads the complete available canonical corpus, exposes paginated public projection data, keeps Canon/Discovery/Live visibly distinct, retains original-source links, allows continued loading while a next page exists, and never labels an unclear Discovery item as verified Canon. No UI claims a 100-item or other fixed ceiling. The homepage public-media shelf also consumes the public projection, so historical/public objects remain visible even when Instagram, Facebook or TikTok live OAuth is unavailable; high-signal video, verified Canon and major third-party media objects rank ahead of generic profile cards.
+
+## Test 4 - Show Igor early and keep the journey touch-friendly on mobile
+Viewport: mobile (375x667)
+Covers: mobile first viewport, reduced hero-image monopoly, horizontal life strip, swipeable current-work cards, touch-safe actions, open-ended archive bridge, no horizontal page overflow
+Description: Verifies a 375x667 phone visitor reaches Igor's identity and useful content immediately while rich sections remain swipeable inside their own rails.
+
+Steps:
+1. Open the Hebrew home page on a mobile viewport and inspect the first screen.
+2. Swipe the life-chapter strip and the "מה אני עושה היום" cards.
+3. Continue through the story to the Living Inspiration Book and living archive.
+4. Inspect the page edges while scrolling vertically.
+
+Expected: The hero photograph remains prominent but does not consume the entire first viewport; Igor's name, first-person introduction and primary actions arrive early; the life strip and current-work cards swipe within their own rails; copy remains readable; archive and Digital Igor actions are touch-safe; and the page itself has no horizontal overflow.
+
+## Test 5 - Keep Hebrew, English and Russian natural and consistent
+Viewport: desktop (1280x800)
+Covers: HE/EN/RU translation quality, localized life strip, Living Inspiration Book localization, localized primary UI labels, translation consistency across story/archive/deep-source entry
+Description: Verifies the main visitor journey, personal life strip and public-good book remain readable in each supported language.
+
+Steps:
+1. Open the homepage in Hebrew and inspect the hero, life strip, story, inspiration book and archive bridge.
+2. Switch to English and inspect the same areas.
+3. Switch to Russian and inspect the same areas.
+
+Expected: Each selected language has coherent primary narrative and localized life-strip labels; Hebrew and Russian avoid unnecessary raw system jargon in the main narrative; English remains idiomatic; product names such as StartOn, 7YA, Digital Igor and NVIDIA NIM may remain unchanged.
+
+## Test 6 - Keep operations alive without turning the biography into a dashboard
+Viewport: mobile (375x667) and desktop (1280x800)
+Covers: compact live-status affordance, personal-story hierarchy, deep system disclosure, six agent responsibilities on demand, source health, NVIDIA orchestration, GET /api/agent-mesh
+Description: Verifies the operational system remains available and truthful without interrupting the visitor-facing biography with a large control-room section.
+
+Steps:
+1. Open the Hebrew home page and scroll through the current/live social section.
+2. Inspect the compact 7YA LIVE status strip before opening the deep system layer.
+3. Confirm the main story does not display six large agent cards, operational policy pills or a second control-room block.
+4. Open the deep sources/system layer.
+5. Inspect the detailed six-agent operations view, including unavailable comment access and NVIDIA orchestration.
+
+Expected: The main biography shows only one compact live-status strip with freshness and a route to system details; the six-agent dashboard is absent from the primary story. After the visitor explicitly opens the deep system layer, the detailed discovery, reach, comments, canon, experience and orchestration states become visible with authorization gaps represented honestly. The operational backend remains connected to GET /api/agent-mesh while the personal story keeps visual priority.
+
+## Test 7 - Materialize public media even when live social credentials are absent
+Viewport: desktop (1280x800) and mobile (375x667)
+Covers: static public-register fallback, source-linked media, third-party material, graceful API degradation
+Description: Verifies the public archive remains populated from the bundled public register even when Instagram, TikTok or Facebook live APIs are not authorized.
+
+Steps:
+1. Open the Hebrew public library.
+2. Inspect the initial public-object count and first media cards.
+3. Confirm source-linked YouTube, press, owned posts and third-party/public-register records are visible.
+4. Continue to the homepage living archive and social section.
+
+Expected: The library and homepage archive show real source-linked objects without requiring live social OAuth. Legacy/public-register material is visibly distinct from Canon, and unavailable live providers do not collapse the archive to an empty state.
+
+## Test 8 - Rank influential public objects before low-signal surfaces
+Viewport: desktop (1280x800)
+Covers: impact-first sorting, source-local metrics, broadcast/press/repost weighting, no synthetic reach
+Description: Verifies the library defaults to impact-first ordering while preserving the ability to sort chronologically.
+
+Steps:
+1. Open the Hebrew public library with no sort query.
+2. Inspect the sort selector and first page of cards.
+3. Switch to newest and oldest and verify chronology changes.
+
+Expected: The default selector reads impact-first. Source-linked objects with verified local metrics, external redistribution, broadcasts, press, podcasts or authored longform are ranked ahead of generic profile surfaces. No cross-platform reach total is invented.
