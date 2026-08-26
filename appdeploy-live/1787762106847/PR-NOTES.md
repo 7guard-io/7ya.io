@@ -1,0 +1,1 @@
+PR scope: production snapshot export only. No GitHub Pages workflow repair is included because the current production/collector failures did not expose actionable job steps or logs. AppDeploy remains the active publication path; this PR reconciles the source snapshot with the canonical GitHub repository.
