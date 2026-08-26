@@ -1,0 +1,30 @@
+{
+  "target": {
+    "app_id": "697a008fddc309b142",
+    "base_version_name": "v100",
+    "base_version": "1787689408979"
+  },
+  "scope": "homepage visual/editorial cutover only",
+  "changes": [
+    {
+      "file": "src/life-first/AutobiographicalCinema.tsx",
+      "operation": "diff",
+      "from": "import './visual-cutover-20260825.css';import './live-repair-20260825.css';import './rtl-typography-20260825.css';",
+      "to": "import './visual-cutover-20260825.css';import './live-repair-20260825.css';import './rtl-typography-20260825.css';import './editorial-cutover-20260826.css';"
+    },
+    {
+      "file": "src/life-first/editorial-cutover-20260826.css",
+      "operation": "create",
+      "source": "ops/appdeploy-staged/2026-08-26-home-editorial/editorial-cutover-20260826.css"
+    }
+  ],
+  "intent": {
+    "hero": "more photographic and less text-dense, especially on mobile",
+    "system_language": "recede technical UI above the fold",
+    "moments": "make the public-life atlas the strongest visual surface",
+    "mobile": "shorter hero, larger imagery, two-column moment atlas",
+    "evidence": "preserved; deep system surfaces remain available"
+  },
+  "production_locked": true,
+  "production_unlock_command": "בצע את שרשרת הפריסה"
+}
