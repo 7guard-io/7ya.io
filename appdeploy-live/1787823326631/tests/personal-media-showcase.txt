@@ -1,0 +1,74 @@
+# Personal Hero + Media Proof QA Contract
+
+## Test A - Hero tells the personal transformation without losing actionability
+Viewport: mobile 375x667 and desktop 1280x800
+
+Steps:
+1. Open the Hebrew homepage at scroll position 0.
+2. Confirm the headline contains `מילד מוכה לחייל מצטיין` and the second line contains `מהישרדות — לאחריות`.
+3. Confirm owner credit is visible near the hero media.
+4. Confirm primary conversion actions remain usable and the hero does not become a text wall.
+5. Repeat in English and Russian.
+
+Expected:
+- HE/EN/RU all communicate the same transformation arc.
+- The hero remains visually dominated by Igor, not by UI chrome.
+- Contact/evidence actions remain present and tappable.
+- No direct quote marks are used for editorial bridging copy.
+
+## Test B - Media proof appears immediately after the hero
+Viewport: mobile 375x667 and desktop 1280x800
+
+Steps:
+1. Scroll one viewport below the hero.
+2. Confirm `#media-proof` appears before the deeper documentary chapters.
+3. Confirm at least 8 separate cards are present: owner archive, service archive, mynet, News 13, News 12, Channel 14, fatherhood coverage, Mindset.
+4. On mobile, swipe horizontally through the cards.
+5. On desktop, verify no collage overlay covers the hero portrait.
+
+Expected:
+- Media proof is an independent editorial surface.
+- Mobile uses separate swipeable cards.
+- Desktop uses large individual frames rather than a collage pasted onto the hero.
+
+## Test C - Every visual carries attribution and source continuity
+Viewport: desktop 1280x800
+
+Steps:
+1. Inspect each media proof card.
+2. Confirm each card shows publisher/source context and a visible credit line.
+3. Confirm mynet is credited to `קובי קואנקס`.
+4. Confirm owner items use `© Igor Vepretski / 7YA` attribution.
+5. Open the source CTA on mynet, News 13, News 12, Channel 14, Hidabroot and Mindset cards.
+
+Expected:
+- Every card has visible attribution.
+- Source CTA opens the intended source in a new tab.
+- Broadcast thumbnails are labeled as frames from the publisher/source, not as owner photography.
+- No source-specific photograph is credited to Igor unless it is owner archive material.
+
+## Test D - External image failure degrades safely
+Viewport: mobile 375x667
+
+Steps:
+1. Block one Google Drive thumbnail request and one external publisher image request.
+2. Reload the homepage.
+3. Inspect the affected cards.
+
+Expected:
+- Cards retain readable title, source, quote and credit.
+- Failed images fall back without an infinite onError loop.
+- A media failure never removes the entire proof rail.
+
+## Test E - Claim hygiene
+
+Steps:
+1. Inspect all quotation marks inside the media-proof component.
+2. Verify quoted phrases are source-bound and short.
+3. Verify editorial phrases such as `לפני החשיפה היה שירות` and `העבר לא מוצג כאן כמדליה. הוא מסביר את הדרך.` are presented as authored editorial framing, not falsely attributed to a publisher/interview.
+4. Confirm no new reach, views, engagement or impact metrics are added by this component.
+
+Expected:
+- Direct quotes are traceable to the linked source or authored owner material.
+- Editorial copy is distinguishable from publisher quotations.
+- No metric inflation or class mixing is introduced.
