@@ -45,6 +45,14 @@ const proofItems:ProofItem[]=[
     credit:L('צילום: קובי קואנקס · mynet חולון','Photo: Kobi Koanks · mynet Holon','Фото: Коби Коанкс · mynet Холон')
   },
   {
+    id:'starton-origin',kind:'owner',year:'2022→NOW',publisher:'StartOn · OFFICIAL',
+    title:L('מהתווית — לבניית הזדמנות','From a label to building opportunity','От ярлыка — к созданию возможностей'),
+    quote:L('„זכיתי” לשאת את התואר „נער בסיכון”','“I had the ‘privilege’ of carrying the label ‘at-risk youth.’”','«Мне “выпало” носить ярлык “подростка группы риска”»'),
+    image:'./resources/7ya-starton.webp',fallback:'./resources/igor-hero.jpg',
+    sourceUrl:'https://starton.org.il/',
+    credit:L('StartOn · האתר הציבורי הרשמי','StartOn · official public site','StartOn · официальный публичный сайт')
+  },
+  {
     id:'news13-fraud',kind:'broadcast',year:'2023',publisher:'חדשות 13',
     title:L('מפוסט אישי — למאבק ציבורי','From a personal post to public action','От личного поста к общественной борьбе'),
     image:'https://i.ytimg.com/vi/AE5hDzLM5XU/hqdefault.jpg',fallback:'./resources/igor-hero.jpg',
@@ -64,6 +72,13 @@ const proofItems:ProofItem[]=[
     image:'https://i.ytimg.com/vi/O3v309CA4ao/hqdefault.jpg',fallback:'./resources/7ya-starton.webp',
     sourceUrl:'https://youtu.be/O3v309CA4ao',
     credit:L('פריים ראיון: ערוץ 14 · מקור ציבורי','Interview frame: Channel 14 · public source','Кадр интервью: 14 канал · публичный источник')
+  },
+  {
+    id:'opens-day',kind:'broadcast',year:'2022',publisher:'פותחים יום',
+    title:L('חלל אינטראקטיבי לנוער בסיכון','An interactive space for at-risk youth','Интерактивное пространство для молодёжи группы риска'),
+    image:'https://i.ytimg.com/vi/SOpAglwkJ8I/hqdefault.jpg',fallback:'./resources/7ya-starton.webp',
+    sourceUrl:'https://www.youtube.com/watch?v=SOpAglwkJ8I',
+    credit:L('פריים שידור: פותחים יום · מקור ציבורי','Broadcast frame: Pothim Yom · public source','Кадр эфира: «Потхим Йом» · публичный источник')
   },
   {
     id:'fatherhood-post',kind:'post',year:'2023',publisher:'הידברות · פוסט מאת Igor Vepretski',
