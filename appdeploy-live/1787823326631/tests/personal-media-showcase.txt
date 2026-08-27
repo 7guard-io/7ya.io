@@ -78,3 +78,20 @@ Expected:
 - Direct quotes are traceable to the linked source or authored owner/public project material.
 - Editorial copy is distinguishable from publisher quotations.
 - No metric inflation or class mixing is introduced.
+
+## Test F - Documentary voice distinguishes sourced quotation from first-person editorial narrative
+Viewport: desktop 1280x800 and mobile 375x667
+
+Steps:
+1. Move through all 14 documentary chapters.
+2. Inspect the voice element in every chapter.
+3. Confirm the Service chapter uses a blockquote linked to mynet for `אני לא האמנתי בעצמי אבל מישהו האמין בי`.
+4. Confirm the StartOn chapter uses a blockquote linked to the official StartOn source for `„זכיתי” לשאת את התואר „נער בסיכון”`.
+5. Confirm the Fatherhood chapter uses a blockquote linked to Hidabroot / the republished authored post for `אבא מושלם — זה אבא ששם`.
+6. Inspect the other 11 chapter voices.
+
+Expected:
+- Only source-backed text is rendered as a blockquote/direct quotation.
+- Source-backed quotations have an adjacent source link; EN/RU labels disclose that the displayed quote is translated from Hebrew.
+- The other chapter voices render as narrative paragraphs without literal quotation marks and are not presented as verbatim speech.
+- Existing chapter media, 100 Moments/archive gates and source notes remain visible.
