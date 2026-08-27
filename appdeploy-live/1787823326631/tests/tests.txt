@@ -1,0 +1,141 @@
+# Tests
+
+## Test 1 - Navigate the multilingual site with visible source media [sanity]
+Viewport: mobile (375x667)
+Covers: canonical homepage, chronological 1990→2026 documentary chapters, clean deep-route navigation, HE/EN/RU switching, Visible Corpus, source-linked media
+Description: Verifies the primary site journey stays rich and visible instead of becoming text-only or routing back to the homepage unexpectedly.
+
+Steps:
+1. Open the Hebrew homepage and use Story, Archive, Media and Research navigation in sequence.
+2. On a deep page, inspect the Live Visual Corpus rail and open one source card.
+3. Switch the current deep page to English and then Russian.
+
+Expected: Homepage remains DocumentaryHome and tells a visible chronological 1990→2026 story through fourteen chapters before the Impact Broadcast; Archive, Media and Research use clean deep routes and open their intended content; each deep page contains source media near the top; HE, EN and RU keep coherent translated headings and navigation.
+
+## Test 2 - Open direct deep paths without falling back home
+Viewport: desktop (1280x800)
+Covers: /library/, /evidence/, /music/, /media/, /search/, /create/, /igor-vepretski/ direct routing, route continuity, canonical URLs, static first paint, PWA shortcuts, cache cutover, JSON-LD SearchAction, sitemap and llms discovery
+Description: Verifies direct URLs resolve to their intended rich page instead of the default home view.
+
+Steps:
+1. Open /library/?lang=he and inspect the library controls and media objects.
+2. Open /evidence/?lang=en, /music/?lang=ru, /media/?lang=he, /search/?lang=he and /create/?lang=he.
+3. Open /igor-vepretski/?lang=he.
+4. Inspect the initial static homepage markup, PWA shortcuts, /sitemap.xml and /llms.txt discovery surfaces.
+
+Expected: Each direct path renders its dedicated page; public navigation and canonical metadata use clean deep-route URLs rather than legacy ?page= URLs; the first paint uses the current Kharkiv→Jesse Cohen narrative; SearchAction, sitemap and llms discovery point to clean /search/, /library/, /research/, /music/ and /media/ routes; none silently render DocumentaryHome.
+
+## Test 3 - Experience StartOn as a dedicated rich page
+Viewport: mobile (375x667)
+Covers: /starton/ route, StartOn hero, four-zone model, source gallery, HE/EN/RU localization, Digital Igor entry, theme control
+Description: Verifies StartOn is a first-class page rather than only an outbound link or buried section.
+
+Steps:
+1. Open /starton/?lang=he and inspect the hero, return-to-Jesse-Cohen section and PLAY/LEARN/CONNECT/SPEAK model.
+2. Swipe the visible source media and open one StartOn source.
+3. Switch to English and Russian and use the Digital Igor StartOn action.
+
+Expected: A dedicated visual StartOn page renders with source imagery, the four-zone model, localized copy, the shared theme control and source-linked records; the Digital Igor action remains available.
+
+## Test 4 - Keep visual richness when Public Projection fails
+Viewport: desktop (1280x800)
+Covers: Visible Corpus degradation, deterministic visual fallback, non-empty deep pages
+Description: Verifies a backend projection failure cannot turn the site into empty text walls.
+
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/public-projection",
+    "status": 500,
+    "body_json": {"error":"simulated_projection_failure"}
+  }
+]
+```
+
+Steps:
+1. Open Research and then Media.
+2. Inspect the visual corpus rail on each page.
+3. Open one fallback source card.
+
+Expected: Both pages retain multiple real source-linked visual cards from the curated fallback corpus; no permanent loader, blank rail or synthetic placeholder replaces the public media.
+
+## Test 5 - Surface NVIDIA status and use Digital Igor from deep content
+Viewport: mobile (375x667)
+Covers: /api/companion/status integration, NVIDIA status disclosure, Digital Igor bottom sheet, source-grounded conversation entry, chapter scene context
+Description: Verifies Digital Igor remains usable from deep content and receives the visible documentary scene context.
+
+Steps:
+1. Open Media or Research and use Ask Digital Igor.
+2. Send one short question about the current public topic and close the sheet.
+3. Return home, move to a canonical documentary chapter and open Digital Igor.
+
+Expected: Digital Igor is explicitly disclosed as a 7YA AI tool; provider status is truthful; the sheet accepts a question and closes without losing context; canonical chapter anchors provide meaningful current-scene context.
+
+## Test 6 - Keep the mobile hero actionable
+Viewport: mobile (375x667)
+Covers: homepage first fold, mobile hero crop, primary conversion actions, chronological story entry, dominant chapter media, first-person chapter voice, 100 Moments archive gates, accessible light theme, persisted theme preference, companion FAB suppression
+Description: Verifies the opening mobile experience stays actionable and flows directly into the cinematic chronological story.
+
+Steps:
+1. Open the Hebrew homepage at scroll position 0.
+2. Verify the image crop, headline, לתיאום שיחה and לצפייה בראיות fit in the initial viewport.
+3. Use להתחיל ב־1990 and inspect a chapter with two source records.
+4. Verify one dominant visual, first-person quotation, 100 Moments gate and compact secondary source row.
+5. Toggle מצב בהיר ונגיש, reload and verify the light preference persists.
+6. Verify Digital Igor does not obscure the first fold.
+
+Expected: The first fold stays actionable, the documentary stays media-first, the light preference persists, and the companion remains available without covering the hero.
+
+## Test 7 - Keep canonical content distributed when Corpus API fails
+Viewport: desktop (1280x800)
+Covers: canonical-corpus client degradation, bundled canonical/public-register snapshot, source-linked fallback content
+Description: Verifies a canonical Corpus API failure cannot erase already-known public content.
+
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/corpus",
+    "status": 503,
+    "body_json": {"error":"simulated_corpus_failure"}
+  }
+]
+```
+
+Steps:
+1. Open the Hebrew homepage and deep media surfaces.
+2. Verify source-linked canonical items remain visible rather than an empty state.
+3. Open one source-linked item and switch to English and Russian.
+
+Expected: Public sections remain populated from bundled public data, links still open real sources, verification state is preserved and no synthetic metric is introduced.
+
+## Test 8 - Count the full Impact Universe without mixing metric classes
+Viewport: desktop (1280x800)
+Covers: Impact Universe Counter, 7B+ cumulative gross snapshot, source-resolved gross, interaction count, publication instances, snapshot progression, counting protocol
+Description: Verifies the homepage counts the widest known impact universe first while keeping exposure, interactions, distribution and audience as separate metric classes.
+
+Steps:
+1. Open the Hebrew homepage and move from the hero into the Impact Broadcast.
+2. Verify 7B+ and the 18,785,328 source-resolved subset are both visible with distinct definitions.
+3. Verify 397M+ interactions, 2,753+ publication instances, 1.5M+ community members and 47+ countries remain separate.
+4. Verify 310M+ → 5.1B → 6.2B+ → 7B+ is marked NOT ADDITIVE.
+5. Continue to the source-linked timeline and propagation examples.
+
+Expected: The highest gross snapshot is visible without adding incompatible classes or cumulative snapshots together, and source-linked drill-down remains available.
+
+## Test 9 - Persist accessible theme across deep routes and canonical story anchors
+Viewport: desktop (1280x800)
+Covers: site-wide theme provider, GlobalNav theme toggle, continuity layers, Life Album Spine, StartOn theme toggle, chronological chapter anchors, NOW navigation, 100 Moments chapter context, StartOn SEO continuity
+Description: Verifies accessibility and narrative navigation remain coherent beyond the homepage.
+
+Steps:
+1. Open the Hebrew homepage, switch to מצב בהיר ונגיש and enter a chapter through its 100 Moments gate.
+2. Verify the Library shows a visible 100 MOMENTS chapter filter, then navigate to Media and Research and confirm the light preference remains active across GlobalNav, THE ECHO, Life Album and scene continuity layers.
+3. Use Life Album stops for Service, Return, Voice, Creation, Research and NOW; verify each lands on a visible chapter in the new documentary.
+4. Use the global NOW navigation and verify it lands on the visible final documentary chapter.
+5. Open /starton/?lang=he, verify the same theme control and dedicated StartOn title/canonical, then reload.
+
+Expected: One persisted accessible theme follows the user across public routes and continuity surfaces; no Life Album stop targets a legacy hidden anchor; 100 Moments retains chapter context; NOW targets the visible 2026→NOW chapter; StartOn keeps dedicated SEO metadata.

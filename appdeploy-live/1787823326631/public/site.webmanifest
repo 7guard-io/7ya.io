@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "7YA — Igor Vepretski",
+  "short_name": "7YA",
+  "description": "Igor Vepretski's multilingual public home: story, StartOn, media, evidence, creation and action.",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay","standalone","minimal-ui"],
+  "orientation": "any",
+  "background_color": "#080a0d",
+  "theme_color": "#080a0d",
+  "categories": ["social","education","productivity"],
+  "icons": [{"src":"./resources/7ya-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"./resources/7ya-logo.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}],
+  "shortcuts": [{"name":"100 Moments","short_name":"Archive","url":"./library/?lang=he"},{"name":"Media","short_name":"Media","url":"./media/?lang=he"},{"name":"StartOn","short_name":"StartOn","url":"./starton/?lang=he"},{"name":"Create","short_name":"Create","url":"./create/?lang=he"}]
+}

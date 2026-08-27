@@ -1,0 +1,11 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787823326631",
+  "base_snapshot": "1787812752463",
+  "status": "READY",
+  "branch": "main",
+  "exported_at": "2026-08-27",
+  "path": "appdeploy-live/1787823326631/",
+  "reconstruction": "base_snapshot + delta_files",
+  "note": "Canonical GitHub mirror pointer for the active AppDeploy production snapshot."
+}
