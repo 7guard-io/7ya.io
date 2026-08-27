@@ -1,0 +1,35 @@
+{
+  "app_id": "697a008fddc309b142",
+  "base_snapshot": "1787808444264",
+  "canonical_repository": "7guard-io/7ya.io",
+  "branch": "fix/content-distribution-resilience-20260827",
+  "change_type": "content-distribution-resilience",
+  "deployment_status": "PREPARED_NOT_APPLIED",
+  "production_provider": "AppDeploy",
+  "root_cause": "Public UI components that call fetchCanonicalCorpus directly reject on /api/corpus failure even though a bundled public canonical/public-register snapshot is available. This converts a recoverable backend degradation into empty EVIDENCE SAFETY / unavailable sections.",
+  "fix": "Make canonical-corpus-client prefer live /api/corpus but fall back read-only to mergePublicRegisterIntoCanon(canonicalCorpusSeed), filtered to visibility=public and requested surface, preserving story order and caller limit.",
+  "changed_runtime_file": "src/canonical-corpus-client.ts",
+  "exported_runtime_file": "appdeploy-live/1787808444264/src/canonical-corpus-client.ts",
+  "regression_gate": "Test 7 - Keep canonical content distributed when Corpus API fails",
+  "trust_policy": {
+    "public_only": true,
+    "preserve_verification_state": true,
+    "preserve_source_links": true,
+    "preserve_metric_snapshot_dates": true,
+    "no_synthetic_cross_platform_reach": true,
+    "no_private_auto_publish": true
+  },
+  "nvidia": {
+    "integration": "unchanged",
+    "role": "Digital Igor / orchestrator remains additive to content distribution",
+    "content_fallback_dependency": "none"
+  },
+  "verification": {
+    "typescript_strict": "PASS",
+    "red_original_client_on_simulated_503": "PASS",
+    "green_patched_client_returns_public_surface_fallback": "PASS",
+    "production_runtime_after_patch": "NOT_RUN",
+    "live_visual_acceptance_after_patch": "NOT_RUN"
+  },
+  "release_gate": "Do not apply to production until the user's explicit deployment-chain command is received."
+}
