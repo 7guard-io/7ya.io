@@ -59,7 +59,9 @@ Steps:
 
 Expected:
 - Cards retain readable title, source, quote/statement and credit.
-- Failed images attempt a fallback only once; no infinite onError loop.
+- Owner archive media may use an owner-safe local fallback.
+- Third-party media never falls back to an Igor portrait or unrelated 7YA artwork; it becomes a labeled source poster with publisher and year.
+- No infinite onError loop occurs.
 - A media failure never removes the entire proof rail.
 
 ## Test E - Claim hygiene
