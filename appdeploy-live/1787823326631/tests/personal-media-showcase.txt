@@ -15,7 +15,7 @@ Expected:
 - The hero remains visually dominated by Igor, not by UI chrome.
 - Contact/evidence actions remain present and tappable.
 - No direct quote marks are used for editorial bridging copy.
-- The legacy `חייל מצטיין` wording is not present in the production candidate unless a direct source is added.
+- The legacy `חייל מצטיין` wording is absent unless a direct source is added later.
 
 ## Test B - Media proof appears immediately after the hero
 Viewport: mobile 375x667 and desktop 1280x800
@@ -45,7 +45,8 @@ Steps:
 
 Expected:
 - Every card has visible attribution.
-- Source CTA opens the intended source; internal owner links preserve the active locale.
+- Internal 7YA owner links preserve the active locale and stay in the current tab.
+- `starton.org.il` and other external sources open as external links.
 - Broadcast thumbnails are labeled as frames from the publisher/source, not as owner photography.
 - No source-specific photograph is credited to Igor unless it is owner archive material.
 
@@ -71,12 +72,13 @@ Steps:
 2. Verify quoted phrases are source-bound and short.
 3. Verify editorial phrases such as `לפני החשיפה היה שירות` and `העבר לא מוצג כאן כמדליה. הוא מסביר את הדרך.` use the editorial statement style rather than quote styling.
 4. Verify the mynet quote is `אני לא האמנתי בעצמי אבל מישהו האמין בי` and links to the mynet profile.
-5. Verify the StartOn quote `„זכיתי” לשאת את התואר „נער בסיכון”` links to the official StartOn site.
-6. Confirm no new reach, views, engagement or impact metrics are added by this component.
+5. Verify the StartOn quote `״זכיתי״ לשאת את התואר ״נער בסיכון״` links to the official StartOn site.
+6. Verify the Mindset card frames its source question as an editorial/source statement, not as a direct quote attributed to Igor.
+7. Confirm no new reach, views, engagement or impact metrics are added by this component.
 
 Expected:
 - Direct quotes are traceable to the linked source or authored owner/public project material.
-- Editorial copy is distinguishable from publisher quotations.
+- Editorial/source framing is distinguishable from personal quotation.
 - No metric inflation or class mixing is introduced.
 
 ## Test F - Documentary voice distinguishes sourced quotation from first-person editorial narrative
@@ -86,7 +88,7 @@ Steps:
 1. Move through all 14 documentary chapters.
 2. Inspect the voice element in every chapter.
 3. Confirm the Service chapter uses a blockquote linked to mynet for `אני לא האמנתי בעצמי אבל מישהו האמין בי`.
-4. Confirm the StartOn chapter uses a blockquote linked to the official StartOn source for `„זכיתי” לשאת את התואר „נער בסיכון”`.
+4. Confirm the StartOn chapter uses a blockquote linked to the official StartOn source for the sourced `זכיתי / נער בסיכון` line.
 5. Confirm the Fatherhood chapter uses a blockquote linked to Hidabroot / the republished authored post for `אבא מושלם — זה אבא ששם`.
 6. Inspect the other 11 chapter voices.
 
