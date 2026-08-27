@@ -1,0 +1,111 @@
+# Tests
+
+## Test 1 - Navigate the multilingual site with visible source media [sanity]
+Viewport: mobile (375x667)
+Covers: canonical homepage, repaired deep-route navigation, HE/EN/RU switching, Visible Corpus, source-linked media
+Description: Verifies the primary site journey stays rich and visible instead of becoming text-only or routing back to the homepage unexpectedly.
+
+Steps:
+1. Open the Hebrew homepage and use Story, Archive, Media and Research navigation in sequence.
+2. On a deep page, inspect the Live Visual Corpus rail and open one source card.
+3. Switch the current deep page to English and then Russian.
+
+Expected: Homepage remains DocumentaryHome; Archive, Media and Research open their intended content; each deep page visibly contains multiple image/video/source cards near the top; the source opens; HE, EN and RU keep coherent translated headings and navigation without exposing an empty or generic page.
+
+## Test 2 - Open direct deep paths without falling back home
+Viewport: desktop (1280x800)
+Covers: /library/, /evidence/, /music/, /igor-vepretski/ direct routing, route continuity
+Description: Verifies direct URLs resolve to their intended rich page instead of the default home view.
+
+Steps:
+1. Open /library/?lang=he and inspect the library controls and media objects.
+2. Open /evidence/?lang=en and inspect the evidence ledger, then /music/?lang=ru.
+3. Open /igor-vepretski/?lang=he.
+
+Expected: Library opens directly on its public-library hero followed immediately by search and filter controls, with no Visible Corpus prelude ahead of them. Evidence shows the live evidence page, Music shows the music room, and /igor-vepretski/ resolves to the rich museum/profile journey; none silently render the DocumentaryHome fallback.
+
+## Test 3 - Experience StartOn as a dedicated rich page
+Viewport: mobile (375x667)
+Covers: /starton/ route, StartOn hero, four-zone model, source gallery, HE/EN/RU localization, Digital Igor entry
+Description: Verifies StartOn is a first-class page rather than only an outbound link or buried section.
+
+Steps:
+1. Open /starton/?lang=he and inspect the hero, return-to-Jesse-Cohen section and PLAY/LEARN/CONNECT/SPEAK model.
+2. Swipe the visible source media and open one StartOn source.
+3. Switch to English and Russian and use the Digital Igor StartOn action.
+
+Expected: A dedicated visual StartOn page renders with source imagery, the four-zone model, multiple source-linked records and localized HE/EN/RU copy; the Digital Igor action opens the NVIDIA-aware companion route.
+
+## Test 4 - Keep visual richness when Public Projection fails
+Viewport: desktop (1280x800)
+Covers: Visible Corpus degradation, deterministic visual fallback, non-empty deep pages
+Description: Verifies a backend projection failure cannot turn the site into empty text walls.
+
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/public-projection",
+    "status": 500,
+    "body_json": {"error":"simulated_projection_failure"}
+  }
+]
+```
+
+Steps:
+1. Open Research and then Media.
+2. Inspect the visual corpus rail on each page.
+3. Open one fallback source card.
+
+Expected: Both pages retain multiple real source-linked visual cards from the curated fallback corpus; no permanent loader, blank rail or synthetic placeholder replaces the public media.
+
+## Test 5 - Surface NVIDIA status and use Digital Igor from deep content
+Viewport: mobile (375x667)
+Covers: /api/companion/status integration, NVIDIA status disclosure, Digital Igor bottom sheet, source-grounded conversation entry
+Description: Verifies NVIDIA is exposed as a live capability only when configured and Digital Igor remains usable from deep pages.
+
+Steps:
+1. Open Media or Research and inspect the Visual Corpus header status.
+2. Use Ask Digital Igor from the corpus footer.
+3. Send one short question about the current public topic and close the sheet.
+
+Expected: Digital Igor is explicitly disclosed as a 7YA AI tool. The status reads NVIDIA NIM · ACTIVE only when /api/companion/status reports nvidiaConfigured=true, otherwise it reads AI ROUTER · READY; Digital Igor opens as the mobile bottom sheet, accepts a question, returns a response through the configured provider chain, and closes without losing the page context.
+
+## Test 6 - Keep the mobile hero actionable
+Viewport: mobile (375x667)
+Covers: homepage first fold, mobile hero crop, primary conversion actions, companion FAB suppression
+Description: Verifies the opening mobile experience makes the conversion path visible without a floating overlay covering it.
+
+Steps:
+1. Open the Hebrew homepage at scroll position 0.
+2. Verify the image crop, headline, לתיאום שיחה and לצפייה בראיות fit in the initial viewport.
+3. Verify no floating Digital Igor button covers the headline or either primary action.
+4. Switch to English and verify Book a conversation and View evidence remain visible.
+
+Expected: The two primary actions are visible without scrolling, the hero does not consume the viewport, and Digital Igor remains available by its explicit in-page action rather than obscuring the mobile first fold.
+
+## Test 7 - Keep canonical content distributed when Corpus API fails
+Viewport: desktop (1280x800)
+Covers: canonical-corpus client degradation, PostPortraitWall, ViralFrontispiece, The Echo, bundled canonical/public-register snapshot
+Description: Verifies a canonical Corpus API failure cannot erase already-known public content from the homepage.
+
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/corpus",
+    "status": 503,
+    "body_json": {"error":"simulated_corpus_failure"}
+  }
+]
+```
+
+Steps:
+1. Open the Hebrew homepage and scroll through the visual biography, publication-impact and The Echo sections.
+2. Verify each section renders source-linked canonical items rather than an EVIDENCE SAFETY, unavailable or empty state.
+3. Open one source-linked item and inspect one dated source-local metric where available.
+4. Switch to English and Russian and verify the same sections remain populated.
+
+Expected: Public sections remain populated from the bundled public canonical/public-register snapshot; links still open real public sources; every metric keeps its source and snapshot date; verification state is preserved; no synthetic cross-platform reach or invented claim is introduced; the UI may disclose static fallback mode but must not become blank.
