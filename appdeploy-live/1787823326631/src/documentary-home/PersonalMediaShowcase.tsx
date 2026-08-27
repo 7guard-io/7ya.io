@@ -35,20 +35,20 @@ const proofItems:ProofItem[]=[
     statement:L('העבר לא מוצג כאן כמדליה. הוא מסביר את הדרך.','The past is not displayed as a medal. It explains the path.','Прошлое здесь не медаль. Оно объясняет путь.'),
     image:'https://drive.google.com/thumbnail?id=1E9QZxIMVvACJc-jNVRnt_rxPlWOwTVBT&sz=w1800',fallback:'./resources/igor-hero.jpg',
     sourceUrl:L('https://7ya.io/?lang=he#cinema-service','https://7ya.io/?lang=en#cinema-service','https://7ya.io/?lang=ru#cinema-service'),
-    credit:L('© Igor Vepretski / 7YA · „לפני החשיפה היה שירות”','© Igor Vepretski / 7YA · “Before exposure came service”','© Igor Vepretski / 7YA · «До охватов была служба»')
+    credit:L('© Igor Vepretski / 7YA · ״לפני החשיפה היה שירות״','© Igor Vepretski / 7YA · “Before exposure came service”','© Igor Vepretski / 7YA · «До охватов была служба»')
   },
   {
     id:'mynet-return',kind:'press',year:'2022',publisher:'mynet חולון',
     title:L('מהילד שלא האמין בעצמו — למפקד חוליה','From the child who doubted himself to a squad leader','От ребёнка, который не верил в себя, к командиру звена'),
-    quote:L('„אני לא האמנתי בעצמי אבל מישהו האמין בי”','“I did not believe in myself, but someone believed in me.”','«Я не верил в себя, но кто-то поверил в меня»'),
+    quote:L('״אני לא האמנתי בעצמי אבל מישהו האמין בי״','“I did not believe in myself, but someone believed in me.”','«Я не верил в себя, но кто-то поверил в меня»'),
     image:'https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg',
     sourceUrl:'https://holon.mynet.co.il/local_news/article/hjxqegkiq',
-    credit:L('צילום: קובי קואנקס · mynet חולון','Photo: Kobi Koanks · mynet Holon','Фото: Коби Коанкс · mynet Холон')
+    credit:L('צילום: קובי קואנקס · mynet חולון','Photo: Kobi Koanks (קובי קואנקס) · mynet Holon','Фото: Коби Коанкс · mynet Холон')
   },
   {
     id:'starton-origin',kind:'owner',year:'2022→NOW',publisher:'StartOn · OFFICIAL',
     title:L('מהתווית — לבניית הזדמנות','From a label to building opportunity','От ярлыка — к созданию возможностей'),
-    quote:L('„זכיתי” לשאת את התואר „נער בסיכון”','“I had the ‘privilege’ of carrying the label ‘at-risk youth.’”','«Мне “выпало” носить ярлык “подростка группы риска”»'),
+    quote:L('״זכיתי״ לשאת את התואר ״נער בסיכון״','“I had the ‘privilege’ of carrying the label ‘at-risk youth.’”','«Мне “выпало” носить ярлык “подростка группы риска”»'),
     image:'./resources/7ya-starton.webp',fallback:'./resources/7ya-starton.webp',
     sourceUrl:'https://starton.org.il/',
     credit:L('StartOn · האתר הציבורי הרשמי','StartOn · official public site','StartOn · официальный публичный сайт')
@@ -84,7 +84,7 @@ const proofItems:ProofItem[]=[
   {
     id:'fatherhood-post',kind:'post',year:'2023',publisher:'הידברות · פוסט מאת Igor Vepretski',
     title:L('אבהות מחזירה את הילדות אל הפריים','Fatherhood brings childhood back into frame','Отцовство возвращает детство в кадр'),
-    quote:L('„אבא מושלם — זה אבא ששם”','“A perfect father is a father who is there.”','«Идеальный отец — тот, кто рядом»'),
+    quote:L('״אבא מושלם — זה אבא ששם״','“A perfect father is a father who is there.”','«Идеальный отец — тот, кто рядом»'),
     image:'https://storage.hidabroot.org/Graphics/Storage/327341.png',
     sourceUrl:'https://www.hidabroot.org/article/1179015',
     credit:L('הידברות · מבוסס על פוסט אישי של איגור ופרצקי','Hidabroot · based on an authored post by Igor Vepretski','Hidabroot · по авторскому посту Игоря Вепрецкого')
@@ -92,7 +92,7 @@ const proofItems:ProofItem[]=[
   {
     id:'mindset',kind:'podcast',year:'2022',publisher:'Mindset · שלומי חסטר',
     title:L('מנער בסיכון ליזם חברתי','From at-risk youth to social entrepreneur','От подростка группы риска к социальному предпринимателю'),
-    quote:L('„האם להיות נער בסיכון זה חולשה, או למעשה חוזקה?”','“Is being at-risk a weakness — or can it actually become a strength?”','«Быть подростком группы риска — слабость или, возможно, сила?»'),
+    statement:L('Mindset מציג את השאלה: האם להיות נער בסיכון זה חולשה, או למעשה חוזקה?','Mindset frames the question: is being at-risk a weakness, or can it become a strength?','Mindset ставит вопрос: быть подростком группы риска — слабость или это может стать силой?'),
     image:'https://mindset.org.il/wp-content/uploads/2024/01/27-1.png',
     sourceUrl:'https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/',
     credit:L('Mindset · שלומי חסטר · פרק 102','Mindset · Shlomi Haster · episode 102','Mindset · Шломи Хастер · выпуск 102')
@@ -131,7 +131,7 @@ export default function PersonalMediaShowcase({locale}:{locale:Locale}){
     <div className='pm-proof-grid'>
       {proofItems.map((item,index)=>{
         const href=typeof item.sourceUrl==='string'?item.sourceUrl:item.sourceUrl[locale];
-        const external=item.kind!=='owner';
+        const external=/^https?:\/\//i.test(href)&&!href.startsWith('https://7ya.io/');
         return <a className={'pm-card pm-'+item.kind} href={href} target={external?'_blank':undefined} rel={external?'noreferrer':undefined} key={item.id}>
           <ProofVisual item={item} index={index} locale={locale}/>
           <div className='pm-card-copy'>
