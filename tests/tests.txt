@@ -1,51 +1,73 @@
 # Tests
 
-## Test 1 - Homepage makes the intellectual identity explicit without losing the creator archive [sanity]
+## Test 1 - Canonical documentary homepage keeps the major public rooms discoverable [sanity]
 Viewport: desktop
-Covers: Igor-first intellectual hero, claim-safe researcher descriptor, Content Core, Live Social, Research Spine, StartOn field-application ordering, Evidence access
-Description: Verifies the approved B positioning is visible immediately while the existing media-rich creator experience remains intact.
+Covers: documentary homepage, Igor-first hero, Media, Research, StartOn, Evidence, Library, source-linked visual proof
+Description: Verifies the consolidated home remains one coherent entry point into the living archive instead of fragmenting the product into competing mini-sites.
 Steps:
-1. Open /?lang=he and confirm IGOR VEPRETSKI, 'חוקר רב־תחומי עצמאי · יוצר · בונה מערכות ציבוריות' and 'RESEARCH · CREATION · PUBLIC SYSTEMS' are visible in the hero
-2. Confirm Content Core and Live Social still appear and the six requested social surfaces remain discoverable
-3. Continue to the depth sequence and confirm '05 / RESEARCH' appears before '06 / STARTON'; in Research confirm the seven-step chain includes חוויה, תצפית, שאלה, מסגרת, ראיות, יישום and שאלות פתוחות
-Expected: The homepage reads first as a real human intellectual/creator identity, keeps the creator archive and live social layers, and places Research before StartOn without clipping, horizontal overflow or removal of evidence access.
+1. Open /?lang=he and confirm the Igor hero, the personal story CTA and at least one source-linked visual/media section are visible
+2. Confirm Media, Research, StartOn, Evidence and the full archive/library remain reachable from the visible home navigation or CTAs
+3. Open Media and return to the homepage
+Expected: The homepage reads as one documentary experience, major rooms remain discoverable, and navigation does not require a legacy ?page= URL to function.
 
-## Test 2 - Native Research room exposes structured claim-safe Research Objects
+## Test 2 - Legacy query route normalizes even when opened on the wrong clean path
 Viewport: desktop
-Covers: native Research route, global Research navigation, six research domains, structured Research Objects, publication-status labels, sources, limitations
-Description: Verifies research is a native 7YA knowledge layer rather than an external profile link or promotional shelf.
+Covers: canonical routing, legacy ?page= compatibility, locale preservation, split-brain prevention
+Description: Verifies stale or malformed links cannot render one room under another room's canonical pathname.
 Steps:
-1. Open /research/?lang=he and follow the handoff if needed; confirm the 7YA global frame and Research map load
-2. Confirm The Resonant Self, SUPERNOAH, Strategic Sedation, Gastrocratia and Opportunity / Adversity are visible with explicit status labels
-3. Inspect one Research Object and confirm RESEARCH QUESTION, CORE PROPOSITION, EVIDENCE / METHOD BASIS, FIELD / SYSTEM APPLICATION and OPEN QUESTIONS / LIMITATIONS are all visible
-Expected: The Research room is multilingual, source-linked and structurally distinguishes question, proposition, evidence, application and unknowns; no university appointment, professorship, journal publication or peer-reviewed status is presented as fact without a source.
+1. Open /media/?page=research&lang=en
+2. Wait for route normalization
+3. Confirm the Research experience is visible
+Expected: The browser URL is /research/?lang=en, the page query parameter is removed, and Research is not rendered under the /media/ pathname.
 
-## Test 3 - Mobile intellectual composition remains editorial and usable
+## Test 3 - Canon search survives a coverage endpoint failure
+Viewport: desktop
+Covers: /search/ canonical results, independent coverage loading, graceful degradation, Public Discovery independence
+Description: Verifies an optional coverage failure does not blank otherwise valid canonical search results.
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/graph/coverage",
+    "status": 500,
+    "body_json": {"error":"simulated_coverage_failure"}
+  }
+]
+```
+Steps:
+1. Open /search/?lang=he&q=StartOn
+2. Wait for the canonical search request to complete
+3. Inspect the results area and the coverage area
+Expected: Canonical search results or a valid canonical empty state remain usable, Public Discovery can continue independently, and the page does not show the global search-failed state solely because coverage failed.
+
+## Test 4 - Canon search failure remains explicit without fake fallback canon
+Viewport: desktop
+Covers: /search/ canonical failure boundary, evidence integrity, Discovery separation
+Description: Verifies the site does not silently relabel fallback or discovery records as canon when the canonical graph search itself fails.
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/graph/search",
+    "status": 500,
+    "body_json": {"error":"simulated_canon_failure"}
+  }
+]
+```
+Steps:
+1. Open /search/?lang=en&q=StartOn
+2. Wait for the canonical request to fail
+3. Inspect the canonical results section and the Public Discovery section
+Expected: The canonical area shows an explicit search failure, no fallback record is presented as canonical, and the separately labelled Discovery layer may still load.
+
+## Test 5 - Mobile home remains usable at 375px without composition collisions
 Viewport: mobile
-Covers: mobile hero hierarchy, research descriptor, Research Spine reflow, Research Object readability, authentic portrait, overflow guardrail, anti-SaaS design
-Description: Performs a strict mobile visual review after the Research Spine change.
+Covers: mobile hero, CTA wrapping, source-linked visual proof, clean-route navigation, horizontal overflow guardrail, persistent-control collision guardrail
+Description: Performs a strict mobile review of the consolidated documentary home.
 Steps:
-1. Open /?lang=he and inspect the first two viewports: Igor portrait, name, researcher descriptor, manifesto and CTAs
-2. Scroll to 05 / RESEARCH and verify the seven-step chain stacks cleanly and at least three named research works are readable without tiny text or overlap
-3. Open Research from the mobile navigation and inspect the first Research Object
-Expected: The portrait remains prominent and photographic; typography stays dominant; research labels are readable; the chain and objects reflow into one column; no gradients, rounded-card soup, generic academic stock imagery, horizontal overflow or fixed-control obstruction appears.
-
-## Test 4 - Global navigation keeps all major rooms discoverable with Research added
-Viewport: desktop
-Covers: Research, Media, Music, Speaker, Blog, Creator Path, Evidence and StartOn discoverability, Museum research handoff, cross-room visual consistency
-Description: Verifies Research is added without hiding or regressing the existing public rooms.
-Steps:
-1. Open /?lang=he and confirm the global navigation exposes כל התוכן, מחקר, מדיה, מוזיקה, מרצה, בלוג, ליצור, ראיות and StartOn
-2. Open Research, Media, Music and Creator Path from the visible navigation and confirm each loads
-3. Open the Digital Museum and use its Research CTA
-Expected: Research stays inside the authored 7YA system; the Museum CTA leads to the native Research map; Media, Music, Create, Evidence and StartOn remain reachable and visually coherent.
-
-## Test 5 - StartOn and 7YA are framed as applications, not proof
-Viewport: desktop
-Covers: claim-safety guardrail, StartOn field application, Opportunity research program, 7YA evidence-governance application, source/status boundaries
-Description: Verifies the research narrative does not turn biography or implementation into automatic empirical proof.
-Steps:
-1. Open /?lang=he, scroll to 05 / RESEARCH, open Opportunity / Adversity, and read FIELD / SYSTEM APPLICATION
-2. Confirm the StartOn application text explicitly says the field environment is not automatic proof of the hypothesis
-3. Inspect 7YA / Evidence Governance and confirm it is labelled SYSTEM / DESIGN rather than peer-reviewed research and exposes open questions about trust/privacy
-Expected: The site visibly separates biography, research claims, evidence status and applications; StartOn is a field application and possible empirical environment, while 7YA is a systems application around provenance, evidence and agency.
+1. Open /?lang=he and inspect the hero headline, portrait/background crop and primary CTA in the first viewport
+2. Scroll through the first source-linked visual/media section and open Media or the archive from a visible clean-route CTA
+3. Return to home and continue through the first two content sections
+Expected: No horizontal scrolling is required, the hero face/content is not materially clipped, CTA groups remain tappable, persistent controls do not obscure primary actions, and the first visual proof section is readable at 375px.
