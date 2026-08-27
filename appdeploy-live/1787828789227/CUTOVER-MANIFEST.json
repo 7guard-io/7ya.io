@@ -1,0 +1,59 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787828789227",
+  "base_snapshot": "1787823326631",
+  "status": "READY",
+  "change": "arabic-rtl-plus-meta-facebook-read-ingestion",
+  "export_mode": "source-alignment-ledger-with-runtime-snapshot-authority",
+  "runtime_errors": {"frontend": 0, "backend": 0, "network": 0},
+  "features": [
+    "canonical Arabic RTL edition at /ar/",
+    "AR language navigation and hreflang discovery",
+    "Arabic inclusion in release language metadata",
+    "secure Meta/Facebook OAuth start and callback",
+    "managed Facebook Page discovery through /me/accounts",
+    "server-side encrypted Facebook Page access-token storage",
+    "protected Facebook Page selection API",
+    "Facebook posts and videos feed ingestion",
+    "automatic Facebook publishing remains disabled",
+    "Meta token and secret values never returned to frontend",
+    "QA Test 10 for Arabic RTL and Test 11 for Facebook OAuth security"
+  ],
+  "delta_paths": [
+    "index.html",
+    "public/ar/index.html",
+    "public/ar/ar.css",
+    "public/es/index.html",
+    "public/sitemap.xml",
+    "public/llms.txt",
+    "src/locale.tsx",
+    "backend/index.ts",
+    "src/SocialControlPage.tsx",
+    "src/social-control.css",
+    "tests/tests.txt"
+  ],
+  "mirrored_verbatim_in_this_release": ["public/ar/index.html", "public/ar/ar.css"],
+  "backend_runtime_authority": "AppDeploy source snapshot 1787828789227",
+  "backend_release_marker": "social-core-20260827-meta-oauth-1",
+  "verification": {
+    "appdeploy_ready": true,
+    "source_readback": true,
+    "qa_screenshots_generated": true,
+    "custom_domain_apex_active": true,
+    "custom_domain_www_active": true,
+    "runtime_frontend_errors": 0,
+    "runtime_backend_errors": 0,
+    "runtime_network_errors": 0,
+    "e2e_status": null,
+    "local_ci_status": "BLOCKED_BY_EXECUTION_ENVIRONMENT",
+    "github_actions_status": "NO_COMBINED_STATUS_REPORTED",
+    "pixel_manual_pass_claimed": false
+  },
+  "security": {
+    "automatic_publishing": false,
+    "secret_values_in_repository": false,
+    "oauth_tokens_in_repository": false,
+    "page_tokens_encrypted_at_rest": true,
+    "admin_page_selection_routes_protected": true
+  }
+}

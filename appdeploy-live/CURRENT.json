@@ -1,11 +1,14 @@
 {
   "app_id": "697a008fddc309b142",
-  "snapshot": "1787823326631",
-  "base_snapshot": "1787812752463",
+  "snapshot": "1787828789227",
+  "base_snapshot": "1787823326631",
   "status": "READY",
+  "appdeploy_version": "v98",
   "branch": "main",
   "exported_at": "2026-08-27",
-  "path": "appdeploy-live/1787823326631/",
-  "reconstruction": "base_snapshot + delta_files",
-  "note": "Canonical GitHub mirror pointer for the active AppDeploy production snapshot."
+  "path": "appdeploy-live/1787828789227/",
+  "runtime_source_of_truth": "AppDeploy snapshot 1787828789227",
+  "repository_role": "canonical release ledger and source-alignment mirror",
+  "reconstruction": "start from exported base snapshot 1787823326631, apply the Arabic/Meta delta documented in this release directory, and use AppDeploy snapshot 1787828789227 as authoritative runtime readback for backend code",
+  "ci_status": "NOT_CLAIMED_PASS"
 }
