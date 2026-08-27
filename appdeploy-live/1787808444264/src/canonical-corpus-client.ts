@@ -1,6 +1,6 @@
 import {api} from '@appdeploy/client';
-import {canonicalCorpusSeed} from '../../shared/canonical-corpus';
-import {mergePublicRegisterIntoCanon} from '../../shared/public-register-canon';
+import {canonicalCorpusSeed} from '../shared/canonical-corpus';
+import {mergePublicRegisterIntoCanon} from '../shared/public-register-canon';
 export type CorpusLocal={he:string;en:string;ru:string};
 export type CorpusSource={id:string;label:string;url:string;kind:string;public:boolean;platform?:string;publishedAt?:string};
 export type CorpusMedia={kind:string;sourceUrl:string;authenticity:string;label:string;url?:string;captureDate?:string;publicationDate?:string};
