@@ -20,10 +20,10 @@ Change the candidate-set type from:
 type FacebookCandidateSet={ownerUserId:string;ownerEmail:string;pages:FacebookPageCandidate[];createdAt:number;expiresAt:number};
 ```
 
-to:
+to the backward-compatible form:
 
 ```ts
-type FacebookCandidateSet={ownerUserId:string;ownerEmail:string;pages:FacebookPageCandidate[];scope:string;createdAt:number;expiresAt:number};
+type FacebookCandidateSet={ownerUserId:string;ownerEmail:string;pages:FacebookPageCandidate[];scope?:string;createdAt:number;expiresAt:number};
 ```
 
 Change `saveFacebookCandidates` to accept `scope:string` and persist only the normalized granted permission names:
@@ -35,7 +35,12 @@ async function saveFacebookCandidates(ownerUserId:string,ownerEmail:string,rows:
 }
 ```
 
-`selectFacebookPage` must use `set.scope`, not a hardcoded scope string, when calling `saveSocialToken`.
+`selectFacebookPage` must use the candidate scope when calling `saveSocialToken`, with a migration fallback for candidate sets created before this release:
+
+```ts
+const scope=set.scope||'pages_show_list pages_read_engagement';
+await saveSocialToken('facebook',ownerUserId,ownerEmail,token,'',0,0,scope,JSON.stringify({pageId:page.id,pageName:page.name,instagramBusinessAccountId:page.instagramBusinessAccountId}));
+```
 
 ## 3. Request the read scopes needed for linked Instagram Professional ingestion
 
