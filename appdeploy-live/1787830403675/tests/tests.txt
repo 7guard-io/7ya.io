@@ -1,0 +1,73 @@
+# Focused QA delta — AppDeploy snapshot 1787830403675
+# The applied runtime contains 17 total tests. This export preserves the Meta-specific acceptance tests added by this release.
+
+## Test 10 - Keep Meta ingestion source-local and secret-free
+Viewport: desktop (1280x800)
+Covers: Meta admin boundary, public projection secret isolation, source-local metric semantics
+Description: Verifies the new Meta integration exposes only public-safe state and never credentials.
+Steps:
+1. Open /api/meta/admin/status?dryRun=1.
+2. Open /api/public-projection?limit=30.
+3. Inspect the responses for credential fields and Meta metric semantics when Meta-enriched items exist.
+Expected: The status endpoint exposes only a protected-route marker; no access token, app secret, Page token, Authorization header or token-bearing URL is present; any Meta-enriched metric uses scope source-local and unlike metric classes are not combined.
+
+## Test 11 - Deny anonymous Meta administration
+Viewport: desktop (1280x800)
+Covers: /api/meta/admin/probe, /api/meta/admin/sync, /api/meta/admin/health authentication and authorization
+Description: Verifies Meta provider operations are never public write surfaces.
+Steps:
+1. Call /api/meta/admin/health without signing in.
+2. Call /api/meta/admin/probe without signing in.
+3. Call /api/meta/admin/sync without signing in.
+Expected: Anonymous requests are denied by the AppDeploy authentication boundary and no provider state is written or leaked.
+
+## Test 12 - Normalize Meta records without synthetic public identity
+Viewport: desktop (1280x800)
+Covers: Facebook/Instagram projection mapping, owner-authorized provenance, public identifier minimization
+Description: Verifies persisted Meta rows, when present, use their canonical public URLs and do not expose provider account IDs.
+Steps:
+1. Open /api/public-projection?layer=LIVE&limit=100.
+2. Inspect any item whose origins include meta-owner-authorized.
+3. Open one returned public source URL if a Meta item is present.
+Expected: Meta items use real HTTPS permalinks, trust OWNER-AUTHORIZED-API and origin meta-owner-authorized; providerObjectId and accountObjectId are not part of the public projection contract; if no Meta credential is configured, the existing LIVE/Canon content remains available without placeholders.
+
+## Test 13 - Repeated projection reads do not duplicate Meta content
+Viewport: desktop (1280x800)
+Covers: stable URL dedupe, mergeProjection metric union, projection read idempotence
+Description: Verifies reading the public projection repeatedly does not inflate unique content counts.
+Steps:
+1. Open /api/public-projection?limit=100 and note knownTotal plus returned source URLs.
+2. Reload the same request without performing an admin sync.
+3. Compare the returned unique URLs and knownTotal.
+Expected: Repeated reads are stable; identical source URLs are deduplicated, Canon remains the content winner on collisions, and source-local Meta metric observations may coexist without creating duplicate public items.
+
+## Test 14 - Keep Meta sync gated and bounded
+Viewport: desktop (1280x800)
+Covers: Meta feature flag behavior, protected sync route, bounded maxPagesPerAccount, hourly cron isolation
+Description: Verifies the operational sync path cannot be invoked anonymously or become an unbounded public crawler.
+Steps:
+1. Open /api/meta/admin/status?dryRun=1.
+2. Attempt an unauthenticated POST to /api/meta/admin/sync with dryRun true and maxPagesPerAccount 2.
+3. Return to the public homepage.
+Expected: The public status probe is protected-only metadata, the sync call is denied without admin auth, and the public site remains fully usable; runtime sync is capped at 10 pages per account and the hourly cron is an internal server operation.
+
+## Test 15 - Meta failure can never blank Public Projection
+Viewport: desktop (1280x800)
+Covers: Meta failure isolation, /api/public-projection additive fallback, homepage/library continuity
+Description: Verifies a Meta operational failure cannot remove the existing public corpus.
+QA Faults:
+```json
+[
+  {
+    "method": "POST",
+    "path": "/api/meta/admin/sync",
+    "status": 503,
+    "body_json": {"error":"simulated_meta_failure"}
+  }
+]
+```
+Steps:
+1. Open the Hebrew homepage.
+2. Open /library/?lang=he.
+3. Open /api/public-projection?limit=60.
+Expected: Homepage and Library remain populated from Canon, Discovery and existing social fallbacks; Public Projection returns its existing corpus even when the Meta operational route fails; no permanent loader or empty replacement appears.

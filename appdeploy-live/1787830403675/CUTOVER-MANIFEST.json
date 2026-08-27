@@ -1,0 +1,61 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787830403675",
+  "appdeploy_version": "v98",
+  "base_snapshot": "1787828789227",
+  "status": "READY",
+  "release_marker": "7ya-production-acceptance-20260827-meta-owner-ingest-v1",
+  "export_mode": "focused-release-delta",
+  "runtime_source_of_truth": "AppDeploy snapshot 1787830403675",
+  "release_branch": "release/meta-owner-ingestion-1787830403675",
+  "meta": {
+    "server_only": true,
+    "read_only": true,
+    "public_projection_mode": "persisted-additive",
+    "canonical_precedence": true,
+    "source_local_metrics": true,
+    "max_pages_per_account": 10,
+    "cron": "37 * * * *",
+    "cron_timezone": "Asia/Jerusalem",
+    "cron_last_status": "success",
+    "cron_failure_count": 0
+  },
+  "runtime_qa": {
+    "deployment": "ready",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e": "NOT_RUN_BY_APPDEPLOY",
+    "mobile_snapshot": "1787830455187/mobile.png",
+    "web_snapshot": "1787830455187/web.png"
+  },
+  "security_readback": {
+    "backend_meta_forbidden_pattern_matches": 0,
+    "forbidden_patterns": ["access_token=", "console.log(config)", "console.log(token)", "JSON.stringify(rawGraph"],
+    "secret_values_exported": false,
+    "token_values_exported": false
+  },
+  "credential_state": {
+    "present_names": ["FACEBOOK_APP_ID", "FACEBOOK_APP_SECRET", "NVIDIA_API_KEY", "SOCIAL_TOKEN_ENCRYPTION_KEY"],
+    "missing_meta_names": ["META_USER_ACCESS_TOKEN", "META_GRAPH_API_VERSION", "META_APP_ID", "META_APP_SECRET", "META_ALLOWED_PAGE_IDS", "META_ALLOWED_INSTAGRAM_IDS", "META_INGEST_ENABLED"],
+    "meta_ingest_write_state": "credential-required"
+  },
+  "ci": {
+    "npm_run_ci_local": "NOT_EXECUTED_IN_THIS_HARNESS",
+    "reason": "container DNS cannot resolve GitHub/AppDeploy hosts and no repository checkout is available; GitHub Actions workflow is workflow_dispatch only and documents account/org runner startup blocking",
+    "pass_claimed": false,
+    "meta_integrity_gate_added": true
+  },
+  "exported_files": [
+    "shared/social-ingest.ts",
+    "backend/meta/client.ts",
+    "backend/meta/capabilities.ts",
+    "backend/meta/facebook-adapter.ts",
+    "backend/meta/instagram-adapter.ts",
+    "backend/meta/store.ts",
+    "backend/meta/sync.ts",
+    "backend/index.ts",
+    "cron.json",
+    "tests/tests.txt"
+  ]
+}

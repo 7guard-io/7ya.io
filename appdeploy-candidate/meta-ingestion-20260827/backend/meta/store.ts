@@ -1,0 +1,238 @@
+import {db} from '@appdeploy/sdk';
+import {SocialIngestRecord,socialRecordKey,validateSocialIngestRecord} from '../../shared/social-ingest.js';
+import {MetaCapabilityReport} from './capabilities.js';
+
+const CONTENT_MONTHS_TABLE='meta_content_months';
+const CAPABILITY_TABLE='meta_capability_state';
+const CHECKPOINT_TABLE='meta_sync_checkpoints';
+const HEALTH_TABLE='meta_health_state';
+const MAX_BUCKET_ROWS=500;
+const MAX_CHECKPOINT_ROWS=100;
+const MAX_PROJECTION_ROWS=500;
+const MAX_PROJECTION_MONTHS=24;
+const METRIC_BUCKETS=16;
+
+type MetaStoredRecord={providerKey:string;record:SocialIngestRecord;firstSeenAt:number;lastSeenAt:number;availability:'active'|'unavailable'};
+type MetaMetricSnapshot={providerKey:string;platform:'Facebook'|'Instagram';accountObjectId:string;metricName:string;value:number;unit:string;asOf:string;scope:'source-local';createdAt:number};
+type MonthIndex={months:string[];updatedAt:number};
+type CheckpointRecord={key:string;cursor:string|null;updatedAt:number};
+type CapabilityState={report:MetaCapabilityReport;updatedAt:number};
+type StoredHealth={lastSuccessfulFacebookSync:string|null;lastSuccessfulInstagramSync:string|null;recordsInserted:number;recordsUpdated:number;mostRecentErrorClass:string|null;updatedAt:number};
+
+export type MetaSyncRun={
+  completedAt:string;
+  status:string;
+  facebookSucceeded:boolean;
+  instagramSucceeded:boolean;
+  recordsInserted:number;
+  recordsUpdated:number;
+  errorClass?:string;
+};
+
+export type MetaHealthSummary={
+  lastSuccessfulProbe:string|null;
+  discoveredPages:number;
+  allowlistedPages:number;
+  linkedInstagramAccounts:number;
+  lastSuccessfulFacebookSync:string|null;
+  lastSuccessfulInstagramSync:string|null;
+  recordsInserted:number;
+  recordsUpdated:number;
+  mostRecentErrorClass:string|null;
+};
+
+const isoMonth=(value:string)=>{
+  const match=/^(\d{4})-(\d{2})-/.exec(value);
+  if(!match)throw new Error('Meta timestamp month is invalid');
+  return`${match[1]}${match[2]}`;
+};
+const contentTable=(publishedAt:string)=>`meta_ingest_records_${isoMonth(publishedAt)}`;
+const hashBucket=(value:string)=>{
+  let hash=2166136261;
+  for(let index=0;index<value.length;index++){hash^=value.charCodeAt(index);hash=Math.imul(hash,16777619)}
+  return Math.abs(hash>>>0)%METRIC_BUCKETS;
+};
+const metricTable=(asOf:string,providerKey:string)=>`meta_metric_snapshots_${isoMonth(asOf)}_${hashBucket(providerKey).toString(16).padStart(2,'0')}`;
+const runTable=(completedAt:string)=>`meta_sync_runs_${isoMonth(completedAt)}`;
+
+async function boundedList<T>(table:string,limit:number){
+  const page=await db.list<T>(table,{limit});
+  if(page.nextToken)throw new Error(`${table} exceeded bounded safety window`);
+  return page.items;
+}
+
+async function upsertSingleton<T extends Record<string,unknown>>(table:string,record:T){
+  const rows=await boundedList<T>(table,2);
+  if(rows[0]){
+    const[ok]=await db.update(table,[{id:rows[0].id,record}]);
+    if(!ok)throw new Error(`failed to update ${table}`);
+    return;
+  }
+  const[id]=await db.add(table,[record]);
+  if(!id)throw new Error(`failed to create ${table}`);
+}
+
+async function ensureContentMonths(months:string[]){
+  if(!months.length)return;
+  const rows=await boundedList<MonthIndex>(CONTENT_MONTHS_TABLE,2);
+  const current=rows[0];
+  const next=[...new Set([...(current?.months||[]),...months])].sort();
+  const record:MonthIndex={months:next,updatedAt:Date.now()};
+  if(current){
+    const[ok]=await db.update(CONTENT_MONTHS_TABLE,[{id:current.id,record}]);
+    if(!ok)throw new Error('failed to update Meta content month index');
+  }else{
+    const[id]=await db.add(CONTENT_MONTHS_TABLE,[record]);
+    if(!id)throw new Error('failed to create Meta content month index');
+  }
+}
+
+export async function upsertMetaRecords(values:SocialIngestRecord[]):Promise<{inserted:number;updated:number}>{
+  const records=values.map(validateSocialIngestRecord);
+  const groups=new Map<string,SocialIngestRecord[]>();
+  for(const record of records){
+    const table=contentTable(record.publishedAt);
+    groups.set(table,[...(groups.get(table)||[]),record]);
+  }
+  let inserted=0,updated=0;
+  const months:string[]=[];
+  for(const[table,batch]of groups){
+    months.push(table.slice('meta_ingest_records_'.length));
+    const rows=await boundedList<MetaStoredRecord>(table,MAX_BUCKET_ROWS);
+    const byKey=new Map(rows.map(row=>[row.providerKey,row] as const));
+    const now=Date.now();
+    const adds:Array<Record<string,unknown>>=[];
+    const updates:Array<{id:string;record:Record<string,unknown>}>=[];
+    for(const record of batch){
+      const providerKey=socialRecordKey(record);
+      const existing=byKey.get(providerKey);
+      if(existing){
+        updates.push({id:existing.id,record:{providerKey,record,firstSeenAt:existing.firstSeenAt,lastSeenAt:now,availability:'active'}});
+        updated++;
+      }else{
+        adds.push({providerKey,record,firstSeenAt:now,lastSeenAt:now,availability:'active'});
+        inserted++;
+      }
+    }
+    if(updates.length){
+      const result=await db.update(table,updates);
+      if(result.some(ok=>!ok))throw new Error(`failed to update ${table}`);
+    }
+    if(adds.length){
+      const ids=await db.add(table,adds);
+      if(ids.some(id=>!id))throw new Error(`failed to add ${table}`);
+    }
+  }
+  await ensureContentMonths(months);
+  return{inserted,updated};
+}
+
+export async function appendMetaMetricSnapshots(values:SocialIngestRecord[]):Promise<number>{
+  const pending=new Map<string,MetaMetricSnapshot[]>();
+  const createdAt=Date.now();
+  for(const value of values){
+    const record=validateSocialIngestRecord(value);
+    const providerKey=socialRecordKey(record);
+    for(const metric of record.metrics){
+      const table=metricTable(metric.asOf,providerKey);
+      const snapshot:MetaMetricSnapshot={providerKey,platform:record.platform,accountObjectId:record.accountObjectId,metricName:metric.name,value:metric.value,unit:metric.unit,asOf:metric.asOf,scope:'source-local',createdAt};
+      pending.set(table,[...(pending.get(table)||[]),snapshot]);
+    }
+  }
+  let appended=0;
+  for(const[table,batch]of pending){
+    const rows=await boundedList<MetaMetricSnapshot>(table,MAX_BUCKET_ROWS);
+    const keys=new Set(rows.map(row=>[row.providerKey,row.metricName,row.unit,row.asOf].join('|')));
+    const adds:Array<Record<string,unknown>>=[];
+    for(const snapshot of batch){
+      const key=[snapshot.providerKey,snapshot.metricName,snapshot.unit,snapshot.asOf].join('|');
+      if(keys.has(key))continue;
+      keys.add(key);
+      adds.push(snapshot as unknown as Record<string,unknown>);
+      appended++;
+    }
+    if(adds.length){
+      const ids=await db.add(table,adds);
+      if(ids.some(id=>!id))throw new Error(`failed to add ${table}`);
+    }
+  }
+  return appended;
+}
+
+export async function readMetaProjectionRecords(limit=MAX_PROJECTION_ROWS):Promise<SocialIngestRecord[]>{
+  const requested=Math.max(0,Math.min(Math.floor(limit),MAX_PROJECTION_ROWS));
+  if(!requested)return[];
+  const indexRows=await boundedList<MonthIndex>(CONTENT_MONTHS_TABLE,2);
+  const months=[...(indexRows[0]?.months||[])].sort().reverse().slice(0,MAX_PROJECTION_MONTHS);
+  const records:SocialIngestRecord[]=[];
+  for(const month of months){
+    const rows=await boundedList<MetaStoredRecord>(`meta_ingest_records_${month}`,MAX_BUCKET_ROWS);
+    for(const row of rows){
+      if(row.availability!=='active')continue;
+      try{records.push(validateSocialIngestRecord(row.record))}catch{}
+    }
+    if(records.length>=requested)break;
+  }
+  return records.sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,requested);
+}
+
+export async function readMetaCheckpoint(key:string):Promise<string|null>{
+  const rows=await boundedList<CheckpointRecord>(CHECKPOINT_TABLE,MAX_CHECKPOINT_ROWS);
+  return rows.find(row=>row.key===key)?.cursor||null;
+}
+
+export async function writeMetaCheckpoint(key:string,cursor:string|null):Promise<void>{
+  const rows=await boundedList<CheckpointRecord>(CHECKPOINT_TABLE,MAX_CHECKPOINT_ROWS);
+  const existing=rows.find(row=>row.key===key);
+  const record:CheckpointRecord={key,cursor,updatedAt:Date.now()};
+  if(existing){
+    const[ok]=await db.update(CHECKPOINT_TABLE,[{id:existing.id,record}]);
+    if(!ok)throw new Error('failed to update Meta checkpoint');
+  }else{
+    const[id]=await db.add(CHECKPOINT_TABLE,[record]);
+    if(!id)throw new Error('failed to create Meta checkpoint');
+  }
+}
+
+export async function saveMetaCapabilityReport(report:MetaCapabilityReport):Promise<void>{
+  await upsertSingleton<CapabilityState>(CAPABILITY_TABLE,{report,updatedAt:Date.now()});
+}
+
+export async function recordMetaSyncRun(run:MetaSyncRun):Promise<void>{
+  const[id]=await db.add(runTable(run.completedAt),[run as unknown as Record<string,unknown>]);
+  if(!id)throw new Error('failed to record Meta sync run');
+  const healthRows=await boundedList<StoredHealth>(HEALTH_TABLE,2);
+  const previous=healthRows[0];
+  const health:StoredHealth={
+    lastSuccessfulFacebookSync:run.facebookSucceeded?run.completedAt:previous?.lastSuccessfulFacebookSync||null,
+    lastSuccessfulInstagramSync:run.instagramSucceeded?run.completedAt:previous?.lastSuccessfulInstagramSync||null,
+    recordsInserted:run.recordsInserted,
+    recordsUpdated:run.recordsUpdated,
+    mostRecentErrorClass:run.errorClass||null,
+    updatedAt:Date.now(),
+  };
+  if(previous){
+    const[ok]=await db.update(HEALTH_TABLE,[{id:previous.id,record:health}]);
+    if(!ok)throw new Error('failed to update Meta health');
+  }else{
+    const[healthId]=await db.add(HEALTH_TABLE,[health]);
+    if(!healthId)throw new Error('failed to create Meta health');
+  }
+}
+
+export async function readMetaHealth():Promise<MetaHealthSummary>{
+  const[capabilityRows,healthRows]=await Promise.all([boundedList<CapabilityState>(CAPABILITY_TABLE,2),boundedList<StoredHealth>(HEALTH_TABLE,2)]);
+  const capability=capabilityRows[0]?.report;
+  const health=healthRows[0];
+  return{
+    lastSuccessfulProbe:capability?.state==='ready'?capability.checkedAt:null,
+    discoveredPages:capability?.discoveredPageCount||0,
+    allowlistedPages:capability?.allowedPageCount||0,
+    linkedInstagramAccounts:capability?.linkedInstagramCount||0,
+    lastSuccessfulFacebookSync:health?.lastSuccessfulFacebookSync||null,
+    lastSuccessfulInstagramSync:health?.lastSuccessfulInstagramSync||null,
+    recordsInserted:health?.recordsInserted||0,
+    recordsUpdated:health?.recordsUpdated||0,
+    mostRecentErrorClass:health?.mostRecentErrorClass||null,
+  };
+}
