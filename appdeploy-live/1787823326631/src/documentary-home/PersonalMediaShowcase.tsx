@@ -10,9 +10,10 @@ type ProofItem={
   publisher:string;
   title:LocalText;
   quote?:LocalText;
+  statement?:LocalText;
   image:string;
   fallback:string;
-  sourceUrl:string;
+  sourceUrl:string|LocalText;
   credit:LocalText;
 };
 
@@ -22,24 +23,24 @@ const proofItems:ProofItem[]=[
   {
     id:'owner-press-wall',kind:'owner',year:'ARCHIVE',publisher:'7YA · OWNER ARCHIVE',
     title:L('החיים לפני הכותרות','The life before the headlines','Жизнь до заголовков'),
-    quote:L('לפני החשיפה היה שירות. לפני המותג היה מסלול.','Before the exposure came service. Before the brand came a path.','До охватов была служба. До бренда был путь.'),
+    statement:L('לפני החשיפה היה שירות. לפני המותג היה מסלול.','Before the exposure came service. Before the brand came a path.','До охватов была служба. До бренда был путь.'),
     image:'https://drive.google.com/thumbnail?id=1WKhOrE4Ppq5RFb7vd5uFRShUDZMGiK1W&sz=w1800',fallback:'./resources/igor-hero.jpg',
-    sourceUrl:'https://7ya.io/library/?lang=he',
+    sourceUrl:L('https://7ya.io/library/?lang=he','https://7ya.io/library/?lang=en','https://7ya.io/library/?lang=ru'),
     credit:L('© Igor Vepretski / 7YA · ארכיון בעלים','© Igor Vepretski / 7YA · owner archive','© Igor Vepretski / 7YA · архив владельца')
   },
   {
     id:'owner-service',kind:'owner',year:'SERVICE',publisher:'7YA · OWNER ARCHIVE',
-    title:L('מילד מוכה — למסלול של שירות ואחריות','From an abused child to a path of service and responsibility','От ребёнка, пережившего насилие, к пути службы и ответственности'),
-    quote:L('העבר לא מוצג כאן כמדליה. הוא מסביר את הדרך.','The past is not displayed as a medal. It explains the path.','Прошлое здесь не медаль. Оно объясняет путь.'),
+    title:L('מילד מוכה — ללוחם ולמפקד','From an abused child to a fighter and commander','От ребёнка, пережившего насилие, к бойцу и командиру'),
+    statement:L('העבר לא מוצג כאן כמדליה. הוא מסביר את הדרך.','The past is not displayed as a medal. It explains the path.','Прошлое здесь не медаль. Оно объясняет путь.'),
     image:'https://drive.google.com/thumbnail?id=1E9QZxIMVvACJc-jNVRnt_rxPlWOwTVBT&sz=w1800',fallback:'./resources/igor-hero.jpg',
-    sourceUrl:'https://7ya.io/?lang=he#cinema-service',
+    sourceUrl:L('https://7ya.io/?lang=he#cinema-service','https://7ya.io/?lang=en#cinema-service','https://7ya.io/?lang=ru#cinema-service'),
     credit:L('© Igor Vepretski / 7YA · „לפני החשיפה היה שירות”','© Igor Vepretski / 7YA · “Before exposure came service”','© Igor Vepretski / 7YA · «До охватов была служба»')
   },
   {
     id:'mynet-return',kind:'press',year:'2022',publisher:'mynet חולון',
-    title:L('חוזר לשכונה','Returning to the neighborhood','Возвращение в район'),
-    quote:L('„חולם להותיר חותם”','“Dreams of leaving a mark”','«Мечтает оставить след»'),
-    image:'./resources/igor-hero.jpg',fallback:'./resources/igor-hero.jpg',
+    title:L('מהילד שלא האמין בעצמו — למפקד חוליה','From the child who doubted himself to a squad leader','От ребёнка, который не верил в себя, к командиру звена'),
+    quote:L('„אני לא האמנתי בעצמי אבל מישהו האמין בי”','“I did not believe in myself, but someone believed in me.”','«Я не верил в себя, но кто-то поверил в меня»'),
+    image:'https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg',fallback:'./resources/igor-hero.jpg',
     sourceUrl:'https://holon.mynet.co.il/local_news/article/hjxqegkiq',
     credit:L('צילום: קובי קואנקס · mynet חולון','Photo: Kobi Koanks · mynet Holon','Фото: Коби Коанкс · mynet Холон')
   },
@@ -67,7 +68,7 @@ const proofItems:ProofItem[]=[
   {
     id:'fatherhood-post',kind:'post',year:'2023',publisher:'הידברות · פוסט מאת Igor Vepretski',
     title:L('אבהות מחזירה את הילדות אל הפריים','Fatherhood brings childhood back into frame','Отцовство возвращает детство в кадр'),
-    quote:L('„אבא מושלם — זה אבא ששם”','“A perfect father is a father who is there”','«Идеальный отец — тот, кто рядом»'),
+    quote:L('„אבא מושלם — זה אבא ששם”','“A perfect father is a father who is there.”','«Идеальный отец — тот, кто рядом»'),
     image:'https://storage.hidabroot.org/Graphics/Storage/327341.png',fallback:'./resources/igor-hero.jpg',
     sourceUrl:'https://www.hidabroot.org/article/1179015',
     credit:L('הידברות · מבוסס על פוסט אישי של איגור ופרצקי','Hidabroot · based on an authored post by Igor Vepretski','Hidabroot · по авторскому посту Игоря Вепрецкого')
@@ -75,17 +76,17 @@ const proofItems:ProofItem[]=[
   {
     id:'mindset',kind:'podcast',year:'2022',publisher:'Mindset · שלומי חסטר',
     title:L('מנער בסיכון ליזם חברתי','From at-risk youth to social entrepreneur','От подростка группы риска к социальному предпринимателю'),
-    quote:L('„האם להיות נער בסיכון זה חולשה, או למעשה חוזקה?”','“Is being at-risk a weakness — or can it become a strength?”','«Быть подростком группы риска — слабость или, возможно, сила?»'),
-    image:'./resources/chapter-voice.webp',fallback:'./resources/igor-hero.jpg',
+    quote:L('„האם להיות נער בסיכון זה חולשה, או למעשה חוזקה?”','“Is being at-risk a weakness — or can it actually become a strength?”','«Быть подростком группы риска — слабость или, возможно, сила?»'),
+    image:'https://mindset.org.il/wp-content/uploads/2024/01/27-1.png',fallback:'./resources/chapter-voice.webp',
     sourceUrl:'https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/',
     credit:L('Mindset · שלומי חסטר · פרק 102','Mindset · Shlomi Haster · episode 102','Mindset · Шломи Хастер · выпуск 102')
   }
 ];
 
 const sectionCopy={
-  he:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'מילד מוכה לחייל מצטיין. מהישרדות — לאחריות.',lead:'לא עוד ביוגרפיה גנרית. אלה תמונות, שידורים ומשפטים שמחזיקים את הדרך עצמה — הילדות, השירות, החזרה לג׳סי כהן, האבהות, StartOn והקול הציבורי.',source:'למקור',owned:'חומר אישי',media:'מקור תקשורתי'},
-  en:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'From an abused child to distinguished service. From survival to responsibility.',lead:'Not a generic biography. These are images, broadcasts and words that carry the path itself — childhood, service, the return to Jesse Cohen, fatherhood, StartOn and a public voice.',source:'Open source',owned:'Personal archive',media:'Media source'},
-  ru:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'От ребёнка, пережившего насилие, — к отличившемуся солдату. От выживания — к ответственности.',lead:'Не шаблонная биография. Здесь фотографии, эфиры и слова, которые несут сам путь: детство, служба, возвращение в Джесси Коэн, отцовство, StartOn и общественный голос.',source:'Источник',owned:'Личный архив',media:'Медиаисточник'}
+  he:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'מילד מוכה ללוחם ולמפקד. מהישרדות — לאחריות.',lead:'לא עוד ביוגרפיה גנרית. אלה תמונות, שידורים ומשפטים שמחזיקים את הדרך עצמה — הילדות, השירות, החזרה לג׳סי כהן, האבהות, StartOn והקול הציבורי.',source:'למקור',owned:'חומר אישי',media:'מקור תקשורתי'},
+  en:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'From an abused child to a fighter and commander. From survival to responsibility.',lead:'Not a generic biography. These are images, broadcasts and words that carry the path itself — childhood, service, the return to Jesse Cohen, fatherhood, StartOn and a public voice.',source:'Open source',owned:'Personal archive',media:'Media source'},
+  ru:{kicker:'LIFE → SERVICE → PUBLIC VOICE',title:'От ребёнка, пережившего насилие, — к бойцу и командиру. От выживания — к ответственности.',lead:'Не шаблонная биография. Здесь фотографии, эфиры и слова, которые несут сам путь: детство, служба, возвращение в Джесси Коэн, отцовство, StartOn и общественный голос.',source:'Источник',owned:'Личный архив',media:'Медиаисточник'}
 } as const;
 
 export default function PersonalMediaShowcase({locale}:{locale:Locale}){
@@ -97,22 +98,27 @@ export default function PersonalMediaShowcase({locale}:{locale:Locale}){
       <span>{c.lead}</span>
     </header>
     <div className='pm-proof-grid'>
-      {proofItems.map((item,index)=><a className={'pm-card pm-'+item.kind} href={item.sourceUrl} target='_blank' rel='noreferrer' key={item.id}>
-        <figure>
-          <img src={item.image} alt={item.title[locale]} loading={index<3?'eager':'lazy'} decoding='async' referrerPolicy='no-referrer' onError={event=>{const img=event.currentTarget;if(img.src.endsWith(item.fallback))return;img.src=item.fallback}}/>
-          {item.kind==='broadcast'&&<i aria-hidden='true'><Play fill='currentColor'/></i>}
-          <em>{item.kind==='owner'?c.owned:c.media}</em>
-        </figure>
-        <div className='pm-card-copy'>
-          <small dir='ltr'>{item.year} · {item.publisher}</small>
-          <h3>{item.title[locale]}</h3>
-          {item.quote&&<blockquote className='pm-quote'><Quote aria-hidden='true'/><span>{item.quote[locale]}</span></blockquote>}
-          <footer>
-            <span className='pm-credit'>{item.credit[locale]}</span>
-            <b>{c.source}<ArrowUpRight/></b>
-          </footer>
-        </div>
-      </a>)}
+      {proofItems.map((item,index)=>{
+        const href=typeof item.sourceUrl==='string'?item.sourceUrl:item.sourceUrl[locale];
+        const external=item.kind!=='owner';
+        return <a className={'pm-card pm-'+item.kind} href={href} target={external?'_blank':undefined} rel={external?'noreferrer':undefined} key={item.id}>
+          <figure>
+            <img src={item.image} alt={item.title[locale]} loading={index<3?'eager':'lazy'} decoding='async' referrerPolicy='no-referrer' onError={event=>{const img=event.currentTarget;if(img.dataset.fallback==='1')return;img.dataset.fallback='1';img.src=item.fallback}}/>
+            {item.kind==='broadcast'&&<i aria-hidden='true'><Play fill='currentColor'/></i>}
+            <em>{item.kind==='owner'?c.owned:c.media}</em>
+          </figure>
+          <div className='pm-card-copy'>
+            <small dir='ltr'>{item.year} · {item.publisher}</small>
+            <h3>{item.title[locale]}</h3>
+            {item.statement&&<p className='pm-statement'>{item.statement[locale]}</p>}
+            {item.quote&&<blockquote className='pm-quote'><Quote aria-hidden='true'/><span>{item.quote[locale]}</span></blockquote>}
+            <footer>
+              <span className='pm-credit'>{item.credit[locale]}</span>
+              <b>{c.source}<ArrowUpRight/></b>
+            </footer>
+          </div>
+        </a>
+      })}
     </div>
   </section>
 }
