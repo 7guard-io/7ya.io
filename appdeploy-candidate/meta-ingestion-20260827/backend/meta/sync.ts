@@ -1,9 +1,12 @@
-import {SocialIngestRecord} from '../../shared/social-ingest.js';
-import {MetaCapabilityDiscovery,MetaCapabilityReport,MetaResolvedPage,discoverMetaCapabilities} from './capabilities.js';
-import {MetaConfig,loadMetaConfig,sanitizeMetaError} from './client.js';
+import type {SocialIngestRecord} from '../../shared/social-ingest.js';
+import {discoverMetaCapabilities} from './capabilities.js';
+import type {MetaCapabilityDiscovery,MetaCapabilityReport,MetaResolvedPage} from './capabilities.js';
+import {loadMetaConfig,sanitizeMetaError} from './client.js';
+import type {MetaConfig} from './client.js';
 import {fetchFacebookPageBatch} from './facebook-adapter.js';
 import {fetchInstagramMediaBatch} from './instagram-adapter.js';
-import {MetaOAuthSelection,buildMetaOAuthBridge} from './oauth-bridge.js';
+import {buildMetaOAuthBridge} from './oauth-bridge.js';
+import type {MetaOAuthSelection} from './oauth-bridge.js';
 import {appendMetaMetricSnapshots,readMetaCheckpoint,recordMetaSyncRun,saveMetaCapabilityReport,upsertMetaRecords,writeMetaCheckpoint} from './store.js';
 
 export type MetaProbeResult={report:MetaCapabilityReport;persisted:boolean;source:'facebook-oauth'|'dedicated-meta-secrets'|'none'};
