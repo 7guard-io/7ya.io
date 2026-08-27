@@ -1,5 +1,5 @@
-import {MetaCapabilityDiscovery} from './capabilities.js';
-import {MetaConfig} from './client.js';
+import type {MetaCapabilityDiscovery} from './capabilities.js';
+import type {MetaConfig} from './client.js';
 
 export type MetaOAuthSelection={
   pageId:string;
