@@ -1,0 +1,42 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787941429074",
+  "previous_snapshot": "1787938839410",
+  "appdeploy_version": "v98",
+  "deployed_at": "2026-08-28T18:23:49.074Z",
+  "change": "Bridge stored Facebook Page OAuth into owner-authorized Meta hourly ingestion and request Instagram read/insight scopes for future OAuth grants.",
+  "runtime_changed_files": [
+    "backend/meta/oauth-bridge.ts",
+    "backend/meta/sync.ts",
+    "backend/index.ts"
+  ],
+  "behavior": {
+    "facebook_surface": "https://www.facebook.com/vepretski7",
+    "automatic_publishing": false,
+    "secret_values_returned": false,
+    "oauth_tokens_returned": false,
+    "legacy_secret_fallback_retained": true,
+    "instagram_permissions_requested": [
+      "instagram_basic",
+      "instagram_manage_insights"
+    ]
+  },
+  "verification": {
+    "tdd_regression": "2/2 PASS",
+    "appdeploy_status": "READY",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "meta_sync_cron_enabled": true,
+    "meta_sync_cron_failure_count": 0
+  },
+  "github_ci": {
+    "status": "UNAVAILABLE_AS_RELEASE_GATE",
+    "reason": "ci.yml is workflow_dispatch-only and documents account/org-level GitHub Actions runner startup blocking"
+  },
+  "source_export": {
+    "mode": "ledger-only",
+    "complete": false,
+    "runtime_source_of_truth": "AppDeploy snapshot 1787941429074"
+  }
+}
