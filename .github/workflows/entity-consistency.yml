@@ -1,64 +1,16 @@
-name: Entity Consistency
+name: Quarantined — legacy static entity consistency
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - "index.html"
-      - "igor-vepretski/index.html"
-      - "data/entity-registry.json"
-      - "scripts/entity_consistency.py"
-      - ".github/workflows/entity-consistency.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "index.html"
-      - "igor-vepretski/index.html"
-      - "data/entity-registry.json"
-      - "scripts/entity_consistency.py"
-      - ".github/workflows/entity-consistency.yml"
 
 permissions:
   contents: read
 
 jobs:
-  entity-consistency:
+  quarantine:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - name: Checkout exact commit without marketplace actions
-        shell: bash
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+      - name: Explain quarantine
         run: |
-          set -euo pipefail
-          git init .
-          git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" && -n "${PR_NUMBER:-}" ]]; then
-            git fetch --no-tags --depth=1 origin "refs/pull/${PR_NUMBER}/merge"
-          else
-            git fetch --no-tags --depth=1 origin "${GITHUB_SHA}"
-          fi
-          git checkout --detach FETCH_HEAD
-
-      - name: Confirm runtime
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 --version
-          git rev-parse HEAD
-          test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
-
-      - name: Compile auditor
-        run: python3 -m py_compile scripts/entity_consistency.py
-
-      - name: Audit canonical entity architecture
-        run: python3 scripts/entity_consistency.py --check
-
-      - name: Verify generated metadata is committed
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 scripts/entity_consistency.py --write
-          git diff --exit-code -- index.html igor-vepretski/index.html
+          echo 'QUARANTINED_WORKFLOW'
+          echo 'This workflow targets the legacy static GitHub tree. Entity validation must be reconciled against the current AppDeploy runtime before automation is re-enabled.'
