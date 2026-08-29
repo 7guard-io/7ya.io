@@ -30,6 +30,13 @@
 .dh-impact-summary-boundary nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .dh-impact-summary-boundary a{min-height:46px;display:inline-flex;align-items:center;gap:8px;padding:0 15px;border:1px solid rgba(255,255,255,.22);text-decoration:none;font-size:12px;font-weight:850}
 .dh-impact-summary-boundary a:first-child{background:#f1ece2;color:#111;border-color:#f1ece2}
+.dh-impact-depth{margin-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+.dh-impact-depth>summary{min-height:54px;display:flex;align-items:center;justify-content:center;padding:0 16px;cursor:pointer;color:rgba(255,255,255,.66);font:850 11px/1.3 ui-sans-serif,system-ui;list-style:none}
+.dh-impact-depth>summary::-webkit-details-marker{display:none}
+.dh-impact-depth>summary:after{content:'＋';margin-inline-start:8px;color:#9fb4cb;font-size:16px}
+.dh-impact-depth[open]>summary{border-bottom:1px solid rgba(255,255,255,.12);color:#fff}
+.dh-impact-depth[open]>summary:after{content:'−'}
+.dh-impact-depth .ib{margin-inline:calc(clamp(18px,6vw,92px) * -1);border-top:0}
 
 /* Phone composition: do not turn Igor's portrait into a shallow banner just to fit controls. */
 @media(max-width:900px){
@@ -51,6 +58,7 @@
   .dh-impact-summary-boundary{display:block}
   .dh-impact-summary-boundary nav{justify-content:stretch;margin-top:18px}
   .dh-impact-summary-boundary a{flex:1 1 150px;justify-content:center}
+  .dh-impact-depth .ib{margin-inline:-14px}
 
   /* Restore the JS intent: the Home FAB stays absent until explicitly requested. */
   .companion-fab:not(.is-visible){display:none!important;opacity:0!important;pointer-events:none!important}
