@@ -10,7 +10,7 @@ Approved by the product owner on 2026-08-29 for implementation on an isolated br
 
 As of 2026-08-29, the verified active AppDeploy app is `697a008fddc309b142`, snapshot `1788005385311` (AppDeploy label `v98`). AppDeploy reports `ready` with zero current frontend and backend errors. The canonical domain and `www` host are active on AppDeploy. The runtime's `public/release.json` identifies build marker `7ya-cinematic-os-20260828-v1` and source alignment `APPDEPLOY_LIVE_SNAPSHOT_PENDING_GITHUB_EXPORT`.
 
-The GitHub governance files are stale: `AGENTS.md` still names an older AppDeploy version and `docs/CONTROL_PLANE_STATE.json` points to an August 24 snapshot. In addition, the active workflow directory contains historical/one-time workflows that violate the repository's own `scripts/check-workflows.mjs` allowlist, making the release gate structurally inconsistent.
+The GitHub governance files were stale: `AGENTS.md` named an older AppDeploy version and `docs/CONTROL_PLANE_STATE.json` pointed to an August 24 snapshot. The workflow gate was also stale relative to the repository: multiple workflows had already been moved toward manual operation while `scripts/check-workflows.mjs` still expected older automatic push/schedule behavior.
 
 ## Goal
 
@@ -54,24 +54,33 @@ The newest independently verified receipt wins if later metadata conflicts.
 
 ### 3. Workflow quarantine
 
-The active workflow directory must match the existing governed allowlist in `scripts/check-workflows.mjs`:
+The repository keeps historical workflow files in place for provenance, but one-time/stale workflows are converted to inert manual no-op definitions. This avoids losing history while making future automatic execution impossible.
+
+The governed workflow set is:
 
 - `actions-smoke.yml`
 - `ci.yml`
+- `cloudflare-appdeploy-dns-apply-once.yml`
+- `cloudflare-appdeploy-dns-preflight.yml`
 - `digital-museum-collector.yml`
+- `entity-consistency.yml`
+- `jekyll-gh-pages.yml`
+- `meta-ai-discovery-enable.yml`
 - `pages.yml`
 
-Historical one-time production mutation or stale compatibility workflows are removed from `.github/workflows/` so they cannot trigger from future pushes. Git history preserves them; deletion from the active workflow directory is a quarantine action, not destruction of provenance.
+The following five are quarantined in place:
 
-The workflows quarantined by this patch are:
+- `cloudflare-appdeploy-dns-apply-once.yml`
+- `cloudflare-appdeploy-dns-preflight.yml`
+- `entity-consistency.yml`
+- `jekyll-gh-pages.yml`
+- `meta-ai-discovery-enable.yml`
 
-- `cloudflare-appdeploy-dns-apply-once.yml` — completed one-time DNS cutover with obsolete build marker;
-- `cloudflare-appdeploy-dns-preflight.yml` — useful historical safety workflow but outside the current workflow contract and tied to the old cutover path;
-- `entity-consistency.yml` — operates on the legacy static tree and currently violates the workflow quarantine rules;
-- `jekyll-gh-pages.yml` — generic Jekyll sample workflow added on 2026-08-29 and already failing;
-- `meta-ai-discovery-enable.yml` — one-time production Cloudflare mutation path that should not re-run automatically from `main`.
+Each quarantined workflow must be `workflow_dispatch` only, `contents: read`, contain the `QUARANTINED_WORKFLOW` proof marker, and contain no secrets, Cloudflare mutation, Pages deployment, push, pull-request or schedule trigger.
 
-The underlying scripts, receipts and Git history are preserved.
+The four non-quarantined workflow files are also manual-only in the current control plane. `pages.yml` remains an explicit manual legacy snapshot/recovery path, and the Digital Museum collector remains an explicit manual evidence-sync tool. No workflow may have an automatic `push`, `pull_request` or `schedule` trigger while GitHub is not the deployable production source.
+
+`scripts/check-workflows.mjs` enforces these rules deterministically.
 
 ### 4. Runtime export checkpoint
 
@@ -91,12 +100,14 @@ The GenAI curriculum and translations may be removed only after all of the follo
 
 ## Validation
 
-This patch is considered code-complete when repository-level deterministic inspection proves:
+This patch is ready for review when repository-level deterministic inspection proves:
 
 - governance files name snapshot `1788005385311` and build marker `7ya-cinematic-os-20260828-v1`;
 - source reconciliation remains explicitly incomplete;
-- the five quarantined workflow files are absent from `.github/workflows/`;
-- the remaining workflow filenames equal the allowlist already enforced by `scripts/check-workflows.mjs`;
+- all nine governed workflows are present;
+- the five historical workflows are inert manual no-ops with quarantine markers and no mutation capability;
+- the remaining workflows are manual-only;
+- `scripts/check-workflows.mjs` encodes the same contract;
 - AppDeploy still reports `ready` and no frontend/backend errors;
 - canonical AppDeploy domains remain active;
 - no production deployment was initiated.
