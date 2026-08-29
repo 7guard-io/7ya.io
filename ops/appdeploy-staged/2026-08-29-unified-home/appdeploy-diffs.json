@@ -1,0 +1,67 @@
+{
+  "target": {
+    "app_id": "697a008fddc309b142",
+    "base_version": "1788013951183",
+    "authority": "APPDEPLOY_LIVE_SOURCE"
+  },
+  "release_candidate": "7ya-unified-home-20260829-v1",
+  "production_apply": false,
+  "files": [
+    {
+      "filename": "src/App.tsx",
+      "operation": "diff",
+      "diffs": [
+        {
+          "from": "import './mobile-first-fold-20260828.css';import './room-focus-20260828.css';const release='7ya-cinematic-os-20260828-v1';",
+          "to": "import './mobile-first-fold-20260828.css';import './room-focus-20260828.css';import './unified-home-20260829.css';const release='7ya-unified-home-20260829-v1';"
+        }
+      ]
+    },
+    {
+      "filename": "src/unified-home-20260829.css",
+      "operation": "create",
+      "source": "ops/appdeploy-staged/2026-08-29-unified-home/unified-home-20260829.css"
+    },
+    {
+      "filename": "src/documentary-home/DocumentaryHome.tsx",
+      "operation": "diff",
+      "diffs": [
+        {
+          "from": "      <NarrativeChapters mode='home'/>\n      <MediaFrontDoor/>\n      <ImpactFrontDoor/>",
+          "to": "      <MediaFrontDoor/>\n      <NarrativeChapters mode='home'/>\n      <section className=\"dh-impact-summary\" id=\"impact\" aria-labelledby=\"dh-impact-summary-title\">\n        <div className=\"dh-impact-summary-inner\">\n          <header>\n            <small dir=\"ltr\">IMPACT · DATED SNAPSHOTS · SOURCE LINKED</small>\n            <h2 id=\"dh-impact-summary-title\">{locale===\"he\"?\"השפעה שנצברה. עכשיו הופכים אותה לתשתית.\":locale===\"ru\"?\"Накопленное влияние. Теперь — в инфраструктуру.\":\"Accumulated influence. Now turn it into infrastructure.\"}</h2>\n            <p>{locale===\"he\"?\"7B+ הוא snapshot מצטבר של gross exposure — לא 7 מיליארד אנשים ייחודיים. snapshots מצטברים נשמרים כסדרת זמן ולא מחוברים זה לזה.\":locale===\"ru\"?\"7B+ — накопительный snapshot gross exposure, а не 7 миллиардов уникальных людей. Накопительные snapshots образуют временной ряд и не складываются друг с другом.\":\"7B+ is a cumulative gross-exposure snapshot, not 7 billion unique people. Cumulative snapshots form a time series and are not added together.\"}</p>\n          </header>\n          <div className=\"dh-impact-summary-metrics\">{experience.metrics.map(metric=><a href={evidence} key={metric.kind}><strong dir=\"ltr\">{metric.value}</strong><span>{metric.label}</span></a>)}</div>\n          <div className=\"dh-impact-summary-boundary\">\n            <p>{locale===\"he\"?\"הכיוון של 7YA:\":locale===\"ru\"?\"Направление 7YA:\":\"7YA direction:\"}<strong>{locale===\"he\"?\"להפוך השפעה שכבר נצברה למערכת שמייצרת השפעה אצל אחרים.\":locale===\"ru\"?\"Превратить уже накопленное влияние в систему, которая помогает другим создавать влияние.\":\"Turn accumulated influence into a system that generates influence in others.\"}</strong></p>\n            <nav><a href={evidence}>{locale===\"he\"?\"ראיות ומקורות\":locale===\"ru\"?\"Доказательства и источники\":\"Evidence & sources\"}<BookOpen/></a><a href={archive}>{locale===\"he\"?\"לארכיון ההשפעה\":locale===\"ru\"?\"Архив влияния\":\"Impact archive\"}<ArrowUpRight/></a></nav>\n          </div>\n          <details className=\"dh-impact-depth\"><summary>{locale===\"he\"?\"לפתוח את שיטת הספירה המלאה\":locale===\"ru\"?\"Открыть полный протокол подсчёта\":\"Open the full counting protocol\"}</summary><ImpactFrontDoor/></details>\n        </div>\n      </section>"
+        },
+        {
+          "from": "      <section className=\"dh-frames\"id=\"legacy-story-grid\">",
+          "to": "      {false&&<section className=\"dh-frames\"id=\"legacy-story-grid\">"
+        },
+        {
+          "from": "      </section>\n      <section className=\"dh-life\">",
+          "to": "      </section>}\n      <section className=\"dh-life\">"
+        }
+      ]
+    },
+    {
+      "filename": "src/documentary-home/ImpactFrontDoor.tsx",
+      "operation": "diff",
+      "diffs": [
+        {
+          "from": "return <section className='ib' id='impact' aria-labelledby='impact-broadcast-title' data-impact-broadcast='1'>",
+          "to": "return <section className='ib' id='impact-depth' aria-labelledby='impact-broadcast-title' data-impact-broadcast='1'>"
+        }
+      ]
+    },
+    {
+      "filename": "tests/tests.txt",
+      "operation": "append",
+      "source": "ops/appdeploy-staged/2026-08-29-unified-home/tests.append.txt"
+    }
+  ],
+  "acceptance": {
+    "home_order": ["hero", "media-front-door", "six-scene-story", "compact-impact", "human-life", "now", "living-archive"],
+    "hero_first_fold_actions": ["story", "evidence"],
+    "legacy_home_media_grid": "not rendered",
+    "impact_full_protocol": "collapsed one interaction deeper",
+    "mobile_chat": "no unsolicited FAB on Home; simplified bottom sheet when explicitly opened",
+    "evidence_policy": "7B+ remains cumulative gross exposure, not unique people; cumulative snapshots are not summed"
+  }
+}
