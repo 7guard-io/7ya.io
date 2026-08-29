@@ -1,37 +1,35 @@
-# 7YA Home Editorial Cutover — staged patch
+# 7YA Home Editorial Cutover — deployed
 
-Target runtime: AppDeploy app `697a008fddc309b142`, base `v100` / `1787689408979`.
+Production runtime: AppDeploy app `697a008fddc309b142`, runtime `v98` / `1788013951183`, released 2026-08-29 14:32:31Z.
 
-This patch is intentionally staged outside the canonical public root because the repository contract states that the current AppDeploy runtime snapshot has not yet been fully reconciled back into `main`.
+The approved editorial cutover is now production-published. The runtime was reconciled against the newer Igor desktop/mobile cutover layers before release so the intended homepage hierarchy is not defeated by later `!important` rules.
 
-## Visual intent
+## Visual result
 
-- Keep Igor and real media as the first visual signal.
-- Reduce above-the-fold text density on mobile.
-- Remove the live graph/data module from the primary emotional beat.
-- Hide source-layer filters on the homepage while preserving source metadata and deep evidence surfaces.
-- Recompose the public-life atlas as one large cinematic stage with larger four-column desktop / two-column mobile thumbnails.
-- Keep evidence, archive and system surfaces available as deeper layers.
+- Igor and real media remain the first visual signal.
+- Above-the-fold text density is reduced on mobile.
+- Source-layer controls recede from the primary emotional journey.
+- The public-life archive opens with a large cinematic stage.
+- The moment atlas uses four columns on desktop and two columns on mobile.
+- Evidence, archive and system surfaces remain available as deeper layers.
 
-## Runtime change
+## Production changes
 
-1. Add `src/life-first/editorial-cutover-20260826.css` using the staged CSS file in this directory.
-2. Import it last from `src/life-first/AutobiographicalCinema.tsx`, after `rtl-typography-20260825.css`.
-3. Do not alter backend, corpus, evidence records or routing.
+1. `src/life-first/editorial-cutover-20260826.css` is imported last from `AutobiographicalCinema.tsx`, after `igor-mobile-rich-20260826.css`.
+2. The deployed CSS contains explicit high-specificity overrides for the source filter, cinematic stage and mobile atlas.
+3. `tests/tests.txt` includes a mobile editorial-cutover contract covering hero density, stage hierarchy, source-filter suppression, two-column atlas layout and horizontal-overflow safety.
+4. Backend, evidence corpus and routing were not changed by this cutover.
 
-The exact machine-readable patch is in `patch.json`.
+## Deployment authority
 
-## Deployment lock
+AppDeploy is the production authority for `7ya.io`. The accidental Jekyll/GitHub Pages push trigger has been changed to manual-only so pushes to `main` no longer create a competing production signal.
 
-This patch is **not production-published from this branch**. Production remains locked until the product owner explicitly issues the standing deployment command: `בצע את שרשרת הפריסה`.
+## Verification
 
-## Verification contract
+- AppDeploy status: `ready`.
+- Frontend runtime errors: `0` at verification.
+- Backend runtime errors: `0` at verification.
+- `7ya.io`: active on the AppDeploy v2 custom-domain proxy.
+- `www.7ya.io`: active on the AppDeploy v2 custom-domain proxy.
 
-The staged UI contract checks for:
-
-- final editorial CSS import;
-- hero mobile density override;
-- live graph suppression in the primary flow;
-- homepage filter suppression;
-- cinematic `hm-stage` override;
-- enlarged `hm-atlas` layout.
+The machine-readable production receipt is in `patch.json`.
