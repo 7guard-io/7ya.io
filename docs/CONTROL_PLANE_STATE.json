@@ -1,6 +1,6 @@
 {
-  "schema_version": 4,
-  "updated_at": "2026-08-24T23:53:00+03:00",
+  "schema_version": 5,
+  "updated_at": "2026-08-29T16:44:54+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -11,44 +11,80 @@
   "identity_model": {
     "human_core": "Igor Vepretski",
     "organizing_system": "7YA",
-    "experience_order": ["IGOR","LIFE","MOMENTS","CONTENT","PEOPLE","PROJECTS","RESEARCH","MEDIA","IMPACT","EVIDENCE","INTERNET","FUTURE"],
-    "evidence_states": ["VERIFIED","SELF-REPORTED","INFERRED","UNKNOWN"]
+    "experience_order": [
+      "IGOR",
+      "LIFE",
+      "MOMENTS",
+      "CONTENT",
+      "PEOPLE",
+      "PROJECTS",
+      "RESEARCH",
+      "MEDIA",
+      "IMPACT",
+      "EVIDENCE",
+      "INTERNET",
+      "FUTURE"
+    ],
+    "evidence_states": [
+      "VERIFIED",
+      "SELF-REPORTED",
+      "INFERRED",
+      "UNKNOWN"
+    ]
   },
   "production": {
     "provider": "AppDeploy",
+    "stage": "v2",
     "app_id": "697a008fddc309b142",
-    "release": "7ya-production-truth-20260824-8",
-    "applied_snapshot": "1787605517628",
+    "appdeploy_label": "v98",
+    "release": "7ya-cinematic-os-20260828-v1",
+    "build_marker": "7ya-cinematic-os-20260828-v1",
+    "applied_snapshot": "1788005385311",
     "status": "READY",
     "canonical_domain": "https://7ya.io/",
+    "production_receipt": "docs/deployments/2026-08-29-linkedin-impact-discovery-v1.md",
     "frontend_errors": 0,
     "backend_errors": 0,
     "e2e_tests": null,
     "qa_snapshot": null,
-    "rollback_snapshot": "1787593119754"
+    "rollback_snapshot": "1787938474434"
   },
   "source_reconciliation": {
+    "alignment": "APPDEPLOY_LIVE_SNAPSHOT_PENDING_GITHUB_EXPORT",
     "legacy_main_tree_predates_current_react_runtime": true,
-    "immutable_runtime_snapshot_recorded_under": "appdeploy-live/1787605517628/",
-    "exact_master_visual_governor_recorded": true,
-    "runtime_delta_manifest_recorded": true,
+    "latest_verified_runtime_snapshot": "1788005385311",
+    "runtime_checkpoint": "docs/reconciliation/2026-08-29-appdeploy-1788005385311.md",
     "full_runtime_tree_export_complete": false,
-    "rule": "Do not partially overwrite the incompatible legacy application tree; record immutable runtime releases and exact deltas until a full-tree reconciliation is performed."
+    "legacy_curriculum_cleanup_allowed": false,
+    "rule": "Do not deploy the incompatible legacy application tree or remove inherited course material until the complete AppDeploy runtime tree is exported, compared and release-gated."
   },
   "release_scope": {
-    "name": "MASTER_AUTONOMOUS_REBUILD",
+    "name": "CINEMATIC_PERSONAL_OS_V1",
     "visual_system": "cinematic editorial personal living archive",
     "hundred_moments": "canonical corpus + visual registry + public discovery, deduplicated and capped at 100",
     "digital_igor": "explicit AI-labelled evidence-linked investigation entry",
     "generative_story": "visible canon-routes entry",
     "archive_rails": "all source-linked rail slots visible",
-    "languages": ["he","en","ru"],
-    "cache_generation": "v108-master"
+    "languages": [
+      "he",
+      "en",
+      "ru"
+    ]
+  },
+  "workflow_policy": {
+    "active_allowlist": [
+      "actions-smoke.yml",
+      "ci.yml",
+      "digital-museum-collector.yml",
+      "pages.yml"
+    ],
+    "historical_mutation_workflows_active": false,
+    "rule": "One-time DNS, Meta discovery, Jekyll sample and legacy static-tree automation must not remain active after their purpose has ended."
   },
   "recovery": {
     "secondary_provider": "Vercel",
     "role": "recovery only; not production authority for 7ya.io",
-    "appdeploy_rollback": "1787593119754"
+    "appdeploy_rollback": "1787938474434"
   },
   "privacy_boundary": [
     "No identifying information about minors",
