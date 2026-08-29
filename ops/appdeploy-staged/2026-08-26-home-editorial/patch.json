@@ -1,21 +1,26 @@
 {
   "target": {
     "app_id": "697a008fddc309b142",
-    "base_version_name": "v100",
-    "base_version": "1787689408979"
+    "runtime_version_name": "v98",
+    "runtime_version": "1788013951183",
+    "released_at": "2026-08-29T14:32:31.183Z"
   },
   "scope": "homepage visual/editorial cutover only",
   "changes": [
     {
       "file": "src/life-first/AutobiographicalCinema.tsx",
       "operation": "diff",
-      "from": "import './visual-cutover-20260825.css';import './live-repair-20260825.css';import './rtl-typography-20260825.css';",
-      "to": "import './visual-cutover-20260825.css';import './live-repair-20260825.css';import './rtl-typography-20260825.css';import './editorial-cutover-20260826.css';"
+      "result": "editorial-cutover-20260826.css imported after igor-mobile-rich-20260826.css"
     },
     {
       "file": "src/life-first/editorial-cutover-20260826.css",
-      "operation": "create",
+      "operation": "create/reconcile",
       "source": "ops/appdeploy-staged/2026-08-26-home-editorial/editorial-cutover-20260826.css"
+    },
+    {
+      "file": "tests/tests.txt",
+      "operation": "extend",
+      "result": "Homepage editorial cutover mobile QA contract added"
     }
   ],
   "intent": {
@@ -25,6 +30,13 @@
     "mobile": "shorter hero, larger imagery, two-column moment atlas",
     "evidence": "preserved; deep system surfaces remain available"
   },
-  "production_locked": true,
-  "production_unlock_command": "בצע את שרשרת הפריסה"
+  "verification": {
+    "appdeploy_status": "ready",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "domains": ["7ya.io", "www.7ya.io"],
+    "domains_status": "active"
+  },
+  "production_locked": false,
+  "production_status": "deployed"
 }
