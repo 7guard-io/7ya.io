@@ -1,12 +1,14 @@
-name: Digital Museum Collector - 12H Evidence Sync
+name: Digital Museum Collector — manual legacy evidence sync
 
+# Paused as an automatic 12H job on 2026-08-26.
+# The live 7ya.io runtime is AppDeploy and does not currently consume this
+# repository snapshot as its active ingestion plane. Keep the collector
+# available for explicit forensic/manual runs without recurring false alerts.
 on:
-  schedule:
-    - cron: '17 */12 * * *'
   workflow_dispatch:
     inputs:
       target:
-        description: Optional one-time public http(s) target; scheduled runs use data/collector-targets.json
+        description: Optional one-time public http(s) target; manual runs otherwise use data/collector-targets.json
         required: false
         type: string
 
@@ -14,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: digital-museum-collector
+  group: digital-museum-collector-legacy-manual
   cancel-in-progress: false
 
 jobs:

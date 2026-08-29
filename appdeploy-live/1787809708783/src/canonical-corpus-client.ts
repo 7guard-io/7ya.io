@@ -1,0 +1,13 @@
+import {api} from '@appdeploy/client';
+import {canonicalCorpusSeed} from '../shared/canonical-corpus';
+import {mergePublicRegisterIntoCanon} from '../shared/public-register-canon';
+export type CorpusLocal={he:string;en:string;ru:string};
+export type CorpusSource={id:string;label:string;url:string;kind:string;public:boolean;platform?:string;publishedAt?:string};
+export type CorpusMedia={kind:string;sourceUrl:string;authenticity:string;label:string;url?:string;captureDate?:string;publicationDate?:string};
+export type CorpusMetric={metricType:string;value:number|string;unit:string;snapshotDate:string;sourceUrl:string;platform?:string;verification:string};
+export type CorpusEvent={id:string;storyOrder:number;canonicalDate:string;datePrecision:string;dateBasis:string;dateNote?:string;period?:{start:string;end?:string};subjectPeriod?:string;type:string;surfaces:string[];title:CorpusLocal;summary:CorpusLocal;visibility:string;verification:{state:string;note:string};sources:CorpusSource[];media:CorpusMedia[];metrics?:CorpusMetric[];tags:string[]};
+export type CorpusResponse={release:string;schemaVersion:number;count:number;storage?:{mode:string;seedCount:number;overlayCount:number;invalidOverlayCount:number;overlayLimit:number};items:CorpusEvent[]};
+function validResponse(value:unknown):value is CorpusResponse{if(!value||typeof value!=='object'||Array.isArray(value))return false;const data=value as Partial<CorpusResponse>;return typeof data.release==='string'&&data.schemaVersion===2&&typeof data.count==='number'&&Array.isArray(data.items)&&data.items.every(item=>item&&item.visibility==='public'&&typeof item.storyOrder==='number'&&Array.isArray(item.sources))}
+const bundledCorpus:CorpusEvent[]=mergePublicRegisterIntoCanon(canonicalCorpusSeed).filter(item=>item.visibility==='public').sort((a,b)=>a.storyOrder-b.storyOrder);
+function bundledFallback(limit:number,surface:string):CorpusResponse{const filtered=surface?bundledCorpus.filter(item=>item.surfaces.includes(surface)):bundledCorpus;const items=filtered.slice(0,limit);return{release:'canonical-corpus-bundled-fallback-20260827-1',schemaVersion:2,count:items.length,items}}
+export async function fetchCanonicalCorpus(limit=5000,surface='life'):Promise<CorpusResponse>{const safe=Math.max(1,Math.min(5000,Math.floor(limit)));const query=new URLSearchParams({limit:String(safe)});if(surface)query.set('surface',surface);try{const response=await api.get('/api/corpus?'+query.toString());if(!validResponse(response.data))throw new Error('Invalid canonical corpus response');return response.data}catch{return bundledFallback(safe,surface)}}

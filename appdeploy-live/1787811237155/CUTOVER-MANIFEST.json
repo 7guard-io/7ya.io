@@ -1,0 +1,33 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787811237155",
+  "rollback_snapshot": "1787809708783",
+  "branch": "feat/impact-broadcast-20260827",
+  "status": "READY",
+  "change": "impact-broadcast",
+  "runtime_errors": {"frontend": 0, "backend": 0, "network": 0},
+  "headline_evidence": {
+    "strict_observed_exposure_floor": 14670621,
+    "visible_engagement_floor": 353829,
+    "external_nawan_short_views": 5100000,
+    "external_nawan_likes": 82000,
+    "external_nawan_comments": 717,
+    "public_record_span": "2011-2026"
+  },
+  "quarantined_claims": ["5.1B", "6.2B+", "7B"],
+  "integrity_rules": [
+    "no synthetic cross-platform reach",
+    "no unique-person reach claim from non-unique counters",
+    "metrics retain source/date/scope",
+    "conflicting fatherhood share counts omitted",
+    "external creator reach remains externally attributed"
+  ],
+  "verification": {
+    "appdeploy_ready": true,
+    "source_readback": true,
+    "qa_test_manifest_normalized": true,
+    "sanity_marker_count": 1,
+    "e2e_status": null,
+    "pixel_manual_pass_claimed": false
+  }
+}

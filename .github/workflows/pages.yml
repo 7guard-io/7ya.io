@@ -1,9 +1,9 @@
-name: Publish 7YA Static Production
+name: Legacy Static Snapshot — manual only
 
+# 7ya.io is currently served by the AppDeploy runtime.
+# Keep this workflow only as an explicit/manual legacy snapshot path so a push
+# to main cannot compete with, overwrite, or generate false production signals.
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: github-pages-legacy-manual
   cancel-in-progress: true
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout canonical production source
+      - name: Checkout legacy static source
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Run the exact release gate
+      - name: Run the legacy release gate
         run: npm run release:gate
 
       - name: Build immutable static artifact
@@ -42,7 +42,7 @@ jobs:
           node scripts/check-static-artifact.mjs
           node scripts/verify-static-artifact.mjs
 
-      - name: Verify custom domain and personal release markers
+      - name: Verify legacy custom-domain markers
         shell: bash
         run: |
           set -euo pipefail
@@ -55,11 +55,11 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload production artifact
+      - name: Upload legacy static artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy legacy snapshot to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

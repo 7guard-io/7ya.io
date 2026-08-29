@@ -1,0 +1,35 @@
+{
+  "app_id": "697a008fddc309b142",
+  "appdeploy_version_name": "v98",
+  "snapshot": "1787809708783",
+  "canonical_repository": "7guard-io/7ya.io",
+  "branch": "fix/content-distribution-resilience-20260827",
+  "production_provider": "AppDeploy",
+  "change": "content-distribution-resilience",
+  "status": "DEPLOYED_READY_PENDING_GITHUB_MERGE",
+  "rollback_snapshot": "1787808444264",
+  "behavior": {
+    "primary": "/api/corpus",
+    "fallback": "mergePublicRegisterIntoCanon(canonicalCorpusSeed)",
+    "fallback_public_only": true,
+    "fallback_surface_filtered": true,
+    "verification_preserved": true,
+    "source_links_preserved": true,
+    "metric_snapshot_dates_preserved": true,
+    "synthetic_total_reach": false
+  },
+  "runtime_verification": {
+    "deployment_status": "ready",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "applied_source_readback": true,
+    "regression_test_manifest_readback": true,
+    "appdeploy_e2e": "not_returned",
+    "appdeploy_qa_snapshot": "not_returned",
+    "external_pixel_audit": "not_claimed"
+  },
+  "nvidia": {
+    "integration": "unchanged",
+    "rendering_dependency": false
+  }
+}

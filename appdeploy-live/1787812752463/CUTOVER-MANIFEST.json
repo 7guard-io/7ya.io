@@ -1,0 +1,38 @@
+{
+  "app_id": "697a008fddc309b142",
+  "version_name": "v98",
+  "snapshot": "1787812752463",
+  "rollback_snapshot": "1787811237155",
+  "branch": "feat/impact-universe-counter-20260827",
+  "status": "READY",
+  "change": "impact-universe-counter",
+  "counting_mode": "gross-first",
+  "runtime_errors": {"frontend": 0, "backend": 0, "network": 0},
+  "impact_universe": {
+    "highest_cumulative_snapshot": "7B+",
+    "source_resolved_gross": 18785328,
+    "interaction_snapshot": "397M+",
+    "publication_instances": "2,753+",
+    "community_snapshot": "1.5M+",
+    "countries": "47+"
+  },
+  "snapshot_series": ["310M+", "5.1B", "6.2B+", "7B+"],
+  "rules": [
+    "count metrics before classification",
+    "cumulative snapshots are a time series and are not additive",
+    "views/impressions/reach remain exposure",
+    "likes/comments/shares/saves remain interactions",
+    "external publisher exposure counts when attributable",
+    "classification overlap and dedup follow collection"
+  ],
+  "verification": {
+    "appdeploy_ready": true,
+    "source_readback": true,
+    "qa_screenshots_generated": true,
+    "sanity_marker_count": 1,
+    "custom_domain_apex_active": true,
+    "custom_domain_www_active": true,
+    "e2e_status": null,
+    "pixel_manual_pass_claimed": false
+  }
+}

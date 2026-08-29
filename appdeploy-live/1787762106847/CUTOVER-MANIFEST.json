@@ -1,0 +1,1 @@
+{"app_id":"697a008fddc309b142","snapshot":"1787762106847","canonical_repository":"7guard-io/7ya.io","branch":"fix/media-corpus-cutover-20260826","production_path":"AppDeploy","media_policy":"public-projection-first","live_social":"additive-not-required","homepage_projection_limit":100,"homepage_render_limit":24,"library_default_sort":"impact","rollback_snapshot":"1787762024475"}

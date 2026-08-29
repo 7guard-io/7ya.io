@@ -1,0 +1,34 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1787812563487",
+  "rollback_snapshot": "1787811237155",
+  "branch": "feat/impact-universe-count-20260827",
+  "status": "READY",
+  "change": "gross-first-impact-universe-counter",
+  "counting_principle": "count-first-classify-second",
+  "headline_metrics": {
+    "highest_counted_gross_snapshot": "7B+",
+    "source_resolved_gross": 18785328,
+    "cumulative_interactions_snapshot": "397M+",
+    "publication_instances": "2,753+",
+    "community_members_snapshot": "1.5M+",
+    "countries": "47+"
+  },
+  "gross_snapshot_series": ["310M+", "5.1B", "6.2B+", "7B+"],
+  "rules": [
+    "historical snapshots of the same cumulative counter are not additive",
+    "exposure and interactions remain separate metric classes",
+    "external publisher exposure counts when attributable",
+    "source-resolved gross is a drill-down subset, not added on top of 7B+"
+  ],
+  "runtime_errors": {"frontend": 0, "backend": 0, "network": 0},
+  "verification": {
+    "appdeploy_ready": true,
+    "source_readback": true,
+    "impact_front_door_wiring": true,
+    "qa_test_manifest_reconciled": true,
+    "sanity_marker_count": 1,
+    "e2e_status": null,
+    "pixel_manual_pass_claimed": false
+  }
+}
