@@ -1,0 +1,50 @@
+## Test 8 - Homepage first fold is story-first, not conversion-first
+Viewport: mobile 390x844 and desktop 1440x900
+Covers: DocumentaryHome hero hierarchy, primary CTA, Evidence access, duplicate-action suppression
+Description: Verifies the Cinematic Personal OS opens with Igor and the story, while contact/archive remain available through navigation instead of competing in the first action cluster.
+Steps:
+1. Open /?lang=he from a cold navigation
+2. Inspect the first viewport after hydration
+3. Inspect the visible hero action group and header navigation
+Expected: The hero visibly exposes exactly two first-fold actions: "להתחיל ב־1990" and "לצפייה בראיות"; the story action is primary; Contact and Archive remain reachable from header/navigation; Watch and Digital Igor do not add extra first-fold CTA buttons.
+
+## Test 9 - Homepage media proof precedes the long story spine
+Viewport: mobile and desktop
+Covers: DocumentaryHome composition order, MediaFrontDoor, NarrativeChapters, duplicate media-grid removal
+Description: Verifies authentic media proof appears immediately after the hero and the legacy 9-card frame grid no longer duplicates the media layer on Home.
+Steps:
+1. Open the homepage
+2. Scroll directly below the hero
+3. Continue through the story and impact summary
+Expected: MediaFrontDoor is the first major section after the hero; NarrativeChapters follows; no .dh-frames / #legacy-story-grid block renders on Home; the Living Archive remains reachable for full depth.
+
+## Test 10 - Homepage impact is compact and evidence-bounded
+Viewport: mobile and desktop
+Covers: 7B+ snapshot presentation, metric-class separation, Evidence handoff, North Star
+Description: Verifies Home shows impact as a concise source-linked proof layer rather than rendering the entire impact methodology.
+Steps:
+1. Scroll to #impact on the homepage
+2. Inspect the visible metric strip and explanatory note
+3. Open the Evidence action
+Expected: The section shows 7B+, 397M+ and 47+ as separate classes; it explicitly states that the 7B+ value is a dated gross/cumulative exposure snapshot rather than unique people and cumulative snapshots are not summed; it includes the North Star "להפוך השפעה שכבר נצברה למערכת שמייצרת השפעה אצל אחרים"; the full methodology is one click deeper in Evidence/Archive; the full ImpactFrontDoor protocol is not rendered on Home.
+
+## Test 11 - Mobile hero keeps Igor visually dominant
+Viewport: 375x667, 390x844, 430x932
+Covers: hero media height, portrait focal point, first-fold text density, horizontal overflow
+Description: Guards against shrinking the authentic hero portrait into a shallow banner merely to fit controls above the fold.
+Steps:
+1. Open /?lang=he at each viewport
+2. Inspect the portrait crop and first-screen hierarchy
+3. Scroll a few pixels and verify the transition into media proof
+Expected: The hero photograph occupies roughly 38-48svh on phone-class viewports with the face safely framed; headline and two actions remain readable; no horizontal page overflow exists; no chat control obscures the portrait or first actions.
+
+## Test 12 - Digital Igor remains contextual but visually subordinate on mobile Home
+Viewport: 375x667
+Covers: StoryCompanion launcher suppression, explicit launch, bottom-sheet readability, composer safe-area
+Description: Verifies the AI layer supports the story without competing with it.
+Steps:
+1. Open the homepage without chat=open
+2. Confirm no floating AI launcher overlays the first viewport
+3. Open Digital Igor through a deliberate Talk link later in the journey
+4. Send a substantive cross-platform question and scroll the answer
+Expected: The first viewport is unobstructed; the opened companion behaves as a near-full-width bottom sheet, preserves safe-area padding, has no horizontal overflow, keeps messages readable, and keeps the composer reachable after a long response.
