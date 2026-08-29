@@ -54,6 +54,7 @@
     "legacy_main_tree_predates_current_react_runtime": true,
     "latest_verified_runtime_snapshot": "1788005385311",
     "runtime_checkpoint": "docs/reconciliation/2026-08-29-appdeploy-1788005385311.md",
+    "runtime_tree_path_enumeration_complete": true,
     "full_runtime_tree_export_complete": false,
     "legacy_curriculum_cleanup_allowed": false,
     "rule": "Do not deploy the incompatible legacy application tree or remove inherited course material until the complete AppDeploy runtime tree is exported, compared and release-gated."
@@ -72,14 +73,27 @@
     ]
   },
   "workflow_policy": {
-    "active_allowlist": [
+    "governed_files": [
       "actions-smoke.yml",
       "ci.yml",
+      "cloudflare-appdeploy-dns-apply-once.yml",
+      "cloudflare-appdeploy-dns-preflight.yml",
       "digital-museum-collector.yml",
+      "entity-consistency.yml",
+      "jekyll-gh-pages.yml",
+      "meta-ai-discovery-enable.yml",
       "pages.yml"
     ],
+    "quarantined_files": [
+      "cloudflare-appdeploy-dns-apply-once.yml",
+      "cloudflare-appdeploy-dns-preflight.yml",
+      "entity-consistency.yml",
+      "jekyll-gh-pages.yml",
+      "meta-ai-discovery-enable.yml"
+    ],
     "historical_mutation_workflows_active": false,
-    "rule": "One-time DNS, Meta discovery, Jekyll sample and legacy static-tree automation must not remain active after their purpose has ended."
+    "quarantine_contract": "workflow_dispatch only; contents: read; QUARANTINED_WORKFLOW marker; no secrets, Cloudflare mutation, Pages deployment, automatic push, pull_request or schedule trigger",
+    "rule": "One-time DNS, Meta discovery, Jekyll sample and legacy static-tree automation remain inert until a new explicit change deliberately re-enables them."
   },
   "recovery": {
     "secondary_provider": "Vercel",
