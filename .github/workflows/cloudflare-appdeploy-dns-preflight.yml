@@ -1,135 +1,16 @@
-name: Cloudflare AppDeploy DNS Safety
+name: Quarantined — legacy AppDeploy DNS preflight
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/cloudflare-appdeploy-dns-preflight.yml'
-      - 'scripts/cloudflare-appdeploy-dns.mjs'
-      - 'scripts/cloudflare-appdeploy-breakglass.sh'
-      - 'scripts/test-cloudflare-appdeploy-dns.mjs'
-      - 'scripts/test-support/cloudflare-fetch-mock.mjs'
-      - 'infra/cloudflare-appdeploy/**'
-      - 'docs/APPDEPLOY_CUTOVER_RECEIPT_20260716.md'
-      - 'docs/BREAK_GLASS_CUTOVER_20260716.md'
   workflow_dispatch:
 
 permissions:
   contents: read
 
-concurrency:
-  group: cloudflare-appdeploy-dns-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  validate:
-    name: Validate DNS reconciler
+  quarantine:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Use supported Node.js runtime
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Run fail-closed safety suite
-        id: safety
-        shell: bash
+      - name: Explain quarantine
         run: |
-          set +e
-          report="$RUNNER_TEMP/dns-safety-report.txt"
-          failures=0
-          : > "$report"
-
-          check() {
-            name="$1"
-            shift
-            printf '\n=== %s ===\n' "$name" | tee -a "$report"
-            "$@" >>"$report" 2>&1
-            code=$?
-            if [ "$code" -eq 0 ]; then
-              echo "PASS ($code)" | tee -a "$report"
-            else
-              echo "FAIL ($code)" | tee -a "$report"
-              failures=$((failures + 1))
-            fi
-          }
-
-          check "Node syntax" node --check scripts/cloudflare-appdeploy-dns.mjs
-          check "Break-glass shell syntax" bash -n scripts/cloudflare-appdeploy-breakglass.sh
-          check "Mock preload syntax" node --check scripts/test-support/cloudflare-fetch-mock.mjs
-          check "Mock suite syntax" node --check scripts/test-cloudflare-appdeploy-dns.mjs
-          check "Desired-state contract" node -e "const fs=require('node:fs');const s=JSON.parse(fs.readFileSync('infra/cloudflare-appdeploy/desired-records.json','utf8'));if(s.zone!=='7ya.io')throw new Error('Unexpected zone');if(s.confirmation!=='7YA-APPDEPLOY-20260716')throw new Error('Unexpected confirmation');if(!Array.isArray(s.records)||s.records.length!==2)throw new Error('Expected exactly two records');"
-          check "Stateful Cloudflare mock scenarios" node --test scripts/test-cloudflare-appdeploy-dns.mjs
-
-          printf '\n=== Missing-token fail-closed behavior ===\n' | tee -a "$report"
-          output="$(env -u CLOUDFLARE_API_TOKEN node scripts/cloudflare-appdeploy-dns.mjs 2>&1)"
-          code=$?
-          printf '%s\n' "$output" >> "$report"
-          if [ "$code" -eq 2 ] && grep -Fq 'CLOUDFLARE_API_TOKEN is required' <<<"$output"; then
-            echo "PASS ($code)" | tee -a "$report"
-          else
-            echo "FAIL ($code)" | tee -a "$report"
-            failures=$((failures + 1))
-          fi
-
-          printf '\n=== Workflow mutation-path scan ===\n' | tee -a "$report"
-          needle="--ap""ply"
-          if grep -nF -- "$needle" .github/workflows/cloudflare-appdeploy-dns-preflight.yml >>"$report" 2>&1; then
-            echo "FAIL: unsafe apply token found in workflow" | tee -a "$report"
-            failures=$((failures + 1))
-          else
-            echo "PASS: no workflow apply path exists" | tee -a "$report"
-          fi
-
-          printf '\nTOTAL_FAILURES=%s\n' "$failures" | tee -a "$report"
-          cp "$report" dns-safety-report.txt
-          exit "$failures"
-
-      - name: Upload safety report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cloudflare-appdeploy-dns-safety-report
-          path: dns-safety-report.txt
-          if-no-files-found: error
-          retention-days: 7
-
-  plan:
-    name: Read-only Cloudflare DNS plan
-    if: github.event_name == 'workflow_dispatch'
-    needs: validate
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-      CLOUDFLARE_REQUEST_TIMEOUT_MS: '15000'
-      CLOUDFLARE_MAX_ATTEMPTS: '5'
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Use supported Node.js runtime
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
-      - name: Require least-privilege token
-        shell: bash
-        run: |
-          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "CLOUDFLARE_API_TOKEN is not configured."
-            echo "Create a token limited to zone 7ya.io with Zone:Read and DNS:Edit."
-            exit 1
-          fi
-
-      - name: Print read-only reconciliation plan
-        run: node scripts/cloudflare-appdeploy-dns.mjs
-
-      - name: Confirm no mutation was requested
-        run: |
-          echo "This workflow never invokes the mutation mode."
-          echo "No DNS mutation was requested or performed."
+          echo 'QUARANTINED_WORKFLOW'
+          echo 'The original DNS cutover path is historical. Current AppDeploy custom-domain state must be inspected through the active provider control plane before any future DNS work.'
