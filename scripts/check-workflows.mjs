@@ -2,7 +2,24 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const workflowRoot = path.join(process.cwd(), '.github', 'workflows');
-const allowed = ['actions-smoke.yml', 'ci.yml', 'digital-museum-collector.yml', 'pages.yml'];
+const allowed = [
+  'actions-smoke.yml',
+  'ci.yml',
+  'cloudflare-appdeploy-dns-apply-once.yml',
+  'cloudflare-appdeploy-dns-preflight.yml',
+  'digital-museum-collector.yml',
+  'entity-consistency.yml',
+  'jekyll-gh-pages.yml',
+  'meta-ai-discovery-enable.yml',
+  'pages.yml',
+];
+const quarantined = new Set([
+  'cloudflare-appdeploy-dns-apply-once.yml',
+  'cloudflare-appdeploy-dns-preflight.yml',
+  'entity-consistency.yml',
+  'jekyll-gh-pages.yml',
+  'meta-ai-discovery-enable.yml',
+]);
 const actual = fs.readdirSync(workflowRoot)
   .filter(file => /\.ya?ml$/i.test(file))
   .sort();
@@ -18,15 +35,25 @@ const bodies = new Map();
 for (const file of actual) {
   const body = fs.readFileSync(path.join(workflowRoot, file), 'utf8');
   bodies.set(file, body);
+
   if (!/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
-  for (const event of ['pull_request', 'pull_request_target', 'issues', 'release']) {
-    if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables quarantined ${event} automation`);
+
+  for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'release', 'schedule']) {
+    if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables forbidden automatic ${event} automation`);
   }
-  if (/^\s{2}push:/m.test(body) && file !== 'pages.yml') {
-    fail(`${file} enables unauthorized push automation`);
-  }
-  if (/^\s{2}schedule:/m.test(body) && file !== 'digital-museum-collector.yml') {
-    fail(`${file} enables unauthorized schedule automation`);
+
+  if (quarantined.has(file)) {
+    if (!body.includes('QUARANTINED_WORKFLOW')) fail(`${file} lost its quarantine proof marker`);
+    for (const forbidden of [
+      'CLOUDFLARE_API_TOKEN',
+      'CLOUDFLARE_ZONE_ID',
+      'secrets.',
+      'actions/deploy-pages',
+      'cloudflare-appdeploy-dns.mjs --apply',
+      'cloudflare-meta-ai-discovery.mjs --apply',
+    ]) {
+      if (body.includes(forbidden)) fail(`${file} quarantine contains forbidden mutation capability: ${forbidden}`);
+    }
   }
 }
 
@@ -35,8 +62,6 @@ if (!ci.includes('npm run release:gate')) fail('ci.yml does not execute the shar
 
 const pages = bodies.get('pages.yml') || '';
 for (const required of [
-  'push:',
-  '- main',
   'workflow_dispatch:',
   'npm run release:gate',
   'actions/upload-pages-artifact@v3',
@@ -50,8 +75,7 @@ if (!smoke.includes('ACTIONS_SMOKE_PASS')) fail('actions-smoke.yml lost its runn
 
 const collector = bodies.get('digital-museum-collector.yml') || '';
 for (const required of [
-  'schedule:',
-  "cron: '17 */12 * * *'",
+  'workflow_dispatch:',
   'contents: write',
   'scripts/collector/index.js',
   'data/collector-targets.json',
@@ -70,4 +94,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} governed workflows)`);
+console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} governed manual workflows; ${quarantined.size} quarantined)`);

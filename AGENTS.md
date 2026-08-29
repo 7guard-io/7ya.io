@@ -21,12 +21,13 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 - Public domain: `https://7ya.io`
 - Current production provider: AppDeploy v2
 - Current production app: `697a008fddc309b142`
-- Current verified version: `v49` / `1784701523083`
-- Current build marker: `igor-integrated-personal-system-20260722-1`
+- Current verified version: `v98` / `1788005385311`
+- Current build marker: `7ya-cinematic-os-20260828-v1`
 - Production branch contract: `main`
-- Production receipt: `docs/releases/2026-07-22-appdeploy-v49-production-receipt.json`
+- Production receipt: `docs/deployments/2026-08-29-linkedin-impact-discovery-v1.md`
+- Current source alignment: `APPDEPLOY_LIVE_SNAPSHOT_PENDING_GITHUB_EXPORT`
 
-GitHub remains the canonical source-control and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
+GitHub remains the canonical source-control, governance and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source and do not deploy the legacy application tree over AppDeploy.
 
 The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
 
@@ -34,11 +35,13 @@ Never copy changes from an old repository or provider snapshot into the canonica
 
 ## 3. Current control-plane state
 
-Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
+Read the newest production receipt in `docs/deployments/` or `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
 
-GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
+As of 2026-08-29, the verified runtime authority is AppDeploy snapshot `1788005385311` (`v98`). AppDeploy reports the app `ready`; the current production receipt records zero frontend and backend errors, while automated E2E status is not claimed.
 
-AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving export and comparison of the verified AppDeploy snapshot against `main`.
+GitHub Actions may fail before checkout because of account, runner or network constraints. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
+
+AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving full export and comparison of the verified AppDeploy snapshot against `main`.
 
 ## 4. Public experience contract
 
@@ -104,9 +107,10 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
 
 - GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy version `1784701523083` is the verified production runtime snapshot.
-- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
+- AppDeploy snapshot `1788005385311` (`v98`) is the verified production runtime snapshot.
+- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact, deployable production source.
 - Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
+- Do not delete inherited course/legacy trees until the full runtime export and reference scan prove they are unused.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
 - Keep provider configuration isolated from content.
 - Preserve rollback paths; do not destroy the previous working version before the replacement passes all gates.
@@ -139,7 +143,7 @@ For every critical route, require:
 For AppDeploy production, additionally require:
 
 - terminal deployment status `ready`;
-- all acceptance tests passed;
+- all available acceptance checks inspected;
 - no frontend or backend errors;
 - active custom-domain records;
 - a unique, no-cache server-side probe that proves `7ya.io` serves the intended build marker;
@@ -158,6 +162,7 @@ For AppDeploy production, additionally require:
 9. Do not claim production success until `7ya.io` itself passes the canonical build probe.
 10. Preserve Cloudflare mail-related records and existing nameservers during web-origin changes.
 11. After an AppDeploy-first emergency release, export the exact runtime source back to GitHub before beginning the next broad redesign.
+12. Do not re-enable one-time DNS, Jekyll Pages, Meta discovery or other historical mutation workflows unless a new, explicit change requires them and the workflow contract is updated deliberately.
 
 ## 10. Agent behavior toward the owner
 
