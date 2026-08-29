@@ -38,10 +38,11 @@ for (const file of actual) {
 
   if (!/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
 
+  for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'release', 'schedule']) {
+    if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables forbidden automatic ${event} automation`);
+  }
+
   if (quarantined.has(file)) {
-    for (const event of ['push', 'pull_request', 'pull_request_target', 'issues', 'release', 'schedule']) {
-      if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} quarantine enables forbidden ${event} automation`);
-    }
     if (!body.includes('QUARANTINED_WORKFLOW')) fail(`${file} lost its quarantine proof marker`);
     for (const forbidden of [
       'CLOUDFLARE_API_TOKEN',
@@ -53,17 +54,6 @@ for (const file of actual) {
     ]) {
       if (body.includes(forbidden)) fail(`${file} quarantine contains forbidden mutation capability: ${forbidden}`);
     }
-    continue;
-  }
-
-  for (const event of ['pull_request', 'pull_request_target', 'issues', 'release']) {
-    if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables quarantined ${event} automation`);
-  }
-  if (/^\s{2}push:/m.test(body) && file !== 'pages.yml') {
-    fail(`${file} enables unauthorized push automation`);
-  }
-  if (/^\s{2}schedule:/m.test(body) && file !== 'digital-museum-collector.yml') {
-    fail(`${file} enables unauthorized schedule automation`);
   }
 }
 
@@ -72,8 +62,6 @@ if (!ci.includes('npm run release:gate')) fail('ci.yml does not execute the shar
 
 const pages = bodies.get('pages.yml') || '';
 for (const required of [
-  'push:',
-  '- main',
   'workflow_dispatch:',
   'npm run release:gate',
   'actions/upload-pages-artifact@v3',
@@ -87,8 +75,7 @@ if (!smoke.includes('ACTIONS_SMOKE_PASS')) fail('actions-smoke.yml lost its runn
 
 const collector = bodies.get('digital-museum-collector.yml') || '';
 for (const required of [
-  'schedule:',
-  "cron: '17 */12 * * *'",
+  'workflow_dispatch:',
   'contents: write',
   'scripts/collector/index.js',
   'data/collector-targets.json',
@@ -107,4 +94,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} governed workflows; ${quarantined.size} quarantined)`);
+console.log(`WORKFLOW_CONTRACT: PASS (${actual.length} governed manual workflows; ${quarantined.size} quarantined)`);
