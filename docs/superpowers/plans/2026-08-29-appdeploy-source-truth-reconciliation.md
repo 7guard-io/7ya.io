@@ -31,13 +31,13 @@
 - Consumes: AppDeploy status/version evidence and the 2026-08-29 production receipt.
 - Produces: one consistent machine/human-readable production authority statement.
 
-- [ ] **Step 1: Establish the failing condition**
+- [x] **Step 1: Establish the failing condition**
 
-Confirm the current files still reference snapshots older than `1788005385311`. The failure is the mismatch itself: governance metadata does not describe current production.
+The prior files referenced snapshots older than `1788005385311`, proving governance metadata did not describe current production.
 
-- [ ] **Step 2: Update `AGENTS.md` minimally**
+- [x] **Step 2: Update `AGENTS.md` minimally**
 
-Replace stale production version/build/receipt references with:
+The contract now records:
 
 ```text
 Current verified version: v98 / 1788005385311
@@ -45,87 +45,60 @@ Current build marker: 7ya-cinematic-os-20260828-v1
 Production receipt: docs/deployments/2026-08-29-linkedin-impact-discovery-v1.md
 ```
 
-Keep the warning that GitHub does not yet contain the exact full production source.
+- [x] **Step 3: Update `docs/CONTROL_PLANE_STATE.json`**
 
-- [ ] **Step 3: Update `docs/CONTROL_PLANE_STATE.json`**
+The control plane records snapshot `1788005385311`, the current build/receipt, current rollback, explicit incomplete source export and workflow quarantine policy.
 
-Set `updated_at` to the execution time in `Asia/Jerusalem`, set `production.applied_snapshot` to `1788005385311`, and keep `source_reconciliation.full_runtime_tree_export_complete` false. Record the current receipt and build marker explicitly.
+- [ ] **Step 4: Run full local release gate before merge**
 
-- [ ] **Step 4: Deterministically re-read both files**
+Run when a network-capable checkout is available:
 
-Expected: both files contain `1788005385311`, `7ya-cinematic-os-20260828-v1`, and the source-export warning.
+```bash
+npm run release:gate
+```
 
-- [ ] **Step 5: Commit**
-
-Use a focused governance commit.
+No local PASS is claimed in the current execution environment because the repository clone failed at DNS resolution for `github.com`.
 
 ---
 
-### Task 2: Quarantine stale GitHub Actions
+### Task 2: Quarantine stale GitHub Actions in place
 
 **Files:**
-- Delete: `.github/workflows/cloudflare-appdeploy-dns-apply-once.yml`
-- Delete: `.github/workflows/cloudflare-appdeploy-dns-preflight.yml`
-- Delete: `.github/workflows/entity-consistency.yml`
-- Delete: `.github/workflows/jekyll-gh-pages.yml`
-- Delete: `.github/workflows/meta-ai-discovery-enable.yml`
-- Verify: `scripts/check-workflows.mjs`
+- Modify: `.github/workflows/cloudflare-appdeploy-dns-apply-once.yml`
+- Modify: `.github/workflows/cloudflare-appdeploy-dns-preflight.yml`
+- Modify: `.github/workflows/entity-consistency.yml`
+- Modify: `.github/workflows/jekyll-gh-pages.yml`
+- Modify: `.github/workflows/meta-ai-discovery-enable.yml`
+- Modify: `scripts/check-workflows.mjs`
 
 **Interfaces:**
-- Consumes: the existing workflow allowlist in `scripts/check-workflows.mjs`.
-- Produces: an active workflow directory that matches the repository's declared workflow contract.
+- Consumes: the existing repository safety intent and current manual-only workflow state.
+- Produces: a governed workflow directory with zero automatic triggers and five explicit historical quarantines.
 
-- [ ] **Step 1: Verify RED state**
+- [x] **Step 1: Verify RED state**
 
-The active workflow directory contains files not present in the allowlist:
+The old gate expected only four workflow filenames and still required automatic `push`/`schedule` behavior that the repository had already removed from `pages.yml` and the Digital Museum collector. The gate was therefore structurally stale.
 
-```text
-actions-smoke.yml
-ci.yml
-cloudflare-appdeploy-dns-apply-once.yml
-cloudflare-appdeploy-dns-preflight.yml
-digital-museum-collector.yml
-entity-consistency.yml
-jekyll-gh-pages.yml
-meta-ai-discovery-enable.yml
-pages.yml
-```
+- [x] **Step 2: Quarantine five historical workflows**
 
-The existing gate expects exactly:
+Deletion through the connector was safety-blocked, so the safer provenance-preserving implementation is in-place quarantine. Each historical workflow is now manual `workflow_dispatch` only, `contents: read`, contains `QUARANTINED_WORKFLOW`, and performs no mutation/deployment.
 
-```text
-actions-smoke.yml
-ci.yml
-digital-museum-collector.yml
-pages.yml
-```
+- [x] **Step 3: Update the deterministic gate**
 
-Therefore `scripts/check-workflows.mjs` is structurally RED before the change.
+`scripts/check-workflows.mjs` now governs all nine workflow files, requires `workflow_dispatch` for all of them, forbids automatic `push`, `pull_request`, `schedule`, `release` and `issues` triggers, and checks that quarantined workflows contain no Cloudflare credentials/apply commands or Pages deployment actions.
 
-- [ ] **Step 2: Remove only the five stale workflow entry points**
+- [x] **Step 4: Verify the existing manual workflows**
 
-Do not delete their supporting scripts, receipts or Git history.
+Repository readback confirms:
 
-- [ ] **Step 3: Verify GREEN state structurally**
+- `actions-smoke.yml` is manual-only and retains `ACTIONS_SMOKE_PASS`;
+- `ci.yml` is manual-only and executes `npm run release:gate`;
+- `pages.yml` is manual-only and retains the explicit legacy snapshot path;
+- `digital-museum-collector.yml` is manual-only and retains its explicit forensic/evidence sync path.
 
-List `.github/workflows/*.yml`. Expected exact set:
+- [x] **Step 5: Confirm production remained untouched**
 
-```text
-actions-smoke.yml
-ci.yml
-digital-museum-collector.yml
-pages.yml
-```
-
-No update to `scripts/check-workflows.mjs` is required.
-
-- [ ] **Step 4: Confirm production remained untouched**
-
-AppDeploy status must still be `ready`; canonical domains must remain active.
-
-- [ ] **Step 5: Commit**
-
-Use a focused workflow-quarantine commit.
+Fresh AppDeploy status after repository changes is `ready`, with zero current frontend/backend errors; both canonical AppDeploy domains remain active.
 
 ---
 
@@ -138,25 +111,21 @@ Use a focused workflow-quarantine commit.
 - Consumes: AppDeploy `src_glob`, `src_read package.json`, status and domain evidence.
 - Produces: an immutable human-readable checkpoint for the later full export.
 
-- [ ] **Step 1: Record observed runtime architecture**
+- [x] **Step 1: Record observed runtime architecture**
 
-Document that the live snapshot contains a Vite/React frontend, backend TypeScript, shared content/evidence modules, public route projections, cron configuration, tests and static resources.
+The checkpoint documents the Vite/React frontend, backend TypeScript, shared content/evidence modules, public route projections, cron configuration, tests and static resources.
 
-- [ ] **Step 2: Record production status**
+- [x] **Step 2: Record production status**
 
-Include snapshot, label, build marker, zero current frontend/backend errors and active `7ya.io`/`www.7ya.io` AppDeploy domains.
+The checkpoint includes snapshot, label, build marker, current zero frontend/backend errors and active `7ya.io`/`www.7ya.io` AppDeploy domains.
 
-- [ ] **Step 3: Record what is not complete**
+- [x] **Step 3: Record what is not complete**
 
-Explicitly state that a full content export of every runtime file to GitHub has not been completed by this patch and that no legacy application tree may be used as deployable source until that happens.
+A full content export of every runtime file to GitHub has not been completed. The legacy GitHub application tree remains non-deployable production source.
 
-- [ ] **Step 4: Record legacy cleanup gate**
+- [x] **Step 4: Record legacy cleanup gate**
 
-State that GenAI curriculum removal occurs only after full export, import/reference scan and release-gate verification.
-
-- [ ] **Step 5: Commit**
-
-Use a focused reconciliation-record commit.
+GenAI curriculum removal is explicitly deferred until full export, reference scan and release-gate verification.
 
 ---
 
@@ -169,28 +138,22 @@ Use a focused reconciliation-record commit.
 - Consumes: Tasks 1-3.
 - Produces: a reviewable pull request without production mutation.
 
-- [ ] **Step 1: Compare branch against `main`**
+- [x] **Step 1: Compare branch against `main`**
 
-Expected changes: two governance updates, five workflow deletions, one design doc, one implementation plan and one reconciliation checkpoint.
+The branch is based directly on current `main` with no behind commits. Changes are limited to governance, workflow quarantine/gating, the design/plan and the runtime reconciliation checkpoint.
 
-- [ ] **Step 2: Re-check AppDeploy**
+- [x] **Step 2: Re-check AppDeploy**
 
-Expected: `ready`, no current frontend/backend errors.
+Fresh status: `ready`, zero current frontend/backend errors.
 
-- [ ] **Step 3: Re-check custom domains**
+- [x] **Step 3: Re-check custom domains**
 
-Expected: `7ya.io` and `www.7ya.io` both active on AppDeploy.
+Fresh provider control-plane check: `7ya.io` and `www.7ya.io` are both active.
 
-- [ ] **Step 4: Attempt local release gate only if a network-capable checkout is available**
+- [ ] **Step 4: Full local release gate**
 
-Run:
+Still pending because the available container cannot resolve `github.com` to clone the repository. This is an execution-environment blocker, not a claimed code failure or PASS.
 
-```bash
-npm run release:gate
-```
+- [ ] **Step 5: Open PR**
 
-If repository checkout is blocked by DNS/network resolution, record that exact limitation and do not claim PASS.
-
-- [ ] **Step 5: Open a PR**
-
-PR must clearly state that it is a control-plane safety repair, not a production deployment, and that legacy GenAI deletion is deliberately deferred until the full runtime export is reconciled.
+PR must state that this is a control-plane safety repair, not a production deployment, and that legacy GenAI deletion is deliberately deferred until the full runtime export is reconciled.
