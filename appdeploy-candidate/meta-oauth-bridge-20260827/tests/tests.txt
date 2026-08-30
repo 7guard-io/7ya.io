@@ -1,0 +1,37 @@
+# Tests
+
+## Test 1 - Reuse selected Facebook OAuth for Meta ingestion [sanity]
+Viewport: desktop (1280x800)
+Covers: existing Facebook OAuth token store, selected Page bridge, Meta probe source selection, secret isolation
+Description: Verifies a previously selected Facebook Page becomes the Meta ingestion source without requiring a second user token secret.
+
+Steps:
+1. Sign in as the authorized admin with a Facebook Page already selected in Social Control.
+2. Open the Meta admin status/probe surface.
+3. Inspect the sanitized result.
+
+Expected: Meta reports source facebook-oauth, exactly the selected Page is allowlisted, the linked Instagram Business account is included only when present, and no Page token, app secret, Authorization header or encrypted token field is returned.
+
+## Test 2 - Preserve real granted permissions and keep Instagram permission-aware
+Viewport: desktop (1280x800)
+Covers: Facebook OAuth scopes, granted permission persistence, Instagram media and Insights gating
+Description: Verifies Instagram access is based on permissions Meta actually granted rather than a hardcoded scope claim.
+
+Steps:
+1. Start Facebook OAuth from Social Control and complete authorization.
+2. Select a managed Page with a linked Instagram Professional account when available.
+3. Run an authenticated Meta dry-run.
+
+Expected: The stored scope equals the granted permission set; Instagram base ingestion is attempted only with instagram_basic, Insights are attempted only with instagram_manage_insights, and automatic publishing remains disabled.
+
+## Test 3 - Fall back safely when Facebook OAuth is absent or invalid
+Viewport: desktop (1280x800)
+Covers: dedicated META_* fallback, credential-required state, public projection failure isolation
+Description: Verifies removing or invalidating the selected Facebook OAuth state cannot blank the public site.
+
+Steps:
+1. Make the selected Facebook OAuth source unavailable in the QA environment.
+2. Open /api/public-projection?limit=60 and the Hebrew Library.
+3. Inspect Meta operational status.
+
+Expected: Dedicated META_* configuration is used if configured; otherwise Meta reports credential-required. Canon, Discovery and existing social fallbacks remain populated and no permanent loader or empty replacement appears.
