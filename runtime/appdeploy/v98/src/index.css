@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Universal UX resilience */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-x:clip}
+body{margin:0;min-width:320px;overflow-x:clip}
+img,video,iframe,canvas,svg{max-width:100%}
+button,a,input,textarea,select{font:inherit}
+button,a,[role='button'],input,textarea,select{touch-action:manipulation;-webkit-tap-highlight-color:rgba(211,154,69,.22)}
+a,button,input,textarea,select,[tabindex]:not([tabindex='-1']){scroll-margin-block:96px}
+:focus-visible{outline:3px solid #f0b45c!important;outline-offset:3px!important}
+::selection{background:#d39a45;color:#090b0e}
+@media(pointer:coarse){button,a,[role='button'],input,select{min-height:44px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-contrast:more){:root{--ux-border:rgba(255,255,255,.48)}a{text-decoration-thickness:2px;text-underline-offset:3px}.global-nav,.global-mobile-dock{border-color:var(--ux-border)!important;background:#07090d!important}.global-links a,.global-services{color:#f7f2e9!important}}
+@media(forced-colors:active){*{forced-color-adjust:auto}.global-nav,.global-mobile-dock,.site-control-palette{border:1px solid CanvasText}.global-links a.active{outline:2px solid Highlight!important}}

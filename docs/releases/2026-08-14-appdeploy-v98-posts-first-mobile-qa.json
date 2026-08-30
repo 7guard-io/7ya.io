@@ -1,0 +1,62 @@
+{
+  "receipt_type": "appdeploy_visual_qa",
+  "schema_version": 1,
+  "verified_at_utc": "2026-08-14T16:44:38.821Z",
+  "scope": "Mobile and desktop acceptance proof for the homepage #posts-first sequence; no product-UI change.",
+  "provider": {
+    "name": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v98",
+    "version": "1786725878821",
+    "preview_url": "https://697a008fddc309b142.v2.appdeploy.ai/"
+  },
+  "change": {
+    "path": "tests/tests.txt",
+    "summary": "Added Test 6: mobile hero-to-#posts-first visual acceptance.",
+    "product_ui_changed": false
+  },
+  "acceptance": {
+    "deployment_status": "ready",
+    "e2e_status": "passed",
+    "e2e_jobs": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0
+    },
+    "frontend_errors": [],
+    "backend_errors": [],
+    "network_errors": [],
+    "desktop_posts_first": "PASS",
+    "mobile_posts_first": "PASS",
+    "strict_summary": "PASS. The mobile QA agent scrolled from the hero into #posts-first and verified the Hebrew heading, first source-backed LinkedIn card, visible/tappable source link, direct section order, and absence of obstructing fixed UI or horizontal overflow."
+  },
+  "mobile_test_evidence": {
+    "qa_run_group_id": "303e71f6bce7fc18",
+    "test_title": "Test 6 - Mobile posts-first remains visible after the hero",
+    "result": "pass",
+    "replay_url": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/sanity-replays/697a008fddc309b142/ad6daff7-0ecf-4d7d-ac7d-84fdd0d68339/replay.html",
+    "trace_url": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/sanity-traces/697a008fddc309b142/ad6daff7-0ecf-4d7d-ac7d-84fdd0d68339/trace.json"
+  },
+  "visual_snapshots": {
+    "desktop": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1786725936076/web.png",
+    "mobile": "https://appdeployai-v2-qa-screenshots.s3.us-east-1.amazonaws.com/697a008fddc309b142/1786725936076/mobile.png"
+  },
+  "remaining_non_visual_coverage": {
+    "status": "out_of_scope_for_this_visual_gate",
+    "detail": "The current QA run exercised 1 of 22 declared backend endpoints. No backend behavior changed in v98 and this does not qualify or block the visual #posts-first acceptance result."
+  },
+  "next_safe_move": {
+    "action": "Freeze v98. Export and reconcile the complete AppDeploy runtime snapshot with GitHub main as a separate source-control task before the next product feature or UI change.",
+    "do_not_do": [
+      "Do not redeploy the UI.",
+      "Do not alter the approved hero-to-posts composition."
+    ]
+  },
+  "source_control": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "canonical_branch": "main",
+    "runtime_source_alignment": "PENDING_GITHUB_EXPORT",
+    "note": "This receipt records verified deployed runtime behavior; it does not claim that the full v98 source snapshot has been exported to GitHub main."
+  }
+}
