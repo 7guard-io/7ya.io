@@ -1,0 +1,109 @@
+# Tests
+
+## Test 1 - Digital Igor synthesizes broad impact across platforms [sanity]
+Viewport: desktop
+Covers: Digital Igor core chat workflow, POST /api/companion, NVIDIA/tool-agent cross-platform retrieval, broad-answer source diversity
+Description: Verifies a broad question about Igor's public impact is answered as a cross-platform synthesis rather than a LinkedIn-only recommendation.
+
+Steps:
+1. Open the 7YA homepage with the Digital Igor chat
+2. Ask "תן לי תמונה רחבה של ההשפעה והתוכן של איגור בכל הפלטפורמות"
+3. Inspect the assistant answer and visible source/action surfaces
+
+Expected: A substantive answer appears and references at least two distinct public platforms or source types among Instagram, TikTok, YouTube, Facebook, media, StartOn, archive/research; the response is not framed as LinkedIn alone.
+
+## Test 2 - Historical LinkedIn discovery surfaces resolved impact posts
+Viewport: desktop
+Covers: Search, Public Discovery, LinkedIn historical source recovery, evidence boundaries
+Description: Verifies newly resolved public LinkedIn posts can be found as source-linked Discovery records without being silently promoted to verified Canon or assigned invented reach.
+
+Steps:
+1. Open /search/?lang=he&q=נער%20בסיכון
+2. Scroll to PUBLIC DISCOVERY
+3. Inspect LinkedIn results and open the matching source card
+
+Expected: A LinkedIn Discovery result for Igor's "כן, אני — נער בסיכון" / StartOn origin post is visible and links to LinkedIn activity 6965163606975893504; its trust/status remains Discovery/non-canonical and no unsupported reach or impression total is shown.
+
+## Test 3 - Mobile chat remains readable during a substantive answer
+Viewport: mobile
+Covers: Digital Igor responsive panel, long-answer readability, composer usability, source-card layout
+Description: Verifies the companion stays usable at 375x667 while rendering a non-trivial cross-platform response.
+
+Steps:
+1. Open Digital Igor on mobile
+2. Ask "ספר לי על היצירה, המדיה והרשתות של איגור"
+3. Scroll through the returned answer and then return to the composer
+
+Expected: The panel remains inside the viewport with no horizontal overflow, the answer is readable and scrollable, source/action cards fit the panel, and the composer remains usable.
+
+## Test 4 - Public profile tools expose more than LinkedIn
+Viewport: desktop
+Covers: companion info/tools panel, public surface navigation, Instagram/TikTok/YouTube/Facebook/LinkedIn availability
+Description: Verifies the visible public-profile toolset reflects the multi-platform corpus.
+
+Steps:
+1. Open Digital Igor
+2. Open "מידע וכלים"
+3. Inspect the public profile links
+
+Expected: The panel visibly offers Instagram, TikTok, YouTube, Facebook and LinkedIn alongside archive/StartOn tools.
+
+## Test 5 - Companion API failure keeps a visible recovery path
+Viewport: mobile
+Covers: Digital Igor failure handling, POST /api/companion fallback UX, retry continuity
+Description: Verifies a backend failure does not blank the conversation or force a restart.
+
+QA Faults:
+```json
+[
+  {
+    "method": "POST",
+    "path": "/api/companion",
+    "status": 503,
+    "body_json": {"error":"simulated_companion_failure"}
+  }
+]
+```
+
+Steps:
+1. Open Digital Igor
+2. Ask "הראה לי את מקורות ההשפעה"
+3. Inspect the conversation after the simulated failure
+
+Expected: A visible recovery message appears, the user's message remains in context, and the interface offers a usable retry/continuation path without closing the chat.
+
+## Test 6 - Resolved LinkedIn impact seeds appear in Discovery
+Viewport: desktop
+Covers: public Library discovery inventory, LinkedIn impact-seed ingestion, Discovery-vs-Canon trust boundary, no synthetic reach
+Description: Verifies the six resolved LinkedIn posts supplied during the current ingestion session are discoverable as source-linked candidates without being promoted to verified Canon or assigned invented reach.
+
+Steps:
+1. Open /library/?lang=he
+2. Filter or search for LinkedIn and inspect the resolved impact candidates
+3. Confirm the inventory includes source links corresponding to activity IDs 7069590395591999489, 7240289437606150145, 7002699174827732992, 6965163606975893504, 7001305381280862208 or its resolved canonical equivalent, and 7032741993038372864
+
+Expected: Six distinct resolved LinkedIn source candidates are discoverable; each remains visibly Discovery/non-canonical unless independently promoted through verification, and no cross-platform reach total is fabricated.
+
+## Test 7 - Homepage editorial cutover keeps media dominant on mobile
+Viewport: mobile
+Covers: homepage hero density, source-linked impact metrics, cumulative-snapshot qualification, public-life cinematic stage, moment atlas responsive layout, source-filter suppression
+Description: Verifies the approved editorial cutover preserves a photo-first mobile entry and exposes the public-life archive as a visual two-column surface rather than a filter-heavy system panel.
+
+Steps:
+1. Open the Hebrew 7YA homepage at 375x667
+2. Inspect the opening hero, its impact strip, and then scroll to the public-life / Hundred Moments section
+3. Inspect the cinematic stage, filters and visible moment atlas
+
+Expected: The hero remains image-led with the secondary body copy hidden; the impact strip visibly qualifies 7B+ as a cumulative snapshot rather than unique people and each impact metric opens the Evidence surface; the public-life layer filter is not visible; the cinematic stage remains large and readable; and the moment atlas is visible as a two-column mobile grid without horizontal overflow.\n\n## Test 8 - Live archive intake preserves evidence boundaries on mobile\nViewport: mobile\nCovers: homepage live-intake rail, source link, verification status, Music routing, Discovery promotion boundary\nDescription: Verifies a newly curated public reel appears as a source-linked archive record without turning unavailable or Discovery-only material into homepage narrative.\n\nSteps:\n1. Open the Hebrew homepage at 375x667\n2. Scroll to \"מה נכנס עכשיו לארכיון\"\n3. Inspect the visible reel card and its source and Music actions\n\nExpected: The rail shows the 29.08.2026 Instagram co-post with a visible VERIFIED label, source and Music/Creation actions; the text does not invent inaccessible video imagery or reach, and it states that the additional Discovery reel remains outside homepage promotion.
+
+## Test 9 - Hebrew homepage keeps the personal path legible
+Viewport: desktop
+Covers: Hebrew documentary navigation, personal conversion hierarchy, visible header contrast
+Description: Verifies the Hebrew entry reads as Igor's personal story rather than an unlabeled utility shell.
+
+Steps:
+1. Open the Hebrew 7YA homepage at 1280x800
+2. Inspect the header labels and the two primary hero actions
+3. Move keyboard focus through the header links and hero actions
+
+Expected: Header navigation presents the story and archive in Hebrew, navigation text is legible over the dark header, and the visible hero prioritizes a clear conversation action and evidence action with a persistent focus indicator.\n\n## Test 10 - English and Russian homepage entries are language-native before and after hydration\nViewport: desktop\nCovers: clean /en/ and /ru/ homepage routes, static-first locale content, hydrated locale persistence, language switcher URL consistency\nDescription: Verifies English and Russian homepage entries no longer depend on a Hebrew raw document plus post-load translation.\n\nSteps:\n1. Open /en/, inspect the first visible hero and site-brand/home link, then refresh\n2. Switch to Russian and inspect the URL, hero language and site-brand/home link\n3. Refresh /ru/ and switch back to Hebrew\n\nExpected: /en/ shows English first-paint and hydrated hero content with an English canonical and clean /en/ home links; switching to Russian produces /ru/ with clean /ru/ home links and Russian content that remains Russian after refresh; switching to Hebrew returns to / without leaving a lang query on the homepage.
