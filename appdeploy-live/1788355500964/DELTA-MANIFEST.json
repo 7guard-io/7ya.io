@@ -1,0 +1,26 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1788355500964",
+  "base_snapshot": "1788355277047",
+  "applied_at": "2026-09-02",
+  "status": "READY",
+  "change_type": "locale-link-consistency-fix",
+  "changed_files": [
+    "src/locale.tsx",
+    "tests/tests.txt"
+  ],
+  "mirrored_files": [
+    "src/locale.tsx",
+    "tests/tests.txt"
+  ],
+  "change_summary": "Align generated home links with clean /, /en/ and /ru/ localized homepage paths and stop emitting redundant lang=he on clean Hebrew room links.",
+  "qa": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0
+  },
+  "source_export_complete": false,
+  "runtime_source_of_truth": "AppDeploy snapshot 1788355500964",
+  "github_runtime_deploy_safe": false,
+  "reconstruction": "THIS_DELTA_CONTENT_MIRRORED; EARLIER_ATOMIC_SOURCE_EXPORT_GAPS_REMAIN"
+}
