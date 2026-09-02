@@ -1,0 +1,21 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1788354918063",
+  "base_snapshot": "1788353253803",
+  "applied_at": "2026-09-02",
+  "status": "READY",
+  "change_type": "performance",
+  "changed_files": [
+    "src/App.tsx"
+  ],
+  "change_summary": "Lazy-load route-only rooms while preserving DocumentaryHome and shared homepage providers on the synchronous path.",
+  "qa": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0
+  },
+  "source_export_complete": false,
+  "runtime_source_of_truth": "AppDeploy snapshot 1788354918063",
+  "github_runtime_deploy_safe": false,
+  "reconstruction": "DELTA_RECORDED; COMPLETE_ATOMIC_SOURCE_EXPORT_PENDING"
+}
