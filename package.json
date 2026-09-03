@@ -22,6 +22,7 @@
     "check-meta-ingestion": "node scripts/check-meta-ingestion.mjs",
     "check-text-integrity": "node scripts/check-text-integrity.mjs",
     "check:zones": "node scripts/check-zone-shells.mjs",
+    "check:runtime-source": "node scripts/reconcile-appdeploy-runtime.mjs",
     "check:deploy-script": "bash -n scripts/deploy-personal-static.sh",
     "check-all": "npm run check-text-integrity && npm run check:zones && npm run check-site && npm run check-links && npm run check-creator && npm run check-entity && npm run check-response && npm run check-guide && npm run check-infostory && npm run check-home-universe && npm run check-control && npm run check-collector && npm run check-release-pin && npm run check-workflows && npm run check-meta-ingestion && npm run check:deploy-script",
     "verify:routes": "node scripts/verify-routes.mjs",
