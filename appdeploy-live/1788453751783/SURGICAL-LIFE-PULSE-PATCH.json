@@ -1,0 +1,68 @@
+{
+  "target_app_id": "697a008fddc309b142",
+  "target_snapshot": "1788453751783",
+  "intent": "restore the missing nine-frame life story without rolling back current API, Bro Chat, SEO, lazy-loading or QA repairs",
+  "status": "STAGED_NOT_APPLIED",
+  "blocked_by": "AppDeploy deploy_app lifetime quota 125/125",
+  "files": [
+    {
+      "filename": "src/documentary-home/DocumentaryHome.tsx",
+      "diffs": [
+        {
+          "from": "human=useMemo(()=>[\"visual-father-hidabroot\",\"visual-mial-maakav-2023\",\"visual-mynet-return\"].map(id=>fallback.find(item=>item.id===id)).filter(item=>!!(item&&mediaSrc(item))).slice(0,2),[]),archive=pageHref(\"library\",locale)",
+          "to": "human=useMemo(()=>[\"visual-father-hidabroot\",\"visual-mial-maakav-2023\",\"visual-mynet-return\"].map(id=>fallback.find(item=>item.id===id)).filter(item=>!!(item&&mediaSrc(item))).slice(0,2),[]),lifePulse=useMemo(()=>[\"visual-father-hidabroot\",\"visual-mynet-return\",\"visual-starton-14\",\"visual-fraud-13\",\"visual-nawan-external-2026\",\"visual-bizzi-video\",\"visual-russian-education-legacy\",\"visual-mindset-page\",\"visual-instagram-story-20260801\"].flatMap(id=>{const item=fallback.find(item=>item.id===id);return item?[item]:[]}),[]),archive=pageHref(\"library\",locale)"
+        },
+        {
+          "from": "      </a>\n      {deferredReady&&<Suspense fallback={null}><NarrativeChapters mode='home'/></Suspense>}\n      <section className=\"dh-life\">",
+          "to": "      </a>\n      <section className=\"dh-frames dh-life-pulse\" id=\"story\" aria-labelledby=\"life-pulse-title\">\n        <header className=\"dh-section-head\"><p>{c.framesK}</p><h2 id=\"life-pulse-title\">{c.framesT}</h2><span>{c.framesP}</span></header>\n        <div className=\"dh-frame-grid\">{lifePulse.map((item,index)=><a className=\"dh-frame\" href={item.sourceUrl} target=\"_blank\" rel=\"noreferrer\" key={\"life-pulse-\"+item.id}><figure>{mediaSrc(item)?<img src={mediaSrc(item)} alt={item.title[locale]} loading=\"lazy\" decoding=\"async\" referrerPolicy=\"no-referrer\" onError={hideBroken}/>:<div className=\"dh-poster\"><small>{item.mediaType}</small><strong>{item.publisher}</strong></div>}{item.mediaType===\"video\"&&<i><Play fill=\"currentColor\"/></i>}<em>{String(index+1).padStart(2,\"0\")}</em></figure><div className=\"dh-frame-copy\"><div><span>{item.publisher}</span><time>{item.date||item.year}</time></div><h3>{item.title[locale]}</h3><p>{layerText[item.layer][locale]} · {item.platform}</p>{item.metrics?.[0]&&<span className=\"dh-frame-metric\">{item.metrics[0].value}{item.metrics[0].unit?\" \"+item.metrics[0].unit:\"\"}</span>}<b>{c.source}<ArrowUpRight/></b></div></a>)}</div>\n      </section>\n      {deferredReady&&<Suspense fallback={null}><NarrativeChapters mode='home'/></Suspense>}\n      <section className=\"dh-life\">"
+        }
+      ]
+    },
+    {
+      "filename": "src/documentary-home/documentary-home.css",
+      "diffs": [
+        {
+          "from": ".dh a{color:inherit}.dh button",
+          "to": ".dh a{color:inherit}.dh-life-pulse .dh-frame{display:block;color:inherit;text-decoration:none}.dh button"
+        }
+      ]
+    },
+    {
+      "filename": "tests/tests.txt",
+      "diffs": [
+        {
+          "from": "Covers: live homepage pixel audit desktop/mobile, hero critical-path image priority, owner-approved visual registry, v5 /api/media-image approved/public-mirror behavior, projection/discovery/registry cache consistency, Instagram source handling, homepage/library/media/album source surfaces, source actions, direct human-source links",
+          "to": "Covers: live homepage pixel audit desktop/mobile, homepage nine-frame Life Pulse, source-linked life moments before generic category navigation, hero critical-path image priority, owner-approved visual registry, v5 /api/media-image approved/public-mirror behavior, projection/discovery/registry cache consistency, Instagram source handling, homepage/library/media/album source surfaces, source actions, direct human-source links"
+        },
+        {
+          "from": "3. Open the homepage, confirm the portrait hero is immediately visible, then scroll through REAL MEDIA · INSIDE THE PAGE and the later source wall; locate https://www.instagram.com/p/CoXykBwq3Zr/ if present and inspect its visual treatment.",
+          "to": "3. Open the homepage, confirm the portrait hero is immediately visible, then confirm the source-linked nine-frame Life Pulse appears before the life timeline and current-work category grid; continue through REAL MEDIA · INSIDE THE PAGE and the later source wall, then locate https://www.instagram.com/p/CoXykBwq3Zr/ if present and inspect its visual treatment."
+        },
+        {
+          "from": "Expected: Both server-side live screenshot audits PASS on actual pixels with no blank/mostly-empty viewport, clipping or release-blocking visual issue; the portrait hero and deeper content remain populated with distinct visual treatments; the Instagram source https://www.instagram.com/p/CoXykBwq3Zr/ prefers /resources/approved-restream-CoXykBwq3Zr.jpg when present and otherwise resolves to the verified public mirror of the same elderly-woman-at-service-counter photo instead of the generic PUBLIC SOURCE VISUAL/source-poster treatment; source actions remain visible; unrelated blocked sources still degrade safely and no fabricated photo is substituted.",
+          "to": "Expected: Both server-side live screenshot audits PASS on actual pixels with no blank/mostly-empty viewport, clipping or release-blocking visual issue; nine source-linked Life Pulse cards are visible before generic category navigation on desktop and mobile; the portrait hero and deeper content remain populated with distinct visual treatments; the Instagram source https://www.instagram.com/p/CoXykBwq3Zr/ prefers /resources/approved-restream-CoXykBwq3Zr.jpg when present and otherwise resolves to the verified public mirror of the same elderly-woman-at-service-counter photo instead of the generic PUBLIC SOURCE VISUAL/source-poster treatment; source actions remain visible; unrelated blocked sources still degrade safely and no fabricated photo is substituted."
+        }
+      ]
+    }
+  ],
+  "curation": [
+    "fatherhood / public family moment",
+    "return to Jesse Cohen",
+    "StartOn television",
+    "elder-fraud story to newsroom",
+    "5.13M external creator moment",
+    "BIZZI music collaboration",
+    "Russian-education creator root",
+    "long-form life story",
+    "2026 direct-to-camera present-tense moment"
+  ],
+  "acceptance": [
+    "keep current v95 release/API behavior",
+    "keep Bro Chat branding and workflow",
+    "keep current HE/EN/RU SEO/static-first paint",
+    "render 9 source-linked life moments before generic current-work categories",
+    "mobile uses existing horizontal snap frame rail",
+    "no fabricated images or invented metrics",
+    "run existing visual acceptance checks after apply"
+  ]
+}
