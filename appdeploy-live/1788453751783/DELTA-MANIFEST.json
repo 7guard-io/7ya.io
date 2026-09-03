@@ -1,0 +1,36 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1788453751783",
+  "previous_ledger_snapshot": "1788358668510",
+  "applied_at": "2026-09-03",
+  "status": "READY",
+  "release": "7ya-bulk-repair-20260903-v6",
+  "change_type": "bulk-production-repair-and-home-life-recovery-staging",
+  "observed_current_files": [
+    "index.html",
+    "src/main.tsx",
+    "src/App.tsx",
+    "src/documentary-home/DocumentaryHome.tsx",
+    "src/documentary-home/documentary-home.css",
+    "src/documentary-home/visual-corpus.ts",
+    "tests/tests.txt"
+  ],
+  "verified_runtime": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "appdeploy_status": "READY"
+  },
+  "rollback_probe": {
+    "tested_snapshot": "1788426692289",
+    "reason": "latest known version retaining the nine-frame homepage gallery",
+    "result": "REJECTED",
+    "blocking_regression": "/api/release returned SPA HTML rather than API payload",
+    "restored_snapshot": "1788453751783"
+  },
+  "homepage_defect": "The current DocumentaryHome retains visual-corpus data and dh-frame CSS but omits the rendered nine-frame source-linked story gallery, leaving only two human cards before generic current-work categories.",
+  "recovery_strategy": "Add a lightweight nine-item Life Pulse sourced from the existing verified visual corpus and live projection. Do not restore the old viewer or old API architecture. Preserve current Bro Chat, API routing, multilingual SEO, lazy route loading and visual QA fixes.",
+  "source_export_complete": false,
+  "github_runtime_deploy_safe": false,
+  "reconstruction": "PARTIAL_RECOVERY_LEDGER"
+}
