@@ -22,7 +22,7 @@
   "responsive_policy": "Person-first cinematic hero, three playable social/video surfaces, then a 24-item source-linked media mosaic on mobile and desktop before deeper documentary chapters.",
   "rollback": {
     "provider": "appdeploy",
-    "version": "1788419557224",
-    "label": "pre-content-universe-v3"
+    "version": "1788453751783",
+    "label": "pre-source-alignment-control-gate-v93"
   }
 }
