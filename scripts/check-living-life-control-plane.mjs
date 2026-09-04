@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 const release = JSON.parse(fs.readFileSync('public/release.json', 'utf8'));
 assert.equal(release.source_alignment_state, 'FAIL');
-assert.match(release.appdeploy_version, /^\d+$/);
+assert.match(release.source_alignment_baseline_version, /^\d+$/);
 assert.equal(release.source_alignment_target, 'GIT_RECONSTRUCTABLE');
 assert.match(release.source_alignment_checked_at, /^2026-09-04T/);
 
