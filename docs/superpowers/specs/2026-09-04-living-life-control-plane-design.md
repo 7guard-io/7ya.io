@@ -25,6 +25,8 @@ A change is `DONE` only when all applicable gates pass:
 
 If Igor reports that the live result is visually wrong or unchanged, status immediately returns to `FAILED_LIVE_QA` regardless of previous technical success.
 
+Every gate result is explicit: `PASS`, `FAIL`, `NOT_APPLICABLE`, or `NOT_RUN`. `NOT_RUN` can never produce `VERIFIED_DONE`.
+
 ## 3. Current architecture boundary
 
 The current AppDeploy production source already contains:
@@ -190,7 +192,7 @@ The public UI never reads raw private source systems directly.
 It must report five independent dimensions:
 
 1. **Source alignment** — is the deployed source reconstructable from Git?
-2. **Corpus integrity** — schema validity, unresolved invalid nodes, evidence coverage.
+2. **Corpus integrity** — schema validity, invalid/quarantined nodes, evidence coverage.
 3. **Experience health** — critical routes, hydration, media resolution, API behavior.
 4. **Visual acceptance** — latest mobile/desktop QA evidence for each release.
 5. **Publication safety** — no private/restricted record leaked; no unsupported claim promoted.
@@ -234,6 +236,35 @@ Each release/gated feature stores:
 - failure reason
 - rollback target
 
+The release record is append-only after `VERIFIED_DONE`; corrections create a superseding release record rather than rewriting historical QA.
+
+### 6.3 Machine-readable release manifest
+
+The implementation must expose a public-safe manifest containing at minimum:
+
+```json
+{
+  "release_id": "...",
+  "source_commit": "...",
+  "appdeploy_version": "...",
+  "state": "LIVE_VISUAL_QA",
+  "gates": {
+    "source": "PASS",
+    "evidence": "PASS",
+    "build": "PASS",
+    "automated_qa": "PASS",
+    "live_data": "PASS",
+    "mobile_visual": "NOT_RUN",
+    "desktop_visual": "NOT_RUN",
+    "accessibility": "NOT_RUN",
+    "publication": "NOT_RUN"
+  },
+  "rollback_version": "..."
+}
+```
+
+No secret/private identifiers are exposed by this manifest.
+
 ## 7. Source-of-truth policy
 
 Git must become reconstructable canonical source before large Living Life changes ship.
@@ -251,6 +282,16 @@ Target state:
 
 No undocumented production-only patch is accepted once alignment is restored.
 
+### 7.1 Source-alignment acceptance
+
+Phase A source alignment passes only when:
+
+1. the full applied AppDeploy source snapshot is reconstructable from Git plus declared generated artifacts;
+2. the Git commit recorded for a release matches the code used to create the deployed version;
+3. source-sensitive file hashes or deterministic comparisons show no unexplained production-only drift;
+4. rollback points to an actually available AppDeploy version;
+5. `/control/` reports the same release mapping observed from the runtime.
+
 ## 8. Premium visual standard
 
 Design language:
@@ -267,6 +308,18 @@ Rules:
 - avoid generic AI cards and gratuitous gradients
 - mobile is a first-class composition, not a compressed desktop page
 - a visitor understands time/context within three seconds
+
+### 8.1 Visual acceptance record
+
+A visual gate is not satisfied by the existence of a screenshot. It requires:
+
+- screenshot generated from the exact deployed release
+- route and viewport recorded
+- no broken/cropped dominant media
+- no overlapping/overflowing navigation or text
+- hierarchy readable without developer tools
+- primary interaction visible and usable
+- reviewer state recorded as `PASS` or `FAIL`
 
 ## 9. Performance constraints
 
@@ -302,6 +355,8 @@ A public narrative node fails publication if any of the following is true:
 - future intent is rendered as achieved outcome
 - third-party relationship is inferred without an evidence edge
 
+For factual nodes in the premium life narrative, evidence coverage is 100% at the node level: each material factual node must have a claim/source binding or be explicitly labeled as first-person memory/interpretation.
+
 ## 12. Phase decomposition
 
 ### Phase A — Control and source alignment
@@ -309,12 +364,12 @@ A public narrative node fails publication if any of the following is true:
 Deliverables:
 
 - execution state machine
-- release/gate manifest
+- machine-readable release/gate manifest
 - Git/AppDeploy source alignment measurement
 - upgraded `/control/` representation
 - rollback pointer
 
-Exit criterion: every future feature can be traced from source commit to visual QA.
+Exit criterion: every future feature can be traced from source commit to AppDeploy version to fresh mobile/desktop visual QA.
 
 ### Phase B — Canonical Life Corpus integration
 
@@ -325,7 +380,7 @@ Deliverables:
 - contradictions and visibility states
 - evidence drawer contract
 
-Exit criterion: core public life events are source-addressable.
+Exit criterion: core public life events are source-addressable and every material factual narrative node has evidence binding or explicit memory/interpretation labeling.
 
 ### Phase C — Premium life experience
 
@@ -337,7 +392,7 @@ Deliverables:
 - chapter transitions
 - responsive source visuals
 
-Exit criterion: mobile and desktop visual review approved.
+Exit criterion: fresh mobile and desktop visual review both `PASS` against the deployed release.
 
 ### Phase D — Voice Corpus
 
@@ -371,6 +426,7 @@ Three layers are mandatory:
 - visibility states
 - relationship edge whitelist
 - quote/transcript state rules
+- release state machine and gate-status enum
 
 ### Route/API tests
 
@@ -378,6 +434,7 @@ Three layers are mandatory:
 - `/api/*` never falls through to SPA HTML
 - canonical data loads in HE/EN/RU where supported
 - restricted data cannot be fetched publicly
+- release manifest maps to the deployed version
 
 ### Live acceptance
 
@@ -397,6 +454,8 @@ The live captures must correspond to the deployed version being approved.
 
 Before deploy, record the previous known-good AppDeploy version. If critical live QA fails, rollback is preferred over stacking emergency patches on an unverified release.
 
+A rollback is complete only after the previous version is live and its critical route/visual checks are re-run.
+
 ## 15. Definition of Done
 
 A premium feature is complete only when:
@@ -411,6 +470,7 @@ A premium feature is complete only when:
 8. accessibility smoke gate passes;
 9. evidence/publication/privacy gates pass;
 10. Git/AppDeploy release mapping is recorded;
-11. final state is `VERIFIED_DONE`.
+11. no applicable gate is `NOT_RUN`;
+12. final state is `VERIFIED_DONE`.
 
 Anything less is not fixed and not finished.
