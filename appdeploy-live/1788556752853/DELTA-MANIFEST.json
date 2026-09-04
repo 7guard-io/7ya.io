@@ -1,0 +1,27 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1788556752853",
+  "base_snapshot": "1788540576202",
+  "intermediate_test_snapshot": "1788556658819",
+  "applied_at": "2026-09-05",
+  "status": "READY",
+  "change_type": "human-first-mobile-home-cutover",
+  "changed_files": [
+    "tests/tests.txt",
+    "src/documentary-home/living-front-door-20260903.css"
+  ],
+  "change_summary": "Add a regression acceptance requirement for a human-first mobile first fold, then remove the multi-row proof/dashboard signal grid from the mobile hero, increase the portrait stage height, reduce bottom padding and lighten the mobile veil so Igor's real portrait, story title, human lead and primary actions dominate the first screen.",
+  "bro_chat_unchanged": "POST /api/companion; NVIDIA-first provider order preserved",
+  "qa": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e": "not-run",
+    "screenshots_generated": true,
+    "pixel_verdict_claimed": false
+  },
+  "source_export_complete": false,
+  "runtime_source_of_truth": "AppDeploy snapshot 1788556752853",
+  "github_runtime_deploy_safe": false,
+  "reconstruction": "PARTIAL: CONTROLLED_DELTA_RECORDED; COMPLETE_ATOMIC_SOURCE_EXPORT_PENDING"
+}
