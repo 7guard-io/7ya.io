@@ -1,0 +1,19 @@
+/* 7YA visual life atlas — authentic, source-aware home gallery */
+.life-atlas{padding:clamp(4rem,9vw,8rem) 5vw;background:#090b10;color:#f5f6f8;overflow:hidden}
+.life-atlas-head{max-width:46rem;margin:0 0 2.5rem}
+.life-atlas-head .eyebrow{color:#cdb97b}
+.life-atlas-head h2{margin:.4rem 0 1rem;font-size:clamp(2.2rem,5vw,4.8rem);line-height:.98;letter-spacing:-.045em}
+.life-atlas-head p{max-width:38rem;margin:0;color:#c8cbd3;font-size:1.08rem;line-height:1.65}
+.life-atlas-grid{display:grid;grid-template-columns:1.3fr .85fr .85fr;grid-template-rows:22rem 22rem;gap:.8rem}
+.life-card{position:relative;isolation:isolate;display:block;min-height:0;overflow:hidden;background:#171a21;color:#fff;text-decoration:none}
+.life-card:first-child{grid-row:span 2}
+.life-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s cubic-bezier(.2,.75,.2,1),filter .65s;filter:saturate(.8) contrast(1.04)}
+.life-card::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(4,6,10,.03) 28%,rgba(4,6,10,.82) 100%)}
+.life-card:hover img,.life-card:focus-visible img{transform:scale(1.05);filter:saturate(1.08) contrast(1.06)}
+.life-card-copy{position:absolute;z-index:2;inset:auto 1.15rem 1.1rem;display:grid;gap:.3rem}
+.life-card-copy small{font:600 .66rem/1.25 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:#d7c47f}
+.life-card-copy b{font-size:clamp(1.15rem,1.8vw,1.65rem);line-height:1.05}
+.life-card-copy span{font-size:.86rem;color:#e2e4e8}
+.life-atlas-note{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:80rem;margin:1.4rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.16);color:#b6bbc5;font-size:.85rem}
+.life-atlas-note a{color:#fff;text-decoration-thickness:1px;text-underline-offset:.25em}
+@media(max-width:760px){.life-atlas{padding:4rem 1.25rem}.life-atlas-grid{grid-template-columns:1fr 1fr;grid-template-rows:17rem 14rem 14rem;gap:.55rem}.life-card:first-child{grid-column:span 2;grid-row:auto}.life-card-copy{inset:auto .8rem .8rem}.life-atlas-note{align-items:flex-start;flex-direction:column}.life-atlas-head p{font-size:1rem}}
