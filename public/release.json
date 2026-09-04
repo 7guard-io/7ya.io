@@ -1,0 +1,28 @@
+{
+  "service": "7ya-frontend",
+  "provider": "appdeploy",
+  "status": "READY",
+  "release": "7ya-bulk-repair-20260903-v6",
+  "build_marker": "7ya-bulk-repair-20260903-v6",
+  "environment": "production",
+  "canonical_domain": "https://7ya.io/",
+  "source_repository": "7guard-io/7ya.io",
+  "source_ref": "main",
+  "source_alignment_state": "FAIL",
+  "source_alignment": "APPDEPLOY_LIVE_SNAPSHOT_PENDING_GITHUB_EXPORT",
+  "appdeploy_version": "1788453751783",
+  "source_alignment_checked_at": "2026-09-04T15:30:00+03:00",
+  "source_alignment_target": "GIT_RECONSTRUCTABLE",
+  "deployed_on": "2026-09-03",
+  "experience": "PERFORMANCE_HARDENED_BRO_CHAT_LIVE_EXPERIENCE_V6",
+  "languages": ["he", "en", "ru"],
+  "evidence_policy": "VERIFIED / SELF-REPORTED / INFERRED / UNKNOWN remain distinct; aggregate reach, impressions and impact are not claimed as verified without source evidence.",
+  "visual_policy": "Real source media first; homepage dynamically projects every visually usable deep-media record except the five hero features, ranks stronger video/metric/category signals earlier, physically removes the redundant legacy frame grid, and uses an explicit source fallback instead of broken thumbnails.",
+  "corpus_policy": "One reusable canonical corpus feeds life, moments, evidence, search, media and Bro Chat projections.",
+  "responsive_policy": "Person-first cinematic hero, three playable social/video surfaces, then a 24-item source-linked media mosaic on mobile and desktop before deeper documentary chapters.",
+  "rollback": {
+    "provider": "appdeploy",
+    "version": "1788419557224",
+    "label": "pre-content-universe-v3"
+  }
+}
