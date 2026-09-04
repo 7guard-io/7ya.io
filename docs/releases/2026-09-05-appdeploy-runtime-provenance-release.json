@@ -1,0 +1,41 @@
+{
+  "recorded_at": "2026-09-05T00:23:00+03:00",
+  "canonical_domain": "https://7ya.io",
+  "release": "7ya-sovereign-recovery-20260905-v1",
+  "appdeploy": {
+    "app_id": "697a008fddc309b142",
+    "snapshot_version": "1788556953194",
+    "status": "ready",
+    "runtime_errors": {
+      "frontend": 0,
+      "backend": 0,
+      "network": 0
+    },
+    "e2e_status": "not_reported_by_appdeploy_for_this_version",
+    "qa_screenshots_generated": true
+  },
+  "domains": {
+    "7ya.io": "active",
+    "www.7ya.io": "active"
+  },
+  "source_contract": {
+    "source_of_truth": "appdeploy-remote-snapshot",
+    "github_repository": "7guard-io/7ya.io",
+    "github_provenance_commit": "32f94a80329b697d5caa5e22a5745e64c36d6b5d",
+    "full_source_export": "pending",
+    "legacy_github_ci_is_production_authority": false
+  },
+  "bro_chat": {
+    "endpoint": "POST /api/companion",
+    "provider_order": ["nvidia", "appdeploy-agent", "local"],
+    "nvidia_model": "nvidia/nemotron-3-super-120b-a12b",
+    "nvidia_secret_configured": true,
+    "nvidia_runtime_observation_verified_in_this_release_receipt": false
+  },
+  "visual_acceptance": {
+    "appdeploy_qa_screenshots": "generated",
+    "separate_pixel_level_acceptance_result_captured_in_this_receipt": false,
+    "note": "Do not label the visual experience FIXED solely from build readiness or generated screenshots."
+  },
+  "result": "PRODUCTION_RELEASE_DEPLOYED_WITH_EXPLICIT_SOURCE_AUTHORITY_AND_PROVENANCE; FULL_GITHUB_SOURCE_EXPORT_AND_SEPARATE_PIXEL_ACCEPTANCE_REMAIN_OPEN"
+}
