@@ -10,7 +10,7 @@
   "source_ref": "main",
   "source_alignment_state": "FAIL",
   "source_alignment": "APPDEPLOY_LIVE_SNAPSHOT_PENDING_GITHUB_EXPORT",
-  "appdeploy_version": "1788453751783",
+  "source_alignment_baseline_version": "1788453751783",
   "source_alignment_checked_at": "2026-09-04T15:36:13+03:00",
   "source_alignment_target": "GIT_RECONSTRUCTABLE",
   "deployed_on": "2026-09-03",
