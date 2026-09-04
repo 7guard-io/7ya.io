@@ -1,0 +1,28 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1788556953194",
+  "base_snapshot": "1788556752853",
+  "applied_at": "2026-09-05",
+  "status": "READY",
+  "change_type": "provenance-roll-forward-preserving-human-first-mobile-cutover",
+  "verified_surviving_files": [
+    "tests/tests.txt",
+    "src/documentary-home/living-front-door-20260903.css"
+  ],
+  "change_summary": "The later production snapshot preserves the human-first mobile hero fix and its regression requirement: mobile hero 88svh, portrait object-position 56% 14%, reduced copy bottom padding, lighter veil, and the multi-row proof/dashboard index hidden below 900px.",
+  "bro_chat_contract": "POST /api/companion; NVIDIA-first provider order preserved",
+  "release_marker": "7ya-sovereign-recovery-20260905-v1",
+  "qa": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e": "not-reported",
+    "screenshots_generated": true,
+    "pixel_verdict_claimed": false
+  },
+  "delta_source_export_complete": true,
+  "source_export_complete": false,
+  "runtime_source_of_truth": "AppDeploy snapshot 1788556953194",
+  "github_runtime_deploy_safe": false,
+  "reconstruction": "PARTIAL: CURRENT_CONTROLLED_DELTA_EXPORTED; COMPLETE_ATOMIC_SOURCE_EXPORT_PENDING"
+}

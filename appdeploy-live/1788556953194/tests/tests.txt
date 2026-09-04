@@ -1,0 +1,66 @@
+# Tests
+
+## Test 1 - Use Bro Chat as a mobile growth loop [sanity]
+Viewport: mobile (375x667)
+Covers: Bro Chat homepage entry, mobile conversation surface, /api/companion response flow, NVIDIA Nemotron primary production path, grounded retrieval, SEE/ALIGN/ACT, BUILD/DECIDE/DO/SAVE, device-local saved move resume, legacy companion override removal
+Description: Verifies the primary mobile conversation turns a question into an executable next move without sign-in, stale branding or legacy companion styling.
+Steps:
+1. Open the homepage and confirm the AI entry is branded Bro Chat rather than Digital Igor, then open /?lang=en&chat=open.
+2. Confirm Bro Chat is the dominant near-full-screen surface with SEE / ALIGN / ACT, readable quick prompts and a reachable composer.
+3. Send “What is verified about StartOn, and what one move should I take today to help?” and wait for the assistant reply; inspect the completed POST /api/companion response and confirm provider is nvidia, model is nvidia/nemotron-3-super-120b-a12b, and the response contains grounded evidence/retrieval output.
+4. Confirm BUILD, DECIDE, DO and SAVE appear; tap DO and verify a new assistant answer appears through the same NVIDIA-first conversation flow.
+5. Tap SAVE, reset the conversation, confirm SAVED MOVE appears, and tap Continue.
+Expected: Bro Chat stays readable without horizontal overflow or competing navigation; /api/companion returns a grounded usable reply with provider=nvidia and model=nvidia/nemotron-3-super-120b-a12b for the factual StartOn turn; falling through to appdeploy-agent or local is a release failure; action controls appear only after an assistant reply; SAVE confirms device-local persistence; reset does not erase the saved move; Continue resumes it without login or private-source exposure; no legacy red companion styling is visible.
+
+## Test 2 - Preserve the homepage when public projection fails
+Viewport: desktop (1280x800)
+Covers: /api/public-projection network failure, deepMedia fallback, homepage resilience
+Description: Verifies the live projection is an enhancement rather than a single point of failure.
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/public-projection",
+    "status": 503,
+    "body_json": {"error":"simulated_projection_failure"}
+  }
+]
+```
+Steps:
+1. Open the homepage.
+2. Scroll into the content universe.
+3. Continue through the source wall.
+Expected: The homepage remains populated with curated source moments from the local fallback; the hero, source-first media posters and later playable feature media remain usable; no blank or fatal error state appears.
+
+## Test 3 - Prefer verified authentic media over a generic source poster
+Viewport: desktop (1280x800)
+Covers: live homepage pixel audit desktop/mobile, hero critical-path image priority, owner-approved visual registry, v5 /api/media-image approved/public-mirror behavior, projection/discovery/registry cache consistency, Instagram source handling, homepage/library/media/album source surfaces, source actions, direct human-source links
+Description: Verifies the live homepage visually on both desktop and mobile using the deployed pixel-level visual acceptance gate, including a human-first mobile first fold, then checks the elder-fraud Instagram source resolves to verified authentic media rather than a generic source poster.
+Steps:
+1. Open /api/visual-acceptance?path=home&viewport=desktop and confirm the returned audit verdict is PASS, visibleContent is true and blankOrMostlyEmpty is false.
+2. Open /api/visual-acceptance?path=home&viewport=mobile and confirm the returned audit verdict is PASS, visibleContent is true and blankOrMostlyEmpty is false.
+3. Open the homepage, confirm the portrait hero is immediately visible, then scroll through REAL MEDIA · INSIDE THE PAGE and the later source wall; locate https://www.instagram.com/p/CoXykBwq3Zr/ if present and inspect its visual treatment.
+4. Continue through Narrative, Living Archive, Media and Impact sections and verify deeper content renders with distinct media and direct human-source links.
+Expected: Both server-side live screenshot audits PASS on actual pixels with no blank/mostly-empty viewport, clipping or release-blocking visual issue; on mobile the first fold is dominated by Igor's portrait, story title, human lead and primary actions, with no multi-row proof/dashboard signal grid occupying the bottom of the hero; proof details remain available deeper in the experience; the portrait hero and deeper content remain populated with distinct visual treatments; the Instagram source https://www.instagram.com/p/CoXykBwq3Zr/ prefers /resources/approved-restream-CoXykBwq3Zr.jpg when present and otherwise resolves to the verified public mirror of the same elderly-woman-at-service-counter photo instead of the generic PUBLIC SOURCE VISUAL/source-poster treatment; source actions remain visible; unrelated blocked sources still degrade safely and no fabricated photo is substituted.
+
+## Test 4 - Keep static-first pages and Integrity aligned with the live release
+Viewport: desktop (1280x800)
+Covers: /en/ and /ru/ static first paint, global release identity, /release.json, /static-health.json, /feed.json, AppDeploy SDK backend health/release transport, /integrity/ route identity diagnostics, /research/youth-risk-2008-2026/ policy-lab route
+Description: Verifies crawlers and visitors receive current multilingual positioning while the public diagnostic cockpit distinguishes route integrity from global release consistency.
+Steps:
+1. Open /en/ and /ru/ and inspect immediate first paint before and after hydration.
+2. Open /release.json, /static-health.json and /feed.json directly and confirm machine-readable JSON; separately verify application health/release through the AppDeploy client transport rather than raw same-origin /api URLs.
+3. Open /research/youth-risk-2008-2026/ and confirm the policy lab shows the core thesis, the 155→250 budget anchor, 85.4%→69.5% staffing anchor, Anchor 360+ proposal and explicit methodological caveats; follow its StartOn link and return.
+4. Open /integrity/ and let its route and release-surface checks complete.
+Expected: English immediately shows “Kharkiv → Jesse Cohen. Service → Police → StartOn → #7YA.” and Russian shows “Харьков → Джесси Коэн. Служба → полиция → StartOn → #7YA.” before and after hydration; the generic “Not a site about me. Life itself.” / “Не сайт обо мне. Сама жизнь.” first-fold slogans do not return; /release.json and /static-health.json report 7ya-sovereign-recovery-20260904-v1, /feed.json returns JSON Feed 1.1 rather than HTML/XML/403, internal SDK health/release calls remain healthy; the youth-policy route is readable, exposes the report caveats and clearly labels the ≈30M NIS pilot figure as a planning estimate rather than a government commitment; Integrity reports eight route identity checks separately from four supported public release surfaces.
+
+## Test 5 - Keep social tools useful and privacy-safe
+Viewport: desktop (1280x800)
+Covers: Social Control provider UX metadata, guarded telemetry ingestion, secret boundary, TikTok/LinkedIn readiness, automatic-publishing guardrail
+Description: Verifies integrations are judged by visible user-experience value rather than credential presence alone while telemetry stays aggregate and non-identifying.
+Steps:
+1. Open ?page=social-control while signed out.
+2. Inspect PUBLIC OAUTH READINESS provider cards.
+3. Check TikTok and LinkedIn readiness and the policy footer.
+Expected: Provider cards explain a concise UX purpose; TikTok and LinkedIn show READY rather than CREDENTIAL GATE; secret values and tokens are never displayed; automatic publishing remains off; no user identifier, query string or captured content is shown.
