@@ -1,0 +1,62 @@
+{
+  "recorded_for": "2026-09-05",
+  "canonical_domain": "https://7ya.io",
+  "release_marker": "7ya-sovereign-recovery-20260905-v3-globalfix",
+  "runtime": {
+    "provider": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v94",
+    "snapshot_version": "1788591558469",
+    "deployed_at": "2026-09-05T06:59:18.469Z",
+    "status": "ready"
+  },
+  "domains": {
+    "7ya.io": {
+      "status": "active",
+      "verification": "Address resolves to AppDeploy proxy IP 18.232.7.146",
+      "checked_at_epoch_ms": 1788591693112
+    },
+    "www.7ya.io": {
+      "status": "active",
+      "verification": "CNAME chain reaches proxy-v2.appdeploy.ai",
+      "checked_at_epoch_ms": 1788591698153
+    }
+  },
+  "qa": {
+    "terminal_appdeploy_qa": "pass",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "qa_snapshot_id": "1788591599049",
+    "e2e_contract": "tests/tests.txt present",
+    "e2e_runner": "not executed / AppDeploy returned null",
+    "visual_snapshot": "generated; separate human pixel review gate remains"
+  },
+  "experience": {
+    "homepage": "person-first cinematic first fold",
+    "bro_chat_first_paint": ["he", "en", "ru"],
+    "bro_chat_provider_order": ["nvidia", "appdeploy-agent", "local"],
+    "nvidia_model": "nvidia/nemotron-3-super-120b-a12b",
+    "nvidia_current_state": "degraded-auth: configured credential previously returned HTTP 401; fast runtime probe and circuit fallback prevent repeated user-facing failure",
+    "cache_bootstrap": "7ya-sovereign-recovery-20260905-v3-globalfix-firstpaint"
+  },
+  "source_authority": {
+    "production_source_of_truth": "AppDeploy remote source snapshot",
+    "github_repository": "7guard-io/7ya.io",
+    "github_base_commit": "0d0effd2a1ed5f16d304d3f47332904ced563c6a",
+    "legacy_github_runtime_authoritative": false,
+    "full_source_export": "pending",
+    "source_alignment": "provenance receipt only; do not treat this branch or legacy main as a byte-identical production source export"
+  },
+  "verification_notes": [
+    "No active v1 release marker remains under src, backend or public in AppDeploy snapshot 1788591558469.",
+    "Root, English and Russian static first-paint contracts carry the v3 marker and visible Bro Chat entry.",
+    "NVIDIA primary cannot be called healthy until a fresh valid NVIDIA_API_KEY is securely bound and a new canary passes.",
+    "Search/crawler caches may lag the deployed runtime; AppDeploy snapshot and domain verification are the production authority."
+  ],
+  "rollback": {
+    "snapshot_version": "1788586543512",
+    "label": "pre-globalfix-v3 smart-fallback baseline"
+  }
+}
