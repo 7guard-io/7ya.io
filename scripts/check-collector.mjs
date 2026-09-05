@@ -35,7 +35,8 @@ for (const target of registry.targets || []) {
   }
 }
 
-requireText(workflow, "cron: '17 */12 * * *'", '12-hour schedule missing');
+requireText(workflow, 'Paused as an automatic 12H job', 'legacy collector pause rationale missing');
+forbidText(workflow, 'schedule:', 'legacy collector must remain manual-only while AppDeploy is the active runtime');
 requireText(workflow, 'workflow_dispatch:', 'manual collector trigger missing');
 requireText(workflow, 'contents: write', 'collector write permission missing');
 requireText(workflow, 'git diff --quiet', 'collector no-change gate missing');

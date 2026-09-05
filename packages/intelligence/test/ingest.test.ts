@@ -1,0 +1,158 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { mkdtemp, writeFile, readFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import { CollectorAdapter } from '../src/adapters/collector.js';
+import { EvidenceClaimsAdapter } from '../src/adapters/evidence-claims.js';
+import { LocalCorpusAdapter } from '../src/adapters/local-corpus.js';
+import { FileSystemAtomStore, IngestManifestStore } from '../src/store.js';
+import { ingestAdapter } from '../src/ingest.js';
+
+async function temp(): Promise<string> {
+  return mkdtemp(path.join(tmpdir(), '7ya-intel-'));
+}
+
+test('collector ingest is incremental and preserves prior changed versions', async () => {
+  const root = await temp();
+  const input = path.join(root, 'collector.json');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  const base = {
+    schema_version: 1,
+    generated_at: '2026-09-05T10:00:00Z',
+    records: [{
+      target: 'https://example.test/a',
+      final_url: 'https://example.test/a',
+      canonical_url: 'https://example.test/a',
+      title: 'StartOn',
+      text_excerpt: 'Work with youth at risk',
+      content_sha256: 'hash-a',
+      http_status: 200,
+      content_type: 'text/html',
+    }],
+  };
+  await writeFile(input, JSON.stringify(base));
+  const first = await ingestAdapter(new CollectorAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:00:00Z' });
+  const second = await ingestAdapter(new CollectorAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:01:00Z' });
+  assert.equal(first.created, 1);
+  assert.equal(second.skipped, 1);
+
+  base.records[0].text_excerpt = 'Expanded work with youth at risk';
+  base.records[0].content_sha256 = 'hash-b';
+  await writeFile(input, JSON.stringify(base));
+  const third = await ingestAdapter(new CollectorAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:02:00Z' });
+  assert.equal(third.created, 1);
+
+  const atoms = [];
+  for await (const atom of store.list()) atoms.push(atom);
+  assert.equal(atoms.length, 2);
+  assert(atoms.some(atom => atom.source.canonicalUrl === 'https://example.test/a'));
+});
+
+test('local corpus keeps private visibility and malformed record does not advance manifest', async () => {
+  const root = await temp();
+  const input = path.join(root, 'local.ndjson');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  const good = {
+    sourceId: 'chat:1',
+    sourceType: 'chat-export',
+    content: 'Private note',
+    observedAt: '2026-09-05T10:00:00Z',
+    visibility: 'private',
+    verification: { level: 'self-report' },
+    kind: 'statement',
+    sourceRecordHash: 'local-1',
+  };
+  await writeFile(input, `${JSON.stringify(good)}\n`);
+  const ok = await ingestAdapter(new LocalCorpusAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:00:00Z' });
+  assert.equal(ok.created, 1);
+  const before = JSON.parse(await readFile(path.join(root, 'manifests', 'local.json'), 'utf8'));
+
+  await writeFile(input, `${JSON.stringify({ ...good, sourceId: 'chat:2', content: '' })}\n`);
+  const bad = await ingestAdapter(new LocalCorpusAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:01:00Z' });
+  assert.equal(bad.rejected, 1);
+  const after = JSON.parse(await readFile(path.join(root, 'manifests', 'local.json'), 'utf8'));
+  assert.deepEqual(after, before);
+});
+
+test('optional Evidence Oracle linkage is reproducible and stored in atom provenance', async () => {
+  const root = await temp();
+  const input = path.join(root, 'local.ndjson');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  const row = {
+    sourceId: 'doc:1',
+    sourceType: 'document',
+    content: 'Evidence linked note',
+    observedAt: '2026-09-05T10:00:00Z',
+    visibility: 'public',
+    verification: { level: 'primary-source' },
+    kind: 'document',
+    sourceRecordHash: 'doc-hash-1',
+  };
+  await writeFile(input, `${JSON.stringify(row)}\n`);
+  const summary = await ingestAdapter(new LocalCorpusAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, {
+    store,
+    manifests,
+    now: () => '2026-09-05T11:00:00Z',
+    integrity: {
+      enabled: true,
+      source: '7ya-intelligence-test',
+      createdAt: '2026-09-05T11:00:00Z',
+      chainPrevHash: '',
+    },
+  });
+  assert.equal(summary.created, 1);
+  const atoms = [];
+  for await (const atom of store.list()) atoms.push(atom);
+  assert.equal(atoms.length, 1);
+  assert.match(atoms[0].provenance.evidenceRecordId ?? '', /^[a-f0-9]{64}$/);
+});
+
+test('evidence claims adapter preserves PRIVATE classification and self-report semantics', async () => {
+  const root = await temp();
+  const input = path.join(root, 'claims.json');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  await writeFile(input, JSON.stringify([
+    {
+      id: 'private-family', title: 'Family details', explanation: 'Sensitive family material',
+      category: 'Privacy boundary', status: 'PRIVATE', sourceType: 'Privacy policy classification',
+      date: '2026-07-09', classification: 'PRIVATE', sourceLink: 'PRIVATE: no public source',
+    },
+    {
+      id: 'founder-mission', title: 'Mission', explanation: 'Founder describes the mission',
+      category: 'Social impact', status: 'SOURCE PENDING', sourceType: 'Founder statement / project narrative',
+      date: '2026-07-09', classification: 'PUBLIC', sourceLink: 'SOURCE PENDING: add evidence',
+    },
+  ]));
+  const summary = await ingestAdapter(new EvidenceClaimsAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:00:00Z' });
+  assert.equal(summary.created, 2);
+  const atoms = [];
+  for await (const atom of store.list()) atoms.push(atom);
+  const privateAtom = atoms.find(atom => atom.source.sourceId === 'evidence-claim:private-family');
+  const founderAtom = atoms.find(atom => atom.source.sourceId === 'evidence-claim:founder-mission');
+  assert.equal(privateAtom?.visibility, 'private');
+  assert.equal(privateAtom?.content, 'Sensitive family material');
+  assert.equal(privateAtom?.source.canonicalUrl, undefined);
+  assert.equal(founderAtom?.visibility, 'public');
+  assert.equal(founderAtom?.verification.level, 'self-report');
+});
+
+test('local corpus rejects unknown visibility and verification values instead of promoting them', async () => {
+  const root = await temp();
+  const input = path.join(root, 'local.json');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  await writeFile(input, JSON.stringify([{
+    sourceId: 'local:unsafe', sourceType: 'local', content: 'Do not publish',
+    observedAt: '2026-09-05T10:00:00Z', visibility: 'PUBLIC',
+    verification: { level: 'verified' }, kind: 'statement', sourceRecordHash: 'unsafe-1',
+  }]));
+
+  const summary = await ingestAdapter(new LocalCorpusAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests });
+  assert.equal(summary.rejected, 1);
+  assert.equal(await manifests.get('local', 'local:unsafe'), undefined);
+});

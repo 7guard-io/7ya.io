@@ -47,8 +47,8 @@ assert.equal(manifest.theme_color, '#080a0d');
 assert.ok(Array.isArray(manifest.icons) && manifest.icons.some(icon => icon.src === '/assets/7ya-app-icon.svg'));
 assert.ok(Array.isArray(manifest.shortcuts) && manifest.shortcuts.some(shortcut => shortcut.url === '/control/'));
 
+assert.match(worker, /^const CACHE_VERSION = '7ya-shell-[a-z0-9-]+';/m);
 for (const required of [
-  "const CACHE_VERSION = '7ya-shell-20260726-v1'",
   "request.mode === 'navigate'",
   'networkFirst(request)',
   'staleWhileRevalidate(request)',
