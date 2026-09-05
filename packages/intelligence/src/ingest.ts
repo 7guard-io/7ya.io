@@ -1,4 +1,5 @@
 import type { SourceAdapter, SourceScanInput } from './adapter.js';
+import { createEvidenceRecord } from '../../evidence-oracle/src/record.js';
 import { createEvidenceAtom } from './atom.js';
 import type { AtomStore, IngestManifestStore } from './store.js';
 
@@ -13,7 +14,17 @@ export type IngestSummary = {
 export async function ingestAdapter(
   adapter: SourceAdapter,
   input: SourceScanInput,
-  deps: { store: AtomStore; manifests: IngestManifestStore; now?: () => string },
+  deps: {
+    store: AtomStore;
+    manifests: IngestManifestStore;
+    now?: () => string;
+    integrity?: {
+      enabled: boolean;
+      source: string;
+      createdAt?: string;
+      chainPrevHash?: string;
+    };
+  },
 ): Promise<IngestSummary> {
   const summary: IngestSummary = { created: 0, unchanged: 0, skipped: 0, rejected: 0, errors: [] };
   const now = deps.now ?? (() => new Date().toISOString());
@@ -59,6 +70,30 @@ export async function ingestAdapter(
 
         const result = await deps.store.put(atom);
         summary[result]++;
+
+        if (deps.integrity?.enabled) {
+          const evidenceRecord = createEvidenceRecord({
+            payload: {
+              atomId: atom.atomId,
+              contentHash: atom.provenance.contentHash,
+              sourceRecordHash: atom.provenance.sourceRecordHash,
+            },
+            metadata: {
+              subjectId: atom.subjectId,
+              sourceId: atom.source.sourceId,
+              kind: atom.kind,
+              visibility: atom.visibility,
+            },
+            createdAt: deps.integrity.createdAt ?? now(),
+            source: deps.integrity.source,
+            chainPrevHash: deps.integrity.chainPrevHash ?? '',
+          });
+          await deps.store.put({
+            ...atom,
+            provenance: { ...atom.provenance, evidenceRecordId: evidenceRecord.id },
+          });
+        }
+
         await deps.manifests.set(adapter.id, record.sourceId, record.sourceRecordHash);
       } catch (error) {
         summary.rejected++;
