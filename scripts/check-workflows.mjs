@@ -2,7 +2,27 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const workflowRoot = path.join(process.cwd(), '.github', 'workflows');
-const allowed = ['actions-smoke.yml', 'ci.yml', 'digital-museum-collector.yml', 'pages.yml'];
+const allowed = [
+  'actions-smoke.yml',
+  'ci.yml',
+  'cloudflare-appdeploy-dns-apply-once.yml',
+  'cloudflare-appdeploy-dns-preflight.yml',
+  'digital-museum-collector.yml',
+  'entity-consistency.yml',
+  'jekyll-gh-pages.yml',
+  'meta-ai-discovery-enable.yml',
+  'pages.yml',
+];
+const pushEnabled = new Set([
+  'cloudflare-appdeploy-dns-apply-once.yml',
+  'entity-consistency.yml',
+  'meta-ai-discovery-enable.yml',
+]);
+const pullRequestEnabled = new Set([
+  'cloudflare-appdeploy-dns-preflight.yml',
+  'entity-consistency.yml',
+]);
+const dispatchOptional = new Set(['cloudflare-appdeploy-dns-apply-once.yml']);
 const actual = fs.readdirSync(workflowRoot)
   .filter(file => /\.ya?ml$/i.test(file))
   .sort();
@@ -18,11 +38,14 @@ const bodies = new Map();
 for (const file of actual) {
   const body = fs.readFileSync(path.join(workflowRoot, file), 'utf8');
   bodies.set(file, body);
-  if (!/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
-  for (const event of ['pull_request', 'pull_request_target', 'issues', 'release']) {
+  if (!dispatchOptional.has(file) && !/^\s{2}workflow_dispatch:/m.test(body)) fail(`${file} is not manual-dispatch capable`);
+  for (const event of ['pull_request_target', 'issues', 'release']) {
     if (new RegExp(`^\\s{2}${event}:`, 'm').test(body)) fail(`${file} enables quarantined ${event} automation`);
   }
-  if (/^\s{2}push:/m.test(body) && file !== 'pages.yml') {
+  if (/^\s{2}pull_request:/m.test(body) && !pullRequestEnabled.has(file)) {
+    fail(`${file} enables unauthorized pull_request automation`);
+  }
+  if (/^\s{2}push:/m.test(body) && !pushEnabled.has(file)) {
     fail(`${file} enables unauthorized push automation`);
   }
   if (/^\s{2}schedule:/m.test(body) && file !== 'digital-museum-collector.yml') {
@@ -35,8 +58,6 @@ if (!ci.includes('npm run release:gate')) fail('ci.yml does not execute the shar
 
 const pages = bodies.get('pages.yml') || '';
 for (const required of [
-  'push:',
-  '- main',
   'workflow_dispatch:',
   'npm run release:gate',
   'actions/upload-pages-artifact@v3',
@@ -50,8 +71,8 @@ if (!smoke.includes('ACTIONS_SMOKE_PASS')) fail('actions-smoke.yml lost its runn
 
 const collector = bodies.get('digital-museum-collector.yml') || '';
 for (const required of [
-  'schedule:',
-  "cron: '17 */12 * * *'",
+  'Paused as an automatic 12H job',
+  'workflow_dispatch:',
   'contents: write',
   'scripts/collector/index.js',
   'data/collector-targets.json',
@@ -60,6 +81,7 @@ for (const required of [
 ]) {
   if (!collector.includes(required)) fail(`digital-museum-collector.yml missing ${required}`);
 }
+if (collector.includes('schedule:')) fail('digital-museum-collector.yml must remain manual-only');
 if (collector.includes('stefanzweifel/git-auto-commit-action')) {
   fail('digital-museum-collector.yml uses an unnecessary third-party commit action');
 }
