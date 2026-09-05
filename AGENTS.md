@@ -21,12 +21,14 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 - Public domain: `https://7ya.io`
 - Current production provider: AppDeploy v2
 - Current production app: `697a008fddc309b142`
-- Current verified version: `v49` / `1784701523083`
-- Current build marker: `igor-integrated-personal-system-20260722-1`
+- Current verified version: `v96` / `1788620914856`
+- Current build marker: `7ya-sovereign-recovery-20260905-v3-globalfix`
 - Production branch contract: `main`
-- Production receipt: `docs/releases/2026-07-22-appdeploy-v49-production-receipt.json`
+- Production receipt: `docs/releases/2026-09-05-appdeploy-v96-globalfix-v3.json`
 
 GitHub remains the canonical source-control and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
+
+Fresh reconciliation on 2026-09-05 confirms that AppDeploy v96 contains the active root `src/App.tsx` and `backend/index.ts`, while GitHub `main` does not contain those root runtime files. AppDeploy v96 is therefore the current runtime source of truth; GitHub `main` must not be deployed over it until a full source export and comparison passes the release gates.
 
 The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
 
@@ -38,7 +40,14 @@ Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STAT
 
 GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
 
-AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving export and comparison of the verified AppDeploy snapshot against `main`.
+AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving export and comparison of AppDeploy snapshot `1788620914856` against `main`.
+
+Current known runtime caveats:
+- AppDeploy reports `ready` with zero current frontend, network and backend QA errors.
+- AppDeploy E2E is `null`; do not claim an AppDeploy E2E PASS.
+- `NVIDIA_API_KEY` is configured and read through AppDeploy Secrets, but the NVIDIA canary returns HTTP 401. NVIDIA primary is degraded-auth; AppDeploy-agent/local fallback remains the resilience path.
+- A prior visual-gate failure predates v96 and must not be treated as v96 visual evidence. Require a fresh v96 visual acceptance result before declaring pixel-level visual PASS.
+- Direct browser requests to `/api/*` can surface SPA HTML; frontend API calls must use the supported AppDeploy client transport until the direct-HTTP platform contract is explicitly resolved.
 
 ## 4. Public experience contract
 
@@ -104,7 +113,7 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
 
 - GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy version `1784701523083` is the verified production runtime snapshot.
+- AppDeploy version `1788620914856` is the verified production runtime snapshot.
 - The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
 - Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
