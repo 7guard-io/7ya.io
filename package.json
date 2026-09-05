@@ -64,7 +64,7 @@
   },
   "homepage": "https://7ya.io",
   "devDependencies": {
-    "@types/node": "^25.3.3",
+    "@types/node": "^26.1.1",
     "docsify-to-pdf": "0.0.5",
     "typescript": "^5.9.3",
     "netlify-cli": "^17.38.1"
