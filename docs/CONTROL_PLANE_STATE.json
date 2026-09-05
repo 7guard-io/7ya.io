@@ -1,6 +1,6 @@
 {
   "schema_version": 5,
-  "updated_at": "2026-09-05T18:17:00+03:00",
+  "updated_at": "2026-09-05T18:30:28+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -29,7 +29,9 @@
     "backend_errors": 0,
     "e2e_tests": null,
     "qa_snapshot": "1788620962576",
-    "rollback_snapshot": "1788620747214"
+    "rollback_snapshot": "1788620747214",
+    "release_receipt": "docs/releases/2026-09-05-appdeploy-v96-globalfix-v3.json",
+    "postverification_addendum": "docs/releases/2026-09-05-appdeploy-v96-postverification-addendum.json"
   },
   "source_reconciliation": {
     "legacy_main_tree_predates_current_react_runtime": true,
@@ -42,7 +44,18 @@
     "rule": "Do not deploy GitHub main as a replacement for AppDeploy v96 until the complete runtime source is exported, compared, and passes release gates."
   },
   "runtime_health": {
-    "homepage_public_html": "content present in fresh public crawl; prior loader-only visual-gate result predates v96 and is not accepted as v96 evidence",
+    "homepage_public_html": "substantive content present in fresh public crawl",
+    "fresh_visual_home": {
+      "status": "PASS",
+      "note": "Fresh post-v96 runtime visual gate supersedes the older loader-only result. Automated reviewer also noted desktop-like layout in the requested mobile capture, so whole-release mobile pixel PASS is not claimed."
+    },
+    "fresh_visual_bro_chat": {
+      "status": "INCONCLUSIVE",
+      "raw_verdict": "FAIL",
+      "issues": [],
+      "p0": [],
+      "rule": "Do not mutate UI from an unexplained visual verdict with no actionable visible defect."
+    },
     "direct_browser_api_transport": "unresolved: direct /api/* requests may surface SPA HTML while frontend AppDeploy client transport remains the supported contract",
     "nvidia": {
       "secret_name": "NVIDIA_API_KEY",
@@ -51,8 +64,24 @@
       "model": "nvidia/nemotron-3-super-120b-a12b",
       "status": "DEGRADED_AUTH",
       "last_verified_failure": "HTTP 401",
+      "code_wiring_fault_found": false,
+      "secure_replacement_entry": "created-pending-value",
       "fallback": "AppDeploy-agent/local fallback preserved"
     }
+  },
+  "scheduler_reconciliation": {
+    "source_cron_jobs": [
+      "nvidia-canary-probe-v3",
+      "agent-mesh-hourly",
+      "meta-sync-hourly"
+    ],
+    "runtime_orphan_or_historical_jobs": [
+      "nvidia-canary-hourly",
+      "nvidia-canary-probe",
+      "visual-gate-once-20260905"
+    ],
+    "source_runtime_aligned": false,
+    "rule": "Do not treat orphan scheduler jobs as current source authority. Scheduler cleanup is a separate platform-state task."
   },
   "release_scope": {
     "name": "SOVEREIGN_RECOVERY_GLOBALFIX_V3",
