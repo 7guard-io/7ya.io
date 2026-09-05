@@ -4,6 +4,7 @@ import { mkdtemp, writeFile, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { CollectorAdapter } from '../src/adapters/collector.js';
+import { EvidenceClaimsAdapter } from '../src/adapters/evidence-claims.js';
 import { LocalCorpusAdapter } from '../src/adapters/local-corpus.js';
 import { FileSystemAtomStore, IngestManifestStore } from '../src/store.js';
 import { ingestAdapter } from '../src/ingest.js';
@@ -108,4 +109,34 @@ test('optional Evidence Oracle linkage is reproducible and stored in atom proven
   for await (const atom of store.list()) atoms.push(atom);
   assert.equal(atoms.length, 1);
   assert.match(atoms[0].provenance.evidenceRecordId ?? '', /^[a-f0-9]{64}$/);
+});
+
+test('evidence claims adapter preserves PRIVATE classification and self-report semantics', async () => {
+  const root = await temp();
+  const input = path.join(root, 'claims.json');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  await writeFile(input, JSON.stringify([
+    {
+      id: 'private-family', title: 'Family details', explanation: 'Sensitive family material',
+      category: 'Privacy boundary', status: 'PRIVATE', sourceType: 'Privacy policy classification',
+      date: '2026-07-09', classification: 'PRIVATE', sourceLink: 'PRIVATE: no public source',
+    },
+    {
+      id: 'founder-mission', title: 'Mission', explanation: 'Founder describes the mission',
+      category: 'Social impact', status: 'SOURCE PENDING', sourceType: 'Founder statement / project narrative',
+      date: '2026-07-09', classification: 'PUBLIC', sourceLink: 'SOURCE PENDING: add evidence',
+    },
+  ]));
+  const summary = await ingestAdapter(new EvidenceClaimsAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, { store, manifests, now: () => '2026-09-05T11:00:00Z' });
+  assert.equal(summary.created, 2);
+  const atoms = [];
+  for await (const atom of store.list()) atoms.push(atom);
+  const privateAtom = atoms.find(atom => atom.source.sourceId === 'evidence-claim:private-family');
+  const founderAtom = atoms.find(atom => atom.source.sourceId === 'evidence-claim:founder-mission');
+  assert.equal(privateAtom?.visibility, 'private');
+  assert.equal(privateAtom?.content, 'Sensitive family material');
+  assert.equal(privateAtom?.source.canonicalUrl, undefined);
+  assert.equal(founderAtom?.visibility, 'public');
+  assert.equal(founderAtom?.verification.level, 'self-report');
 });
