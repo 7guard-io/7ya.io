@@ -22,6 +22,34 @@ export type IntelligenceQueryRequest = {
   authorizedPrivate?: boolean;
 };
 
+export type PublicQueryBody = {
+  query: string;
+  subjectId: string;
+  limit: number;
+  visibility: 'public';
+};
+
+export function validatePublicQueryBody(body: unknown): PublicQueryBody {
+  if (!body || typeof body !== 'object') throw new TypeError('invalid request body');
+  const value = body as Record<string, unknown>;
+  const query = typeof value.query === 'string' ? value.query.trim() : '';
+  const subjectId = typeof value.subjectId === 'string' ? value.subjectId.trim() : '';
+  if (!query) throw new TypeError('query is required');
+  if (!subjectId) throw new TypeError('subjectId is required');
+  if (typeof value.visibility !== 'undefined' && value.visibility !== 'public') {
+    throw new TypeError('visibility must be public');
+  }
+  const rawLimit = typeof value.limit === 'number' && Number.isFinite(value.limit)
+    ? Math.trunc(value.limit)
+    : 25;
+  return {
+    query,
+    subjectId,
+    limit: Math.max(1, Math.min(rawLimit, 50)),
+    visibility: 'public',
+  };
+}
+
 export class IntelligenceQueryService {
   constructor(
     private readonly retriever: Retriever,
