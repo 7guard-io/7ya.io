@@ -75,3 +75,37 @@ test('local corpus keeps private visibility and malformed record does not advanc
   const after = JSON.parse(await readFile(path.join(root, 'manifests', 'local.json'), 'utf8'));
   assert.deepEqual(after, before);
 });
+
+test('optional Evidence Oracle linkage is reproducible and stored in atom provenance', async () => {
+  const root = await temp();
+  const input = path.join(root, 'local.ndjson');
+  const store = new FileSystemAtomStore(path.join(root, 'atoms'));
+  const manifests = new IngestManifestStore(path.join(root, 'manifests'));
+  const row = {
+    sourceId: 'doc:1',
+    sourceType: 'document',
+    content: 'Evidence linked note',
+    observedAt: '2026-09-05T10:00:00Z',
+    visibility: 'public',
+    verification: { level: 'primary-source' },
+    kind: 'document',
+    sourceRecordHash: 'doc-hash-1',
+  };
+  await writeFile(input, `${JSON.stringify(row)}\n`);
+  const summary = await ingestAdapter(new LocalCorpusAdapter(), { inputPath: input, subjectId: 'igor-vepretski' }, {
+    store,
+    manifests,
+    now: () => '2026-09-05T11:00:00Z',
+    integrity: {
+      enabled: true,
+      source: '7ya-intelligence-test',
+      createdAt: '2026-09-05T11:00:00Z',
+      chainPrevHash: '',
+    },
+  });
+  assert.equal(summary.created, 1);
+  const atoms = [];
+  for await (const atom of store.list()) atoms.push(atom);
+  assert.equal(atoms.length, 1);
+  assert.match(atoms[0].provenance.evidenceRecordId ?? '', /^[a-f0-9]{64}$/);
+});
