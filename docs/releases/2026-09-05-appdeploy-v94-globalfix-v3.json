@@ -7,20 +7,20 @@
     "stage": "v2",
     "app_id": "697a008fddc309b142",
     "version_name": "v93",
-    "snapshot_version": "1788593923579",
-    "deployed_at": "2026-09-05T07:38:43.579Z",
+    "snapshot_version": "1788594207619",
+    "deployed_at": "2026-09-05T07:43:27.619Z",
     "status": "ready"
   },
   "domains": {
     "7ya.io": {
       "status": "active",
       "verification": "Address resolves to AppDeploy proxy IP 18.232.7.146",
-      "checked_at_epoch_ms": 1788594069809
+      "checked_at_epoch_ms": 1788594293201
     },
     "www.7ya.io": {
       "status": "active",
       "verification": "CNAME chain reaches proxy-v2.appdeploy.ai",
-      "checked_at_epoch_ms": 1788594075147
+      "checked_at_epoch_ms": 1788594298451
     }
   },
   "qa": {
@@ -28,8 +28,8 @@
     "frontend_errors": 0,
     "network_errors": 0,
     "backend_errors": 0,
-    "qa_snapshot_id": "1788593966678",
-    "e2e_contract": "tests/tests.txt present and expanded for deep-route release identity plus canonical social identity",
+    "qa_snapshot_id": "1788594252990",
+    "e2e_contract": "tests/tests.txt present and expanded for Bro Chat, fallback, visual acceptance, multilingual first paint, deep-route release identity, canonical social identity, Integrity strictness and Control provenance",
     "e2e_runner": "not executed / AppDeploy returned null",
     "visual_snapshot": "generated; direct human pixel review from the QA S3 artifact remains unavailable in this session"
   },
@@ -38,15 +38,20 @@
     "bro_chat_first_paint": ["he", "en", "ru"],
     "bro_chat_provider_order": ["nvidia", "appdeploy-agent", "local"],
     "nvidia_model": "nvidia/nemotron-3-super-120b-a12b",
-    "nvidia_current_state": "degraded-auth: securely rebound credential still returned HTTP 401 in post-bind canary; runtime probe and circuit fallback protect Bro Chat",
+    "nvidia_current_state": "degraded-auth: securely rebound credential still returned HTTP 401 in post-bind canaries; runtime probe and circuit fallback protect Bro Chat",
     "cache_bootstrap": "7ya-sovereign-recovery-20260905-v3-globalfix-firstpaint"
   },
   "identity_alignment": {
     "deep_route_release_markers": "aligned to 7ya-sovereign-recovery-20260905-v3-globalfix",
-    "legacy_release_marker_search": "0 matches for 7ya-bulk-repair-20260903-v5 and 7ya-starton-registry-20260821-1 under public/",
+    "legacy_release_marker_search": "0 matches for 7ya-bulk-repair-20260903-v5 and 7ya-starton-registry-20260821-1 across the applied source search",
     "facebook_canonical": "https://www.facebook.com/vepretski7",
-    "legacy_facebook_alias_search": "0 public matches for facebook.com/vepretski not followed by 7",
+    "legacy_facebook_alias_search": "0 matches for facebook.com/vepretski not followed by 7 across the applied source search",
     "machine_readable_surfaces": ["public/data/entity-registry.json", "public/llms.txt"]
+  },
+  "diagnostics": {
+    "integrity_route_gate": "PASS now requires HTTP/title/canonical/no-refresh/content/privacy AND route release marker equality",
+    "control_cockpit": "dark readable status cards, valid READY badge token, GitHub link labeled as provenance",
+    "production_source_label": "AppDeploy remote snapshot remains authoritative"
   },
   "monitoring": {
     "source_cron_contract": {
@@ -54,7 +59,7 @@
       "agent-mesh-hourly": "17 * * * *",
       "meta-sync-hourly": "37 * * * *"
     },
-    "note": "AppDeploy scheduler status can lag source cron reconciliation; cron.json in the applied remote snapshot is the deployment contract."
+    "scheduler_reconciliation": "AppDeploy get_app_status still reports historical/stale NVIDIA cron instances; no direct cron control-plane mutation tool is exposed in this session. Source cron.json is correct, but scheduler cleanup is not claimed complete."
   },
   "source_authority": {
     "production_source_of_truth": "AppDeploy remote source snapshot",
@@ -65,16 +70,16 @@
     "source_alignment": "provenance receipt only; do not treat this branch or legacy main as a byte-identical production source export"
   },
   "verification_notes": [
-    "Exact AppDeploy snapshot 1788593923579 is READY with zero frontend, network and backend QA errors.",
+    "Exact AppDeploy snapshot 1788594207619 is READY with zero frontend, network and backend QA errors.",
     "Root, English and Russian static first-paint contracts carry the v3 marker and visible Bro Chat entry.",
-    "Deep public routes were normalized to the same v3 release marker.",
-    "Human-facing and machine-readable Facebook identity surfaces now use /vepretski7; legacy /vepretski public alias is absent from the applied public snapshot.",
-    "NVIDIA primary cannot be called healthy while the canary returns HTTP 401; AppDeploy-agent/local fallback remains the working resilience path.",
+    "Deep public routes were normalized to the same v3 release marker and Integrity now enforces that condition.",
+    "Human-facing and machine-readable Facebook identity surfaces use /vepretski7; legacy /vepretski public alias is absent from the applied source search.",
+    "NVIDIA primary cannot be called healthy while canaries return HTTP 401; AppDeploy-agent/local fallback remains the working resilience path.",
     "AppDeploy still reports e2e_tests=null; E2E is not claimed as passed.",
     "Search/crawler caches may lag the deployed runtime; AppDeploy snapshot and post-deploy domain verification are the production authority."
   ],
   "rollback": {
-    "snapshot_version": "1788592427364",
-    "label": "pre-deep-route-alignment v3 baseline"
+    "snapshot_version": "1788593923579",
+    "label": "pre-diagnostic-hardening v3 baseline"
   }
 }
