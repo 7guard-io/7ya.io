@@ -1,0 +1,62 @@
+{
+  "recorded_for": "2026-09-05",
+  "recorded_at": "2026-09-05T18:17:00+03:00",
+  "canonical_domain": "https://7ya.io",
+  "release_marker": "7ya-sovereign-recovery-20260905-v3-globalfix",
+  "runtime": {
+    "provider": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v96",
+    "snapshot_version": "1788620914856",
+    "deployed_at": "2026-09-05T15:08:34.856Z",
+    "status": "ready"
+  },
+  "qa": {
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "qa_snapshot_id": "1788620962576",
+    "e2e_runner": null,
+    "public_home_fresh_crawl": "substantive content present",
+    "pixel_level_visual_acceptance": "pending fresh v96 visual-gate result; prior loader-only result predates v96"
+  },
+  "source_authority": {
+    "production_source_of_truth": "AppDeploy remote snapshot 1788620914856",
+    "github_repository": "7guard-io/7ya.io",
+    "github_main": "9ddfd192dc5d1fe45525ec6ad4a5dd3f28ead406",
+    "github_main_root_src_app_tsx": false,
+    "github_main_root_backend_index_ts": false,
+    "appdeploy_v96_root_src_app_tsx": true,
+    "appdeploy_v96_root_backend_index_ts": true,
+    "full_source_export": "pending",
+    "deploy_safety": "Do not deploy GitHub main over AppDeploy v96 before full export/reconciliation."
+  },
+  "nvidia": {
+    "secret_name": "NVIDIA_API_KEY",
+    "configured": true,
+    "access_path": "AppDeploy secrets.readSecret",
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "latest_canary": "FAIL",
+    "latest_error": "HTTP 401",
+    "classification": "credential/authentication failure, not environment-variable wiring failure",
+    "fallback": "AppDeploy-agent/local fallback preserved"
+  },
+  "transport": {
+    "frontend_backend_contract": "@appdeploy/client api.*",
+    "direct_browser_api": "unresolved; public direct /api/* may surface SPA HTML"
+  },
+  "verification_notes": [
+    "AppDeploy v96 is READY with zero current frontend, network and backend errors.",
+    "A fresh public crawl of https://7ya.io/ returns substantive homepage content.",
+    "The previous visual release-gate loader-only failure predates v96 and is not used as v96 visual evidence.",
+    "The NVIDIA canary reran after v96 and still returned HTTP 401.",
+    "Only NVIDIA_API_KEY is configured for the NVIDIA primary path; code reads it through AppDeploy Secrets.",
+    "AppDeploy E2E remains null; no AppDeploy E2E PASS is claimed.",
+    "GitHub main is not an exact or deployable mirror of the current AppDeploy React/backend runtime."
+  ],
+  "rollback": {
+    "snapshot_version": "1788620747214",
+    "version_name": "v95"
+  }
+}

@@ -1,54 +1,70 @@
 {
-  "schema_version": 4,
-  "updated_at": "2026-08-24T23:53:00+03:00",
+  "schema_version": 5,
+  "updated_at": "2026-09-05T18:17:00+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
     "name": "7guard-io/7ya.io",
     "default_branch": "main",
+    "head": "9ddfd192dc5d1fe45525ec6ad4a5dd3f28ead406",
     "role": "canonical source-control, release receipt and review plane"
   },
   "identity_model": {
     "human_core": "Igor Vepretski",
     "organizing_system": "7YA",
-    "experience_order": ["IGOR","LIFE","MOMENTS","CONTENT","PEOPLE","PROJECTS","RESEARCH","MEDIA","IMPACT","EVIDENCE","INTERNET","FUTURE"],
-    "evidence_states": ["VERIFIED","SELF-REPORTED","INFERRED","UNKNOWN"]
+    "experience_order": ["IGOR", "LIFE", "MOMENTS", "CONTENT", "PEOPLE", "PROJECTS", "RESEARCH", "MEDIA", "IMPACT", "EVIDENCE", "INTERNET", "FUTURE"],
+    "evidence_states": ["VERIFIED", "DOCUMENTED", "SELF-ATTESTED", "SOURCE PENDING", "PRIVATE", "PILOT", "DESIGN", "MISSION", "ASPIRATION"]
   },
   "production": {
     "provider": "AppDeploy",
+    "stage": "v2",
     "app_id": "697a008fddc309b142",
-    "release": "7ya-production-truth-20260824-8",
-    "applied_snapshot": "1787605517628",
+    "version_name": "v96",
+    "release": "7ya-sovereign-recovery-20260905-v3-globalfix",
+    "applied_snapshot": "1788620914856",
+    "deployed_at": "2026-09-05T15:08:34.856Z",
     "status": "READY",
     "canonical_domain": "https://7ya.io/",
     "frontend_errors": 0,
+    "network_errors": 0,
     "backend_errors": 0,
     "e2e_tests": null,
-    "qa_snapshot": null,
-    "rollback_snapshot": "1787593119754"
+    "qa_snapshot": "1788620962576",
+    "rollback_snapshot": "1788620747214"
   },
   "source_reconciliation": {
     "legacy_main_tree_predates_current_react_runtime": true,
-    "immutable_runtime_snapshot_recorded_under": "appdeploy-live/1787605517628/",
-    "exact_master_visual_governor_recorded": true,
-    "runtime_delta_manifest_recorded": true,
+    "github_main_contains_root_src_app_tsx": false,
+    "github_main_contains_root_backend_index_ts": false,
+    "appdeploy_v96_contains_root_src_app_tsx": true,
+    "appdeploy_v96_contains_root_backend_index_ts": true,
     "full_runtime_tree_export_complete": false,
-    "rule": "Do not partially overwrite the incompatible legacy application tree; record immutable runtime releases and exact deltas until a full-tree reconciliation is performed."
+    "production_source_of_truth": "AppDeploy remote snapshot 1788620914856",
+    "rule": "Do not deploy GitHub main as a replacement for AppDeploy v96 until the complete runtime source is exported, compared, and passes release gates."
+  },
+  "runtime_health": {
+    "homepage_public_html": "content present in fresh public crawl; prior loader-only visual-gate result predates v96 and is not accepted as v96 evidence",
+    "direct_browser_api_transport": "unresolved: direct /api/* requests may surface SPA HTML while frontend AppDeploy client transport remains the supported contract",
+    "nvidia": {
+      "secret_name": "NVIDIA_API_KEY",
+      "configured": true,
+      "sdk_access": "secrets.readSecret",
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "status": "DEGRADED_AUTH",
+      "last_verified_failure": "HTTP 401",
+      "fallback": "AppDeploy-agent/local fallback preserved"
+    }
   },
   "release_scope": {
-    "name": "MASTER_AUTONOMOUS_REBUILD",
+    "name": "SOVEREIGN_RECOVERY_GLOBALFIX_V3",
     "visual_system": "cinematic editorial personal living archive",
-    "hundred_moments": "canonical corpus + visual registry + public discovery, deduplicated and capped at 100",
-    "digital_igor": "explicit AI-labelled evidence-linked investigation entry",
-    "generative_story": "visible canon-routes entry",
-    "archive_rails": "all source-linked rail slots visible",
-    "languages": ["he","en","ru"],
-    "cache_generation": "v108-master"
+    "languages": ["he", "en", "ru"],
+    "bro_chat": "visible AI-labelled companion with NVIDIA primary and resilient fallback"
   },
   "recovery": {
     "secondary_provider": "Vercel",
     "role": "recovery only; not production authority for 7ya.io",
-    "appdeploy_rollback": "1787593119754"
+    "appdeploy_rollback": "1788620747214"
   },
   "privacy_boundary": [
     "No identifying information about minors",
