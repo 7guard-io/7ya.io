@@ -6,7 +6,6 @@
   "canonical_repository": {
     "name": "7guard-io/7ya.io",
     "default_branch": "main",
-    "head": "9ddfd192dc5d1fe45525ec6ad4a5dd3f28ead406",
     "role": "canonical source-control, release receipt and review plane"
   },
   "identity_model": {
