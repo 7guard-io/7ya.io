@@ -1,0 +1,83 @@
+{
+  "recorded_at": "2026-09-05T18:30:28+03:00",
+  "applies_to_receipt": "docs/releases/2026-09-05-appdeploy-v96-globalfix-v3.json",
+  "runtime": {
+    "provider": "AppDeploy",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v96",
+    "snapshot_version": "1788620914856",
+    "release_marker": "7ya-sovereign-recovery-20260905-v3-globalfix",
+    "status": "ready",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "e2e_tests": null
+  },
+  "fresh_visual_gate": {
+    "runtime_job": "visual-gate-once-20260905",
+    "last_run_epoch_seconds": 1788621909,
+    "home": {
+      "verdict": "PASS",
+      "issues": [
+        "Automated reviewer noted that the captured layout appeared desktop-like despite the requested mobile capture."
+      ],
+      "p0": []
+    },
+    "bro_chat": {
+      "verdict": "FAIL",
+      "issues": [],
+      "p0": [],
+      "classification": "INCONCLUSIVE_NO_ACTIONABLE_DEFECT"
+    },
+    "release_gate_status": "FAIL",
+    "release_gate_causes": [
+      "NVIDIA canary HTTP 401",
+      "Bro Chat visual audit returned FAIL without any issue or P0 explanation"
+    ],
+    "interpretation": "The old loader-only homepage failure is superseded: the fresh v96 home audit passes. The Bro Chat result is not sufficient evidence for a UI mutation because the audit returned no visible defect description."
+  },
+  "scheduler_reconciliation": {
+    "source_cron_json": [
+      {
+        "name": "nvidia-canary-probe-v3",
+        "cron": "28 * * * *",
+        "handler": "nvidiaCanaryProbe"
+      },
+      {
+        "name": "agent-mesh-hourly",
+        "cron": "17 * * * *",
+        "handler": "agentMeshHourly"
+      },
+      {
+        "name": "meta-sync-hourly",
+        "cron": "37 * * * *",
+        "handler": "metaSyncHourly"
+      }
+    ],
+    "runtime_orphan_or_historical_jobs_observed": [
+      "nvidia-canary-hourly",
+      "nvidia-canary-probe",
+      "visual-gate-once-20260905"
+    ],
+    "aligned": false,
+    "rule": "Do not change current v96 UI based solely on a historical/orphan scheduler job. Scheduler cleanup must be treated separately from source behavior."
+  },
+  "nvidia": {
+    "configured": true,
+    "secret_name": "NVIDIA_API_KEY",
+    "access_path": "AppDeploy secrets.readSecret",
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "latest_verified_state": "DEGRADED_AUTH",
+    "latest_verified_error": "HTTP 401",
+    "code_wiring_fault_found": false,
+    "secure_replacement_entry_created": true,
+    "replacement_entry_state_at_recording": "pending_value",
+    "fallback": "AppDeploy-agent/local fallback preserved"
+  },
+  "conclusions": [
+    "No production UI deploy is justified by the fresh evidence: the homepage passes and the Bro Chat visual failure is unexplained rather than tied to a reproducible UI defect.",
+    "NVIDIA cannot be repaired by code while the configured credential returns HTTP 401; a valid replacement credential must be submitted through the secure secret-entry surface.",
+    "AppDeploy scheduler state contains jobs not represented by current v96 cron.json; source and scheduler cleanup are separate concerns.",
+    "Pixel-level whole-release PASS and AppDeploy E2E PASS are not claimed."
+  ]
+}
