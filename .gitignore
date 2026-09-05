@@ -166,3 +166,9 @@ node_modules/
 # downloaded stuff for 08-building-search-applications
 08-building-search-applications/scripts/transcripts_the_ai_show/
 .tool-versions
+
+# 7YA Living Intelligence generated/private corpus
+/data/intelligence/atoms/
+/data/intelligence/manifests/
+/data/intelligence/indexes/
+/data/intelligence/private/
