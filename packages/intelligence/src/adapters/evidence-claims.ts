@@ -3,6 +3,19 @@ import { canonicalize } from '../../../evidence-oracle/src/canonicalize.js';
 import { sha256Hex } from '../../../evidence-oracle/src/crypto.js';
 import type { NormalizedSourceRecord, SourceAdapter, SourceScanInput } from '../adapter.js';
 
+function visibilityFor(classification: unknown, status: unknown): NormalizedSourceRecord['visibility'] {
+  const normalized = String(classification || status || '').trim().toUpperCase();
+  if (normalized === 'PUBLIC') return 'public';
+  if (normalized === 'PRIVATE') return 'private';
+  return 'restricted';
+}
+
+function publicSourceLink(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  const trimmed = value.trim();
+  return /^https?:\/\//i.test(trimmed) ? trimmed : undefined;
+}
+
 export class EvidenceClaimsAdapter implements SourceAdapter {
   readonly id = 'claims';
 
@@ -17,20 +30,20 @@ export class EvidenceClaimsAdapter implements SourceAdapter {
       const status = String(row.status || '');
       const verificationLevel: NormalizedSourceRecord['verification']['level'] = /official|government|court|municipal/i.test(sourceType)
         ? (status.toUpperCase() === 'VERIFIED' ? 'official-record' : 'unverified')
-        : (/self|first.?person/i.test(sourceType) ? 'self-report' : 'independent-source');
+        : (/self|first.?person|founder|personal history|personal narrative/i.test(sourceType) ? 'self-report' : 'independent-source');
 
       yield {
         sourceId: `evidence-claim:${id}`,
         sourceType,
-        canonicalUrl: row.url ? String(row.url) : undefined,
+        canonicalUrl: publicSourceLink(row.sourceLink ?? row.url),
         title: row.title ? String(row.title) : undefined,
         observedAt: String(row.lastChecked || row.date || '1970-01-01T00:00:00.000Z'),
-        content: String(row.claim || row.title || row.content || row.description || ''),
+        content: String(row.explanation || row.claim || row.content || row.title || row.description || ''),
         entities: [],
         topics: row.category ? [String(row.category)] : [],
         claims: [],
         kind: 'claim',
-        visibility: 'public',
+        visibility: visibilityFor(row.classification, row.status),
         verification: { level: verificationLevel },
         sourceRecordHash: sha256Hex(canonicalize(row)),
         metadata: { ...row, originalStatus: status },
