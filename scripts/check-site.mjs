@@ -140,6 +140,8 @@ const experienceGuide = read('scripts/7ya-experience-guide-20260716.js');
 for (const required of [
   '7 / השומר', "sessionStorage.setItem('7ya-guide-path'", 'history-song-records-',
   'public-universe-records-20260715.json', 'canonicalUrl', 'replaceChildren',
+  'Promise.allSettled', "if (!loaded.length) throw new Error('all public content streams failed')",
+  'if (total) total.textContent = String(state.records.length)',
   'אני לא איגור ולא מדבר במקומו'
 ]) requireText(experienceGuide, required, 'experience guide');
 excludeText(experienceGuide, 'localStorage', 'experience guide privacy contract');

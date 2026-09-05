@@ -74,7 +74,7 @@
     if (previous && routes[previous]) choosePath(previous);
   } catch {}
 
-  const state = { records: [], filter: 'all', query: '' };
+  const state = { records: [], filter: 'all', query: '', failedStreams: 0 };
   const shards = [1, 2, 3, 4, 5].map(part => `/knowledge/history-song-records-${part}.json`);
   const sources = [...shards, '/knowledge/public-universe-records-20260715.json'];
 
@@ -132,17 +132,26 @@
       });
     }
     results.setAttribute('aria-busy', 'false');
-    if (status) status.textContent = `${visible.length} תוצאות מתוך ${state.records.length} רשומות ציבוריות מאוחדות`;
+    if (status) {
+      const partial = state.failedStreams
+        ? ` · ${state.failedStreams} מתוך ${sources.length} זרמי תוכן לא נטענו`
+        : '';
+      status.textContent = `${visible.length} תוצאות מתוך ${state.records.length} רשומות ציבוריות מאוחדות${partial}`;
+    }
   };
 
-  Promise.all(sources.map(async source => {
+  Promise.allSettled(sources.map(async source => {
     const response = await fetch(source, { headers: { Accept: 'application/json' } });
     if (!response.ok) throw new Error(`${source}: ${response.status}`);
     const data = await response.json();
     return Array.isArray(data.records) ? data.records : [];
-  })).then(groups => {
+  })).then(streams => {
+    const loaded = streams.filter(stream => stream.status === 'fulfilled');
+    if (!loaded.length) throw new Error('all public content streams failed');
+    state.failedStreams = streams.length - loaded.length;
+
     const seen = new Set();
-    state.records = groups.flat().filter(record => {
+    state.records = loaded.flatMap(stream => stream.value).filter(record => {
       const key = canonicalUrl(record.url || record.canonical_url);
       if (!key || seen.has(key)) return false;
       seen.add(key);
@@ -161,6 +170,7 @@
       fallback.append(' ', link);
       results.setAttribute('aria-busy', 'false');
     }
+    if (total) total.textContent = '—';
     if (status) status.textContent = 'מצב גיבוי פעיל — ללא המצאת תוצאות.';
   });
 
