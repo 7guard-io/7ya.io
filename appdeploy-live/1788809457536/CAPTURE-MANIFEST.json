@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-09-07T19:31:36.579Z",
+  "source": {
+    "provider": "AppDeploy",
+    "appId": "697a008fddc309b142",
+    "versionName": "v97",
+    "snapshot": "1788809457536",
+    "versionTimestamp": "2026-09-07T19:30:57.536Z"
+  },
+  "repository": {
+    "name": "7guard-io/7ya.io",
+    "mainBaseline": "f048a13b214e9585f40662c1316817625339b732",
+    "captureBranch": "refactor/controlled-reconstruction-20260907"
+  },
+  "healthAtCapture": {
+    "status": "ready",
+    "frontendErrors": 0,
+    "networkErrors": 0,
+    "backendErrors": 0,
+    "e2e": null,
+    "qaTimestamp": 1788809496579
+  },
+  "activeSchedulers": [
+    {
+      "name": "agent-mesh-hourly",
+      "cron": "17 * * * *",
+      "handler": "agentMeshHourly",
+      "timezone": "Asia/Jerusalem",
+      "payload": {"mode": "operations"},
+      "lastStatus": "success"
+    },
+    {
+      "name": "meta-sync-hourly",
+      "cron": "37 * * * *",
+      "handler": "metaSyncHourly",
+      "timezone": "Asia/Jerusalem",
+      "payload": {"mode": "incremental"},
+      "lastStatus": "success"
+    }
+  ],
+  "includedTextRoots": ["src", "backend", "shared", "scripts", "tests", "public"],
+  "includedRootFiles": [
+    "index.html",
+    "package.json",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "tsconfig.json",
+    "vite.config.ts",
+    "cron.json"
+  ],
+  "providerConfigFiles": [
+    {
+      "path": "appdeploy.auth-login.json",
+      "classification": "provider-specific-non-secret-inspected",
+      "captureAllowed": true
+    }
+  ],
+  "observedV97OnlyDeltasFromPriorPlannedSnapshot": [
+    "shared/content-operating-map.ts",
+    "public/map/index.html"
+  ],
+  "files": [],
+  "binaryAssets": [],
+  "secretsExported": false,
+  "captureComplete": false,
+  "productionMutation": false,
+  "notes": [
+    "The previously planned snapshot 1788806726940 is now listed by AppDeploy as v96 and is not the current capture authority.",
+    "Historical disabled NVIDIA/NVCF/visual scheduler records are telemetry history, not active cron source authority.",
+    "Hash entries and binary classifications remain intentionally empty until source export and deterministic hashing complete."
+  ]
+}
