@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "active": [
+    {"name":"agent-mesh-hourly","cron":"17 * * * *","timezone":"Asia/Jerusalem","handler":"agentMeshHourly"},
+    {"name":"meta-sync-hourly","cron":"37 * * * *","timezone":"Asia/Jerusalem","handler":"metaSyncHourly"}
+  ]
+}
