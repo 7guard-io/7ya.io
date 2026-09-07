@@ -1,0 +1,79 @@
+{
+  "recorded_at": "2026-09-07T18:41:02+03:00",
+  "change_type": "focused-release-gate-fix",
+  "runtime": {
+    "provider": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v97",
+    "snapshot_version": "1788795662202",
+    "release_marker": "7ya-sovereign-recovery-20260905-v3-globalfix",
+    "deployed_at": "2026-09-07T15:41:02.202Z",
+    "status": "ready",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "e2e_tests": null,
+    "qa_screenshot_snapshot": "1788795706832",
+    "rollback_snapshot": "1788788589415"
+  },
+  "scope": {
+    "ui_changed": false,
+    "public_content_changed": false,
+    "routes_changed": false,
+    "release_gate_changed": true,
+    "scheduler_source_changed": true
+  },
+  "runtime_changes": [
+    "NVCF and NVIDIA canary failures are classified as provider-degraded advisory signals and return scheduler-safe HTTP 200 while preserving failure details in the body and logs.",
+    "releaseGateProbe now checks the canonical 7ya.io build marker with a bounded no-cache runtime probe instead of running AI-heavy visual audits inside cron.",
+    "Visual acceptance remains a separate manual release gate through /api/visual-acceptance and is explicitly non-blocking for cron health.",
+    "cron.json now schedules only agent-mesh-hourly and meta-sync-hourly; the failing NVCF canary is no longer a source-scheduled job."
+  ],
+  "scheduler": {
+    "source_active_jobs": [
+      "agent-mesh-hourly",
+      "meta-sync-hourly"
+    ],
+    "source_active_jobs_verified_from_snapshot": true,
+    "historical_disabled_jobs_may_remain_visible_in_appdeploy_status": [
+      "nvcf-canary-v1",
+      "nvidia-canary-hourly",
+      "nvidia-canary-probe",
+      "nvidia-canary-probe-v3",
+      "visual-gate-once-20260905"
+    ],
+    "interpretation": "Disabled historical scheduler records are not current cron.json authority."
+  },
+  "provider_health": {
+    "nvidia_nvcf": "DEGRADED_AUTH",
+    "last_verified_error": "HTTP 401",
+    "release_blocking": false,
+    "fallback": "AppDeploy-agent/local fallback preserved",
+    "credential_values_returned": false
+  },
+  "domain": {
+    "canonical": "https://7ya.io/",
+    "appdeploy_binding": "active",
+    "www_binding": "active",
+    "direct_browser_api_transport": "unresolved: direct /api/* requests may surface SPA HTML; this is not used as the sole release proof"
+  },
+  "verification": {
+    "terminal_appdeploy_qa": "PASS",
+    "source_snapshot_re_read": "PASS",
+    "cron_snapshot_re_read": "PASS",
+    "visual_pixel_acceptance": "NOT_CLAIMED_SEPARATE_GATE",
+    "e2e": "NOT_RUN"
+  },
+  "github_provenance": {
+    "canonical_repository": "7guard-io/7ya.io",
+    "base_main_commit": "4f64405eaf79835d7fd821e562cdcc770f4f4e1d",
+    "provenance_branch": "release/appdeploy-v97-gatefix-20260907",
+    "full_runtime_tree_export_complete": false,
+    "rule": "Do not deploy GitHub main over AppDeploy v97 until the full runtime tree is exported and compared."
+  },
+  "privacy": {
+    "credentials_in_receipt": false,
+    "private_user_data_in_receipt": false
+  }
+}
