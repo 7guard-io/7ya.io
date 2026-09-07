@@ -1,6 +1,6 @@
 {
-  "schema_version": 6,
-  "updated_at": "2026-09-07T18:41:02+03:00",
+  "schema_version": 7,
+  "updated_at": "2026-09-07T20:32:01+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -33,16 +33,29 @@
     "release_receipt": "docs/releases/2026-09-07-appdeploy-v97-release-gate-fix.json"
   },
   "source_reconciliation": {
-    "legacy_main_tree_predates_current_react_runtime": true,
-    "github_main_contains_root_src_app_tsx": false,
+    "status": "RELEASE_ZERO_IN_PROGRESS_NO_GO_FOR_BROAD_REDESIGN",
+    "reconciliation_branch": "reconcile/appdeploy-v97-20260907",
+    "legacy_main_tree_predates_current_runtime_generation": true,
+    "github_main_contains_root_src_app_tsx": true,
+    "github_main_src_app_tsx_state": "STALE_SAME_PATH_RELEASE_7ya-intellectual-research-spine-20260815-1",
+    "github_main_contains_root_src_main_tsx": false,
     "github_main_contains_root_backend_index_ts": false,
     "github_main_contains_root_cron_json": false,
+    "github_main_package_state": "ARCHITECTURE_DRIFT_STATIC_NETLIFY_TOOLCHAIN_VS_V97_REACT19_VITE6",
     "appdeploy_v97_contains_root_src_app_tsx": true,
+    "appdeploy_v97_contains_root_src_main_tsx": true,
     "appdeploy_v97_contains_root_backend_index_ts": true,
     "appdeploy_v97_contains_root_cron_json": true,
+    "verified_runtime_file_count": 460,
+    "exact_materialized_file_count": 11,
+    "remaining_exact_export_files": 449,
     "full_runtime_tree_export_complete": false,
+    "comparison_complete": false,
     "production_source_of_truth": "AppDeploy remote snapshot 1788795662202",
-    "rule": "Do not deploy GitHub main as a replacement for AppDeploy v97 until the complete runtime source is exported, compared, and passes release gates."
+    "manifest": "appdeploy-live/1788795662202/MANIFEST.json",
+    "export_gaps": "appdeploy-live/1788795662202/EXPORT_GAPS.json",
+    "comparison_report": "docs/releases/2026-09-07-appdeploy-v97-main-comparison.md",
+    "rule": "Do not deploy GitHub main as a replacement for AppDeploy v97 and do not begin the broad production identity redesign until the runtime source is fully materialized or proven equivalent and release gates pass."
   },
   "runtime_health": {
     "terminal_appdeploy_qa": "PASS",
@@ -89,12 +102,12 @@
     "rule": "Disabled historical scheduler records are not current cron.json authority and must not be interpreted as active release failures."
   },
   "release_scope": {
-    "name": "APPDEPLOY_V97_RELEASE_GATE_FIX",
+    "name": "APPDEPLOY_V97_RELEASE_ZERO_RECONCILIATION",
     "ui_changed": false,
     "content_changed": false,
     "routes_changed": false,
-    "release_gate_changed": true,
-    "scheduler_source_changed": true,
+    "production_mutation": false,
+    "source_reconciliation_changed": true,
     "bro_chat": "NVIDIA/NVCF optional primary remains degraded-auth; AppDeploy-agent/local fallback preserved"
   },
   "recovery": {
