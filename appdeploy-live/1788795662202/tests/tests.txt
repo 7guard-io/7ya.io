@@ -1,0 +1,56 @@
+# Tests
+
+## Test 1 - Book a conversation from the primary mobile action [sanity]
+Viewport: mobile (375x667)
+Covers: homepage entry, primary conversation CTA, secondary evidence CTA, tertiary Bro Chat access, mobile action hierarchy
+Description: Verifies the homepage leads with the human conversion action while keeping evidence and Bro Chat directly reachable.
+Steps:
+1. Open the homepage at mobile width.
+2. Confirm the first and visually primary hero action is "לתיאום שיחה" and open it.
+3. Return to the homepage and confirm "ראיות ומקורות" is the secondary hero action and Bro Chat remains available as a tertiary action without horizontal overflow.
+4. Reload the homepage with JavaScript disabled (or inspect the initial server HTML) and confirm the static-first hero exposes the same order: "לתיאום שיחה" first, "ראיות ומקורות" second, Bro Chat third.
+Expected: Both the static-first paint and the hydrated hero clearly prioritize booking a conversation, keep evidence second, and keep Bro Chat usable without presenting AI as the primary action.
+
+## Test 2 - Expose the authentic Igor photo archive on the homepage
+Viewport: desktop (1280x800)
+Covers: homepage hero, existing /api/visual-registry consumption, authentic photo stream, source/provenance actions, StartOn proof
+Description: Verifies the homepage visibly uses the existing authentic Visual Registry instead of relying mainly on generic page previews and video thumbnails.
+Steps:
+1. Open the homepage and confirm the human-first hero and StartOn proof remain visible.
+2. Scroll to the section headed "REAL IGOR · SOURCE-LINKED PHOTO ARCHIVE".
+3. Confirm at least 6 separate photo cards are visible across different years/chapters, each with a visible source/provenance label, and open one source action.
+Expected: A dedicated authentic-photo stream is visible, contains at least 6 distinct source-linked Igor visuals with provenance labels, and opening a card reaches its public source.
+
+## Test 3 - Keep canonical routes and production host healthy
+Viewport: desktop (1280x800)
+Covers: /release.json, /static-health.json, multilingual clean routes, legacy query cleanup, AppDeploy-origin canonicalization, entity/schema continuity
+Description: Verifies core production routes stay healthy while legacy query URLs and the AppDeploy origin resolve to the canonical 7ya.io URL model.
+Steps:
+1. Open /release.json and /static-health.json and confirm machine-readable current-release data.
+2. Open /en/, /ru/, /starton/, /media/, /en/media/, /ru/research/, /integrity/ and /control/ and confirm each remains readable.
+3. Open /?page=media&lang=en and confirm the browser lands on /en/media/ with page/lang removed; repeat /?page=research&lang=ru and confirm /ru/research/.
+4. Open the AppDeploy-origin URL for /igor-vepretski/ and confirm the browser lands on https://7ya.io/igor-vepretski/.
+5. Inspect /starton/ and /igor-vepretski/ and confirm their canonical links remain self-canonical and their JSON-LD references StartOn as https://starton.org.il/#organization and Igor as https://7ya.io/#igor.
+6. Request /vault/iv-2022-2026-JmEGOh9GXCTajmA6/ and confirm the old private dossier does not reappear.
+Expected: Core routes stay healthy; legacy parameter URLs and the AppDeploy origin converge on clean 7ya.io URLs; canonical entity IDs remain consistent; the old private dossier remains absent.
+
+## Test 4 - Keep Living Intelligence public-only
+Viewport: desktop (1280x800)
+Covers: POST /api/intelligence/query system compatibility API, canonical public retrieval, source/provenance preservation, bounded limits, private-visibility denial
+Description: Verifies the production compatibility bridge returns only canonical public evidence and rejects requests that attempt to widen visibility.
+Steps:
+1. Open /api/intelligence/canary and confirm status "PASS", llmUsed false, writesPerformed false and all privacy/source checks true.
+2. Submit a POST request to /api/intelligence/query with query "StartOn", subjectId "igor-vepretski", visibility "public" and limit 5.
+3. Confirm the response contract is 7ya-intelligence-evidence-pack-v1-appdeploy-bridge, contains no more than 5 atoms, and every returned atom has visibility "public", a canonical public source URL and provenance metadata.
+4. Submit the same request with visibility "private".
+Expected: The canary passes, the public request returns a bounded source-grounded Evidence Pack, and the private request is rejected with HTTP 400 without returning private or restricted data.
+
+## Test 5 - Keep the homepage media universe focused
+Viewport: desktop (1280x800)
+Covers: homepage media universe, high-signal 24-item cap, duplicate StartOn embed guardrail, archive depth preservation
+Description: Verifies the front door shows a curated high-signal sample instead of rendering the deep archive as an oversized landing-page wall.
+Steps:
+1. Open the homepage and scroll through the source-first media sections.
+2. Confirm the numbered content-universe cards stop at 24 or fewer and the section still links outward to source material and deeper archive surfaces.
+3. Confirm the Channel 14 StartOn proof video is not embedded a second time in the later two-column media section.
+Expected: The homepage shows no more than 24 numbered high-signal universe cards, preserves routes to deeper content, and does not duplicate the same StartOn proof embed later on the page.
