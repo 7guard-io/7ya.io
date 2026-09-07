@@ -1,0 +1,61 @@
+# Tests
+
+## Test 1 - Render the engineering homepage as one stable mobile product surface [sanity]
+Viewport: mobile (375x667)
+Covers: homepage bootstrap, engineering-home cutover, primary navigation, primary CTA, evidence CTA, responsive containment, reload stability
+Description: Verifies the rebuilt homepage renders one product-grade front door with a real site header and no duplicate or legacy hero after hydration.
+Steps:
+1. Open the homepage in a fresh session and confirm exactly one H1 is visible inside the engineering homepage.
+2. Confirm a site-level header exposes the 7YA brand plus direct navigation to StartOn, Evidence, Archive and Contact without opening a menu first.
+3. Confirm the hero contains one primary work/action CTA and one evidence CTA, with Bro Chat treated as a secondary utility rather than the dominant action.
+4. Scroll through the page and confirm there is no horizontal overflow at 375px width.
+5. Reload once and confirm the same homepage remains visible without a second hero, automatic reload or route jump.
+Expected: One stable engineering homepage is visible before and after hydration, the primary navigation is directly usable, CTAs are clearly prioritized, and the layout never exceeds the mobile viewport.
+
+## Test 2 - Present a professional systems-first desktop hierarchy
+Viewport: desktop (1280x800)
+Covers: homepage information architecture, systems portfolio, evidence selection, career/public positioning, contact conversion
+Description: Verifies the homepage reads like an engineered public operating system rather than a gallery, archive wall or visual experiment.
+Steps:
+1. Open the homepage and confirm the hero identifies Igor Vepretski in clear professional language and shows a real portrait without using the portrait as a full-screen decorative background.
+2. Scroll to the systems section and confirm exactly three primary systems/work areas are presented, including StartOn and 7YA, with short factual descriptions and explicit links.
+3. Continue to Selected Evidence and confirm no more than 6 source-linked records are shown on the homepage.
+4. Continue to the career/life timeline and confirm a compact chronological rail is present instead of a large card mosaic.
+5. Reach the final contact/action section and confirm it offers a direct conversation/contact path plus deeper archive/evidence navigation.
+Expected: The desktop page follows Hero → Systems → Selected Evidence → Timeline → Contact, uses restrained typography and cards, and delegates deep browsing to dedicated routes.
+
+## Test 3 - Keep canonical routes and production host healthy
+Viewport: desktop (1280x800)
+Covers: /release.json, /static-health.json, multilingual clean routes, legacy query cleanup, AppDeploy-origin canonicalization, entity/schema continuity
+Description: Verifies core production routes stay healthy while legacy query URLs and the AppDeploy origin resolve to the canonical 7ya.io URL model.
+Steps:
+1. Open /release.json and /static-health.json and confirm machine-readable current-release data.
+2. Open /en/, /ru/, /starton/, /media/, /en/media/, /ru/research/, /integrity/ and /control/ and confirm each remains readable.
+3. Open /?page=media&lang=en and confirm the browser lands on /en/media/ with page/lang removed; repeat /?page=research&lang=ru and confirm /ru/research/.
+4. Open the AppDeploy-origin URL for /igor-vepretski/ and confirm the browser lands on https://7ya.io/igor-vepretski/.
+5. Inspect /starton/ and /igor-vepretski/ and confirm their canonical links remain self-canonical and their JSON-LD references StartOn as https://starton.org.il/#organization and Igor as https://7ya.io/#igor.
+6. Request /vault/iv-2022-2026-JmEGOh9GXCTajmA6/ and confirm the old private dossier does not reappear.
+Expected: Core routes stay healthy; legacy parameter URLs and the AppDeploy origin converge on clean 7ya.io URLs; canonical entity IDs remain consistent; the old private dossier remains absent.
+
+## Test 4 - Keep Living Intelligence public-only
+Viewport: desktop (1280x800)
+Covers: POST /api/intelligence/query system compatibility API, canonical public retrieval, source/provenance preservation, bounded limits, private-visibility denial
+Description: Verifies the production compatibility bridge returns only canonical public evidence and rejects requests that attempt to widen visibility.
+Steps:
+1. Open /api/intelligence/canary and confirm status "PASS", llmUsed false, writesPerformed false and all privacy/source checks true.
+2. Submit a POST request to /api/intelligence/query with query "StartOn", subjectId "igor-vepretski", visibility "public" and limit 5.
+3. Confirm the response contract is 7ya-intelligence-evidence-pack-v1-appdeploy-bridge, contains no more than 5 atoms, and every returned atom has visibility "public", a canonical public source URL and provenance metadata.
+4. Submit the same request with visibility "private".
+5. Open /map/ and confirm the seven worlds LIFE, SERVICE, CIVIC, BUILD, IMPACT, CULTURE and RECORD are visible; then open /api/content-operating-map and confirm policy.publicOnly is true, policy.automaticDistribution is false, all seven worlds are present, and every returned record has a canonicalApiUrl under /api/corpus/.
+Expected: The canary passes, the public request returns a bounded source-grounded Evidence Pack, the private request is rejected with HTTP 400, and the global content map exposes only source-bound canonical public records without automatic publishing.
+
+## Test 5 - Keep Hebrew, English and Russian homepage composition equivalent
+Viewport: mobile (375x667)
+Covers: multilingual homepage parity, clean localized routes, navigation parity, responsive localized copy
+Description: Verifies the rebuilt front door preserves the same product hierarchy across the three primary languages instead of maintaining separate visual experiences.
+Steps:
+1. Open /, /en/ and /ru/ in separate fresh sessions.
+2. On each route confirm the same section order is present: Hero, Systems, Selected Evidence, Timeline and Contact.
+3. Confirm each route exposes the same primary navigation destinations and the same number of selected evidence records.
+4. Confirm no language version produces horizontal overflow or clipped primary actions at 375px width.
+Expected: Hebrew, English and Russian use one shared component hierarchy with localized copy and clean localized URLs, with equivalent navigation and responsive behavior.
