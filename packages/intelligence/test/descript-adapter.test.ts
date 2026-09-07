@@ -3,17 +3,18 @@ import assert from 'node:assert/strict';
 import { mkdtemp, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import type { NormalizedSourceRecord } from '../src/adapter.js';
 import { DescriptAdapter } from '../src/adapters/descript.js';
 
 async function temp(): Promise<string> {
   return mkdtemp(path.join(tmpdir(), '7ya-descript-'));
 }
 
-async function scan(snapshot: unknown) {
+async function scan(snapshot: unknown): Promise<NormalizedSourceRecord[]> {
   const root = await temp();
   const input = path.join(root, 'descript.json');
   await writeFile(input, JSON.stringify(snapshot));
-  const rows = [];
+  const rows: NormalizedSourceRecord[] = [];
   for await (const row of new DescriptAdapter().scan({ inputPath: input, subjectId: 'igor-vepretski' })) rows.push(row);
   return rows;
 }
