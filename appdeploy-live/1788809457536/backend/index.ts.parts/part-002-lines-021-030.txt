@@ -1,0 +1,10 @@
+
+type Locale='he'|'en'|'ru';
+type Role='user'|'assistant';type Engine='INVESTIGATOR'|'EDUCATOR'|'CREATOR'|'ARCHITECT';
+type ChatMessage={role?:unknown;content?:unknown};
+type Field='name'|'northStar'|'reality'|'strength'|'barrier'|'firstProof';
+type Profile=Record<Field,string>;
+type CompanionState={profile:Profile;collecting:null;progress:number;turn:number;intent:string;focus:string;phase:'listen'|'answer'|'act'};
+type CompanionMode='guide'|'reflect'|'build';type JourneyContext={visitedChapters:string[];resonances:Array<{chapter:string;choice?:string;text?:string}>;chosenDirection?:string;lastMeaningfulStep?:string;locale:Locale};
+type CompanionBody={messages?:ChatMessage[];state?:unknown;locale?:unknown;context?:unknown;mode?:unknown;journeyContext?:unknown};
+type Action={label:string;href:string;kind:'internal'|'external'|'mailto';note?:string};
