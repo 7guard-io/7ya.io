@@ -1,0 +1,1 @@
+[{"name":"agent-mesh-hourly","cron":"17 * * * *","handler":"agentMeshHourly","timezone":"Asia/Jerusalem","payload":{"mode":"operations"}},{"name":"meta-sync-hourly","cron":"37 * * * *","handler":"metaSyncHourly","timezone":"Asia/Jerusalem","payload":{"mode":"incremental"}}]
