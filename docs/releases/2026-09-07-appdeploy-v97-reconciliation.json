@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-07T20:32:01+03:00",
+  "change_type": "release-zero-source-reconciliation",
+  "production_mutation_performed": false,
+  "runtime": {
+    "provider": "AppDeploy",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v97",
+    "snapshot_version": "1788795662202",
+    "status": "ready",
+    "release_marker": "7ya-sovereign-recovery-20260905-v3-globalfix",
+    "qa_snapshot": "1788795706832",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "e2e": "NOT_RUN_NOT_CLAIMED"
+  },
+  "rollback": {
+    "version_name": "v96",
+    "snapshot_version": "1788788589415",
+    "preserved": true
+  },
+  "domains": [
+    {"hostname": "7ya.io", "mode": "apex_address", "status": "active"},
+    {"hostname": "www.7ya.io", "mode": "subdomain_cname", "status": "active"}
+  ],
+  "scheduler": {
+    "active": [
+      {"name": "agent-mesh-hourly", "last_status": "success"},
+      {"name": "meta-sync-hourly", "last_status": "success"}
+    ],
+    "historical_disabled": [
+      "nvcf-canary-v1",
+      "nvidia-canary-hourly",
+      "nvidia-canary-probe",
+      "nvidia-canary-probe-v3",
+      "visual-gate-once-20260905"
+    ]
+  },
+  "source_reconciliation": {
+    "runtime_authority": "AppDeploy snapshot 1788795662202",
+    "github_branch": "reconcile/appdeploy-v97-20260907",
+    "full_runtime_tree_export_complete": false,
+    "comparison_complete": false,
+    "identity_redesign_unblocked": false,
+    "rule": "Do not deploy GitHub main over v97 and do not begin broad production redesign until runtime source gaps are explicitly reconciled."
+  }
+}
