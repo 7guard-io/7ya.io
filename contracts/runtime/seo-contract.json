@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "requiredFields": ["title", "description", "canonical"],
+  "hreflang": ["he", "en", "ru", "es", "x-default"],
+  "canonicalOrigin": "https://7ya.io"
+}
