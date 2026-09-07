@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "primaryLocale": "he",
+  "firstClassLocales": ["he", "en", "ru"],
+  "requiredRoutes": [
+    "/",
+    "/igor-vepretski/",
+    "/journey/",
+    "/starton/",
+    "/influence/",
+    "/evidence/",
+    "/library/",
+    "/search/",
+    "/media/",
+    "/research/",
+    "/music/",
+    "/speaker/",
+    "/blog/",
+    "/create/",
+    "/contact/"
+  ]
+}
