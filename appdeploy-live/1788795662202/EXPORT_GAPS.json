@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "snapshot_version": "1788795662202",
+  "full_runtime_tree_export_complete": false,
+  "verified_total_files": 460,
+  "exact_materialized_files": 11,
+  "remaining_files": 449,
+  "remaining_by_class": {
+    "src": 319,
+    "backend": 16,
+    "shared": 14,
+    "public": 83,
+    "docs": 15,
+    "scripts": 2,
+    "root_and_tests_config": 0
+  },
+  "binary_assets_remaining": 14,
+  "blocking_reason": "The connected AppDeploy source interface provides src_glob/src_grep/src_read but no bulk snapshot archive export. Exact text and binary materialization therefore requires per-file capture or an equivalent byte-preserving export mechanism. No uncaptured path is being inferred from historical GitHub snapshots.",
+  "risk_if_ignored": [
+    "Loss of current production-only React/CSS components during redesign",
+    "Loss of backend corpus, evidence, Meta/social, realtime or Bro Chat behavior",
+    "Loss of public route/data/assets or provenance metadata",
+    "False confidence caused by stale same-path files already present on GitHub main"
+  ],
+  "release_decision": "NO_GO_FOR_BROAD_PRODUCTION_REDESIGN",
+  "safe_next_step": "Continue exact v97 materialization and comparison on this reconciliation branch; keep AppDeploy v97 unchanged and retain v96 rollback."
+}
