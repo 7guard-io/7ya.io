@@ -6,6 +6,7 @@ export * from './ingest.js';
 export * from './retrieve.js';
 export * from './contradictions.js';
 export * from './query.js';
+export * from './compendium.js';
 export * from './cli.js';
 export * from './adapters/collector.js';
 export * from './adapters/evidence-claims.js';
