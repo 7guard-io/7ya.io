@@ -16,4 +16,74 @@
 .life-card-copy span{font-size:.86rem;color:#e2e4e8}
 .life-atlas-note{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:80rem;margin:1.4rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.16);color:#b6bbc5;font-size:.85rem}
 .life-atlas-note a{color:#fff;text-decoration-thickness:1px;text-underline-offset:.25em}
-@media(max-width:760px){.life-atlas{padding:4rem 1.25rem}.life-atlas-grid{grid-template-columns:1fr 1fr;grid-template-rows:17rem 14rem 14rem;gap:.55rem}.life-card:first-child{grid-column:span 2;grid-row:auto}.life-card-copy{inset:auto .8rem .8rem}.life-atlas-note{align-items:flex-start;flex-direction:column}.life-atlas-head p{font-size:1rem}}
+
+/* 2026-09-09 product cut — reduce visual noise and restore Igor-first hierarchy */
+:root{--cut-paper:#f3efe6;--cut-ink:#080a0d;--cut-line:rgba(255,255,255,.14)}
+body{background:#07090d}
+.page-progress{opacity:.35}
+.topbar{backdrop-filter:blur(18px);background:rgba(7,9,13,.72);border-bottom:1px solid rgba(255,255,255,.08)}
+.brand small{letter-spacing:.16em;opacity:.72}
+.main-nav{gap:clamp(.7rem,1.4vw,1.35rem)}
+.main-nav>a:not(.nav-cta){opacity:.72}
+.main-nav>a:hover,.main-nav>a:focus-visible{opacity:1}
+.nav-cta{border-radius:999px;padding-inline:1rem}
+.hero{min-height:88svh;isolation:isolate}
+.hero-image{filter:saturate(.82) contrast(1.04) brightness(.88)}
+.hero-shade{background:linear-gradient(90deg,rgba(6,8,11,.94) 0%,rgba(6,8,11,.72) 42%,rgba(6,8,11,.12) 78%),linear-gradient(0deg,rgba(6,8,11,.76),transparent 52%)}
+[dir="rtl"] .hero-shade{background:linear-gradient(270deg,rgba(6,8,11,.94) 0%,rgba(6,8,11,.72) 42%,rgba(6,8,11,.12) 78%),linear-gradient(0deg,rgba(6,8,11,.76),transparent 52%)}
+.hero-content{max-width:48rem;padding-block-end:clamp(4rem,8vw,7.5rem)}
+.hero-content .eyebrow{letter-spacing:.18em;opacity:.8}
+.hero h1{max-width:9ch;font-size:clamp(3.7rem,7.2vw,7rem);line-height:.82;letter-spacing:-.065em}
+.hero-lead{max-width:38rem;font-size:clamp(1rem,1.35vw,1.22rem);line-height:1.62;color:rgba(255,255,255,.78)}
+.actions{gap:.7rem;margin-top:1.7rem}
+.button{border-radius:999px;min-height:3.2rem;padding-inline:1.25rem}
+.button.primary{background:var(--cut-paper);color:var(--cut-ink);border-color:var(--cut-paper)}
+.button.secondary{background:rgba(6,8,11,.38);backdrop-filter:blur(10px)}
+.scroll-cue{opacity:.55}
+.route-impact{padding:clamp(3.5rem,7vw,6rem) 5vw;background:#090b10}
+.route-impact .section-tag{max-width:80rem;margin-inline:auto;margin-bottom:1.25rem}
+.page-paths{max-width:80rem;margin-inline:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem}
+.page-paths>a{min-height:13rem;padding:1.5rem;border:1px solid var(--cut-line);border-radius:1.25rem;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.page-paths>a:hover,.page-paths>a:focus-visible{transform:translateY(-2px);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.055)}
+.page-paths b{font-size:clamp(1.35rem,2vw,2rem);letter-spacing:-.035em}
+.page-paths span{max-width:25ch;color:rgba(255,255,255,.62);line-height:1.55}
+.manifesto{gap:clamp(2rem,6vw,6rem);padding-block:clamp(4.5rem,8vw,8rem)}
+.manifesto-copy{max-width:40rem}
+.manifesto blockquote{font-size:clamp(2.2rem,4.6vw,5rem);line-height:.98;letter-spacing:-.055em}
+.portrait{border-radius:1.35rem;overflow:hidden}
+.life-atlas{padding:clamp(4.5rem,7vw,7rem) 5vw}
+.life-atlas-head{max-width:42rem;margin-bottom:2rem}
+.life-atlas-grid{max-width:80rem;margin-inline:auto;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:20rem 20rem;gap:.9rem}
+.life-card{border:1px solid rgba(255,255,255,.1);border-radius:1.15rem}
+.life-card img{filter:saturate(.78) contrast(1.03)}
+.life-card:hover img,.life-card:focus-visible img{transform:scale(1.025);filter:saturate(.96) contrast(1.03)}
+.life-card-copy{inset:auto 1rem 1rem;gap:.35rem}
+.life-atlas-note{max-width:80rem}
+
+@media(max-width:900px){
+  .hero{min-height:82svh}
+  .hero-content{padding-inline:1rem;padding-block-end:2.5rem}
+  .hero h1{font-size:clamp(3.15rem,14vw,4.7rem);max-width:8ch}
+  .hero-lead{max-width:30ch;font-size:1rem}
+  .actions{display:grid;grid-template-columns:1fr 1fr}
+  .button{justify-content:center}
+  .page-paths{grid-template-columns:1fr;gap:.65rem}
+  .page-paths>a{min-height:0;padding:1.2rem}
+  .manifesto{grid-template-columns:1fr}
+  .portrait{max-height:70svh}
+  .life-atlas{padding:4rem 1rem}
+  .life-atlas-grid{grid-template-columns:1fr 1fr;grid-template-rows:16rem 14rem 14rem;gap:.55rem}
+  .life-card:first-child{grid-column:span 2;grid-row:auto}
+  .life-card-copy{inset:auto .8rem .8rem}
+  .life-atlas-note{align-items:flex-start;flex-direction:column}
+  .life-atlas-head p{font-size:1rem}
+}
+@media(max-width:520px){
+  .hero-content{padding-top:6rem}
+  .actions{grid-template-columns:1fr}
+  .scroll-cue{display:none}
+  .life-atlas-grid{grid-template-columns:1fr;grid-template-rows:none}
+  .life-card:first-child{grid-column:auto}
+  .life-card{min-height:18rem}
+}
+@media(prefers-reduced-motion:reduce){.life-card img,.page-paths>a{transition:none}}
