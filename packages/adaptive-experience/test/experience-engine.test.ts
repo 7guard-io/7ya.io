@@ -6,6 +6,7 @@ import {
   companionExperienceContext,
   applyExperiencePatch,
   rankProjectionItem,
+  type ExperienceContext,
 } from '../src/experience-engine.js';
 
 test('four intents produce distinct module orders and primary actions', () => {
@@ -65,13 +66,13 @@ test('verify and grow rank mixed projection differently without mutation', () =>
 });
 
 test('companion receives the same intent and bounded context', () => {
-  const current = {
+  const current: ExperienceContext = {
     intent: 'collaborate',
     locale: 'en',
     entry: '/speaker/',
     scene: 'media',
     recentActions: ['speaker-opened'],
-  } as const;
+  };
 
   assert.deepEqual(companionExperienceContext(current), {
     intent: 'collaborate',
@@ -83,13 +84,13 @@ test('companion receives the same intent and bounded context', () => {
 });
 
 test('patch accepts only known intent and bounded action', () => {
-  const current = {
+  const current: ExperienceContext = {
     intent: 'know-igor',
     locale: 'he',
     entry: '/',
     scene: 'igor',
     recentActions: [],
-  } as const;
+  };
 
   const next = applyExperiencePatch(current, {
     intent: 'verify',
@@ -101,4 +102,18 @@ test('patch accepts only known intent and bounded action', () => {
   assert.deepEqual(next.recentActions, ['source-opened']);
   assert.equal('detail' in next, false);
   assert.throws(() => applyExperiencePatch(current, { intent: 'admin' }), /invalid experience intent/);
+});
+
+test('default stays Igor-first and action history keeps the newest eight', () => {
+  const snapshot = persistentExperienceSnapshot({
+    locale: 'he',
+    entry: '/?q=secret',
+    scene: 'igor',
+    recentActions: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+  });
+
+  assert.equal(snapshot.intent, 'know-igor');
+  assert.equal(snapshot.entry, '/');
+  const next = applyExperiencePatch(snapshot, { action: 'i' });
+  assert.deepEqual(next.recentActions, ['b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']);
 });
