@@ -3,18 +3,18 @@ export const EXPERIENCE_INTENTS = ['know-igor', 'verify', 'collaborate', 'grow']
 export type ExperienceIntent = typeof EXPERIENCE_INTENTS[number];
 export type ExperienceLocale = 'he' | 'en' | 'ru';
 export type ExperienceModule =
-  | 'story'
   | 'featured-assets'
   | 'public-echo'
+  | 'asset-intelligence'
   | 'influence'
+  | 'public-action'
   | 'starton'
   | 'live'
+  | 'current-lens'
   | 'chronology'
   | 'user-handoff'
   | 'growth-gateway'
-  | 'public-action'
-  | 'bro-chat-action'
-  | 'evidence-examples';
+  | 'bro-chat-action';
 
 export interface ExperienceContext {
   intent: ExperienceIntent;
@@ -50,22 +50,22 @@ export interface ProjectionLike {
 const plans: Record<ExperienceIntent, ExperiencePlan> = {
   'know-igor': {
     intent: 'know-igor',
-    modules: ['story', 'featured-assets', 'public-echo', 'influence', 'starton', 'live', 'chronology', 'user-handoff'],
+    modules: ['featured-assets', 'public-echo', 'asset-intelligence', 'influence', 'starton', 'live', 'current-lens', 'chronology', 'user-handoff'],
     primaryAction: { id: 'continue-story', target: 'story' },
   },
   verify: {
     intent: 'verify',
-    modules: ['influence', 'evidence-examples', 'featured-assets', 'public-echo', 'chronology', 'story', 'starton', 'user-handoff'],
+    modules: ['influence', 'asset-intelligence', 'featured-assets', 'public-echo', 'chronology', 'starton', 'current-lens', 'user-handoff'],
     primaryAction: { id: 'inspect-evidence', target: 'evidence' },
   },
   collaborate: {
     intent: 'collaborate',
-    modules: ['public-action', 'starton', 'featured-assets', 'public-echo', 'influence', 'chronology', 'story', 'user-handoff'],
+    modules: ['public-action', 'starton', 'featured-assets', 'public-echo', 'influence', 'current-lens', 'chronology', 'user-handoff'],
     primaryAction: { id: 'contact-collaborate', target: 'contact' },
   },
   grow: {
     intent: 'grow',
-    modules: ['growth-gateway', 'story', 'bro-chat-action', 'evidence-examples', 'starton', 'chronology', 'featured-assets', 'user-handoff'],
+    modules: ['growth-gateway', 'bro-chat-action', 'featured-assets', 'asset-intelligence', 'starton', 'chronology', 'public-echo', 'user-handoff'],
     primaryAction: { id: 'open-growth-chat', target: 'chat' },
   },
 };
@@ -104,9 +104,8 @@ function cleanActions(value: unknown): string[] {
     const action = cleanToken(raw);
     if (!action || out.includes(action)) continue;
     out.push(action);
-    if (out.length === 8) break;
   }
-  return out;
+  return out.slice(-8);
 }
 
 export function experiencePlan(intent: ExperienceIntent): ExperiencePlan {
@@ -149,7 +148,7 @@ export function applyExperiencePatch(
   const base = companionExperienceContext(current);
   if (patch.intent !== undefined && !isIntent(patch.intent)) throw new Error('invalid experience intent');
   const action = cleanToken(patch.action);
-  const recentActions = action ? cleanActions([...base.recentActions, action]) : base.recentActions;
+  const recentActions = action ? cleanActions([...base.recentActions.slice(-7), action]) : base.recentActions;
   return {
     ...base,
     intent: isIntent(patch.intent) ? patch.intent : base.intent,
