@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "recorded_for": "2026-09-10",
+  "recorded_at": "2026-09-10T21:31:15+03:00",
+  "canonical_domain": "https://7ya.io/",
+  "release_marker": "7ya-public-profile-convergence-20260910-v11",
+  "runtime": {
+    "provider": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v98",
+    "snapshot_version": "1789065075177",
+    "status": "READY",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "backend_errors": 0,
+    "qa_snapshot": "1789065115207",
+    "deployed_at": "2026-09-10T18:31:15.177Z"
+  },
+  "goal": "Reorganize the existing site without deleting the archive so a new visitor understands Igor Vepretski, his story, topics, documented work, sources and contact paths within the first public experience.",
+  "public_information_architecture": {
+    "primary": ["Home", "My story", "Work", "Topics", "Media", "Contact"],
+    "secondary": ["Archive", "Evidence", "Research", "StartOn", "All content", "Ask Igor"],
+    "brand_order": ["Igor Vepretski", "StartOn", "7YA systems/archive"],
+    "content_deleted": false,
+    "archive_preserved": true
+  },
+  "changes": [
+    "Homepage converged from system-first/living-archive presentation to a person-first public profile.",
+    "Hero now leads with Igor Vepretski, restrained positioning, short introduction and Story/Work/Contact actions.",
+    "Homepage now separates topics, documented work, timeline, selected media, selected content and the deep archive.",
+    "Documented work cards preserve a direct source route and explicitly distinguish registration or coverage from outcome evidence.",
+    "Primary navigation now exposes Home, My story, Work, Topics, Media and Contact; archive/system surfaces are secondary.",
+    "Bro Chat public branding was converged to Ask Igor / שאלו את איגור / Спросите Игоря with explicit AI/non-impersonation/source-grounding language.",
+    "Static crawl shells for Story, StartOn, Contact, Evidence, Research, Library and Media were made Igor-first and aligned to the v11 release marker.",
+    "Evidence crawl surface was expanded from three cards to nine selected source anchors, including external press, registry, authored columns, podcast, television and public coverage.",
+    "Homepage and deep-route SEO titles/descriptions were aligned so React hydration does not revert key Hebrew routes to system-first titles.",
+    "Sitemap duplicate leadership URLs were removed earlier in the same v11 convergence sequence; no content route was deleted.",
+    "Regression contract now covers 375px RTL, source boundaries, curated media, Ask Igor non-impersonation and route-specific public metadata."
+  ],
+  "evidence_policy": {
+    "source_rule": "A source proves only what the source supports; it does not automatically prove reach, impact, causation, partnership or outcomes.",
+    "static_evidence_anchor_count": 9,
+    "dynamic_evidence_surface": "EvidencePage reads the live content graph and exposes source links and truth status per record.",
+    "claim_boundary": "Selected evidence anchors are navigation into evidence, not a claim that the public corpus is complete."
+  },
+  "verified": {
+    "appdeploy_terminal_ready": true,
+    "frontend_errors_zero": true,
+    "network_errors_zero": true,
+    "backend_errors_zero": true,
+    "qa_mobile_screenshot_generated": true,
+    "qa_desktop_screenshot_generated": true,
+    "custom_domain_7ya_io_active": true,
+    "custom_domain_www_7ya_io_active": true,
+    "homepage_runtime_chain": "index.html -> src/main.tsx -> src/App.tsx -> ConversionHome",
+    "public_home_release_marker": "7ya-public-profile-convergence-20260910-v11"
+  },
+  "source_reconciliation": {
+    "github_main_exact_runtime_source": false,
+    "github_role": "canonical source-control, review and release-receipt plane",
+    "runtime_source_of_truth": "AppDeploy snapshot 1789065075177",
+    "previous_verified_runtime_base": "1789058893488",
+    "rule": "Do not deploy GitHub main over AppDeploy until the complete runtime tree is exported, compared and passes release gates.",
+    "v11_surface_files_known_changed": [
+      "src/App.tsx",
+      "src/ConversionHome.tsx",
+      "src/conversion-home.css",
+      "src/GlobalNav.tsx",
+      "src/global-nav.css",
+      "src/StoryCompanion.tsx",
+      "src/EvidencePage.tsx",
+      "index.html",
+      "public/site.webmanifest",
+      "public/sitemap.xml",
+      "public/igor-vepretski/index.html",
+      "public/starton/index.html",
+      "public/contact/index.html",
+      "public/evidence/index.html",
+      "public/research/index.html",
+      "public/library/index.html",
+      "public/media/index.html",
+      "tests/tests.txt"
+    ]
+  },
+  "not_claimed": {
+    "appdeploy_e2e": "Runner returned null; a test contract exists but an E2E PASS is not claimed.",
+    "independent_pixel_acceptance": "Fresh mobile and desktop QA screenshots exist, but independent pixel-level acceptance is not claimed.",
+    "full_runtime_tree_export": "Not complete; this receipt records the verified runtime and known v11 surface delta without pretending GitHub main is byte-identical production source.",
+    "canonical_no_cache_build_probe": "Custom-domain routing is active, but a separate unique no-cache public build-marker probe is not claimed from this tool session.",
+    "nvidia_primary": "Historical NVIDIA/NVCF canaries remain disabled after HTTP 401; AppDeploy-agent/local fallback remains non-blocking."
+  },
+  "rollback_snapshot": "1789064912967"
+}
