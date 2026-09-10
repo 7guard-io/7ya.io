@@ -1,6 +1,6 @@
 {
-  "schema_version": 6,
-  "updated_at": "2026-09-07T18:41:02+03:00",
+  "schema_version": 7,
+  "updated_at": "2026-09-10T19:48:30+03:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -19,30 +19,31 @@
     "stage": "v2",
     "app_id": "697a008fddc309b142",
     "version_name": "v97",
-    "release": "7ya-sovereign-recovery-20260905-v3-globalfix",
-    "applied_snapshot": "1788795662202",
-    "deployed_at": "2026-09-07T15:41:02.202Z",
+    "release": "7ya-living-asset-projection-20260910-v10",
+    "applied_snapshot": "1789058893488",
+    "deployed_at": "2026-09-10T16:48:13.488Z",
     "status": "READY",
     "canonical_domain": "https://7ya.io/",
     "frontend_errors": 0,
     "network_errors": 0,
     "backend_errors": 0,
     "e2e_tests": null,
-    "qa_snapshot": "1788795706832",
-    "rollback_snapshot": "1788788589415",
-    "release_receipt": "docs/releases/2026-09-07-appdeploy-v97-release-gate-fix.json"
+    "qa_snapshot": "1789058939251",
+    "rollback_snapshot": "1789058631961",
+    "release_receipt": "docs/releases/2026-09-10-appdeploy-v97-living-asset-projection-v10.json"
   },
   "source_reconciliation": {
-    "legacy_main_tree_predates_current_react_runtime": true,
+    "github_main_contains_root_src_main_tsx": true,
+    "github_main_entrypoint_commit": "6bb5db48601e59612ebf28eab028087432e42718",
     "github_main_contains_root_src_app_tsx": false,
     "github_main_contains_root_backend_index_ts": false,
     "github_main_contains_root_cron_json": false,
+    "appdeploy_v97_contains_root_src_main_tsx": true,
     "appdeploy_v97_contains_root_src_app_tsx": true,
     "appdeploy_v97_contains_root_backend_index_ts": true,
-    "appdeploy_v97_contains_root_cron_json": true,
     "full_runtime_tree_export_complete": false,
-    "production_source_of_truth": "AppDeploy remote snapshot 1788795662202",
-    "rule": "Do not deploy GitHub main as a replacement for AppDeploy v97 until the complete runtime source is exported, compared, and passes release gates."
+    "production_source_of_truth": "AppDeploy remote snapshot 1789058893488",
+    "rule": "Do not replace the AppDeploy runtime from GitHub main until the complete runtime source is exported, compared and passes release gates."
   },
   "runtime_health": {
     "terminal_appdeploy_qa": "PASS",
@@ -51,7 +52,7 @@
     "backend_errors": 0,
     "fresh_qa_screenshots_generated": true,
     "visual_pixel_acceptance": "NOT_CLAIMED_SEPARATE_GATE",
-    "direct_browser_api_transport": "unresolved: direct /api/* requests may surface SPA HTML while frontend AppDeploy client transport remains the supported contract",
+    "direct_browser_api_transport": "unresolved: direct /api/* crawler requests may surface SPA HTML while frontend @appdeploy/client transport remains the supported contract",
     "nvidia": {
       "configured": true,
       "model": "nvidia/nemotron-3-super-120b-a12b",
@@ -65,15 +66,12 @@
       "runtime_build_marker": "blocking",
       "frontend_network_backend_errors": "blocking",
       "optional_nvidia_provider": "advisory-when-fallback-healthy",
-      "visual_ai_acceptance": "manual-release-gate-not-cron",
-      "e2e": "not-run-not-claimed"
+      "visual_ai_acceptance": "separate-release-gate-not-claimed",
+      "e2e": "test-contract-present-runner-not-executed"
     }
   },
   "scheduler_reconciliation": {
-    "source_active_jobs": [
-      "agent-mesh-hourly",
-      "meta-sync-hourly"
-    ],
+    "source_active_jobs": ["agent-mesh-hourly", "meta-sync-hourly"],
     "active_jobs_last_status": {
       "agent-mesh-hourly": "success",
       "meta-sync-hourly": "success"
@@ -86,21 +84,26 @@
       "visual-gate-once-20260905"
     ],
     "source_runtime_active_set_aligned": true,
-    "rule": "Disabled historical scheduler records are not current cron.json authority and must not be interpreted as active release failures."
+    "rule": "Disabled historical scheduler records are advisory history, not current release blockers."
   },
   "release_scope": {
-    "name": "APPDEPLOY_V97_RELEASE_GATE_FIX",
-    "ui_changed": false,
+    "name": "APPDEPLOY_V97_LIVING_ASSET_PROJECTION_V10_RUNTIME_RECOVERY",
+    "runtime_wiring_changed": true,
+    "ui_component_changed": false,
     "content_changed": false,
     "routes_changed": false,
-    "release_gate_changed": true,
-    "scheduler_source_changed": true,
+    "release_metadata_changed": true,
+    "regression_contract_changed": true,
     "bro_chat": "NVIDIA/NVCF optional primary remains degraded-auth; AppDeploy-agent/local fallback preserved"
   },
   "recovery": {
     "secondary_provider": "Vercel",
     "role": "recovery only; not production authority for 7ya.io",
-    "appdeploy_rollback": "1788788589415"
+    "appdeploy_rollback": "1789058631961"
+  },
+  "monetization_gate": {
+    "paid_products_frozen": true,
+    "unlock_requires": ["visual pixel acceptance", "end-to-end user-flow verification", "trusted premium site experience"]
   },
   "privacy_boundary": [
     "No identifying information about minors",
