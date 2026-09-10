@@ -1,0 +1,87 @@
+# Tests
+
+## Test 1 - Curated editorial homepage is focused and rich [sanity]
+Viewport: desktop (1280x800)
+Covers: concise personal hero, September 2026 pivot, StartOn proof, selected media, authentic photo stream, 24-item media universe, featured video, longform/music, life strip, human layer, current-work grid, archive handoff
+Description: Verifies the homepage keeps a focused editorial journey while restoring the authentic visual and media depth that was accidentally hidden.
+
+Steps:
+1. Open the homepage
+2. Scroll from the hero through the selected media, life and current-work sections
+3. Continue to the archive handoff and footer
+
+Expected: The hero reads "איגור ופרצקי" with a concise life line, the September 2026 pivot is compact, selected media is followed by the authentic photo stream, the source-linked 24-item media universe, featured video and longform/music sections, while life/human/current-work sections and archive handoff remain present and the seven large documentary chapters stay out of the homepage.
+
+## Test 2 - Mobile front page keeps one clear visual rhythm
+Viewport: mobile (375x667)
+Covers: mobile hero hierarchy, compact pivot, responsive StartOn proof, swipeable selected media, authentic photo stream, restored media universe, featured video, longform/music, current work and recent public projection
+Description: Verifies mobile visitors regain the visual richness of the real archive without losing the readable magazine-like sequence.
+
+Steps:
+1. Open the homepage on mobile
+2. Scroll through hero, pivot, StartOn and selected media
+3. Continue through current work and recent public content
+
+Expected: The hero remains readable without clipping, the pivot is compact, selected media remains usable, the authentic photo rail and media universe are visible, featured and longform/music sections render responsively, and no duplicate seven-chapter documentary sequence appears.
+
+## Test 3 - External media failure preserves the editorial shell [negative]
+Viewport: desktop (1280x800)
+Covers: external-image failure resilience, local hero, text hierarchy, life/current-work navigation, archive handoff
+Description: Verifies failed third-party images do not collapse the front page or expose an empty archive wall.
+
+Steps:
+1. Open the homepage with third-party image requests unavailable
+2. Scroll through hero, StartOn, selected media, life and current work
+3. Open the archive handoff
+
+Expected: The local hero and substantive editorial sections remain visible, broken external media degrades safely, and the archive remains reachable.
+
+## Test 4 - Editorial release invalidates prior homepage cache
+Viewport: mobile (375x667)
+Covers: HE/EN/RU release marker, cache bootstrap, crawler first paint, editorial front-page hydration
+Description: Verifies previous living-record or cinematic caches cannot keep serving the overloaded homepage.
+
+Steps:
+1. Open the homepage after a prior visit to an older release
+2. Allow the release bootstrap to clear old 7YA caches/service workers and reload
+3. Confirm first paint and hydrated content use the editorial release
+
+Expected: Release 7ya-editorial-frontpage-20260910-v4 is active in HE/EN/RU, the concise "whole life, not a title" hero is visible, restored rich media layers are present, and the old seven-chapter homepage composition is absent.
+
+## Test 5 - Political pivot remains factual without dominating identity
+Viewport: desktop (1280x800)
+Covers: September 2026 current-story copy, press-room handoff, verification labels, motive guardrail, editorial proportion
+Description: Verifies the political outcome is present as one current chapter rather than becoming the entire homepage identity.
+
+Steps:
+1. Open the homepage
+2. Read the September 2026 pivot below the hero
+3. Open the full-story/press-room action
+
+Expected: The page states the published-list outcome, labels participation as owner-reported and motive as unknown, provides the press-room handoff, and then moves directly into StartOn and broader life/work content.
+
+## Test 6 - Runtime entrypoint mounts beyond the static first paint [regression]
+Viewport: desktop (1280x800) and mobile (375x667)
+Covers: index.html -> src/main.tsx -> App.tsx -> DocumentaryHome, hydration/mount, authentic rich-home DOM
+Description: Release-blocking regression for the missing src/main.tsx failure. A static fallback or crawler first paint is never sufficient for PASS.
+
+Steps:
+1. Open the homepage with JavaScript enabled
+2. Wait for the React mount to complete
+3. Confirm the rendered DOM contains DocumentaryHome/LivingFrontDoor content after the static first-paint shell
+4. Scroll past the hero and inspect StartOn, selected media, authentic photo stream, media universe, current work and recent public projection
+
+Expected: React mounts successfully and replaces/extends the static first paint with the rich DocumentaryHome experience. FAIL if only the static hero/fallback remains, if src/main.tsx fails to load, or if the page becomes a mostly-text shell.
+
+## Test 7 - HE EN RU render coherently after mount [release gate]
+Viewport: desktop (1280x800) and mobile (375x667)
+Covers: locale routing, directionality, hero copy, rich-media continuity, chronology and source actions
+Description: Verifies language selection changes the hydrated experience rather than only metadata or query parameters.
+
+Steps:
+1. Open /?lang=he and confirm Hebrew copy with RTL presentation
+2. Open /?lang=en and confirm English copy with LTR presentation
+3. Open /?lang=ru and confirm Russian copy with LTR presentation
+4. On each locale, scroll beyond the hero and verify authentic media, chronology and source actions remain visible
+
+Expected: HE, EN and RU each render coherent localized copy and the same personal media-rich information architecture. FAIL if EN/RU retain Hebrew hero copy, if media disappears in a locale, or if only the static fallback is visible.
