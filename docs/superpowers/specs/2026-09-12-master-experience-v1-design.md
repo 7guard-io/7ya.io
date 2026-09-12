@@ -10,6 +10,46 @@ TIME IS THE OPERATING SYSTEM. IMPACT IS THE MEANING. MEDIA IS THE EMOTIONAL PROO
 
 The home page becomes the master experience. Existing specialist routes remain useful as deep lenses over the same biography.
 
+## Social enrichment invariant
+All of Igor's public social surfaces are treated as one corpus, not as separate platform feeds.
+
+The permanent ingestion/projection rule is:
+
+**DIRECT FIRST → RECOVER EVERYTHING → DEDUPE → VIRAL SCORE + STORY SCORE → LIFE CHAPTER → MOMENT → SOURCE.**
+
+This rule applies to Instagram (all known accounts), TikTok current and legacy traces, YouTube/Shorts, Facebook current and legacy traces, LinkedIn, X, Threads, Telegram and any later public platform that becomes part of Igor's record.
+
+Direct authenticated or first-party connectors are always preferred where available. Public URLs, RSS/Atom, exports, open-source recovery tools and surviving mirrors may supplement gaps, but every recovered item must preserve provenance and must never be silently upgraded to a stronger evidence status.
+
+A platform is a source, not an information architecture. The homepage must not devolve into separate Instagram/TikTok/Facebook/YouTube walls. Social material is projected into the life journey by meaning and chronology.
+
+### Dual-score rule
+Viral performance and biographical importance are separate signals and must never be collapsed into one threshold.
+
+**Viral Score** estimates how strongly a post performed relative to Igor's normal performance on the same platform and period. When available, use platform-appropriate signals such as views, likes, comments, shares, saves, velocity and engagement rate. Normalize within platform/time cohorts before comparing across surfaces. A fixed global threshold such as `likes > 5000` is explicitly non-canonical and must not be used as the primary selection rule.
+
+**Story Score** estimates how important the item is for understanding Igor's life, work and public development. It may consider whether the item documents a transition, service, StartOn, fatherhood, public leadership, October 7, creation/music, research, 7YA, a consequential public conversation or a later outcome linked to an earlier moment.
+
+The homepage/editorial projection may prefer a high-Story item over a higher-Viral item. The archive must retain both scores separately where they are available.
+
+### Social source states
+Every normalized social item should preserve a source state such as:
+- `DIRECT` — authenticated/native connector or first-party API result;
+- `PUBLIC` — public URL/RSS/unauthenticated source;
+- `RECOVERED` — export, mirror, open-source recovery or surviving trace;
+- `CANON` — item whose factual identity/source relationship is already accepted in the canonical corpus.
+
+Source state and evidence trust are related but not interchangeable. The UI must not present a recovered item as direct or verified simply because it is visually compelling.
+
+### Projection rule
+The Social Story Atlas and Life Journey consume the normalized corpus. For each life chapter, the UI should prefer:
+1. one dominant source item that best explains the chapter;
+2. a small set of supporting traces from other networks;
+3. direct access to the original source and provenance;
+4. a route to the complete social/archive view for deeper exploration.
+
+The full archive may expose filters such as Most Viral, Most Important, Newest, Most Discussed, Most Shared and Recovered, but the homepage remains story-first.
+
 ## What changes
 The current homepage orchestration is replaced by one intentional sequence:
 
@@ -77,7 +117,7 @@ Immediately after:
 
 Only after biography is established:
 - NOW/current work
-- live social/public signals
+- story-first Social Story Atlas/current signals
 - contextual Ask Igor
 - archive/deep routes
 
@@ -92,7 +132,7 @@ Every factual chapter continues to expose its source. Evidence actions should op
 - Lazy-load below-fold imagery/video.
 - Avoid autoplay video.
 - Keep the first viewport focused on text + existing optimized real imagery.
-- Preserve the existing @appdeploy/client API use for the public social feed; do not add new frontend network dependencies.
+- Preserve the existing @appdeploy/client API use for the public social feed; do not add new frontend network dependencies solely for presentation.
 
 ## System boundaries
 Untouched unless a verified defect blocks this experience:
@@ -101,10 +141,9 @@ Untouched unless a verified defect blocks this experience:
 - public projection
 - backend source ingestion
 - evidence policy
-- social/meta ingestion
 - specialist archives
 
-This is a presentation and interaction architecture change, not a data-model rewrite.
+Social enrichment may add normalization/scoring adapters around existing sources, but must not create a second competing corpus or silently duplicate the canonical archive.
 
 ## Success criteria
 A visitor can:
@@ -113,6 +152,8 @@ A visitor can:
 - move to any chapter directly;
 - open a chapter's source/evidence without losing the overall journey;
 - see meaningful related media in context;
+- understand that social material comes from multiple networks but belongs to one life story;
+- distinguish source/provenance status when relevant;
 - reach NOW with a clear causal understanding of how the earlier life connects to current work;
 - leave and return with visible journey progress on the same browser;
 - use the experience comfortably at 375×667 and desktop widths;
