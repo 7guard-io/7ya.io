@@ -1,0 +1,23 @@
+{
+  "appdeploy_app_id": "697a008fddc309b142",
+  "snapshot_version": "1789229505851",
+  "base_snapshot_version": "1789227278823",
+  "deployed_at": "2026-09-12T16:11:45.851Z",
+  "purpose": "Canonical life-album narrative fix: AGE -> PLACE -> PEOPLE -> MOMENT -> MEDIA -> RESPONSE -> CONSEQUENCE -> REFLECTION",
+  "production_status": "READY",
+  "domains": ["7ya.io", "www.7ya.io"],
+  "qa": {
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e_tests": null,
+    "note": "AppDeploy generated mobile and web QA screenshots; no independent screenshot inspection is asserted here."
+  },
+  "changed_files": [
+    "src/album/album-data.ts",
+    "src/album/AlbumHome.tsx",
+    "src/album/album.css",
+    "tests/tests.txt"
+  ],
+  "source_of_truth_note": "This directory preserves the exact changed surface for AppDeploy snapshot 1789229505851 as an incremental delta against base snapshot 1789227278823. Repository main is materially behind the active AppDeploy runtime and must not be treated as a complete reproduction of production without a dedicated reconciliation cutover."
+}
