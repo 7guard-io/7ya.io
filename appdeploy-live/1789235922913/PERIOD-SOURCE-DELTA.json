@@ -1,0 +1,45 @@
+{
+  "album_trace_mapping": {
+    "origin": [
+      "early-2011",
+      "school-note-reflection-2022",
+      "childhood-gilat-starton-2023",
+      "ndi-repatriation-2024",
+      "mindset-page"
+    ],
+    "service": [
+      "early-2011",
+      "mfa-miami-consular-2012",
+      "police-exit-2023",
+      "police-uniform-fatherhood-2024",
+      "police-reel"
+    ]
+  },
+  "deep_media_records": [
+    {
+      "id": "early-2011",
+      "category": "עיתונות",
+      "source": "מקור ראשון / NRG",
+      "title": "נגד כל הסיכויים",
+      "year": "26.04.2011",
+      "url": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "summary": "רשומת עיתונות תקופתית המתעדת את הילדות, העלייה והשירות הצבאי בזמן אמת, כולל צילום של איגור כחייל בקרדיט דובר צה״ל. האתר מקשר למקור המו״ל ואינו מעתיק את צילום העיתונות כנכס בבעלות 7YA.",
+      "status": "ARCHIVE PUBLISHER RECORD · PERIOD SOURCE · PHOTO CREDIT IDF SPOKESPERSON"
+    },
+    {
+      "id": "mfa-miami-consular-2012",
+      "category": "עיתונות",
+      "source": "U.S. Department of State · Foreign Consular Offices",
+      "title": "Miami consular record — Igor Vepretski listed as Vice Consul",
+      "year": "10.10.2012",
+      "url": "https://2009-2017.state.gov/documents/organization/210079.pdf",
+      "summary": "רשומה רשמית של מחלקת המדינה האמריקאית מונה את MR. IGOR VEPRETSKI בדרגת VICE CONSUL בתאריך 10.10.2012. הרשומה מאמתת את הופעת השם והדרגה במסמך הרשמי בלבד; היא אינה מסיקה לבדה את תחומי האחריות או מחליפה מסמכי העסקה.",
+      "status": "OFFICIAL U.S. GOVERNMENT RECORD · PERIOD DOCUMENT · DUTIES NOT INFERRED"
+    }
+  ],
+  "privacy_and_rights": {
+    "private_drive_copy_used_as_public_asset": false,
+    "synthetic_image_used": false,
+    "publisher_and_official_document_links_only": true
+  }
+}
