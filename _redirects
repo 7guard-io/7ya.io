@@ -1,0 +1,4 @@
+# 7YA Forever Runtime transitional strangler routing.
+# Existing static files (index.html + styles) stay on Netlify.
+# Any route not yet migrated remains served from the verified AppDeploy runtime.
+/*  https://697a008fddc309b142.v2.appdeploy.ai/:splat  200
