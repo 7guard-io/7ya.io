@@ -1,0 +1,69 @@
+name: 7YA Forever Fallback Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.html
+      - styles/forever-runtime-20260913.css
+      - .github/workflows/forever-fallback-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 7ya-forever-fallback-pages
+  cancel-in-progress: true
+
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout canonical fallback source
+        uses: actions/checkout@v4
+
+      - name: Verify source-bound first fold
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fq 'data-first-fold-life' index.html
+          test "$(grep -o 'data-life-moment=' index.html | wc -l | tr -d ' ')" -ge 8
+          for token in CHILDHOOD SERVICE POLICE FATHERHOOD STARTON CREATE 'PUBLIC VOICE' NOW; do
+            grep -Fq "$token" index.html
+          done
+          grep -Fq '#7YA🥷' index.html
+          grep -Fq 'REAL SOURCE MEDIA' index.html
+          grep -Fq '.life-wall' styles/forever-runtime-20260913.css
+          grep -Fq '@media(max-width:720px)' styles/forever-runtime-20260913.css
+          ! grep -Fq 'launch.js' index.html
+
+      - name: Assemble provider-neutral static artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _forever_pages
+          mkdir -p _forever_pages/styles
+          cp index.html _forever_pages/index.html
+          cp styles/forever-runtime-20260913.css _forever_pages/styles/forever-runtime-20260913.css
+          touch _forever_pages/.nojekyll
+          printf '%s\n' 'forever-runtime-20260913-v1' > _forever_pages/RELEASE
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload immutable fallback artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _forever_pages
+
+      - name: Deploy fallback
+        id: deployment
+        uses: actions/deploy-pages@v4
