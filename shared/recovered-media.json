@@ -1,0 +1,102 @@
+{
+  "release": "recovered-media-20260905-1",
+  "records": [
+    {
+      "id": "recovered-103fm-hostage-message",
+      "layer": "RECOVERED",
+      "title": {
+        "he": "מסר אישי בשידור: החטופים והאמון באנשי המקצוע",
+        "en": "Live radio message: hostages and trust in the professionals",
+        "ru": "Радиоэфир: заложники и доверие профессионалам"
+      },
+      "summary": {
+        "he": "קטע משיחת רדיו ב־103FM שבו איגור מדבר סביב סוגיית החטופים וקורא לתת אמון באנשי המקצוע הפועלים להשבתם.",
+        "en": "A recovered 103FM radio segment in which Igor speaks about the hostage crisis and calls for trust in the professionals working to bring them home.",
+        "ru": "Восстановленный фрагмент эфира 103FM, где Игорь говорит о заложниках и призывает доверять профессионалам, работающим над их возвращением."
+      },
+      "publisher": "103FM",
+      "sourceLabel": "103FM · Barak Seri",
+      "sourceUrl": "https://share.descript.com/view/N0QpYdB7gdG",
+      "mediaKind": "video",
+      "sourceRange": "00:46.5–01:55.2",
+      "sourceStartSeconds": 46.5,
+      "sourceEndSeconds": 115.2,
+      "durationSeconds": 69,
+      "recoveredAt": "2026-09-05",
+      "provenance": "OWNER-RECOVERED-BROADCAST",
+      "verification": "SOURCE-RECOVERED",
+      "topics": [
+        "103FM",
+        "radio",
+        "hostages",
+        "public-safety"
+      ],
+      "playable": true
+    },
+    {
+      "id": "recovered-103fm-holon-missile",
+      "layer": "RECOVERED",
+      "title": {
+        "he": "הטיל בחולון: כשהאירוע עובר דרך הילדים",
+        "en": "The Holon missile: when the event passes through the children",
+        "ru": "Ракета в Холоне: когда событие проходит через детей"
+      },
+      "summary": {
+        "he": "עדות אישית קצרה משידור 103FM על הפגיעה סמוך לבית בחולון ועל האופן שבו האירוע הורגש אצל הילדים במרחב המוגן.",
+        "en": "A short recovered 103FM testimony about a strike near Igor’s home in Holon and how the event was experienced by his children in the shelter.",
+        "ru": "Короткий восстановленный фрагмент 103FM о попадании рядом с домом в Холоне и о том, как дети пережили событие в укрытии."
+      },
+      "publisher": "103FM",
+      "sourceLabel": "103FM · Barak Seri",
+      "sourceUrl": "https://share.descript.com/view/XLqHNeOyDJQ",
+      "mediaKind": "video",
+      "sourceRange": "01:58.6–02:17.3",
+      "sourceStartSeconds": 118.6,
+      "sourceEndSeconds": 137.3,
+      "durationSeconds": 19,
+      "recoveredAt": "2026-09-05",
+      "provenance": "OWNER-RECOVERED-BROADCAST",
+      "verification": "SOURCE-RECOVERED",
+      "topics": [
+        "103FM",
+        "radio",
+        "Holon",
+        "civilian-experience"
+      ],
+      "playable": true
+    },
+    {
+      "id": "recovered-103fm-why-i-joined",
+      "layer": "RECOVERED",
+      "title": {
+        "he": "למה הצטרפתי: 7 באוקטובר והשינוי הפוליטי",
+        "en": "Why I joined: October 7 and the political shift",
+        "ru": "Почему я присоединился: 7 октября и политический поворот"
+      },
+      "summary": {
+        "he": "קטע משיחת 103FM שבו איגור מסביר כיצד 7 באוקטובר השפיע על החלטתו להצטרף לישראל ביתנו. זו עדות בעלים בשידור, לא אימות חיצוני של עמדה פוליטית.",
+        "en": "A recovered 103FM segment in which Igor explains how October 7 affected his decision to join Yisrael Beiteinu. This is owner testimony in a broadcast, not external verification of a political claim.",
+        "ru": "Восстановленный фрагмент 103FM, где Игорь объясняет, как 7 октября повлияло на решение присоединиться к «Наш дом Израиль». Это личное свидетельство в эфире, а не внешняя проверка политического тезиса."
+      },
+      "publisher": "103FM",
+      "sourceLabel": "103FM · Barak Seri",
+      "sourceUrl": "https://share.descript.com/view/PjbogmTaJDP",
+      "mediaKind": "video",
+      "sourceRange": "02:53.2–03:21.8",
+      "sourceStartSeconds": 173.2,
+      "sourceEndSeconds": 201.8,
+      "durationSeconds": 29,
+      "recoveredAt": "2026-09-05",
+      "provenance": "OWNER-RECOVERED-BROADCAST",
+      "verification": "SOURCE-RECOVERED",
+      "topics": [
+        "103FM",
+        "radio",
+        "October-7",
+        "Yisrael-Beiteinu",
+        "politics"
+      ],
+      "playable": true
+    }
+  ]
+}
