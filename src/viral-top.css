@@ -1,0 +1,317 @@
+.viral-top {
+    padding: clamp(64px, 9vw, 132px) 0;
+    background: #050609;
+    color: #f6f1e8;
+    border-block: 1px solid rgba(255, 255, 255, .1);
+}
+
+.viral-top-shell {
+    width: min(1540px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.viral-top-head {
+    max-width: 1060px;
+    margin-bottom: clamp(40px, 6vw, 84px);
+}
+
+.viral-top-head small {
+    display: block;
+    color: #d5a85e;
+    font: 800 11px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .16em;
+}
+
+.viral-top-head h2 {
+    margin: 12px 0 18px;
+    max-width: 980px;
+    font-size: clamp(52px, 8.2vw, 126px);
+    line-height: .86;
+    letter-spacing: -.072em;
+}
+
+.viral-top-head p {
+    max-width: 690px;
+    margin: 0;
+    color: #aaa49a;
+    font-size: clamp(16px, 1.6vw, 21px);
+    line-height: 1.6;
+}
+
+.viral-story-stack {
+    display: grid;
+    gap: clamp(56px, 9vw, 140px);
+}
+
+.viral-story {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, .65fr);
+    gap: clamp(28px, 4.5vw, 74px);
+    align-items: center;
+}
+
+.viral-story-reverse {
+    grid-template-columns: minmax(280px, .65fr) minmax(0, 1.7fr);
+}
+
+.viral-story-reverse .viral-story-media {
+    order: 2;
+}
+
+.viral-story-reverse .viral-story-copy {
+    order: 1;
+}
+
+.viral-story-media {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .42);
+}
+
+.viral-story-lead .viral-story-media {
+    min-height: min(70vh, 760px);
+    aspect-ratio: 16 / 9;
+}
+
+.viral-story-media > div,
+.viral-story-media iframe,
+.viral-story-media img,
+.viral-story-media button {
+    width: 100%;
+    height: 100%;
+}
+
+.viral-story-media iframe {
+    display: block;
+    border: 0;
+}
+
+.viral-story-metric {
+    position: absolute;
+    z-index: 5;
+    inset-inline-start: clamp(16px, 3vw, 40px);
+    bottom: clamp(16px, 3vw, 36px);
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    pointer-events: none;
+    text-shadow: 0 3px 28px rgba(0, 0, 0, .95);
+}
+
+.viral-story-metric strong {
+    font-size: clamp(58px, 9vw, 148px);
+    line-height: .72;
+    letter-spacing: -.075em;
+}
+
+.viral-story-metric span {
+    padding-bottom: 5px;
+    color: #f6f1e8;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.viral-story-copy {
+    min-width: 0;
+}
+
+.viral-story-index {
+    margin-bottom: 28px;
+    color: #d5a85e;
+    font: 900 clamp(42px, 5vw, 72px)/.8 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: -.08em;
+}
+
+.viral-story-copy > small {
+    display: block;
+    color: #8f8a82;
+    font: 800 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.viral-story-copy h3 {
+    margin: 12px 0 16px;
+    font-size: clamp(30px, 4.2vw, 64px);
+    line-height: .94;
+    letter-spacing: -.045em;
+}
+
+.viral-story-copy p {
+    margin: 0;
+    color: #b4aea5;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.viral-story-proof {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 22px;
+    color: #77736d;
+    font: 750 9px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .04em;
+}
+
+.viral-story-proof svg {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 auto;
+}
+
+.viral-story-copy > a,
+.viral-top-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 26px;
+    color: #f6f1e8;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.viral-story-copy > a svg,
+.viral-top-all svg {
+    width: 17px;
+    height: 17px;
+}
+
+.viral-top-all {
+    margin-top: clamp(56px, 8vw, 110px);
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(213, 168, 94, .65);
+}
+
+.viral-evidence-note {
+    margin-top: clamp(72px, 9vw, 140px);
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.viral-evidence-note h3 {
+    max-width: 720px;
+    margin: 0 0 24px;
+    font-size: clamp(30px, 4vw, 58px);
+    line-height: .95;
+    letter-spacing: -.045em;
+}
+
+.viral-evidence-note > div {
+    display: grid;
+    gap: 0;
+}
+
+.viral-evidence-note a {
+    display: grid;
+    grid-template-columns: minmax(120px, .28fr) 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    color: inherit;
+    text-decoration: none;
+}
+
+.viral-evidence-note a strong {
+    font-size: clamp(30px, 4vw, 54px);
+    line-height: .9;
+    letter-spacing: -.055em;
+}
+
+.viral-evidence-note a span {
+    color: #aaa49a;
+}
+
+.viral-evidence-note a svg {
+    width: 18px;
+    height: 18px;
+    color: #d5a85e;
+}
+
+.viral-top-media {
+    border-top: 0;
+}
+
+@media (max-width: 900px) {
+    .viral-story,
+    .viral-story-reverse {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .viral-story-reverse .viral-story-media,
+    .viral-story-reverse .viral-story-copy {
+        order: initial;
+    }
+
+    .viral-story-copy {
+        max-width: 680px;
+    }
+
+    .viral-story-lead .viral-story-media {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .viral-top {
+        padding: 54px 0 72px;
+    }
+
+    .viral-top-shell {
+        width: min(100% - 24px, 1540px);
+    }
+
+    .viral-top-head {
+        margin-bottom: 38px;
+    }
+
+    .viral-top-head h2 {
+        font-size: clamp(48px, 15vw, 72px);
+    }
+
+    .viral-story-stack {
+        gap: 66px;
+    }
+
+    .viral-story-media {
+        aspect-ratio: 16 / 10;
+    }
+
+    .viral-story-metric strong {
+        font-size: clamp(54px, 19vw, 92px);
+    }
+
+    .viral-story-index {
+        margin-bottom: 18px;
+        font-size: 44px;
+    }
+
+    .viral-story-copy h3 {
+        font-size: clamp(30px, 10vw, 46px);
+    }
+
+    .viral-evidence-note a {
+        grid-template-columns: 1fr auto;
+        gap: 10px 14px;
+    }
+
+    .viral-evidence-note a strong {
+        grid-column: 1;
+    }
+
+    .viral-evidence-note a span {
+        grid-column: 1 / -1;
+    }
+
+    .viral-evidence-note a svg {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}
