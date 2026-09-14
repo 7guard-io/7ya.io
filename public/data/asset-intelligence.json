@@ -1,0 +1,149 @@
+{
+  "schema": "7ya-public-asset-intelligence-v1",
+  "updatedAt": "2026-09-08",
+  "scope": "public-curated-snapshot",
+  "methodology": [
+    "Content-level ranking includes only metrics mapped to one public content URL.",
+    "Account, monthly and campaign-window analytics are displayed separately and are never described as one post's performance.",
+    "Modeled inventory, private exports and unresolved counter conflicts are excluded from the ranked public leaderboard."
+  ],
+  "excludedClasses": [
+    "MODELED_INVENTORY",
+    "PRIVATE_EXPORT",
+    "COUNTER_CONFLICT"
+  ],
+  "contentLeaderboard": [
+    {
+      "id": "VIS-00146",
+      "platform": "YouTube",
+      "titles": {
+        "he": "רון נשר & Igor Vepretski · מת על אקסל",
+        "en": "Ron Nesher & Igor Vepretski · Crazy about Excel",
+        "ru": "Рон Нешер & Igor Vepretski · «Без ума от Excel»"
+      },
+      "date": "2026-08-19 snapshot",
+      "views": 129407,
+      "interactions": 3470,
+      "likes": 3005,
+      "comments": 465,
+      "metricScope": "CONTENT",
+      "verification": "VERIFIED_CURRENT_PUBLIC",
+      "sourceClass": "PUBLIC_NATIVE_VIDEO",
+      "storyCluster": "MUSIC / CULTURE",
+      "url": "https://www.youtube.com/watch?v=2HGMUN2jDwQ",
+      "imageUrl": "https://i.ytimg.com/vi/2HGMUN2jDwQ/hqdefault.jpg"
+    },
+    {
+      "id": "VIS-00158",
+      "platform": "Facebook",
+      "titles": {
+        "he": "#7YA / 2LONGATDE",
+        "en": "#7YA / 2LONGATDE",
+        "ru": "#7YA / 2LONGATDE"
+      },
+      "date": "2026-08-20 snapshot",
+      "views": 43000,
+      "metricScope": "CONTENT",
+      "verification": "PUBLIC_INDEX_COUNTER",
+      "sourceClass": "PUBLIC_WEB_INDEX",
+      "storyCluster": "7YA / CREATIVE IDENTITY",
+      "url": "https://www.facebook.com/igor7vepretski/videos/1069464309366360/"
+    },
+    {
+      "id": "VIS-00023",
+      "platform": "YouTube",
+      "titles": {
+        "he": "הפוזה לא משתלמת 😂💸",
+        "en": "The pose does not pay 😂💸",
+        "ru": "Поза не окупается 😂💸"
+      },
+      "date": "≈2022 public index",
+      "views": 24000,
+      "metricScope": "CONTENT",
+      "verification": "ROUNDED_COUNTER_FOUND",
+      "sourceClass": "PUBLIC_NATIVE_VIDEO",
+      "storyCluster": "PRESS / MEDIA / IDEAS",
+      "url": "https://www.youtube.com/watch?v=0O3tpLwJg4Y",
+      "imageUrl": "https://i.ytimg.com/vi/0O3tpLwJg4Y/hqdefault.jpg"
+    },
+    {
+      "id": "VIS-00022",
+      "platform": "YouTube",
+      "titles": {
+        "he": "פיצוץ של מתיחה!",
+        "en": "An explosive prank!",
+        "ru": "Взрывной розыгрыш!"
+      },
+      "date": "≈2022 public index",
+      "views": 14000,
+      "interactions": 215,
+      "likes": 215,
+      "metricScope": "CONTENT",
+      "verification": "MIXED_ROUNDED_COUNTER_FOUND",
+      "sourceClass": "PUBLIC_NATIVE_VIDEO",
+      "storyCluster": "PRESS / MEDIA / IDEAS",
+      "url": "https://www.youtube.com/watch?v=OlRQXxjvTfA",
+      "imageUrl": "https://i.ytimg.com/vi/OlRQXxjvTfA/hqdefault.jpg"
+    },
+    {
+      "id": "VIS-00147",
+      "platform": "YouTube",
+      "titles": {
+        "he": "אני עידו",
+        "en": "I Am Ido",
+        "ru": "Я — Идо"
+      },
+      "date": "2026-08-19 snapshot",
+      "views": 9343,
+      "metricScope": "CONTENT",
+      "verification": "VERIFIED_CURRENT_PUBLIC",
+      "sourceClass": "PUBLIC_NATIVE_VIDEO",
+      "storyCluster": "PRESS / MEDIA / IDEAS",
+      "url": "https://www.youtube.com/watch?v=R58T4DQu33w",
+      "imageUrl": "https://i.ytimg.com/vi/R58T4DQu33w/hqdefault.jpg"
+    }
+  ],
+  "exposureProof": [
+    {
+      "id": "VIS-00264",
+      "platform": "Instagram",
+      "titles": {
+        "he": "סיכום אנליטיקה חודשי — 5.68M צפיות",
+        "en": "Monthly analytics recap — 5.68M views",
+        "ru": "Месячный отчёт аналитики — 5,68 млн просмотров"
+      },
+      "date": "2026-08-04",
+      "views": 5680000,
+      "metricScope": "ACCOUNT_WINDOW",
+      "verification": "OWNER_REPORTED_ANALYTICS",
+      "sourceClass": "PUBLIC_OWNER_DISCLOSURE",
+      "url": "https://www.instagram.com/p/DbnS2FdjL4o/?img_index=4",
+      "boundary": {
+        "he": "מדד חלון/חשבון — לא צפיות של פוסט בודד.",
+        "en": "Account/window metric — not the views of one post.",
+        "ru": "Метрика аккаунта/периода — не просмотры одного поста."
+      }
+    },
+    {
+      "id": "VIS-00106",
+      "platform": "TikTok / LinkedIn",
+      "titles": {
+        "he": "חלון ביצועים ויראלי של 14 יום",
+        "en": "14-day viral performance window",
+        "ru": "14-дневное окно вирусной эффективности"
+      },
+      "date": "2025 public disclosure",
+      "views": 3877477,
+      "interactions": 181849,
+      "metricScope": "ACCOUNT_WINDOW",
+      "verification": "OWNER_PUBLISHED_ANALYTICS_FOUND",
+      "sourceClass": "PUBLIC_OWNER_DISCLOSURE",
+      "url": "https://www.linkedin.com/posts/vepretski_tiktokmarketing-digitalinfluence-personalbranding-activity-7316474020063760384-0aAl",
+      "boundary": {
+        "he": "מדד חלון/חשבון — לא צפיות של פוסט בודד.",
+        "en": "Account/window metric — not the views of one post.",
+        "ru": "Метрика аккаунта/периода — не просмотры одного поста."
+      }
+    }
+  ]
+}

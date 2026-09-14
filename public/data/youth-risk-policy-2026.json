@@ -1,0 +1,68 @@
+{
+  "title": "נוער בסיכון בישראל תחת שמונה־עשרה שנות הנהגה: מדיניות, תקציב, קשב ציבורי ותוכנית פעולה ל־2026 ואילך",
+  "date": "2026-09-04",
+  "period": "2008-2026",
+  "status": "research synthesis and policy proposal",
+  "core_thesis": "Israel improved the architecture for identifying, planning and coordinating services for children and youth at risk, but improved frontline continuity and equal execution less consistently.",
+  "verified_anchors": [
+    {
+      "metric": "360 budget anchor",
+      "from": 155,
+      "to": 250,
+      "unit": "NIS millions/year",
+      "note": "nominal endpoints, not a continuous inflation-adjusted series"
+    },
+    {
+      "metric": "intensive youth response budget",
+      "from": 25.955,
+      "to": 30.368,
+      "years": "2021-2024",
+      "unit": "NIS millions"
+    },
+    {
+      "metric": "youth social-worker staffing rate",
+      "from": 85.41,
+      "to": 69.5,
+      "years": "2021 to 2023-2024",
+      "unit": "percent of positions filled"
+    },
+    {
+      "metric": "Miftanim participants",
+      "from": 1022,
+      "to": 491,
+      "years": "2016-2023",
+      "unit": "youth"
+    }
+  ],
+  "policy_proposal": {
+    "name": "Anchor 360+ / StartOn 360+",
+    "principle": "No identified youth remains without a consistent adult, physical address and active digital contact channel.",
+    "pilot": {
+      "municipalities": 10,
+      "duration_months": 18,
+      "planning_estimate_nis_millions_per_year": 30,
+      "estimate_status": "report planning estimate, not a government commitment",
+      "evaluation_design": "stepped-wedge cluster design"
+    },
+    "core_kpis": [
+      "active contact at 90 and 180 days",
+      "attendance and education/training continuity",
+      "wellbeing and repeat crisis events",
+      "NEET and education/employment persistence after age 18"
+    ]
+  },
+  "methodological_limits": [
+    "No single complete public annual series for all youth-at-risk expenditure from 2008 through 2026 was identified.",
+    "Definitions and coverage differ across agencies and years.",
+    "An increase in identified youth can reflect improved detection and geographic expansion.",
+    "Vepretski conceptual manuscripts referenced by the report are independent works and are not presented as peer-reviewed consensus."
+  ],
+  "primary_sources": [
+    "https://library.mevaker.gov.il/sites/DigitalLibrary/Pages/Reports/8792-6.aspx",
+    "https://www.gov.il/he/departments/topics/molsa-360/govil-landing-page",
+    "https://brookdale.jdc.org.il/publication/children-youth-risk-israel/",
+    "https://www.gov.il/he/pages/2016_dec2014",
+    "https://www.idi.org.il/media/26719/israeli-democracy-index-2024-hebrew.pdf",
+    "https://library.mevaker.gov.il/sites/DigitalLibrary/Documents/2026/Evacuation/2026-Evacuation-209.pdf"
+  ]
+}

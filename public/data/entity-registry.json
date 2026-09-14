@@ -1,0 +1,106 @@
+{
+  "version": "2026-08-23",
+  "canonicalAnswer": {
+    "officialWebsite": "https://7ya.io/",
+    "spanishPage": "https://7ya.io/es/",
+    "personPage": "https://7ya.io/igor-vepretski/",
+    "entityPage": "https://7ya.io/entity/",
+    "speakerPage": "https://7ya.io/speaker/",
+    "mediaPage": "https://7ya.io/media/"
+  },
+  "person": {
+    "@id": "https://7ya.io/#igor",
+    "name": "Igor Vepretski",
+    "alternateName": [
+      "איגור ופרצקי",
+      "Игорь Вепрецкий",
+      "Ido Vepretski",
+      "Igor Ido Vepretski",
+      "עידו ופרצקי"
+    ],
+    "description": "Public creator, social entrepreneur and systems builder; founder of StartOn and builder of 7YA.",
+    "languages": [
+      "he",
+      "en",
+      "ru"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/igor.vepretski/",
+      "https://www.instagram.com/vepretski.igor/",
+      "https://www.tiktok.com/@igor.vepretski",
+      "https://www.youtube.com/@IgorVepretski",
+      "https://www.facebook.com/vepretski7",
+      "https://www.threads.net/@igor.vepretski",
+      "https://x.com/igorvepretski",
+      "https://www.linkedin.com/in/vepretski/",
+      "https://linktr.ee/igor.vepretski",
+      "https://github.com/vepretski",
+      "https://igorvepretski.academia.edu/",
+      "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+      "https://music.apple.com/il/artist/ido-vepretski/1527248864?l=he",
+      "https://medium.com/@igor.vepretski",
+      "https://soundcloud.com/idovepretski"
+    ],
+    "publicProof": [
+      {
+        "source": "mynet חולון",
+        "date": "2022-05-13",
+        "url": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+        "role": "independent press"
+      },
+      {
+        "source": "חדשות 13",
+        "date": "2022-05-22",
+        "url": "https://13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/",
+        "role": "independent television coverage"
+      },
+      {
+        "source": "ערוץ 14",
+        "date": "2022",
+        "url": "https://youtu.be/O3v309CA4ao",
+        "role": "television interview"
+      },
+      {
+        "source": "Mindset",
+        "date": "2022-09-20",
+        "url": "https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/",
+        "role": "long-form podcast"
+      },
+      {
+        "source": "הידברות",
+        "date": "2023",
+        "url": "https://www.hidabroot.org/article/1179015",
+        "role": "public publisher coverage"
+      }
+    ]
+  },
+  "website": {
+    "@id": "https://7ya.io/#website",
+    "name": "7YA.IO",
+    "alternateName": [
+      "7YA",
+      "#7YA",
+      "Igor Vepretski official website"
+    ],
+    "languages": [
+      "he",
+      "en",
+      "ru",
+      "es"
+    ],
+    "search": "https://7ya.io/?page=search&lang=he&q={query}"
+  },
+  "organization": {
+    "@id": "https://starton.org.il/#organization",
+    "name": "StartOn",
+    "url": "https://starton.org.il/",
+    "founder": {
+      "@id": "https://7ya.io/#igor"
+    }
+  },
+  "disambiguation": [
+    "Not the unrelated music track named 7ya.",
+    "Not an unrelated social handle.",
+    "Not a retail store, coffee application or Ideone result."
+  ]
+}

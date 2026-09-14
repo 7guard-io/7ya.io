@@ -1,0 +1,150 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "7YA · Igor Vepretski Public Feed",
+  "home_page_url": "https://7ya.io/",
+  "feed_url": "https://7ya.io/feed.json",
+  "language": "he",
+  "description": "Public, source-linked records from 7YA · Igor Vepretski.",
+  "_7ya": {
+    "release": "7ya-user-eye-convergence-20260912-v3",
+    "mode": "public-static-contract",
+    "generated_on": "2026-09-11",
+    "evidence_index": "https://7ya.io/data/evidence-wall.json",
+    "inventory_record_count": 24,
+    "feed_item_count": 12
+  },
+  "items": [
+    {
+      "id": "linkedin-profile-snapshot",
+      "url": "https://www.linkedin.com/in/vepretski/",
+      "title": "הנוכחות המקצועית של איגור ופרצקי",
+      "content_text": "פרופיל ציבורי וצילום מצב מתוארך של פעילות מקצועית.",
+      "_7ya": {
+        "date": "2026-06-08",
+        "status": "DATED SNAPSHOT",
+        "source": "LinkedIn"
+      }
+    },
+    {
+      "id": "youtube-channel",
+      "url": "https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw",
+      "title": "ערוץ הווידאו הציבורי של איגור ופרצקי",
+      "content_text": "פרופיל ציבורי; נתוני היקף באתר מוצגים בצילום מצב מתוארך.",
+      "_7ya": {
+        "date": "2026-06-08",
+        "status": "DATED SNAPSHOT",
+        "source": "YouTube"
+      }
+    },
+    {
+      "id": "tiktok-current-export",
+      "url": "https://www.tiktok.com/@igor.vepretski",
+      "title": "@igor.vepretski — מנוע הפרסום הנוכחי",
+      "content_text": "פרופיל ציבורי המחובר לייצוא בעלים מתוארך; מספרים אינם מוצגים כנתון חי.",
+      "_7ya": {
+        "date": "2026-06-02",
+        "status": "DATED EXPORT",
+        "source": "TikTok"
+      }
+    },
+    {
+      "id": "academia-profile",
+      "url": "https://igorvepretski.academia.edu/",
+      "title": "ספריית המחקר העצמאית",
+      "content_text": "פרופיל מחקר ציבורי; אינו מוצג כהוכחת ביקורת עמיתים.",
+      "_7ya": {
+        "date": "2026",
+        "status": "PUBLIC PROFILE",
+        "source": "Academia.edu"
+      }
+    },
+    {
+      "id": "wikimedia-portrait",
+      "url": "https://commons.wikimedia.org/wiki/File:Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png",
+      "title": "דיוקן ציבורי פתוח של איגור ופרצקי",
+      "content_text": "נכס זיהוי ציבורי ברישיון CC0 לפי עמוד המקור.",
+      "_7ya": {
+        "date": "2024-07-20",
+        "status": "VERIFIED",
+        "source": "Wikimedia Commons"
+      }
+    },
+    {
+      "id": "moving-minds-18",
+      "url": "https://podtail.com/podcast/092cc570/--18/",
+      "title": "מנוער בסיכון למנהיגות מעוררת השראה",
+      "content_text": "עמוד פרק ציבורי עם פרטי התוכנית.",
+      "_7ya": {
+        "date": "2024-01-23",
+        "status": "VERIFIED",
+        "source": "מוחות בתנועה / Podtail"
+      }
+    },
+    {
+      "id": "fatherhood-hidabroot",
+      "url": "https://www.hidabroot.org/article/1179015",
+      "title": "אבא מושלם — זה אבא ששם",
+      "content_text": "כתבה חיצונית על פוסט אבהות שזכה להפצה ציבורית.",
+      "_7ya": {
+        "date": "2023",
+        "status": "VERIFIED",
+        "source": "הידברות"
+      }
+    },
+    {
+      "id": "elder-fraud-channel13",
+      "url": "https://www.youtube.com/watch?v=AE5hDzLM5XU",
+      "title": "פוסט אישי הופך למאבק בהונאות קשישים",
+      "content_text": "ראיון וידאו ציבורי על הונאה והתגובה המוסדית.",
+      "_7ya": {
+        "date": "2023",
+        "status": "VERIFIED",
+        "source": "חדשות 13 / YouTube"
+      }
+    },
+    {
+      "id": "youth-crisis-podcast",
+      "url": "https://www.youtube.com/watch?v=U2d_hulZAC0",
+      "title": "אם לנו קשה, מה עובר על נוער בסיכון",
+      "content_text": "שיחה ציבורית על נוער, משבר ותקווה מעשית.",
+      "_7ya": {
+        "date": "2023",
+        "status": "VERIFIED",
+        "source": "YouTube"
+      }
+    },
+    {
+      "id": "zman-rules-changed",
+      "url": "https://www.zman.co.il/352289/",
+      "title": "כללי המשחק השתנו — חינוך בעידן המודרני",
+      "content_text": "טור חתום על חינוך והעולם הדיגיטלי.",
+      "_7ya": {
+        "date": "2022-11-27",
+        "status": "VERIFIED",
+        "source": "זמן ישראל"
+      }
+    },
+    {
+      "id": "starton-mynet-2022",
+      "url": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "title": "חוזר לשכונה כדי לבנות מרכז לנוער",
+      "content_text": "כתבת מקור חיצונית על החזרה לג׳סי כהן וחזון StartOn.",
+      "_7ya": {
+        "date": "2022-05-13",
+        "status": "VERIFIED",
+        "source": "mynet חולון"
+      }
+    },
+    {
+      "id": "press-2011-origin",
+      "url": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "title": "כנגד כל הסיכויים — רשומת העיתונות המוקדמת",
+      "content_text": "רשומת עיתונות חיצונית המתעדת את הסיפור הציבורי המוקדם.",
+      "_7ya": {
+        "date": "2011",
+        "status": "VERIFIED",
+        "source": "מקור ראשון / NRG"
+      }
+    }
+  ]
+}
