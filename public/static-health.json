@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "service": "7ya-independent",
+  "provider": "appdeploy",
+  "release": "7ya-user-eye-convergence-20260912-v3",
+  "build": "7ya-user-eye-convergence-20260912-v3",
+  "environment": "production",
+  "static_fallback": false,
+  "authoritative": true,
+  "public_contract": true,
+  "note": "Authoritative public machine-readable health surface. AppDeploy SDK backend health remains available to the application through its internal transport."
+}
