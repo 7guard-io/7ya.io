@@ -1,0 +1,2 @@
+import {rootHref,type Locale} from '../locale';
+export const lifeMomentHref=(canonicalId:string,locale:Locale)=>{const params=new URLSearchParams({lang:locale,moment:canonicalId});return rootHref('?'+params.toString()+'#life-moments')};

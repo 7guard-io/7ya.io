@@ -1,0 +1,5 @@
+import {useEffect,useRef,useState,type ReactNode} from 'react';
+
+type Props={children:ReactNode;minHeight?:number;rootMargin?:string;label?:string};
+
+export default function DeferredMount({children,minHeight=320,rootMargin='900px 0px',label='Loading section'}:Props){const ref=useRef<HTMLDivElement>(null);const [ready,setReady]=useState(false);useEffect(()=>{if(ready)return;const node=ref.current;if(!node)return;if(typeof IntersectionObserver==='undefined'){setReady(true);return}const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){setReady(true);observer.disconnect()}},{rootMargin});observer.observe(node);return()=>observer.disconnect()},[ready,rootMargin]);return <div ref={ref} style={ready?undefined:{minHeight}} aria-busy={!ready} aria-label={!ready?label:undefined}>{ready?children:null}</div>}
