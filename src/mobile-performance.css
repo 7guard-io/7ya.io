@@ -1,0 +1,19 @@
+[data-native-personal-media='home'],
+[data-facebook-stream='home'],
+[data-massive-content='home'] {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+}
+
+@media (max-width: 600px) {
+    [data-native-personal-media='home'],
+    [data-facebook-stream='home'],
+    [data-massive-content='home'] {
+        contain-intrinsic-size: 720px;
+    }
+
+    .public-home img,
+    .public-home iframe {
+        max-width: 100%;
+    }
+}

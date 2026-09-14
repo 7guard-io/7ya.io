@@ -1,0 +1,44 @@
+/* Mobile hardening: the documentary home must stay readable in every persisted theme. */
+@media(max-width:900px){
+  html[data-sevenya-theme='light'] .dh .dh-hero-copy,
+  .dh[data-theme='light'] .dh-hero-copy,
+  .dh[data-theme='dark'] .dh-hero-copy{
+    background:#07090c!important;
+    background-image:none!important;
+    color:#f4f0e8!important;
+    padding-bottom:max(34px,env(safe-area-inset-bottom))!important;
+  }
+  .dh-hero-copy :is(h1,h2){
+    color:#f4f0e8!important;
+    -webkit-text-fill-color:#f4f0e8!important;
+    text-shadow:0 4px 24px rgba(0,0,0,.42)!important;
+  }
+  .dh-hero-copy>p{color:#b7ff3c!important}
+  .dh-nav .site-theme-toggle,
+  html[data-sevenya-theme='light'] .dh-nav .site-theme-toggle{
+    width:40px!important;
+    min-width:40px!important;
+    min-height:40px!important;
+    padding:0!important;
+    background:#10161e!important;
+    color:#f4f0e8!important;
+    border-color:rgba(183,255,60,.46)!important;
+  }
+  .dh-actions .dh-contact-command,
+  .dh-actions .dh-evidence-command{
+    min-height:52px!important;
+    font-size:12px!important;
+    line-height:1.15!important;
+  }
+  .dh-actions{position:relative;z-index:1}
+  .companion-fab{
+    width:52px!important;
+    min-width:52px!important;
+    height:52px!important;
+    bottom:max(14px,env(safe-area-inset-bottom))!important;
+  }
+}
+@media(max-width:390px){
+  .dh-hero-copy{padding-inline:14px!important}
+  .dh-hero h1{font-size:clamp(44px,13vw,52px)!important}
+}
