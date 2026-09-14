@@ -1,0 +1,237 @@
+.facebook-story-stream {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    background: #080a0e;
+    color: #f6f1e7;
+}
+
+.facebook-story-stream::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 12% 8%, rgba(232, 173, 69, .13), transparent 28rem), radial-gradient(circle at 92% 70%, rgba(60, 86, 110, .12), transparent 30rem);
+}
+
+.facebook-story-shell {
+    position: relative;
+    padding-top: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.facebook-story-head {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(18rem, .7fr);
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2rem;
+}
+
+.facebook-story-head small {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    color: #e8ad45;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .13em;
+}
+
+.facebook-story-head small svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.facebook-story-head h2 {
+    max-width: 11ch;
+    margin: .8rem 0 0;
+    font-size: clamp(2.6rem, 6vw, 5.8rem);
+    line-height: .9;
+    letter-spacing: -.055em;
+}
+
+.facebook-story-head p {
+    margin: 0;
+    color: rgba(246, 241, 231, .62);
+    line-height: 1.75;
+}
+
+.facebook-story-head a,
+.facebook-story-source,
+.facebook-story-more {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    color: #e8ad45;
+    font-weight: 850;
+    text-decoration: none;
+}
+
+.facebook-story-head a {
+    margin-top: 1rem;
+}
+
+.facebook-story-head a svg,
+.facebook-story-source svg,
+.facebook-story-more svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.facebook-story-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+}
+
+.facebook-story-card {
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 1.35rem);
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: rgba(255, 255, 255, .025);
+}
+
+.facebook-story-meta,
+.facebook-story-relation {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+}
+
+.facebook-story-meta {
+    color: rgba(246, 241, 231, .42);
+    font-size: .72rem;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.facebook-story-card h3 {
+    margin: .8rem 0 .55rem;
+    font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+    line-height: 1.05;
+}
+
+.facebook-story-card > p {
+    min-height: 3.5em;
+    margin: 0 0 .85rem;
+    color: rgba(246, 241, 231, .58);
+    line-height: 1.55;
+}
+
+.facebook-story-thumb {
+    aspect-ratio: 16 / 9;
+    margin: .9rem 0 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: #11151b;
+}
+
+.facebook-story-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.facebook-story-relation {
+    min-height: 2rem;
+    margin-bottom: .8rem;
+    color: rgba(246, 241, 231, .5);
+    font-size: .72rem;
+}
+
+.facebook-story-relation b {
+    color: #e8ad45;
+}
+
+.facebook-embed-shell {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: #fff;
+}
+
+.facebook-embed-shell iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.facebook-embed-post iframe {
+    height: 540px;
+}
+
+.facebook-embed-video iframe {
+    height: 430px;
+}
+
+.facebook-story-source {
+    margin-top: .9rem;
+    font-size: .84rem;
+}
+
+.facebook-story-more {
+    margin-top: 1.3rem;
+    min-height: 3rem;
+    padding: 0 1.05rem;
+    border: 1px solid rgba(232, 173, 69, .35);
+}
+
+.facebook-story-stream-home .facebook-story-shell {
+    padding-top: 3.25rem;
+}
+
+.facebook-story-stream-home .facebook-story-head {
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.facebook-story-stream-home .facebook-story-head h2 {
+    max-width: none;
+    font-size: clamp(2rem, 4.5vw, 3.6rem);
+}
+
+.facebook-story-stream-home .facebook-story-head p {
+    display: none;
+}
+
+.facebook-story-stream-home .facebook-story-card:first-child {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+    .facebook-story-head,
+    .facebook-story-grid,
+    .facebook-story-stream-home .facebook-story-head {
+        grid-template-columns: 1fr;
+    }
+
+    .facebook-story-head h2 {
+        max-width: 12ch;
+    }
+
+    .facebook-story-card > p {
+        min-height: 0;
+    }
+
+    .facebook-story-meta,
+    .facebook-story-relation {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: .35rem;
+    }
+
+    .facebook-embed-post iframe {
+        height: 500px;
+    }
+
+    .facebook-embed-video iframe {
+        height: 360px;
+    }
+}
