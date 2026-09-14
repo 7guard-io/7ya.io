@@ -1,0 +1,338 @@
+.personal-front-door-media {
+    align-self: center;
+    gap: clamp(12px, 1.4vw, 18px);
+    min-width: 0;
+}
+
+.personal-front-door-media > header {
+    display: block !important;
+    margin: 0;
+    padding: 0;
+}
+
+.personal-front-door-media > header small {
+    color: #caa96d;
+}
+
+.personal-front-door-media > header h2 {
+    max-width: 10ch;
+    margin: 7px 0 8px;
+    color: #f6f2e9;
+    font-size: clamp(28px, 3.2vw, 46px);
+    font-weight: 850;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+}
+
+.personal-front-door-media > header p {
+    max-width: 50ch;
+    color: #b9b4aa;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.personal-front-door-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.18fr) minmax(190px, 0.82fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    min-height: clamp(500px, 62vh, 660px);
+    gap: 8px;
+}
+
+.personal-front-door-card {
+    display: grid;
+    grid-template-columns: minmax(104px, 0.76fr) minmax(0, 1.24fr);
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: #17181b;
+    color: #f6f2e9;
+    text-decoration: none;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.personal-front-door-card:hover {
+    border-color: rgba(238, 213, 166, 0.72);
+    background: #202126;
+}
+
+.personal-front-door-card figure {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #0d0e11;
+}
+
+.personal-front-door-card figure > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 240ms ease;
+}
+
+.personal-front-door-source-poster {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 13px;
+    background:
+        radial-gradient(circle at 82% 16%, rgba(208, 171, 96, 0.3), transparent 38%),
+        linear-gradient(145deg, #1e2229 0%, #0d0e11 72%);
+    color: #f6f2e9;
+}
+
+.personal-front-door-source-poster small {
+    max-width: 11ch;
+    color: #ead3a6;
+    font: 800 8px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.08em;
+}
+
+.personal-front-door-source-poster b {
+    color: rgba(246, 242, 233, 0.18);
+    font: 900 clamp(34px, 4vw, 52px)/0.82 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: -0.08em;
+}
+
+.personal-front-door-source-poster em {
+    color: #f6f2e9;
+    font: 800 8px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-style: normal;
+    letter-spacing: 0.1em;
+}
+
+.personal-front-door-card[data-card-tone='service'] .personal-front-door-source-poster {
+    background:
+        linear-gradient(90deg, rgba(217, 187, 125, 0.14) 1px, transparent 1px) 0 0 / 18px 18px,
+        linear-gradient(145deg, #202730 0%, #0d0e11 72%);
+}
+
+.personal-front-door-card[data-card-tone='music'] .personal-front-door-source-poster {
+    background:
+        radial-gradient(circle at 16% 84%, rgba(124, 77, 155, 0.5), transparent 42%),
+        linear-gradient(145deg, #28192d 0%, #0d0e11 72%);
+}
+
+.personal-front-door-card[data-image-state='unavailable'] .personal-front-door-source-poster,
+.personal-front-door-card[data-has-image='false'] .personal-front-door-source-poster {
+    display: flex;
+}
+
+.personal-front-door-card:hover figure > img {
+    transform: scale(1.025);
+}
+
+.personal-front-door-card > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: 13px 14px;
+}
+
+.personal-front-door-card small {
+    display: block;
+    color: #c7a36a;
+    font: 800 8px/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.09em;
+}
+
+.personal-front-door-card h3 {
+    margin: 7px 0 9px;
+    color: #f6f2e9;
+    font-size: clamp(14px, 1.25vw, 18px);
+    font-weight: 780;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.personal-front-door-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #e2ddd3;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.personal-front-door-link svg {
+    width: 14px;
+    height: 14px;
+}
+
+.personal-front-door-play {
+    position: absolute;
+    inset: auto 9px 9px auto;
+    display: grid;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    border-radius: 50%;
+    background: rgba(10, 11, 13, 0.74);
+    color: #fff;
+}
+
+.personal-front-door-play svg {
+    width: 13px;
+    height: 13px;
+    margin-inline-start: 2px;
+}
+
+.personal-front-door-image-fallback {
+    display: none;
+}
+
+.personal-front-door-card[data-image-state='unavailable'] figure,
+.personal-front-door-card[data-has-image='false'] figure {
+    display: grid;
+    min-height: 100%;
+    place-items: center;
+    background: #22242a;
+}
+
+.personal-front-door-card[data-image-state='unavailable'] figure img {
+    display: none;
+}
+
+.personal-front-door-card[data-image-state='unavailable'] .personal-front-door-image-fallback {
+    display: none;
+}
+
+.personal-front-door-card.is-featured {
+    position: relative;
+    display: block;
+    grid-row: 1 / span 3;
+    min-height: 0;
+}
+
+.personal-front-door-card.is-featured figure {
+    height: 100%;
+}
+
+.personal-front-door-card.is-featured > div {
+    position: absolute;
+    z-index: 1;
+    inset: auto 0 0;
+    display: block;
+    padding: 26px 22px 21px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
+}
+
+.personal-front-door-card.is-featured h3 {
+    max-width: 14ch;
+    margin: 7px 0 10px;
+    font-size: clamp(22px, 2vw, 32px);
+}
+
+.personal-front-door-card.is-featured .personal-front-door-link {
+    color: #fff;
+}
+
+.personal-front-door-proof {
+    margin: 0;
+    color: #a9a49b;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.personal-front-door-card:focus-visible {
+    outline: 3px solid #d9bb7d;
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .public-hero-grid > .personal-front-door-media {
+        order: 0 !important;
+    }
+
+    .public-hero-grid > .public-hero-copy {
+        order: -1;
+    }
+
+    .personal-front-door-media > header {
+        margin-top: 2px;
+    }
+
+    .personal-front-door-media > header h2 {
+        max-width: 16ch;
+        font-size: clamp(28px, 9vw, 42px);
+    }
+
+    .personal-front-door-media > header p {
+        font-size: 14px;
+    }
+
+    .personal-front-door-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+        min-height: 0;
+        gap: 8px;
+    }
+
+    .personal-front-door-card {
+        grid-template-columns: 1fr;
+    }
+
+    .personal-front-door-card figure {
+        aspect-ratio: 16 / 10;
+    }
+
+    .personal-front-door-card > div {
+        min-height: 93px;
+        padding: 11px;
+    }
+
+    .personal-front-door-card h3 {
+        font-size: 15px;
+    }
+
+    .personal-front-door-card.is-featured {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        min-height: 0 !important;
+    }
+
+    .personal-front-door-card.is-featured figure {
+        position: relative !important;
+        inset: auto !important;
+        height: auto !important;
+        aspect-ratio: 16 / 10 !important;
+    }
+
+    .personal-front-door-card.is-featured > div {
+        position: absolute;
+        padding: 18px 15px 14px;
+    }
+
+    .personal-front-door-card.is-featured h3 {
+        font-size: 26px;
+    }
+
+    .personal-front-door-proof {
+        padding-bottom: 2px;
+    }
+}
+
+@media (max-width: 390px) {
+    .personal-front-door-card > div {
+        min-height: 86px;
+        padding: 10px;
+    }
+
+    .personal-front-door-card h3 {
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .personal-front-door-card,
+    .personal-front-door-card figure > img {
+        transition: none;
+    }
+}
