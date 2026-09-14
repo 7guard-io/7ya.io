@@ -1,0 +1,12 @@
+import {compileLifeScenes,LIFE_SCENES_RELEASE,projectLifeScenes,type LifeSceneQuery,type SceneKind,type SceneLens,type SceneTrust} from '../shared/life-scenes';
+import {readCanonicalCorpus} from './corpus-store';
+const clean=(value:unknown,max:number)=>typeof value==='string'?value.trim().slice(0,max):'';
+const lenses=new Set<SceneLens>(['home','museum','media','music','research','starton','politics','influence','speaker','blog','create','archive']);
+const kinds=new Set<SceneKind>(['life','service','education','starton','media','public-action','creator','music','research','politics','7ya','relationship','now']);
+const trusts=new Set<SceneTrust>(['canonical','verified-public','supported-public','discovery']);
+const lensOf=(value:string):SceneLens=>lenses.has(value as SceneLens)?value as SceneLens:'home';
+const queryOf=(query:Record<string,string>):LifeSceneQuery=>{const lens=lensOf(clean(query.lens,30));const kind=clean(query.kind,30);const trust=clean(query.trust,30);const requested=Number(query.limit);return{lens,...(kinds.has(kind as SceneKind)?{kind:kind as SceneKind}:{}),...(trusts.has(trust as SceneTrust)?{trust:trust as SceneTrust}:{}),...(clean(query.from,24)?{from:clean(query.from,24)}:{}),...(clean(query.to,24)?{to:clean(query.to,24)}:{}),...(clean(query.topic,120)?{topic:clean(query.topic,120)}:{}),limit:Number.isFinite(requested)&&requested>0?Math.min(200,Math.floor(requested)):50}};
+async function projection(){const read=await readCanonicalCorpus({limit:500});const compiled=compileLifeScenes({events:read.items});return{read,compiled}}
+export async function lifeScenesPayload(query:Record<string,string>){const {read,compiled}=await projection();const parsed=queryOf(query);const scenes=projectLifeScenes(compiled.scenes,parsed);return{release:LIFE_SCENES_RELEASE,generatedAt:new Date().toISOString(),lens:parsed.lens||'home',count:scenes.length,total:compiled.scenes.length,coverage:compiled.coverage,storage:read.storage,scenes}}
+export async function lifeScenePayload(id:string){const {compiled}=await projection();const item=compiled.scenes.find(scene=>scene.id===clean(id,180));if(!item)return null;const related=new Set(item.relatedSceneIds);return{release:LIFE_SCENES_RELEASE,item,related:compiled.scenes.filter(scene=>related.has(scene.id)).slice(0,12)}}
+export async function lifeCoveragePayload(){const {read,compiled}=await projection();return{release:LIFE_SCENES_RELEASE,generatedAt:new Date().toISOString(),coverage:compiled.coverage,storage:read.storage}}
