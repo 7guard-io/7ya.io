@@ -1,0 +1,29 @@
+{
+  "service": "7ya-frontend",
+  "provider": "appdeploy",
+  "status": "READY",
+  "release": "7ya-master-experience-20260912-v1",
+  "build_marker": "7ya-master-experience-20260912-v1",
+  "environment": "production",
+  "canonical_domain": "https://7ya.io/",
+  "source_repository": "7guard-io/7ya.io",
+  "source_ref": "main",
+  "github_provenance_commit": "6bb5db48601e59612ebf28eab028087432e42718",
+  "source_of_truth": "appdeploy-remote-snapshot",
+  "full_source_export": "pending",
+  "source_alignment": "APPDEPLOY_PRODUCTION_AHEAD_OF_GITHUB_FULL_EXPORT_PENDING",
+  "deployed_on": "2026-09-12",
+  "experience": "MASTER_EXPERIENCE_V1_ADAPTIVE_LIFE_JOURNEY",
+  "languages": [
+    "he",
+    "en",
+    "ru"
+  ],
+  "homepage_policy": "One adaptive life journey: identity -> seven source-linked life chapters -> NOW -> live public signals -> contextual AI. Chronology remains authoritative and journey progress is stored locally in the visitor browser only.",
+  "resilience_policy": "The homepage reads /api/social-feed first for connected social content; source-linked archive material remains a clearly labeled fallback and live-feed failure must not erase known content.",
+  "telegram_policy": "Telegram Inbox is pending-review-only and disabled unless webhook secret and allowed-chat configuration are present. No webhook intake auto-publishes.",
+  "evidence_policy": "VERIFIED / SELF-REPORTED / INFERRED / UNKNOWN remain distinct; aggregate reach, impressions and impact are not claimed as verified without source evidence.",
+  "corpus_policy": "MASTER CANON remains narrative authority; MASTER EVIDENCE LEDGER remains catalog/evidence authority; AppDeploy is the validated public projection.",
+  "visual_policy": "Editorial cinematic presentation with real/source media first, one dominant visual per life chapter, related media secondary, no collage-first layout and source actions retained.",
+  "responsive_policy": "Mobile-first journey UI preserves hero legibility, a swipeable chapter rail, >=42px primary controls, source actions and no page-level horizontal overflow."
+}

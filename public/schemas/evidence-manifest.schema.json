@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://7ya.io/schemas/evidence-manifest.schema.json",
+  "title": "7YA Evidence Link",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "label",
+    "captured_at",
+    "url",
+    "public"
+  ],
+  "properties": {
+    "kind": {
+      "enum": [
+        "public_screenshot",
+        "studio_screenshot",
+        "api_json",
+        "csv_export",
+        "platform_export_json",
+        "manual_capture",
+        "public_profile",
+        "ga4_snapshot",
+        "canonical_url"
+      ]
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "public": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,79 @@
+html,
+body {
+    margin: 0;
+    background: #080a0d;
+}
+
+.recovery-home {
+    display: block !important;
+    min-height: 100svh !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: #080a0d !important;
+    color: #f6f2e9;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.recovery-home::before {
+    content: none !important;
+}
+
+.recovery-home > section:first-child {
+    box-sizing: border-box;
+    display: flex;
+    min-height: 76svh;
+    max-width: none !important;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(28px, 7vw, 96px);
+    background:
+        linear-gradient(90deg, rgba(9, 10, 12, .97) 0%, rgba(9, 10, 12, .86) 44%, rgba(9, 10, 12, .25) 100%),
+        url('./resources/drive-life-photo.jpg') center 28% / cover no-repeat;
+}
+
+.recovery-home > section:not(:first-child) {
+    box-sizing: border-box;
+    width: min(100%, 1040px);
+}
+
+#recovery-story,
+#recovery-work,
+#recovery-media {
+    border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+#recovery-work a {
+    border-radius: 16px;
+    background: rgba(255, 255, 255, .035);
+}
+
+#recovery-media img {
+    display: block;
+    border-radius: 18px;
+    background: #11151b;
+}
+
+@media (max-width: 900px) {
+    .recovery-home {
+        padding: 0 !important;
+    }
+
+    .recovery-home > section:first-child {
+        min-height: 84svh;
+        padding: calc(46svh + 26px) 18px 34px;
+        background:
+            linear-gradient(180deg, rgba(8, 10, 13, .05) 0%, rgba(8, 10, 13, .18) 36%, #080a0d 62%),
+            url('./resources/drive-life-photo.jpg') center 22% / 100% 48svh no-repeat,
+            #080a0d;
+    }
+
+    .recovery-home > section:first-child nav {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    #recovery-work,
+    #recovery-media {
+        padding-inline: 16px !important;
+    }
+}
