@@ -1,0 +1,12 @@
+/* Personalization + conversion clarity: protect the person-first documentary entry. */
+.dh-nav{background:linear-gradient(180deg,rgba(4,6,9,.94),rgba(4,6,9,.78))!important;border-bottom-color:rgba(239,236,226,.18)!important;backdrop-filter:blur(18px)}
+.dh-nav nav a,.dh-brand span{color:#f7f4ec!important;opacity:.92}
+.dh-nav nav a{font-weight:800!important;letter-spacing:.11em}
+.dh-nav nav a:hover,.dh-nav nav a:focus-visible{color:#b7ff3c!important;opacity:1}
+.dh-nav-controls .site-theme-toggle{min-height:42px!important;background:#121923!important;color:#f7f4ec!important;border-color:rgba(183,255,60,.5)!important;box-shadow:none!important}
+.dh-hero-copy h2{max-width:38ch;text-wrap:balance}
+.dh-actions .dh-contact-command{box-shadow:0 14px 42px rgba(0,0,0,.28)}
+.dh-actions .dh-contact-command:focus-visible,.dh-actions .dh-evidence-command:focus-visible{outline-color:#b7ff3c!important}
+.dh-impact-preview{border-color:rgba(183,255,60,.28)!important}
+@media(max-width:900px){.dh-nav{min-height:64px!important;padding-inline:14px!important}.dh-nav-controls .site-theme-toggle{min-width:42px!important;width:42px!important;padding:0!important}.dh-hero-copy h2{max-width:31ch;text-wrap:pretty}.dh-actions .dh-contact-command,.dh-actions .dh-evidence-command{letter-spacing:0!important;font-weight:850!important}}
+@media(prefers-contrast:more){.dh-nav{background:#05070a!important}.dh-nav nav a,.dh-brand span{color:#fff!important}}

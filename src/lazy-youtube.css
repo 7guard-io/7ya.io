@@ -1,0 +1,128 @@
+.lazy-youtube {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: #090a0d;
+    color: #f5f0e8;
+}
+
+.lazy-youtube-poster {
+    padding: 0;
+    cursor: pointer;
+    text-align: inherit;
+}
+
+.lazy-youtube-poster::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.32));
+    pointer-events: none;
+}
+
+.lazy-youtube img,
+.lazy-youtube iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.lazy-youtube img {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+}
+
+.lazy-youtube iframe {
+    position: absolute;
+    inset: 0;
+}
+
+.lazy-youtube-poster.is-source-poster {
+    background:
+        radial-gradient(circle at 84% 18%, rgba(205, 157, 85, .31), transparent 42%),
+        linear-gradient(145deg, #1a1d24 0%, #090a0d 72%);
+}
+
+.lazy-youtube-fallback {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(18px, 3vw, 42px);
+    color: #f5f0e8;
+    text-align: start;
+}
+
+.lazy-youtube-poster.is-source-poster .lazy-youtube-fallback {
+    display: flex;
+}
+
+.lazy-youtube-fallback small,
+.lazy-youtube-fallback em {
+    color: #dfba78;
+    font: 800 9px/1.25 ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-style: normal;
+    letter-spacing: 0.13em;
+}
+
+.lazy-youtube-fallback strong {
+    max-width: 15ch;
+    color: #f5f0e8;
+    font-size: clamp(23px, 4vw, 58px);
+    font-weight: 850;
+    line-height: .94;
+    letter-spacing: -.045em;
+}
+
+.lazy-youtube-fallback em {
+    color: rgba(245, 240, 232, .54);
+}
+
+.lazy-youtube-play {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: clamp(48px, 7vw, 68px);
+    height: clamp(48px, 7vw, 68px);
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 999px;
+    background: rgba(8, 9, 12, 0.78);
+    backdrop-filter: blur(8px);
+    transition: transform 160ms ease, background 160ms ease;
+}
+
+.lazy-youtube-play svg {
+    width: 38%;
+    height: 38%;
+    margin-left: 3px;
+}
+
+.lazy-youtube-poster:hover .lazy-youtube-play {
+    transform: translate(-50%, -50%) scale(1.06);
+    background: rgba(8, 9, 12, 0.92);
+}
+
+.lazy-youtube-poster:focus-visible {
+    outline: 3px solid #c7a36a;
+    outline-offset: -3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lazy-youtube-play {
+        transition: none;
+    }
+}

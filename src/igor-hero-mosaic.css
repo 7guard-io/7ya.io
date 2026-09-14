@@ -1,0 +1,182 @@
+.igor-hero-mosaic {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #f6f2e9;
+}
+
+.igor-hero-mosaic > header {
+    display: none;
+}
+
+.igor-hero-mosaic > header small {
+    display: block;
+    color: #c7a36a;
+    font: 800 9px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: 0.12em;
+}
+
+.igor-hero-mosaic > header h2 {
+    margin: 7px 0 8px;
+    font-size: clamp(24px, 2.7vw, 38px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+}
+
+.igor-hero-mosaic > header p {
+    margin: 0;
+    color: #aaa69e;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.igor-hero-mosaic-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.igor-hero-real-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 0;
+    background: #18191d;
+    color: #f6f2e9;
+}
+
+.igor-hero-real-card:not(:first-child) {
+    display: none;
+}
+
+.igor-hero-real-card:first-child {
+    position: relative;
+    min-height: clamp(560px, 70vh, 780px);
+}
+
+.igor-hero-real-card:first-child figure {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+}
+
+.igor-hero-real-card:first-child > div {
+    position: absolute;
+    z-index: 2;
+    inset: auto 0 0;
+    padding: 28px 24px 24px;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,.86));
+}
+
+.igor-hero-real-card figure {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #090a0d;
+}
+
+.igor-hero-real-card img,
+.igor-hero-real-card iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.igor-hero-real-card img {
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.igor-hero-real-card > div {
+    padding: 10px;
+}
+
+.igor-hero-real-card > div small {
+    display: block;
+    color: #b79868;
+    font: 800 8px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.igor-hero-real-card h3 {
+    margin: 6px 0 9px;
+    font-size: 14px;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.igor-hero-real-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #ddd7cd;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.igor-hero-real-card a svg,
+.igor-hero-mosaic > nav svg {
+    width: 13px;
+    height: 13px;
+}
+
+.igor-hero-mosaic > nav {
+    display: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    border: 1px solid #35363a;
+    background: #35363a;
+}
+
+.igor-hero-mosaic > nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    min-height: 42px;
+    padding: 0 9px;
+    background: #111216;
+    color: #f6f2e9;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.igor-hero-mosaic a:focus-visible,
+.igor-hero-mosaic iframe:focus-visible {
+    outline: 3px solid #c7a36a;
+    outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+    .igor-hero-mosaic {
+        order: -1;
+        padding: 0;
+    }
+
+    .igor-hero-real-card:first-child {
+        min-height: clamp(280px, 42svh, 380px);
+    }
+
+    .igor-hero-mosaic > nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .igor-hero-mosaic-grid {
+        grid-template-columns: 1fr;
+        gap: 7px;
+    }
+
+    .igor-hero-real-card h3 {
+        font-size: 14px;
+    }
+}

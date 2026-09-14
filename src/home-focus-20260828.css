@@ -1,0 +1,15 @@
+/* Focus pass: one clear choice in the hero, then three editorial proof frames. */
+.dh-actions .dh-talk-command,.dh-actions .dh-story-command,.dh-actions .dh-archive-command,.dh-actions .dh-watch-command{display:none!important}
+.dh-actions{max-width:430px}
+.dh-actions .dh-contact-command,.dh-actions .dh-evidence-command{min-width:0;flex:1 1 190px}
+.dh-frames{position:relative}
+.dh-frame-grid{grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.dh-frame,.dh-frame:nth-child(1),.dh-frame:nth-child(6){grid-column:span 3}
+.dh-frame:nth-child(1){grid-column:span 6}
+.dh-frame:nth-child(2),.dh-frame:nth-child(3){grid-column:span 3}
+.dh-frame:nth-child(-n+3){border-color:rgba(183,255,60,.34);background:linear-gradient(180deg,#121a22,#0d1117)}
+.dh-frame:nth-child(-n+3) figure{aspect-ratio:16/10}
+.dh-frame:nth-child(-n+3) .dh-frame-copy{padding:22px}
+.dh-frame:nth-child(-n+3) .dh-frame-copy h3{font-size:clamp(24px,2vw,34px)}
+.dh-frame:nth-child(-n+3) .dh-frame-metric{border-color:rgba(183,255,60,.38);background:rgba(183,255,60,.08);color:var(--cv-paper)}
+@media(max-width:900px){.dh-actions{grid-template-columns:1fr 1fr;max-width:none}.dh-actions .dh-contact-command,.dh-actions .dh-evidence-command{grid-column:span 1;min-width:0}.dh-frame-grid{display:flex;gap:10px}.dh-frame,.dh-frame:nth-child(1),.dh-frame:nth-child(2),.dh-frame:nth-child(3),.dh-frame:nth-child(6){flex:0 0 84vw;max-width:390px}.dh-frame:nth-child(-n+3) figure{aspect-ratio:4/5}.dh-frame:nth-child(-n+3) .dh-frame-copy{padding:16px}.dh-frame:nth-child(-n+3) .dh-frame-copy h3{font-size:23px}.companion-fab{bottom:max(14px,env(safe-area-inset-bottom))!important}}
