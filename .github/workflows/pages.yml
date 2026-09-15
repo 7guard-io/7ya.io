@@ -1,10 +1,12 @@
-name: Legacy Static Snapshot — manual only
+name: Emergency GitHub Pages recovery
 
-# 7ya.io is currently served by the AppDeploy runtime.
-# Keep this workflow only as an explicit/manual legacy snapshot path so a push
-# to main cannot compete with, overwrite, or generate false production signals.
+# This branch is an isolated, static recovery target. It does not modify
+# AppDeploy or the canonical production source.
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - recovery/github-pages-20260915
 
 permissions:
   contents: read
@@ -12,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages-legacy-manual
+  group: github-pages-emergency-recovery
   cancel-in-progress: true
 
 jobs:
@@ -23,7 +25,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout legacy static source
+      - name: Checkout recovery static source
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -55,11 +57,11 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload legacy static artifact
+      - name: Upload recovery static artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-      - name: Deploy legacy snapshot to GitHub Pages
+      - name: Deploy recovery snapshot to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
