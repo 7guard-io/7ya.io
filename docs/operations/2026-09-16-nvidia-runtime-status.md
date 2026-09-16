@@ -9,20 +9,17 @@
 - Hosted model: `nvidia/nemotron-3-super-120b-a12b`
 - NIM auth probe: `GET https://integrate.api.nvidia.com/v1/models`
 - NGC registry secret name: `NGC_API_KEY`
+- Legacy `NVIDIA_API_KEY`: deleted from AppDeploy on 2026-09-16 after explicit owner approval.
+- NVCF configured: `false`
+- NVCF runtime: `not-configured`
 - Secret values are never stored in this repository.
 
-## Known credential defect in v69
-
-The current v69 backend treats legacy `NVIDIA_API_KEY` as a fallback NVCF credential. This makes `nvcfConfigured` report true and causes NVCF discovery to fail with HTTP 401 when no correctly scoped `NVCF_API_KEY` is present.
-
-Target policy for the migration:
+## Credential policy
 
 - `NVIDIA_NIM_API_KEY` -> Hosted NIM / `integrate.api.nvidia.com` only.
 - `NVCF_API_KEY` -> NVIDIA Cloud Functions only.
 - `NGC_API_KEY` -> NGC/private registry/container pulls only.
-- Legacy `NVIDIA_API_KEY` -> no implicit provider mapping.
-
-Do not delete the legacy AppDeploy secret until an explicit irreversible-secret-removal decision is recorded.
+- Legacy `NVIDIA_API_KEY` -> removed; no implicit provider mapping remains at runtime.
 
 ## Security ruling
 
@@ -37,6 +34,10 @@ Implication: AppDeploy remains the current production runtime/reference during m
 ## Vercel discovery
 
 Vercel team `7ya` contains a legacy project named `7ya.io`, but it is linked to `vepretski/7ya.io`, not the canonical `7guard-io/7ya.io` repository. It must not be used for a production cutover until Git source alignment is corrected and a preview passes release gates.
+
+## DigitalOcean discovery
+
+DigitalOcean is connected for remote Codex/Docker workspace work. Current account inspection returned no visible droplets and no SSH keys, while the account status simultaneously reports the maximum allowed Droplet count has been reached. Treat this as an account/control-plane inconsistency and do not provision a new Droplet until it is resolved in the DigitalOcean control panel or verified by a later API read.
 
 ## Agent development tooling
 
