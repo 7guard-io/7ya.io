@@ -1,0 +1,1 @@
+Implementation note: update the live Hub cards to render verified current routes rather than generic connected/not-connected labels. The page remains static and safe; live OAuth links are generated only in chat when selected.
