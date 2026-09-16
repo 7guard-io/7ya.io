@@ -22,6 +22,7 @@ export const canonicalRoutes = [
   'articles',
   'contact',
   'control',
+  'connections',
   'delta-audit',
 ];
 
@@ -55,6 +56,7 @@ export const publicRootFiles = [
   'data/evidence-claims.json',
   'data/7ya-system-v1.json',
   'data/7ya-content-v1.snapshot.json',
+  'data/connections.json',
   'favicon.svg',
   'index.html',
   'release.json',
@@ -134,6 +136,7 @@ export const criticalArtifactPaths = [
   'ledger/index.html',
   '7ya/index.html',
   'control/index.html',
+  'connections/index.html',
   'api/health/index.html',
   'site.webmanifest',
   'styles/7ya-control-layer-20260726.css',
@@ -180,6 +183,7 @@ export const criticalArtifactPaths = [
   'data/evidence-claims.json',
   'data/7ya-system-v1.json',
   'data/7ya-content-v1.snapshot.json',
+  'data/connections.json',
   'knowledge/history-song-records-5.json',
   'knowledge/public-universe-records-20260715.json',
   'knowledge/public-response-signals-20260715.json',
