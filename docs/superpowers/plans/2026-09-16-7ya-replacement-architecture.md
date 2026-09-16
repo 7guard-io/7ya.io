@@ -34,11 +34,12 @@
 
 ## File Structure After Migration
 
+New and migration-critical paths are:
+
 ```text
 apps/7ya-live/
   package.json
   tsconfig.json
-  vite.config.*
   src/
     App.tsx
     GlobalNav.tsx
@@ -73,13 +74,32 @@ apps/7ya-live/
   shared/
     canonical-corpus.ts
     canonical-entities.ts
-    core-types.ts
+    content-graph.ts
+    digital-compendium.ts
+    evidence-first-ingestion.ts
+    facebook-owner-direct.ts
+    facebook-source-health.ts
+    impact-broadcast.ts
+    impact-universe.ts
     life-scenes.ts
-    release-provenance.ts
+    media-impact.ts
+    public-internet-graph.ts
+    public-register-canon.ts
+    recovered-media.json
+    recovered-media.ts
+    recovered-publications.ts
+    social-ingest.ts
     visual-locks.ts
-    ...existing shared modules
+    core-types.ts
+    release-provenance.ts
   scripts/
-    ...existing build verification scripts
+    check-home-composition.mjs
+    check-release-coherence.mjs
+    check-root-first-paint.mjs
+    check-source-index.mjs
+    generate-localized-pages.mjs
+    ingest_media.py
+    strip-legacy-recovery.mjs
     check-personal-media-policy.mjs
     check-release-provenance.mjs
   test/
@@ -91,14 +111,16 @@ apps/7ya-live/
     source-manifest.json
 ```
 
+Every other path returned by the Task 1 AppDeploy inventory is copied unchanged into the same workspace and remains part of the baseline even when it is not listed above.
+
 Responsibility boundaries:
 
 - `shared/core-types.ts`: stable Core envelope; no provider/runtime code.
-- `backend/core/*`: projections from existing Canon/entities into Core; no UI concerns.
-- `backend/intelligence/*`: NVIDIA credentials, provider calls, health/failure taxonomy and agent boundary.
-- `backend/media/*`: stable asset identity and authentic-media resolution; AI metadata stays advisory.
-- `backend/story/*`: deterministic source-bound composition; no direct provider secrets or social API calls.
-- `src/scenes/*`: presentation only; does not decide biography truth or choose substitute media.
+- `backend/core/`: projections from existing Canon/entities into Core; no UI concerns.
+- `backend/intelligence/`: NVIDIA credentials, provider calls, health/failure taxonomy and agent boundary.
+- `backend/media/`: stable asset identity and authentic-media resolution; AI metadata stays advisory.
+- `backend/story/`: deterministic source-bound composition; no direct provider secrets or social API calls.
+- `src/scenes/`: presentation only; does not decide biography truth or choose substitute media.
 - `backend/index.ts`: route wiring/orchestration only for responsibilities touched by this migration.
 
 ---
@@ -106,7 +128,7 @@ Responsibility boundaries:
 ### Task 1: Reconcile the Applied AppDeploy Source into Git
 
 **Files:**
-- Create: `apps/7ya-live/**` from AppDeploy version `1789293197999`
+- Create: `apps/7ya-live/` populated from AppDeploy version `1789293197999`
 - Create: `apps/7ya-live/.source/appdeploy-baseline.json`
 - Create: `apps/7ya-live/.source/source-manifest.json`
 - Create: `apps/7ya-live/README.md`
@@ -119,7 +141,7 @@ Responsibility boundaries:
 
 - [ ] **Step 1: Inventory the exact applied source**
 
-Enumerate every source path from AppDeploy version `1789293197999`, following source-glob pagination until no continuation token remains. Sort paths before export. The inventory must include the returned Vite entry/config files plus `backend/`, `shared/`, `src/`, `scripts/`, `tests/`, `package.json` and `tsconfig.json`.
+Enumerate every source path from AppDeploy version `1789293197999`, following source-glob pagination until no continuation token remains. Sort paths before export. The inventory must include all returned root files and all files under `backend/`, `shared/`, `src/`, `scripts/` and `tests/`.
 
 - [ ] **Step 2: Export source without changing behavior**
 
@@ -142,7 +164,7 @@ Create `apps/7ya-live/.source/appdeploy-baseline.json` exactly as:
 }
 ```
 
-Create `source-manifest.json` as a lexicographically sorted array of `{path,sha256}` objects. `sha256` is always a real 64-character lowercase digest calculated from the exported bytes. Example format using the SHA-256 of an empty example file:
+Create `source-manifest.json` as a lexicographically sorted array of `{path,sha256}` objects. `sha256` is always a real 64-character lowercase digest calculated from exported bytes. Example format using the SHA-256 of an empty example file:
 
 ```json
 [
@@ -157,7 +179,7 @@ The committed manifest contains the real AppDeploy paths and digests, not `examp
 
 - [ ] **Step 4: Document workspace ownership**
 
-Create `apps/7ya-live/README.md` stating that this directory is canonical source for the live AppDeploy application; repository-root static/history material is not the production source. Add a “Canonical live application” section to root `README.md` linking to this workspace without deleting existing history.
+Create `apps/7ya-live/README.md` stating that this directory is canonical source for the live AppDeploy application; repository-root static/history material is not production source. Add a “Canonical live application” section to root `README.md` linking to this workspace without deleting existing history.
 
 - [ ] **Step 5: Protect generated output**
 
@@ -350,7 +372,7 @@ npm test
 npm run build
 ```
 
-Inspect `/api/companion/status` via its public-safe path and confirm no key/token/secret value is returned.
+Inspect `/api/companion/status` through its public-safe path and confirm no key/token/secret value is returned.
 
 - [ ] **Step 6: Commit**
 
@@ -422,17 +444,15 @@ export interface NvidiaGateway{
 }
 ```
 
-`GenerateInput`, `VisionInput`, `EmbedInput`, `RerankInput` and their result types are data-only structures in `nvidia-types.ts`; they contain no credential fields.
-
-Optional capabilities have explicit behavior: if the corresponding model is absent from `NvidiaModelConfig`, the method throws/returns the typed `not-configured` capability failure. It never fabricates a result or silently routes to another model.
+`GenerateInput`, `VisionInput`, `EmbedInput`, `RerankInput` and their result types are data-only structures in `nvidia-types.ts`; they contain no credential fields. If an optional capability has no configured model, its method returns the typed `not-configured` capability failure. It never fabricates a result or silently selects another model.
 
 - [ ] **Step 4: Implement hosted NIM client**
 
-`nim-client.ts` owns only `integrate.api.nvidia.com`. Health uses `GET /v1/models`; generation uses `POST /v1/chat/completions`. Current chat model remains `nvidia/nemotron-3-super-120b-a12b`. Client functions receive key, model config and fetch implementation as parameters, enabling tests without AppDeploy secrets.
+`nim-client.ts` owns only `integrate.api.nvidia.com`. Health uses `GET /v1/models`; generation uses `POST /v1/chat/completions`. Current chat model remains `nvidia/nemotron-3-super-120b-a12b`. Client functions receive key, model config and fetch implementation as parameters so tests never read AppDeploy secrets.
 
 - [ ] **Step 5: Wrap NVCF behind the same boundary**
 
-`nvcf-client.ts` calls existing `discoverNvcf`/`invokeNvcf` exports. It does not fall through to hosted NIM on its own.
+`nvcf-client.ts` calls existing `discoverNvcf`/`invokeNvcf` exports. It does not fall through to hosted NIM by itself.
 
 - [ ] **Step 6: Implement deterministic gateway selection**
 
@@ -964,9 +984,9 @@ git commit -m "refactor: separate public and control planes"
 
 **Interfaces:**
 - Consumes: a known Git functional-source commit, AppDeploy candidate version and visual acceptance.
-- Produces: production `/api/release` points to the Git functional-source commit; repository release record maps that commit to AppDeploy version; previous version is documented rollback target.
+- Produces: `/api/release` points to the Git functional-source commit; repository release record maps it to AppDeploy; previous AppDeploy version is rollback target.
 
-**Provenance semantics:** A Git commit cannot contain its own SHA. Therefore `sourceCommit` means the commit containing all functional source changes before the metadata-only provenance commit. The following metadata commit contains `release-provenance.ts`; production reports the functional-source commit, while repository history proves the metadata commit changed only release metadata. This avoids false self-referential provenance.
+**Provenance semantics:** A commit cannot contain its own SHA. `sourceCommit` therefore means the commit containing all functional source changes before the metadata-only provenance commit. The metadata commit contains `release-provenance.ts` and changes only release metadata/runbook wiring. Production reports `sourceCommit`; Git history proves the following metadata commit is non-functional.
 
 - [ ] **Step 1: Write failing provenance test**
 
@@ -978,33 +998,30 @@ git commit -m "refactor: separate public and control planes"
 npm run test:unit -- release-provenance
 ```
 
-- [ ] **Step 3: Commit functional source before metadata**
+- [ ] **Step 3: Capture the functional-source SHA**
 
-Finish Tasks 1-11 with a clean worktree and record:
+Finish Tasks 1-11 with a clean worktree, then run:
 
 ```bash
-git rev-parse HEAD
+SOURCE_COMMIT=$(git rev-parse HEAD)
+printf '%s\n' "$SOURCE_COMMIT"
 ```
 
-That 40-character SHA becomes `sourceCommit`.
+Expected: one 40-character lowercase Git SHA.
 
-- [ ] **Step 4: Create provenance module**
+- [ ] **Step 4: Generate provenance module from the real SHA**
 
-Create:
+Run from `apps/7ya-live/` while `SOURCE_COMMIT` is still set:
 
-```ts
-export const releaseProvenance={
-  repository:'7guard-io/7ya.io',
-  sourceCommit:'0000000000000000000000000000000000000000',
-  appDeployAppId:'697a008fddc309b142'
-} as const;
+```bash
+printf "export const releaseProvenance={repository:'7guard-io/7ya.io',sourceCommit:'%s',appDeployAppId:'697a008fddc309b142'} as const;\n" "$SOURCE_COMMIT" > shared/release-provenance.ts
 ```
 
-Before committing, replace the 40-zero sentinel with the exact SHA captured in Step 3. `check-release-provenance.mjs` fails if the sentinel remains or if the SHA is malformed.
+Create `check-release-provenance.mjs` to parse `shared/release-provenance.ts` and fail unless exactly one 40-character lowercase SHA is present and the repository/app ID values match the constants above.
 
 - [ ] **Step 5: Return provenance from `/api/release`**
 
-Import `releaseProvenance` in `backend/index.ts`. Replace stale hard-coded Git provenance with `releaseProvenance.sourceCommit`. `source_alignment` may report `GIT_ALIGNED` only after the AppDeploy candidate built from these changes passes live acceptance; before deployment it remains `CANDIDATE_NOT_YET_VERIFIED`.
+Import `releaseProvenance` in `backend/index.ts`. Replace stale hard-coded Git provenance with `releaseProvenance.sourceCommit`. `source_alignment` may report `GIT_ALIGNED` only after the AppDeploy candidate from these reviewed changes passes live acceptance; before deploy it reports `CANDIDATE_NOT_YET_VERIFIED`.
 
 - [ ] **Step 6: Document exact release/rollback gate**
 
@@ -1028,20 +1045,20 @@ chat mobile visual acceptance PASS
 
 Rollback is `apply_app_version(app_id, previousVersion)` followed by terminal status and QA verification.
 
-- [ ] **Step 7: Run full local gate and commit metadata**
+- [ ] **Step 7: Run local gate and commit metadata**
 
 ```bash
 npm test
 npm run build
-git add apps/7ya-live/shared/release-provenance.ts apps/7ya-live/scripts apps/7ya-live/test apps/7ya-live/backend/index.ts apps/7ya-live/RELEASE.md docs/CI_RUNBOOK.md
+git add shared/release-provenance.ts scripts/check-release-provenance.mjs test/unit/release-provenance.test.ts backend/index.ts RELEASE.md ../../docs/CI_RUNBOOK.md
 git commit -m "docs: bind 7YA release provenance and rollback gate"
 ```
 
-Verify this metadata commit contains no functional migration changes beyond provenance/runbook wiring.
+Verify this metadata commit contains no feature/refactor work beyond provenance and runbook wiring.
 
 - [ ] **Step 8: Record rollback version and deploy candidate**
 
-Query AppDeploy versions for app `697a008fddc309b142`; record the current last-known-good version before deployment. Apply the Git-reviewed file changes to AppDeploy using its update/deploy mechanism, then poll status in the same execution until terminal state. If QA/runtime fails, fix/redeploy within bounded retries; do not claim success.
+Query AppDeploy versions for app `697a008fddc309b142`; record the current last-known-good version before deployment. Apply the Git-reviewed changes to AppDeploy using its update/deploy mechanism, then poll status in the same execution until terminal state. If QA/runtime fails, fix/redeploy within bounded retries; do not claim success.
 
 - [ ] **Step 9: Run live acceptance**
 
@@ -1049,7 +1066,16 @@ Verify `7ya.io`, `www.7ya.io`, `/api/health`, `/api/release`, homepage mobile/de
 
 - [ ] **Step 10: Record AppDeploy mapping in Git**
 
-After the candidate receives its AppDeploy version, add a release record under `docs/releases/` containing `sourceCommit`, metadata commit, AppDeploy version, acceptance result and rollback version. Commit this record; it is audit history, not application source.
+From repository root, set the real values returned by the deployment:
+
+```bash
+mkdir -p docs/releases
+printf 'sourceCommit=%s\nmetadataCommit=%s\nappDeployVersion=%s\nrollbackVersion=%s\nacceptance=PASS\n' "$SOURCE_COMMIT" "$(git rev-parse HEAD)" "$APPDEPLOY_VERSION" "$ROLLBACK_VERSION" > "docs/releases/${APPDEPLOY_VERSION}.txt"
+git add "docs/releases/${APPDEPLOY_VERSION}.txt"
+git commit -m "docs: record AppDeploy release ${APPDEPLOY_VERSION}"
+```
+
+Set `APPDEPLOY_VERSION` and `ROLLBACK_VERSION` from the actual AppDeploy tool results before running this command. This release record is audit history, not application behavior.
 
 ---
 
