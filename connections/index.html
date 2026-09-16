@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>7YA Connections · Igor Core</title>
+  <meta name="description" content="מרכז החיבורים הפרטי של 7YA — חיבור מקור אחד בכל פעם ל-Igor Core.">
+  <link rel="stylesheet" href="/connections/connections.css">
+</head>
+<body>
+  <main class="hub">
+    <header class="hero">
+      <a class="back" href="/">7YA ←</a>
+      <span class="eyebrow">IGOR CORE / CONNECTIONS</span>
+      <h1>מחברים את איגור.<br>מקור אחד בכל פעם.</h1>
+      <p>בלי סיסמאות באתר, בלי חיבורים מדומים ובלי API רק בשביל לסמן וי. כל חיבור צריך להביא חומר אמיתי ל־Core.</p>
+      <div class="progress" aria-live="polite"><strong id="connected-count">—</strong><span>חיבורים ידועים</span><strong id="next-count">—</strong><span>ממתינים לחיבור</span></div>
+    </header>
+    <section class="priority" aria-labelledby="next-title">
+      <div><span class="eyebrow">NEXT BEST CONNECTION</span><h2 id="next-title">החיבור הבא בעל הערך הגבוה ביותר</h2></div>
+      <div id="next-card"></div>
+    </section>
+    <nav class="filters" aria-label="סינון חיבורים">
+      <button data-filter="all" class="active">הכול</button><button data-filter="social">רשתות</button><button data-filter="measurement">מדידה</button><button data-filter="archive">ארכיון</button><button data-filter="infrastructure">תשתית</button>
+    </nav>
+    <section id="connections" class="grid" aria-label="חיבורי 7YA"></section>
+    <footer><strong>#7YA🥷</strong><span>Connect → verify → ingest → reuse.</span></footer>
+  </main>
+  <script src="/connections/connections.js" type="module"></script>
+</body>
+</html>

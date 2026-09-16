@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-16",
+  "connections": [
+    {"id":"github","label":"GitHub · 7YA Canon","category":"infrastructure","priority":100,"purpose":"מקור האמת לקוד, לקורפוס ול־Evidence","core_outputs":["Canon","Evidence","build provenance"],"manage_url":"https://github.com/7guard-io/7ya.io","status_mode":"informational","known_state":"connected"},
+    {"id":"gsc","label":"Google Search Console","category":"measurement","priority":98,"purpose":"שאילתות חיפוש, אינדוקס, דפים ומיקומים","core_outputs":["search queries","indexing","organic pages"],"manage_url":"https://search.google.com/search-console","status_mode":"informational","known_state":"connected"},
+    {"id":"ga4","label":"Google Analytics 4","category":"measurement","priority":97,"purpose":"ביקורים, מקורות תנועה והתנהגות באתר","core_outputs":["sessions","sources","countries","events"],"manage_url":"https://analytics.google.com/","status_mode":"informational","known_state":"connected"},
+    {"id":"drive","label":"Google Drive","category":"archive","priority":95,"purpose":"מסמכים, ארכיונים, תמונות וחומרי מקור","core_outputs":["documents","archives","source media"],"manage_url":"https://drive.google.com/","status_mode":"informational","known_state":"connected"},
+    {"id":"youtube","label":"YouTube","category":"social","priority":94,"purpose":"סרטונים, Shorts, תאריכים ומדדי צפייה","core_outputs":["videos","thumbnails","views","publishing dates"],"manage_url":"https://studio.youtube.com/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"instagram","label":"Instagram","category":"social","priority":93,"purpose":"Posts, Reels, תמונות, וידאו ומדדים","core_outputs":["posts","reels","media","engagement"],"manage_url":"https://www.instagram.com/accounts/edit/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"facebook","label":"Facebook","category":"social","priority":92,"purpose":"פוסטים, וידאו, ארכיון ושיתופים","core_outputs":["posts","videos","reposts","engagement"],"manage_url":"https://www.facebook.com/settings","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"tiktok","label":"TikTok","category":"social","priority":91,"purpose":"סרטונים, LIVE ומדדי הפצה","core_outputs":["videos","LIVE records","views","engagement"],"manage_url":"https://www.tiktok.com/setting","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"linkedin","label":"LinkedIn","category":"social","priority":88,"purpose":"פוסטים מקצועיים, פרופיל ומדדי חשיפה","core_outputs":["posts","professional profile","engagement"],"manage_url":"https://www.linkedin.com/mypreferences/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"x","label":"X","category":"social","priority":80,"purpose":"פוסטים, שרשורים ואזכורים","core_outputs":["posts","threads","mentions"],"manage_url":"https://x.com/settings/account","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"threads","label":"Threads","category":"social","priority":78,"purpose":"פוסטים ושיחות ציבוריות","core_outputs":["posts","threads","engagement"],"manage_url":"https://www.threads.net/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"telegram","label":"Telegram","category":"social","priority":76,"purpose":"ערוץ 7YA והפצה ישירה","core_outputs":["channel posts","distribution links"],"manage_url":"https://web.telegram.org/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"vercel","label":"Vercel","category":"infrastructure","priority":70,"purpose":"Preview ו־frontend hosting מועמד","core_outputs":["preview deployments","build status"],"manage_url":"https://vercel.com/","status_mode":"manual_auth","known_state":"needs_connection"},
+    {"id":"appdeploy","label":"AppDeploy","category":"infrastructure","priority":40,"purpose":"Legacy runtime ותיעוד פריסות קודמות","core_outputs":["legacy runtime","deployment history"],"manage_url":"https://appdeploy.ai/","status_mode":"informational","known_state":"connected"}
+  ]
+}
