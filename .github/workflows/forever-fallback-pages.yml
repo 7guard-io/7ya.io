@@ -7,6 +7,7 @@ on:
     paths:
       - index.html
       - styles/forever-runtime-20260913.css
+      - scripts/social-first-home-20260916.js
       - .github/workflows/forever-fallback-pages.yml
   workflow_dispatch:
 
@@ -30,7 +31,7 @@ jobs:
       - name: Checkout canonical fallback source
         uses: actions/checkout@v4
 
-      - name: Verify source-bound first fold
+      - name: Verify source-bound first fold and social layer
         shell: bash
         run: |
           set -euo pipefail
@@ -43,6 +44,12 @@ jobs:
           grep -Fq 'REAL SOURCE MEDIA' index.html
           grep -Fq '.life-wall' styles/forever-runtime-20260913.css
           grep -Fq '@media(max-width:720px)' styles/forever-runtime-20260913.css
+          grep -Fq 'data-social-first-home' scripts/social-first-home-20260916.js
+          grep -Fq 'IGOR LIVE' scripts/social-first-home-20260916.js
+          test "$(grep -o 'data-social-card=' scripts/social-first-home-20260916.js | wc -l | tr -d ' ')" -ge 6
+          for token in Instagram TikTok YouTube Facebook Telegram Threads LinkedIn; do
+            grep -Fq "$token" scripts/social-first-home-20260916.js
+          done
           ! grep -Fq 'launch.js' index.html
 
       - name: Assemble provider-neutral static artifact
@@ -50,11 +57,22 @@ jobs:
         run: |
           set -euo pipefail
           rm -rf _forever_pages
-          mkdir -p _forever_pages/styles
+          mkdir -p _forever_pages/styles _forever_pages/scripts
           cp index.html _forever_pages/index.html
           cp styles/forever-runtime-20260913.css _forever_pages/styles/forever-runtime-20260913.css
+          cp scripts/social-first-home-20260916.js _forever_pages/scripts/social-first-home-20260916.js
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('_forever_pages/index.html')
+          html=p.read_text()
+          marker='<script src="./scripts/social-first-home-20260916.js?v=1" defer></script>'
+          if marker not in html:
+              html=html.replace('</body>',f'  {marker}\n</body>')
+          p.write_text(html)
+          PY
+          grep -Fq 'social-first-home-20260916.js' _forever_pages/index.html
           touch _forever_pages/.nojekyll
-          printf '%s\n' 'forever-runtime-20260913-v1' > _forever_pages/RELEASE
+          printf '%s\n' 'forever-runtime-20260916-social-first-v1' > _forever_pages/RELEASE
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
