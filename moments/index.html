@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>רגעים — איגור ופרצקי | 7YA</title>
+  <meta name="description" content="רגעים אמיתיים מהחיים הציבוריים של איגור ופרצקי — פוסטים, וידאו, יצירה, StartOn, זהות ומקורות פתוחים.">
+  <link rel="canonical" href="https://7ya.io/moments/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#080a0d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/moment-library-v1.css?v=1">
+</head>
+<body>
+  <a class="skip" href="#main">דלג לתוכן</a>
+  <header class="moments-nav">
+    <a class="brand" href="/">7YA</a>
+    <nav aria-label="ניווט"><a href="/igor-vepretski/">איגור</a><a href="/journey/">המסע</a><a href="/moments/" aria-current="page">רגעים</a><a href="/starton/">StartOn</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="moments-hero">
+      <p class="eyebrow">IGOR VEPRETSKI · LIVING MOMENT LIBRARY</p>
+      <h1>לא תקציר.<br>רגעים שנשארו.</h1>
+      <p class="lead">פוסט, וידאו, תמונה או מקור. כל פריט כאן מחובר לרגע אמיתי ולכתובת המקור שלו. במקום לספר מי אני במשפט — אפשר פשוט לעבור בתוך מה שנשאר.</p>
+      <div class="hero-actions">
+        <button id="randomMoment" type="button">תן לי רגע אקראי</button>
+        <a href="/journey/">למסע הכרונולוגי</a>
+      </div>
+      <div class="source-status" id="sourceStatus" aria-live="polite">טוען את ספריית הרגעים…</div>
+    </section>
+
+    <section class="moments-controls" aria-label="סינון רגעים">
+      <div class="filter-group" id="platformFilters">
+        <button type="button" data-platform="all" aria-pressed="true">הכול</button>
+        <button type="button" data-platform="Facebook">Facebook</button>
+        <button type="button" data-platform="Instagram">Instagram</button>
+        <button type="button" data-platform="YouTube">YouTube</button>
+      </div>
+      <select id="roleFilter" aria-label="סנן לפי פרק חיים">
+        <option value="all">כל הפרקים</option>
+        <option value="origin">מקור וזהות</option>
+        <option value="fatherhood">אבהות</option>
+        <option value="starton">StartOn</option>
+        <option value="creation">יצירה</option>
+        <option value="spirituality">רוח</option>
+        <option value="public-voice">קול ציבורי</option>
+      </select>
+    </section>
+
+    <section class="moments-shell">
+      <div class="moments-grid" id="momentGrid" aria-live="polite"></div>
+      <p class="empty" id="emptyState" hidden>אין כרגע רגעים במסנן הזה.</p>
+    </section>
+
+    <section class="moments-principle">
+      <p class="eyebrow">THE RULE</p>
+      <h2>אם אין רגע אמיתי — לא ממציאים אחד.</h2>
+      <p>הספרייה שומרת מקור, תאריך ושכבת אמון. מדיה גנרית אינה תחליף לזיכרון חסר. פריטים שדורשים הקשר נשארים מחוץ לתצוגה הראשית עד בדיקה.</p>
+    </section>
+  </main>
+
+  <script src="/scripts/moment-library-v1.js?v=1" defer></script>
+</body>
+</html>
