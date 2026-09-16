@@ -21,8 +21,13 @@
 
   function previewUrl(moment) {
     const yt = youtubeId(moment.sourceUrl);
-    if (yt) return `https://i.ytimg.com/vi/${encodeURIComponent(yt)}/hqdefault.jpg`;
-    return `https://image.thum.io/get/noanimate/width/900/crop/760/maxAge/24/${moment.sourceUrl}`;
+    return yt ? `https://i.ytimg.com/vi/${encodeURIComponent(yt)}/hqdefault.jpg` : '';
+  }
+
+  function mediaMarkup(moment) {
+    const preview = previewUrl(moment);
+    if (preview) return `<img loading="lazy" decoding="async" src="${escapeHtml(preview)}" alt="">`;
+    return `<div class="moment-source-only"><span>${escapeHtml(moment.platform)}</span><b>מקור חי · ללא תמונה חלופית</b></div>`;
   }
 
   function storyLabel(role) {
@@ -49,7 +54,7 @@
     empty.hidden = items.length > 0;
     grid.innerHTML = items.map(moment => `
       <article class="moment-card" id="${escapeHtml(moment.id)}" data-platform="${escapeHtml(moment.platform)}" data-role="${escapeHtml(moment.storyRole)}">
-        <div class="moment-media" aria-hidden="true"><img loading="lazy" decoding="async" src="${escapeHtml(previewUrl(moment))}" alt=""></div>
+        <div class="moment-media" aria-hidden="true">${mediaMarkup(moment)}</div>
         <div class="moment-body">
           <div class="moment-kicker"><span>${escapeHtml(yearOf(moment.publishedAt))} · ${escapeHtml(moment.platform)}</span><span>${escapeHtml(moment.accountRole)}</span></div>
           <h2>${escapeHtml(moment.title)}</h2>
