@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-16T18:25:00+03:00",
+  "updated_at": "2026-09-16T18:38:00+03:00",
   "connections": [
     {
       "id": "github",
@@ -12,7 +12,7 @@
       "manage_url": "https://github.com/7guard-io/7ya.io",
       "status_mode": "informational",
       "known_state": "verified_direct",
-      "route": "Direct",
+      "route": "ChatGPT Direct",
       "observed_at": "2026-09-16",
       "evidence_summary": "GitHub connector read/write verified against the canonical repository.",
       "action_mode": "manage"
@@ -27,7 +27,7 @@
       "manage_url": "https://search.google.com/search-console",
       "status_mode": "informational",
       "known_state": "verified_direct",
-      "route": "Direct",
+      "route": "ChatGPT → GSC Wizard",
       "observed_at": "2026-09-16",
       "evidence_summary": "GSC Wizard currently reads both sc-domain:7ya.io and https://7ya.io/.",
       "action_mode": "manage"
@@ -42,7 +42,7 @@
       "manage_url": "https://analytics.google.com/",
       "status_mode": "informational",
       "known_state": "verified_direct",
-      "route": "Direct",
+      "route": "ChatGPT → GSC Wizard",
       "observed_at": "2026-09-16",
       "evidence_summary": "GA4 is linked and readable through GSC Wizard.",
       "action_mode": "manage"
@@ -57,7 +57,7 @@
       "manage_url": "https://metricool.com/",
       "status_mode": "informational",
       "known_state": "verified_direct",
-      "route": "Metricool",
+      "route": "ChatGPT → Metricool",
       "observed_at": "2026-09-16",
       "evidence_summary": "Metricool brand igor.vepretski is readable and currently exposes YouTube, TikTok and LinkedIn identities.",
       "action_mode": "manage"
@@ -72,7 +72,7 @@
       "manage_url": "https://drive.google.com/",
       "status_mode": "informational",
       "known_state": "verified_direct",
-      "route": "Direct",
+      "route": "ChatGPT Direct",
       "observed_at": "2026-09-16",
       "evidence_summary": "Direct Drive connector currently returns 7YA files and source documents.",
       "action_mode": "manage"
@@ -102,7 +102,7 @@
       "manage_url": "https://www.instagram.com/",
       "status_mode": "manual_auth",
       "known_state": "needs_oauth",
-      "route": "Windsor",
+      "route": "Windsor.ai",
       "observed_at": "2026-09-16",
       "evidence_summary": "Windsor supports Instagram OAuth, but no Windsor account is authorized yet.",
       "action_mode": "copy_prompt",
@@ -118,7 +118,7 @@
       "manage_url": "https://www.facebook.com/",
       "status_mode": "manual_auth",
       "known_state": "needs_oauth",
-      "route": "Windsor",
+      "route": "Windsor.ai",
       "observed_at": "2026-09-16",
       "evidence_summary": "Preferred missing-source route is Windsor organic Facebook ingestion.",
       "action_mode": "copy_prompt",
@@ -164,7 +164,7 @@
       "manage_url": "https://x.com/settings/account",
       "status_mode": "manual_auth",
       "known_state": "needs_oauth",
-      "route": "Windsor",
+      "route": "Windsor.ai",
       "observed_at": "2026-09-16",
       "evidence_summary": "Windsor supports X organic ingestion; no account is authorized there yet.",
       "action_mode": "copy_prompt",
@@ -180,7 +180,7 @@
       "manage_url": "https://www.threads.net/",
       "status_mode": "manual_auth",
       "known_state": "needs_oauth",
-      "route": "Windsor",
+      "route": "Windsor.ai",
       "observed_at": "2026-09-16",
       "evidence_summary": "Windsor exposes a Threads connector; no account is authorized there yet.",
       "action_mode": "copy_prompt",
@@ -194,11 +194,11 @@
       "purpose": "ערוץ 7YA והפצה ישירה",
       "core_outputs": ["channel posts", "distribution links"],
       "manage_url": "https://web.telegram.org/",
-      "status_mode": "manual_auth",
-      "known_state": "needs_oauth",
-      "route": "Direct later",
+      "status_mode": "not_needed",
+      "known_state": "deferred",
+      "route": "Deferred",
       "observed_at": "2026-09-16",
-      "evidence_summary": "Kept outside the first connection wave; no verified ingestion route is being claimed yet.",
+      "evidence_summary": "No verified ingestion route is claimed yet; kept outside the first connection wave.",
       "action_mode": "manage"
     },
     {
@@ -211,7 +211,7 @@
       "manage_url": "https://vercel.com/",
       "status_mode": "manual_auth",
       "known_state": "session_needed",
-      "route": "Direct",
+      "route": "ChatGPT → Vercel",
       "observed_at": "2026-09-16",
       "evidence_summary": "Project tooling is available, but changing Git integration requires an authenticated Vercel browser session.",
       "action_mode": "manage"
