@@ -1,1 +1,0 @@
-Cleanup intent: keep a single source for Connections Hub. The root artifact path is authoritative; duplicate public-path files are removed and the legacy static-site contract is restored to its main-branch blob.

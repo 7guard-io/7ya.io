@@ -1,1 +1,0 @@
-Delete redundant branch-only notes, duplicate public/ Connections Hub copies, and the redundant copy-connections-artifact build helper. Keep only canonical root connections/, root data/connections.json, three focused check scripts, site-contract integration, package scripts, Life Graph spec, Connections Hub design, and Connections Hub implementation plan.

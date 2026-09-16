@@ -1,1 +1,0 @@
-Temporary checkpoint before pruning redundant branch-only notes and duplicate public artifacts. Keep only the Life Graph spec, Connections Hub design, and Connections Hub implementation plan.

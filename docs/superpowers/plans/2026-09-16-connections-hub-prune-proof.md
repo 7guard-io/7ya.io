@@ -1,1 +1,0 @@
-Prune redundant branch-only notes and duplicate public artifacts before opening PR.
