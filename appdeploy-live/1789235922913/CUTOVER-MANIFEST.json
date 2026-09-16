@@ -1,0 +1,24 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1789235922913",
+  "parent_snapshot": "1789235822031",
+  "purpose": "Period-authentic service-source enrichment on top of the chapter Memory Strips",
+  "changed_runtime_files": [
+    "src/deep-media-data.ts",
+    "src/album/AlbumHome.tsx"
+  ],
+  "acceptance_contract_in_parent": "tests/tests.txt requires 2011 Makor Rishon/NRG and official 2012 U.S. Department of State consular records in the service chapter",
+  "verification": {
+    "deployment_status": "READY",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e_tests": null,
+    "independent_qa_screenshot_inspection": false
+  },
+  "source_boundaries": {
+    "makor_rishon_2011": "publisher page linked; press/IDF photo not copied into 7YA ownership",
+    "us_state_department_2012": "official record verifies listed name/rank/date only; duties not inferred",
+    "private_drive_asset_published": false
+  }
+}
