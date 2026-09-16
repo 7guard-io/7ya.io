@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-26-control-v1",
+  "version": "2026-09-16-control-v2",
   "canonicalBundle": "Igor Vepretski | #7YA | Founder of StartOn",
   "descriptors": {
     "en": "Systems builder connecting youth opportunity, civic power, public media and digital culture.",
@@ -24,12 +24,38 @@
     "image": "https://7ya.io/assets/igor-home-portrait-20260712.jpg",
     "description": "איגור ופרצקי הוא מייסד StartOn ובונה #7YA — מערכות המחברות בין הזדמנות לנוער, כוח אזרחי, מדיה ציבורית ותרבות דיגיטלית.",
     "jobTitle": "Founder of StartOn · #7YA Systems Builder",
+    "socialAccounts": {
+      "instagram": [
+        {
+          "handle": "igor.vepretski",
+          "url": "https://www.instagram.com/igor.vepretski/",
+          "role": "personal-primary",
+          "status": "canonical",
+          "evidence": ["owner-provided", "public-profile-index"]
+        },
+        {
+          "handle": "vepretski.igor",
+          "url": "https://www.instagram.com/vepretski.igor/",
+          "role": "7ya-secondary",
+          "status": "linked-secondary",
+          "evidence": ["owner-provided", "linked-from-primary-bio", "public-profile-index"]
+        }
+      ],
+      "facebook": [
+        {
+          "handle": "vepretski7",
+          "url": "https://www.facebook.com/vepretski7",
+          "role": "personal-primary",
+          "status": "canonical"
+        }
+      ]
+    },
     "sameAs": [
       "https://www.instagram.com/igor.vepretski/",
       "https://www.instagram.com/vepretski.igor/",
       "https://www.tiktok.com/@igor.vepretski",
       "https://www.youtube.com/@IgorVepretski",
-      "https://www.facebook.com/vepretski",
+      "https://www.facebook.com/vepretski7",
       "https://x.com/igorvepretski",
       "https://www.linkedin.com/in/vepretski/",
       "https://github.com/vepretski",
