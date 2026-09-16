@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const path='data/connections.json';
 const allowedModes=new Set(['verified_runtime','manual_auth','informational','not_needed']);
-const allowedStates=new Set(['verified_direct','verified_metricool','needs_oauth','session_needed','legacy']);
+const allowedStates=new Set(['verified_direct','verified_metricool','needs_oauth','session_needed','deferred','legacy']);
 const allowedActions=new Set(['manage','copy_prompt']);
 const forbidden=/token|password|secret|api[_-]?key|access[_-]?token/i;
 const data=JSON.parse(await fs.readFile(path,'utf8'));
