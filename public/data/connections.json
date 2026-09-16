@@ -1,0 +1,132 @@
+[
+  {
+    "id": "github",
+    "label": "GitHub",
+    "category": "infrastructure",
+    "priority": 100,
+    "purpose": "הקנון של 7YA: קוד, מסמכים, Evidence וגרסאות.",
+    "core_outputs": ["Canonical repository", "Evidence records", "Build history"],
+    "manage_url": "https://github.com/7guard-io/7ya.io",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "google-drive",
+    "label": "Google Drive",
+    "category": "content",
+    "priority": 98,
+    "purpose": "מסמכים, ארכיונים, מדיה וחומרי מקור שכבר נשמרו לאורך השנים.",
+    "core_outputs": ["Documents", "Source media", "Archives"],
+    "manage_url": "https://drive.google.com/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "youtube",
+    "label": "YouTube",
+    "category": "content",
+    "priority": 96,
+    "purpose": "וידאו מקורי, ראיונות, ארכיון צפיות והקשר כרונולוגי.",
+    "core_outputs": ["Videos", "Publish dates", "Public metrics", "Thumbnails"],
+    "manage_url": "https://studio.youtube.com/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "meta",
+    "label": "Instagram + Facebook",
+    "category": "content",
+    "priority": 95,
+    "purpose": "פוסטים, Reels, תמונות, סרטונים ופרסומים חוזרים של איגור.",
+    "core_outputs": ["Posts", "Reels", "Photos", "Videos", "Public engagement"],
+    "manage_url": "https://www.facebook.com/settings?tab=business_tools",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "tiktok",
+    "label": "TikTok",
+    "category": "content",
+    "priority": 94,
+    "purpose": "סרטונים, LIVE, מדדים ופרקי השפעה ויראליים.",
+    "core_outputs": ["Videos", "LIVE references", "Public metrics"],
+    "manage_url": "https://www.tiktok.com/setting",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "linkedin",
+    "label": "LinkedIn",
+    "category": "content",
+    "priority": 90,
+    "purpose": "קריירה, פעילות מקצועית, פוסטים ומסמכי עשייה.",
+    "core_outputs": ["Posts", "Professional chronology", "Public profile evidence"],
+    "manage_url": "https://www.linkedin.com/mypreferences/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "threads",
+    "label": "Threads",
+    "category": "content",
+    "priority": 82,
+    "purpose": "שכבת שיחה ציבורית משלימה ל־Instagram.",
+    "core_outputs": ["Posts", "Conversation context"],
+    "manage_url": "https://www.threads.net/settings",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "x",
+    "label": "X",
+    "category": "content",
+    "priority": 80,
+    "purpose": "פרסומים, תגובות ואזכורים ציבוריים.",
+    "core_outputs": ["Posts", "Mentions", "Conversation context"],
+    "manage_url": "https://x.com/settings/account",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "telegram",
+    "label": "Telegram",
+    "category": "content",
+    "priority": 78,
+    "purpose": "ערוץ 7YA והפצת תוכן ישירה.",
+    "core_outputs": ["Channel posts", "Distribution references"],
+    "manage_url": "https://web.telegram.org/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "gsc",
+    "label": "Google Search Console",
+    "category": "measurement",
+    "priority": 93,
+    "purpose": "אינדוקס, חיפושים, דפים ושאילתות שמביאות אנשים ל־7YA.",
+    "core_outputs": ["Index state", "Queries", "Landing pages", "Search clicks"],
+    "manage_url": "https://search.google.com/search-console",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "ga4",
+    "label": "Google Analytics 4",
+    "category": "measurement",
+    "priority": 92,
+    "purpose": "מדידת שימוש אמיתי באתר וב־Moments.",
+    "core_outputs": ["Sessions", "Users", "Engagement", "Moment events"],
+    "manage_url": "https://analytics.google.com/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "vercel",
+    "label": "Vercel",
+    "category": "infrastructure",
+    "priority": 88,
+    "purpose": "Preview ופריסת frontend לאחר אימות שהפרויקט מחובר לקנון הנכון.",
+    "core_outputs": ["Preview deployments", "Frontend deployment state"],
+    "manage_url": "https://vercel.com/",
+    "status_mode": "manual_auth"
+  },
+  {
+    "id": "appdeploy",
+    "label": "AppDeploy",
+    "category": "infrastructure",
+    "priority": 60,
+    "purpose": "מערכת legacy/שירותים קיימים; אינה מקור תוכן.",
+    "core_outputs": ["Legacy runtime evidence"],
+    "manage_url": "https://appdeploy.com/",
+    "status_mode": "informational"
+  }
+]
