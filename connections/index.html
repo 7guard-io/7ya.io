@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>7YA Connections · Igor Core</title>
+  <meta name="description" content="מרכז החיבורים של 7YA — מצב אמיתי, נתיב חיבור אחד, ומה נכנס ל-Igor Core.">
+  <link rel="stylesheet" href="/connections/connections.css">
+</head>
+<body>
+  <main class="hub">
+    <header class="hero">
+      <a class="back" href="/">7YA ←</a>
+      <span class="eyebrow">IGOR CORE / CONNECTIONS</span>
+      <h1>מחברים את איגור.<br>רק למה שבאמת מוסיף מידע.</h1>
+      <p>כל כרטיס מציג מסלול אמיתי: Direct, Metricool, Windsor או Legacy. אין כאן שדות סיסמה, אין OAuth שמור בקוד, ואין סטטוס ירוק בלי מקור אימות.</p>
+      <div class="progress" aria-live="polite">
+        <strong id="connected-count">—</strong><span>מקורות זמינים עכשיו</span>
+        <strong id="next-count">—</strong><span>דורשים פעולה</span>
+      </div>
+    </header>
+
+    <section class="priority" aria-labelledby="next-title">
+      <div>
+        <span class="eyebrow">NEXT BEST CONNECTION</span>
+        <h2 id="next-title">החיבור הבא שמוסיף הכי הרבה ל־Core</h2>
+        <p>אם נדרש OAuth, הכפתור רק מעתיק פקודה בטוחה לצ׳אט. קישור ההרשאה עצמו נוצר בזמן אמת ולא נשמר באתר.</p>
+      </div>
+      <div id="next-card"></div>
+    </section>
+
+    <nav class="filters" aria-label="סינון חיבורים">
+      <button data-filter="all" class="active">הכול</button>
+      <button data-filter="social">רשתות</button>
+      <button data-filter="measurement">מדידה</button>
+      <button data-filter="archive">ארכיון</button>
+      <button data-filter="infrastructure">תשתית</button>
+    </nav>
+
+    <section id="connections" class="grid" aria-label="חיבורי 7YA"></section>
+
+    <aside class="rule" aria-label="כלל אבטחה">
+      <strong>כלל קבוע</strong>
+      <p>סיסמאות, API keys ו־access tokens לא נכנסים ל־7YA ולא נשלחים בצ׳אט. הרשאות מתבצעות רק במסך הרשמי של הספק.</p>
+    </aside>
+
+    <footer><strong>#7YA🥷</strong><span>Connect → verify → ingest → reuse.</span></footer>
+  </main>
+  <script src="/connections/connections.js" type="module"></script>
+</body>
+</html>
