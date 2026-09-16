@@ -1,0 +1,18 @@
+{
+  "appId": "697a008fddc309b142",
+  "targetAppDeployVersion": "1789293197999",
+  "targetVersionName": "v69",
+  "capturedOn": "2026-09-16",
+  "canonicalRepository": "7guard-io/7ya.io",
+  "sourceRoot": "apps/7ya-live",
+  "productionRuntime": "appdeploy",
+  "productionFrozenDuringExport": true,
+  "exportComplete": false,
+  "manifestComplete": false,
+  "behaviorChangeAllowed": false,
+  "knownGitDeltaLedgerLatest": "1789290098011",
+  "knownGitDeltaLedgerComplete": false,
+  "bulkExportRequired": true,
+  "bulkExportConnectorAvailable": false,
+  "cutoverAllowed": false
+}
