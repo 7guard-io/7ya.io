@@ -1,0 +1,154 @@
+name: Reconstruct AppDeploy baseline candidate
+
+on:
+  push:
+    branches:
+      - migration/7ya-live-baseline-20260916
+    paths:
+      - .github/workflows/reconstruct-appdeploy-baseline.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reconstruct:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout migration branch
+        uses: actions/checkout@v4
+        with:
+          ref: migration/7ya-live-baseline-20260916
+          fetch-depth: 1
+
+      - name: Reconstruct cumulative production ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json, shutil
+
+          repo = Path('.')
+          ledger = repo / 'appdeploy-live'
+          out = repo / 'apps' / '7ya-live'
+          runtime_roots = {'backend','shared','src','public','scripts','tests'}
+          runtime_root_files = {
+              'appdeploy.auth-login.json','cron.json','index.html','package.json',
+              'postcss.config.js','tailwind.config.js','tsconfig.json','tsconfig.app.json',
+              'tsconfig.node.json','vite.config.ts','vite.config.js'
+          }
+          versions = sorted(
+              [p for p in ledger.iterdir() if p.is_dir() and p.name.isdigit()],
+              key=lambda p: int(p.name)
+          )
+          origins = {}
+          copied = 0
+          for version in versions:
+              for source in sorted(version.rglob('*')):
+                  if not source.is_file():
+                      continue
+                  rel = source.relative_to(version)
+                  if rel.parts[0] not in runtime_roots and str(rel) not in runtime_root_files:
+                      continue
+                  target = out / rel
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(source, target)
+                  origins[str(rel)] = version.name
+                  copied += 1
+
+          manifest = []
+          for path in sorted(out.rglob('*')):
+              if not path.is_file() or '.source' in path.parts or path.name == 'README.md':
+                  continue
+              rel = str(path.relative_to(out))
+              digest = hashlib.sha256(path.read_bytes()).hexdigest()
+              manifest.append({'path': rel, 'sha256': digest, 'originSnapshot': origins.get(rel, 'migration-workspace')})
+
+          source_state = out / '.source'
+          source_state.mkdir(parents=True, exist_ok=True)
+          (source_state / 'ledger-reconstruction-manifest.json').write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          report = {
+              'targetAppDeployVersion': '1789293197999',
+              'latestLedgerSnapshot': versions[-1].name if versions else None,
+              'ledgerSnapshotCount': len(versions),
+              'overlayWriteCount': copied,
+              'uniqueRuntimeFileCount': len(manifest),
+              'authoritative': False,
+              'reason': 'Cumulative Git delta-ledger reconstruction only; must be compared with AppDeploy v69 before promotion.'
+          }
+          (source_state / 'ledger-reconstruction-report.json').write_text(
+              json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
+          )
+          print(json.dumps(report, indent=2))
+          PY
+
+      - name: Detect reconstructed package
+        id: pkg
+        shell: bash
+        run: |
+          if [ -f apps/7ya-live/package.json ]; then
+            echo 'present=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'present=false' >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install reconstructed dependencies
+        if: steps.pkg.outputs.present == 'true'
+        working-directory: apps/7ya-live
+        run: npm install --ignore-scripts
+
+      - name: Build reconstructed candidate
+        if: steps.pkg.outputs.present == 'true'
+        id: build
+        continue-on-error: true
+        working-directory: apps/7ya-live
+        shell: bash
+        run: |
+          set +e
+          npm run build 2>&1 | tee /tmp/7ya-ledger-build.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit "$code"
+
+      - name: Record reconstruction build result
+        shell: bash
+        env:
+          PACKAGE_PRESENT: ${{ steps.pkg.outputs.present }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          BUILD_EXIT: ${{ steps.build.outputs.exit_code }}
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, os
+          path = Path('apps/7ya-live/.source/ledger-build-result.json')
+          payload = {
+              'packagePresent': os.environ.get('PACKAGE_PRESENT') == 'true',
+              'buildOutcome': os.environ.get('BUILD_OUTCOME') or 'not-run',
+              'buildExitCode': os.environ.get('BUILD_EXIT') or None,
+              'parityVerified': False,
+              'cutoverAllowed': False
+          }
+          path.write_text(json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Remove generated dependency output
+        shell: bash
+        run: |
+          rm -rf apps/7ya-live/node_modules apps/7ya-live/dist apps/7ya-live/.vite apps/7ya-live/coverage
+
+      - name: Commit reconstruction candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add apps/7ya-live
+          if git diff --cached --quiet; then
+            echo 'No reconstruction changes to commit.'
+            exit 0
+          fi
+          git commit -m 'chore: reconstruct cumulative AppDeploy ledger candidate [skip ci]'
+          git push origin HEAD:migration/7ya-live-baseline-20260916
