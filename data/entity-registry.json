@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-26-control-v1",
+  "version": "2026-09-17-entity-v2",
   "canonicalBundle": "Igor Vepretski | #7YA | Founder of StartOn",
   "descriptors": {
     "en": "Systems builder connecting youth opportunity, civic power, public media and digital culture.",
@@ -29,7 +29,7 @@
       "https://www.instagram.com/vepretski.igor/",
       "https://www.tiktok.com/@igor.vepretski",
       "https://www.youtube.com/@IgorVepretski",
-      "https://www.facebook.com/vepretski",
+      "https://www.facebook.com/vepretski7",
       "https://x.com/igorvepretski",
       "https://www.linkedin.com/in/vepretski/",
       "https://github.com/vepretski",
@@ -45,11 +45,11 @@
     "home": {
       "path": "index.html",
       "url": "https://7ya.io/",
-      "title": "איגור ופרצקי | מייסד StartOn ובונה 7YA",
-      "description": "הבית הציבורי של איגור ופרצקי: המסע האישי, StartOn, ראיות פתוחות, מדיה וכלים שהופכים סיפור לפעולה.",
+      "title": "איגור ופרצקי · #7YA🥷 — החיים עצמם, עם המקורות",
+      "description": "7YA הוא הארכיון החי של איגור ופרצקי — ילדות, שירות, משטרה, אבהות, StartOn, יצירה, מדיה, מנהיגות והחיים שממשיכים עכשיו.",
       "ogType": "website",
-      "ogTitle": "איגור ופרצקי — אדם. ראיות. פעולה.",
-      "ogDescription": "הבית הציבורי המחבר את איגור ופרצקי, StartOn, מסע חיים, מדיה וראיות פתוחות.",
+      "ogTitle": "איגור ופרצקי · #7YA🥷 — החיים עצמם, עם המקורות",
+      "ogDescription": "7YA הוא הארכיון החי של איגור ופרצקי — ילדות, שירות, משטרה, אבהות, StartOn, יצירה, מדיה, מנהיגות והחיים שממשיכים עכשיו.",
       "image": "https://7ya.io/assets/personal-hero-20260716/igor-hero.webp"
     },
     "person": {
