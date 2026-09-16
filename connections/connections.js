@@ -3,10 +3,12 @@ const states={
   verified_metricool:{label:'זמין דרך Metricool',className:'verified'},
   needs_oauth:{label:'דורש הרשאה',className:'pending'},
   session_needed:{label:'דורש התחברות',className:'pending'},
+  deferred:{label:'נדחה כרגע',className:'muted'},
   legacy:{label:'Legacy',className:'muted'},
   unknown:{label:'לא אומת',className:'muted'}
 };
 const connectedStates=new Set(['verified_direct','verified_metricool']);
+const actionableStates=new Set(['needs_oauth','session_needed']);
 const container=document.querySelector('#connections');
 const nextSlot=document.querySelector('#next-card');
 let records=[];
@@ -87,10 +89,10 @@ function render(filter='all'){
   const visible=records.filter(r=>filter==='all'||r.category===filter).sort((a,b)=>b.priority-a.priority);
   visible.forEach(r=>container.append(card(r)));
   const ready=records.filter(r=>connectedStates.has(r.known_state)).length;
-  const actionable=records.filter(r=>!connectedStates.has(r.known_state)&&r.known_state!=='legacy').length;
+  const actionable=records.filter(r=>actionableStates.has(r.known_state)).length;
   document.querySelector('#connected-count').textContent=ready;
   document.querySelector('#next-count').textContent=actionable;
-  const next=records.filter(r=>!connectedStates.has(r.known_state)&&!['legacy','session_needed'].includes(r.known_state)).sort((a,b)=>b.priority-a.priority)[0];
+  const next=records.filter(r=>r.known_state==='needs_oauth').sort((a,b)=>b.priority-a.priority)[0];
   nextSlot.replaceChildren(...(next?[card(next,true)]:[]));
 }
 
