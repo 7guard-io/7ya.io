@@ -1,0 +1,55 @@
+{
+  "capturedOn": "2026-09-16",
+  "appId": "697a008fddc309b142",
+  "appDeployVersion": "1789293197999",
+  "sdk": "@appdeploy/sdk",
+  "runtimeDependencies": [
+    "database",
+    "storage",
+    "secrets",
+    "auth",
+    "realtime-websocket",
+    "ai",
+    "cron"
+  ],
+  "configuredSecretNames": [
+    "FACEBOOK_APP_ID",
+    "FACEBOOK_APP_SECRET",
+    "LINKEDIN_CLIENT_ID",
+    "LINKEDIN_CLIENT_SECRET",
+    "NVIDIA_API_KEY",
+    "SOCIAL_TOKEN_ENCRYPTION_KEY",
+    "TIKTOK_CLIENT_KEY",
+    "TIKTOK_CLIENT_SECRET"
+  ],
+  "secretValuesExported": false,
+  "activeCrons": [
+    {
+      "name": "agent-mesh-hourly",
+      "schedule": "17 * * * *",
+      "timezone": "Asia/Jerusalem"
+    },
+    {
+      "name": "meta-sync-hourly",
+      "schedule": "37 * * * *",
+      "timezone": "Asia/Jerusalem"
+    }
+  ],
+  "disabledCrons": [
+    "nvcf-canary-v1",
+    "nvidia-canary-hourly",
+    "nvidia-canary-probe",
+    "nvidia-canary-probe-v3",
+    "visual-gate-once-20260905"
+  ],
+  "knownProviderIssue": {
+    "provider": "NVIDIA/NVCF",
+    "status": "disabled-after-failure-threshold",
+    "lastKnownClass": "HTTP 401",
+    "migrationPolicy": "split NIM and NVCF credentials; do not reinterpret NVIDIA_API_KEY implicitly"
+  },
+  "productionDomains": [
+    "7ya.io",
+    "www.7ya.io"
+  ]
+}
