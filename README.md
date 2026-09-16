@@ -11,6 +11,12 @@ The site is no longer positioned as a simple management center. It now acts as a
 - public links, docs, and proof routes
 - future member-pass and community onboarding flows
 
+## Canonical live application
+
+The replacement live-application workspace is `apps/7ya-live/`. During migration, AppDeploy app `697a008fddc309b142` version `1789293197999` remains the untouched production runtime until source parity, preview, visual QA and rollback gates pass. Do not deploy the repository-root historical/static runtime over production.
+
+Migration state is machine-readable in `apps/7ya-live/.source/export-state.json`; runtime dependency inventory is in `apps/7ya-live/.source/runtime-inventory.json`.
+
 ## Live public paths
 
 - `/` — new founder-led movement homepage
