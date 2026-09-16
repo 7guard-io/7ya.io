@@ -1,0 +1,19 @@
+{
+  "methods": [
+    "google",
+    "apple",
+    "x"
+  ],
+  "headline": "Save your 7YA Growth Path · שמירת המסלול",
+  "subtitle": "Sign in only to save and return. The free plan works without an account.",
+  "style": {
+    "mode": "dark",
+    "accentColor": "#d9ff4f",
+    "backgroundColor": "#080a0d",
+    "panelColor": "#10130f",
+    "textColor": "#f5f3ea",
+    "borderRadius": 18
+  },
+  "termsUrl": "https://7ya.io/terms/",
+  "privacyUrl": "https://7ya.io/privacy/"
+}
