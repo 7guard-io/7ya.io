@@ -1,11 +1,6 @@
 name: Reconstruct AppDeploy baseline candidate
 
 on:
-  push:
-    branches:
-      - migration/7ya-live-baseline-20260916
-    paths:
-      - .github/workflows/reconstruct-appdeploy-baseline.yml
   workflow_dispatch:
 
 permissions:
