@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>7YA Connections</title>
+  <link rel="stylesheet" href="/connections/connections.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">IGOR CORE / CONNECTIONS</p>
+        <h1>7YA Connections</h1>
+        <p class="lede">מחברים מקור אחד בכל פעם. בלי סיסמאות בתוך 7YA, בלי חיבורים מזויפים ובלי לבנות תשתית לפני שיש לה ערך.</p>
+      </div>
+      <div class="summary" aria-live="polite">
+        <strong id="progress-count">—</strong>
+        <span>חיבורים מאומתים במפגש הנוכחי</span>
+      </div>
+    </header>
+    <section class="principles" aria-label="עקרונות חיבור">
+      <span>🔒 אין שמירת סיסמאות</span>
+      <span>✅ אימות רק אחרי בדיקת read</span>
+      <span>🧠 כל חיבור חייב להזין את Igor Core</span>
+    </section>
+    <nav class="filters" aria-label="סינון חיבורים">
+      <button class="filter is-active" data-filter="all" type="button">הכול</button>
+      <button class="filter" data-filter="content" type="button">תוכן</button>
+      <button class="filter" data-filter="measurement" type="button">מדידה</button>
+      <button class="filter" data-filter="infrastructure" type="button">תשתית</button>
+    </nav>
+    <section id="connections-grid" class="grid" aria-live="polite"></section>
+    <template id="connection-card-template">
+      <article class="card">
+        <div class="card-topline"><span class="priority"></span><span class="status" role="status"></span></div>
+        <h2 class="provider"></h2>
+        <p class="purpose"></p>
+        <div class="core-box"><h3>מה מגיע ל־Igor Core</h3><ul class="outputs"></ul></div>
+        <div class="actions">
+          <a class="connect-link" target="_blank" rel="noopener noreferrer">פתח חיבור רשמי</a>
+          <button class="verify-button" type="button">בדוק חיבור</button>
+        </div>
+      </article>
+    </template>
+  </main>
+  <script type="module" src="/connections/connections.js"></script>
+</body>
+</html>
