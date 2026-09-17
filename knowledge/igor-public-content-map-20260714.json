@@ -20,7 +20,7 @@
     {"platform":"Instagram","url":"https://www.instagram.com/igor.vepretski/","status":"platform-restricted crawler seed"},
     {"platform":"TikTok","url":"https://www.tiktok.com/@igor.vepretski","status":"robots-restricted crawler seed"},
     {"platform":"YouTube","url":"https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw","status":"public channel seed"},
-    {"platform":"Facebook","url":"https://www.facebook.com/igor7ya","status":"platform-restricted crawler seed"},
+    {"platform":"Facebook","url":"https://www.facebook.com/vepretski7","status":"platform-restricted crawler seed"},
     {"platform":"X","url":"https://x.com/igorvepretski","status":"JS-restricted crawler seed"},
     {"platform":"Threads","url":"https://www.threads.net/@igor.vepretski","status":"platform-restricted crawler seed"},
     {"platform":"Spotify","url":"https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u","status":"embed-ready artist seed"},
