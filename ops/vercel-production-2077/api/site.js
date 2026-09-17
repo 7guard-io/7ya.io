@@ -52,7 +52,7 @@ const pages = {
     lead: 'מספרי צפיות, עוקבים והשפעה מפורסמים רק כאשר קיים snapshot מתוארך או מקור פלטפורמה ישיר.',
     cards: [
       ['PUBLIC', 'Instagram', 'ערוץ תוכן ציבורי רשמי.', 'https://www.instagram.com/igor.vepretski/'],
-      ['PUBLIC', 'YouTube', 'וידאו, ראיונות וארכיון יצירה.', 'https://www.youtube.com/@IgorVepretski'],
+      ['PUBLIC', 'YouTube', 'וידאו, ראיונות וארכיון יצירה.', 'https://www.youtube.com/@Igor.vepretski'],
       ['PUBLIC', 'TikTok', 'תוכן קצר ושיחה עם קהל.', 'https://www.tiktok.com/@igor.vepretski'],
       ['GOVERNED', 'Metrics', 'אין טענת חשיפה ללא צילום מסך או export מתוארך.', '/evidence/']
     ]
