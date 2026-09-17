@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-17T16:22:00+03:00",
+  "subject": {
+    "name": "Igor Vepretski",
+    "canonical_url": "https://7ya.io/igor-vepretski/"
+  },
+  "purpose": "Append-only reconciled source ledger for Meta-discovered public distribution records. This file adds provenance to existing IGOR CORE events and creatives; it does not create biography from posts.",
+  "policy": {
+    "principles": [
+      "Meta discovers; IGOR CORE resolves; 7YA publishes.",
+      "Event -> Claim -> Evidence -> Creative -> Distribution Item -> Metric Capture.",
+      "A new post about an existing life event is normally a new source, not a new event.",
+      "CONTENT CLUSTER is not the same thing as CREATIVE.",
+      "Preserve only directly observed URLs; never construct or guess a source URL.",
+      "Search-internal Meta identifiers are not Graph API identifiers.",
+      "Repeated first-party publication does not become independent verification.",
+      "Sensitive self-disclosure is not expanded or independently investigated in this public ledger.",
+      "Political material is preserved factually and archivally only."
+    ],
+    "allowed_reconciliation_actions": [
+      "ADD_SOURCE",
+      "MERGE",
+      "KEEP_VERIFY",
+      "MEDIA_ONLY",
+      "DISCOVERY_ONLY",
+      "REJECT_WRONG_SOURCE",
+      "REJECT_WRONG_ENTITY"
+    ]
+  },
+  "baseline": {
+    "name": "IGOR_META_DATASET_V1_COMPLETE",
+    "scan_date": "2026-09-17",
+    "reported_distribution_items": 17,
+    "reported_evidence_objects": 32,
+    "reported_claims": 12,
+    "access_scope": "PUBLIC_SEARCH_ONLY",
+    "private_insights_connected": false,
+    "ads_manager_connected": false
+  },
+  "canonical_corrections": [
+    {
+      "id": "corr-bizzi-url",
+      "status": "APPLIED",
+      "action": "REJECT_WRONG_SOURCE",
+      "rejected_url": "https://www.youtube.com/watch?v=BIZZI-premiere-2025-08-15",
+      "reason": "Constructed/unverified locator returned by Scout; not observed as a real source."
+    },
+    {
+      "id": "corr-bizzi-canonical",
+      "status": "APPLIED",
+      "action": "MERGE",
+      "creative": "BIZZI — Nawan1 feat. Vepretski",
+      "canonical_youtube_url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "relationship": "Existing canonical creative; Instagram is a distribution event, not a new creative."
+    },
+    {
+      "id": "corr-police-duration",
+      "status": "OPEN_CONFLICT",
+      "claims": [
+        {
+          "claim_id": "C005a",
+          "statement": "Israel Police Tel Aviv District service described as 2015–2021 / approximately six years.",
+          "state": "FIRST_PARTY",
+          "verification_needed": "employment or institutional record"
+        },
+        {
+          "claim_id": "C005b",
+          "statement": "Separate first-party statement refers to 13 years in intelligence/security-related service.",
+          "state": "FIRST_PARTY",
+          "verification_needed": "documentary source clarifying scope and period"
+        }
+      ],
+      "rule": "Do not merge durations until documentary evidence resolves the scope."
+    },
+    {
+      "id": "corr-creative-clustering",
+      "status": "APPLIED",
+      "rule": "Posts are not the same creative merely because they share a location, language, person, political topic or lifestyle aesthetic.",
+      "examples": [
+        "Russian lip-sync videos remain separate creatives unless underlying audio/visual asset identity is proven.",
+        "Rooftop portraits, a car Reel and an Atlanta TLV carousel are separate creatives under a possible lifestyle content cluster.",
+        "Israel Beitenu content, Strategic Sedation research content and a TV clip are separate creatives under broader public/intellectual clusters."
+      ]
+    }
+  ],
+  "reconciled_records": [
+    {
+      "id": "meta-src-root-testimony-20260731",
+      "platform": "Instagram",
+      "account": "@vepretski.igor",
+      "url": "https://www.instagram.com/reel/Dbdgi9TMR2n/",
+      "published_at": "2026-07-31T17:45:33+03:00",
+      "type": "video-testimony",
+      "reconciliation_action": "ADD_SOURCE",
+      "links_to_existing_core": ["Kharkiv / immigration", "Bat Yam / Holon / Jessie Cohen", "StartOn origin narrative"],
+      "evidence_state": "FIRST_PARTY",
+      "metric_capture": {
+        "captured_at": "2026-09-17T12:00:00+03:00",
+        "likes": 36,
+        "comments": 4,
+        "scope": "public-visible snapshot only"
+      },
+      "canon_note": "First-person testimony source for existing events; do not create a duplicate life event."
+    },
+    {
+      "id": "meta-src-evidence-carousel-20260523",
+      "platform": "Instagram",
+      "account": "@vepretski.igor",
+      "url": "https://www.instagram.com/p/DYr9X_PDF6s/",
+      "published_at": "2026-05-23T18:51:48+03:00",
+      "type": "evidence-container-carousel",
+      "reconciliation_action": "KEEP_VERIFY",
+      "evidence_state": "FIRST_PARTY_COMPRESSED",
+      "contains_candidate_objects": [
+        "childhood photographs",
+        "Holon newspaper clipping",
+        "police/service photographs",
+        "Jaffa Police Youth certificate",
+        "1997 handwritten diary page",
+        "Toronto studio photograph"
+      ],
+      "owned_original_required": true,
+      "canon_note": "Carousel is a provenance container and discovery lead. Compressed social copies do not upgrade documentary proof status."
+    },
+    {
+      "id": "meta-src-life-arc-20260917",
+      "platform": "Instagram",
+      "account": "@vepretski.igor",
+      "url": "https://www.instagram.com/p/DdXM3YcDHsY/",
+      "published_at": "2026-09-17T00:00:05+03:00",
+      "type": "retrospective-carousel",
+      "reconciliation_action": "ADD_SOURCE",
+      "evidence_state": "FIRST_PARTY",
+      "links_to_existing_core": ["origin", "service", "education", "municipal service", "StartOn", "7YA"],
+      "metric_captures": [
+        {
+          "captured_at": "2026-09-17T12:00:00+03:00",
+          "likes": 2,
+          "comments": 2
+        },
+        {
+          "captured_at": "2026-09-17T15:00:00+03:00",
+          "likes": 2,
+          "comments": 2,
+          "change": "NO_CHANGE"
+        }
+      ],
+      "canon_note": "Retrospective distribution source linking to multiple existing events; not a replacement for the canonical chronology."
+    },
+    {
+      "id": "meta-src-rosh-hashanah-20260913",
+      "platform": "Instagram",
+      "account": "@igor.vepretski",
+      "url": "https://www.instagram.com/p/DdPMFaIgJGd/",
+      "published_at": "2026-09-13T21:19:20+03:00",
+      "type": "retrospective-carousel",
+      "reconciliation_action": "ADD_SOURCE",
+      "evidence_state": "FIRST_PARTY_WITH_ATTRIBUTION",
+      "links_to_existing_core": ["origin", "MFA / Miami", "service", "municipal service", "StartOn"],
+      "privacy_note": "Sensitive personal self-disclosure is not expanded in this public ledger.",
+      "canon_note": "MFA / Miami was already present in 7YA planning before this Meta discovery."
+    },
+    {
+      "id": "meta-src-bizzi-instagram-20260605",
+      "platform": "Instagram",
+      "account": "@igor.vepretski",
+      "url": "https://www.instagram.com/reel/DZL8R4mIsNx/",
+      "published_at": "2026-06-05T04:58:53+03:00",
+      "type": "music-distribution-video",
+      "reconciliation_action": "MERGE",
+      "existing_creative": "BIZZI — Nawan1 feat. Vepretski",
+      "existing_canonical_source": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "evidence_state": "FIRST_PARTY_DISTRIBUTION",
+      "metric_capture": {
+        "captured_at": "2026-09-17T12:00:00+03:00",
+        "likes": 5,
+        "scope": "Instagram public-visible snapshot only"
+      },
+      "canon_note": "Instagram record is a distribution event for an already documented creative."
+    },
+    {
+      "id": "meta-src-israel-beitenu-20250522",
+      "platform": "Instagram",
+      "account": "@vepretski.igor",
+      "url": "https://www.instagram.com/reel/DJ9IxYuCmUv/",
+      "published_at": "2025-05-22T15:11:41+03:00",
+      "type": "public-leadership-political-archive",
+      "reconciliation_action": "ADD_SOURCE",
+      "evidence_state": "FIRST_PARTY",
+      "canon_note": "Preserve as factual political/public-leadership history only; do not infer office, authority, electoral outcome or persuasion value beyond the source."
+    },
+    {
+      "id": "meta-src-strategic-sedation-20260103",
+      "platform": "Instagram",
+      "account": "@vepretski.igor",
+      "url": "https://www.instagram.com/p/DTCDBnmjCwg/",
+      "published_at": "2026-01-03T04:36:06+02:00",
+      "type": "research-distribution",
+      "reconciliation_action": "MERGE",
+      "existing_object": "Strategic Sedation",
+      "evidence_state": "FIRST_PARTY_DISTRIBUTION",
+      "canon_note": "Adds an Instagram distribution source to an existing 7YA research object."
+    },
+    {
+      "id": "meta-src-tv-clip-20260422",
+      "platform": "Instagram",
+      "account": "@igor.vepretski",
+      "url": "https://www.instagram.com/reel/DXb8OXGjFON/",
+      "published_at": "2026-04-22T17:03:51+03:00",
+      "type": "media-clip",
+      "reconciliation_action": "KEEP_VERIFY",
+      "evidence_state": "FIRST_PARTY_REPOST_OR_CLIP",
+      "verification_needed": ["identify program", "identify broadcaster", "identify original episode/source"],
+      "canon_note": "Do not classify as independently verified third-party appearance until the underlying broadcaster/source is identified."
+    },
+    {
+      "id": "meta-src-rooftop-20260815",
+      "platform": "Instagram",
+      "account": "@igor.vepretski",
+      "url": "https://www.instagram.com/p/DcEPw7wjG5x/",
+      "published_at": "2026-08-15T18:48:27+03:00",
+      "type": "photograph-set",
+      "reconciliation_action": "MEDIA_ONLY",
+      "evidence_state": "FIRST_PARTY_MEDIA",
+      "canon_note": "Visual corpus asset; not a life event and not documentary evidence by itself."
+    },
+    {
+      "id": "meta-src-atlanta-tlv-20251224",
+      "platform": "Instagram",
+      "account": "@igor.vepretski",
+      "url": "https://www.instagram.com/p/DSowgfxDCCE/",
+      "published_at": "2025-12-24T08:53:17+02:00",
+      "type": "photograph-set",
+      "reconciliation_action": "MEDIA_ONLY",
+      "evidence_state": "FIRST_PARTY_MEDIA",
+      "metric_capture": {
+        "captured_at": "2026-09-17T12:00:00+03:00",
+        "likes": 11,
+        "scope": "public-visible snapshot only"
+      },
+      "canon_note": "Visual/media asset only unless a separate event/source establishes additional significance."
+    }
+  ],
+  "open_verification_queue": [
+    {
+      "id": "verify-police-duration",
+      "priority": "HIGH",
+      "target": "Clarify C005a vs C005b scope and duration using documentary/institutional records."
+    },
+    {
+      "id": "verify-evidence-originals",
+      "priority": "HIGH",
+      "target": "Recover owned high-resolution originals for documentary objects currently visible only through compressed social media."
+    },
+    {
+      "id": "verify-tv-clip",
+      "priority": "MEDIUM",
+      "target": "Resolve original broadcaster/program/episode behind Instagram Reel DXb8OXGjFON."
+    },
+    {
+      "id": "verify-threads",
+      "priority": "MEDIUM",
+      "target": "Confirm canonical Threads profile from a directly observed public source before ingestion."
+    }
+  ],
+  "ingestion_status": {
+    "public_ui_changed": false,
+    "data_layer_only": true,
+    "records_written": 10,
+    "new_life_events_created": 0,
+    "wrong_source_urls_preserved": 0
+  }
+}
