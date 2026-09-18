@@ -4,6 +4,11 @@ name: Cloudflare Pages Full Site Bootstrap
 # This workflow remains an explicit break-glass/manual deployment path only.
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'ops/cloudflare-force-deploy.txt'
 
 permissions:
   contents: read
