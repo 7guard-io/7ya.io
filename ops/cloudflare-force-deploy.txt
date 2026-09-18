@@ -13,3 +13,6 @@ includes:
 - private Drive URLs excluded from public projection
 retrigger: 2026-09-18T20:48:00+03:00
 reason: canonical-domain guard fixed; force Cloudflare Pages production rebuild from current main
+retrigger: 2026-09-18T20:52:00+03:00
+source_head: f42fdc9547ad4b691a8fe8020f1f6b5e3d459c38
+reason: final v16 content OS + corrected homepage sequence
