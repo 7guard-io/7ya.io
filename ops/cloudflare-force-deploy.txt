@@ -11,3 +11,5 @@ includes:
 - CI/source coverage guard with platform minimums
 - political records excluded from automatic promotion
 - private Drive URLs excluded from public projection
+retrigger: 2026-09-18T20:48:00+03:00
+reason: canonical-domain guard fixed; force Cloudflare Pages production rebuild from current main
