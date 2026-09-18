@@ -78,6 +78,7 @@ export const publicStyleFiles = [
   'creatorverse-20260714.css',
   'creatorverse-depth-20260714.css',
   'evidence-ledger-v1.css',
+  'forever-runtime-20260913.css',
   'history-song-20260714.css',
   'igor-links-20260806.css',
   'igor-life-gallery-20260904.css',
@@ -95,6 +96,7 @@ export const publicStyleFiles = [
   'public-content-museum-20260715.css',
   'public-response-ai-20260715.css',
   'public-universe-20260715.css',
+  'social-first-20260916.css',
   'zone-shells-v1.css',
 ];
 
@@ -115,6 +117,7 @@ export const publicScriptFiles = [
   'positive-creator-20260715.js',
   'public-content-museum-20260715.js',
   'public-response-ai-20260715.js',
+  'social-first-home-20260916.js',
   'zone-shells-v1.js',
 ];
 
@@ -144,6 +147,7 @@ export const criticalArtifactPaths = [
   'styles/7ya-tactical-ontology-20260717.css',
   'styles/7ya-visual-system-v1.css',
   'styles/evidence-ledger-v1.css',
+  'styles/forever-runtime-20260913.css',
   'styles/history-song-20260714.css',
   'styles/igor-links-20260806.css',
   'styles/igor-life-gallery-20260904.css',
@@ -153,6 +157,7 @@ export const criticalArtifactPaths = [
   'styles/master-entity-index-20260715.css',
   'styles/public-content-museum-20260715.css',
   'styles/public-universe-20260715.css',
+  'styles/social-first-20260916.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
@@ -176,6 +181,7 @@ export const criticalArtifactPaths = [
   'scripts/public-content-museum-20260715.js',
   'scripts/positive-creator-20260715.js',
   'scripts/public-response-ai-20260715.js',
+  'scripts/social-first-home-20260916.js',
   'scripts/zone-shells-v1.js',
   'data/evidence-claims.json',
   'data/7ya-system-v1.json',
