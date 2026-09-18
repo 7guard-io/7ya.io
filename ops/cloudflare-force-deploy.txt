@@ -1,3 +1,9 @@
-force deploy requested: 2026-09-18 sitewide impact v14
+force deploy requested: 2026-09-18 sitewide public record v15
 source: main
-purpose: homepage publication scale + 434-record master public archive + 59-record curated social corpus + route-specific depth across history/journey/research/speaker/library/articles
+includes:
+- 434-record Master Public Record
+- 59-record curated social corpus
+- homepage publication-scale map
+- site-wide impact layer on 24 public routes
+- enriched history, journey, research, speaker, library, articles
+- expanded media propagation map
