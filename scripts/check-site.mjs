@@ -90,8 +90,8 @@ for (const technical of [
   '/assets/personal-hero-20260716/igor-hero.webp',
   '/assets/personal-hero-20260716/igor-closeup.webp',
   '/styles/forever-runtime-20260913.css?v=3',
-  '/styles/social-first-20260916.css?v=2',
-  '/scripts/social-first-home-20260916.js?v=3'
+  '/styles/social-first-20260916.css?v=3',
+  '/scripts/social-first-home-20260916.js?v=4'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
