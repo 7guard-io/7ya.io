@@ -117,6 +117,7 @@
       data.moments.forEach(item=>fragment.append(make(item)));
       rail.replaceChildren(fragment);
       rail.setAttribute('aria-label',`${data.moments.length} רגעים אמיתיים מכל הרשתות והמקורות של איגור ופרצקי`);
+      const count=section.querySelector('[data-feed-count]');if(count)count.textContent=String(data.moments.length);
       const head=section.querySelector('.igor-live-head p');
       if(head)head.textContent=`${data.moments.length} רגעים ציבוריים: תוכן בבעלותי, שיחות ארוכות, מוזיקה, כתיבה והפצה חיצונית מסומנת. כל כרטיס מחובר למקור.`;
       section.dataset.socialCorpusLoaded='20260918-rich';
