@@ -1,1 +1,3 @@
-force deploy requested: 2026-09-18 media archive v2
+force deploy requested: 2026-09-18 sitewide impact v14
+source: main
+purpose: homepage publication scale + 434-record master public archive + 59-record curated social corpus + route-specific depth across history/journey/research/speaker/library/articles
