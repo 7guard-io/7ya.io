@@ -1,0 +1,104 @@
+name: Cloudflare Pages Full Site Bootstrap
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cloudflare-pages-full-deploy.yml'
+      - 'scripts/cloudflare-pages-project.mjs'
+      - 'scripts/check-cloudflare-pages-artifact.mjs'
+      - 'scripts/build-static-site.mjs'
+      - 'scripts/site-contract.mjs'
+      - 'scripts/check-static-artifact.mjs'
+      - 'scripts/verify-static-artifact.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 7ya-cloudflare-pages-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  bootstrap:
+    name: Build, gate, configure and deploy full 7YA artifact
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: 'abdf796a9e763de12ee5195297b4cab1'
+      CLOUDFLARE_PAGES_PROJECT: '7ya-io'
+      CLOUDFLARE_PAGES_SOURCE_OWNER: '7guard-io'
+      CLOUDFLARE_PAGES_SOURCE_REPO: '7ya.io'
+    steps:
+      - name: Check out approved main revision
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build and verify governed static artifact
+        run: npm run build:cloudflare
+
+      - name: Require Cloudflare credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo 'CLOUDFLARE_API_TOKEN is not configured' >&2; exit 1; }
+
+      - name: Configure Pages and trigger governed production deployment
+        run: node scripts/cloudflare-pages-project.mjs --apply --deploy | tee cloudflare-pages-result.txt
+
+      - name: Verify public Pages surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          ready=0
+          for attempt in $(seq 1 60); do
+            if curl -fsSL --connect-timeout 10 --max-time 30               -H 'Cache-Control: no-cache, no-store'               "https://7ya-io.pages.dev/artifact-manifest.json?sha=${GITHUB_SHA}&attempt=${attempt}"               -o live-artifact-manifest.json; then
+              if grep -Fq '"artifact": "7ya-static-site"' live-artifact-manifest.json; then
+                ready=1
+                break
+              fi
+            fi
+            sleep 10
+          done
+          test "$ready" -eq 1
+          node scripts/verify-routes.mjs https://7ya-io.pages.dev
+
+      - name: Write bootstrap receipt
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "commit=${GITHUB_SHA}"
+            echo "project=7ya-io"
+            echo "pages_url=https://7ya-io.pages.dev"
+            echo "dns_changed=false"
+            echo "custom_domain_changed=false"
+            echo "completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > cloudflare-pages-bootstrap-receipt.txt
+
+      - name: Upload bootstrap evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 7ya-cloudflare-pages-bootstrap-${{ github.run_id }}
+          path: |
+            cloudflare-pages-result.txt
+            cloudflare-pages-bootstrap-receipt.txt
+            live-artifact-manifest.json
+            dist/artifact-manifest.json
+          if-no-files-found: warn
+          retention-days: 30
