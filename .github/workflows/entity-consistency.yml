@@ -1,23 +1,9 @@
 name: Entity Consistency
 
+# Automatic runner checks are temporarily disabled while GitHub Actions billing
+# blocks runner startup. The same auditor remains available as a manual check.
 on:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - "index.html"
-      - "igor-vepretski/index.html"
-      - "data/entity-registry.json"
-      - "scripts/entity_consistency.py"
-      - ".github/workflows/entity-consistency.yml"
-  push:
-    branches:
-      - main
-    paths:
-      - "index.html"
-      - "igor-vepretski/index.html"
-      - "data/entity-registry.json"
-      - "scripts/entity_consistency.py"
-      - ".github/workflows/entity-consistency.yml"
 
 permissions:
   contents: read

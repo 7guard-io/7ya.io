@@ -1,14 +1,8 @@
 name: 7YA Forever Fallback Pages
 
+# Cloudflare Pages Git integration is the production path.
+# GitHub Pages remains manual-only as a provider fallback.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - index.html
-      - styles/forever-runtime-20260913.css
-      - scripts/social-first-home-20260916.js
-      - .github/workflows/forever-fallback-pages.yml
   workflow_dispatch:
 
 permissions:

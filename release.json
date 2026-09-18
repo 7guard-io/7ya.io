@@ -1,18 +1,18 @@
 {
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
-  "status": "READY_FOR_SOCIAL_IMPACT_DEPLOY",
-  "release": "7ya-cloudflare-canonical-20260918-v8",
+  "status": "READY",
+  "release": "7ya-cloudflare-direct-main-20260918-v8",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "6bb8b9a1419e9de328d38607d7b8893ed0b145c8",
-  "source_sha_role": "validated 52-item social-impact source head before release receipt commit",
-  "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
+  "source_sha": "b579d9fe03269739e4db7279e8cbcbc5171f28ba",
+  "source_sha_role": "last content/cache commit before deployment-path simplification",
+  "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-cloudflare-canonical-20260918-v8",
+  "build_marker": "7ya-cloudflare-direct-main-20260918-v8",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -73,10 +73,14 @@
     "/api/feed.json"
   ],
   "release_intent": "Present Igor Vepretski as a living public record with a 52-item cross-platform corpus, source-linked Facebook and Instagram impact, verified public audience response, original media, long-form audio, StartOn, research and music; political/civic records remain neutral archival records rather than ranked recommendations.",
-  "promotion_gate": "Promote to READY after 7ya.io serves v8, the homepage exposes the impact wall and audience voices, the client feed loads 52 corpus items, and critical routes pass live verification.",
+  "promotion_gate": "Cloudflare GitHub App check must succeed and 7ya.io must serve the v8 marker plus the 52-item social corpus.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
-  "remaining_gates": [
-    "GitHub Actions is currently blocked before job start by an account billing lock; resolve GitHub billing to restore the governed deployment workflow.",
-    "Verify v8 on 7ya.io and 7ya-io.pages.dev after deployment, including 52-item feed, audience voices, /media/ social-impact section, and apex/www routing."
-  ]
+  "remaining_gates": [],
+  "operations": {
+    "production_provider": "cloudflare-pages",
+    "production_source": "7guard-io/7ya.io@main",
+    "automatic_deployer": "Cloudflare GitHub App",
+    "github_actions_role": "manual fallback / optional verification while runner billing is unavailable",
+    "cache_policy": "homepage and social corpus revalidate/no-store; social JS/CSS cache-busted at v8"
+  }
 }

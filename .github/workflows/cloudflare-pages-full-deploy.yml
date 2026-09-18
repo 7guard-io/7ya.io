@@ -1,25 +1,8 @@
 name: Cloudflare Pages Full Site Bootstrap
 
+# Production deploys are handled directly by the Cloudflare GitHub App from main.
+# This workflow remains an explicit break-glass/manual deployment path only.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/cloudflare-pages-full-deploy.yml'
-      - 'scripts/cloudflare-pages-project.mjs'
-      - 'scripts/check-cloudflare-pages-artifact.mjs'
-      - 'scripts/build-static-site.mjs'
-      - 'scripts/site-contract.mjs'
-      - 'scripts/check-static-artifact.mjs'
-      - 'scripts/verify-static-artifact.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'index.html'
-      - 'media/**'
-      - 'assets/**'
-      - 'knowledge/**'
-      - 'styles/**'
-      - 'scripts/social-first-home-20260916.js'
   workflow_dispatch:
 
 permissions:
