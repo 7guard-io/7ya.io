@@ -28,20 +28,20 @@ function excludeText(body, text, label) {
 }
 
 const home = read('index.html');
-const runtime = read('scripts/igor-personal-hero-20260716.js');
-const style = read('styles/igor-personal-hero-20260716.css');
+const runtime = read('scripts/social-first-home-20260916.js');
+const style = read('styles/forever-runtime-20260913.css');
 
-const sectionIds = ['impact', 'person', 'sources', 'starton'];
+const sectionIds = ['home', 'story', 'work', 'topics', 'media'];
 for (const id of sectionIds) {
   requireText(home, `id="${id}"`, 'Personal homepage');
 }
 
-const portraitCount = (home.match(/assets\/personal-hero-20260716\//g) || []).length;
-portraitCount >= 7 ? pass('Personal homepage uses varied owner-supplied imagery') : fail(`Personal homepage has only ${portraitCount} image references`);
+const imageCount = (home.match(/<img\s/g) || []).length;
+imageCount >= 5 ? pass('Personal homepage uses varied source-linked imagery') : fail(`Personal homepage has only ${imageCount} image references`);
 
 for (const marker of [
-  "matchMedia('(prefers-reduced-motion: reduce)')",
-  'IntersectionObserver', 'requestAnimationFrame', 'is-visible', 'aria-expanded'
+  "fetch('/knowledge/social-corpus-20260918.json'",
+  'replaceChildren', 'textContent', 'section.dataset.socialCorpusLoaded'
 ]) requireText(runtime, marker, 'Personal homepage runtime');
 
 for (const forbidden of [
@@ -52,8 +52,8 @@ for (const forbidden of [
 ]) excludeText(runtime, forbidden, 'Personal homepage runtime');
 
 for (const marker of [
-  '.hero-image', '.source-grid', '.starton-model',
-  '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
+  '.hero', '.story-path', '.work-grid', '.topics', '.contact',
+  '@media(max-width:620px)', '@media(prefers-reduced-motion:reduce)'
 ]) requireText(style, marker, 'Personal homepage style');
 
 if (failures) {
