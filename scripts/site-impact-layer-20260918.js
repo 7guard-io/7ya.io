@@ -1,6 +1,6 @@
 
 (()=>{const root=document.querySelector('[data-seven-proof-layer]');if(!root)return;
-const grid=root.querySelector('[data-seven-proof-context]'),count=root.querySelector('[data-seven-proof-count]');
+const grid=root.querySelector('[data-seven-proof-context]'),count=root.querySelector('[data-seven-proof-count]'),masterCount=root.querySelector('[data-seven-proof-master-count]');
 const path=location.pathname.replace(/^\/+|\/+$/g,'')||'home';
 const routes={
 starton:['linkedin-starton-20260913','youtube-starton-20260213','facebook-channel13-starton-2022','wikimedia-starton-onepager-20221229'],
@@ -28,4 +28,5 @@ const metrics=Object.entries(metricKeys).filter(([k])=>i.metrics&&i.metrics[k]!=
 (i.audience_reactions||[]).slice(0,2).forEach(v=>{const q=document.createElement('q');q.textContent=v;a.append(q)});
 const b=document.createElement('b');b.textContent='למקור ↗';a.append(b);return a};
 fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{const items=Array.isArray(d.moments)?d.moments:[];if(count)count.textContent=String(items.length);const by=new Map(items.map(i=>[i.id,i]));const selected=ids.map(id=>by.get(id)).filter(Boolean).filter(i=>!i.political&&!i.archive_only);if(grid){grid.replaceChildren();selected.forEach(i=>grid.append(card(i)))}}).catch(()=>{});
+fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{if(masterCount&&d.counts?.projected_records!=null)masterCount.textContent=Number(d.counts.projected_records).toLocaleString('en-US')}).catch(()=>{});
 })();

@@ -2,17 +2,17 @@
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
   "status": "READY",
-  "release": "7ya-sitewide-impact-layer-20260918-v11",
+  "release": "7ya-master-public-record-20260918-v12",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "f8d8f27ebc2ed58d8781532fe4d9920d74b3664e",
-  "source_sha_role": "v10 social corpus baseline before site-wide impact-layer build injection",
+  "source_sha": "40aa7982c2c77b892b260a4e92c102e535df0916",
+  "source_sha_role": "site-wide impact layer before 434-record master archive",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-sitewide-impact-layer-20260918-v11",
+  "build_marker": "7ya-master-public-record-20260918-v12",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -80,7 +80,7 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Make every major public 7YA route reflect Igor Vepretski's actual publication and influence footprint through a shared source-linked impact layer, route-specific social records, dated snapshots, real media, and audience excerpts.",
+  "release_intent": "Expose the real breadth of Igor Vepretski's publication footprint: a 434-record public ledger, a separate 59-record curated social corpus, and site-wide route-aware impact context.",
   "promotion_gate": "Cloudflare GitHub App check must succeed and 7ya.io must serve the v8 marker plus the 52-item social corpus.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [],
@@ -92,5 +92,14 @@
     "cache_policy": "homepage and social corpus revalidate/no-store; social JS/CSS cache-busted at v8",
     "sitewide_impact_layer": true,
     "impact_layer_routes": 24
+  },
+  "master_public_record": {
+    "path": "/knowledge/master-public-record-20260918.json",
+    "records": 434,
+    "public_urls": 269,
+    "records_with_metrics": 170,
+    "political_or_civic": 79,
+    "archive_or_snapshot": 145,
+    "private_drive_urls_exposed": false
   }
 }

@@ -104,6 +104,7 @@ export const publicStyleFiles = [
   'public-universe-20260715.css',
   'social-first-20260916.css',
   'site-impact-layer-20260918.css',
+  'master-public-record-20260918.css',
   'zone-shells-v1.css',
 ];
 
@@ -126,6 +127,7 @@ export const publicScriptFiles = [
   'public-response-ai-20260715.js',
   'social-first-home-20260916.js',
   'site-impact-layer-20260918.js',
+  'master-public-record-20260918.js',
   'zone-shells-v1.js',
 ];
 
@@ -171,6 +173,7 @@ export const criticalArtifactPaths = [
   'styles/public-universe-20260715.css',
   'styles/social-first-20260916.css',
   'styles/site-impact-layer-20260918.css',
+  'styles/master-public-record-20260918.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
@@ -196,6 +199,7 @@ export const criticalArtifactPaths = [
   'scripts/public-response-ai-20260715.js',
   'scripts/social-first-home-20260916.js',
   'scripts/site-impact-layer-20260918.js',
+  'scripts/master-public-record-20260918.js',
   'scripts/zone-shells-v1.js',
   'data/evidence-claims.json',
   'data/entity-registry.json',
@@ -205,6 +209,7 @@ export const criticalArtifactPaths = [
   'knowledge/public-universe-records-20260715.json',
   'knowledge/public-response-signals-20260715.json',
   'knowledge/social-corpus-20260918.json',
+  'knowledge/master-public-record-20260918.json',
   'llms.txt',
   'robots.txt',
   'sitemap.xml',
