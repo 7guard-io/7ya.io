@@ -210,6 +210,7 @@ export const criticalArtifactPaths = [
   'knowledge/public-response-signals-20260715.json',
   'knowledge/social-corpus-20260918.json',
   'knowledge/master-public-record-20260918.json',
+  'knowledge/content-os-contract-20260918.json',
   'llms.txt',
   'robots.txt',
   'sitemap.xml',
