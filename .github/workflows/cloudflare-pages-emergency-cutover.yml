@@ -1,0 +1,53 @@
+name: Emergency Cloudflare Pages Cutover
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cloudflare-pages-emergency-cutover.yml'
+      - 'scripts/cloudflare-pages-emergency-cutover.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: 7ya-cloudflare-pages-emergency-cutover
+  cancel-in-progress: false
+
+jobs:
+  cutover:
+    name: Move 7ya.io from AppDeploy to Cloudflare Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: 'abdf796a9e763de12ee5195297b4cab1'
+      CLOUDFLARE_PAGES_PROJECT: '7ya-io'
+    steps:
+      - name: Check out canonical repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Require Cloudflare credential
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo 'CLOUDFLARE_API_TOKEN is not configured' >&2; exit 1; }
+
+      - name: Cut canonical domains over to Cloudflare Pages
+        run: node scripts/cloudflare-pages-emergency-cutover.mjs | tee cloudflare-pages-emergency-cutover.txt
+
+      - name: Upload emergency cutover receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 7ya-cloudflare-pages-emergency-cutover-${{ github.run_id }}
+          path: cloudflare-pages-emergency-cutover.txt
+          if-no-files-found: warn
+          retention-days: 30
