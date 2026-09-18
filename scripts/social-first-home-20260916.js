@@ -100,7 +100,10 @@
     rail.querySelectorAll('.social-card').forEach(card=>{
       const classes=card.dataset.feedClass||'';
       let show=true;
-      if(filter==='facebook')show=classes.includes('facebook');
+      if(filter==='all'&&classes.includes('archive'))show=false;
+      if(filter==='impact')show=classes.includes('impact')&&!classes.includes('archive');
+      else if(filter==='archive')show=classes.includes('archive');
+      else if(filter==='facebook')show=classes.includes('facebook');
       else if(filter==='instagram')show=classes.includes('instagram');
       else if(filter==='owned')show=classes.includes('owned');
       else if(filter==='external')show=classes.includes('external');
@@ -123,6 +126,8 @@
       const head=section.querySelector('.igor-live-head p');
       if(head)head.textContent=`${data.moments.length} רגעים ציבוריים: תוכן בבעלותי, שיחות ארוכות, מוזיקה, כתיבה והפצה חיצונית מסומנת. כל כרטיס מחובר למקור.`;
       section.dataset.socialCorpusLoaded='20260918-rich';
+      const activeFilter=section.querySelector('[data-feed-filter].is-active')?.dataset.feedFilter||'all';
+      applyFilter(activeFilter);
     })
     .catch(err=>console.warn('[7YA] social corpus fallback',err));
 
