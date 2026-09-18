@@ -2,17 +2,17 @@
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
   "status": "READY",
-  "release": "7ya-cloudflare-direct-main-20260918-v8",
+  "release": "7ya-cloudflare-direct-main-20260918-v9",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "b579d9fe03269739e4db7279e8cbcbc5171f28ba",
-  "source_sha_role": "last content/cache commit before deployment-path simplification",
+  "source_sha": "6bf4df304e502700ff8fd25cbcd9e001049c1808",
+  "source_sha_role": "v8 ops baseline before visible Facebook/Instagram depth layer",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-cloudflare-direct-main-20260918-v8",
+  "build_marker": "7ya-cloudflare-direct-main-20260918-v9",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -50,7 +50,12 @@
       "verified audience excerpts",
       "owned-vs-external labeling"
     ],
-    "policy": "Person before platform; source-linked public material; public comments are short, source-verifiable and name-suppressed in projection; mixed response is preserved; metrics require a dated source."
+    "policy": "Person before platform; source-linked public material; public comments are short, source-verifiable and name-suppressed in projection; mixed response is preserved; metrics require a dated source.",
+    "homepage_static_social_cards": 12,
+    "homepage_static_social_platforms": [
+      "Facebook",
+      "Instagram"
+    ]
   },
   "critical_surfaces": [
     "/",
@@ -72,7 +77,7 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Present Igor Vepretski as a living public record with a 52-item cross-platform corpus, source-linked Facebook and Instagram impact, verified public audience response, original media, long-form audio, StartOn, research and music; political/civic records remain neutral archival records rather than ranked recommendations.",
+  "release_intent": "Make Facebook and Instagram materially visible on the homepage with twelve source-linked posts, verified metrics and short public audience excerpts, in addition to the 52-item corpus.",
   "promotion_gate": "Cloudflare GitHub App check must succeed and 7ya.io must serve the v8 marker plus the 52-item social corpus.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [],
