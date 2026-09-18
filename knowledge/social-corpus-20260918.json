@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T16:55:00+03:00",
+  "generated_at": "2026-09-18T17:05:00+03:00",
   "purpose": "Curated personal social-life stream for 7YA. Sources stay platform-native; metrics are shown only when sourced from connected owner analytics or a dated public record.",
   "curation_principles": [
     "person_before_platform",
@@ -69,7 +69,9 @@
       },
       "metric_source": "Metricool connected TikTok analytics",
       "metric_as_of": "2026-09-18",
-      "featured": true
+      "featured": true,
+      "owned": true,
+      "theme": "life"
     },
     {
       "id": "tiktok-my-story-20260421",
@@ -87,7 +89,9 @@
         "reach": 691
       },
       "metric_source": "Metricool connected TikTok analytics",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "life"
     },
     {
       "id": "tiktok-hiphop-20260512",
@@ -105,7 +109,9 @@
         "reach": 995
       },
       "metric_source": "Metricool connected TikTok analytics",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "music"
     },
     {
       "id": "linkedin-starton-20260913",
@@ -121,7 +127,9 @@
       },
       "metric_source": "Metricool connected LinkedIn analytics",
       "metric_as_of": "2026-09-18",
-      "featured": true
+      "featured": true,
+      "owned": true,
+      "theme": "starton"
     },
     {
       "id": "linkedin-7ya-20260912",
@@ -137,7 +145,9 @@
         "unique_impressions": 76
       },
       "metric_source": "Metricool connected LinkedIn analytics",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "7ya"
     },
     {
       "id": "linkedin-music-20260912",
@@ -152,7 +162,9 @@
         "unique_impressions": 44
       },
       "metric_source": "Metricool connected LinkedIn analytics",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "music"
     },
     {
       "id": "youtube-starton-20260213",
@@ -165,7 +177,9 @@
       "image": "https://i.ytimg.com/vi/SOx8DUXFIEw/hqdefault.jpg",
       "metric_source": "YouTube connected catalog via Metricool",
       "metric_as_of": "2026-09-18",
-      "featured": true
+      "featured": true,
+      "owned": true,
+      "theme": "starton"
     },
     {
       "id": "youtube-story-20260421",
@@ -177,7 +191,9 @@
       "url": "https://www.youtube.com/watch?v=fxFAUrb1h0M",
       "image": "https://i.ytimg.com/vi/fxFAUrb1h0M/hqdefault.jpg",
       "metric_source": "YouTube connected catalog via Metricool",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "life"
     },
     {
       "id": "youtube-collab-20260606",
@@ -189,7 +205,9 @@
       "url": "https://www.youtube.com/watch?v=dhIiamSyKZk",
       "image": "https://i.ytimg.com/vi/dhIiamSyKZk/hqdefault.jpg",
       "metric_source": "YouTube connected catalog via Metricool",
-      "metric_as_of": "2026-09-18"
+      "metric_as_of": "2026-09-18",
+      "owned": true,
+      "theme": "music"
     },
     {
       "id": "youtube-bizzi-2025",
@@ -200,7 +218,9 @@
       "summary": "המוזיקה כחלק מאותו מסלול חיים ציבורי.",
       "url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
       "image": "https://i.ytimg.com/vi/jRjZjpqAgEw/hqdefault.jpg",
-      "metric_source": "Canonical public YouTube source"
+      "metric_source": "Canonical public YouTube source",
+      "owned": false,
+      "theme": "music"
     },
     {
       "id": "instagram-public-reel-20231017",
@@ -210,7 +230,9 @@
       "title": "גיבורי העל של התקופה",
       "summary": "ריל אישי שנוצר בזמן פחד ציבורי כהכרת תודה לאנשים שפעלו בשטח.",
       "url": "https://www.instagram.com/reel/CyhEU1kMUuH/",
-      "metric_source": "Public source-linked reel"
+      "metric_source": "Public source-linked reel",
+      "owned": true,
+      "theme": "public_voice"
     },
     {
       "id": "facebook-live-surface",
@@ -220,7 +242,9 @@
       "title": "הארכיון הציבורי בפייסבוק",
       "summary": "פוסטים, וידאו והשיחה המתמשכת עם הקהל — המשטח הקנוני נשאר /vepretski7.",
       "url": "https://www.facebook.com/vepretski7",
-      "metric_source": "Canonical public surface"
+      "metric_source": "Canonical public surface",
+      "owned": true,
+      "theme": "archive"
     },
     {
       "id": "telegram-live-surface",
@@ -230,7 +254,9 @@
       "title": "הערוץ הישיר",
       "summary": "עדכונים וקול ישיר מחוץ לפיד האלגוריתמי.",
       "url": "https://t.me/vepretski",
-      "metric_source": "Canonical public surface"
+      "metric_source": "Canonical public surface",
+      "owned": true,
+      "theme": "archive"
     },
     {
       "id": "threads-live-surface",
@@ -240,7 +266,9 @@
       "title": "שיחות קצרות בזמן אמת",
       "summary": "עוד שכבה של הקול הציבורי, מחוברת לאותו סיפור.",
       "url": "https://www.threads.net/@igor.vepretski",
-      "metric_source": "Canonical public surface"
+      "metric_source": "Canonical public surface",
+      "owned": true,
+      "theme": "archive"
     },
     {
       "id": "x-live-surface",
@@ -250,7 +278,9 @@
       "title": "תגובות, מחשבות וקישורים",
       "summary": "משטח ציבורי נוסף; מדדי reach עצמיים אינם מוצגים כאן כמדד מאומת.",
       "url": "https://x.com/igorvepretski",
-      "metric_source": "Canonical public surface"
+      "metric_source": "Canonical public surface",
+      "owned": true,
+      "theme": "archive"
     },
     {
       "id": "linkedin-identity-20260911",
