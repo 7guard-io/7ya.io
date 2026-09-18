@@ -31,6 +31,8 @@
     return values;
   };
 
+  const displayScore=(item)=>{const cls=classify(item);return (item.featured?100:0)+(cls.includes('impact')&&!cls.includes('archive')?40:0)+(item.owned===true?10:0)-(cls.includes('archive')?30:0);};
+
   const make=(item)=>{
     const a=document.createElement('a');
     a.className='social-card'+(item.featured?' featured':'')+(item.owned===false?' external-item':'');
@@ -119,7 +121,8 @@
     .then(data=>{
       if(!Array.isArray(data.moments)||!data.moments.length)return;
       const fragment=document.createDocumentFragment();
-      data.moments.forEach(item=>fragment.append(make(item)));
+      const ordered=[...data.moments].sort((a,b)=>displayScore(b)-displayScore(a));
+      ordered.forEach(item=>fragment.append(make(item)));
       rail.replaceChildren(fragment);
       rail.setAttribute('aria-label',`${data.moments.length} רגעים אמיתיים מכל הרשתות והמקורות של איגור ופרצקי`);
       const count=section.querySelector('[data-feed-count]');if(count)count.textContent=String(data.moments.length);
