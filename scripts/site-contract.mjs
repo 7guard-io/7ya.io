@@ -143,6 +143,7 @@ export const criticalArtifactPaths = [
   'response-ai/index.html',
   'evidence/index.html',
   'research/index.html',
+  'media/index.html',
   'radar/index.html',
   'verify/index.html',
   'ledger/index.html',
