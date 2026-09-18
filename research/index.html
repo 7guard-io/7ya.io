@@ -2,91 +2,66 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>מחקר ואונטולוגיה | 7YA.IO</title>
-  <meta name="description" content="האונטולוגיה הטקטית של 7YA: SUPERNOAH, משילות מידע, StartOn, Merkle Trees והשרשרת אדם → רעיון → פעולה → ראיה → חוויה.">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>מחקר וכתיבה | איגור ופרצקי · 7YA</title>
+  <meta name="description" content="הכתיבה והמסגרות המחקריות של איגור ופרצקי: SUPERNOAH, זהות דיגיטלית, agency, אמון, StartOn ומערכות ציבוריות — עם קישור למקור וסטטוס פרסום ברור.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#070807">
-  <meta name="color-scheme" content="dark">
-  <meta name="7ya-build" content="phase-c-zone-shells-20260721">
+  <meta name="theme-color" content="#10120f">
+  <meta name="7ya-release" content="7ya-cloudflare-canonical-20260918-v1">
   <link rel="canonical" href="https://7ya.io/research/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles/zone-shells-v1.css?v=1">
+  <style>
+  :root{--ink:#10120f;--paper:#f1efe9;--cream:#fffdf8;--red:#e94b35;--muted:#686c65;--line:rgba(16,18,15,.18);--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}a{color:inherit}.top{position:sticky;top:0;z-index:20;padding:18px clamp(18px,4vw,60px);display:flex;justify-content:space-between;align-items:center;background:rgba(241,239,233,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.top a{text-decoration:none}.top b{direction:ltr;letter-spacing:.08em}.top nav{display:flex;gap:20px;font-size:12px}.hero{padding:clamp(80px,10vw,150px) clamp(18px,6vw,90px);display:grid;grid-template-columns:.36fr 1fr .58fr;gap:5vw;align-items:end}.eyebrow{margin:0;color:var(--red);font-size:10px;font-weight:800;letter-spacing:.12em}.hero h1,.section-head h2{margin:0;font:500 clamp(58px,7vw,110px)/.84 var(--serif);letter-spacing:-.065em}.hero h1 em,.section-head h2 em{color:var(--red);font-weight:400}.hero p:last-child{margin:0;color:var(--muted);font-size:18px;line-height:1.65}.disclosure{padding:28px clamp(18px,6vw,90px);background:var(--red);color:white;display:grid;grid-template-columns:.3fr 1fr;gap:4vw}.disclosure b{font-size:11px;letter-spacing:.08em}.disclosure p{margin:0;max-width:900px;line-height:1.6}.section{padding:clamp(85px,10vw,150px) clamp(18px,6vw,90px);border-top:1px solid var(--line)}.section.dark{background:var(--ink);color:var(--paper)}.section-head{display:grid;grid-template-columns:.34fr 1fr .58fr;gap:5vw;align-items:end;margin-bottom:48px}.section-head h2{font-size:clamp(48px,5.8vw,92px)}.section-head>p:last-child{margin:0;color:var(--muted);line-height:1.65}.dark .section-head>p:last-child{color:#adb1aa}.feature{display:grid;grid-template-columns:1.1fr .9fr;gap:8px}.paper-card{min-height:520px;padding:clamp(28px,4vw,58px);display:flex;flex-direction:column;justify-content:flex-end;background:var(--cream);border:1px solid var(--line)}.paper-card.primary{background:var(--ink);color:white}.paper-card small{font-size:9px;font-weight:800;color:var(--red);letter-spacing:.08em}.paper-card h3{margin:42px 0 16px;font:500 clamp(38px,4.5vw,70px)/.91 var(--serif);letter-spacing:-.045em}.paper-card p{margin:0;color:var(--muted);line-height:1.65}.paper-card.primary p{color:#c3c8c0}.paper-card a{margin-top:28px;align-self:flex-start;padding-bottom:5px;border-bottom:1px solid currentColor;text-decoration:none;font-weight:800;font-size:11px}.signal{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.signal article{min-height:260px;padding:28px;border-inline-start:1px solid var(--line)}.signal small{font-size:9px;color:var(--red);font-weight:800}.signal h3{margin:38px 0 12px;font:500 34px/1 var(--serif)}.signal p{margin:0;color:var(--muted);line-height:1.58}.source-list{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}.source{grid-column:span 4;min-height:320px;padding:26px;display:flex;flex-direction:column;background:#191c17;border:1px solid rgba(255,255,255,.13);text-decoration:none}.source.wide{grid-column:span 8}.source small{font-size:9px;color:var(--red);font-weight:800}.source h3{margin:42px 0 12px;font:500 clamp(30px,3vw,48px)/.96 var(--serif)}.source p{margin:0;color:#b9beb6;line-height:1.6}.source b{margin-top:auto;padding-top:26px;font-size:10px}.method{display:grid;grid-template-columns:repeat(4,1fr);counter-reset:steps}.method article{padding:26px;border-top:1px solid var(--line);border-inline-start:1px solid var(--line);min-height:240px}.method article:before{counter-increment:steps;content:"0" counter(steps);display:block;color:var(--red);font-size:10px;font-weight:800}.method h3{margin:44px 0 12px;font:500 30px var(--serif)}.method p{margin:0;color:var(--muted);line-height:1.58}.cta{padding:100px clamp(18px,6vw,90px);background:var(--red);color:white}.cta h2{margin:0 0 30px;font:500 clamp(48px,6vw,90px)/.88 var(--serif);letter-spacing:-.055em}.cta a{display:inline-block;padding:14px 18px;border:1px solid #111;text-decoration:none;font-weight:800;font-size:12px;margin:4px}.footer{padding:32px clamp(18px,6vw,90px);background:var(--ink);color:#9ba098;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:10px}@media(max-width:900px){.hero,.section-head{grid-template-columns:1fr}.feature{grid-template-columns:1fr}.signal{grid-template-columns:1fr}.source,.source.wide{grid-column:span 6}.method{grid-template-columns:1fr 1fr}}@media(max-width:620px){.top nav{display:none}.hero,.section{padding-inline:16px}.hero h1{font-size:60px}.disclosure{grid-template-columns:1fr;padding-inline:16px}.source-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 10px}.source,.source.wide{flex:0 0 86vw;scroll-snap-align:start}.method{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-  <a class="skip" href="#main">דלג לתוכן</a>
-  <header class="zone-header">
-    <a class="wordmark" href="/"><b>7</b><span>7YA.IO</span></a>
-    <nav class="zone-nav" aria-label="אזורי המערכת">
-      <a href="/influence/">זהות</a><a href="/research/" aria-current="page">מחקר</a>
-      <a href="/radar/">StartOn Radar</a>
-      <a href="/verify/">אימות</a>
-      <a href="/ledger/">Ledger</a><a href="/media/">מדיה</a>
-    </nav>
-  </header>
+<header class="top"><a href="/"><b>IGOR VEPRETSKI · 7YA</b></a><nav><a href="/igor-vepretski/">איגור</a><a href="/media/">מדיה</a><a href="/starton/">StartOn</a><a href="/evidence/">ראיות</a><a href="/contact/">קשר</a></nav></header>
+<main>
+<section class="hero">
+  <p class="eyebrow">RESEARCH / WRITING / WORKING IDEAS</p>
+  <h1>מהחוויה<br><em>למסגרת חשיבה.</em></h1>
+  <p>כאן נמצאים המנוסקריפטים, הפוסטים והרעיונות שאני מנסה לנסח: agency אנושי, זהות דיגיטלית, אמון, AI, מערכות ציבוריות והזדמנות. כל פריט מקבל סטטוס ברור — רעיון, working manuscript או מקור חיצוני.</p>
+</section>
+<section class="disclosure"><b>STATUS MATTERS</b><p>SUPERNOAH ומסגרות נוספות מוצגות כאן כעבודות עצמאיות / working manuscripts. הן אינן מוצגות כקונצנזוס אקדמי או כמאמרים שעברו ביקורת עמיתים אלא אם קיים מקור חיצוני שמוכיח זאת.</p></section>
 
-  <main id="main" data-zone-shell data-zone-key="ontology" data-state="loading">
-    <section class="zone-hero" aria-labelledby="zone-title">
-      <p class="kicker">ONTOLOGY / RESEARCH</p>
-      <h1 id="zone-title">רעיונות צריכים מבנה.<br>טענות צריכות מקור.</h1>
-      <p class="lead" data-zone-purpose>אזור המחקר מארגן את המודלים, המונחים והקשרים של 7YA בלי להפוך השערה לעובדה ובלי לנתק טענה מן המקור שלה.</p>
-      <div class="pipeline" aria-label="שרשרת התוכן">
-        <span>אדם</span><span>רעיון</span><span>פעולה</span><span>ראיה</span><span><strong>חוויה</strong></span>
-      </div>
-    </section>
+<section class="section">
+<header class="section-head"><p class="eyebrow">01 / FEATURED WORK</p><h2>SUPERNOAH<br><em>After the Data Flood.</em></h2><p>השאלה: מה מנהיגות אנושית צריכה לשמר כשאלגוריתמים, AI ועומס מידע מתחילים להציף קשב, אמון ושיקול דעת?</p></header>
+<div class="feature">
+  <article class="paper-card primary"><small>ACADEMIA · INDEPENDENT WORKING MANUSCRIPT</small><h3>7YA | Leadership for the Algorithmic Age — SUPERNOAH Founder Edition</h3><p>מסגרת “Ark” לעמידות דיגיטלית: לשמור agency, לאמת לפני שמגבירים, לעצב גבולות ולהחזיר טכנולוגיה למטרה אנושית וציבורית.</p><a href="https://www.academia.edu/168076525/7YA_LEADERSHIP_FOR_THE_ALGORITHMIC_AGE_SUPERNOAH_Founder_Edition_After_the_Data_Flood" target="_blank" rel="noreferrer">לקריאת המנוסקריפט ↗</a></article>
+  <article class="paper-card"><small>PUBLIC SIGNAL · LINKEDIN · 09.09.2026</small><h3>38 views בחודש; 20 מתוכם ל־SUPERNOAH.</h3><p>זה לא “ויראלי”. זה signal קטן ומוגדר שהוצג בפוסט המחובר ל־LinkedIn, ומספק סיבה להמשיך לבדוק מה מושך קוראים לעבודת המחקר.</p><a href="https://www.linkedin.com/feed/update/urn:li:share:7503449606756925440" target="_blank" rel="noreferrer">לפוסט המקורי ↗</a></article>
+</div>
+</section>
 
-    <section class="zone-grid" aria-label="מצב האזור">
-      <div class="panel">
-        <div class="status-line"><span class="kicker">מחקר</span><span class="state-badge" data-zone-state>Loading snapshot</span></div>
-        <h2>Snapshot יציב. מקור Drive נמשך ונבדק.</h2>
-        <p>התוכן נטען מקובץ build-time מקומי ונבדק מול SHA-256. מסמך המקור נשמר ב־Google Drive; אין קריאת API חיה בזמן טעינת העמוד.</p>
-        <div class="zone-items" data-zone-items>
-          <article class="zone-item"><h3>SUPERNOAH — Independent Preprint</h3><p>מסגרת עצמאית שטרם עברה ביקורת עמיתים. שלושה שערים: Foundation, Integration ו־Evolution.</p></article>
-          <article class="zone-item"><h3>StartOn — Methodological Implementation</h3><p>שלושה שלבים: מיפוי משאבים קהילתיים, פריסת תשתית דיגיטלית והתרחבות בת־קיימא.</p></article>
-          <article class="zone-item"><h3>Cryptographic Integrity</h3><p>Merkle Tree ו־SHA-256 משמשים לזיהוי שינוי ולחיבור בין Snapshot מאושר ל־Artifact ציבורי.</p></article>
-          <article class="zone-item"><h3>משילות מידע</h3><p>הפרדה מפורשת בין יצירה עצמאית, מקור ציבורי, הכרה חיצונית וביקורת עמיתים.</p></article>
-        </div>
-        <p hidden data-zone-error></p>
-        <div class="action-row"><a class="button primary" href="/articles/">למאמרים</a><a class="button" href="/verify/">לאימות טענות</a><a class="button" href="/ledger/">ל־Ledger</a></div>
-      </div>
+<section class="section">
+<header class="section-head"><p class="eyebrow">02 / QUESTIONS</p><h2>ארבע שאלות<br><em>שחוזרות.</em></h2><p>הן התחילו בחיים ובעבודה, והפכו לצירים שחוזרים בכתיבה וב־7YA.</p></header>
+<div class="signal">
+  <article><small>AGENCY</small><h3>מי מחליט?</h3><p>איך שומרים יכולת בחירה ושיקול דעת כאשר מערכות ממליצות, מדרגות ומסננות כמעט הכול.</p></article>
+  <article><small>TRUST</small><h3>במה מאמינים?</h3><p>איך provenance, מקור ותאריך יכולים לעזור לבנות אמון בלי לדרוש מהציבור להאמין למיתוג.</p></article>
+  <article><small>OPPORTUNITY</small><h3>מי מקבל דלת?</h3><p>איך נגישות לטכנולוגיה, קהילה ואנשים יכולה לשנות מסלול — ומה צריך למדוד לפני שטוענים לתוצאה.</p></article>
+</div>
+</section>
 
-      <aside class="panel" aria-label="מטא־נתונים">
-        <p class="kicker">CONTROL PLANE CONTRACT</p>
-        <dl class="meta-list">
-          <div><dt>Routes</dt><dd data-zone-routes>/research/</dd></div>
-          <div><dt>Primary source</dt><dd>Google Drive document · reviewed 21.07.2026</dd></div>
-          <div><dt>Publication status</dt><dd>Independent preprint · not peer reviewed</dd></div>
-          <div><dt>Generated</dt><dd data-zone-generated>2026-07-21</dd></div>
-          <div><dt>Payload hash</dt><dd data-zone-hash>sha256: pending runtime check</dd></div>
-          <div><dt>Runtime API</dt><dd>None required</dd></div>
-        </dl>
-      </aside>
-    </section>
+<section class="section dark">
+<header class="section-head"><p class="eyebrow">03 / PUBLIC WRITING</p><h2>המחקר לא חי<br><em>רק ב־PDF.</em></h2><p>חלק מהחשיבה מתפתחת בפוסטים ציבוריים. אלה לא תחליף למחקר; הם המקום שבו השאלה מתחדדת מול קהל.</p></header>
+<div class="source-list">
+  <a class="source wide" href="https://www.linkedin.com/feed/update/urn:li:share:7504448995096977408" target="_blank" rel="noreferrer"><small>7YA · 12.09.2026</small><h3>מה קורה כשאינטרנט הופך לתיעוד חיים?</h3><p>על provenance, אדם לפני המותג, ראיה לפני הטענה והצורך בזיכרון ציבורי שאינו תלוי בפלטפורמה אחת.</p><b>לקריאה ↗</b></a>
+  <a class="source" href="https://www.linkedin.com/feed/update/urn:li:share:7504087285517336576" target="_blank" rel="noreferrer"><small>IDENTITY · 11.09.2026</small><h3>אני האדם. המערכות הן הכלים.</h3><p>הפרדה בין האדם, StartOn, 7YA והזירות שבהן אני פועל.</p><b>למקור ↗</b></a>
+  <a class="source" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7478082728211574784" target="_blank" rel="noreferrer"><small>PUBLIC TRUST · 01.07.2026</small><h3>Partnership is not a logo wall.</h3><p>אחריות, תשתית והוכחה כבסיס לעבודה founder-led ולא לאוסף סמלים.</p><b>לקריאה ↗</b></a>
+  <a class="source wide" href="https://www.linkedin.com/feed/update/urn:li:share:7504811986866794496" target="_blank" rel="noreferrer"><small>STARTON · 13.09.2026</small><h3>טכנולוגיה לבדה אינה ההתערבות.</h3><p>רפלקציה מתודולוגית על שייכות, קהילה, אנשי מקצוע ומדידה סביב StartOn.</p><b>לקריאה ↗</b></a>
+</div>
+</section>
 
-    <section class="resilience" aria-labelledby="research-model-title">
-      <p class="kicker">SUPERNOAH / THREE GATES</p>
-      <h2 id="research-model-title">מסגרת עבודה, לא תואר סמכות.</h2>
-      <div class="resilience-grid">
-        <article><b>Foundation</b><p>קביעת קו בסיס למדדים ולהתנהגות מערכתית.</p></article>
-        <article><b>Integration</b><p>חיבור בין מגבלות ארכיטקטוניות לבין פעולה אנושית.</p></article>
-        <article><b>Evolution</b><p>בניית מסגרות פרואקטיביות לשיפור מבני.</p></article>
-        <article><b>Disclosure</b><p>המסגרת מוצגת כ־preprint עצמאי עד שיוצג מקור חיצוני לשדרוג הסטטוס.</p></article>
-      </div>
-    </section>
+<section class="section">
+<header class="section-head"><p class="eyebrow">04 / METHOD</p><h2>רעיון → מקור<br><em>→ ביקורת → תיקון.</em></h2><p>העבודה כאן אינה אמורה להפוך רעיונות לסמכות. היא אמורה להשאיר עקבות ברורים מספיק כדי שאפשר יהיה לבקר ולשפר אותם.</p></header>
+<div class="method">
+  <article><h3>לנסח</h3><p>להפוך חוויה או אינטואיציה לשאלה שאפשר לקרוא ולהתווכח איתה.</p></article>
+  <article><h3>לקשר</h3><p>להוסיף מקור, מסמך או נתון במקום להסתפק בניסוח משכנע.</p></article>
+  <article><h3>לסמן סטטוס</h3><p>להבדיל בין רעיון, preprint עצמאי, מקור ציבורי והכרה חיצונית.</p></article>
+  <article><h3>לתקן</h3><p>להשאיר מקום מפורש לגרסה הבאה, ביקורת והחלפת טענה חלשה במדויקת יותר.</p></article>
+</div>
+</section>
 
-    <section class="resilience" aria-labelledby="resilience-title">
-      <p class="kicker">RESILIENCE CONTRACT</p>
-      <h2 id="resilience-title">ארבעה מצבים. אפס עמודים מתים.</h2>
-      <div class="resilience-grid">
-        <article><b>Loading</b><p>מצב קצר בזמן בדיקת ה־Snapshot.</p></article>
-        <article><b>Empty</b><p>מבנה תקין גם כאשר אין רשומות לפרסום.</p></article>
-        <article><b>Error</b><p>כשל מפורש כאשר אין נתון תקין ואין fallback.</p></article>
-        <article><b>Last Known Good</b><p>תוכן יציב נשמר כאשר מקור חיצוני אינו זמין.</p></article>
-      </div>
-    </section>
-  </main>
-
-  <footer class="zone-footer"><span>7YA.IO · אדם → רעיון → פעולה → ראיה → חוויה</span><a href="/contact/">יצירת קשר</a></footer>
-  <script src="/scripts/zone-shells-v1.js" defer></script>
+<section class="cta"><h2>מחקר טוב לא צריך להיראות סגור.<br>הוא צריך להיות פתוח לבדיקה.</h2><a href="https://igorvepretski.academia.edu/" target="_blank" rel="noreferrer">Academia ↗</a><a href="/library/">ספרייה</a><a href="/evidence/">ראיות</a><a href="/contact/">יצירת קשר</a></section>
+</main>
+<footer class="footer"><b>7YA · RESEARCH · IGOR VEPRETSKI</b><span>Independent work · status visible · sources open</span></footer>
 </body>
 </html>
