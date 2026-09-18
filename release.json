@@ -5,8 +5,8 @@
   "release": "7ya-cloudflare-canonical-20260918-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "dc47217fef2d1f46867627208e816fd9e53420c1",
-  "source_sha_role": "rich content baseline before release metadata refresh",
+  "source_sha": "a948aa55a4cac830d855f508a1efc36e6c29d4b1",
+  "source_sha_role": "rich-home source baseline before metadata refresh",
   "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
   "environment": "candidate",
   "experience": "IGOR_PERSONAL_SOCIAL_FIRST_HOMEPAGE",
@@ -40,7 +40,7 @@
   "social_corpus": {
     "path": "/knowledge/social-corpus-20260918.json",
     "public_feed": "/api/feed.json",
-    "curated_items": 26,
+    "curated_items": 30,
     "policy": "Person before platform; source-linked public material; metrics only with a dated source."
   },
   "critical_surfaces": [
