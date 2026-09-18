@@ -10,7 +10,7 @@
     "mode": "static-public-canonical",
     "generated_on": "2026-09-18",
     "source": "knowledge/social-corpus-20260918.json",
-    "item_count": 15
+    "item_count": 26
   },
   "items": [
     {
@@ -18,12 +18,14 @@
       "url": "https://www.tiktok.com/@igor.vepretski/video/7683551768625564946",
       "title": "לא נולדתי לתוך מסלול מסודר. בניתי אחד.",
       "content_text": "ג׳סי כהן → שירות → משטרה → עשייה ציבורית → StartOn → #7YA. רגע שמחבר את התחנות במקום להציג אותן כרשימת תפקידים.",
-      "date_published": "2026-09-09T00:00:00+03:00",
       "_7ya": {
         "platform": "TikTok",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected TikTok analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "views": 558,
           "likes": 13,
@@ -31,19 +33,22 @@
           "shares": 1,
           "reach": 441
         }
-      }
+      },
+      "date_published": "2026-09-09T00:00:00+03:00"
     },
     {
       "id": "tiktok-my-story-20260421",
       "url": "https://www.tiktok.com/@igor.vepretski/video/7631091912480427284",
       "title": "MY STORY 🐦‍🔥",
       "content_text": "וידאו אישי מתוך רצף #7YA שמציג את הסיפור בגוף ראשון.",
-      "date_published": "2026-04-21T00:00:00+03:00",
       "_7ya": {
         "platform": "TikTok",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected TikTok analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "views": 808,
           "likes": 13,
@@ -51,19 +56,22 @@
           "shares": 1,
           "reach": 691
         }
-      }
+      },
+      "date_published": "2026-04-21T00:00:00+03:00"
     },
     {
       "id": "tiktok-hiphop-20260512",
       "url": "https://www.tiktok.com/@igor.vepretski/video/7638959410114546965",
       "title": "היפ־הופ כחלק מהביוגרפיה",
       "content_text": "יצירה ושיתוף פעולה מתוך הפיד — לא נספח לסיפור, אלא חלק ממנו.",
-      "date_published": "2026-05-12T00:00:00+03:00",
       "_7ya": {
         "platform": "TikTok",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected TikTok analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "views": 1202,
           "likes": 42,
@@ -71,129 +79,154 @@
           "shares": 4,
           "reach": 995
         }
-      }
+      },
+      "date_published": "2026-05-12T00:00:00+03:00"
     },
     {
       "id": "linkedin-starton-20260913",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7504811986866794496",
       "title": "StartOn: מטכנולוגיה לתשתית של שייכות",
       "content_text": "רפלקציה מקצועית על המעבר מחדר VR לשאלה מערכתית: איך בונים תשתית מקומית שמחברת טכנולוגיה, קהילה ואנשי מקצוע.",
-      "date_published": "2026-09-13T00:00:00+03:00",
       "_7ya": {
         "platform": "LinkedIn",
         "kind": "owner_post",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected LinkedIn analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "impressions": 112,
           "unique_impressions": 67
         }
-      }
+      },
+      "date_published": "2026-09-13T00:00:00+03:00"
     },
     {
       "id": "linkedin-7ya-20260912",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7504448995096977408",
       "title": "מה קורה כשאינטרנט הופך לתיעוד חיים?",
       "content_text": "הסבר קצר על 7YA כשכבת הקשר: אדם, רגעים, מקורות ו־provenance במקום עוד פיד.",
-      "date_published": "2026-09-12T00:00:00+03:00",
       "_7ya": {
         "platform": "LinkedIn",
         "kind": "owner_post",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected LinkedIn analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "impressions": 105,
           "reactions": 1,
           "unique_impressions": 76
         }
-      }
+      },
+      "date_published": "2026-09-12T00:00:00+03:00"
     },
     {
       "id": "linkedin-music-20260912",
       "url": "https://www.linkedin.com/feed/update/urn:li:share:7504449479098593280",
       "title": "גם יצירה נשארת ברשומה",
       "content_text": "פוסט שמחזיר את ׳מת על אקסל׳ לתוך הסיפור הציבורי — לא רק תפקידים וכותרות, גם מה שנוצר ונשאר.",
-      "date_published": "2026-09-12T00:00:00+03:00",
       "_7ya": {
         "platform": "LinkedIn",
         "kind": "owner_post",
+        "theme": null,
+        "owned": null,
         "metric_source": "Metricool connected LinkedIn analytics",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": {
           "impressions": 60,
           "unique_impressions": 44
         }
-      }
+      },
+      "date_published": "2026-09-12T00:00:00+03:00"
     },
     {
       "id": "youtube-starton-20260213",
       "url": "https://www.youtube.com/watch?v=SOx8DUXFIEw",
       "title": "מיזם חללים אינטראקטיביים לנערים בסיכון",
       "content_text": "StartOn בווידאו: המרחב, הרעיון והחיבור לנוער.",
-      "date_published": "2026-02-13T00:00:00+03:00",
       "_7ya": {
         "platform": "YouTube",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "YouTube connected catalog via Metricool",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": null
-      }
+      },
+      "date_published": "2026-02-13T00:00:00+03:00"
     },
     {
       "id": "youtube-story-20260421",
       "url": "https://www.youtube.com/watch?v=fxFAUrb1h0M",
       "title": "Igor Vepretski Story — what’s your story?",
       "content_text": "סיפור חיים בפורמט וידאו, בגוף ראשון.",
-      "date_published": "2026-04-21T00:00:00+03:00",
       "_7ya": {
         "platform": "YouTube",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "YouTube connected catalog via Metricool",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": null
-      }
+      },
+      "date_published": "2026-04-21T00:00:00+03:00"
     },
     {
       "id": "youtube-collab-20260606",
       "url": "https://www.youtube.com/watch?v=dhIiamSyKZk",
       "title": "#7YA × Nawan",
       "content_text": "רגע יצירה משותף מתוך הארכיון הפעיל.",
-      "date_published": "2026-06-06T00:00:00+03:00",
       "_7ya": {
         "platform": "YouTube",
         "kind": "owner_video",
+        "theme": null,
+        "owned": null,
         "metric_source": "YouTube connected catalog via Metricool",
         "metric_as_of": "2026-09-18",
+        "metric_display": null,
         "metrics": null
-      }
+      },
+      "date_published": "2026-06-06T00:00:00+03:00"
     },
     {
       "id": "youtube-bizzi-2025",
       "url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
       "title": "BIZZI (feat. Vepretski)",
       "content_text": "המוזיקה כחלק מאותו מסלול חיים ציבורי.",
-      "date_published": "2025-08-07T00:00:00+03:00",
       "_7ya": {
         "platform": "YouTube",
         "kind": "music",
+        "theme": null,
+        "owned": null,
         "metric_source": "Canonical public YouTube source",
         "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
-      }
+      },
+      "date_published": "2025-08-07T00:00:00+03:00"
     },
     {
       "id": "instagram-public-reel-20231017",
       "url": "https://www.instagram.com/reel/CyhEU1kMUuH/",
       "title": "גיבורי העל של התקופה",
       "content_text": "ריל אישי שנוצר בזמן פחד ציבורי כהכרת תודה לאנשים שפעלו בשטח.",
-      "date_published": "2023-10-17T00:00:00+03:00",
       "_7ya": {
         "platform": "Instagram",
         "kind": "owner_reel",
+        "theme": null,
+        "owned": null,
         "metric_source": "Public source-linked reel",
         "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
-      }
+      },
+      "date_published": "2023-10-17T00:00:00+03:00"
     },
     {
       "id": "facebook-live-surface",
@@ -203,8 +236,11 @@
       "_7ya": {
         "platform": "Facebook",
         "kind": "public_surface",
+        "theme": null,
+        "owned": null,
         "metric_source": "Canonical public surface",
         "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
       }
     },
@@ -216,8 +252,11 @@
       "_7ya": {
         "platform": "Telegram",
         "kind": "public_surface",
+        "theme": null,
+        "owned": null,
         "metric_source": "Canonical public surface",
         "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
       }
     },
@@ -229,8 +268,11 @@
       "_7ya": {
         "platform": "Threads",
         "kind": "public_surface",
+        "theme": null,
+        "owned": null,
         "metric_source": "Canonical public surface",
         "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
       }
     },
@@ -242,8 +284,213 @@
       "_7ya": {
         "platform": "X",
         "kind": "public_surface",
+        "theme": null,
+        "owned": null,
         "metric_source": "Canonical public surface",
         "metric_as_of": null,
+        "metric_display": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "linkedin-identity-20260911",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7504087285517336576",
+      "title": "אני האדם. המערכות הן הכלים.",
+      "content_text": "פוסט אישי שמפריד בין האדם, StartOn, 7YA והזירות הציבוריות — כדי שהזהות לא תיבלע בתוך מערכת אחת.",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "theme": "identity",
+        "owned": true,
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metric_display": null,
+        "metrics": {
+          "impressions": 55,
+          "comments": 1,
+          "unique_impressions": 34
+        }
+      },
+      "date_published": "2026-09-11T00:00:00+03:00"
+    },
+    {
+      "id": "linkedin-supernoah-20260909",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7503449606756925440",
+      "title": "SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+      "content_text": "רשומת מחקר שמפנה למנוסקריפט ב-Academia על agency, אימות, גבולות ועמידות דיגיטלית.",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "theme": "research",
+        "owned": true,
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metric_display": null,
+        "metrics": {
+          "impressions": 86,
+          "reactions": 1,
+          "unique_impressions": 61
+        }
+      },
+      "date_published": "2026-09-09T00:00:00+03:00"
+    },
+    {
+      "id": "linkedin-founder-led-20260701",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7478082728211574784",
+      "title": "Partnership is not a logo wall.",
+      "content_text": "פוסט על 7YA כפרויקט founder-led, evidence-first: אחריות, תשתית ואמון ציבורי לפני קיר לוגואים.",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "theme": "7ya",
+        "owned": true,
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metric_display": null,
+        "metrics": {
+          "impressions": 211,
+          "comments": 2,
+          "reactions": 7,
+          "unique_impressions": 93
+        }
+      },
+      "date_published": "2026-07-01T00:00:00+03:00"
+    },
+    {
+      "id": "tiktok-youth-systems-20260612",
+      "url": "https://www.tiktok.com/@igor.vepretski/video/7650534474920332565",
+      "title": "הכאב השקט: ילדים שנופלים בין הכיסאות",
+      "content_text": "וידאו אישי שקושר שחיקת אמון לצורך לבנות מערכות שמעלות נוער בסיכון — פחות סיסמאות, יותר עבודה.",
+      "_7ya": {
+        "platform": "TikTok",
+        "kind": "owner_video",
+        "theme": "public_voice",
+        "owned": true,
+        "metric_source": "Metricool connected TikTok analytics",
+        "metric_as_of": "2026-09-18",
+        "metric_display": null,
+        "metrics": {
+          "views": 690,
+          "likes": 21,
+          "comments": 6,
+          "shares": 0,
+          "reach": 601
+        }
+      },
+      "date_published": "2026-06-12T00:00:00+03:00"
+    },
+    {
+      "id": "spotify-owned-show-2024",
+      "url": "https://open.spotify.com/show/6NAWKyKNuPC0AvWzLfb1Dh",
+      "title": "איגור ופרצקי — מנער בסיכון לקרימינולוג ויזם חברתי",
+      "content_text": "פודקאסט עצמאי ארוך שמרכז את מסלול החיים, הקרימינולוגיה, היצירה והמעבר ליזמות חברתית.",
+      "_7ya": {
+        "platform": "Spotify",
+        "kind": "owned_podcast",
+        "theme": "longform",
+        "owned": true,
+        "metric_source": "Public Spotify platform source",
+        "metric_as_of": null,
+        "metric_display": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "spotify-life-episode-20240101",
+      "url": "https://open.spotify.com/episode/7pp988VKcWZDrpACnGxC4U",
+      "title": "מנער בסיכון ליזם חברתי — 1:14 שעות",
+      "content_text": "פרק ארוך בבעלות Igor Vepretski שמאפשר לשמוע את הסיפור בלי לקצר אותו לכותרת או קליפ.",
+      "_7ya": {
+        "platform": "Spotify",
+        "kind": "owned_podcast_episode",
+        "theme": "longform",
+        "owned": true,
+        "metric_source": "Public Spotify platform source",
+        "metric_as_of": null,
+        "metric_display": null,
+        "metrics": null
+      },
+      "date_published": "2024-01-01T00:00:00+03:00"
+    },
+    {
+      "id": "spotify-mindset-mirror-20240102",
+      "url": "https://open.spotify.com/episode/42PO14etZLk1D1hvkTUP1h",
+      "title": "איגור ופרצקי ושלומי חסטר — מיינדסט",
+      "content_text": "שיחה ארוכה על מסלול חיים, שינוי תפיסה ויזמות חברתית, שנשמרה גם במשטח הפודקאסט העצמאי.",
+      "_7ya": {
+        "platform": "Spotify",
+        "kind": "owned_distribution",
+        "theme": "longform",
+        "owned": true,
+        "metric_source": "Public Spotify platform source",
+        "metric_as_of": null,
+        "metric_display": null,
+        "metrics": null
+      },
+      "date_published": "2024-01-02T00:00:00+03:00"
+    },
+    {
+      "id": "youtube-nawan-external-2025",
+      "url": "https://www.youtube.com/shorts/k9haTADKG3M",
+      "title": "Joy stick 🕹️ @Igor.vepretski",
+      "content_text": "הופעת יוצר חיצונית אצל Nawan1 שבה Igor מתויג. נשמרת כאן כהפצה חיצונית, לא כתוכן בבעלות Igor.",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "external_creator_appearance",
+        "theme": "external_amplification",
+        "owned": false,
+        "metric_source": "Dated YouTube public UI screenshot",
+        "metric_as_of": "2026-08-17",
+        "metric_display": "5.1M views · 82K likes · 717 comments",
+        "metrics": null
+      }
+    },
+    {
+      "id": "youtube-owned-nawan-2025",
+      "url": "https://www.youtube.com/watch?v=iJyEgWnGA5M",
+      "title": "@Nawan #7YA🥷🏼",
+      "content_text": "וידאו בבעלות ערוץ Igor Vepretski #7YA המחבר במפורש את שיתוף הפעולה עם Nawan ל־7YA.",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "owner_video",
+        "theme": "music",
+        "owned": true,
+        "metric_source": "Archived YouTube capture",
+        "metric_as_of": "2025-10-18",
+        "metric_display": "234 views",
+        "metrics": null
+      }
+    },
+    {
+      "id": "wikimedia-starton-onepager-20221229",
+      "url": "https://commons.wikimedia.org/wiki/File:One_pager_starton_new.pdf",
+      "title": "StartOn — ה-One Pager המקורי",
+      "content_text": "מסמך ציבורי שהועלה בידי Igorvepretski ומתאר את רעיון החללים האינטראקטיביים לנוער בסיכון.",
+      "_7ya": {
+        "platform": "Wikimedia Commons",
+        "kind": "owner_public_document",
+        "theme": "starton",
+        "owned": true,
+        "metric_source": "Public indexed Wikimedia source",
+        "metric_as_of": null,
+        "metric_display": null,
+        "metrics": null
+      },
+      "date_published": "2022-12-29T00:00:00+03:00"
+    },
+    {
+      "id": "amazon-music-artist-catalog",
+      "url": "https://music.amazon.com/artists/B08FGHGZT2/igor-vepretski",
+      "title": "קטלוג המוזיקה של Igor Vepretski",
+      "content_text": "משטח מוזיקה ציבורי שמרכז את СупаПорп, חצופה, פרח במדבר, מת על אקסל, אני עידו וקרדיטים משותפים.",
+      "_7ya": {
+        "platform": "Amazon Music",
+        "kind": "artist_catalog",
+        "theme": "music",
+        "owned": true,
+        "metric_source": "Public Amazon Music artist source",
+        "metric_as_of": null,
+        "metric_display": null,
         "metrics": null
       }
     }
