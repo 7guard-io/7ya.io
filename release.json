@@ -1,15 +1,15 @@
 {
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
-  "status": "READY_FOR_CUTOVER",
+  "status": "READY_FOR_RICH_CONTENT_DEPLOY",
   "release": "7ya-cloudflare-canonical-20260918-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "a948aa55a4cac830d855f508a1efc36e6c29d4b1",
-  "source_sha_role": "rich-home source baseline before metadata refresh",
+  "source_sha": "46428a311fbe187d16bc7792237043bceccb0431",
+  "source_sha_role": "latest rich-surface source baseline before release metadata refresh",
   "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
   "environment": "candidate",
-  "experience": "IGOR_PERSONAL_SOCIAL_FIRST_HOMEPAGE",
+  "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
   "build_marker": "7ya-cloudflare-canonical-20260918-v1",
@@ -63,12 +63,12 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Make Cloudflare Pages the single public static source of truth for 7ya.io and present Igor as a living public record: original video, long-form audio, writing, StartOn, research, music, social posts and clearly labeled external distribution.",
-  "promotion_gate": "Promote to READY only after 7ya.io and www.7ya.io resolve to the Cloudflare Pages project, the homepage serves marker 7ya-cloudflare-canonical-20260918-v1, /api/health returns canonical Cloudflare JSON, /api/feed.json serves the current feed, and critical routes pass live verification.",
-  "blockers": [
-    "GitHub Actions cannot perform the automated Cloudflare cutover because GitHub has restricted metered usage after repeated PayPal billing failures; GitHub's billing email says payment information must be updated and cancelled products may need re-subscription.",
-    "The authoritative DNS still targets AppDeploy (apex 18.232.7.146; www proxy-v2.appdeploy.ai), while AppDeploy currently has no registered custom-domain records and rejects attempts to add them.",
-    "Cloudflare Pages origin is healthy at 7ya-io.pages.dev but currently serves an older successful artifact; the newest governed artifact is prepared in main and awaits a successful Pages deployment/cutover."
-  ],
-  "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy."
+  "release_intent": "Present Igor Vepretski as a living public record built from original video, long-form audio, writing, StartOn sources, research, music, social posts and clearly labeled external distribution, with source-first provenance and privacy boundaries.",
+  "promotion_gate": "Promote to READY after the canonical domain serves the current rich artifact, the public feed exposes 30 curated items, critical routes pass live verification, and apex/www routing is consistent.",
+  "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
+  "remaining_gates": [
+    "Deploy the latest main-branch artifact to the existing Cloudflare Pages production project.",
+    "Verify the rich homepage, 30-item feed, Igor, Media, StartOn and Research surfaces on the canonical domain.",
+    "Verify www.7ya.io resolves to the same canonical Cloudflare Pages surface or redirects safely to 7ya.io."
+  ]
 }
