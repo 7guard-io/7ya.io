@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T18:48:00+03:00",
+  "generated_at": "2026-09-18T18:57:00+03:00",
   "purpose": "Curated personal social-life and public-impact stream for 7YA. Sources stay platform-native; Facebook and Instagram resonance are surfaced with source-bound counters.",
   "curation_principles": [
     "person_before_platform",
@@ -869,6 +869,151 @@
       "owned": true,
       "archive_only": true,
       "political": true
+    },
+    {
+      "id": "instagram-fatherhood-statusim-20230220",
+      "platform": "Instagram",
+      "date": "2023-02-20",
+      "kind": "external_repost",
+      "title": "אבא מושלם — זה אבא ששם",
+      "summary": "גרסת Instagram של סטטוסים מצייצים לסיפור האבהות, עם דיון ציבורי מפורט סביב נוכחות הורית.",
+      "url": "https://www.instagram.com/p/Co4HKRLoack/",
+      "metrics": {
+        "likes": 2329,
+        "comments": 41
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "audience_reactions": [
+        "גדלתי ילדים נפלאים בלי סופר נני... צודק",
+        "זה פשוט מדהים שהסטנדרטים לאבא טוב היום זה ״להיות שם״",
+        "בול!!!!",
+        "כל הכבוד על הפוסט"
+      ],
+      "theme": "impact fatherhood",
+      "owned": false,
+      "featured": true
+    },
+    {
+      "id": "instagram-abba-rusi-20251114",
+      "platform": "Instagram",
+      "date": "2025-11-14",
+      "kind": "owned_reel",
+      "title": "כשהילד שלי מותקף בבית הספר: איך מתמודדים?",
+      "summary": "ריל #אבא_רוסי על תגובה הורית לאירוע בבית הספר.",
+      "url": "https://www.instagram.com/reel/DRDMnqDjC12/",
+      "metrics": {
+        "likes": 328,
+        "comments": 2
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "audience_reactions": [
+        "❤️ חרשו",
+        "מצחיק, אבל זה אני שלשום."
+      ],
+      "theme": "fatherhood life impact",
+      "owned": true
+    },
+    {
+      "id": "facebook-mial-newsonline",
+      "platform": "Facebook",
+      "date": null,
+      "kind": "external_syndication",
+      "title": "מיאל — עותק NewsOnlineIL",
+      "summary": "עותק נוסף בסיפור מיאל שממחיש propagation בין עמודים והמשך דיון ציבורי.",
+      "url": "https://www.facebook.com/NewsOnlineIL/posts/%D7%AA%D7%97%D7%99%D7%9C%D7%AA-%D7%A9%D7%91%D7%95%D7%A2-%D7%94%D7%92%D7%A0%D7%A0%D7%AA-%D7%9E%D7%AA%D7%A7%D7%A9%D7%A8%D7%AA-%D7%90%D7%A0%D7%99-%D7%9E%D7%91%D7%A7%D7%A9%D7%AA-%D7%A9%D7%AA%D7%92%D7%99%D7%A2-%D7%9C%D7%A7%D7%97%D7%AA-%D7%90%D7%AA-%D7%9E%D7%99%D7%90%D7%9C-%D7%94%D7%95%D7%90-%D7%9E%D7%A8%D7%91%D7%99%D7%A5-%D7%9C%D7%9B%D7%95%D7%9C%D7%9D-%D7%95%D7%A4%D7%A9%D7%95%D7%98-%D7%9E%D7%A1%D7%A8%D7%91-/646422547522809/",
+      "metrics": {
+        "comments": 161,
+        "shares": 131
+      },
+      "metric_source": "Live public Facebook page",
+      "metric_as_of": "2026-09-18",
+      "audience_reactions": [
+        "אח יקר אבא מושלם",
+        "מקסים ומרגש",
+        "כל הכבוד על הגישה!!!!",
+        "מדהים!!!",
+        "אלוף האלופים."
+      ],
+      "theme": "impact fatherhood propagation",
+      "owned": false,
+      "featured": true
+    },
+    {
+      "id": "instagram-bizzi-cmt-20250819",
+      "platform": "Instagram",
+      "date": "2025-08-19",
+      "kind": "external_repost",
+      "title": "BIZZI — CMT / Show Room",
+      "summary": "הפצה חיצונית של הקליפ BIZZI שממקמת את שיתוף הפעולה כחלק מרשת יוצרים רחבה יותר.",
+      "url": "https://www.instagram.com/reel/DNh3rQfsVMJ/",
+      "metrics": {
+        "comments": 2
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "audience_reactions": [
+        "🙌"
+      ],
+      "theme": "music impact",
+      "owned": false
+    },
+    {
+      "id": "instagram-archive-aggregate-2022-2024",
+      "platform": "Instagram",
+      "date": "2022–2024",
+      "kind": "owner_export_snapshot",
+      "title": "Instagram archive — 21 videos",
+      "summary": "אוסף היסטורי של 21 סרטונים מתוארכים שנשמר בייצוא הרשמי של החשבון.",
+      "url": "https://www.instagram.com/igor.vepretski/",
+      "metrics": {
+        "views": 17847,
+        "likes": 1146,
+        "comments": 92
+      },
+      "metric_source": "Verified owner export aggregate",
+      "metric_as_of": "2026-09-18",
+      "theme": "archive analytics",
+      "owned": true,
+      "archive_only": true
+    },
+    {
+      "id": "instagram-august-2023-insights",
+      "platform": "Instagram",
+      "date": "2023-08",
+      "kind": "owner_insights_snapshot",
+      "title": "Instagram Business — August 2023",
+      "summary": "צילום מצב חודשי רשמי שמראה את היקף החשיפה והאינטראקציה בתקופה שבה סיפורי זהות ואבהות הופצו.",
+      "url": "https://www.instagram.com/igor.vepretski/",
+      "metrics": {
+        "reach": 248155,
+        "interactions": 15559
+      },
+      "metric_source": "Official Instagram Business monthly report",
+      "metric_as_of": "2023-09-08",
+      "theme": "archive analytics",
+      "owned": true,
+      "archive_only": true
+    },
+    {
+      "id": "instagram-2025-insights-window",
+      "platform": "Instagram",
+      "date": "2025-09–12",
+      "kind": "owner_insights_snapshot",
+      "title": "Instagram official analytics — Sep–Dec 2025",
+      "summary": "חלון אנליטיקה רשמי מהייצוא ההיסטורי של החשבון.",
+      "url": "https://www.instagram.com/igor.vepretski/",
+      "metrics": {
+        "views": 245206,
+        "reach": 112582,
+        "interactions": 20386
+      },
+      "metric_source": "Verified owner export analytics",
+      "metric_as_of": "2025-12-18",
+      "theme": "archive analytics",
+      "owned": true,
+      "archive_only": true
     }
   ],
   "source_notes": {
@@ -877,5 +1022,7 @@
     "policy": "External distribution is labeled separately from owned content; no synthetic totals."
   },
   "audience_voice_policy": "Public comments only; short excerpts; names omitted in the public projection; mixed response is preserved when visible.",
-  "default_projection": "Non-archive public-life records; archive_only records remain available through the public-archive filter."
+  "default_projection": "Non-archive public-life records; archive_only records remain available through the public-archive filter.",
+  "public_projection_count": 54,
+  "total_record_count": 59
 }

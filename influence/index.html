@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#070706">
   <meta name="color-scheme" content="dark">
-  <meta name="7ya-build" content="public-influence-wall-20260714-1">
+  <meta name="7ya-build" content="public-influence-wall-20260918-social-live-1">
   <link rel="canonical" href="https://7ya.io/influence/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/igor-home-portrait-20260712.webp" as="image" type="image/webp" fetchpriority="high">
@@ -16,6 +16,7 @@
   <link rel="preconnect" href="https://pic1.yitweb.co.il">
   <link rel="stylesheet" href="/styles/history-song-20260714.css?v=1">
   <link rel="stylesheet" href="/styles/influence-wall-20260714.css?v=1">
+  <link rel="stylesheet" href="/styles/influence-social-live-20260918.css?v=1">
 
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="7YA.IO">
@@ -115,6 +116,28 @@
       </div>
     </section>
 
+
+    <section class="live-social-corpus section" id="live-social-corpus" aria-labelledby="live-social-title">
+      <div class="section-intro reveal">
+        <div><p class="section-number">04 / LIVE SOCIAL CORPUS</p><h2 id="live-social-title">Facebook + Instagram.<br>הפוסטים, ההד, התגובות.</h2></div>
+        <p>המאגר הזה נטען ישירות מקורפוס 7YA העדכני. בבעלותי והפצה חיצונית מסומנים בנפרד; תגובות מוצגות רק כשיש טקסט ציבורי מאומת.</p>
+      </div>
+      <div class="live-social-toolbar reveal">
+        <label><span>חיפוש בפוסטים</span><input id="liveSocialSearch" type="search" placeholder="אבהות, מיאל, רוסי, BIZZI, StartOn…"></label>
+        <div class="live-social-filters" role="group" aria-label="סינון הקורפוס החברתי">
+          <button class="active" data-live-filter="all">הכול</button>
+          <button data-live-filter="Facebook">Facebook</button>
+          <button data-live-filter="Instagram">Instagram</button>
+          <button data-live-filter="owned">בבעלותי</button>
+          <button data-live-filter="external">הפצה חיצונית</button>
+          <button data-live-filter="comments">עם תגובות</button>
+        </div>
+      </div>
+      <div class="live-social-meta reveal"><strong id="liveSocialCount">—</strong><span>רשומות חברתיות נטענו</span><a href="/knowledge/social-corpus-20260918.json">JSON מקור ↗</a></div>
+      <div class="live-social-grid" id="liveSocialGrid" aria-live="polite"></div>
+      <div class="archive-empty" id="liveSocialEmpty" hidden>לא נמצאו רשומות מתאימות.</div>
+    </section>
+
     <section class="archive section" id="archive" aria-labelledby="archive-title">
       <div class="archive-head reveal">
         <div>
@@ -179,5 +202,6 @@
   </footer>
 
   <script src="/scripts/history-song-20260714.js" defer></script>
+  <script src="/scripts/influence-social-live-20260918.js?v=1" defer></script>
 </body>
 </html>
