@@ -100,7 +100,9 @@
     rail.querySelectorAll('.social-card').forEach(card=>{
       const classes=card.dataset.feedClass||'';
       let show=true;
-      if(filter==='owned')show=classes.includes('owned');
+      if(filter==='facebook')show=classes.includes('facebook');
+      else if(filter==='instagram')show=classes.includes('instagram');
+      else if(filter==='owned')show=classes.includes('owned');
       else if(filter==='external')show=classes.includes('external');
       else if(filter==='longform')show=classes.includes('longform')||classes.includes('podcast');
       else if(filter==='music')show=classes.includes('music')||classes.includes('artist_catalog');
