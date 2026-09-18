@@ -5,8 +5,8 @@
   "release": "7ya-cloudflare-canonical-20260918-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "46428a311fbe187d16bc7792237043bceccb0431",
-  "source_sha_role": "latest rich-surface source baseline before release metadata refresh",
+  "source_sha": "baa93b0d05e59b92c32a37dabc66f6752eb3bf01",
+  "source_sha_role": "latest rich public-record baseline before root deployment trigger",
   "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
@@ -68,7 +68,7 @@
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [
     "Deploy the latest main-branch artifact to the existing Cloudflare Pages production project.",
-    "Verify the rich homepage, 30-item feed, Igor, Media, StartOn and Research surfaces on the canonical domain.",
-    "Verify www.7ya.io resolves to the same canonical Cloudflare Pages surface or redirects safely to 7ya.io."
+    "Verify homepage, 30-item feed, Igor, Media, StartOn, Research and Library on 7ya.io.",
+    "Verify www.7ya.io resolves to the canonical Cloudflare Pages surface or redirects safely to 7ya.io."
   ]
 }
