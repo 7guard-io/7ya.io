@@ -58,7 +58,7 @@ async function walk(directory, prefix = '') {
 }
 
 function injectSharedAssets(html, relative) {
-  if (relative === '404.html') return html;
+  if (relative === '404.html' || relative.startsWith('api/')) return html;
   if (!html.includes('</head>') || !html.includes('</body>')) {
     throw new Error(`Cannot inject shared assets into malformed HTML: ${relative}`);
   }
