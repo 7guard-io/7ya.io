@@ -14,24 +14,98 @@
     if(Number.isFinite(m.impressions))out.push(`${fmt(m.impressions)} impressions`);
     if(Number.isFinite(m.reach))out.push(`${fmt(m.reach)} reach`);
     if(Number.isFinite(m.likes))out.push(`${fmt(m.likes)} likes`);
+    if(Number.isFinite(m.likes_reactions))out.push(`${fmt(m.likes_reactions)} likes/reactions`);
     if(Number.isFinite(m.reactions))out.push(`${fmt(m.reactions)} reactions`);
     if(Number.isFinite(m.comments))out.push(`${fmt(m.comments)} comments`);
     if(Number.isFinite(m.shares))out.push(`${fmt(m.shares)} shares`);
+    if(Number.isFinite(m.saves))out.push(`${fmt(m.saves)} saves`);
     return out.slice(0,4).join(' · ');
   };
 
-  const classify=(item)=>{
-    const values=[
-      item.theme,
-      item.kind,
-      item.platform,
-      item.owned===true?'owned':'',
-      item.owned===false?'external':''
-    ].filter(Boolean).join(' ').toLowerCase();
-    return values;
+  const classify=(item)=>[
+    item.theme,
+    item.kind,
+    item.object_type,
+    item.relationship,
+    item.platform,
+    item.archive_only?'archive':'',
+    item.owned===true?'owned':'',
+    item.owned===false?'external':''
+  ].filter(Boolean).join(' ').toLowerCase();
+
+  const timeKey=(item)=>{
+    if(/^\d{8}$/.test(String(item.chronology||''))&&String(item.chronology)!=='99999999')return Number(item.chronology);
+    const date=String(item.date||'');
+    if(/^\d{4}-\d{2}-\d{2}/.test(date))return Number(date.slice(0,10).replaceAll('-',''));
+    const year=String(item.year||date).match(/\b(19|20)\d{2}\b/)?.[0];
+    return year?Number(year)*10000:0;
   };
 
-  const displayScore=(item)=>{const cls=classify(item);return (item.featured?100:0)+(cls.includes('impact')&&!cls.includes('archive')?40:0)+(item.owned===true?10:0)-(cls.includes('archive')?30:0);};
+  const displayScore=(item)=>{
+    const cls=classify(item);
+    return (item.featured?1000000000:0)
+      +(cls.includes('impact')&&!cls.includes('archive')?200000000:0)
+      +(item.owned===true?50000000:0)
+      +(item.origin==='curated'?25000000:0)
+      +(cls.includes('archive')?-10000000:0)
+      +timeKey(item);
+  };
+
+  const ownershipFromRelationship=(relationship='')=>{
+    const s=String(relationship).toLowerCase();
+    if(/external|repost|syndicat|mirror|distribution/.test(s))return false;
+    if(/owned|first.party|creator|self|original/.test(s))return true;
+    return null;
+  };
+
+  const normalizeMaster=(record,generatedAt)=>({
+    id:`master-${record.id}`,
+    origin:'master',
+    platform:record.platform||'Public record',
+    date:/^\d{4}-\d{2}-\d{2}/.test(String(record.date||''))?record.date:String(record.year||'').match(/^\d{4}$/)?.[0]||null,
+    year:record.year,
+    chronology:record.chronology,
+    kind:record.object_type||'public_record',
+    object_type:record.object_type,
+    relationship:record.relationship,
+    title:record.title||record.id,
+    summary:[record.publisher,record.relationship,record.object_type].filter(Boolean).join(' · ')||'רשומה ציבורית מתוך הארכיון המתועד של 7YA.',
+    url:record.url,
+    metrics:record.metrics||{},
+    metric_source:'7YA Master Public Record',
+    metric_as_of:String(generatedAt||'').slice(0,10)||null,
+    owned:ownershipFromRelationship(record.relationship),
+    archive_only:!!record.archive_only,
+    political:!!record.political,
+    verification:record.verification,
+    source_class:record.source_class
+  });
+
+  const canonicalUrl=(value)=>{
+    if(!value)return '';
+    try{
+      const u=new URL(value,location.origin);
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>u.searchParams.delete(k));
+      u.hash='';
+      return u.href.replace(/\/$/,'');
+    }catch{return String(value).trim().replace(/\/$/,'');}
+  };
+
+  const mergeRecords=(curated,master)=>{
+    const out=[],seenUrl=new Set(),seenTitle=new Set();
+    const add=(item)=>{
+      if(!item?.url)return;
+      const url=canonicalUrl(item.url);
+      const titleKey=`${String(item.platform||'').toLowerCase()}|${String(item.title||'').trim().toLowerCase()}|${String(item.date||item.year||'')}`;
+      if((url&&seenUrl.has(url))||seenTitle.has(titleKey))return;
+      if(url)seenUrl.add(url);
+      seenTitle.add(titleKey);
+      out.push(item);
+    };
+    curated.forEach(item=>add({...item,origin:'curated'}));
+    master.filter(r=>!r.political).forEach(add);
+    return out;
+  };
 
   const make=(item)=>{
     const a=document.createElement('a');
@@ -41,6 +115,8 @@
     a.rel='noreferrer';
     a.dataset.socialCorpus=item.id;
     a.dataset.feedClass=classify(item);
+    a.dataset.feedOrigin=item.origin||'curated';
+    a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
     if(item.image){
       const img=document.createElement('img');
@@ -53,29 +129,27 @@
       const frame=document.createElement('div');
       frame.className='social-frame';
       const b=document.createElement('b');
-      b.textContent=item.platform;
+      b.textContent=item.platform||'PUBLIC';
       const em=document.createElement('em');
-      em.textContent=item.date||'PUBLIC SOURCE';
+      em.textContent=item.date||item.year||'PUBLIC SOURCE';
       frame.append(b,em);
       a.append(frame);
     }
 
     const copy=document.createElement('div');
     copy.className='social-copy';
-
     const meta=document.createElement('div');
     meta.className='social-meta';
     const platform=document.createElement('span');
-    platform.textContent=item.platform;
+    platform.textContent=item.platform||'Public record';
     const date=document.createElement('span');
-    date.textContent=item.date||'ARCHIVE';
+    date.textContent=item.date||item.year||'ARCHIVE';
     meta.append(platform,date);
 
     const h=document.createElement('h3');
-    h.textContent=item.title;
+    h.textContent=item.title||'Public record';
     const p=document.createElement('p');
-    p.textContent=item.summary;
-
+    p.textContent=item.summary||'רשומה ציבורית מחוברת למקור.';
     copy.append(meta,h,p);
 
     const metric=metricText(item);
@@ -87,56 +161,97 @@
 
     const ownership=document.createElement('span');
     ownership.className='ownership';
-    ownership.textContent=item.owned===false?'הפצה חיצונית':item.owned===true?'תוכן שלי':'מקור ציבורי';
+    ownership.textContent=item.origin==='master'
+      ?(item.owned===false?'הפצה חיצונית · Master Record':item.owned===true?'תוכן שלי · Master Record':'Master Public Record')
+      :(item.owned===false?'הפצה חיצונית':item.owned===true?'תוכן שלי':'מקור ציבורי');
     copy.append(ownership);
 
     const small=document.createElement('small');
-    small.textContent=`${item.metric_source||'Public source'}${item.metric_as_of?` · ${item.metric_as_of}`:''} ↗`;
+    small.textContent=`${item.metric_source||item.verification||'Public source'}${item.metric_as_of?` · ${item.metric_as_of}`:''} ↗`;
     copy.append(small);
-
     a.append(copy);
     return a;
   };
 
+  let searchTerm='';
   const applyFilter=(filter)=>{
     rail.querySelectorAll('.social-card').forEach(card=>{
       const classes=card.dataset.feedClass||'';
-      let show=true;
-      if(filter==='all'&&classes.includes('archive'))show=false;
-      if(filter==='impact')show=classes.includes('impact')&&!classes.includes('archive');
-      else if(filter==='archive')show=classes.includes('archive');
-      else if(filter==='facebook')show=classes.includes('facebook');
-      else if(filter==='instagram')show=classes.includes('instagram');
-      else if(filter==='owned')show=classes.includes('owned');
-      else if(filter==='external')show=classes.includes('external');
-      else if(filter==='longform')show=classes.includes('longform')||classes.includes('podcast');
-      else if(filter==='music')show=classes.includes('music')||classes.includes('artist_catalog');
-      else if(filter==='research')show=classes.includes('research');
+      const searchable=card.dataset.feedSearch||'';
+      let show=!searchTerm||searchable.includes(searchTerm);
+      if(filter==='impact')show=show&&classes.includes('impact')&&!classes.includes('archive');
+      else if(filter==='archive')show=show&&card.dataset.feedOrigin==='master';
+      else if(filter==='facebook')show=show&&classes.includes('facebook');
+      else if(filter==='instagram')show=show&&classes.includes('instagram');
+      else if(filter==='tiktok')show=show&&classes.includes('tiktok');
+      else if(filter==='youtube')show=show&&classes.includes('youtube');
+      else if(filter==='linkedin')show=show&&classes.includes('linkedin');
+      else if(filter==='spotify')show=show&&classes.includes('spotify');
+      else if(filter==='owned')show=show&&classes.includes('owned');
+      else if(filter==='external')show=show&&classes.includes('external');
+      else if(filter==='longform')show=show&&(classes.includes('longform')||classes.includes('podcast')||classes.includes('spotify'));
+      else if(filter==='music')show=show&&(classes.includes('music')||classes.includes('artist_catalog'));
+      else if(filter==='research')show=show&&classes.includes('research');
       card.classList.toggle('is-filtered-out',!show);
     });
   };
 
-  fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'})
-    .then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();})
-    .then(data=>{
-      if(!Array.isArray(data.moments)||!data.moments.length)return;
-      const fragment=document.createDocumentFragment();
-      const ordered=[...data.moments].sort((a,b)=>displayScore(b)-displayScore(a));
-      ordered.forEach(item=>fragment.append(make(item)));
-      rail.replaceChildren(fragment);
-      rail.setAttribute('aria-label',`${data.moments.length} רגעים אמיתיים מכל הרשתות והמקורות של איגור ופרצקי`);
-      const count=section.querySelector('[data-feed-count]');if(count)count.textContent=String(data.moments.length);
-      const head=section.querySelector('.igor-live-head p');
-      if(head)head.textContent=`${data.moments.length} רגעים ציבוריים: תוכן בבעלותי, שיחות ארוכות, מוזיקה, כתיבה והפצה חיצונית מסומנת. כל כרטיס מחובר למקור.`;
-      section.dataset.socialCorpusLoaded='20260918-rich';
-      const activeFilter=section.querySelector('[data-feed-filter].is-active')?.dataset.feedFilter||'all';
-      applyFilter(activeFilter);
-    })
-    .catch(err=>console.warn('[7YA] social corpus fallback',err));
+  const controlsWrap=section.querySelector('.feed-controls');
+  const ensureFilter=(id,label)=>{
+    if(!controlsWrap||controlsWrap.querySelector(`[data-feed-filter="${id}"]`))return;
+    const button=document.createElement('button');
+    button.type='button';
+    button.dataset.feedFilter=id;
+    button.textContent=label;
+    controlsWrap.append(button);
+  };
+  [['tiktok','TikTok'],['youtube','YouTube'],['linkedin','LinkedIn'],['spotify','Spotify']].forEach(([id,label])=>ensureFilter(id,label));
+
+  if(controlsWrap&&!controlsWrap.querySelector('.feed-search')){
+    const search=document.createElement('input');
+    search.className='feed-search';
+    search.type='search';
+    search.placeholder='חיפוש בכל השנים והפלטפורמות…';
+    search.setAttribute('aria-label','חיפוש בפיד הציבורי של איגור ופרצקי');
+    controlsWrap.append(search);
+    search.addEventListener('input',()=>{
+      searchTerm=search.value.trim().toLowerCase();
+      const active=section.querySelector('[data-feed-filter].is-active')?.dataset.feedFilter||'all';
+      applyFilter(active);
+    });
+  }
+
+  Promise.all([
+    fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();}),
+    fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();})
+  ]).then(([socialData,masterData])=>{
+    const curated=Array.isArray(socialData.moments)?socialData.moments:[];
+    const masterRaw=Array.isArray(masterData.records)?masterData.records:[];
+    const master=masterRaw.filter(r=>r.url).map(r=>normalizeMaster(r,masterData.generated_at));
+    const merged=mergeRecords(curated,master);
+    if(!merged.length)return;
+
+    const fragment=document.createDocumentFragment();
+    const ordered=[...merged].sort((a,b)=>displayScore(b)-displayScore(a));
+    ordered.forEach(item=>fragment.append(make(item)));
+    rail.replaceChildren(fragment);
+
+    const total=Number(masterData.counts?.projected_records)||masterRaw.length||merged.length;
+    const publicUrls=Number(masterData.counts?.public_urls)||master.length;
+    rail.setAttribute('aria-label',`${total} רשומות ציבוריות מתועדות של איגור ופרצקי, מתוכן ${publicUrls} עם מקור ציבורי`);
+    const count=section.querySelector('[data-feed-count]');
+    if(count)count.textContent=total.toLocaleString('he-IL');
+    const head=section.querySelector('.igor-live-head p');
+    if(head)head.textContent=`${total.toLocaleString('he-IL')} רשומות מתועדות ב-Master Public Record, ${publicUrls.toLocaleString('he-IL')} עם URL ציבורי. הקורפוס האוצר נשאר בראש, והעבר מכל הפלטפורמות ממשיך אחריו — מקור, תאריך ומדדים כשיש.`;
+    section.dataset.socialCorpusLoaded='20260918-master-merged';
+
+    const activeFilter=section.querySelector('[data-feed-filter].is-active')?.dataset.feedFilter||'all';
+    applyFilter(activeFilter);
+  }).catch(err=>console.warn('[7YA] merged public record fallback',err));
 
   const controls=section.querySelectorAll('[data-feed-filter]');
   controls.forEach(button=>button.addEventListener('click',()=>{
-    controls.forEach(other=>other.classList.remove('is-active'));
+    section.querySelectorAll('[data-feed-filter]').forEach(other=>other.classList.remove('is-active'));
     button.classList.add('is-active');
     applyFilter(button.dataset.feedFilter||'all');
   }));
