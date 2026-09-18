@@ -1,18 +1,18 @@
 {
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
-  "status": "READY_FOR_RICH_CONTENT_DEPLOY",
-  "release": "7ya-cloudflare-canonical-20260918-v1",
+  "status": "READY_FOR_SOCIAL_IMPACT_DEPLOY",
+  "release": "7ya-cloudflare-canonical-20260918-v8",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "e2bacbba3abe89fdee33eddd8e318be647c21634",
-  "source_sha_role": "validated rich-surface source baseline before final root deployment trigger",
+  "source_sha": "6bb8b9a1419e9de328d38607d7b8893ed0b145c8",
+  "source_sha_role": "validated 52-item social-impact source head before release receipt commit",
   "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-cloudflare-canonical-20260918-v1",
+  "build_marker": "7ya-cloudflare-canonical-20260918-v8",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -40,8 +40,17 @@
   "social_corpus": {
     "path": "/knowledge/social-corpus-20260918.json",
     "public_feed": "/api/feed.json",
-    "curated_items": 30,
-    "policy": "Person before platform; source-linked public material; metrics only with a dated source."
+    "curated_items": 52,
+    "default_projection": "non-archive public-life records; civic/political records remain available as neutral public archive",
+    "features": [
+      "Facebook filter",
+      "Instagram filter",
+      "impact filter",
+      "public archive filter",
+      "verified audience excerpts",
+      "owned-vs-external labeling"
+    ],
+    "policy": "Person before platform; source-linked public material; public comments are short, source-verifiable and name-suppressed in projection; mixed response is preserved; metrics require a dated source."
   },
   "critical_surfaces": [
     "/",
@@ -63,11 +72,11 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Present Igor Vepretski as a living public record built from original video, long-form audio, writing, StartOn sources, research, music, social posts and clearly labeled external distribution, with source-first provenance and privacy boundaries.",
-  "promotion_gate": "Promote to READY after the canonical domain serves the current rich artifact, the public feed exposes 30 curated items, critical routes pass live verification, and apex/www routing is consistent.",
+  "release_intent": "Present Igor Vepretski as a living public record with a 52-item cross-platform corpus, source-linked Facebook and Instagram impact, verified public audience response, original media, long-form audio, StartOn, research and music; political/civic records remain neutral archival records rather than ranked recommendations.",
+  "promotion_gate": "Promote to READY after 7ya.io serves v8, the homepage exposes the impact wall and audience voices, the client feed loads 52 corpus items, and critical routes pass live verification.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [
-    "Verify the final rich artifact on 7ya.io across homepage, Igor, Media, StartOn, Research, Library and the 30-item feed.",
-    "Verify www.7ya.io resolves to the same Cloudflare Pages surface or redirects safely to 7ya.io."
+    "GitHub Actions is currently blocked before job start by an account billing lock; resolve GitHub billing to restore the governed deployment workflow.",
+    "Verify v8 on 7ya.io and 7ya-io.pages.dev after deployment, including 52-item feed, audience voices, /media/ social-impact section, and apex/www routing."
   ]
 }
