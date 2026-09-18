@@ -189,6 +189,7 @@ export const criticalArtifactPaths = [
   'knowledge/history-song-records-5.json',
   'knowledge/public-universe-records-20260715.json',
   'knowledge/public-response-signals-20260715.json',
+  'knowledge/social-corpus-20260918.json',
   'robots.txt',
   'sitemap.xml',
   'release.json',
