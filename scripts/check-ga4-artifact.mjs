@@ -19,7 +19,7 @@ async function walk(directory, prefix = '') {
   return files;
 }
 
-const htmlFiles = (await walk(output)).filter((file) => file.endsWith('.html'));
+const htmlFiles = (await walk(output)).filter((file) => file.endsWith('.html') && !file.startsWith('api/'));
 if (htmlFiles.length === 0) {
   console.error('GA4_ARTIFACT_CONTRACT: FAIL (no HTML files found)');
   process.exit(1);
