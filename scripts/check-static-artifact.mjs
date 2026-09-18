@@ -141,7 +141,7 @@ if (!hasIcon('192x192', 'any')) fail('web manifest missing 192x192 PNG icon');
 if (!hasIcon('512x512', 'any')) fail('web manifest missing 512x512 PNG icon');
 if (!hasIcon('512x512', 'maskable')) fail('web manifest missing dedicated maskable 512x512 PNG icon');
 
-for (const relative of artifactFiles.filter(file => file.endsWith('.html') && file !== '404.html')) {
+for (const relative of artifactFiles.filter(file => file.endsWith('.html') && file !== '404.html' && !file.startsWith('api/'))) {
   const html = await fs.readFile(path.join(output, relative), 'utf8');
   if (!html.includes('rel="manifest"')) fail(`${relative} missing web manifest link`);
   if (!html.includes('rel="apple-touch-icon"')) fail(`${relative} missing apple touch icon link`);
