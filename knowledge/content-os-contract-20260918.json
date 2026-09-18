@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "id": "7ya-content-os-20260918",
+  "purpose": "Permanent content coverage contract for 7YA. Major public surfaces must be generated from canonical corpora rather than hand-maintained page cards.",
+  "canonical_corpora": {
+    "master": {
+      "path": "/knowledge/master-public-record-20260918.json",
+      "minimum_records": 400,
+      "minimum_public_urls": 250
+    },
+    "curated": {
+      "path": "/knowledge/social-corpus-20260918.json",
+      "minimum_records": 50
+    }
+  },
+  "platform_minimums": {
+    "Facebook": 100,
+    "Instagram": 100,
+    "YouTube": 30,
+    "LinkedIn": 10,
+    "TikTok": 10
+  },
+  "universal_surfaces": [
+    {
+      "id": "life",
+      "label": "Life / Identity",
+      "href": "/igor-vepretski/",
+      "type": "internal"
+    },
+    {
+      "id": "starton",
+      "label": "StartOn",
+      "href": "/starton/",
+      "type": "internal"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "href": "/media/",
+      "type": "internal"
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "href": "/research/",
+      "type": "internal"
+    },
+    {
+      "id": "academia",
+      "label": "Academia",
+      "href": "https://igorvepretski.academia.edu/",
+      "type": "external"
+    },
+    {
+      "id": "articles",
+      "label": "Articles",
+      "href": "/articles/",
+      "type": "internal"
+    },
+    {
+      "id": "influence",
+      "label": "Influence",
+      "href": "/influence/",
+      "type": "internal"
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence",
+      "href": "/evidence/",
+      "type": "internal"
+    },
+    {
+      "id": "podcasts",
+      "label": "Podcasts",
+      "href": "https://open.spotify.com/episode/7pp988VKcWZDrpACnGxC4U",
+      "type": "external"
+    },
+    {
+      "id": "music",
+      "label": "Music",
+      "href": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "type": "external"
+    }
+  ],
+  "required_source_markers": {
+    "research/index.html": [
+      "academia.edu",
+      "SUPERNOAH"
+    ],
+    "articles/index.html": [
+      "academia.edu"
+    ],
+    "media/index.html": [
+      "academia.edu",
+      "youtube.com"
+    ],
+    "igor-vepretski/index.html": [
+      "academia.edu",
+      "facebook.com/vepretski7",
+      "instagram.com/igor.vepretski"
+    ],
+    "starton/index.html": [
+      "StartOn"
+    ],
+    "influence/index.html": [
+      "master-public-record-20260918.json"
+    ]
+  },
+  "impact_layer_routes": [
+    "index.html",
+    "7ya/index.html",
+    "museum/index.html",
+    "entity/index.html",
+    "create/index.html",
+    "history/index.html",
+    "igor-vepretski/index.html",
+    "journey/index.html",
+    "starton/index.html",
+    "radar/index.html",
+    "influence/index.html",
+    "research/index.html",
+    "response-ai/index.html",
+    "evidence/index.html",
+    "verify/index.html",
+    "ledger/index.html",
+    "speaker/index.html",
+    "talk/index.html",
+    "media/index.html",
+    "library/index.html",
+    "articles/index.html",
+    "contact/index.html",
+    "delta-audit/index.html",
+    "legacy/index.html"
+  ],
+  "projection_rules": {
+    "curated_first": true,
+    "master_fallback": true,
+    "dedupe_by_canonical_url": true,
+    "preserve_source_and_date": true,
+    "preserve_metrics_only_when_sourced": true,
+    "private_drive_urls_public": false,
+    "political_records_auto_promoted": false
+  }
+}
