@@ -1,17 +1,18 @@
 {
   "service": "7ya-frontend",
-  "provider": "github-pages",
-  "status": "READY",
-  "release": "2026-07-18-command-home-v1",
+  "provider": "cloudflare-pages",
+  "status": "READY_FOR_CUTOVER",
+  "release": "7ya-cloudflare-canonical-20260918-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "8d32ab349dde799b271c8cb27cba3ef2a3f2c39f",
-  "source_sha_policy": "Production must serve the exact immutable homepage source SHA and preserve independently verifiable route, metadata and artifact receipts.",
-  "environment": "production",
-  "experience": "IGOR_VEPRETSKI_COMMAND_HOMEPAGE",
-  "target_launch_date": "2026-07-18",
-  "publication_requested_at": "2026-07-18T14:27:28Z",
-  "build_marker": "igor-personal-command-20260718-1",
+  "source_sha": "d5c2143a841e29a59fdb44ca56ff2f8cdebb70ba",
+  "source_sha_role": "latest code-and-gate baseline before this release manifest update",
+  "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
+  "environment": "candidate",
+  "experience": "IGOR_PERSONAL_SOCIAL_FIRST_HOMEPAGE",
+  "target_launch_date": "2026-09-18",
+  "publication_requested_at": "2026-09-18",
+  "build_marker": "7ya-cloudflare-canonical-20260918-v1",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -28,21 +29,29 @@
       "combined_source_records_before_url_dedupe": 92,
       "runtime_url_deduplication": true,
       "fixed_ceiling": false,
-      "collection_model": ["VERIFIED_CORE", "PUBLIC_UNIVERSE"]
+      "collection_model": [
+        "VERIFIED_CORE",
+        "PUBLIC_UNIVERSE"
+      ]
     },
     "response_signals": "/knowledge/public-response-signals-20260715.json",
     "policy": "Evidence before amplification; every metric requires a dated snapshot; duplicate URLs collapse at runtime; private, minor, legal, financial and quarantined records are excluded from the public universe."
   },
+  "social_corpus": {
+    "path": "/knowledge/social-corpus-20260918.json",
+    "public_feed": "/api/feed.json",
+    "curated_items": 15,
+    "policy": "Person before platform; source-linked public material; metrics only with a dated source."
+  },
   "critical_surfaces": [
     "/",
     "/igor-vepretski/",
-    "/talk/",
-    "/social/",
-    "/pass/",
-    "/evidence/",
     "/starton/",
+    "/media/",
+    "/library/",
+    "/evidence/",
+    "/research/",
     "/contact/",
-    "/radar/",
     "/museum/",
     "/entity/",
     "/create/",
@@ -51,10 +60,14 @@
     "/journey/",
     "/influence/",
     "/response-ai/",
-    "/speaker/",
-    "/api/health"
+    "/api/health",
+    "/api/feed.json"
   ],
-  "release_intent": "Publish the approved black-and-gold command homepage with Living Identity and Human First AI sections, keep the verified archive intact and remove the production dependency on Replit.",
-  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-command-20260718-1, the title אדם. ראיות. פעולה., Living Identity, Command Center, /api/health and the critical static routes.",
-  "rollback": "The prior Tactical Ontology and History Song source commits remain available as immutable rollback references."
+  "release_intent": "Make Cloudflare Pages the single public static source of truth for 7ya.io; remove the AppDeploy catch-all proxy; publish Igor's personal, social-first homepage with open evidence and a curated cross-platform corpus.",
+  "promotion_gate": "Promote to READY only after 7ya.io and www.7ya.io resolve to the Cloudflare Pages project, the homepage serves marker 7ya-cloudflare-canonical-20260918-v1, /api/health returns canonical Cloudflare JSON, /api/feed.json serves the current feed, and critical routes pass live verification.",
+  "blockers": [
+    "GitHub Actions cannot currently perform the automated Cloudflare cutover because the GitHub account is locked due to a billing issue.",
+    "TinyFish interactive browser automation is unavailable until its wallet is funded; read-only live verification remains available."
+  ],
+  "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy."
 }
