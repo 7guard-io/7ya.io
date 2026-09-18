@@ -7,14 +7,19 @@ const allowed = [
   'ci.yml',
   'cloudflare-appdeploy-dns-apply-once.yml',
   'cloudflare-appdeploy-dns-preflight.yml',
+  'cloudflare-pages-emergency-cutover.yml',
+  'cloudflare-pages-full-deploy.yml',
   'digital-museum-collector.yml',
   'entity-consistency.yml',
+  'forever-fallback-pages.yml',
   'jekyll-gh-pages.yml',
   'meta-ai-discovery-enable.yml',
   'pages.yml',
 ];
 const pushEnabled = new Set([
   'cloudflare-appdeploy-dns-apply-once.yml',
+  'cloudflare-pages-emergency-cutover.yml',
+  'cloudflare-pages-full-deploy.yml',
   'entity-consistency.yml',
   'meta-ai-discovery-enable.yml',
 ]);
