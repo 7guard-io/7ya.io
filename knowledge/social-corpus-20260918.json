@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T16:20:00+03:00",
+  "generated_at": "2026-09-18T16:40:00+03:00",
   "purpose": "Curated personal social-life stream for 7YA. Sources stay platform-native; metrics are shown only when sourced from connected owner analytics or a dated public record.",
   "curation_principles": [
     "person_before_platform",
@@ -251,6 +251,179 @@
       "summary": "משטח ציבורי נוסף; מדדי reach עצמיים אינם מוצגים כאן כמדד מאומת.",
       "url": "https://x.com/igorvepretski",
       "metric_source": "Canonical public surface"
+    },
+    {
+      "id": "linkedin-identity-20260911",
+      "platform": "LinkedIn",
+      "date": "2026-09-11",
+      "kind": "owner_post",
+      "title": "אני האדם. המערכות הן הכלים.",
+      "summary": "פוסט אישי שמפריד בין האדם, StartOn, 7YA והזירות הציבוריות — כדי שהזהות לא תיבלע בתוך מערכת אחת.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7504087285517336576",
+      "metrics": {
+        "impressions": 55,
+        "comments": 1,
+        "unique_impressions": 34
+      },
+      "metric_source": "Metricool connected LinkedIn analytics",
+      "metric_as_of": "2026-09-18",
+      "theme": "identity",
+      "owned": true
+    },
+    {
+      "id": "linkedin-supernoah-20260909",
+      "platform": "LinkedIn",
+      "date": "2026-09-09",
+      "kind": "owner_post",
+      "title": "SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+      "summary": "רשומת מחקר שמפנה למנוסקריפט ב-Academia על agency, אימות, גבולות ועמידות דיגיטלית.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7503449606756925440",
+      "source_url": "https://www.academia.edu/168076525/7YA_LEADERSHIP_FOR_THE_ALGORITHMIC_AGE_SUPERNOAH_Founder_Edition_After_the_Data_Flood",
+      "metrics": {
+        "impressions": 86,
+        "reactions": 1,
+        "unique_impressions": 61
+      },
+      "metric_source": "Metricool connected LinkedIn analytics",
+      "metric_as_of": "2026-09-18",
+      "theme": "research",
+      "owned": true
+    },
+    {
+      "id": "linkedin-founder-led-20260701",
+      "platform": "LinkedIn",
+      "date": "2026-07-01",
+      "kind": "owner_post",
+      "title": "Partnership is not a logo wall.",
+      "summary": "פוסט על 7YA כפרויקט founder-led, evidence-first: אחריות, תשתית ואמון ציבורי לפני קיר לוגואים.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7478082728211574784",
+      "metrics": {
+        "impressions": 211,
+        "comments": 2,
+        "reactions": 7,
+        "unique_impressions": 93
+      },
+      "metric_source": "Metricool connected LinkedIn analytics",
+      "metric_as_of": "2026-09-18",
+      "theme": "7ya",
+      "owned": true
+    },
+    {
+      "id": "tiktok-youth-systems-20260612",
+      "platform": "TikTok",
+      "date": "2026-06-12",
+      "kind": "owner_video",
+      "title": "הכאב השקט: ילדים שנופלים בין הכיסאות",
+      "summary": "וידאו אישי שקושר שחיקת אמון לצורך לבנות מערכות שמעלות נוער בסיכון — פחות סיסמאות, יותר עבודה.",
+      "url": "https://www.tiktok.com/@igor.vepretski/video/7650534474920332565",
+      "metrics": {
+        "views": 690,
+        "likes": 21,
+        "comments": 6,
+        "shares": 0,
+        "reach": 601
+      },
+      "metric_source": "Metricool connected TikTok analytics",
+      "metric_as_of": "2026-09-18",
+      "theme": "public_voice",
+      "owned": true
+    },
+    {
+      "id": "spotify-owned-show-2024",
+      "platform": "Spotify",
+      "date": "2024",
+      "kind": "owned_podcast",
+      "title": "איגור ופרצקי — מנער בסיכון לקרימינולוג ויזם חברתי",
+      "summary": "פודקאסט עצמאי ארוך שמרכז את מסלול החיים, הקרימינולוגיה, היצירה והמעבר ליזמות חברתית.",
+      "url": "https://open.spotify.com/show/6NAWKyKNuPC0AvWzLfb1Dh",
+      "metric_source": "Public Spotify platform source",
+      "theme": "longform",
+      "owned": true,
+      "featured": true
+    },
+    {
+      "id": "spotify-life-episode-20240101",
+      "platform": "Spotify",
+      "date": "2024-01-01",
+      "kind": "owned_podcast_episode",
+      "title": "מנער בסיכון ליזם חברתי — 1:14 שעות",
+      "summary": "פרק ארוך בבעלות Igor Vepretski שמאפשר לשמוע את הסיפור בלי לקצר אותו לכותרת או קליפ.",
+      "url": "https://open.spotify.com/episode/7pp988VKcWZDrpACnGxC4U",
+      "metric_source": "Public Spotify platform source",
+      "theme": "longform",
+      "owned": true
+    },
+    {
+      "id": "spotify-mindset-mirror-20240102",
+      "platform": "Spotify",
+      "date": "2024-01-02",
+      "kind": "owned_distribution",
+      "title": "איגור ופרצקי ושלומי חסטר — מיינדסט",
+      "summary": "שיחה ארוכה על מסלול חיים, שינוי תפיסה ויזמות חברתית, שנשמרה גם במשטח הפודקאסט העצמאי.",
+      "url": "https://open.spotify.com/episode/42PO14etZLk1D1hvkTUP1h",
+      "metric_source": "Public Spotify platform source",
+      "theme": "longform",
+      "owned": true
+    },
+    {
+      "id": "youtube-nawan-external-2025",
+      "platform": "YouTube",
+      "date": "2025",
+      "kind": "external_creator_appearance",
+      "title": "Joy stick 🕹️ @Igor.vepretski",
+      "summary": "הופעת יוצר חיצונית אצל Nawan1 שבה Igor מתויג. נשמרת כאן כהפצה חיצונית, לא כתוכן בבעלות Igor.",
+      "url": "https://www.youtube.com/shorts/k9haTADKG3M",
+      "image": "https://i.ytimg.com/vi/k9haTADKG3M/hqdefault.jpg",
+      "metric_display": "5.1M views · 82K likes · 717 comments",
+      "metric_source": "Dated YouTube public UI screenshot",
+      "metric_as_of": "2026-08-17",
+      "theme": "external_amplification",
+      "owned": false,
+      "featured": true
+    },
+    {
+      "id": "youtube-owned-nawan-2025",
+      "platform": "YouTube",
+      "date": "2025",
+      "kind": "owner_video",
+      "title": "@Nawan #7YA🥷🏼",
+      "summary": "וידאו בבעלות ערוץ Igor Vepretski #7YA המחבר במפורש את שיתוף הפעולה עם Nawan ל־7YA.",
+      "url": "https://www.youtube.com/watch?v=iJyEgWnGA5M",
+      "image": "https://i.ytimg.com/vi/iJyEgWnGA5M/hqdefault.jpg",
+      "metric_display": "234 views",
+      "metric_source": "Archived YouTube capture",
+      "metric_as_of": "2025-10-18",
+      "theme": "music",
+      "owned": true
+    },
+    {
+      "id": "wikimedia-starton-onepager-20221229",
+      "platform": "Wikimedia Commons",
+      "date": "2022-12-29",
+      "kind": "owner_public_document",
+      "title": "StartOn — ה-One Pager המקורי",
+      "summary": "מסמך ציבורי שהועלה בידי Igorvepretski ומתאר את רעיון החללים האינטראקטיביים לנוער בסיכון.",
+      "url": "https://commons.wikimedia.org/wiki/File:One_pager_starton_new.pdf",
+      "metric_source": "Public indexed Wikimedia source",
+      "theme": "starton",
+      "owned": true
+    },
+    {
+      "id": "amazon-music-artist-catalog",
+      "platform": "Amazon Music",
+      "date": "2026",
+      "kind": "artist_catalog",
+      "title": "קטלוג המוזיקה של Igor Vepretski",
+      "summary": "משטח מוזיקה ציבורי שמרכז את СупаПорп, חצופה, פרח במדבר, מת על אקסל, אני עידו וקרדיטים משותפים.",
+      "url": "https://music.amazon.com/artists/B08FGHGZT2/igor-vepretski",
+      "metric_source": "Public Amazon Music artist source",
+      "theme": "music",
+      "owned": true
     }
-  ]
+  ],
+  "source_notes": {
+    "metricool": "Connected owner analytics for TikTok and LinkedIn, captured 2026-09-18.",
+    "archive": "Additional public-platform and archived-capture records from governed 7YA history corpus.",
+    "policy": "External distribution is labeled separately from owned content; no synthetic totals."
+  }
 }
