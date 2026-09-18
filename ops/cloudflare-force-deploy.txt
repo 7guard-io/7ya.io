@@ -1,9 +1,13 @@
-force deploy requested: 2026-09-18 sitewide public record v15
+force deploy requested: 2026-09-18 permanent content OS v16
 source: main
 includes:
 - 434-record Master Public Record
+- 269 public source URLs
 - 59-record curated social corpus
-- homepage publication-scale map
-- site-wide impact layer on 24 public routes
-- enriched history, journey, research, speaker, library, articles
-- expanded media propagation map
+- homepage full-history search and cross-platform projection
+- contract-driven route recommendations
+- permanent universal links: Life, StartOn, Media, Research, Academia, Articles, Influence, Evidence, Podcasts, Music
+- deterministic site-wide impact layer on 24 public routes
+- CI/source coverage guard with platform minimums
+- political records excluded from automatic promotion
+- private Drive URLs excluded from public projection
