@@ -75,7 +75,7 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
-  '7ya-cloudflare-canonical-20260918-v1',
+  '7ya-content-os-20260918-v16',
   'אני איגור.', 'החיים לימדו אותי', 'לבנות דרך.',
   'אישי לפני מערכתי', 'להכיר אותי מעבר לכותרת',
   'id="home"', 'id="story"', 'id="work"', 'id="topics"', 'id="media"',
@@ -89,9 +89,9 @@ for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
   '/assets/personal-hero-20260716/igor-hero.webp',
   '/assets/personal-hero-20260716/igor-closeup.webp',
-  '/styles/forever-runtime-20260913.css?v=3',
-  '/styles/social-first-20260916.css?v=3',
-  '/scripts/social-first-home-20260916.js?v=5'
+  '/styles/forever-runtime-20260913.css',
+  '/styles/social-first-20260916.css',
+  '/scripts/social-first-home-20260916.js'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
