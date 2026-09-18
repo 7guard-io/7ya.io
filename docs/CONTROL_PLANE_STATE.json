@@ -1,6 +1,6 @@
 {
-  "schema_version": 8,
-  "updated_at": "2026-09-10T21:31:15+03:00",
+  "schema_version": 9,
+  "updated_at": "2026-09-18T00:00:00Z",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -12,8 +12,29 @@
     "human_core": "Igor Vepretski",
     "social_mission": "StartOn",
     "organizing_system": "7YA",
-    "public_experience_order": ["IGOR", "STORY", "WORK", "TOPICS", "MEDIA", "CONTACT", "ARCHIVE", "EVIDENCE", "RESEARCH", "SYSTEMS"],
-    "evidence_states": ["VERIFIED", "DOCUMENTED", "SELF-ATTESTED", "SOURCE PENDING", "PRIVATE", "PILOT", "DESIGN", "MISSION", "ASPIRATION"]
+    "public_experience_order": [
+      "IGOR",
+      "STORY",
+      "WORK",
+      "TOPICS",
+      "MEDIA",
+      "CONTACT",
+      "ARCHIVE",
+      "EVIDENCE",
+      "RESEARCH",
+      "SYSTEMS"
+    ],
+    "evidence_states": [
+      "VERIFIED",
+      "DOCUMENTED",
+      "SELF-ATTESTED",
+      "SOURCE PENDING",
+      "PRIVATE",
+      "PILOT",
+      "DESIGN",
+      "MISSION",
+      "ASPIRATION"
+    ]
   },
   "production": {
     "provider": "AppDeploy",
@@ -82,7 +103,10 @@
     "checked_after_v98_deploy": true
   },
   "scheduler_reconciliation": {
-    "source_active_jobs": ["agent-mesh-hourly", "meta-sync-hourly"],
+    "source_active_jobs": [
+      "agent-mesh-hourly",
+      "meta-sync-hourly"
+    ],
     "active_jobs_last_status": {
       "agent-mesh-hourly": "success",
       "meta-sync-hourly": "success"
@@ -112,8 +136,22 @@
     "ask_igor": "Public companion branding converged to Ask Igor with explicit AI/non-impersonation/source-grounding language; NVIDIA/NVCF optional primary remains degraded-auth and fallback is preserved."
   },
   "public_experience_contract": {
-    "primary_navigation": ["Home", "My story", "Work", "Topics", "Media", "Contact"],
-    "secondary_navigation": ["Archive", "Evidence", "Research", "StartOn", "All content", "Ask Igor"],
+    "primary_navigation": [
+      "Home",
+      "My story",
+      "Work",
+      "Topics",
+      "Media",
+      "Contact"
+    ],
+    "secondary_navigation": [
+      "Archive",
+      "Evidence",
+      "Research",
+      "StartOn",
+      "All content",
+      "Ask Igor"
+    ],
     "homepage_rule": "Person and documented work before archive, technology, metrics or system language.",
     "evidence_rule": "A source proves only what that source supports and must not be upgraded into unsupported outcome, reach, partnership or causation claims.",
     "ai_rule": "Ask Igor is an AI interface over public material; it must not impersonate Igor or invent positions on his behalf."
@@ -125,12 +163,27 @@
   },
   "monetization_gate": {
     "paid_products_frozen": true,
-    "unlock_requires": ["visual pixel acceptance", "end-to-end user-flow verification", "trusted premium site experience"]
+    "unlock_requires": [
+      "visual pixel acceptance",
+      "end-to-end user-flow verification",
+      "trusted premium site experience"
+    ]
   },
   "privacy_boundary": [
     "No identifying information about minors",
     "No private family, medical, legal or financial information",
     "No credentials, tokens or private connector data",
     "No operational-security or protected-case information"
-  ]
+  ],
+  "provider_independence": {
+    "repository_runtime": "provider-independent static artifact",
+    "artifact_directory": "dist",
+    "preferred_target": "Cloudflare Pages",
+    "runtime_appdeploy_dependency": false,
+    "deployment_workflow": ".github/workflows/cloudflare-pages-full-deploy.yml",
+    "artifact_gate": "scripts/check-provider-independent-runtime.mjs",
+    "candidate_build_marker": "igor-personal-independent-static-20260918-v2",
+    "publication_state": "SOURCE_READY_NOT_CANONICAL_DOMAIN_VERIFIED",
+    "cutover_rule": "Keep the documented AppDeploy production rollback until the canonical domain serves the candidate marker through an independently verified no-cache probe."
+  }
 }

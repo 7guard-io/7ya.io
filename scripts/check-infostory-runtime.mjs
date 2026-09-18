@@ -28,21 +28,18 @@ function excludeText(body, text, label) {
 }
 
 const home = read('index.html');
-const runtime = read('scripts/igor-personal-hero-20260716.js');
-const style = read('styles/igor-personal-hero-20260716.css');
+const runtime = read('scripts/social-first-home-20260916.js');
+const style = read('styles/forever-runtime-20260913.css');
 
-const sectionIds = ['impact', 'person', 'sources', 'starton'];
+const sectionIds = ['life', 'work', 'topics', 'starton', 'media'];
 for (const id of sectionIds) {
   requireText(home, `id="${id}"`, 'Personal homepage');
 }
 
-const portraitCount = (home.match(/assets\/personal-hero-20260716\//g) || []).length;
-portraitCount >= 7 ? pass('Personal homepage uses varied owner-supplied imagery') : fail(`Personal homepage has only ${portraitCount} image references`);
+const imageSources = [...home.matchAll(/<img[^>]+src="([^"]+)"/g)].map(match => match[1]);
+new Set(imageSources).size >= 7 ? pass('Personal homepage uses varied source-linked imagery') : fail(`Personal homepage has only ${new Set(imageSources).size} distinct image references`);
 
-for (const marker of [
-  "matchMedia('(prefers-reduced-motion: reduce)')",
-  'IntersectionObserver', 'requestAnimationFrame', 'is-visible', 'aria-expanded'
-]) requireText(runtime, marker, 'Personal homepage runtime');
+for (const marker of ['data-social-first-home', 'replaceChildren', 'textContent']) requireText(runtime, marker, 'Personal homepage runtime');
 
 for (const forbidden of [
   'innerHTML',
@@ -51,10 +48,7 @@ for (const forbidden of [
   'NVIDIA_API_KEY',
 ]) excludeText(runtime, forbidden, 'Personal homepage runtime');
 
-for (const marker of [
-  '.hero-image', '.source-grid', '.starton-model',
-  '@media(max-width:760px)', '@media(prefers-reduced-motion:reduce)'
-]) requireText(style, marker, 'Personal homepage style');
+for (const marker of ['.hero', '.portrait', '.life-wall', '.mission', '@media(max-width:720px)', '@media(prefers-reduced-motion:reduce)']) requireText(style, marker, 'Personal homepage style');
 
 if (failures) {
   console.error(`\nINFOSTORY_RUNTIME_GATE: FAIL (${failures})`);

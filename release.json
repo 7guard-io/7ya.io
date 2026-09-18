@@ -1,17 +1,17 @@
 {
   "service": "7ya-frontend",
-  "provider": "github-pages",
-  "status": "READY",
-  "release": "2026-07-18-command-home-v1",
+  "provider": "provider-independent-static",
+  "status": "CANDIDATE",
+  "release": "2026-09-18-igor-personal-independent-v2",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "8d32ab349dde799b271c8cb27cba3ef2a3f2c39f",
+  "source_sha": "SET_BY_DEPLOYMENT_RECEIPT",
   "source_sha_policy": "Production must serve the exact immutable homepage source SHA and preserve independently verifiable route, metadata and artifact receipts.",
   "environment": "production",
-  "experience": "IGOR_VEPRETSKI_COMMAND_HOMEPAGE",
-  "target_launch_date": "2026-07-18",
-  "publication_requested_at": "2026-07-18T14:27:28Z",
-  "build_marker": "igor-personal-command-20260718-1",
+  "experience": "IGOR_VEPRETSKI_PERSONAL_PUBLIC_HOME",
+  "target_launch_date": "2026-09-18",
+  "publication_requested_at": "2026-09-18T00:00:00Z",
+  "build_marker": "igor-personal-independent-static-20260918-v2",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -54,7 +54,7 @@
     "/speaker/",
     "/api/health"
   ],
-  "release_intent": "Publish the approved black-and-gold command homepage with Living Identity and Human First AI sections, keep the verified archive intact and remove the production dependency on Replit.",
-  "promotion_gate": "The release is accepted only when 7ya.io serves build marker igor-personal-command-20260718-1, the title אדם. ראיות. פעולה., Living Identity, Command Center, /api/health and the critical static routes.",
+  "release_intent": "Publish an Igor-first personal homepage from a provider-independent static artifact, preserve the source-linked archive, and remove any AppDeploy runtime requirement.",
+  "promotion_gate": "The release is accepted only after the immutable repository artifact passes the release gate, contains no AppDeploy runtime dependency, and 7ya.io serves build marker igor-personal-independent-static-20260918-v2 across the critical routes.",
   "rollback": "The prior Tactical Ontology and History Song source commits remain available as immutable rollback references."
 }

@@ -75,30 +75,25 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
-  'igor-personal-command-20260718-1',
-  'אדם.', 'ראיות.', 'פעולה.',
-  'id="impact"', 'id="person"', 'id="sources"', 'id="starton"',
-  'id="identity"', 'id="command"', 'LIVING IDENTITY', 'COMMAND CENTER · HUMAN FIRST AI',
-  'לתיאום שיחה', 'לצפייה בראיות',
-  'DOCUMENTED · OWNER EXPORT', 'TIER 1 · מקור חיצוני',
-  'STARTON · INDEPENDENT SOCIAL MISSION'
+  'igor-personal-independent-static-20260918-v2',
+  'אני איגור.', 'זה הסיפור שלי, כמו שהוא.',
+  'id="work"', 'id="topics"', 'id="starton"', 'id="media"',
+  'הסיפור שלי', 'העשייה שלי', 'דברו איתי',
+  'מקור ליד כל עובדה', 'מה אני עושה'
 ]) requireText(home, required, 'homepage');
 
 for (const technical of [
-  'width=device-width, initial-scale=1, viewport-fit=cover',
+  'width=device-width,initial-scale=1,viewport-fit=cover',
   '/assets/personal-hero-20260716/igor-hero.webp',
-  '/assets/personal-hero-20260716/igor-executive.webp',
-  '/assets/personal-hero-20260716/igor-public-service.webp',
-  '/assets/personal-hero-20260716/igor-speaker.webp',
-  '/assets/personal-hero-20260716/igor-closeup.webp',
-  '/styles/igor-personal-hero-20260716.css?v=2',
-  '/scripts/igor-personal-hero-20260716.js'
+  './styles/forever-runtime-20260913.css?v=1',
+  './styles/social-first-20260916.css?v=1',
+  '/scripts/social-first-home-20260916.js?v=2'
 ]) requireText(home, technical, 'homepage technical contract');
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
-const publicSourceCount = (home.match(/class="source-card reveal"/g) || []).length;
-publicSourceCount === 4 ? pass('homepage has four source-linked records') : fail(`homepage has ${publicSourceCount} source-linked records`);
+const publicSourceCount = (home.match(/data-life-moment=/g) || []).length;
+publicSourceCount >= 8 ? pass('homepage has at least eight source-linked life moments') : fail(`homepage has ${publicSourceCount} source-linked life moments`);
 
 for (const forbidden of [
   'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
