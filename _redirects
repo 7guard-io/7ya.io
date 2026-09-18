@@ -2,3 +2,6 @@
 # Static artifact is authoritative; no production proxy fallback to AppDeploy.
 /api/health /api/health/index.html 200
 /api/feed /api/feed.json 301
+
+/media /media/index.html 200
+/media/ /media/index.html 200
