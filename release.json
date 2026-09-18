@@ -2,17 +2,17 @@
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
   "status": "READY",
-  "release": "7ya-cloudflare-direct-main-20260918-v10",
+  "release": "7ya-sitewide-impact-layer-20260918-v11",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "89776b593390403d15e5485215a6f356de6f8281",
-  "source_sha_role": "v9 visible Facebook/Instagram baseline before live influence corpus",
+  "source_sha": "f8d8f27ebc2ed58d8781532fe4d9920d74b3664e",
+  "source_sha_role": "v10 social corpus baseline before site-wide impact-layer build injection",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-cloudflare-direct-main-20260918-v10",
+  "build_marker": "7ya-sitewide-impact-layer-20260918-v11",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -57,7 +57,8 @@
       "Instagram"
     ],
     "public_projection_count": 54,
-    "influence_live_corpus": true
+    "influence_live_corpus": true,
+    "sitewide_route_projection": true
   },
   "critical_surfaces": [
     "/",
@@ -79,7 +80,7 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Expand 7YA from a homepage showcase into a searchable live social archive: 59 source-linked social records, more public audience excerpts, and a live /influence/ corpus projection.",
+  "release_intent": "Make every major public 7YA route reflect Igor Vepretski's actual publication and influence footprint through a shared source-linked impact layer, route-specific social records, dated snapshots, real media, and audience excerpts.",
   "promotion_gate": "Cloudflare GitHub App check must succeed and 7ya.io must serve the v8 marker plus the 52-item social corpus.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [],
@@ -88,6 +89,8 @@
     "production_source": "7guard-io/7ya.io@main",
     "automatic_deployer": "Cloudflare GitHub App",
     "github_actions_role": "manual fallback / optional verification while runner billing is unavailable",
-    "cache_policy": "homepage and social corpus revalidate/no-store; social JS/CSS cache-busted at v8"
+    "cache_policy": "homepage and social corpus revalidate/no-store; social JS/CSS cache-busted at v8",
+    "sitewide_impact_layer": true,
+    "impact_layer_routes": 24
   }
 }

@@ -103,6 +103,7 @@ export const publicStyleFiles = [
   'public-response-ai-20260715.css',
   'public-universe-20260715.css',
   'social-first-20260916.css',
+  'site-impact-layer-20260918.css',
   'zone-shells-v1.css',
 ];
 
@@ -124,6 +125,7 @@ export const publicScriptFiles = [
   'public-content-museum-20260715.js',
   'public-response-ai-20260715.js',
   'social-first-home-20260916.js',
+  'site-impact-layer-20260918.js',
   'zone-shells-v1.js',
 ];
 
@@ -167,6 +169,7 @@ export const criticalArtifactPaths = [
   'styles/public-content-museum-20260715.css',
   'styles/public-universe-20260715.css',
   'styles/social-first-20260916.css',
+  'styles/site-impact-layer-20260918.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
@@ -191,6 +194,7 @@ export const criticalArtifactPaths = [
   'scripts/positive-creator-20260715.js',
   'scripts/public-response-ai-20260715.js',
   'scripts/social-first-home-20260916.js',
+  'scripts/site-impact-layer-20260918.js',
   'scripts/zone-shells-v1.js',
   'data/evidence-claims.json',
   'data/entity-registry.json',

@@ -75,7 +75,10 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('apple-mobile-web-app-capable')) headTags.push(appleWebAppCapableTag);
   if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
+  if (siteImpactEligible.has(relative) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
+  if (siteImpactEligible.has(relative) && !html.includes('data-seven-proof-layer')) bodyTags.unshift(siteImpactMarkup(relative));
+  if (siteImpactEligible.has(relative) && !html.includes('site-impact-layer-20260918.js')) bodyTags.push(siteImpactScriptTag);
 
   let enhanced = html;
   if (headTags.length) enhanced = enhanced.replace('</head>', `  ${headTags.join('\n  ')}\n</head>`);
