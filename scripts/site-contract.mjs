@@ -49,6 +49,9 @@ export const publicRouteDirectories = [
 ].sort();
 
 export const publicRootFiles = [
+  'api/feed.json',
+  '_redirects',
+  '_headers',
   '.nojekyll',
   '404.html',
   'CNAME',
@@ -125,6 +128,9 @@ export const publicScriptFiles = [
 ];
 
 export const criticalArtifactPaths = [
+  'api/feed.json',
+  '_redirects',
+  '_headers',
   'index.html',
   'go/index.html',
   'links/index.html',
