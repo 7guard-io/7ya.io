@@ -1,1 +1,96 @@
-(()=>{if(document.querySelector('[data-social-first-home]'))return;const time=document.querySelector('#time');if(!time)return;const s=document.createElement('section');s.className='igor-live';s.setAttribute('data-social-first-home','');s.innerHTML=`<style>.igor-live{background:#080a0d;color:#f7f5ef;padding:56px max(20px,calc((100vw - 1240px)/2));border-block:1px solid rgba(255,255,255,.12)}.igor-live h2{margin:0;font-size:clamp(46px,8vw,104px);line-height:.88;letter-spacing:-.06em}.igor-live p{color:#bbb;line-height:1.55}.platforms,.social-rail{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}.platforms{padding:16px 0 24px}.platforms a{flex:none;border:1px solid #34363a;border-radius:999px;padding:10px 14px;color:#fff;text-decoration:none;font:700 12px ui-monospace,monospace}.social-rail{scroll-snap-type:x mandatory}.social-card{flex:0 0 min(78vw,360px);min-height:410px;scroll-snap-align:center;border:1px solid #2c2f33;border-radius:22px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;text-decoration:none;background:linear-gradient(145deg,#15191e,#090b0e 65%,#1b2510)}.social-card b{font-size:30px;line-height:1}.social-card strong{margin-top:12px;color:#b9ff37;font:800 12px ui-monospace,monospace}.k{color:#b9ff37!important;font:700 12px ui-monospace,monospace;letter-spacing:.12em}@media(min-width:900px){.social-rail{display:grid;grid-template-columns:repeat(3,1fr)}.social-card{min-height:360px}}</style><p class="k">SOCIAL PUBLIC RECORD · NOW / ARCHIVE</p><h2 dir="ltr">IGOR LIVE</h2><p>הרשתות הן המקום שבו החיים, היצירה, השאלות והקהל נפגשו בזמן אמת. מכאן נכנסים ישר למקורות הציבוריים שלך.</p><nav class="platforms"><a href="https://www.instagram.com/igor.vepretski/" target="_blank">Instagram</a><a href="https://www.tiktok.com/@igor.vepretski" target="_blank">TikTok</a><a href="https://www.youtube.com/@Igor.vepretski" target="_blank">YouTube</a><a href="https://www.facebook.com/vepretski7" target="_blank">Facebook</a><a href="https://t.me/vepretski" target="_blank">Telegram</a><a href="https://www.threads.net/@igor.vepretski" target="_blank">Threads</a><a href="https://www.linkedin.com/in/vepretski/" target="_blank">LinkedIn</a><a href="https://x.com/igorvepretski" target="_blank">X</a></nav><div class="social-rail"><a class="social-card" data-social-card="ig" href="https://www.instagram.com/reel/DbDfpb6orUt/" target="_blank"><small>INSTAGRAM · 2026</small><b>שלום שבת | #7YA🥷</b><p>איגור מדבר ישירות למצלמה — סיפור אישי, בזמן אמת.</p><strong>OWNER SOURCE ↗</strong></a><a class="social-card" data-social-card="nawan" href="https://www.youtube.com/shorts/k9haTADKG3M" target="_blank"><small>YOUTUBE SHORTS · 2026</small><b>כשהסיפור יוצא גם מהחשבון שלי</b><p>הופעה אצל יוצר חיצוני שמזכיר ומתייג את Igor Vepretski.</p><strong>EXTERNAL CREATOR SOURCE ↗</strong></a><a class="social-card" data-social-card="yt" href="https://www.youtube.com/watch?v=5qxA4hgUhV8" target="_blank"><small>YOUTUBE · CREATOR ARCHIVE</small><b>חינוך רוסי — שורש ויראלי</b><p>זהות, משפחה והומור מתוך ארכיון היוצר.</p><strong>OWNED PUBLIC VIDEO ↗</strong></a><a class="social-card" data-social-card="tt" href="https://www.tiktok.com/@igor.vepretski" target="_blank"><small>TIKTOK</small><b>מנוע יצירה מתמשך</b><p>וידאו קצר, LIVE ורגעים אישיים.</p><strong>@igor.vepretski ↗</strong></a><a class="social-card" data-social-card="li" href="https://www.linkedin.com/in/vepretski/" target="_blank"><small>LINKEDIN</small><b>עשייה, StartOn ומנהיגות</b><p>הצד המקצועי והציבורי של אותו מסע.</p><strong>PUBLIC PROFILE ↗</strong></a><a class="social-card" data-social-card="fb" href="https://www.facebook.com/vepretski7" target="_blank"><small>FACEBOOK</small><b>פוסטים, וידאו והשיחה עם הקהל</b><p>הכניסה הישירה למשטח הפייסבוק הציבורי.</p><strong>/vepretski7 ↗</strong></a></div>`;time.parentNode.insertBefore(s,time);})();
+(()=>{
+  const section=document.querySelector('[data-social-first-home]');
+  if(!section)return;
+
+  const rail=section.querySelector('.social-rail');
+  if(!rail)return;
+
+  const fmt=(n)=>new Intl.NumberFormat('en-US',{notation:n>=10000?'compact':'standard',maximumFractionDigits:1}).format(n);
+  const metrics=(m)=>{
+    if(!m)return '';
+    const out=[];
+    if(Number.isFinite(m.views))out.push(`${fmt(m.views)} views`);
+    if(Number.isFinite(m.impressions))out.push(`${fmt(m.impressions)} impressions`);
+    if(Number.isFinite(m.reach))out.push(`${fmt(m.reach)} reach`);
+    if(Number.isFinite(m.likes))out.push(`${fmt(m.likes)} likes`);
+    if(Number.isFinite(m.reactions))out.push(`${fmt(m.reactions)} reactions`);
+    if(Number.isFinite(m.comments))out.push(`${fmt(m.comments)} comments`);
+    if(Number.isFinite(m.shares))out.push(`${fmt(m.shares)} shares`);
+    return out.slice(0,4).join(' · ');
+  };
+
+  const make=(item)=>{
+    const a=document.createElement('a');
+    a.className='social-card'+(item.featured?' featured':'');
+    a.href=item.url;
+    a.target='_blank';
+    a.rel='noreferrer';
+    a.dataset.socialCorpus=item.id;
+
+    if(item.image){
+      const img=document.createElement('img');
+      img.src=item.image;
+      img.alt=item.title;
+      img.loading='lazy';
+      a.append(img);
+    }else{
+      const frame=document.createElement('div');
+      frame.className='social-frame';
+      const b=document.createElement('b');
+      b.textContent=item.platform;
+      const em=document.createElement('em');
+      em.textContent=item.date||'LIVE SURFACE';
+      frame.append(b,em);
+      a.append(frame);
+    }
+
+    const copy=document.createElement('div');
+    copy.className='social-copy';
+
+    const meta=document.createElement('div');
+    meta.className='social-meta';
+    const platform=document.createElement('span');
+    platform.textContent=item.platform;
+    const date=document.createElement('span');
+    date.textContent=item.date||'NOW';
+    meta.append(platform,date);
+
+    const h=document.createElement('h3');
+    h.textContent=item.title;
+    const p=document.createElement('p');
+    p.textContent=item.summary;
+
+    copy.append(meta,h,p);
+
+    const metricText=metrics(item.metrics);
+    if(metricText){
+      const strong=document.createElement('strong');
+      strong.textContent=metricText;
+      copy.append(strong);
+    }
+
+    const small=document.createElement('small');
+    small.textContent=`${item.metric_source||'Public source'}${item.metric_as_of?` · ${item.metric_as_of}`:''} ↗`;
+    copy.append(small);
+    a.append(copy);
+    return a;
+  };
+
+  fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'})
+    .then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();})
+    .then(data=>{
+      if(!Array.isArray(data.moments)||!data.moments.length)return;
+      const fragment=document.createDocumentFragment();
+      data.moments.forEach(item=>fragment.append(make(item)));
+      rail.replaceChildren(fragment);
+      rail.setAttribute('aria-label','רגעים אמיתיים מכל הרשתות של איגור ופרצקי');
+
+      const head=section.querySelector('.igor-live-head p');
+      if(head)head.textContent='לא לפי פלטפורמה אלא לפי החיים: רגעים אמיתיים, וידאו, יצירה, StartOn ושיחות — כל אחד מחובר למקור המקורי שלו.';
+
+      section.dataset.socialCorpusLoaded='20260918';
+    })
+    .catch(err=>{
+      console.warn('[7YA] social corpus fallback',err);
+    });
+})();
