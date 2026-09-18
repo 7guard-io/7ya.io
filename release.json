@@ -5,8 +5,8 @@
   "release": "7ya-cloudflare-canonical-20260918-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "d8b37348f340c37e486fabaf28758ee8b9db6fb5",
-  "source_sha_role": "latest code-and-gate baseline before this release manifest update",
+  "source_sha": "dc47217fef2d1f46867627208e816fd9e53420c1",
+  "source_sha_role": "rich content baseline before release metadata refresh",
   "source_sha_policy": "Cloudflare Pages builds the governed dist artifact from main; production acceptance requires live domain, route, API and visual verification.",
   "environment": "candidate",
   "experience": "IGOR_PERSONAL_SOCIAL_FIRST_HOMEPAGE",
@@ -40,7 +40,7 @@
   "social_corpus": {
     "path": "/knowledge/social-corpus-20260918.json",
     "public_feed": "/api/feed.json",
-    "curated_items": 15,
+    "curated_items": 26,
     "policy": "Person before platform; source-linked public material; metrics only with a dated source."
   },
   "critical_surfaces": [
@@ -63,7 +63,7 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Make Cloudflare Pages the single public static source of truth for 7ya.io; remove the AppDeploy catch-all proxy; publish Igor's personal, social-first homepage with open evidence and a curated cross-platform corpus.",
+  "release_intent": "Make Cloudflare Pages the single public static source of truth for 7ya.io and present Igor as a living public record: original video, long-form audio, writing, StartOn, research, music, social posts and clearly labeled external distribution.",
   "promotion_gate": "Promote to READY only after 7ya.io and www.7ya.io resolve to the Cloudflare Pages project, the homepage serves marker 7ya-cloudflare-canonical-20260918-v1, /api/health returns canonical Cloudflare JSON, /api/feed.json serves the current feed, and critical routes pass live verification.",
   "blockers": [
     "GitHub Actions cannot perform the automated Cloudflare cutover because GitHub has restricted metered usage after repeated PayPal billing failures; GitHub's billing email says payment information must be updated and cancelled products may need re-subscription.",
