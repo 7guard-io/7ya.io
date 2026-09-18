@@ -31,7 +31,7 @@
     "check:artifact": "node scripts/check-static-artifact.mjs && node scripts/check-content-os.mjs --artifact && node scripts/check-ga4-artifact.mjs",
     "verify:artifact": "node scripts/verify-static-artifact.mjs",
     "ci:local": "npm run check-all && npm run typecheck && npm test && npm run build:site && npm run check:artifact && npm run verify:artifact",
-    "release:gate": "npm run ci:local",
+    "release:gate": "npm run check-content-os && npm run build:cloudflare",
     "test": "npm run build && node --test dist/packages/evidence-oracle/test/*.test.js dist/packages/intelligence/test/*.test.js dist/src/core/test/*.test.js",
     "test:intelligence": "npm run build && node --test dist/packages/intelligence/test/*.test.js",
     "convert": "node_modules/.bin/docsify-to-pdf",
@@ -49,7 +49,8 @@
     "build:meta-projection": "node scripts/build-meta-projection.mjs",
     "check:cloudflare-pages": "node scripts/check-cloudflare-pages-artifact.mjs",
     "build:cloudflare": "npm run build:site && npm run check:cloudflare-pages && npm run check:artifact && npm run verify:artifact",
-    "check-content-os": "node scripts/check-content-os.mjs"
+    "check-content-os": "node scripts/check-content-os.mjs",
+    "ci:full": "npm run ci:local"
   },
   "repository": {
     "type": "git",
