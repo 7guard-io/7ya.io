@@ -22,8 +22,8 @@ const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
 
-const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=2" data-7ya-impact-layer="20260918">';
-const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=2" data-7ya-impact-layer="20260918" defer></script>';
+const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=3" data-7ya-impact-layer="20260918">';
+const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=3" data-7ya-impact-layer="20260918" defer></script>';
 const siteImpactEligible = new Set([
   'index.html','7ya/index.html','museum/index.html','entity/index.html','create/index.html','history/index.html',
   'igor-vepretski/index.html','journey/index.html','starton/index.html','radar/index.html','influence/index.html',
