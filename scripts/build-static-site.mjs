@@ -21,6 +21,45 @@ const mobileWebAppCapableTag = '<meta name="mobile-web-app-capable" content="yes
 const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-20260726.css?v=1" data-7ya-control-assets="20260726">';
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
+
+const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=2" data-7ya-impact-layer="20260918">';
+const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=2" data-7ya-impact-layer="20260918" defer></script>';
+const siteImpactEligible = new Set([
+  'index.html','7ya/index.html','museum/index.html','entity/index.html','create/index.html','history/index.html',
+  'igor-vepretski/index.html','journey/index.html','starton/index.html','radar/index.html','influence/index.html',
+  'research/index.html','response-ai/index.html','evidence/index.html','verify/index.html','ledger/index.html',
+  'speaker/index.html','talk/index.html','media/index.html','library/index.html','articles/index.html',
+  'contact/index.html','delta-audit/index.html','legacy/index.html'
+]);
+const siteImpactMarkup = `<section class="seven-proof-layer" data-seven-proof-layer aria-label="שכבת השפעה ציבורית">
+  <div class="seven-proof-head">
+    <div><div class="seven-proof-kicker">#7YA / PUBLIC RECORD / 2026</div><h2>העמוד הזה הוא רק שכבה אחת.<br><em>הרשומה גדולה יותר.</em></h2></div>
+    <p>פרסומים, וידאו, עיתונות, מוזיקה, פודקאסטים, Facebook, Instagram ותגובות ציבוריות נשמרים באותה מערכת — עם מקור, תאריך והקשר.</p>
+  </div>
+  <div class="seven-proof-metrics">
+    <a href="/influence/#master-public-record"><b data-seven-proof-master-count>434</b><span>רשומות ב־Master Public Record</span><small>FULL LEDGER ↗</small></a>
+    <a href="/influence/#live-social-corpus"><b data-seven-proof-count>59</b><span>רשומות בקורפוס החברתי האוצר</span><small>CURATED SOCIAL ↗</small></a>
+    <a href="/influence/#master-public-record"><b>248,155</b><span>Instagram reach · August 2023</span><small>OFFICIAL BUSINESS REPORT</small></a>
+    <a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noreferrer"><b>213K</b><span>views · The special ingredient #israel</span><small>OWNER INSIGHTS</small></a>
+    <a href="https://www.facebook.com/lan2lan.sta2sim/posts/pfbid0icaS4EV3EFHPbtTaexx3X4Lo9UGQD22Nvm8xzkpJRqiJSLro9D3zNp1PX6SJ26iPl" target="_blank" rel="noreferrer"><b>4,124</b><span>Facebook reactions · אבא מושלם</span><small>PUBLIC SNAPSHOT</small></a>
+    <a href="https://www.instagram.com/p/Co4HKRLoack/" target="_blank" rel="noreferrer"><b>2,329</b><span>Instagram likes · אבא מושלם</span><small>PUBLIC POST</small></a>
+  </div>
+  <div class="seven-proof-visuals">
+    <a class="seven-proof-visual" href="/igor-vepretski/"><img src="/assets/personal-hero-20260716/igor-hero.webp" alt="איגור ופרצקי" loading="lazy"><span>האדם מאחורי הרשומה</span></a>
+    <a class="seven-proof-visual" href="https://www.youtube.com/watch?v=SOx8DUXFIEw" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/SOx8DUXFIEw/hqdefault.jpg" alt="StartOn בווידאו" loading="lazy"><span>StartOn · YouTube ↗</span></a>
+    <a class="seven-proof-visual" href="https://www.youtube.com/watch?v=jRjZjpqAgEw" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/jRjZjpqAgEw/maxresdefault.jpg" alt="BIZZI feat Vepretski" loading="lazy"><span>BIZZI · MUSIC ↗</span></a>
+    <a class="seven-proof-visual" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noreferrer"><img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="StartOn ב-mynet חולון" loading="lazy"><span>mynet · חזרה לג׳סי כהן ↗</span></a>
+  </div>
+  <div class="seven-proof-context" data-seven-proof-context><a class="seven-proof-card" href="/influence/"><small>PUBLIC RECORD</small><h3>טוען רשומות רלוונטיות לעמוד…</h3><p>הקורפוס נטען מהמקור של 7YA.</p><b>למפת ההשפעה ↗</b></a></div>
+  <nav class="seven-proof-links" aria-label="ערוצי מדיה וארכיון">
+    <a href="https://www.facebook.com/vepretski7" target="_blank" rel="noreferrer">Facebook <span>↗</span></a>
+    <a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noreferrer">Instagram <span>↗</span></a>
+    <a href="/media/">Media archive <span>↗</span></a>
+    <a href="/influence/">Influence map <span>↗</span></a>
+  </nav>
+  <p class="seven-proof-integrity">מדדים מוצגים כ־snapshots מתוארכים או נתונים ממקור ראשון/ציבורי. הפצה חיצונית מסומנת בנפרד. רשומות פוליטיות נשמרות בארכיון ואינן מקודמות אוטומטית בשכבה זו.</p>
+</section>`;
+
 async function requireRegularSource(relative) {
   const source = path.join(root, relative);
   const stat = await fs.lstat(source);
