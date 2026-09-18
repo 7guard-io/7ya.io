@@ -51,11 +51,15 @@ const siteImpactMarkup = `<section class="seven-proof-layer" data-seven-proof-la
     <a class="seven-proof-visual" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noreferrer"><img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="StartOn ב-mynet חולון" loading="lazy"><span>mynet · חזרה לג׳סי כהן ↗</span></a>
   </div>
   <div class="seven-proof-context" data-seven-proof-context><a class="seven-proof-card" href="/influence/"><small>PUBLIC RECORD</small><h3>טוען רשומות רלוונטיות לעמוד…</h3><p>הקורפוס נטען מהמקור של 7YA.</p><b>למפת ההשפעה ↗</b></a></div>
-  <nav class="seven-proof-links" aria-label="ערוצי מדיה וארכיון">
-    <a href="https://www.facebook.com/vepretski7" target="_blank" rel="noreferrer">Facebook <span>↗</span></a>
-    <a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noreferrer">Instagram <span>↗</span></a>
-    <a href="/media/">Media archive <span>↗</span></a>
-    <a href="/influence/">Influence map <span>↗</span></a>
+  <nav class="seven-proof-links" data-seven-proof-links aria-label="כל חלקי 7YA והמקורות הקנוניים">
+    <a href="/igor-vepretski/">Life / Identity <span>↗</span></a>
+    <a href="/starton/">StartOn <span>↗</span></a>
+    <a href="/media/">Media <span>↗</span></a>
+    <a href="/research/">Research <span>↗</span></a>
+    <a href="https://igorvepretski.academia.edu/" target="_blank" rel="noreferrer">Academia <span>↗</span></a>
+    <a href="/articles/">Articles <span>↗</span></a>
+    <a href="/influence/">Influence <span>↗</span></a>
+    <a href="/evidence/">Evidence <span>↗</span></a>
   </nav>
   <p class="seven-proof-integrity">מדדים מוצגים כ־snapshots מתוארכים או נתונים ממקור ראשון/ציבורי. הפצה חיצונית מסומנת בנפרד. רשומות פוליטיות נשמרות בארכיון ואינן מקודמות אוטומטית בשכבה זו.</p>
 </section>`;
@@ -115,11 +119,8 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
   if (siteImpactEligible.has(relative) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
-  if (siteImpactEligible.has(relative) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
   if (siteImpactEligible.has(relative) && !html.includes('data-seven-proof-layer')) bodyTags.unshift(siteImpactMarkup);
-  if (siteImpactEligible.has(relative) && !html.includes('site-impact-layer-20260918.js')) bodyTags.push(siteImpactScriptTag);
-  if (siteImpactEligible.has(relative) && !html.includes('data-seven-proof-layer')) bodyTags.unshift(siteImpactMarkup(relative));
   if (siteImpactEligible.has(relative) && !html.includes('site-impact-layer-20260918.js')) bodyTags.push(siteImpactScriptTag);
 
   let enhanced = html;
