@@ -140,5 +140,219 @@
     "preserve_metrics_only_when_sourced": true,
     "private_drive_urls_public": false,
     "political_records_auto_promoted": false
+  },
+  "route_terms": {
+    "home": [
+      "StartOn",
+      "father",
+      "אבא",
+      "identity",
+      "זהות",
+      "story",
+      "סיפור",
+      "BIZZI"
+    ],
+    "igor-vepretski": [
+      "StartOn",
+      "father",
+      "אבא",
+      "identity",
+      "זהות",
+      "police",
+      "משטרה",
+      "BIZZI",
+      "story",
+      "סיפור"
+    ],
+    "history": [
+      "father",
+      "אבא",
+      "identity",
+      "זהות",
+      "police",
+      "משטרה",
+      "StartOn",
+      "2011",
+      "2022",
+      "2023"
+    ],
+    "journey": [
+      "police",
+      "משטרה",
+      "StartOn",
+      "story",
+      "סיפור",
+      "Spotify",
+      "YouTube"
+    ],
+    "starton": [
+      "StartOn",
+      "youth",
+      "נוער",
+      "Jessie",
+      "ג׳סי",
+      "technology",
+      "טכנולוג"
+    ],
+    "research": [
+      "Academia",
+      "SUPERNOAH",
+      "research",
+      "מחקר",
+      "algorithm",
+      "אלגורית",
+      "leadership",
+      "מנהיגות"
+    ],
+    "articles": [
+      "Academia",
+      "article",
+      "מאמר",
+      "newsletter",
+      "כתיבה",
+      "Medium",
+      "LinkedIn"
+    ],
+    "media": [
+      "YouTube",
+      "Spotify",
+      "podcast",
+      "פודקאסט",
+      "interview",
+      "ראיון",
+      "video",
+      "וידאו",
+      "press",
+      "כתבה"
+    ],
+    "speaker": [
+      "Spotify",
+      "podcast",
+      "פודקאסט",
+      "interview",
+      "ראיון",
+      "speaker",
+      "הרצאה",
+      "YouTube"
+    ],
+    "talk": [
+      "Spotify",
+      "podcast",
+      "פודקאסט",
+      "story",
+      "סיפור",
+      "interview",
+      "ראיון"
+    ],
+    "influence": [
+      "Facebook",
+      "Instagram",
+      "TikTok",
+      "repost",
+      "distribution",
+      "views",
+      "likes"
+    ],
+    "evidence": [
+      "snapshot",
+      "analytics",
+      "verified",
+      "COUNTERS_FOUND",
+      "metrics",
+      "insights"
+    ],
+    "ledger": [
+      "snapshot",
+      "analytics",
+      "verified",
+      "COUNTERS_FOUND",
+      "metrics",
+      "ledger"
+    ],
+    "verify": [
+      "snapshot",
+      "analytics",
+      "verified",
+      "COUNTERS_FOUND",
+      "metrics"
+    ],
+    "7ya": [
+      "7YA",
+      "StartOn",
+      "SUPERNOAH",
+      "story",
+      "סיפור",
+      "research",
+      "מחקר"
+    ],
+    "library": [
+      "Academia",
+      "YouTube",
+      "Spotify",
+      "Facebook",
+      "Instagram",
+      "StartOn"
+    ],
+    "museum": [
+      "YouTube",
+      "Facebook",
+      "Instagram",
+      "StartOn",
+      "BIZZI",
+      "Academia"
+    ],
+    "entity": [
+      "StartOn",
+      "Academia",
+      "Facebook",
+      "Instagram",
+      "YouTube",
+      "LinkedIn"
+    ],
+    "create": [
+      "BIZZI",
+      "music",
+      "מוזיקה",
+      "YouTube",
+      "Instagram"
+    ],
+    "response_ai": [
+      "7YA",
+      "research",
+      "מחקר",
+      "AI",
+      "algorithm",
+      "אלגורית"
+    ],
+    "radar": [
+      "StartOn",
+      "research",
+      "media",
+      "Facebook",
+      "Instagram",
+      "YouTube"
+    ],
+    "contact": [
+      "StartOn",
+      "speaker",
+      "הרצאה",
+      "media",
+      "research",
+      "מחקר"
+    ],
+    "delta-audit": [
+      "snapshot",
+      "verified",
+      "metrics",
+      "ledger",
+      "archive"
+    ],
+    "legacy": [
+      "Facebook",
+      "Instagram",
+      "YouTube",
+      "archive",
+      "legacy"
+    ]
   }
 }
