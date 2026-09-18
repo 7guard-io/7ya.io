@@ -43,6 +43,7 @@ export async function injectGa4(root = 'dist') {
   let alreadyConfigured = 0;
 
   for (const file of files) {
+    if (file.replaceAll('\\\\', '/').includes('/api/')) continue;
     const html = await readFile(file, 'utf8');
     const existingIds = [...html.matchAll(/googletagmanager\.com\/gtag\/js\?id=(G-[A-Z0-9]+)/g)]
       .map((match) => match[1]);
