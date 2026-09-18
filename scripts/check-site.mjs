@@ -75,8 +75,9 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
-  'igor-personal-journey-20260918-v2',
-  'אני איגור.', 'זה לא אתר תדמית.', 'זה מסלול חיים.',
+  'igor-personal-journey-20260918-v3',
+  'אני איגור.', 'החיים לימדו אותי', 'לבנות דרך.',
+  'אישי לפני מערכתי', 'להכיר אותי מעבר לכותרת',
   'id="home"', 'id="story"', 'id="work"', 'id="topics"', 'id="media"',
   'הסיפור שלי', 'העשייה שלי', 'דברו איתי',
   'כל צילום ורגע באתר מובילים לפרסום או למקור',
