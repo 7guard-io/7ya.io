@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T18:15:00+03:00",
+  "generated_at": "2026-09-18T18:32:00+03:00",
   "purpose": "Curated personal social-life and public-impact stream for 7YA. Sources stay platform-native; Facebook and Instagram resonance are surfaced with source-bound counters.",
   "curation_principles": [
     "person_before_platform",
@@ -531,16 +531,24 @@
       "kind": "external_repost",
       "title": "אבא מושלם — זה אבא ששם",
       "summary": "סיפור אבהות שיצא מהחשבון המקורי והמשיך כהפצה ציבורית רחבה אצל סטטוסים מצייצים.",
-      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/760747985420866/",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/pfbid0icaS4EV3EFHPbtTaexx3X4Lo9UGQD22Nvm8xzkpJRqiJSLro9D3zNp1PX6SJ26iPl",
       "metrics": {
-        "reactions": 4100,
-        "comments": 147
+        "reactions": 4124,
+        "comments": 148,
+        "shares": 26
       },
-      "metric_source": "Verified public indexed snapshot / 7YA influence audit",
-      "metric_as_of": "2026-09-06",
+      "metric_source": "Audited public Facebook refresh",
+      "metric_as_of": "2026-08",
       "theme": "impact fatherhood",
       "owned": false,
-      "featured": true
+      "featured": true,
+      "metric_display": "4,124 reactions · 148 comments · 26 shares",
+      "audience_reactions": [
+        "צודק לגמרי.",
+        "פוסט מעולה. חזק",
+        "מהמם ומדויק!",
+        "מילים יפות ופוסטים בפייסבוק לא יחליפו את המעשים."
+      ]
     },
     {
       "id": "facebook-mial-hohavim",
@@ -569,12 +577,20 @@
       "summary": "חוויה משפחתית שהפכה לשיח ציבורי על הונאות קשישים ובהמשך קיבלה הד תקשורתי.",
       "url": "https://www.instagram.com/p/CoXykBwq3Zr/",
       "metrics": {
-        "likes": 1489
+        "likes": 1481,
+        "comments": 49
       },
-      "metric_source": "Verified indexed Instagram result",
-      "metric_as_of": "2026-06-20",
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
       "theme": "impact public_voice",
-      "owned": false
+      "owned": false,
+      "metric_display": "1,481 likes · 49 comments",
+      "audience_reactions": [
+        "בושה!",
+        "פשוט מזעזע",
+        "צריך יד קשה עם הבנקים",
+        "בנק עם שירות מעולה וגמיש"
+      ]
     },
     {
       "id": "instagram-russian-identity-statusim",
@@ -585,12 +601,20 @@
       "summary": "סיפור זהות ישראלית־רוסית שעבר בין פייסבוק, אינסטגרם ולינקדאין ונשאר חלק מהשיח לאורך זמן.",
       "url": "https://www.instagram.com/p/CsnfS5WoSw8/",
       "metrics": {
-        "comments": 42
+        "likes": 2440,
+        "comments": 41
       },
-      "metric_source": "Verified indexed Instagram result",
-      "metric_as_of": "2026-06-20",
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
       "theme": "impact identity",
-      "owned": false
+      "owned": false,
+      "metric_display": "2.4K likes · 41 comments",
+      "audience_reactions": [
+        "אוהבים אותך",
+        "גישה מדהימה",
+        "איגור התותח, המלא השראה וחסד.",
+        "למה להיות מלשין"
+      ]
     },
     {
       "id": "instagram-love-commitment-20241119",
@@ -602,17 +626,25 @@
       "url": "https://www.instagram.com/reel/DCkcWZUCgNl/",
       "metrics": {
         "likes": 91,
-        "comments": 31
+        "comments": 29
       },
-      "metric_source": "Public indexed Instagram result",
+      "metric_source": "Live public Instagram metadata",
       "metric_as_of": "2026-09-18",
       "theme": "impact life",
-      "owned": true
+      "owned": true,
+      "metric_display": "91 likes · 29 comments",
+      "audience_reactions": [
+        "מרגישה מותקפת 😂",
+        "אני רוצה איתך ילדים 😂",
+        "חזק",
+        "עכשיו גם לא תשים לך לייקים 😂"
+      ]
     }
   ],
   "source_notes": {
     "metricool": "Connected owner analytics for TikTok and LinkedIn, captured 2026-09-18.",
     "archive": "Additional public-platform and archived-capture records from governed 7YA history corpus.",
     "policy": "External distribution is labeled separately from owned content; no synthetic totals."
-  }
+  },
+  "audience_voice_policy": "Public comments only; short excerpts; names omitted in the public projection; mixed response is preserved when visible."
 }
