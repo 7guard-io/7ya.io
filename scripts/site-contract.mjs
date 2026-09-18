@@ -19,6 +19,7 @@ export const canonicalRoutes = [
   'speaker',
   'talk',
   'media',
+  'library',
   'articles',
   'contact',
   'control',
