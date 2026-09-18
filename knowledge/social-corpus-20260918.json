@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T17:05:00+03:00",
-  "purpose": "Curated personal social-life stream for 7YA. Sources stay platform-native; metrics are shown only when sourced from connected owner analytics or a dated public record.",
+  "generated_at": "2026-09-18T18:15:00+03:00",
+  "purpose": "Curated personal social-life and public-impact stream for 7YA. Sources stay platform-native; Facebook and Instagram resonance are surfaced with source-bound counters.",
   "curation_principles": [
     "person_before_platform",
     "real_source_media",
@@ -499,6 +499,114 @@
       "url": "https://www.instagram.com/reel/DcQWwoespQ-/",
       "metric_source": "Verified public Instagram source",
       "theme": "archive",
+      "owned": true
+    },
+    {
+      "id": "instagram-special-ingredient-20231123",
+      "platform": "Instagram",
+      "date": "2023-11-23",
+      "kind": "owner_reel_insights",
+      "title": "The special ingredient #israel",
+      "summary": "ריל בבעלות Igor עם היקף תגובה חריג: צפייה, לייקים, תגובות, שיתופים ושמירות — לא רק חשיפה.",
+      "url": "https://www.instagram.com/igor.vepretski/",
+      "metrics": {
+        "views": 213000,
+        "reach": 12000,
+        "likes": 7400,
+        "comments": 1100,
+        "shares": 53,
+        "saves": 531
+      },
+      "metric_source": "Owner-exported Instagram Reel insights",
+      "metric_as_of": "2026-04-20",
+      "source_note": "Canonical reel URL unresolved; linked to canonical Instagram profile until exact post URL is restored.",
+      "theme": "impact",
+      "owned": true,
+      "featured": true
+    },
+    {
+      "id": "facebook-fatherhood-statusim",
+      "platform": "Facebook",
+      "date": null,
+      "kind": "external_repost",
+      "title": "אבא מושלם — זה אבא ששם",
+      "summary": "סיפור אבהות שיצא מהחשבון המקורי והמשיך כהפצה ציבורית רחבה אצל סטטוסים מצייצים.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/760747985420866/",
+      "metrics": {
+        "reactions": 4100,
+        "comments": 147
+      },
+      "metric_source": "Verified public indexed snapshot / 7YA influence audit",
+      "metric_as_of": "2026-09-06",
+      "theme": "impact fatherhood",
+      "owned": false,
+      "featured": true
+    },
+    {
+      "id": "facebook-mial-hohavim",
+      "platform": "Facebook",
+      "date": null,
+      "kind": "external_syndication",
+      "title": "תחילת השבוע הגננת מתקשרת — מיאל",
+      "summary": "סיפור הורי שהמשיך להפצה אצל אוהבים / Hohavim ומפיצים נוספים.",
+      "url": "https://www.facebook.com/Hohavim/photos/894091596665017/",
+      "metrics": {
+        "reactions": 2259,
+        "comments": 93,
+        "shares": 63
+      },
+      "metric_source": "Verified public indexed propagation snapshot",
+      "metric_as_of": "2026-09-06",
+      "theme": "impact fatherhood",
+      "owned": false
+    },
+    {
+      "id": "instagram-grandmother-scam-statusim",
+      "platform": "Instagram",
+      "date": "2023-02-07",
+      "kind": "external_repost",
+      "title": "סבתא שלי נפלה קורבן להונאה",
+      "summary": "חוויה משפחתית שהפכה לשיח ציבורי על הונאות קשישים ובהמשך קיבלה הד תקשורתי.",
+      "url": "https://www.instagram.com/p/CoXykBwq3Zr/",
+      "metrics": {
+        "likes": 1489
+      },
+      "metric_source": "Verified indexed Instagram result",
+      "metric_as_of": "2026-06-20",
+      "theme": "impact public_voice",
+      "owned": false
+    },
+    {
+      "id": "instagram-russian-identity-statusim",
+      "platform": "Instagram",
+      "date": "2023-05-24",
+      "kind": "external_repost",
+      "title": "בשנות ה־90 קראו לי ״רוסי מסריח״",
+      "summary": "סיפור זהות ישראלית־רוסית שעבר בין פייסבוק, אינסטגרם ולינקדאין ונשאר חלק מהשיח לאורך זמן.",
+      "url": "https://www.instagram.com/p/CsnfS5WoSw8/",
+      "metrics": {
+        "comments": 42
+      },
+      "metric_source": "Verified indexed Instagram result",
+      "metric_as_of": "2026-06-20",
+      "theme": "impact identity",
+      "owned": false
+    },
+    {
+      "id": "instagram-love-commitment-20241119",
+      "platform": "Instagram",
+      "date": "2024-11-19",
+      "kind": "owner_reel",
+      "title": "#אהבה #מחויבות #נישואין",
+      "summary": "ריל אישי שהפך לשיחה עם הקהל סביב אהבה ומחויבות.",
+      "url": "https://www.instagram.com/reel/DCkcWZUCgNl/",
+      "metrics": {
+        "likes": 91,
+        "comments": 31
+      },
+      "metric_source": "Public indexed Instagram result",
+      "metric_as_of": "2026-09-18",
+      "theme": "impact life",
       "owned": true
     }
   ],
