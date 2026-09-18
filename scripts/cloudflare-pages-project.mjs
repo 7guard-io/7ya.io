@@ -40,8 +40,10 @@ if (source.owner && source.owner !== sourceOwner) throw new Error(`Unexpected Gi
 if (source.repo_name && source.repo_name !== sourceRepo) throw new Error(`Unexpected GitHub repository: ${source.repo_name}`);
 
 const customDomains = (project.domains || []).filter(domain => !String(domain).endsWith('.pages.dev'));
-if (customDomains.length) {
-  throw new Error(`Refusing to modify Pages build while custom domains are attached: ${customDomains.join(', ')}`);
+const allowedCustomDomains = new Set(['7ya.io', 'www.7ya.io']);
+const unexpectedDomains = customDomains.filter(domain => !allowedCustomDomains.has(String(domain).toLowerCase()));
+if (unexpectedDomains.length) {
+  throw new Error(`Refusing Pages deployment with unexpected custom domains attached: ${unexpectedDomains.join(', ')}`);
 }
 
 const desired = {
