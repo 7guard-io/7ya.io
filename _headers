@@ -1,3 +1,20 @@
+
+/
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/media/*
+  Cache-Control: no-cache, must-revalidate
+
+/knowledge/social-corpus-20260918.json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/scripts/social-first-home-20260916.js
+  Cache-Control: no-cache, must-revalidate
+
+/styles/social-first-20260916.css
+  Cache-Control: no-cache, must-revalidate
+
 /api/health
   Content-Type: application/json; charset=utf-8
   Cache-Control: no-store
