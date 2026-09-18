@@ -89,7 +89,7 @@ for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
   '/assets/personal-hero-20260716/igor-hero.webp',
   '/assets/personal-hero-20260716/igor-closeup.webp',
-  '/styles/forever-runtime-20260913.css?v=2',
+  '/styles/forever-runtime-20260913.css?v=3',
   '/styles/social-first-20260916.css?v=2',
   '/scripts/social-first-home-20260916.js?v=3'
 ]) requireText(home, technical, 'homepage technical contract');
