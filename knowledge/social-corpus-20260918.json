@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T18:32:00+03:00",
+  "generated_at": "2026-09-18T18:48:00+03:00",
   "purpose": "Curated personal social-life and public-impact stream for 7YA. Sources stay platform-native; Facebook and Instagram resonance are surfaced with source-bound counters.",
   "curation_principles": [
     "person_before_platform",
@@ -639,6 +639,236 @@
         "חזק",
         "עכשיו גם לא תשים לך לייקים 😂"
       ]
+    },
+    {
+      "id": "facebook-owned-photo-20221209",
+      "platform": "Facebook",
+      "date": "2022-12-09",
+      "kind": "owned_post",
+      "title": "Facebook photo · 09.12.2022",
+      "summary": "פריט מהארכיון בבעלות Igor שנשמר עם מונה תגובות־רגש ממקור ראשון.",
+      "url": "https://www.facebook.com/vepretski/posts/pfbid0pfwHrAwydxSKEpqKcR1RJSEimxWPSNA4iB8usFuT6oB8fdPDMFXmBztbMgSV4Bxql",
+      "metrics": {
+        "reactions": 147
+      },
+      "metric_source": "First-party Facebook recovery",
+      "theme": "life impact",
+      "owned": true
+    },
+    {
+      "id": "facebook-channel13-starton-2022",
+      "platform": "Facebook",
+      "date": "2022",
+      "kind": "owned_distribution",
+      "title": "חדשות 13 — ממרכז לנערים בסיכון ל־StartOn",
+      "summary": "הפצה בבעלות Igor של סיקור חדשות 13 על העזיבה, מכירת הבית והקמת מרכז לנוער בסיכון.",
+      "url": "https://www.facebook.com/vepretski/posts/%D7%A0%D7%91%D7%97%D7%A8-7ya/10238272677251812/",
+      "metric_source": "Verified public URL / audited media library",
+      "theme": "starton impact",
+      "owned": true
+    },
+    {
+      "id": "facebook-russian-education-2022",
+      "platform": "Facebook",
+      "date": "2022",
+      "kind": "owned_video",
+      "title": "חינוך רוסי 🇷🇺",
+      "summary": "וידאו בבעלות Igor מתוך שכבת הזהות והחינוך הרוסי־ישראלי.",
+      "url": "https://www.facebook.com/vepretski7/videos/%D7%97%D7%99%D7%A0%D7%95%D7%9A-%D7%A8%D7%95%D7%A1%D7%99-/715032976227492/",
+      "metric_source": "Verified public URL / audited media library",
+      "theme": "identity life",
+      "owned": true
+    },
+    {
+      "id": "facebook-us-20230529",
+      "platform": "Facebook",
+      "date": "2023-05-29",
+      "kind": "owned_post",
+      "title": "Us 🖤",
+      "summary": "פוסט אישי בבעלות Igor שנשמר בארכיון עם מונה תגובות־רגש ממקור ראשון.",
+      "url": "https://www.facebook.com/vepretski/posts/pfbid0hg6dzd6uK6hHsBqqbEynfE6Uo2cyDe5KT9sc8k5BazTQBJbM7Wcq9HYJTDdZn8cul",
+      "metrics": {
+        "reactions": 136
+      },
+      "metric_source": "First-party Facebook recovery",
+      "theme": "life",
+      "owned": true
+    },
+    {
+      "id": "facebook-light-world-20230619",
+      "platform": "Facebook",
+      "date": "2023-06-19",
+      "kind": "owned_post",
+      "title": "We light up the world 🌎🌅",
+      "summary": "פוסט אישי ציבורי מהארכיון בבעלות Igor.",
+      "url": "https://www.facebook.com/vepretski/posts/pfbid02jSYjn64ACPbST3cfC4vBkaBTXpn7FVG5GsSpWkMqajJdwWsuL74vZg72zUj5sWTfl",
+      "metrics": {
+        "reactions": 46
+      },
+      "metric_source": "First-party Facebook recovery",
+      "theme": "life",
+      "owned": true
+    },
+    {
+      "id": "facebook-owned-photo-20230624",
+      "platform": "Facebook",
+      "date": "2023-06-24",
+      "kind": "owned_post",
+      "title": "Facebook photo · 24.06.2023",
+      "summary": "צילום מהארכיון הציבורי בבעלות Igor.",
+      "url": "https://www.facebook.com/vepretski/posts/pfbid02MQ8uH4xyjwcmqgmvhCVfX6HbG5W4EMf8T9FSHLYsu4SUmj7cApTogGvb79mXc3uPl",
+      "metrics": {
+        "reactions": 156
+      },
+      "metric_source": "First-party Facebook recovery",
+      "theme": "life",
+      "owned": true
+    },
+    {
+      "id": "facebook-left-police-20230701",
+      "platform": "Facebook",
+      "date": "2023-07-01",
+      "kind": "owned_video",
+      "title": "למה עזבתי את השירות במשטרה?",
+      "summary": "וידאו בגוף ראשון על המעבר מהשירות המשטרתי למסלול הבא.",
+      "url": "https://www.facebook.com/vepretski/videos/1000663621289108/",
+      "metric_source": "Verified public URL / first-party recovery",
+      "theme": "life public_service",
+      "owned": true
+    },
+    {
+      "id": "facebook-henry-statusim-20231002",
+      "platform": "Facebook",
+      "date": "2023-10-02",
+      "kind": "external_repost",
+      "title": "תכירו את הנרי האלוף!",
+      "summary": "סיפור ציבורי שהופץ מחדש אצל סטטוסים מצייצים כחלק מארכיון ההדהוד מחוץ לחשבון.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/pfbid0fLDvPkLmF846Jhme65ETbkcNRTcTK8z3s3XojRtfe3eCdTnmSCK4icTmn5rdxcCRl",
+      "metric_source": "Verified indexed public node",
+      "theme": "impact public_voice",
+      "owned": false
+    },
+    {
+      "id": "facebook-mial-statusim-2023",
+      "platform": "Facebook",
+      "date": "2023",
+      "kind": "external_repost",
+      "title": "תחילת השבוע הגננת מתקשרת — מיאל",
+      "summary": "המקור החיצוני בסטטוסים מצייצים לסיפור מיאל, לפני שכפולים נוספים ברשת.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/pfbid02FW4Q9ZWvN8K1Q6vpSy9ndnDiXPYgRbEs59JC2XANo2dSnhufQJbxRVWoXzdkcfa9l",
+      "metric_source": "Verified indexed public node",
+      "theme": "impact fatherhood",
+      "owned": false
+    },
+    {
+      "id": "facebook-russian-identity-statusim-2023",
+      "platform": "Facebook",
+      "date": "2023",
+      "kind": "external_repost",
+      "title": "בשנות ה־90 קראו לי ״רוסי מסריח״",
+      "summary": "גרסת Facebook החיצונית של סיפור הזהות שחצה פלטפורמות.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/pfbid0VyLgUHZ6KLoY953QnCkSnWkSUtLqmV7NeeW6NmB2bABFh1R7bkRzj8Lw5imUeHckl",
+      "metric_source": "Verified indexed public node",
+      "theme": "impact identity",
+      "owned": false
+    },
+    {
+      "id": "facebook-grandmother-scam-statusim-20230207",
+      "platform": "Facebook",
+      "date": "2023-02-07",
+      "kind": "external_repost",
+      "title": "סבתא שלי נפלה קורבן להונאה",
+      "summary": "גרסת Facebook החיצונית של סיפור הונאת הקשישים והמערכת הבנקאית.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/igorvepretski-%D7%A1%D7%91%D7%AA%D7%90-%D7%A9%D7%9C%D7%99-%D7%A0%D7%A4%D7%9C%D7%94-%D7%A7%D7%95%D7%A8%D7%91%D7%9F-%D7%9C%D7%94%D7%95%D7%A0%D7%90%D7%94%D7%90%D7%91%D7%9C-%D7%9C%D7%A2%D7%95%D7%92%D7%9E%D7%AA-%D7%94%D7%A0%D7%A4%D7%A9-%D7%94%D7%A2%D7%99%D7%A7%D7%A8%D7%99%D7%AA-%D7%91%D7%9B%D7%95%D7%9C-%D7%94%D7%A1%D7%99%D7%A4%D7%95%D7%A8-%D7%94%D7%96%D7%94-/752380882924243/",
+      "metric_source": "Verified indexed public node",
+      "theme": "impact public_voice",
+      "owned": false
+    },
+    {
+      "id": "facebook-cost-statusim-20221014",
+      "platform": "Facebook",
+      "date": "2022-10-14",
+      "kind": "external_repost",
+      "title": "מרתיח אותי המצב הזה!",
+      "summary": "פרסום ציבורי חיצוני מארכיון השיח החברתי.",
+      "url": "https://www.facebook.com/lan2lan.sta2sim/posts/%D7%9E%D7%A8%D7%AA%D7%99%D7%97-%D7%90%D7%95%D7%AA%D7%99-%D7%94%D7%9E%D7%A6%D7%91-%D7%94%D7%96%D7%94%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99/667549874740678/",
+      "metric_source": "Verified indexed public node",
+      "theme": "impact public_voice",
+      "owned": false
+    },
+    {
+      "id": "facebook-hazinor-legacy-hit",
+      "platform": "Facebook",
+      "date": null,
+      "kind": "external_video",
+      "title": "זה מתחיל להסתמן כלהיט החדש",
+      "summary": "וידאו חיצוני ותיק בצינור כחלק מההיסטוריה התרבותית/יצירתית.",
+      "url": "https://www.facebook.com/hazinor/videos/%D7%96%D7%94-%D7%9E%D7%AA%D7%97%D7%99%D7%9C-%D7%9C%D7%94%D7%A1%D7%AA%D7%9E%D7%9F-%D7%9B%D7%9C%D7%94%D7%99%D7%98-%D7%94%D7%97%D7%93%D7%A9dennis-charkov-igor-vepretski-david-goldenberg-vlad-jh/10153274636619662/",
+      "metrics": {
+        "reactions": 1500
+      },
+      "metric_source": "Audited indexed Facebook evidence",
+      "theme": "music impact archive",
+      "owned": false
+    },
+    {
+      "id": "instagram-road-remembers-20251227",
+      "platform": "Instagram",
+      "date": "2025-12-27",
+      "kind": "owned_post",
+      "title": "הדרך זוכרת.",
+      "summary": "פוסט אישי ציבורי בחשבון vepretski.igor עם תגובות קהל גלויות.",
+      "url": "https://www.instagram.com/p/DSyHn-OjDyj/",
+      "metrics": {
+        "likes": 115,
+        "comments": 4
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "theme": "life impact",
+      "owned": true,
+      "audience_reactions": [
+        "אגדה של בן אדם",
+        "תשמע אתה גבר אחושרמוטה אחי"
+      ]
+    },
+    {
+      "id": "instagram-young-beytenu-20241122-archive",
+      "platform": "Instagram",
+      "date": "2024-11-22",
+      "kind": "owned_reel",
+      "title": "מפגש Young Israel Beiteinu",
+      "summary": "רשומה פוליטית היסטורית מהחשבון הציבורי; נשמרת כארכיון ולא כבחירת קידום.",
+      "url": "https://www.instagram.com/reel/DCsH47minA8/",
+      "metrics": {
+        "likes": 196,
+        "comments": 36
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "theme": "civic archive",
+      "owned": true,
+      "archive_only": true,
+      "political": true
+    },
+    {
+      "id": "instagram-politics-20260906-archive",
+      "platform": "Instagram",
+      "date": "2026-09-06",
+      "kind": "owned_post",
+      "title": "נתתי את הנשמה שלי לפוליטיקה הישראלית",
+      "summary": "רשומה פוליטית היסטורית מהחשבון הציבורי; נשמרת לתיעוד כרונולוגי, ללא דירוג או קידום.",
+      "url": "https://www.instagram.com/p/Dc91Q0JjI4V/",
+      "metrics": {
+        "likes": 33,
+        "comments": 6
+      },
+      "metric_source": "Live public Instagram metadata",
+      "metric_as_of": "2026-09-18",
+      "theme": "civic archive",
+      "owned": true,
+      "archive_only": true,
+      "political": true
     }
   ],
   "source_notes": {
@@ -646,5 +876,6 @@
     "archive": "Additional public-platform and archived-capture records from governed 7YA history corpus.",
     "policy": "External distribution is labeled separately from owned content; no synthetic totals."
   },
-  "audience_voice_policy": "Public comments only; short excerpts; names omitted in the public projection; mixed response is preserved when visible."
+  "audience_voice_policy": "Public comments only; short excerpts; names omitted in the public projection; mixed response is preserved when visible.",
+  "default_projection": "Non-archive public-life records; archive_only records remain available through the public-archive filter."
 }
