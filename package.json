@@ -46,7 +46,9 @@
     "deploy:preview": "npx --yes vercel@latest",
     "deploy:prod": "npx --yes vercel@latest --prod",
     "deploy:personal-static": "bash scripts/deploy-personal-static.sh",
-    "build:meta-projection": "node scripts/build-meta-projection.mjs"
+    "build:meta-projection": "node scripts/build-meta-projection.mjs",
+    "check:cloudflare-pages": "node scripts/check-cloudflare-pages-artifact.mjs",
+    "build:cloudflare": "npm run build:site && npm run check:artifact && npm run verify:artifact && npm run check:cloudflare-pages"
   },
   "repository": {
     "type": "git",
