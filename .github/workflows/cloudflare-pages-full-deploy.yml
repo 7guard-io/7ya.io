@@ -14,6 +14,12 @@ on:
       - 'scripts/verify-static-artifact.mjs'
       - 'package.json'
       - 'package-lock.json'
+      - 'index.html'
+      - 'media/**'
+      - 'assets/**'
+      - 'knowledge/**'
+      - 'styles/**'
+      - 'scripts/social-first-home-20260916.js'
   workflow_dispatch:
 
 permissions:
