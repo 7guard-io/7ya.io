@@ -15,6 +15,7 @@
     "packages/evidence-oracle/test/**/*.ts",
     "packages/intelligence/src/**/*.ts",
     "packages/intelligence/test/**/*.ts",
-    "api/**/*.ts"
+    "api/**/*.ts",
+    "src/core/**/*.ts"
   ]
 }
