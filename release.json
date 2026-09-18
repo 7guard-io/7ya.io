@@ -2,17 +2,17 @@
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
   "status": "READY",
-  "release": "7ya-route-depth-20260918-v14",
+  "release": "7ya-content-os-20260918-v16",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "51d47a421579b3ea27f6104ed3257e45eba1b65e",
-  "source_sha_role": "homepage scale and 434-record archive before route-specific visual depth styles",
+  "source_sha": "75605411f020106465dd9e5c5ee5860b2bd0b22d",
+  "source_sha_role": "permanent content OS baseline: full archive homepage projection, deterministic sitewide layer, contract-driven route recommendations and CI coverage guard",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-18",
   "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-route-depth-20260918-v14",
+  "build_marker": "7ya-content-os-20260918-v16",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -43,8 +43,13 @@
     "curated_items": 59,
     "default_projection": "non-archive public-life records; civic/political records remain available as neutral public archive",
     "features": [
+      "Full-history search",
       "Facebook filter",
       "Instagram filter",
+      "TikTok filter",
+      "YouTube filter",
+      "LinkedIn filter",
+      "Spotify filter",
       "impact filter",
       "public archive filter",
       "verified audience excerpts",
@@ -56,7 +61,7 @@
       "Facebook",
       "Instagram"
     ],
-    "public_projection_count": 54,
+    "public_projection_count": 269,
     "influence_live_corpus": true,
     "sitewide_route_projection": true
   },
@@ -80,8 +85,8 @@
     "/api/health",
     "/api/feed.json"
   ],
-  "release_intent": "Remove sparse-route syndrome across history, journey, research, speaker, library and articles with source-linked local content, real media and the site-wide impact layer.",
-  "promotion_gate": "Cloudflare GitHub App check must succeed and 7ya.io must serve the v8 marker plus the 52-item social corpus.",
+  "release_intent": "Make 7YA permanently project Igor's complete public record from canonical corpora across every major route, with route-aware recommendations, Academia/Research/StartOn/Media continuity, and fail-closed coverage checks.",
+  "promotion_gate": "Cloudflare GitHub App must build main successfully; content OS source gate must retain >=400 master records, >=250 public URLs, >=50 curated records, platform coverage floors, and required Academia/Research/Media/StartOn route markers.",
   "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
   "remaining_gates": [],
   "operations": {
@@ -89,7 +94,7 @@
     "production_source": "7guard-io/7ya.io@main",
     "automatic_deployer": "Cloudflare GitHub App",
     "github_actions_role": "manual fallback / optional verification while runner billing is unavailable",
-    "cache_policy": "homepage and social corpus revalidate/no-store; social JS/CSS cache-busted at v8",
+    "cache_policy": "homepage merged feed cache-busted v11; sitewide content OS runtime cache-busted v3; canonical corpora use no-store/revalidate",
     "sitewide_impact_layer": true,
     "impact_layer_routes": 24
   },
@@ -101,5 +106,36 @@
     "political_or_civic": 79,
     "archive_or_snapshot": 145,
     "private_drive_urls_exposed": false
+  },
+  "content_os": {
+    "contract": "/knowledge/content-os-contract-20260918.json",
+    "checker": "scripts/check-content-os.mjs",
+    "source_gate": true,
+    "artifact_gate": true,
+    "route_aware_recommendations": true,
+    "universal_surfaces": [
+      "Life / Identity",
+      "StartOn",
+      "Media",
+      "Research",
+      "Academia",
+      "Articles",
+      "Influence",
+      "Evidence",
+      "Podcasts",
+      "Music"
+    ],
+    "guard_floors": {
+      "master_records": 400,
+      "public_urls": 250,
+      "curated_records": 50,
+      "Facebook": 100,
+      "Instagram": 100,
+      "YouTube": 30,
+      "LinkedIn": 10,
+      "TikTok": 10
+    },
+    "political_auto_promotion": false,
+    "private_drive_urls_public": false
   }
 }
