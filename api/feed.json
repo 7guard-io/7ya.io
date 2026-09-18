@@ -1,0 +1,251 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "7YA · Igor Vepretski Public Feed",
+  "home_page_url": "https://7ya.io/",
+  "feed_url": "https://7ya.io/api/feed.json",
+  "language": "he",
+  "description": "Curated public, source-linked records from Igor Vepretski / 7YA.",
+  "_7ya": {
+    "release": "7ya-cloudflare-canonical-20260918-v1",
+    "mode": "static-public-canonical",
+    "generated_on": "2026-09-18",
+    "source": "knowledge/social-corpus-20260918.json",
+    "item_count": 15
+  },
+  "items": [
+    {
+      "id": "tiktok-life-story-20260909",
+      "url": "https://www.tiktok.com/@igor.vepretski/video/7683551768625564946",
+      "title": "לא נולדתי לתוך מסלול מסודר. בניתי אחד.",
+      "content_text": "ג׳סי כהן → שירות → משטרה → עשייה ציבורית → StartOn → #7YA. רגע שמחבר את התחנות במקום להציג אותן כרשימת תפקידים.",
+      "date_published": "2026-09-09T00:00:00+03:00",
+      "_7ya": {
+        "platform": "TikTok",
+        "kind": "owner_video",
+        "metric_source": "Metricool connected TikTok analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "views": 558,
+          "likes": 13,
+          "comments": 1,
+          "shares": 1,
+          "reach": 441
+        }
+      }
+    },
+    {
+      "id": "tiktok-my-story-20260421",
+      "url": "https://www.tiktok.com/@igor.vepretski/video/7631091912480427284",
+      "title": "MY STORY 🐦‍🔥",
+      "content_text": "וידאו אישי מתוך רצף #7YA שמציג את הסיפור בגוף ראשון.",
+      "date_published": "2026-04-21T00:00:00+03:00",
+      "_7ya": {
+        "platform": "TikTok",
+        "kind": "owner_video",
+        "metric_source": "Metricool connected TikTok analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "views": 808,
+          "likes": 13,
+          "comments": 4,
+          "shares": 1,
+          "reach": 691
+        }
+      }
+    },
+    {
+      "id": "tiktok-hiphop-20260512",
+      "url": "https://www.tiktok.com/@igor.vepretski/video/7638959410114546965",
+      "title": "היפ־הופ כחלק מהביוגרפיה",
+      "content_text": "יצירה ושיתוף פעולה מתוך הפיד — לא נספח לסיפור, אלא חלק ממנו.",
+      "date_published": "2026-05-12T00:00:00+03:00",
+      "_7ya": {
+        "platform": "TikTok",
+        "kind": "owner_video",
+        "metric_source": "Metricool connected TikTok analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "views": 1202,
+          "likes": 42,
+          "comments": 6,
+          "shares": 4,
+          "reach": 995
+        }
+      }
+    },
+    {
+      "id": "linkedin-starton-20260913",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7504811986866794496",
+      "title": "StartOn: מטכנולוגיה לתשתית של שייכות",
+      "content_text": "רפלקציה מקצועית על המעבר מחדר VR לשאלה מערכתית: איך בונים תשתית מקומית שמחברת טכנולוגיה, קהילה ואנשי מקצוע.",
+      "date_published": "2026-09-13T00:00:00+03:00",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "impressions": 112,
+          "unique_impressions": 67
+        }
+      }
+    },
+    {
+      "id": "linkedin-7ya-20260912",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7504448995096977408",
+      "title": "מה קורה כשאינטרנט הופך לתיעוד חיים?",
+      "content_text": "הסבר קצר על 7YA כשכבת הקשר: אדם, רגעים, מקורות ו־provenance במקום עוד פיד.",
+      "date_published": "2026-09-12T00:00:00+03:00",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "impressions": 105,
+          "reactions": 1,
+          "unique_impressions": 76
+        }
+      }
+    },
+    {
+      "id": "linkedin-music-20260912",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7504449479098593280",
+      "title": "גם יצירה נשארת ברשומה",
+      "content_text": "פוסט שמחזיר את ׳מת על אקסל׳ לתוך הסיפור הציבורי — לא רק תפקידים וכותרות, גם מה שנוצר ונשאר.",
+      "date_published": "2026-09-12T00:00:00+03:00",
+      "_7ya": {
+        "platform": "LinkedIn",
+        "kind": "owner_post",
+        "metric_source": "Metricool connected LinkedIn analytics",
+        "metric_as_of": "2026-09-18",
+        "metrics": {
+          "impressions": 60,
+          "unique_impressions": 44
+        }
+      }
+    },
+    {
+      "id": "youtube-starton-20260213",
+      "url": "https://www.youtube.com/watch?v=SOx8DUXFIEw",
+      "title": "מיזם חללים אינטראקטיביים לנערים בסיכון",
+      "content_text": "StartOn בווידאו: המרחב, הרעיון והחיבור לנוער.",
+      "date_published": "2026-02-13T00:00:00+03:00",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "owner_video",
+        "metric_source": "YouTube connected catalog via Metricool",
+        "metric_as_of": "2026-09-18",
+        "metrics": null
+      }
+    },
+    {
+      "id": "youtube-story-20260421",
+      "url": "https://www.youtube.com/watch?v=fxFAUrb1h0M",
+      "title": "Igor Vepretski Story — what’s your story?",
+      "content_text": "סיפור חיים בפורמט וידאו, בגוף ראשון.",
+      "date_published": "2026-04-21T00:00:00+03:00",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "owner_video",
+        "metric_source": "YouTube connected catalog via Metricool",
+        "metric_as_of": "2026-09-18",
+        "metrics": null
+      }
+    },
+    {
+      "id": "youtube-collab-20260606",
+      "url": "https://www.youtube.com/watch?v=dhIiamSyKZk",
+      "title": "#7YA × Nawan",
+      "content_text": "רגע יצירה משותף מתוך הארכיון הפעיל.",
+      "date_published": "2026-06-06T00:00:00+03:00",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "owner_video",
+        "metric_source": "YouTube connected catalog via Metricool",
+        "metric_as_of": "2026-09-18",
+        "metrics": null
+      }
+    },
+    {
+      "id": "youtube-bizzi-2025",
+      "url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "title": "BIZZI (feat. Vepretski)",
+      "content_text": "המוזיקה כחלק מאותו מסלול חיים ציבורי.",
+      "date_published": "2025-08-07T00:00:00+03:00",
+      "_7ya": {
+        "platform": "YouTube",
+        "kind": "music",
+        "metric_source": "Canonical public YouTube source",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "instagram-public-reel-20231017",
+      "url": "https://www.instagram.com/reel/CyhEU1kMUuH/",
+      "title": "גיבורי העל של התקופה",
+      "content_text": "ריל אישי שנוצר בזמן פחד ציבורי כהכרת תודה לאנשים שפעלו בשטח.",
+      "date_published": "2023-10-17T00:00:00+03:00",
+      "_7ya": {
+        "platform": "Instagram",
+        "kind": "owner_reel",
+        "metric_source": "Public source-linked reel",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "facebook-live-surface",
+      "url": "https://www.facebook.com/vepretski7",
+      "title": "הארכיון הציבורי בפייסבוק",
+      "content_text": "פוסטים, וידאו והשיחה המתמשכת עם הקהל — המשטח הקנוני נשאר /vepretski7.",
+      "_7ya": {
+        "platform": "Facebook",
+        "kind": "public_surface",
+        "metric_source": "Canonical public surface",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "telegram-live-surface",
+      "url": "https://t.me/vepretski",
+      "title": "הערוץ הישיר",
+      "content_text": "עדכונים וקול ישיר מחוץ לפיד האלגוריתמי.",
+      "_7ya": {
+        "platform": "Telegram",
+        "kind": "public_surface",
+        "metric_source": "Canonical public surface",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "threads-live-surface",
+      "url": "https://www.threads.net/@igor.vepretski",
+      "title": "שיחות קצרות בזמן אמת",
+      "content_text": "עוד שכבה של הקול הציבורי, מחוברת לאותו סיפור.",
+      "_7ya": {
+        "platform": "Threads",
+        "kind": "public_surface",
+        "metric_source": "Canonical public surface",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    },
+    {
+      "id": "x-live-surface",
+      "url": "https://x.com/igorvepretski",
+      "title": "תגובות, מחשבות וקישורים",
+      "content_text": "משטח ציבורי נוסף; מדדי reach עצמיים אינם מוצגים כאן כמדד מאומת.",
+      "_7ya": {
+        "platform": "X",
+        "kind": "public_surface",
+        "metric_source": "Canonical public surface",
+        "metric_as_of": null,
+        "metrics": null
+      }
+    }
+  ]
+}
