@@ -41,9 +41,21 @@
     return year?Number(year)*10000:0;
   };
 
+  const sourceMediaUrl=(item)=>[
+    item.image,
+    item.thumbnail,
+    item.poster,
+    item.media?.image,
+    item.media?.thumbnail,
+    item.media?.poster,
+    item.media?.url,
+    item.media?.src
+  ].find(value=>typeof value==='string'&&/^https?:\/\//i.test(value.trim()))?.trim()||'';
+
   const displayScore=(item)=>{
     const cls=classify(item);
-    return (item.featured?1000000000:0)
+    return (sourceMediaUrl(item)?2000000000:0)
+      +(item.featured?1000000000:0)
       +(cls.includes('impact')&&!cls.includes('archive')?200000000:0)
       +(item.owned===true?50000000:0)
       +(item.origin==='curated'?25000000:0)
@@ -107,6 +119,17 @@
     return out;
   };
 
+  const makeSourceFrame=(item)=>{
+    const frame=document.createElement('div');
+    frame.className='social-frame';
+    const b=document.createElement('b');
+    b.textContent=item.platform||'PUBLIC';
+    const em=document.createElement('em');
+    em.textContent=item.date||item.year||'PUBLIC SOURCE';
+    frame.append(b,em);
+    return frame;
+  };
+
   const make=(item)=>{
     const a=document.createElement('a');
     a.className='social-card'+(item.featured?' featured':'')+(item.owned===false?' external-item':'');
@@ -118,22 +141,25 @@
     a.dataset.feedOrigin=item.origin||'curated';
     a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
-    if(item.image){
+    const sourceMedia=sourceMediaUrl(item);
+    if(sourceMedia){
       const img=document.createElement('img');
-      img.src=item.image;
+      img.src=sourceMedia;
       img.alt=item.title;
       img.loading='lazy';
       img.decoding='async';
+      img.referrerPolicy='no-referrer';
+      img.addEventListener('error',()=>{
+        if(!img.parentNode)return;
+        a.replaceChild(makeSourceFrame(item),img);
+        a.classList.remove('has-source-media');
+        a.dataset.sourceMedia='unavailable';
+      },{once:true});
+      a.classList.add('has-source-media');
+      a.dataset.sourceMedia='attached';
       a.append(img);
     }else{
-      const frame=document.createElement('div');
-      frame.className='social-frame';
-      const b=document.createElement('b');
-      b.textContent=item.platform||'PUBLIC';
-      const em=document.createElement('em');
-      em.textContent=item.date||item.year||'PUBLIC SOURCE';
-      frame.append(b,em);
-      a.append(frame);
+      a.append(makeSourceFrame(item));
     }
 
     const copy=document.createElement('div');
