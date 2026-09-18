@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T16:40:00+03:00",
+  "generated_at": "2026-09-18T16:55:00+03:00",
   "purpose": "Curated personal social-life stream for 7YA. Sources stay platform-native; metrics are shown only when sourced from connected owner analytics or a dated public record.",
   "curation_principles": [
     "person_before_platform",
@@ -418,6 +418,57 @@
       "url": "https://music.amazon.com/artists/B08FGHGZT2/igor-vepretski",
       "metric_source": "Public Amazon Music artist source",
       "theme": "music",
+      "owned": true
+    },
+    {
+      "id": "instagram-help-or-dont-20231003",
+      "platform": "Instagram",
+      "date": "2023-10-03",
+      "kind": "owner_reel",
+      "title": "או שתעזרו או שאל תפריעו 🤝🎯",
+      "summary": "ריל אינסטגרם מקורי שנשמר בקטלוג החזותי המאומת של 7YA וממופה גם להפצה חוצת־פלטפורמות.",
+      "url": "https://www.instagram.com/reel/Cx7-kpgss9s/",
+      "metric_source": "Verified public-source ledger",
+      "theme": "archive",
+      "owned": true
+    },
+    {
+      "id": "facebook-owned-video-715032976227492",
+      "platform": "Facebook",
+      "date": null,
+      "kind": "owner_video",
+      "title": "וידאו ציבורי מתוך הארכיון של /vepretski7",
+      "summary": "וידאו בבעלות הפרופיל הציבורי הקנוני בפייסבוק; נשמר כפריט וידאו מקור ולא כצילום מסך משני.",
+      "url": "https://www.facebook.com/vepretski7/videos/715032976227492/",
+      "metric_display": "43K views",
+      "metric_source": "Dated public Facebook snapshot",
+      "metric_as_of": "2026-08-20",
+      "theme": "archive",
+      "owned": true
+    },
+    {
+      "id": "youtube-first-upload-20111027",
+      "platform": "YouTube",
+      "date": "2011-10-27",
+      "kind": "legacy_owner_video",
+      "title": "העלאת YouTube הראשונה שנמצאה בארכיון",
+      "summary": "רשומת וידאו מוקדמת מערוץ MrIgor981 — נקודת התחלה חשובה לציר היצירה הציבורית הדיגיטלית.",
+      "url": "https://www.youtube.com/watch?v=feGSc663qww",
+      "image": "https://i.ytimg.com/vi/feGSc663qww/hqdefault.jpg",
+      "metric_source": "Verified legacy public record",
+      "theme": "archive",
+      "owned": true
+    },
+    {
+      "id": "instagram-verified-archive-dcq",
+      "platform": "Instagram",
+      "date": null,
+      "kind": "owner_reel",
+      "title": "ריל אינסטגרם מאומת מן הארכיון הציבורי",
+      "summary": "פריט Instagram נוסף שאומת בעבר כחלק ממיפוי התוכן המקורי של Igor ומוחזר כעת למשטח הציבורי.",
+      "url": "https://www.instagram.com/reel/DcQWwoespQ-/",
+      "metric_source": "Verified public Instagram source",
+      "theme": "archive",
       "owned": true
     }
   ],
