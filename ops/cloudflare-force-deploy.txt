@@ -16,3 +16,6 @@ reason: canonical-domain guard fixed; force Cloudflare Pages production rebuild 
 retrigger: 2026-09-18T20:52:00+03:00
 source_head: f42fdc9547ad4b691a8fe8020f1f6b5e3d459c38
 reason: final v16 content OS + corrected homepage sequence
+retrigger: 2026-09-19T11:59:00+03:00
+source_head: 7393d0cb5790114a2fab5ace1df057f66b6464ae
+reason: v19 documentary storyflow + verified audience impact; force governed Cloudflare Pages production rebuild from current main
