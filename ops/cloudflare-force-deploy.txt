@@ -19,3 +19,7 @@ reason: final v16 content OS + corrected homepage sequence
 retrigger: 2026-09-19T11:59:00+03:00
 source_head: 7393d0cb5790114a2fab5ace1df057f66b6464ae
 reason: v19 documentary storyflow + verified audience impact; force governed Cloudflare Pages production rebuild from current main
+
+retrigger: 2026-09-19T15:36:00+03:00
+source_head: f1c4e9eef83398f7ff9212d969cbf0ce90d02e42
+reason: verify multilingual HE-EN-RU-AR clean-route release through governed Cloudflare build
