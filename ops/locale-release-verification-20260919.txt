@@ -1,0 +1,7 @@
+7YA multilingual release verification
+date=2026-09-19
+source_branch=fix-cloudflare-locale-gate-20260919
+purpose=single-head Cloudflare Pages preview verification after locale gate, alias, runtime and SEO fixes
+expected_locales=he,en,ru,ar
+
+reconcile_preview_trigger=2026-09-19T17:27:00+03:00

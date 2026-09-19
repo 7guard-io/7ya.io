@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import http from "node:http";
 import https from "node:https";
+import { execFileSync } from "node:child_process";
 import { aliasRoutes, canonicalRoutes } from "./site-contract.mjs";
 
 const baseUrl = (process.argv[2] || "https://7ya.io").replace(/\/$/, "");
@@ -25,10 +26,13 @@ function extractTitle(html) {
 
 async function expectedTitles() {
   const result = new Map();
-  let root = ".";
-  try { await fs.access("dist/index.html"); root = "dist"; } catch {}
+  try {
+    await fs.access("dist/index.html");
+  } catch {
+    execFileSync(process.execPath, ["scripts/build-static-site.mjs"], { stdio: "inherit" });
+  }
   for (const [route, file] of routes) {
-    const html = await fs.readFile(root + "/" + file, "utf8");
+    const html = await fs.readFile("dist/" + file, "utf8");
     result.set(route, extractTitle(html));
   }
   return result;
