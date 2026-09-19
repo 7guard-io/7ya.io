@@ -148,6 +148,21 @@ for (const relative of artifactFiles.filter(file => file.endsWith('.html') && fi
   if (!html.includes('apple-mobile-web-app-title')) fail(`${relative} missing iOS app title metadata`);
 }
 
+const homepageHtml = await fs.readFile(path.join(output, 'index.html'), 'utf8');
+const homepageFacebookSourceCount = (homepageHtml.match(/https:\/\/(?:www\.)?facebook\.com\//g) || []).length;
+const homepageExternalSourceCount = (homepageHtml.match(/target=["']_blank["']/g) || []).length;
+if (homepageFacebookSourceCount < 12) fail(`homepage Facebook coverage regressed: ${homepageFacebookSourceCount} < 12`);
+if (homepageExternalSourceCount < 48) fail(`homepage source coverage regressed: ${homepageExternalSourceCount} < 48`);
+
+const visitorFacingForbiddenLabels = ['PUBLIC RECORD','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL','OFFICIAL BUSINESS REPORT','OWNER INSIGHTS','PUBLIC SNAPSHOT','PUBLIC POST','PUBLIC COMMENTS','EXTERNAL REPOST'];
+const visibleTextOf = html => html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+for (const relative of artifactFiles.filter(file => file.endsWith('.html') && !file.startsWith('api/'))) {
+  const html = await fs.readFile(path.join(output, relative), 'utf8');
+  const visible = visibleTextOf(html);
+  for (const label of visitorFacingForbiddenLabels) if (visible.includes(label)) fail(`${relative} still exposes technical visitor label ${label}`);
+  if (/dir=["']ltr["'][^>]*>[^<]*[\u0590-\u05ff]/iu.test(html)) fail(`${relative} keeps dir=ltr on Hebrew visitor text`);
+}
+
 const cname = (await fs.readFile(path.join(output, 'CNAME'), 'utf8')).trim();
 if (cname !== '7ya.io') fail(`CNAME mismatch: ${cname}`);
 
