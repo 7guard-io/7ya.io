@@ -24,3 +24,6 @@ retrigger: 2026-09-19T15:36:00+03:00
 source_head: f1c4e9eef83398f7ff9212d969cbf0ce90d02e42
 reason: verify multilingual HE-EN-RU-AR clean-route release through governed Cloudflare build
 2026-09-19T17:15:00Z force deploy chat-runtime repair c9297a1c88ad3e489dca2d077d36df00e7f8e1ee
+
+2026-09-19T18:05:00Z force deploy personal-first repair 87434f8dbb893bc05ce4d7ff9131cfd58d99a882
+reason: replace generic proof shell on human routes, restore photographic Igor identity, render source media and static social fallback
