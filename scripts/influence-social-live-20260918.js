@@ -18,6 +18,7 @@ function matches(i){
 }
 function card(i){
  const a=document.createElement('a');a.className='live-social-item'+(i.featured?' featured':'')+(i.archive_only?' archive':'');a.href=i.url||'#';a.target='_blank';a.rel='noreferrer';
+ if(i.image){const media=document.createElement('img');media.className='live-social-media';media.src=i.image;media.alt=i.title||'מדיה מקורית';media.loading='lazy';media.decoding='async';media.referrerPolicy='no-referrer';a.append(media)}
  const meta=document.createElement('small');meta.textContent=[i.platform,i.owned===true?'OWNED':i.owned===false?'EXTERNAL':'RECORD',i.date||'DATE UNRESOLVED'].join(' · ');a.append(meta);
  const h=document.createElement('h3');h.textContent=i.title||'Untitled record';a.append(h);
  const p=document.createElement('p');p.textContent=i.summary||'';a.append(p);
@@ -28,5 +29,5 @@ function card(i){
 }
 function render(){grid.replaceChildren();const visible=items.filter(matches);visible.forEach(i=>grid.append(card(i)));count.textContent=visible.length.toLocaleString('he-IL');if(empty)empty.hidden=visible.length>0}
 buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.liveFilter;render()}));search?.addEventListener('input',render);
-fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('feed');return r.json()}).then(d=>{items=Array.isArray(d.moments)?d.moments:[];render()}).catch(()=>{count.textContent='—';if(empty){empty.hidden=false;empty.textContent='הקורפוס החברתי לא נטען כרגע.'}});
+fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('feed');return r.json()}).then(d=>{items=Array.isArray(d.moments)?d.moments:[];render()}).catch(()=>{const fallbackCount=grid.children.length;if(count)count.textContent=fallbackCount?String(fallbackCount):'—';if(empty){empty.hidden=fallbackCount>0;empty.textContent='הקורפוס החברתי לא נטען כרגע — מוצגת תצוגת גיבוי מחוברת למקורות.'}});
 })();

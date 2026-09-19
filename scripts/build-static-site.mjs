@@ -23,18 +23,24 @@ const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
 
-const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=3" data-7ya-impact-layer="20260918">';
+const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=4" data-7ya-impact-layer="20260918">';
 const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=3" data-7ya-impact-layer="20260918" defer></script>';
 const siteHumanNavMarkup = `<nav class="seven-human-nav" data-seven-human-nav aria-label="ניווט אחיד ב־7YA">
   <a href="/">ראשי</a><a href="/igor-vepretski/">הסיפור</a><a href="/influence/">הפיד</a><a href="/library/">מקור</a><a href="/evidence/">ראיות</a><a href="/journey/">המסע</a><a class="seven-human-nav-cta" href="/contact/">דברו איתי</a>
 </nav>`;
 const siteImpactEligible = new Set([
-  'index.html','7ya/index.html','museum/index.html','entity/index.html','create/index.html','history/index.html',
-  'igor-vepretski/index.html','journey/index.html','starton/index.html','radar/index.html','influence/index.html',
-  'research/index.html','response-ai/index.html','evidence/index.html','verify/index.html','ledger/index.html',
-  'speaker/index.html','talk/index.html','media/index.html','library/index.html','articles/index.html',
-  'contact/index.html','delta-audit/index.html','legacy/index.html'
+  'entity/index.html','evidence/index.html','verify/index.html','ledger/index.html','delta-audit/index.html'
 ]);
+const sitePersonalAnchorEligible = new Set([
+  '7ya/index.html','museum/index.html','create/index.html','history/index.html','igor-vepretski/index.html',
+  'journey/index.html','starton/index.html','radar/index.html','influence/index.html','research/index.html',
+  'response-ai/index.html','speaker/index.html','talk/index.html','media/index.html','library/index.html',
+  'articles/index.html','contact/index.html','legacy/index.html'
+]);
+const sitePersonalAnchorMarkup = `<aside class="seven-person-anchor" data-seven-person-anchor aria-label="איגור ופרצקי — האדם מאחורי האתר">
+  <a class="seven-person-anchor-main" href="/igor-vepretski/"><img src="/assets/igor-home-portrait-20260712.webp" alt="איגור ופרצקי" loading="eager" decoding="async"><span><small>IGOR VEPRETSKI · 7YA</small><strong>איגור ופרצקי</strong><em>החיים · העשייה · התוכן המקורי</em></span></a>
+  <nav aria-label="החשבונות המקוריים"><a href="https://www.instagram.com/igor.vepretski/" target="_blank" rel="noreferrer">Instagram ↗</a><a href="https://www.facebook.com/vepretski7" target="_blank" rel="noreferrer">Facebook ↗</a><a href="https://www.youtube.com/@IgorVepretski" target="_blank" rel="noreferrer">YouTube ↗</a><a href="/influence/">כל הפיד →</a></nav>
+</aside>`;
 const siteImpactMarkup = `<section class="seven-proof-layer" data-seven-proof-layer aria-label="שכבת השפעה ציבורית">
   <div class="seven-proof-head">
     <div><div class="seven-proof-kicker">#7YA · אלבום החיים · 2026</div><h2>העמוד הזה הוא רק שכבה אחת.<br><em>הרשומה גדולה יותר.</em></h2></div>
@@ -49,7 +55,7 @@ const siteImpactMarkup = `<section class="seven-proof-layer" data-seven-proof-la
     <a href="https://www.instagram.com/p/Co4HKRLoack/" target="_blank" rel="noreferrer"><b>2,329</b><span>לייקים ב־Instagram · אבא מושלם</span><small>פוסט ציבורי</small></a>
   </div>
   <div class="seven-proof-visuals">
-    <a class="seven-proof-visual" href="/igor-vepretski/"><img src="/assets/personal-hero-20260716/igor-hero.webp" alt="איגור ופרצקי" loading="lazy"><span>האדם מאחורי הרשומה</span></a>
+    <a class="seven-proof-visual" href="/igor-vepretski/"><img src="/assets/igor-home-portrait-20260712.webp" alt="איגור ופרצקי" loading="lazy"><span>האדם מאחורי הרשומה</span></a>
     <a class="seven-proof-visual" href="https://www.youtube.com/watch?v=SOx8DUXFIEw" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/SOx8DUXFIEw/hqdefault.jpg" alt="StartOn בווידאו" loading="lazy"><span>StartOn · YouTube ↗</span></a>
     <a class="seven-proof-visual" href="https://www.youtube.com/watch?v=jRjZjpqAgEw" target="_blank" rel="noreferrer"><img src="https://i.ytimg.com/vi/jRjZjpqAgEw/maxresdefault.jpg" alt="BIZZI feat Vepretski" loading="lazy"><span>BIZZI · MUSIC ↗</span></a>
     <a class="seven-proof-visual" href="https://holon.mynet.co.il/local_news/article/hjxqegkiq" target="_blank" rel="noreferrer"><img src="https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg" alt="StartOn ב-mynet חולון" loading="lazy"><span>mynet · חזרה לג׳סי כהן ↗</span></a>
@@ -225,7 +231,7 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('apple-mobile-web-app-capable')) headTags.push(appleWebAppCapableTag);
   if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
-  if (siteImpactEligible.has(relative) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
+  if ((siteImpactEligible.has(relative) || sitePersonalAnchorEligible.has(relative)) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
   if (siteImpactEligible.has(relative) && !html.includes('data-seven-proof-layer')) bodyTags.unshift(siteImpactMarkup);
   if (siteImpactEligible.has(relative) && !html.includes('site-impact-layer-20260918.js')) bodyTags.push(siteImpactScriptTag);
@@ -233,9 +239,13 @@ function injectSharedAssets(html, relative) {
   let enhanced = html;
   if (headTags.length) enhanced = enhanced.replace('</head>', `  ${headTags.join('\n  ')}\n</head>`);
   if (bodyTags.length) enhanced = enhanced.replace('</body>', `  ${bodyTags.join('\n  ')}\n</body>`);
-  if (siteImpactEligible.has(relative) && !enhanced.includes('data-seven-human-nav')) {
+  if ((siteImpactEligible.has(relative) || sitePersonalAnchorEligible.has(relative)) && !enhanced.includes('data-seven-human-nav')) {
     const skipLink=/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i;
     enhanced=skipLink.test(enhanced)?enhanced.replace(skipLink,match=>`${match}\n${siteHumanNavMarkup}`):enhanced.replace(/<body\b[^>]*>/i,match=>`${match}\n${siteHumanNavMarkup}`);
+  }
+  if (sitePersonalAnchorEligible.has(relative) && !enhanced.includes('data-seven-person-anchor')) {
+    const humanNav=/<nav\b[^>]*data-seven-human-nav[^>]*>[\s\S]*?<\/nav>/i;
+    enhanced=humanNav.test(enhanced)?enhanced.replace(humanNav,match=>`${match}\n${sitePersonalAnchorMarkup}`):enhanced.replace(/<body\b[^>]*>/i,match=>`${match}\n${sitePersonalAnchorMarkup}`);
   }
   return humanizePublicHtml(enhanced);
 }
