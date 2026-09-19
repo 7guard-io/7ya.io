@@ -7,10 +7,16 @@ const baseUrl = (process.argv[2] || "https://7ya.io").replace(/\/$/, "");
 const timeoutMs = Number(process.env.TIMEOUT_MS || 15000);
 const maxBodyBytes = 128 * 1024;
 
-const routes = canonicalRoutes.map(route => [
+const canonicalRoutePairs = canonicalRoutes.map(route => [
   `/${route ? `${route}/` : ''}`,
   route ? `${route}/index.html` : 'index.html',
 ]);
+const localizedCore = ['', 'igor-vepretski', 'influence', 'library', 'evidence', 'journey', 'starton', 'media', 'research', 'contact'];
+const localeRoutePairs = ['en','ru','ar'].flatMap(locale => localizedCore.map(route => [
+  `/${locale}/${route ? `${route}/` : ''}`,
+  `${locale}/${route ? `${route}/` : ''}index.html`,
+]));
+const routes = [...canonicalRoutePairs, ...localeRoutePairs];
 
 function extractTitle(html) {
   const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -19,8 +25,10 @@ function extractTitle(html) {
 
 async function expectedTitles() {
   const result = new Map();
+  let root = ".";
+  try { await fs.access("dist/index.html"); root = "dist"; } catch {}
   for (const [route, file] of routes) {
-    const html = await fs.readFile(file, "utf8");
+    const html = await fs.readFile(root + "/" + file, "utf8");
     result.set(route, extractTitle(html));
   }
   return result;
