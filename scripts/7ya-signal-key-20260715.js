@@ -6,6 +6,8 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const rtl = document.documentElement.dir === 'rtl' || /^he|^ar|^fa/.test(document.documentElement.lang || '');
+  const canonicalPath = () => window.__7yaCanonicalPath ? window.__7yaCanonicalPath() : (location.pathname.replace(/^\/(?:en|ru|ar)(?=\/|$)/,'') || '/');
+  const localizePath = value => window.__7yaLocalizePath ? window.__7yaLocalizePath(value) : value;
   const conversation = [];
   let activeMode = 'guide';
   let busy = false;
@@ -58,7 +60,7 @@
   }
 
   function routePrompts(mode) {
-    const path = location.pathname;
+    const path = canonicalPath();
     if (mode === 'create') {
       if (path.startsWith('/museum') || path.startsWith('/history')) {
         return rtl
@@ -178,7 +180,7 @@
   copyButton.type = 'button';
   copyButton.hidden = true;
   const studioLink = element('a', 'ya-signal-studio', rtl ? 'לסטודיו המלא /create/' : 'Open full studio /create/');
-  studioLink.href = '/create/';
+  studioLink.href = localizePath('/create/');
   actionRow.append(copyButton, studioLink);
 
   const footer = element('footer', 'ya-signal-footer');
@@ -211,7 +213,7 @@
       const href = safeInternalHref(link?.href);
       if (!href) return;
       const anchor = element('a', '', link.label || href);
-      anchor.href = href;
+      anchor.href = localizePath(href);
       row.append(anchor);
     });
     if (row.childElementCount) messages.append(row);
@@ -311,7 +313,7 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message,
-          path: location.pathname,
+          path: canonicalPath(),
           mode: config.apiMode,
           creator_mode: config.creatorMode,
         }),
@@ -351,7 +353,7 @@
   }
 
   function loadHomeUniverse() {
-    if (!['/', '/index.html'].includes(location.pathname)) return;
+    if (canonicalPath() !== '/') return;
     if (!document.querySelector('link[data-home-universe]')) {
       const style = document.createElement('link');
       style.rel = 'stylesheet';
