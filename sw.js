@@ -1,4 +1,4 @@
-const CACHE_VERSION = '7ya-shell-20260817-brand-v1';
+const CACHE_VERSION = '7ya-shell-20260919-chat2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = '/';
