@@ -144,3 +144,36 @@
 .storyflow-foot a{color:var(--ink);text-decoration:none;font-size:11px;font-weight:800;border-bottom:1px solid currentColor;padding-bottom:4px}
 @media(max-width:1050px){.storyflow-head{grid-template-columns:1fr}.storyflow-item{grid-template-columns:120px 1fr}.storyflow-evidence{grid-column:1/-1;min-height:380px}.storyflow-index{grid-row:1}.storyflow-body{grid-row:1}}
 @media(max-width:620px){.storyflow{padding:52px 16px}.storyflow-head h2{font-size:44px}.storyflow-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 12px}.storyflow-item{flex:0 0 90vw;display:flex;flex-direction:column;min-height:0;scroll-snap-align:start}.storyflow-index{min-height:96px;padding:16px 18px;border-inline-end:0;border-bottom:1px solid var(--line);flex-direction:row;align-items:flex-end}.storyflow-index b{font-size:42px}.storyflow-body{padding:24px 18px;min-height:390px}.storyflow-body h3{font-size:40px}.storyflow-steps{padding-top:24px}.storyflow-evidence{min-height:360px}.storyflow-evidence.text-only{min-height:360px}.storyflow-foot{align-items:flex-start;flex-direction:column}}
+
+
+/* SOCIAL_MOBILE_OPTIMIZATION_20260919_V1 */
+@media(max-width:620px){
+  .now-pulse,.audience-pulse,.storyflow,.originals,.visual-archive,.impact-wall,.social-depth,.publication-scale,.igor-live{padding-inline:max(16px,env(safe-area-inset-left))}
+  .pulse-head,.originals-head,.impact-wall-head,.social-depth-head,.publication-scale-head,.igor-live-head,.storyflow-head{gap:22px;margin-bottom:28px}
+  .pulse-head h2,.originals-head h2,.impact-wall-head h2,.social-depth-head h2,.publication-scale-head h2,.igor-live-head h2,.storyflow-head h2,.audience-pulse-head h2{font-size:clamp(40px,11.4vw,52px);line-height:.92;letter-spacing:-.045em}
+  .pulse-grid,.audience-pulse-grid,.storyflow-list,.visual-wall,.impact-wall-grid,.social-depth-grid,.social-rail,.publication-platforms,.audience-voices{scroll-padding-inline:16px;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+  .pulse-grid{display:flex;overflow-x:auto;margin-inline:-16px;padding:0 16px 10px;scroll-snap-type:x mandatory}
+  .pulse-card,.pulse-card--lead{flex:0 0 min(86vw,380px);min-height:390px;scroll-snap-align:start;padding:22px}
+  .pulse-card h3{margin-top:34px;font-size:36px;line-height:.98}
+  .pulse-card p{font-size:14px;line-height:1.55}
+  .audience-pulse-card,.impact-proof,.impact-proof--hero,.social-depth-card,.social-depth-card.lead{flex-basis:min(86vw,390px)}
+  .storyflow-item{flex-basis:min(90vw,430px)}
+  .visual-tile,.visual-tile.wide,.visual-tile.tall{flex-basis:min(82vw,380px);height:min(132vw,520px)}
+  .social-card,.social-card.featured{flex-basis:min(84vw,380px);min-height:460px}
+  .originals-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 10px;scroll-padding-inline:16px;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+  .original-card,.original-card.span-4,.original-card.span-5,.original-card.span-7,.original-card.span-12{flex:0 0 min(86vw,390px);min-height:430px;scroll-snap-align:start}
+  .feed-controls{display:flex;overflow-x:auto;gap:6px;margin-inline:-16px;padding:0 16px 10px;scroll-snap-type:x proximity;scrollbar-width:none;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch}
+  .feed-controls::-webkit-scrollbar{display:none}
+  .feed-controls button{flex:0 0 auto;min-height:44px;padding-inline:14px;white-space:nowrap}
+  .social-platforms a{min-width:132px;min-height:54px;padding:12px 14px}
+  .archive-actions{display:grid;grid-template-columns:1fr;gap:0}
+  .archive-link{min-height:52px;align-items:center;margin-top:0;padding-block:12px}
+  .storyflow-body{min-height:0}
+  .storyflow-steps{gap:6px}
+  .storyflow-steps span{padding:8px 9px}
+  .audience-pulse-foot,.storyflow-foot{gap:14px}
+}
+@media(max-width:390px){
+  .pulse-card,.pulse-card--lead,.audience-pulse-card,.impact-proof,.impact-proof--hero,.social-depth-card,.social-depth-card.lead,.original-card,.original-card.span-4,.original-card.span-5,.original-card.span-7,.original-card.span-12{flex-basis:88vw}
+  .storyflow-item{flex-basis:92vw}
+}
