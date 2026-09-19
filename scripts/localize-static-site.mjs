@@ -224,10 +224,15 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
 
 function replaceVisibleCopy(html, locale) {
   if(locale==='he')return html;
-  let next=html;
+  const protectedBlocks=[];
+  let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
+    const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
+    protectedBlocks.push(block);
+    return token;
+  });
   for(const [from,to] of commonTranslations[locale]) next=next.split(from).join(to);
   for(const [from,to] of Object.entries(technicalTranslations[locale])) next=next.split(from).join(to);
-  return next;
+  return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
 
 function setMetadata(html, locale, route) {
