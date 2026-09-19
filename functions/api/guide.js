@@ -172,6 +172,44 @@ export async function onRequestPost({ request }) {
   }
 }
 
-export function onRequestGet() {
-  return json({ status: 'ready', experience: '7ya-growth-companion', upstream: 'server-side', secrets_exposed: false });
+export async function onRequestGet({ request }) {
+  const url = new URL(request.url);
+  if (url.searchParams.get('probe') !== '1') {
+    return json({ status: 'ready', experience: '7ya-growth-companion', upstream: 'server-side', secrets_exposed: false });
+  }
+  try {
+    const body = {
+      message: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.',
+      messages: [{ role: 'user', content: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.' }],
+      locale: 'he',
+      path: '/',
+      mode: 'creator',
+      creator_mode: 'momentum',
+    };
+    const proxied = await proxyCompanion(body, request);
+    const data = proxied.data;
+    const reply = clean(data.reply, 5200);
+    const suggestions = Array.isArray(data.suggestions) ? data.suggestions.filter(Boolean) : [];
+    const checkpoint = Array.isArray(data.checkpoint && data.checkpoint.items) ? data.checkpoint.items.filter(Boolean) : [];
+    const usable = Boolean(reply && (suggestions.length || checkpoint.length));
+    return json({
+      status: usable ? 'ready' : 'degraded',
+      experience: '7ya-growth-companion',
+      upstream: 'server-side',
+      provider: clean(data.provider, 40) || 'local',
+      model: clean(data.model, 120) || '7ya',
+      response_present: Boolean(reply),
+      next_step_present: Boolean(suggestions.length || checkpoint.length),
+      secrets_exposed: false,
+    }, usable ? 200 : 503);
+  } catch {
+    return json({
+      status: 'degraded',
+      experience: '7ya-growth-companion',
+      upstream: 'server-side',
+      response_present: false,
+      next_step_present: false,
+      secrets_exposed: false,
+    }, 503);
+  }
 }
