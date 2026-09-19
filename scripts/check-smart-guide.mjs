@@ -36,7 +36,7 @@ requireText('widget', "setAttribute('aria-expanded'", 'launcher accessibility st
 requireText('widget', "event.key === 'Escape'", 'keyboard close behavior missing');
 requireText('widget', 'textContent', 'safe text rendering missing');
 requireText('widget', "fetch('/api/guide'", 'guide API integration missing');
-requireText('widget', "data.provider === 'nvidia'", 'provider transparency missing');
+requireText('widget', "provider.textContent = rtl ? 'מנוע 7YA פעיל'", 'visitor-safe engine continuity label missing');
 requireText('widget', "creatorMode: 'create'", 'creator mode missing');
 requireText('widget', "creatorMode: 'momentum'", 'fulfilment mode missing');
 requireText('widget', "creatorMode: 'impact'", 'impact mode missing');
