@@ -23,3 +23,4 @@ reason: v19 documentary storyflow + verified audience impact; force governed Clo
 retrigger: 2026-09-19T15:36:00+03:00
 source_head: f1c4e9eef83398f7ff9212d969cbf0ce90d02e42
 reason: verify multilingual HE-EN-RU-AR clean-route release through governed Cloudflare build
+2026-09-19T17:15:00Z force deploy chat-runtime repair c9297a1c88ad3e489dca2d077d36df00e7f8e1ee
