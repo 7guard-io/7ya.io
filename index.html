@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" data-7ya-locale="he">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -29,8 +29,15 @@
   <link rel="stylesheet" href="./styles/social-first-20260916.css?v=24">
   <!-- MEDIA_DENSITY_RELEASE:20260918-v5 -->
   <!-- SOCIAL_IMPACT_RELEASE:20260918-v13 -->
+  <link rel="alternate" hreflang="he" href="https://7ya.io/">
+  <link rel="alternate" hreflang="en" href="https://7ya.io/en/">
+  <link rel="alternate" hreflang="ru" href="https://7ya.io/ru/">
+  <link rel="alternate" hreflang="ar" href="https://7ya.io/ar/">
+  <link rel="alternate" hreflang="x-default" href="https://7ya.io/">
+  <link rel="stylesheet" href="/styles/locale-shell-20260919.css?v=1">
 </head>
 <body>
+<nav class="seven-human-nav" data-seven-human-nav aria-label="ניווט ראשי"><a href="/">ראשי</a><a href="/igor-vepretski/">הסיפור</a><a href="/influence/">הפיד</a><a href="/library/">מקור</a><a href="/evidence/">ראיות</a><a href="/journey/">המסע</a><a class="seven-human-nav-cta" href="/contact/">דברו איתי</a><span class="seven-language-switch" data-seven-languages><a href="/" lang="he" dir="rtl" aria-current="true">עברית</a><a href="/en/" lang="en" dir="ltr">EN</a><a href="/ru/" lang="ru" dir="ltr">RU</a><a href="/ar/" lang="ar" dir="rtl">العربية</a></span></nav>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="איגור ופרצקי — ראשי"><span>IGOR</span><b>VEPRETSKI</b></a>
     <nav class="nav" aria-label="ניווט ראשי">
@@ -432,5 +439,6 @@
   <script>
     const menu=document.querySelector('.menu');const nav=document.querySelector('.nav');const closeMenu=()=>{menu?.setAttribute('aria-expanded','false');nav?.classList.remove('open')};menu?.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));nav?.classList.toggle('open',!open)});nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
   </script>
+  <script src="/scripts/locale-runtime-20260919.js?v=1" defer></script>
 </body>
 </html>

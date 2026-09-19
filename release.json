@@ -2,17 +2,17 @@
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
   "status": "READY",
-  "release": "7ya-content-os-20260918-v16",
+  "release": "7ya-multilingual-static-20260919-v20",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "75605411f020106465dd9e5c5ee5860b2bd0b22d",
-  "source_sha_role": "permanent content OS baseline: full archive homepage projection, deterministic sitewide layer, contract-driven route recommendations and CI coverage guard",
+  "source_sha": "48299a4eef7afff5a83fc06469d03a5006654ce3",
+  "source_sha_role": "multilingual static-root baseline: HE/EN/RU/AR canonical route projections, persistent language switching, hreflang and 100-URL sitemap",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
-  "target_launch_date": "2026-09-18",
-  "publication_requested_at": "2026-09-18",
-  "build_marker": "7ya-content-os-20260918-v16",
+  "target_launch_date": "2026-09-19",
+  "publication_requested_at": "2026-09-19",
+  "build_marker": "7ya-multilingual-static-20260919-v20",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -83,7 +83,13 @@
     "/influence/",
     "/response-ai/",
     "/api/health",
-    "/api/feed.json"
+    "/api/feed.json",
+    "/en/",
+    "/ru/",
+    "/ar/",
+    "/en/evidence/",
+    "/ru/evidence/",
+    "/ar/evidence/"
   ],
   "release_intent": "Make 7YA permanently project Igor's complete public record from canonical corpora across every major route, with route-aware recommendations, Academia/Research/StartOn/Media continuity, and fail-closed coverage checks.",
   "promotion_gate": "Cloudflare GitHub App must build main successfully; content OS source gate must retain >=400 master records, >=250 public URLs, >=50 curated records, platform coverage floors, and required Academia/Research/Media/StartOn route markers.",
@@ -137,5 +143,24 @@
     },
     "political_auto_promotion": false,
     "private_drive_urls_public": false
+  },
+  "locales": {
+    "canonical": [
+      "he",
+      "en",
+      "ru",
+      "ar"
+    ],
+    "default": "he",
+    "clean_path_policy": "Hebrew at root; English /en/; Russian /ru/; Arabic /ar/; legacy ?lang= canonicalized client-side",
+    "directionality": {
+      "he": "rtl",
+      "en": "ltr",
+      "ru": "ltr",
+      "ar": "rtl"
+    },
+    "sitemap_urls": 100,
+    "hreflang": true,
+    "x_default": "he"
   }
 }
