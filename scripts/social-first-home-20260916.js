@@ -73,7 +73,7 @@
   const normalizeMaster=(record,generatedAt)=>({
     id:`master-${record.id}`,
     origin:'master',
-    platform:record.platform||'Public record',
+    platform:record.platform||'מקור ציבורי',
     date:/^\d{4}-\d{2}-\d{2}/.test(String(record.date||''))?record.date:String(record.year||'').match(/^\d{4}$/)?.[0]||null,
     year:record.year,
     chronology:record.chronology,
@@ -84,7 +84,7 @@
     summary:[record.publisher,record.relationship,record.object_type].filter(Boolean).join(' · ')||'רשומה ציבורית מתוך הארכיון המתועד של 7YA.',
     url:record.url,
     metrics:record.metrics||{},
-    metric_source:'7YA Master Public Record',
+    metric_source:'7YA · מאגר החיים המלא',
     metric_as_of:String(generatedAt||'').slice(0,10)||null,
     owned:ownershipFromRelationship(record.relationship),
     archive_only:!!record.archive_only,
@@ -123,9 +123,9 @@
     const frame=document.createElement('div');
     frame.className='social-frame';
     const b=document.createElement('b');
-    b.textContent=item.platform||'PUBLIC';
+    b.textContent=item.platform||'מקור ציבורי';
     const em=document.createElement('em');
-    em.textContent=item.date||item.year||'PUBLIC SOURCE';
+    em.textContent=item.date||item.year||'מקור ציבורי';
     frame.append(b,em);
     return frame;
   };
@@ -167,13 +167,13 @@
     const meta=document.createElement('div');
     meta.className='social-meta';
     const platform=document.createElement('span');
-    platform.textContent=item.platform||'Public record';
+    platform.textContent=item.platform||'מקור ציבורי';
     const date=document.createElement('span');
-    date.textContent=item.date||item.year||'ARCHIVE';
+    date.textContent=item.date||item.year||'ארכיון';
     meta.append(platform,date);
 
     const h=document.createElement('h3');
-    h.textContent=item.title||'Public record';
+    h.textContent=item.title||'רשומה ציבורית';
     const p=document.createElement('p');
     p.textContent=item.summary||'רשומה ציבורית מחוברת למקור.';
     copy.append(meta,h,p);
@@ -188,12 +188,12 @@
     const ownership=document.createElement('span');
     ownership.className='ownership';
     ownership.textContent=item.origin==='master'
-      ?(item.owned===false?'הפצה חיצונית · Master Record':item.owned===true?'תוכן שלי · Master Record':'Master Public Record')
+      ?(item.owned===false?'הפצה חיצונית · רשומה מהמאגר':item.owned===true?'תוכן שלי · רשומה מהמאגר':'מאגר החיים המלא')
       :(item.owned===false?'הפצה חיצונית':item.owned===true?'תוכן שלי':'מקור ציבורי');
     copy.append(ownership);
 
     const small=document.createElement('small');
-    small.textContent=`${item.metric_source||item.verification||'Public source'}${item.metric_as_of?` · ${item.metric_as_of}`:''} ↗`;
+    small.textContent=`${item.metric_source||item.verification||'מקור ציבורי'}${item.metric_as_of?` · ${item.metric_as_of}`:''} ↗`;
     copy.append(small);
     a.append(copy);
     return a;
@@ -268,7 +268,7 @@
     const count=section.querySelector('[data-feed-count]');
     if(count)count.textContent=total.toLocaleString('he-IL');
     const head=section.querySelector('.igor-live-head p');
-    if(head)head.textContent=`${total.toLocaleString('he-IL')} רשומות מתועדות ב-Master Public Record, ${publicUrls.toLocaleString('he-IL')} עם URL ציבורי. הקורפוס האוצר נשאר בראש, והעבר מכל הפלטפורמות ממשיך אחריו — מקור, תאריך ומדדים כשיש.`;
+    if(head)head.textContent=`${total.toLocaleString('he-IL')} רשומות מתועדות במאגר החיים המלא, ${publicUrls.toLocaleString('he-IL')} עם URL ציבורי. הקורפוס האוצר נשאר בראש, והעבר מכל הפלטפורמות ממשיך אחריו — מקור, תאריך ומדדים כשיש.`;
     section.dataset.socialCorpusLoaded='20260918-master-merged';
 
     const activeFilter=section.querySelector('[data-feed-filter].is-active')?.dataset.feedFilter||'all';
