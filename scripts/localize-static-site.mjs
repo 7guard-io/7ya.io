@@ -311,8 +311,10 @@ function setMetadata(html, locale, route) {
 
 function addShellAssets(html) {
   let next=html;
-  if(!next.includes('locale-shell-20260919.css'))next=next.replace('</head>','  <link rel="stylesheet" href="/styles/locale-shell-20260919.css?v=1">\n</head>');
-  if(!next.includes('locale-runtime-20260919.js'))next=next.replace('</body>','  <script src="/scripts/locale-runtime-20260919.js?v=1" defer></script>\n</body>');
+  const headAssets=[];
+  if(!next.includes('locale-shell-20260919.css'))headAssets.push('<link rel="stylesheet" href="/styles/locale-shell-20260919.css?v=2">');
+  if(!next.includes('locale-runtime-20260919.js'))headAssets.push('<script src="/scripts/locale-runtime-20260919.js?v=2" defer></script>');
+  if(headAssets.length)next=next.replace('</head>','  '+headAssets.join('\n  ')+'\n</head>');
   return next;
 }
 
