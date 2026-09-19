@@ -161,7 +161,14 @@ const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&
 
 function canonicalRoute(route='') {
   const target=aliasRoutes.get(route);
-  return target ? target.replace(/^\/+|\/+$/g,'') : route;
+  if(!target)return route;
+  try{return new URL(target,'https://7ya.io/').pathname.replace(/^\/+|\/+$/g,'')}
+  catch{return route}
+}
+
+function canonicalHref(locale,route='') {
+  const target=aliasRoutes.get(route);
+  return target ? 'https://7ya.io'+localizedInternalPath(target,locale) : 'https://7ya.io'+routePath(locale,route);
 }
 
 function routePath(locale, route='') {
@@ -262,7 +269,7 @@ function replaceVisibleCopy(html, locale) {
 }
 function localizeJsonLd(html,locale,route,meta){
   if(locale==='he')return html;
-  const pageCanonical='https://7ya.io'+routePath(locale,canonicalRoute(route));
+  const pageCanonical=canonicalHref(locale,route);
   return html.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(match,attrs,body)=>{
     try{
       const data=JSON.parse(body);
@@ -289,7 +296,7 @@ function localizeJsonLd(html,locale,route,meta){
 
 function setMetadata(html, locale, route) {
   const resolvedRoute=canonicalRoute(route);
-  const canonical='https://7ya.io'+routePath(locale,resolvedRoute);
+  const canonical=canonicalHref(locale,route);
   let next=html.replace(/<html\b[^>]*>/i,'<html lang="'+locale+'" dir="'+dirFor(locale)+'" data-7ya-locale="'+locale+'">');
   next=next.replace(/<link\b[^>]*rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>\s*/gi,'');
   if(locale!=='he'){
@@ -303,7 +310,7 @@ function setMetadata(html, locale, route) {
   }
   if(/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(next))next=next.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+canonical+'">');
   else next=next.replace('</head>','  <link rel="canonical" href="'+canonical+'">\n</head>');
-  const alternates=allLocales.map(lang=>'  <link rel="alternate" hreflang="'+lang+'" href="https://7ya.io'+routePath(lang,resolvedRoute)+'">').join('\n')+'\n  <link rel="alternate" hreflang="x-default" href="https://7ya.io'+routePath('he',resolvedRoute)+'">';
+  const alternates=allLocales.map(lang=>'  <link rel="alternate" hreflang="'+lang+'" href="'+canonicalHref(lang,route)+'">').join('\n')+'\n  <link rel="alternate" hreflang="x-default" href="'+canonicalHref('he',route)+'">';
   next=next.replace('</head>',alternates+'\n</head>');
   const localizedMeta=locale==='he'?null:routeMeta(locale,resolvedRoute);
   return localizeJsonLd(next,locale,resolvedRoute,localizedMeta);
