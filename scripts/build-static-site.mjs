@@ -8,6 +8,7 @@ import {
   publicScriptFiles,
   publicStyleFiles,
 } from './site-contract.mjs';
+import { localizeStaticSite } from './localize-static-site.mjs';
 
 const root = process.cwd();
 const output = path.join(root, 'dist');
@@ -253,6 +254,7 @@ for (const directory of [...publicDataDirectories, ...publicRouteDirectories]) a
 for (const file of publicStyleFiles) await copyFile(`styles/${file}`);
 for (const file of publicScriptFiles) await copyFile(`scripts/${file}`);
 await enhancePublicHtml();
+await localizeStaticSite(output);
 
 const artifactFiles = await walk(output);
 const hashes = {};
