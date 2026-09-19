@@ -38,7 +38,7 @@
   const normalizeMaster=(r)=>({
     id:`master-${r.id}`,
     origin:'master',
-    platform:r.platform||'PUBLIC RECORD',
+    platform:r.platform||'מקור ציבורי',
     publisher:r.publisher,
     title:r.title||r.id,
     summary:[r.publisher,r.relationship,r.object_type].filter(Boolean).join(' · '),
@@ -82,14 +82,14 @@
 
     const sm=document.createElement('small');
     sm.textContent=[
-      i.platform||'PUBLIC',
-      i.origin==='master'?'MASTER RECORD':i.owned===true?'OWNED':i.owned===false?'EXTERNAL':'PUBLIC',
-      i.date||i.year||'DATE UNRESOLVED'
+      i.platform||'מקור ציבורי',
+      i.origin==='master'?'רשומה מהמאגר':i.owned===true?'שלי':i.owned===false?'חיצוני':'ציבורי',
+      i.date||i.year||'תאריך לא הושלם'
     ].join(' · ');
     a.append(sm);
 
     const h=document.createElement('h3');
-    h.textContent=i.title||'Public record';
+    h.textContent=i.title||'רשומה ציבורית';
     a.append(h);
 
     const p=document.createElement('p');
@@ -127,7 +127,15 @@
       const a=document.createElement('a');
       a.href=surface.href;
       if(surface.type==='external'){a.target='_blank';a.rel='noreferrer';}
-      a.append(document.createTextNode(surface.label+' '));
+      const surfaceLabel={
+        'Life / Identity':'החיים והזהות',
+        'Media':'מדיה',
+        'Research':'מחקר',
+        'Articles':'כתיבה',
+        'Influence':'השפעה',
+        'Evidence':'ראיות'
+      }[surface.label]||surface.label;
+      a.append(document.createTextNode(surfaceLabel+' '));
       const span=document.createElement('span');
       span.textContent='↗';
       a.append(span);
@@ -172,7 +180,7 @@
       const fallback=document.createElement('a');
       fallback.className='seven-proof-card';
       fallback.href='/influence/#master-public-record';
-      fallback.innerHTML='<small>MASTER PUBLIC RECORD</small><h3>434 רשומות ציבוריות</h3><p>פתחו את הרשומה המלאה לפי מקור, שנה ופלטפורמה.</p><b>לרשומה ↗</b>';
+      fallback.innerHTML='<small>מאגר החיים המלא</small><h3>434 רשומות ציבוריות</h3><p>פתחו את הרשומה המלאה לפי מקור, שנה ופלטפורמה.</p><b>לרשומה ↗</b>';
       grid.append(fallback);
     }
     root.dataset.contentOs='20260918';
