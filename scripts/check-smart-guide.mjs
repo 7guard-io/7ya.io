@@ -8,6 +8,7 @@ const files = {
   proxy: fs.readFileSync('ops/vercel-canonical-proxy/api/proxy.js', 'utf8'),
   build: fs.readFileSync('scripts/build-static-site.mjs', 'utf8'),
   contract: fs.readFileSync('scripts/site-contract.mjs', 'utf8'),
+  serviceWorker: fs.readFileSync('sw.js', 'utf8'),
 };
 
 const failures = [];
@@ -48,6 +49,8 @@ forbidText('widget', 'innerHTML', 'public guide must not render model output thr
 requireText('style', '@media(max-width:620px)', 'mobile layout contract missing');
 requireText('style', 'prefers-reduced-motion', 'reduced-motion contract missing');
 requireText('build', 'enhancePublicHtml', 'artifact-wide guide injection missing');
+requireText('build', 'v=20260919-chat2', 'chat runtime cache-bust missing from artifact build');
+requireText('serviceWorker', '7ya-shell-20260919-chat2', 'stale chat service-worker cache invalidation missing');
 requireText('proxy', 'enhanceHtml', 'edge-wide guide injection missing');
 requireText('contract', "'7ya-signal-key-20260715.css'", 'guide stylesheet absent from site contract');
 requireText('contract', "'7ya-signal-key-20260715.js'", 'guide script absent from site contract');
