@@ -149,7 +149,15 @@ const visitorLabelTranslations = [
   ['Evidence Wall','קיר המקורות והראיות'],['EVIDENCE WALL','קיר המקורות והראיות'],
   ['Evidence','ראיות'],['EVIDENCE','ראיות']
 ].sort((a,b)=>b[0].length-a[0].length);
-function humanizeVisitorText(text){let next=text;for(const [from,to] of visitorLabelTranslations)next=next.split(from).join(to);return next;}
+function humanizeVisitorText(text){
+  let next=text;
+  for(const [from,to] of visitorLabelTranslations){
+    next=/^[A-Za-z]+$/.test(from)
+      ? next.replace(new RegExp(`\\b${from}\\b`,'g'),to)
+      : next.split(from).join(to);
+  }
+  return next;
+}
 function humanizePublicHtml(html){
   const protectedBlocks=[];
   let masked=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{const token=`__7YA_PROTECTED_${protectedBlocks.length}__`;protectedBlocks.push(block);return token;});
