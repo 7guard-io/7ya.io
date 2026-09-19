@@ -6,7 +6,10 @@
   const count=root.querySelector('[data-seven-proof-count]');
   const masterCount=root.querySelector('[data-seven-proof-master-count]');
   const links=root.querySelector('[data-seven-proof-links]')||root.querySelector('.seven-proof-links');
-  const route=location.pathname.replace(/^\/+|\/+$/g,'')||'home';
+  const locale=document.documentElement.lang||'he';
+  const localizePath=value=>window.__7yaLocalizePath?window.__7yaLocalizePath(value):value;
+  const canonicalPath=window.__7yaCanonicalPath?window.__7yaCanonicalPath():location.pathname.replace(/^\/(?:en|ru|ar)(?=\/|$)/,'');
+  const route=canonicalPath.replace(/^\/+|\/+$/g,'')||'home';
 
   const canonicalUrl=(value)=>{
     if(!value)return '';
@@ -76,7 +79,8 @@
   const card=(i)=>{
     const a=document.createElement('a');
     a.className='seven-proof-card';
-    a.href=preferredUrl(i);
+    const destination=preferredUrl(i);
+    a.href=destination.startsWith('/')?localizePath(destination):destination;
     if(/^https?:\/\//i.test(a.href)){a.target='_blank';a.rel='noreferrer';}
     a.dataset.platform=i.platform||'';
 
@@ -121,6 +125,7 @@
   };
 
   const renderUniversalLinks=(surfaces)=>{
+    if(locale!=='he')return;
     if(!links||!Array.isArray(surfaces)||!surfaces.length)return;
     links.replaceChildren();
     surfaces.forEach(surface=>{
@@ -179,7 +184,7 @@
     }else{
       const fallback=document.createElement('a');
       fallback.className='seven-proof-card';
-      fallback.href='/influence/#master-public-record';
+      fallback.href=localizePath('/influence/#master-public-record');
       fallback.innerHTML='<small>מאגר החיים המלא</small><h3>434 רשומות ציבוריות</h3><p>פתחו את הרשומה המלאה לפי מקור, שנה ופלטפורמה.</p><b>לרשומה ↗</b>';
       grid.append(fallback);
     }

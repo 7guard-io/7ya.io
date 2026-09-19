@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
+import { aliasRoutes, canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
 
 export const generatedLocaleRoots = ['en','ru','ar'];
 const allLocales = ['he', ...generatedLocaleRoots];
@@ -159,19 +159,33 @@ const technicalTranslations = {
 
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 
+function canonicalRoute(route='') {
+  const target=aliasRoutes.get(route);
+  if(!target)return route;
+  try{return new URL(target,'https://7ya.io/').pathname.replace(/^\/+|\/+$/g,'')}
+  catch{return route}
+}
+
+function canonicalHref(locale,route='') {
+  const target=aliasRoutes.get(route);
+  return target ? 'https://7ya.io'+localizedInternalPath(target,locale) : 'https://7ya.io'+routePath(locale,route);
+}
+
 function routePath(locale, route='') {
-  const suffix = route ? route.replace(/^\/+|\/+$/g,'') + '/' : '';
+  const normalized=route.replace(/^\/+|\/+$/g,'');
+  const suffix = normalized ? normalized + '/' : '';
   return locale === 'he' ? '/' + suffix : '/' + locale + '/' + suffix;
 }
 
 function languageNav(locale, route) {
+  const activeRoute=canonicalRoute(route);
   const c = locale === 'he' ? {nav:'ניווט ראשי',home:'ראשי',story:'הסיפור',feed:'הפיד',source:'מקור',evidence:'ראיות',journey:'המסע',contact:'דברו איתי'} : localeCopy[locale];
   const links = [
     ['home',''],['story','igor-vepretski'],['feed','influence'],['source','library'],['evidence','evidence'],['journey','journey']
   ].map(([key,target])=>'<a href="'+routePath(locale,target)+'">'+c[key]+'</a>').join('');
   const languages = allLocales.map(lang=>{
     const labels={he:'עברית',en:'EN',ru:'RU',ar:'العربية'};
-    return '<a href="'+routePath(lang,route)+'" lang="'+lang+'" dir="'+dirFor(lang)+'"'+(lang===locale?' aria-current="true"':'')+'>'+labels[lang]+'</a>';
+    return '<a href="'+routePath(lang,activeRoute)+'" lang="'+lang+'" dir="'+dirFor(lang)+'"'+(lang===locale?' aria-current="true"':'')+'>'+labels[lang]+'</a>';
   }).join('');
   return '<nav class="seven-human-nav" data-seven-human-nav aria-label="'+esc(c.nav)+'">'+links+'<a class="seven-human-nav-cta" href="'+routePath(locale,'contact')+'">'+c.contact+'</a><span class="seven-language-switch" data-seven-languages>'+languages+'</span></nav>';
 }
@@ -204,39 +218,78 @@ function routeMeta(locale, route) {
   return {title:(route?name+' · ':'')+site,description:metaDescriptions[locale]};
 }
 
+function localizedInternalPath(value, locale) {
+  let url; try{url=new URL(value,'https://7ya.io/')}catch{return value}
+  if(url.hostname!=='7ya.io')return value;
+  const pathname=url.pathname;
+  const assetLike=/\.[a-z0-9]{1,8}$/i.test(pathname)||/^\/(assets|styles|scripts|api|data|knowledge)\//.test(pathname)||['/favicon.svg','/site.webmanifest','/sw.js','/service-worker.js','/robots.txt','/sitemap.xml'].includes(pathname);
+  if(assetLike)return pathname+url.search+url.hash;
+  const parts=pathname.split('/').filter(Boolean);
+  if(generatedLocaleRoots.includes(parts[0]))parts.shift();
+  const base='/' + (parts.length?parts.join('/')+'/':'');
+  return (locale==='he'?base:'/'+locale+(base==='/'?'/':base))+url.search+url.hash;
+}
+
 function rewriteSameHostReferences(html, locale, originalRoute) {
   if (locale==='he') return html;
   const pageBase='https://7ya.io/'+(originalRoute?originalRoute.replace(/^\/+|\/+$/g,'')+'/':'');
-  return html.replace(/\b(href|src|action)=(["'])([^"']+)\2/gi,(match,attr,quote,ref)=>{
+  let next=html.replace(/\b(href|src|action)=(["'])([^"']+)\2/gi,(match,attr,quote,ref)=>{
     if (!ref || ref.startsWith('#') || /^(mailto:|tel:|javascript:|data:)/i.test(ref)) return match;
     let url; try{url=new URL(ref,pageBase)}catch{return match}
     if (url.hostname!=='7ya.io') return match;
-    const pathname=url.pathname;
-    const assetLike=/\.[a-z0-9]{1,8}$/i.test(pathname)||/^\/(assets|styles|scripts|api|data|knowledge)\//.test(pathname)||['/favicon.svg','/site.webmanifest','/sw.js','/service-worker.js','/robots.txt','/sitemap.xml'].includes(pathname);
-    if(assetLike) return attr+'='+quote+pathname+url.search+url.hash+quote;
-    const parts=pathname.split('/').filter(Boolean);
-    if(generatedLocaleRoots.includes(parts[0]))parts.shift();
-    const base='/' + (parts.length?parts.join('/')+'/':'');
-    const localized='/' + locale + (base==='/'?'/':base);
-    return attr+'='+quote+localized+url.search+url.hash+quote;
+    return attr+'='+quote+localizedInternalPath(url.href,locale)+quote;
   });
+  next=next.replace(/(<meta\b[^>]*http-equiv=["']refresh["'][^>]*content=["'][^"']*?url=)([^"' >]+)([^"']*["'][^>]*>)/gi,
+    (_match,before,target,after)=>before+localizedInternalPath(target,locale)+after);
+  next=next.replace(/location\.replace\((["'])(\/[^"']*)\1\s*\+\s*location\.search\s*\+\s*location\.hash\)/g,
+    (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
+  return next;
 }
-
 function replaceVisibleCopy(html, locale) {
   if(locale==='he')return html;
-  const protectedBlocks=[];
-  let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
-    const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
-    protectedBlocks.push(block);
-    return token;
+  const translations=new Map([...commonTranslations[locale],...Object.entries(technicalTranslations[locale])]);
+  return html.replace(/>([^<]+)</g,(match,text)=>{
+    const leading=text.match(/^\s*/)?.[0]||'';
+    const trailing=text.match(/\s*$/)?.[0]||'';
+    const core=text.trim();
+    return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
   });
-  for(const [from,to] of commonTranslations[locale]) next=next.split(from).join(to);
-  for(const [from,to] of Object.entries(technicalTranslations[locale])) next=next.split(from).join(to);
-  return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
-
+function localizeJsonLd(html,locale,route,meta){
+  if(locale==='he')return html;
+  const pageCanonical=canonicalHref(locale,route);
+  const pageTypes=new Set(['WebPage','ProfilePage','ContactPage','CollectionPage','AboutPage','ItemPage']);
+  return html.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(match,attrs,body)=>{
+    try{
+      const data=JSON.parse(body);
+      const walk=value=>{
+        if(Array.isArray(value)){value.forEach(walk);return}
+        if(!value||typeof value!=='object')return;
+        const types=Array.isArray(value['@type'])?value['@type']:[value['@type']].filter(Boolean);
+        const pageLike=types.some(type=>pageTypes.has(type));
+        if(pageLike){
+          const oldId=typeof value['@id']==='string'?value['@id']:'';
+          if(typeof value.url==='string'&&value.url.startsWith('https://7ya.io/'))value.url=pageCanonical;
+          if(oldId.startsWith('https://7ya.io/')){
+            const fragment=oldId.includes('#')?'#'+oldId.split('#').slice(1).join('#'):'';
+            value['@id']=pageCanonical.replace(/#.*$/,'')+fragment;
+          }
+          value.inLanguage=locale;
+          if(meta){
+            if('name' in value)value.name=meta.title;
+            if('description' in value)value.description=meta.description;
+          }
+        }
+        for(const item of Object.values(value))if(item&&typeof item==='object')walk(item);
+      };
+      walk(data);
+      return '<script'+attrs+'>'+JSON.stringify(data)+'</script>';
+    }catch{return match}
+  });
+}
 function setMetadata(html, locale, route) {
-  const canonical='https://7ya.io'+routePath(locale,route);
+  const resolvedRoute=canonicalRoute(route);
+  const canonical=canonicalHref(locale,route);
   let next=html.replace(/<html\b[^>]*>/i,'<html lang="'+locale+'" dir="'+dirFor(locale)+'" data-7ya-locale="'+locale+'">');
   next=next.replace(/<link\b[^>]*rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>\s*/gi,'');
   if(locale!=='he'){
@@ -245,31 +298,42 @@ function setMetadata(html, locale, route) {
     next=next.replace(/<meta\s+name=["']description["'][^>]*>/i,'<meta name="description" content="'+esc(meta.description)+'">');
     next=next.replace(/<meta\s+property=["']og:title["'][^>]*>/i,'<meta property="og:title" content="'+esc(meta.title)+'">');
     next=next.replace(/<meta\s+property=["']og:description["'][^>]*>/i,'<meta property="og:description" content="'+esc(meta.description)+'">');
+    next=next.replace(/<meta\s+name=["']twitter:title["'][^>]*>/i,'<meta name="twitter:title" content="'+esc(meta.title)+'">');
+    next=next.replace(/<meta\s+name=["']twitter:description["'][^>]*>/i,'<meta name="twitter:description" content="'+esc(meta.description)+'">');
     next=next.replace(/<meta\s+property=["']og:url["'][^>]*>/i,'<meta property="og:url" content="'+canonical+'">');
     next=next.replace(/<meta\s+property=["']og:locale["'][^>]*>/i,'<meta property="og:locale" content="'+(locale==='ru'?'ru_RU':locale==='ar'?'ar_IL':'en_US')+'">');
   }
   if(/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(next))next=next.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+canonical+'">');
   else next=next.replace('</head>','  <link rel="canonical" href="'+canonical+'">\n</head>');
-  const alternates=allLocales.map(lang=>'  <link rel="alternate" hreflang="'+lang+'" href="https://7ya.io'+routePath(lang,route)+'">').join('\n')+'\n  <link rel="alternate" hreflang="x-default" href="https://7ya.io'+routePath('he',route)+'">';
+  const alternates=allLocales.map(lang=>'  <link rel="alternate" hreflang="'+lang+'" href="'+canonicalHref(lang,route)+'">').join('\n')+'\n  <link rel="alternate" hreflang="x-default" href="'+canonicalHref('he',route)+'">';
   next=next.replace('</head>',alternates+'\n</head>');
-  return next;
+  const localizedMeta=locale==='he'?null:routeMeta(locale,resolvedRoute);
+  return localizeJsonLd(next,locale,resolvedRoute,localizedMeta);
 }
 
 function addShellAssets(html) {
   let next=html;
-  if(!next.includes('locale-shell-20260919.css'))next=next.replace('</head>','  <link rel="stylesheet" href="/styles/locale-shell-20260919.css?v=1">\n</head>');
-  if(!next.includes('locale-runtime-20260919.js'))next=next.replace('</body>','  <script src="/scripts/locale-runtime-20260919.js?v=1" defer></script>\n</body>');
+  const headAssets=[];
+  if(!next.includes('locale-shell-20260919.css'))headAssets.push('<link rel="stylesheet" href="/styles/locale-shell-20260919.css?v=2">');
+  if(!next.includes('locale-runtime-20260919.js'))headAssets.push('<script src="/scripts/locale-runtime-20260919.js?v=2" defer></script>');
+  if(headAssets.length)next=next.replace('</head>','  '+headAssets.join('\n  ')+'\n</head>');
   return next;
 }
 
 function contextMarkup(locale, route) {
   if(locale==='he')return '';
-  const c=localeCopy[locale], name=routeNames[route]?.[locale]||routeNames[''][locale];
+  const resolvedRoute=canonicalRoute(route);
+  const c=localeCopy[locale], name=routeNames[resolvedRoute]?.[locale]||routeNames[''][locale];
   return '<aside class="locale-context" data-locale-context><strong>'+esc(name)+'</strong><p>'+c.context+'</p><small>'+c.sourceNote+'</small></aside>';
 }
 
 function applyLocale(html, locale, route) {
-  let next=rewriteSameHostReferences(html,locale,route);
+  let next=html;
+  if(locale!=='he'&&aliasRoutes.has(route)){
+    const target=aliasRoutes.get(route);
+    next=next.split(target).join(localizedInternalPath(target,locale));
+  }
+  next=rewriteSameHostReferences(next,locale,route);
   next=replaceVisibleCopy(next,locale);
   const nav=languageNav(locale,route);
   if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
