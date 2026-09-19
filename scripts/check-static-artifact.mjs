@@ -8,6 +8,7 @@ import {
   publicRootFiles,
   publicRouteDirectories,
 } from './site-contract.mjs';
+import { generatedLocaleRoots } from './localize-static-site.mjs';
 
 const output = path.join(process.cwd(), 'dist');
 const manifestPath = path.join(output, 'artifact-manifest.json');
@@ -86,6 +87,7 @@ const allowedTopLevel = new Set([
   ...publicRootFiles.map(entry => entry.split('/')[0]),
   ...publicDataDirectories,
   ...publicRouteDirectories,
+  ...generatedLocaleRoots,
   'styles',
   'scripts',
   'artifact-manifest.json',
@@ -153,6 +155,32 @@ const homepageFacebookSourceCount = (homepageHtml.match(/https:\/\/(?:www\.)?fac
 const homepageExternalSourceCount = (homepageHtml.match(/target=["']_blank["']/g) || []).length;
 if (homepageFacebookSourceCount < 12) fail(`homepage Facebook coverage regressed: ${homepageFacebookSourceCount} < 12`);
 if (homepageExternalSourceCount < 48) fail(`homepage source coverage regressed: ${homepageExternalSourceCount} < 48`);
+
+const localizedCoreRoutes = ['', 'igor-vepretski', 'influence', 'library', 'evidence', 'journey', 'starton', 'media', 'research', 'contact'];
+for (const locale of generatedLocaleRoots) {
+  const expectedDir = locale === 'ar' ? 'rtl' : 'ltr';
+  for (const route of localizedCoreRoutes) {
+    const relative = `${locale}/${route ? route + '/' : ''}index.html`;
+    if (!manifest.files?.[relative]) {
+      fail(`missing localized core route ${relative}`);
+      continue;
+    }
+    const html = await fs.readFile(path.join(output, relative), 'utf8');
+    if (!html.includes(`lang="${locale}"`)) fail(`${relative} missing lang=${locale}`);
+    if (!html.includes(`dir="${expectedDir}"`)) fail(`${relative} missing dir=${expectedDir}`);
+    const canonical = `https://7ya.io/${locale}/${route ? route + '/' : ''}`;
+    if (!html.includes(`rel="canonical" href="${canonical}"`)) fail(`${relative} canonical mismatch`);
+    for (const lang of ['he','en','ru','ar']) {
+      if (!html.includes(`hreflang="${lang}"`)) fail(`${relative} missing hreflang ${lang}`);
+    }
+    if (!html.includes('hreflang="x-default"')) fail(`${relative} missing x-default hreflang`);
+    if (!html.includes('data-seven-languages')) fail(`${relative} missing persistent language switcher`);
+  }
+}
+const sitemapBody = await fs.readFile(path.join(output, 'sitemap.xml'), 'utf8');
+for (const locale of generatedLocaleRoots) {
+  if (!sitemapBody.includes(`https://7ya.io/${locale}/`)) fail(`sitemap missing ${locale} locale root`);
+}
 
 const visitorFacingForbiddenLabels = [
   'PUBLIC RECORD','PUBLIC RECORD / SCALE','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL',
