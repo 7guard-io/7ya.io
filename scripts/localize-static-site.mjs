@@ -248,12 +248,19 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
 function replaceVisibleCopy(html, locale) {
   if(locale==='he')return html;
   const translations=new Map([...commonTranslations[locale],...Object.entries(technicalTranslations[locale])]);
-  return html.replace(/>([^<]+)</g,(match,text)=>{
+  const protectedBlocks=[];
+  let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
+    const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
+    protectedBlocks.push(block);
+    return token;
+  });
+  next=next.replace(/>([^<]+)</g,(match,text)=>{
     const leading=text.match(/^\s*/)?.[0]||'';
     const trailing=text.match(/\s*$/)?.[0]||'';
     const core=text.trim();
     return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
   });
+  return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
 function localizeJsonLd(html,locale,route,meta){
   if(locale==='he')return html;
