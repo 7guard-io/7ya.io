@@ -19,15 +19,15 @@
   };
 
   const metricKeys={
-    views:'views',
-    reach:'reach',
-    likes:'likes',
-    likes_reactions:'likes/reactions',
-    reactions:'reactions',
-    comments:'comments',
-    shares:'shares',
-    saves:'saves',
-    interactions:'interactions'
+    views:'צפיות',
+    reach:'חשיפה',
+    likes:'לייקים',
+    likes_reactions:'לייקים/תגובות־רגש',
+    reactions:'תגובות־רגש',
+    comments:'תגובות',
+    shares:'שיתופים',
+    saves:'שמירות',
+    interactions:'אינטראקציות'
   };
 
   const searchable=(item)=>[
