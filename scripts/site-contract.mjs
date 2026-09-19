@@ -107,6 +107,7 @@ export const publicStyleFiles = [
   'site-impact-layer-20260918.css',
   'master-public-record-20260918.css',
   'zone-shells-v1.css',
+  'locale-shell-20260919.css',
 ];
 
 export const publicScriptFiles = [
@@ -131,6 +132,7 @@ export const publicScriptFiles = [
   'site-impact-layer-20260918.js',
   'master-public-record-20260918.js',
   'zone-shells-v1.js',
+  'locale-runtime-20260919.js',
 ];
 
 export const criticalArtifactPaths = [
@@ -180,6 +182,7 @@ export const criticalArtifactPaths = [
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
+  'styles/locale-shell-20260919.css',
   'scripts/7ya-control-layer-20260726.js',
   'scripts/7ya-control-page-20260726.js',
   'scripts/7ya-signal-key-20260715.js',
@@ -205,6 +208,7 @@ export const criticalArtifactPaths = [
   'scripts/site-impact-layer-20260918.js',
   'scripts/master-public-record-20260918.js',
   'scripts/zone-shells-v1.js',
+  'scripts/locale-runtime-20260919.js',
   'data/evidence-claims.json',
   'data/entity-registry.json',
   'data/7ya-system-v1.json',
