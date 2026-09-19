@@ -238,19 +238,28 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
     (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
   return next;
 }
-function replaceVisibleCopy(html, locale) {
-  if(locale==='he')return html;
-  const protectedBlocks=[];
-  let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
-    const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
-    protectedBlocks.push(block);
-    return token;
-  });
-  for(const [from,to] of commonTranslations[locale]) next=next.split(from).join(to);
-  for(const [from,to] of Object.entries(technicalTranslations[locale])) next=next.split(from).join(to);
-  return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
+function regexEscape(value){
+  return String(value).replace(/[.*+?^\$()|[\]\\{}]/g,'\\$&');
 }
 
+function replaceTextPhrase(text,from,to){
+  const escaped=regexEscape(from);
+  const wordLike=/^[\p{L}\p{N}_-]+$/u.test(from);
+  const pattern=wordLike
+    ? new RegExp('(?<![\\p{L}\\p{N}_])'+escaped+'(?![\\p{L}\\p{N}_])','gu')
+    : new RegExp(escaped,'g');
+  return text.replace(pattern,to);
+}
+
+function replaceVisibleCopy(html, locale) {
+  if(locale==='he')return html;
+  const translations=[...commonTranslations[locale],...Object.entries(technicalTranslations[locale])].sort((a,b)=>b[0].length-a[0].length);
+  return html.replace(/>([^<]+)</g,(match,text)=>{
+    let next=text;
+    for(const [from,to] of translations)next=replaceTextPhrase(next,from,to);
+    return '>'+next+'<';
+  });
+}
 function setMetadata(html, locale, route) {
   const canonical='https://7ya.io'+routePath(locale,route);
   let next=html.replace(/<html\b[^>]*>/i,'<html lang="'+locale+'" dir="'+dirFor(locale)+'" data-7ya-locale="'+locale+'">');
