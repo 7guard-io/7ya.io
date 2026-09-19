@@ -245,26 +245,14 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
     (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
   return next;
 }
-function regexEscape(value){
-  return String(value).replace(/[.*+?^\$()|[\]\\{}]/g,'\\$&');
-}
-
-function replaceTextPhrase(text,from,to){
-  const escaped=regexEscape(from);
-  const wordLike=/^[\p{L}\p{N}_-]+$/u.test(from);
-  const pattern=wordLike
-    ? new RegExp('(?<![\\p{L}\\p{N}_])'+escaped+'(?![\\p{L}\\p{N}_])','gu')
-    : new RegExp(escaped,'g');
-  return text.replace(pattern,to);
-}
-
 function replaceVisibleCopy(html, locale) {
   if(locale==='he')return html;
-  const translations=[...commonTranslations[locale],...Object.entries(technicalTranslations[locale])].sort((a,b)=>b[0].length-a[0].length);
+  const translations=new Map([...commonTranslations[locale],...Object.entries(technicalTranslations[locale])]);
   return html.replace(/>([^<]+)</g,(match,text)=>{
-    let next=text;
-    for(const [from,to] of translations)next=replaceTextPhrase(next,from,to);
-    return '>'+next+'<';
+    const leading=text.match(/^\s*/)?.[0]||'';
+    const trailing=text.match(/\s*$/)?.[0]||'';
+    const core=text.trim();
+    return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
   });
 }
 function localizeJsonLd(html,locale,route,meta){
