@@ -96,8 +96,11 @@ for (const technical of [
 
 const h1Count = (home.match(/<h1\b/gi) || []).length;
 h1Count === 1 ? pass('homepage has exactly one H1') : fail(`homepage has ${h1Count} H1 elements`);
+// Active homepage coverage baseline: never regress to the stale 4/18 guard.
+const homepageFacebookSourceCount = (home.match(/https:\/\/(?:www\.)?facebook\.com\//g) || []).length;
 const publicSourceCount = (home.match(/target="_blank" rel="noreferrer"/g) || []).length;
-publicSourceCount >= 8 ? pass('homepage has at least eight source-linked records') : fail(`homepage has ${publicSourceCount} source-linked records`);
+homepageFacebookSourceCount >= 12 ? pass('homepage has at least 12 Facebook sources') : fail(`homepage Facebook coverage is ${homepageFacebookSourceCount}; expected at least 12`);
+publicSourceCount >= 48 ? pass('homepage has at least 48 source-linked records') : fail(`homepage has ${publicSourceCount} source-linked records; expected at least 48`);
 
 for (const forbidden of [
   'maximum-scale=1', '5.1B+', 'Billions of impressions', '50,000+ empowered',
