@@ -326,7 +326,12 @@ function contextMarkup(locale, route) {
 }
 
 function applyLocale(html, locale, route) {
-  let next=rewriteSameHostReferences(html,locale,route);
+  let next=html;
+  if(locale!=='he'&&aliasRoutes.has(route)){
+    const target=aliasRoutes.get(route);
+    next=next.split(target).join(localizedInternalPath(target,locale));
+  }
+  next=rewriteSameHostReferences(next,locale,route);
   next=replaceVisibleCopy(next,locale);
   const nav=languageNav(locale,route);
   if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
