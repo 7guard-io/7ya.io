@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
+import { aliasRoutes, canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
 
 export const generatedLocaleRoots = ['en','ru','ar'];
 const allLocales = ['he', ...generatedLocaleRoots];
@@ -159,19 +159,26 @@ const technicalTranslations = {
 
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 
+function canonicalRoute(route='') {
+  const target=aliasRoutes.get(route);
+  return target ? target.replace(/^\/+|\/+$/g,'') : route;
+}
+
 function routePath(locale, route='') {
-  const suffix = route ? route.replace(/^\/+|\/+$/g,'') + '/' : '';
+  const normalized=route.replace(/^\/+|\/+$/g,'');
+  const suffix = normalized ? normalized + '/' : '';
   return locale === 'he' ? '/' + suffix : '/' + locale + '/' + suffix;
 }
 
 function languageNav(locale, route) {
+  const activeRoute=canonicalRoute(route);
   const c = locale === 'he' ? {nav:'ניווט ראשי',home:'ראשי',story:'הסיפור',feed:'הפיד',source:'מקור',evidence:'ראיות',journey:'המסע',contact:'דברו איתי'} : localeCopy[locale];
   const links = [
     ['home',''],['story','igor-vepretski'],['feed','influence'],['source','library'],['evidence','evidence'],['journey','journey']
   ].map(([key,target])=>'<a href="'+routePath(locale,target)+'">'+c[key]+'</a>').join('');
   const languages = allLocales.map(lang=>{
     const labels={he:'עברית',en:'EN',ru:'RU',ar:'العربية'};
-    return '<a href="'+routePath(lang,route)+'" lang="'+lang+'" dir="'+dirFor(lang)+'"'+(lang===locale?' aria-current="true"':'')+'>'+labels[lang]+'</a>';
+    return '<a href="'+routePath(lang,activeRoute)+'" lang="'+lang+'" dir="'+dirFor(lang)+'"'+(lang===locale?' aria-current="true"':'')+'>'+labels[lang]+'</a>';
   }).join('');
   return '<nav class="seven-human-nav" data-seven-human-nav aria-label="'+esc(c.nav)+'">'+links+'<a class="seven-human-nav-cta" href="'+routePath(locale,'contact')+'">'+c.contact+'</a><span class="seven-language-switch" data-seven-languages>'+languages+'</span></nav>';
 }
@@ -204,24 +211,33 @@ function routeMeta(locale, route) {
   return {title:(route?name+' · ':'')+site,description:metaDescriptions[locale]};
 }
 
+function localizedInternalPath(value, locale) {
+  let url; try{url=new URL(value,'https://7ya.io/')}catch{return value}
+  if(url.hostname!=='7ya.io')return value;
+  const pathname=url.pathname;
+  const assetLike=/\.[a-z0-9]{1,8}$/i.test(pathname)||/^\/(assets|styles|scripts|api|data|knowledge)\//.test(pathname)||['/favicon.svg','/site.webmanifest','/sw.js','/service-worker.js','/robots.txt','/sitemap.xml'].includes(pathname);
+  if(assetLike)return pathname+url.search+url.hash;
+  const parts=pathname.split('/').filter(Boolean);
+  if(generatedLocaleRoots.includes(parts[0]))parts.shift();
+  const base='/' + (parts.length?parts.join('/')+'/':'');
+  return (locale==='he'?base:'/'+locale+(base==='/'?'/':base))+url.search+url.hash;
+}
+
 function rewriteSameHostReferences(html, locale, originalRoute) {
   if (locale==='he') return html;
   const pageBase='https://7ya.io/'+(originalRoute?originalRoute.replace(/^\/+|\/+$/g,'')+'/':'');
-  return html.replace(/\b(href|src|action)=(["'])([^"']+)\2/gi,(match,attr,quote,ref)=>{
+  let next=html.replace(/\b(href|src|action)=(["'])([^"']+)\2/gi,(match,attr,quote,ref)=>{
     if (!ref || ref.startsWith('#') || /^(mailto:|tel:|javascript:|data:)/i.test(ref)) return match;
     let url; try{url=new URL(ref,pageBase)}catch{return match}
     if (url.hostname!=='7ya.io') return match;
-    const pathname=url.pathname;
-    const assetLike=/\.[a-z0-9]{1,8}$/i.test(pathname)||/^\/(assets|styles|scripts|api|data|knowledge)\//.test(pathname)||['/favicon.svg','/site.webmanifest','/sw.js','/service-worker.js','/robots.txt','/sitemap.xml'].includes(pathname);
-    if(assetLike) return attr+'='+quote+pathname+url.search+url.hash+quote;
-    const parts=pathname.split('/').filter(Boolean);
-    if(generatedLocaleRoots.includes(parts[0]))parts.shift();
-    const base='/' + (parts.length?parts.join('/')+'/':'');
-    const localized='/' + locale + (base==='/'?'/':base);
-    return attr+'='+quote+localized+url.search+url.hash+quote;
+    return attr+'='+quote+localizedInternalPath(url.href,locale)+quote;
   });
+  next=next.replace(/(<meta\b[^>]*http-equiv=["']refresh["'][^>]*content=["'][^"']*?url=)([^"' >]+)([^"']*["'][^>]*>)/gi,
+    (_match,before,target,after)=>before+localizedInternalPath(target,locale)+after);
+  next=next.replace(/location\.replace\((["'])(\/[^"']*)\1\s*\+\s*location\.search\s*\+\s*location\.hash\)/g,
+    (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
+  return next;
 }
-
 function replaceVisibleCopy(html, locale) {
   if(locale==='he')return html;
   const protectedBlocks=[];
