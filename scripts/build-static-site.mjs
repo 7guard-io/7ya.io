@@ -12,8 +12,8 @@ import { localizeStaticSite } from './localize-static-site.mjs';
 
 const root = process.cwd();
 const output = path.join(root, 'dist');
-const guideStyleTag = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css" data-7ya-signal-key-assets="20260715">';
-const guideScriptTag = '<script src="/scripts/7ya-signal-key-20260715.js" data-7ya-signal-key-assets="20260715" defer></script>';
+const guideStyleTag = '<link rel="stylesheet" href="/styles/7ya-signal-key-20260715.css?v=20260919-chat2" data-7ya-signal-key-assets="20260715">';
+const guideScriptTag = '<script src="/scripts/7ya-signal-key-20260715.js?v=20260919-chat2" data-7ya-signal-key-assets="20260715" defer></script>';
 const manifestTag = '<link rel="manifest" href="/site.webmanifest" data-7ya-pwa="20260817">';
 const appleTouchIconTag = '<link rel="apple-touch-icon" sizes="180x180" href="/assets/7ya-app-icon-180.png" data-7ya-app-icon="20260817">';
 const appleWebAppTitleTag = '<meta name="apple-mobile-web-app-title" content="7YA" data-7ya-app-icon="20260817">';
@@ -208,6 +208,10 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('</head>') || !html.includes('</body>')) {
     throw new Error(`Cannot inject shared assets into malformed HTML: ${relative}`);
   }
+
+  html = html
+    .replace(/\/styles\/7ya-signal-key-20260715\.css(?:\?[^"'\\s>]*)?/g, '/styles/7ya-signal-key-20260715.css?v=20260919-chat2')
+    .replace(/\/scripts\/7ya-signal-key-20260715\.js(?:\?[^"'\\s>]*)?/g, '/scripts/7ya-signal-key-20260715.js?v=20260919-chat2');
 
   const headTags = [];
   const bodyTags = [];
