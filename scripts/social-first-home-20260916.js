@@ -5,20 +5,31 @@
   if(!rail)return;
 
   const fmt=(n)=>new Intl.NumberFormat('en-US',{notation:Number(n)>=10000?'compact':'standard',maximumFractionDigits:1}).format(Number(n));
+  const humanizeMetricDisplay=(value)=>String(value||'')
+    .replace(/\blikes\/reactions\b/gi,'לייקים/תגובות־רגש')
+    .replace(/\bimpressions\b/gi,'חשיפות')
+    .replace(/\breactions\b/gi,'תגובות־רגש')
+    .replace(/\bcomments\b/gi,'תגובות')
+    .replace(/\bshares\b/gi,'שיתופים')
+    .replace(/\bviews\b/gi,'צפיות')
+    .replace(/\blikes\b/gi,'לייקים')
+    .replace(/\bsaves\b/gi,'שמירות')
+    .replace(/\breach\b/gi,'חשיפה')
+    .replace(/\binteractions\b/gi,'אינטראקציות');
   const metricText=(item)=>{
-    if(item.metric_display)return item.metric_display;
+    if(item.metric_display)return humanizeMetricDisplay(item.metric_display);
     const m=item.metrics;
     if(!m)return '';
     const out=[];
-    if(Number.isFinite(m.views))out.push(`${fmt(m.views)} views`);
-    if(Number.isFinite(m.impressions))out.push(`${fmt(m.impressions)} impressions`);
-    if(Number.isFinite(m.reach))out.push(`${fmt(m.reach)} reach`);
-    if(Number.isFinite(m.likes))out.push(`${fmt(m.likes)} likes`);
-    if(Number.isFinite(m.likes_reactions))out.push(`${fmt(m.likes_reactions)} likes/reactions`);
-    if(Number.isFinite(m.reactions))out.push(`${fmt(m.reactions)} reactions`);
-    if(Number.isFinite(m.comments))out.push(`${fmt(m.comments)} comments`);
-    if(Number.isFinite(m.shares))out.push(`${fmt(m.shares)} shares`);
-    if(Number.isFinite(m.saves))out.push(`${fmt(m.saves)} saves`);
+    if(Number.isFinite(m.views))out.push(`${fmt(m.views)} צפיות`);
+    if(Number.isFinite(m.impressions))out.push(`${fmt(m.impressions)} חשיפות`);
+    if(Number.isFinite(m.reach))out.push(`${fmt(m.reach)} חשיפה`);
+    if(Number.isFinite(m.likes))out.push(`${fmt(m.likes)} לייקים`);
+    if(Number.isFinite(m.likes_reactions))out.push(`${fmt(m.likes_reactions)} לייקים/תגובות־רגש`);
+    if(Number.isFinite(m.reactions))out.push(`${fmt(m.reactions)} תגובות־רגש`);
+    if(Number.isFinite(m.comments))out.push(`${fmt(m.comments)} תגובות`);
+    if(Number.isFinite(m.shares))out.push(`${fmt(m.shares)} שיתופים`);
+    if(Number.isFinite(m.saves))out.push(`${fmt(m.saves)} שמירות`);
     return out.slice(0,4).join(' · ');
   };
 
