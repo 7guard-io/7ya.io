@@ -154,7 +154,13 @@ const homepageExternalSourceCount = (homepageHtml.match(/target=["']_blank["']/g
 if (homepageFacebookSourceCount < 12) fail(`homepage Facebook coverage regressed: ${homepageFacebookSourceCount} < 12`);
 if (homepageExternalSourceCount < 48) fail(`homepage source coverage regressed: ${homepageExternalSourceCount} < 48`);
 
-const visitorFacingForbiddenLabels = ['PUBLIC RECORD','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL','OFFICIAL BUSINESS REPORT','OWNER INSIGHTS','PUBLIC SNAPSHOT','PUBLIC POST','PUBLIC COMMENTS','EXTERNAL REPOST'];
+const visitorFacingForbiddenLabels = [
+  'PUBLIC RECORD','PUBLIC RECORD / SCALE','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL',
+  'OFFICIAL BUSINESS REPORT','OWNER INSIGHTS','PUBLIC SNAPSHOT','PUBLIC POST','PUBLIC COMMENTS','EXTERNAL REPOST',
+  'PUBLIC INFLUENCE WALL','DIGITAL INFLUENCE','EVIDENCE WALL','EPISTEMIC CONTRACT','PUBLIC LEDGER',
+  'SOURCE SURFACES','PRIVACY BOUNDARY','THE THROUGH-LINE','THE SEVEN CHAPTERS','PERSON BEFORE SYSTEM',
+  'OPEN THE SOURCE','PUBLIC SURFACES'
+];
 const visibleTextOf = html => html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
 for (const relative of artifactFiles.filter(file => file.endsWith('.html') && !file.startsWith('api/'))) {
   const html = await fs.readFile(path.join(output, relative), 'utf8');
