@@ -274,7 +274,7 @@ function localizeJsonLd(html,locale,route,meta){
             const fragment=oldId.includes('#')?'#'+oldId.split('#').slice(1).join('#'):'';
             value['@id']=pageCanonical.replace(/#.*$/,'')+fragment;
           }
-          if('inLanguage' in value)value.inLanguage=locale;
+          value.inLanguage=locale;
           if(meta){
             if('name' in value)value.name=meta.title;
             if('description' in value)value.description=meta.description;
