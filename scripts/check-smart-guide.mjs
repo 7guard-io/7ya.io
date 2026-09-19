@@ -4,6 +4,7 @@ const files = {
   widget: fs.readFileSync('scripts/7ya-signal-key-20260715.js', 'utf8'),
   style: fs.readFileSync('styles/7ya-signal-key-20260715.css', 'utf8'),
   guide: fs.readFileSync('ops/vercel-canonical-proxy/api/guide.js', 'utf8'),
+  pagesGuide: fs.readFileSync('functions/api/guide.js', 'utf8'),
   proxy: fs.readFileSync('ops/vercel-canonical-proxy/api/proxy.js', 'utf8'),
   build: fs.readFileSync('scripts/build-static-site.mjs', 'utf8'),
   contract: fs.readFileSync('scripts/site-contract.mjs', 'utf8'),
@@ -25,6 +26,11 @@ requireText('guide', 'Retry-After', 'rate-limit response contract missing');
 requireText('guide', 'message.length > 1600', 'message size cap missing');
 forbidText('guide', 'nvapi-', 'hard-coded NVIDIA credential detected');
 forbidText('guide', 'sk-', 'hard-coded provider credential detected');
+requireText('pagesGuide', 'v2.appdeploy.ai/api/companion', 'Cloudflare guide bridge missing AppDeploy companion upstream');
+requireText('pagesGuide', 'fallbackCreator', 'Cloudflare guide bridge missing in-chat creator continuity fallback');
+requireText('pagesGuide', 'secrets_exposed: false', 'Cloudflare guide bridge missing public secret boundary');
+forbidText('pagesGuide', 'nvapi-', 'hard-coded NVIDIA credential detected in Cloudflare bridge');
+forbidText('pagesGuide', 'sk-', 'hard-coded provider credential detected in Cloudflare bridge');
 
 requireText('widget', "setAttribute('aria-expanded'", 'launcher accessibility state missing');
 requireText('widget', "event.key === 'Escape'", 'keyboard close behavior missing');

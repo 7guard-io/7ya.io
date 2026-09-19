@@ -12,6 +12,7 @@
   let activeMode = 'guide';
   let busy = false;
   let latestPlan = '';
+  let companionState = null;
 
   const MODES = {
     guide: {
@@ -157,8 +158,8 @@
   const messages = element('div', 'ya-signal-messages');
   messages.setAttribute('aria-live', 'polite');
   messages.append(element('div', 'ya-signal-message bot', rtl
-    ? 'אני המלווה החיובי של 7YA. אני לא איגור ולא מדבר בשמו. אני עוזר להפוך ניסיון, רעיון או רצון לשפה ברורה, תוכן אמיתי וצעד שאפשר לבצע — בלי להמציא הישגים ובלי ללחוץ עליכם.'
-    : 'I am the positive 7YA companion. I am not Igor and do not speak for him. I help turn experience, ideas, and intention into clear language, real content, and a practical next step.'));
+    ? 'כאן לא רק שואלים. בוחרים כיוון, הופכים אותו לתוצר אמיתי ומסיימים עם צעד שאפשר לבצע. אפשר ללמוד מהדרך של איגור ומהמקורות הציבוריים, ואז לבנות את הדרך שלכם — בלי להמציא הישגים ובלי ללחוץ עליכם.'
+    : 'This is not only a Q&A. Choose a direction, turn it into something real, and finish with a step you can execute. Learn from Igor’s public journey and sources, then build your own path without invented claims or pressure.'));
 
   const quick = element('div', 'ya-signal-quick');
 
@@ -184,7 +185,7 @@
   actionRow.append(copyButton, studioLink);
 
   const footer = element('footer', 'ya-signal-footer');
-  const provider = element('span', '', rtl ? 'מצב בטוח מקומי' : 'Safe local mode');
+  const provider = element('span', '', rtl ? 'מנוע 7YA מוכן' : '7YA engine ready');
   const privacy = element('span', '', rtl ? 'לא נשמר בדפדפן · לא להזין מידע רגיש' : 'Not saved in browser · no sensitive data');
   footer.append(provider, privacy);
 
@@ -313,6 +314,9 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message,
+          messages: conversation.slice(-8),
+          state: companionState,
+          locale: String(document.documentElement.lang || (rtl ? 'he' : 'en')).slice(0, 2),
           path: canonicalPath(),
           mode: config.apiMode,
           creator_mode: config.creatorMode,
@@ -321,6 +325,7 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data?.error || `HTTP ${response.status}`);
       waiting.remove();
+      if (data.state) companionState = data.state;
       if (config.apiMode === 'creator') {
         addCreatorResult(data);
         conversation.push({ role: 'assistant', content: formatPlan(data).slice(0, 1200) });
@@ -331,18 +336,17 @@
         conversation.push({ role: 'assistant', content: answer.slice(0, 1200) });
       }
       while (conversation.length > 8) conversation.shift();
-      const providerLabel = data.provider === 'nvidia'
-        ? `NVIDIA · ${data.model || 'NIM'}`
-        : data.provider === 'openai'
-          ? `OpenAI · ${data.model || 'AI'}`
-          : (rtl ? 'מצב בטוח מקומי' : 'Safe local mode');
-      provider.textContent = providerLabel;
+      provider.textContent = rtl ? 'מנוע 7YA פעיל' : '7YA engine active';
     } catch (error) {
-      waiting.textContent = rtl
-        ? 'החיבור החכם אינו זמין כרגע. עברו ל־/create/ — המלווה המקומי שם ממשיך לעבוד בלי מפתח API.'
-        : 'The smart connection is unavailable. Open /create/ for the local companion.';
-      provider.textContent = rtl ? 'מצב בטוח מקומי' : 'Safe local mode';
-      console.warn('7YA Signal Key fallback', error?.message || error);
+      const fallbackByMode = {
+        guide: rtl ? 'נמשיך כאן. כתבו במשפט אחד מה אתם רוצים להבין או לשנות, ואני אכוון אתכם למקור או לצעד הבא.' : 'We stay here. Write in one sentence what you want to understand or change, and I will point you to the next source or move.',
+        create: rtl ? 'מתחילים ליצור עכשיו: הגדירו תוצאה אחת, למי היא מיועדת, ומה הגרסה הקטנה שאפשר לסיים היום.' : 'Start creating now: define one outcome, who it is for, and the smallest version you can finish today.',
+        fulfill: rtl ? 'מגדירים יעד אחד לשבוע ואז צעד של 15 דקות שאפשר לבצע עכשיו.' : 'Choose one weekly outcome, then one 15-minute move you can do now.',
+        impact: rtl ? 'בוחרים אדם או קהילה אחת, צורך אחד וניסוי קטן עם מדד אנושי אחד.' : 'Choose one person or community, one need, and one small experiment with one human signal.',
+      };
+      waiting.textContent = fallbackByMode[activeMode] || fallbackByMode.guide;
+      provider.textContent = rtl ? 'מנוע 7YA פעיל' : '7YA engine active';
+      console.warn('7YA Signal Key continuity fallback', error?.message || error);
     } finally {
       busy = false;
       input.disabled = false;
