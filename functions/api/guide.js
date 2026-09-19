@@ -139,15 +139,9 @@ async function proxyCompanion(body, request) {
   }
 }
 
-export async function onRequestPost({ request }) {
-  let body;
-  try {
-    body = await request.json();
-  } catch {
-    return json({ error: 'invalid request' }, 400);
-  }
+async function buildGuideResult(body, request) {
   const message = clean(body && body.message, 1600);
-  if (!message) return json({ error: 'message required' }, 422);
+  if (!message) return { payload: { error: 'message required' }, status: 422, enginePath: 'invalid' };
 
   const locale = localeOf(body.locale || request.headers.get('accept-language'));
   const path = safePath(body.path);
@@ -158,18 +152,35 @@ export async function onRequestPost({ request }) {
   try {
     const proxied = await proxyCompanion(body, request);
     const data = proxied.data;
-    if (creator) return json(creatorShape(data, message, creatorMode, locale, fallback));
-    return json({
-      answer: clean(data.reply, 5200) || fallback.answer,
-      links: actionLinks(data, fallback.links),
-      mode: '7ya-guide',
-      provider: clean(data.provider, 40) || 'local',
-      model: clean(data.model, 120) || '7ya',
-      state: data.state || null,
-    });
+    const payload = creator
+      ? creatorShape(data, message, creatorMode, locale, fallback)
+      : {
+          answer: clean(data.reply, 5200) || fallback.answer,
+          links: actionLinks(data, fallback.links),
+          mode: '7ya-guide',
+          provider: clean(data.provider, 40) || 'local',
+          model: clean(data.model, 120) || '7ya',
+          state: data.state || null,
+        };
+    return { payload, status: 200, enginePath: 'upstream' };
   } catch {
-    return json({ ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null });
+    return {
+      payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
+      status: 200,
+      enginePath: 'continuity',
+    };
   }
+}
+
+export async function onRequestPost({ request }) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'invalid request' }, 400);
+  }
+  const result = await buildGuideResult(body, request);
+  return json(result.payload, result.status);
 }
 
 export async function onRequestGet({ request }) {
@@ -177,39 +188,38 @@ export async function onRequestGet({ request }) {
   if (url.searchParams.get('probe') !== '1') {
     return json({ status: 'ready', experience: '7ya-growth-companion', upstream: 'server-side', secrets_exposed: false });
   }
-  try {
-    const body = {
-      message: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.',
-      messages: [{ role: 'user', content: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.' }],
-      locale: 'he',
-      path: '/',
-      mode: 'creator',
-      creator_mode: 'momentum',
-    };
-    const proxied = await proxyCompanion(body, request);
-    const data = proxied.data;
-    const reply = clean(data.reply, 5200);
-    const suggestions = Array.isArray(data.suggestions) ? data.suggestions.filter(Boolean) : [];
-    const checkpoint = Array.isArray(data.checkpoint && data.checkpoint.items) ? data.checkpoint.items.filter(Boolean) : [];
-    const usable = Boolean(reply && (suggestions.length || checkpoint.length));
-    return json({
-      status: usable ? 'ready' : 'degraded',
-      experience: '7ya-growth-companion',
-      upstream: 'server-side',
-      provider: clean(data.provider, 40) || 'local',
-      model: clean(data.model, 120) || '7ya',
-      response_present: Boolean(reply),
-      next_step_present: Boolean(suggestions.length || checkpoint.length),
-      secrets_exposed: false,
-    }, usable ? 200 : 503);
-  } catch {
-    return json({
-      status: 'degraded',
-      experience: '7ya-growth-companion',
-      upstream: 'server-side',
-      response_present: false,
-      next_step_present: false,
-      secrets_exposed: false,
-    }, 503);
-  }
+
+  const body = {
+    message: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.',
+    messages: [{ role: 'user', content: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.' }],
+    locale: 'he',
+    path: '/',
+    mode: 'creator',
+    creator_mode: 'momentum',
+  };
+  const result = await buildGuideResult(body, request);
+  const payload = result.payload || {};
+  const outline = payload.content_seed && Array.isArray(payload.content_seed.outline) ? payload.content_seed.outline : [];
+  const visitorPathReady = Boolean(
+    result.status === 200 &&
+    clean(payload.reflection, 20) &&
+    clean(payload.goal, 20) &&
+    clean(payload.next_step, 20) &&
+    clean(payload.today, 20) &&
+    clean(payload.this_week, 20) &&
+    clean(payload.content_seed && payload.content_seed.hook, 20) &&
+    outline.length
+  );
+  return json({
+    status: visitorPathReady ? 'ready' : 'degraded',
+    experience: '7ya-growth-companion',
+    visitor_path_ready: visitorPathReady,
+    engine_path: result.enginePath,
+    response_present: Boolean(clean(payload.reflection, 20)),
+    next_step_present: Boolean(clean(payload.next_step, 20)),
+    today_present: Boolean(clean(payload.today, 20)),
+    week_present: Boolean(clean(payload.this_week, 20)),
+    content_seed_present: Boolean(clean(payload.content_seed && payload.content_seed.hook, 20) && outline.length),
+    secrets_exposed: false,
+  }, visitorPathReady ? 200 : 503);
 }
