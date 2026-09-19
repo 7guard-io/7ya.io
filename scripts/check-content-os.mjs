@@ -71,6 +71,9 @@ if(contract && master && curated){
       if(!body.includes('/research/')) fail(`${relative} missing Research fallback link`);
       if(!body.includes('/media/')) fail(`${relative} missing Media fallback link`);
       if(!body.includes('/starton/')) fail(`${relative} missing StartOn fallback link`);
+      if(!body.includes('data-seven-human-nav')) fail(`${relative} missing consistent 7YA navigation`);
+      if(!body.includes('href="/contact/"')) fail(`${relative} missing working contact CTA`);
+      if(!body.includes('דברו איתי')) fail(`${relative} missing Hebrew contact CTA label`);
     }
   }
 }
