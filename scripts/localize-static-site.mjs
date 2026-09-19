@@ -258,30 +258,35 @@ function replaceVisibleCopy(html, locale) {
 function localizeJsonLd(html,locale,route,meta){
   if(locale==='he')return html;
   const pageCanonical=canonicalHref(locale,route);
+  const pageTypes=new Set(['WebPage','ProfilePage','ContactPage','CollectionPage','AboutPage','ItemPage']);
   return html.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(match,attrs,body)=>{
     try{
       const data=JSON.parse(body);
       const walk=value=>{
         if(Array.isArray(value)){value.forEach(walk);return}
         if(!value||typeof value!=='object')return;
-        for(const [key,item] of Object.entries(value)){
-          if(typeof item==='string'&&(key==='url'||key==='@id')&&item.startsWith('https://7ya.io/')){
-            value[key]='https://7ya.io'+localizedInternalPath(item,locale).replace(/[?#].*$/,'');
-          }else if(key==='inLanguage'){
-            value[key]=locale;
-          }else if(item&&typeof item==='object')walk(item);
+        const types=Array.isArray(value['@type'])?value['@type']:[value['@type']].filter(Boolean);
+        const pageLike=types.some(type=>pageTypes.has(type));
+        if(pageLike){
+          const oldId=typeof value['@id']==='string'?value['@id']:'';
+          if(typeof value.url==='string'&&value.url.startsWith('https://7ya.io/'))value.url=pageCanonical;
+          if(oldId.startsWith('https://7ya.io/')){
+            const fragment=oldId.includes('#')?'#'+oldId.split('#').slice(1).join('#'):'';
+            value['@id']=pageCanonical.replace(/#.*$/,'')+fragment;
+          }
+          if('inLanguage' in value)value.inLanguage=locale;
+          if(meta){
+            if('name' in value)value.name=meta.title;
+            if('description' in value)value.description=meta.description;
+          }
         }
-        if((value.url===pageCanonical||value['@id']===pageCanonical||value['@id']===pageCanonical+'#webpage')&&meta){
-          if('name' in value)value.name=meta.title;
-          if('description' in value)value.description=meta.description;
-        }
+        for(const item of Object.values(value))if(item&&typeof item==='object')walk(item);
       };
       walk(data);
       return '<script'+attrs+'>'+JSON.stringify(data)+'</script>';
     }catch{return match}
   });
 }
-
 function setMetadata(html, locale, route) {
   const resolvedRoute=canonicalRoute(route);
   const canonical=canonicalHref(locale,route);
@@ -293,6 +298,8 @@ function setMetadata(html, locale, route) {
     next=next.replace(/<meta\s+name=["']description["'][^>]*>/i,'<meta name="description" content="'+esc(meta.description)+'">');
     next=next.replace(/<meta\s+property=["']og:title["'][^>]*>/i,'<meta property="og:title" content="'+esc(meta.title)+'">');
     next=next.replace(/<meta\s+property=["']og:description["'][^>]*>/i,'<meta property="og:description" content="'+esc(meta.description)+'">');
+    next=next.replace(/<meta\s+name=["']twitter:title["'][^>]*>/i,'<meta name="twitter:title" content="'+esc(meta.title)+'">');
+    next=next.replace(/<meta\s+name=["']twitter:description["'][^>]*>/i,'<meta name="twitter:description" content="'+esc(meta.description)+'">');
     next=next.replace(/<meta\s+property=["']og:url["'][^>]*>/i,'<meta property="og:url" content="'+canonical+'">');
     next=next.replace(/<meta\s+property=["']og:locale["'][^>]*>/i,'<meta property="og:locale" content="'+(locale==='ru'?'ru_RU':locale==='ar'?'ar_IL':'en_US')+'">');
   }
