@@ -151,6 +151,13 @@ for (const relative of artifactFiles.filter(file => file.endsWith('.html') && fi
 }
 
 const homepageHtml = await fs.readFile(path.join(output, 'index.html'), 'utf8');
+const jerusalemDateParts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'
+}).formatToParts(new Date()).filter(part => part.type !== 'literal').map(part => [part.type, part.value]));
+const expectedHomepageNow = `עכשיו / ${jerusalemDateParts.day}.${jerusalemDateParts.month}.${jerusalemDateParts.year}`;
+const expectedSitemapLastmod = `${jerusalemDateParts.year}-${jerusalemDateParts.month}-${jerusalemDateParts.day}`;
+if (!homepageHtml.includes(expectedHomepageNow)) fail(`homepage current-date stamp mismatch: expected ${expectedHomepageNow}`);
+if (homepageHtml.includes('BUILD_DATE')) fail('homepage leaked BUILD_DATE placeholder into artifact');
 const homepageFacebookSourceCount = (homepageHtml.match(/https:\/\/(?:www\.)?facebook\.com\//g) || []).length;
 const homepageExternalSourceCount = (homepageHtml.match(/target=["']_blank["']/g) || []).length;
 if (homepageFacebookSourceCount < 12) fail(`homepage Facebook coverage regressed: ${homepageFacebookSourceCount} < 12`);
@@ -178,6 +185,7 @@ for (const locale of generatedLocaleRoots) {
   }
 }
 const sitemapBody = await fs.readFile(path.join(output, 'sitemap.xml'), 'utf8');
+if (!sitemapBody.includes(`<lastmod>${expectedSitemapLastmod}</lastmod>`)) fail(`sitemap lastmod mismatch: expected ${expectedSitemapLastmod}`);
 for (const locale of generatedLocaleRoots) {
   if (!sitemapBody.includes(`https://7ya.io/${locale}/`)) fail(`sitemap missing ${locale} locale root`);
 }
