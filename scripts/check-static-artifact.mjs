@@ -91,11 +91,17 @@ const allowedTopLevel = new Set([
   'styles',
   'scripts',
   'artifact-manifest.json',
+  'deploy-meta.json',
 ]);
 
 for (const entry of await fs.readdir(output)) {
   if (!allowedTopLevel.has(entry)) fail(`unexpected top-level artifact entry ${entry}`);
 }
+
+const deploymentMeta = JSON.parse(await fs.readFile(path.join(output, 'deploy-meta.json'), 'utf8'));
+if (deploymentMeta.schema_version !== 1 || deploymentMeta.artifact !== '7ya-static-site') fail('deployment metadata artifact mismatch');
+if (deploymentMeta.source_commit !== null && !/^[0-9a-f]{40}$/i.test(deploymentMeta.source_commit)) fail('deployment metadata has invalid source commit');
+if (!['cloudflare-pages','vercel','github-actions','local'].includes(deploymentMeta.provider)) fail('deployment metadata has invalid provider');
 
 const manifestEntries = Object.entries(manifest.files || {});
 const artifactFiles = (await walk(output)).filter(file => file !== 'artifact-manifest.json');
