@@ -270,6 +270,22 @@ for (const file of publicScriptFiles) await copyFile(`scripts/${file}`);
 await enhancePublicHtml();
 await localizeStaticSite(output);
 
+const deploymentMeta = {
+  schema_version: 1,
+  artifact: '7ya-static-site',
+  provider: process.env.CF_PAGES ? 'cloudflare-pages' : (process.env.VERCEL ? 'vercel' : (process.env.GITHUB_ACTIONS ? 'github-actions' : 'local')),
+  source_commit: process.env.CF_PAGES_COMMIT_SHA || process.env.GITHUB_SHA || process.env.VERCEL_GIT_COMMIT_SHA || null,
+  source_branch: process.env.CF_PAGES_BRANCH || process.env.GITHUB_REF_NAME || process.env.VERCEL_GIT_COMMIT_REF || null,
+  build_date_jerusalem: new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date()),
+};
+await fs.writeFile(
+  path.join(output, 'deploy-meta.json'),
+  `${JSON.stringify(deploymentMeta, null, 2)}\n`,
+  'utf8',
+);
+
 const artifactFiles = await walk(output);
 const hashes = {};
 for (const file of artifactFiles) {
