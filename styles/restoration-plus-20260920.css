@@ -39,8 +39,8 @@ body{background:var(--r-bg)}
 }
 .restoration-hero .hero-index{color:var(--r-dim);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .restoration-hero .hero-index span,
-.restoration-hero .eyebrow,
 .restoration-hero .source-note i{color:var(--r-acid);background:var(--r-acid)}
+.restoration-hero .eyebrow{color:var(--r-acid);background:transparent}
 .restoration-hero .eyebrow{display:inline-flex;align-items:center;width:max-content;padding:5px 11px;border:1px solid var(--r-acid);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .restoration-hero .hero-copy .eyebrow:before{display:none}
 .restoration-hero h1{
