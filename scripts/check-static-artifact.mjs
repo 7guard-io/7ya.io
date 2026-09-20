@@ -190,6 +190,38 @@ for (const locale of generatedLocaleRoots) {
   if (!sitemapBody.includes(`https://7ya.io/${locale}/`)) fail(`sitemap missing ${locale} locale root`);
 }
 
+const localeEditorialLeakGuards = {
+  en: [
+    ['index.html', 'נולדתי בחרקוב, גדלתי בחולון'],
+    ['index.html', 'בלי שפה של ארגון גדול'],
+    ['igor-vepretski/index.html', 'נולדתי בחרקוב, גדלתי בישראל'],
+    ['journey/index.html', 'לא באתי לבנות'],
+    ['starton/index.html', 'StartOn נולדה'],
+    ['media/index.html', 'לא ערכת מדיה'],
+    ['influence/index.html', 'ההשפעה שלי'],
+    ['library/index.html', 'לא תיקייה'],
+    ['evidence/index.html', '7YA אינה מבקשת אמון עיוור'],
+    ['research/index.html', 'כאן נמצאים המנוסקריפטים'],
+    ['speaker/index.html', 'איגור ופרצקי זמין להרצאות'],
+    ['contact/index.html', 'שיחה טובה מתחילה']
+  ],
+  ru: [],
+  ar: []
+};
+localeEditorialLeakGuards.ru = localeEditorialLeakGuards.en.map(([route, phrase]) => [route, phrase]);
+localeEditorialLeakGuards.ar = localeEditorialLeakGuards.en.map(([route, phrase]) => [route, phrase]);
+for (const [locale, checks] of Object.entries(localeEditorialLeakGuards)) {
+  for (const [route, phrase] of checks) {
+    const relative = `${locale}/${route}`;
+    if (!manifest.files?.[relative]) {
+      fail(`missing locale editorial guard target ${relative}`);
+      continue;
+    }
+    const html = await fs.readFile(path.join(output, relative), 'utf8');
+    if (html.includes(phrase)) fail(`${relative} leaked untranslated editorial Hebrew: ${phrase}`);
+  }
+}
+
 const visitorFacingForbiddenLabels = [
   'PUBLIC RECORD','PUBLIC RECORD / SCALE','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL',
   'OFFICIAL BUSINESS REPORT','OWNER INSIGHTS','PUBLIC SNAPSHOT','PUBLIC POST','PUBLIC COMMENTS','EXTERNAL REPOST',
