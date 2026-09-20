@@ -2817,7 +2817,7 @@ async function writeSitemap(output){
     const alternates=allLocales.map(lang=>'<xhtml:link rel="alternate" hreflang="'+lang+'" href="https://7ya.io'+routePath(lang,route)+'"/>').join('');
     const xdefault='<xhtml:link rel="alternate" hreflang="x-default" href="https://7ya.io'+routePath('he',route)+'"/>';
     for(const locale of allLocales){
-      urls.push('  <url><loc>https://7ya.io'+routePath(locale,route)+'</loc><lastmod>${buildDateIso}</lastmod>'+alternates+xdefault+'</url>');
+      urls.push('  <url><loc>https://7ya.io'+routePath(locale,route)+'</loc><lastmod>'+buildDateIso+'</lastmod>'+alternates+xdefault+'</url>');
     }
   }
   const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+urls.join('\n')+'\n</urlset>\n';
