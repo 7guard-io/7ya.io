@@ -20,26 +20,57 @@ const links = {
 const json = (value, status = 200) => new Response(JSON.stringify(value), { status, headers });
 const clean = (value, max = 1600) => String(value || '').trim().slice(0, max);
 const safePath = value => /^\/[a-z0-9/_#?-]*$/i.test(String(value || '')) ? String(value).slice(0, 220) : '/';
-const localeOf = value => /^ru/i.test(String(value || '')) ? 'ru' : /^en/i.test(String(value || '')) ? 'en' : 'he';
+const localeOf = value => /^ru/i.test(String(value || '')) ? 'ru' : /^ar/i.test(String(value || '')) ? 'ar' : /^en/i.test(String(value || '')) ? 'en' : 'he';
 const modeOf = body => body.mode === 'creator' ? 'build' : 'guide';
 
 function fallbackGuide(message, path, locale) {
   const q = message.toLowerCase();
-  const he = locale === 'he';
-  if (/starton|נוער|youth|молод/.test(q)) return {
-    answer: he ? 'StartOn מחבר טכנולוגיה, יצירה ושייכות לנוער. אפשר להתחיל מהצורך האנושי, לבדוק מה כבר מתועד, ואז לבחור ניסוי קטן שאפשר לבצע.' : 'StartOn connects technology, creation and belonging for youth. Start with the human need, inspect what is documented, then choose a small executable experiment.',
+  const copy = {
+    he: {
+      starton: 'StartOn מחבר טכנולוגיה, יצירה ושייכות לנוער. אפשר להתחיל מהצורך האנושי, לבדוק מה כבר מתועד, ואז לבחור ניסוי קטן שאפשר לבצע.',
+      igor: 'הדרך הציבורית של איגור משמשת כאן כדוגמה לתהליך: ניסיון חיים, יצירה, פעולה ציבורית ובנייה. המטרה אינה לחקות אותו אלא להשתמש בשיחה כדי לחדד את הדרך והקול שלכם.',
+      evidence: 'מתחילים ממקור, מפרידים עובדה מפרשנות, ואז מחליטים מה אפשר לבנות עליה. אם אין מקור מספיק טוב, מסמנים את הפער ולא ממציאים השלמה.',
+      default: 'נמשיך מתוך מה שחשוב לכם: נחדד מה אתם רוצים להבין, לבטא או לשנות, ואז נהפוך את זה לצעד קטן שאפשר לבצע.'
+    },
+    en: {
+      starton: 'StartOn connects technology, creation and belonging for youth. Start with the human need, inspect what is documented, then choose a small executable experiment.',
+      igor: 'Igor’s public journey is a working example of lived experience, creation, public action and building. The point is not to imitate him, but to use the conversation to clarify your own path and voice.',
+      evidence: 'Start from a source, separate fact from interpretation, then decide what can responsibly be built on it. If evidence is incomplete, mark the gap instead of inventing certainty.',
+      default: 'Start with what matters to you: clarify what you want to understand, express or change, then turn it into one small move you can actually take.'
+    },
+    ru: {
+      starton: 'StartOn соединяет технологии, творчество и чувство принадлежности для подростков. Начните с человеческой потребности, проверьте, что уже подтверждено, и выберите небольшой выполнимый эксперимент.',
+      igor: 'Публичный путь Игоря здесь служит рабочим примером: жизненный опыт, творчество, общественное действие и создание систем. Цель не в том, чтобы копировать его, а в том, чтобы через разговор точнее найти свой путь и голос.',
+      evidence: 'Начните с источника, отделите факт от интерпретации и только потом решайте, что на этом можно строить. Если доказательств не хватает, обозначьте пробел, а не выдумывайте уверенность.',
+      default: 'Начнём с того, что важно вам: уточним, что вы хотите понять, выразить или изменить, и превратим это в один небольшой реальный шаг.'
+    },
+    ar: {
+      starton: 'يربط StartOn التكنولوجيا والإبداع والانتماء لدى الشباب. ابدأ بالحاجة الإنسانية، وافحص ما هو موثّق، ثم اختر تجربة صغيرة قابلة للتنفيذ.',
+      igor: 'يُستخدم المسار العام لإيغور هنا كمثال عملي يجمع الخبرة الحياتية والإبداع والعمل العام والبناء. الهدف ليس تقليده، بل استخدام الحوار لتوضيح مسارك وصوتك أنت.',
+      evidence: 'ابدأ بالمصدر، وافصل الحقيقة عن التفسير، ثم قرر ما الذي يمكن بناؤه بمسؤولية. إذا كانت الأدلة ناقصة، اذكر الفجوة بدل اختراع اليقين.',
+      default: 'نبدأ مما يهمك أنت: نوضح ما تريد فهمه أو التعبير عنه أو تغييره، ثم نحوله إلى خطوة صغيرة قابلة للتنفيذ.'
+    }
+  }[locale] || null;
+  const text = copy || {
+    starton: 'StartOn connects technology, creation and belonging for youth.',
+    igor: 'Use Igor’s public journey as an example, not a template to copy.',
+    evidence: 'Separate fact from interpretation before acting.',
+    default: 'Clarify what matters, then choose one executable next move.'
+  };
+  if (/starton|נוער|youth|молод|شباب/.test(q)) return {
+    answer: text.starton,
     links: [links.starton, links.evidence, links.contact],
   };
-  if (/איגור|igor|игор|סיפור|journey|путь/.test(q)) return {
-    answer: he ? 'הדרך של איגור משמשת כאן כדוגמה לתהליך: ניסיון חיים, יצירה, פעולה ציבורית ובנייה של StartOn ו־7YA. המטרה היא לא לחקות אותו אלא להשתמש במבנה כדי לבנות את הדרך שלכם.' : 'Igor’s public journey is used here as a working example: lived experience, creation, public action, and building StartOn and 7YA. The point is not imitation; it is using the structure to build your own path.',
+  if (/איגור|igor|игор|إيغور|סיפור|journey|путь|مسار/.test(q)) return {
+    answer: text.igor,
     links: [links.identity, links.journey, links.evidence],
   };
-  if (/מקור|ראי|evidence|proof|source|доказ/.test(q)) return {
-    answer: he ? 'מתחילים ממקור, מפרידים עובדה מפרשנות, ואז מחליטים מה אפשר לבנות עליה. אם אין מקור מספיק טוב, מסמנים את הפער ולא ממציאים השלמה.' : 'Start from a source, separate fact from interpretation, then decide what can responsibly be built on it. If evidence is incomplete, mark the gap instead of inventing certainty.',
+  if (/מקור|ראי|evidence|proof|source|доказ|دليل|مصدر/.test(q)) return {
+    answer: text.evidence,
     links: [links.evidence, links.influence],
   };
   return {
-    answer: he ? 'נמשיך מתוך השאלה שלכם: נגדיר מה אתם רוצים להבין או לשנות, נבחר כיוון אחד, ואז נהפוך אותו לצעד שאפשר לבצע.' : 'We continue from your question: define what you want to understand or change, choose one direction, then turn it into a move you can execute.',
+    answer: text.default,
     links: path.startsWith('/starton') ? [links.starton, links.evidence] : [links.create, links.journey, links.evidence],
   };
 }
@@ -125,9 +156,29 @@ async function proxyCompanion(body, request) {
         messages,
         state: body.state || null,
         locale,
-        context: { dimension: '7ya', section: path, path },
+        context: {
+          dimension: '7ya',
+          section: path,
+          path,
+          experience: body.experience === 'speak-with-igor' ? 'speak-with-igor' : '7ya-guide',
+          purpose: 'Help the visitor clarify what matters, express it in their own voice, and choose one useful next move.',
+          principles: [
+            'conversation-first',
+            'ask before assuming',
+            'self-expression over imitation',
+            'use Igor public evidence for factual claims',
+            'offer modern creation and technology tools when useful',
+            'if drawing on the Zohar or Jewish wisdom, label it explicitly and keep it optional',
+            'never present the assistant as live Igor'
+          ],
+        },
         mode: modeOf(body),
-        journeyContext: { lastMeaningfulStep: message, chosenDirection: body.mode === 'creator' ? message : '', visitedChapters: [], resonances: [] },
+        journeyContext: {
+          lastMeaningfulStep: message,
+          chosenDirection: body.mode === 'creator' || body.experience === 'speak-with-igor' ? message : '',
+          visitedChapters: [],
+          resonances: []
+        },
       }),
       signal: controller.signal,
     });
