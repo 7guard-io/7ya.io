@@ -190,6 +190,45 @@ for (const locale of generatedLocaleRoots) {
   if (!sitemapBody.includes(`https://7ya.io/${locale}/`)) fail(`sitemap missing ${locale} locale root`);
 }
 
+const localeEditorialLeakGuards = {
+  'index.html': [
+    'נולדתי בחרקוב, גדלתי בחולון',
+    'בלי שפה של ארגון גדול',
+    'StartOn: מטכנולוגיה לתשתית של שייכות',
+    'הפוסטים שלא',
+    'שלושה דברים',
+    'יש דברים',
+    'אפשר לדבר על שיתוף פעולה',
+    '7YA מארגנת את הזיכרון'
+  ],
+  'igor-vepretski/index.html': [
+    'נולדתי בחרקוב, גדלתי בישראל',
+    'האדם קודם. המערכת רק מארגנת',
+    'הזיכרון מקבל ממשק',
+    'מה אני בונה',
+    'העמוד הזה הוא רק הציר'
+  ],
+  'journey/index.html': ['לא באתי לבנות'],
+  'starton/index.html': ['StartOn נולדה'],
+  'media/index.html': ['לא ערכת מדיה'],
+  'influence/index.html': ['ההשפעה שלי'],
+  'library/index.html': ['לא תיקייה'],
+  'evidence/index.html': ['7YA אינה מבקשת אמון עיוור'],
+  'research/index.html': ['כאן נמצאים המנוסקריפטים'],
+  'speaker/index.html': ['איגור ופרצקי זמין להרצאות'],
+  'contact/index.html': ['שיחה טובה מתחילה']
+};
+for (const locale of generatedLocaleRoots) {
+  for (const [route, phrases] of Object.entries(localeEditorialLeakGuards)) {
+    const relative = `${locale}/${route}`;
+    if (!manifest.files?.[relative]) continue;
+    const html = await fs.readFile(path.join(output, relative), 'utf8');
+    for (const phrase of phrases) {
+      if (html.includes(phrase)) fail(`${relative} leaked untranslated 7YA editorial copy: ${phrase}`);
+    }
+  }
+}
+
 const visitorFacingForbiddenLabels = [
   'PUBLIC RECORD','PUBLIC RECORD / SCALE','MEDIA MASTER LIBRARY','FULL LEDGER','CURATED SOCIAL',
   'OFFICIAL BUSINESS REPORT','OWNER INSIGHTS','PUBLIC SNAPSHOT','PUBLIC POST','PUBLIC COMMENTS','EXTERNAL REPOST',
