@@ -5,49 +5,99 @@
   window.__7yaSignalKeyLoaded = true;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const rtl = document.documentElement.dir === 'rtl' || /^he|^ar|^fa/.test(document.documentElement.lang || '');
+  const rawLocale = String(document.documentElement.lang || 'en').toLowerCase();
+  const locale = /^he/.test(rawLocale) ? 'he' : /^ru/.test(rawLocale) ? 'ru' : /^ar/.test(rawLocale) ? 'ar' : 'en';
+  const rtl = locale === 'he' || locale === 'ar' || document.documentElement.dir === 'rtl';
   const canonicalPath = () => window.__7yaCanonicalPath ? window.__7yaCanonicalPath() : (location.pathname.replace(/^\/(?:en|ru|ar)(?=\/|$)/,'') || '/');
   const localizePath = value => window.__7yaLocalizePath ? window.__7yaLocalizePath(value) : value;
   const conversation = [];
-  let activeMode = 'guide';
   let busy = false;
-  let latestPlan = '';
   let companionState = null;
 
-  const MODES = {
-    guide: {
-      label: rtl ? 'הבנה' : 'Understand',
-      eyebrow: 'EVIDENCE / CONTEXT',
-      title: rtl ? 'להבין את הסיפור והמערכת' : 'Understand the story and system',
-      apiMode: 'guide',
-      creatorMode: undefined,
-      placeholder: rtl ? 'שאלו על איגור, StartOn, 7YA או מקור מסוים…' : 'Ask about Igor, StartOn, 7YA, or a source…',
+  const COPY = {
+    he: {
+      launcher: 'דברו עם איגור',
+      launcherSub: 'שיחה · כיוון · פעולה',
+      ariaOpen: 'פתחו שיחה עם איגור AI',
+      ariaPanel: 'שיחה עם איגור AI',
+      eyebrow: 'IGOR VEPRETSKI · 7YA',
+      title: 'דברו עם איגור',
+      hello: 'ספרו לי מה אתם מנסים להבין, לבנות, לומר או לשנות. השיחה תעזור לזקק את מה שחשוב לכם, למצוא את הקול שלכם ולהפוך אותו לצעד הבא שאפשר לבצע.',
+      placeholder: 'מה עובר עליכם, ומה הייתם רוצים שיקרה מכאן?',
+      send: 'שליחה',
+      label: 'ההודעה שלכם',
+      waiting: 'מקשיב, מחבר ומזקק את הצעד הבא…',
+      noAnswer: 'לא התקבלה תשובה. נסו לנסח במשפט אחד מה חשוב לכם עכשיו.',
+      fallback: 'נמשיך מכאן: מה הדבר האחד שהכי חשוב לכם להבין, לבטא או לקדם עכשיו?',
+      engine: 'AI המבוסס על הקול והעבודה הציבורית של איגור · לא איגור בזמן אמת',
+      disclosure: 'עשוי להיעזר בזוהר ובחכמה יהודית, ובכלים מודרניים, כשזה רלוונטי ומסומן · אל תשתפו מידע רגיש',
+      prompts: ['אני תקוע — תעזור לי למצוא צעד הבא', 'יש לי רעיון — תעזור לי לבטא אותו', 'מה אני יכול ללמוד מהדרך שלך?'],
+      evidencePrompts: ['איך אדע אם מה שאני מאמין בו באמת מבוסס?', 'תעזור לי להפריד בין עובדה לפרשנות', 'איך הופכים אמת מורכבת למסר ברור?'],
+      startonPrompts: ['יש לי רעיון לעזור לנוער — מאיפה מתחילים?', 'איך הופכים טכנולוגיה לכלי אנושי?', 'תעזור לי לבנות ניסוי קטן שאפשר לבצע']
     },
-    create: {
-      label: rtl ? 'יצירה' : 'Create',
-      eyebrow: 'VOICE / CONTENT',
-      title: rtl ? 'להפוך רעיון לתוכן אמיתי' : 'Turn an idea into real content',
-      apiMode: 'creator',
-      creatorMode: 'create',
-      placeholder: rtl ? 'מה אתם רוצים לומר, ליצור או לפרסם?' : 'What do you want to say, create, or publish?',
+    en: {
+      launcher: 'SPEAK WITH IGOR',
+      launcherSub: 'conversation · direction · action',
+      ariaOpen: 'Open Speak with Igor AI',
+      ariaPanel: 'Speak with Igor AI',
+      eyebrow: 'IGOR VEPRETSKI · 7YA',
+      title: 'Speak with Igor',
+      hello: 'Tell me what you are trying to understand, build, say, or change. This conversation will help clarify what matters, strengthen your own voice, and turn it into a next move you can actually take.',
+      placeholder: 'What is on your mind, and what would you like to happen next?',
+      send: 'Send',
+      label: 'Your message',
+      waiting: 'Listening, connecting the dots, and shaping the next move…',
+      noAnswer: 'No answer came back. Try saying in one sentence what matters most right now.',
+      fallback: 'We can continue here: what is the one thing you most want to understand, express, or move forward right now?',
+      engine: 'AI based on Igor’s public voice and work · not live Igor',
+      disclosure: 'May draw on the Zohar/Jewish wisdom and modern tools when relevant and labeled · do not share sensitive information',
+      prompts: ['I feel stuck — help me find the next move', 'I have an idea — help me express it', 'What can I learn from your path?'],
+      evidencePrompts: ['How do I know if my belief is actually grounded?', 'Help me separate fact from interpretation', 'How do I turn a complex truth into a clear message?'],
+      startonPrompts: ['I want to help youth — where do I start?', 'How can technology become a human tool?', 'Help me design one small executable experiment']
     },
-    fulfill: {
-      label: rtl ? 'הגשמה' : 'Fulfil',
-      eyebrow: 'CLARITY / MOMENTUM',
-      title: rtl ? 'להפוך כוונה למסלול שאפשר לבצע' : 'Turn intention into an executable path',
-      apiMode: 'creator',
-      creatorMode: 'momentum',
-      placeholder: rtl ? 'מה חשוב לכם לקדם, ומה עוצר אתכם כרגע?' : 'What matters now, and what is blocking you?',
+    ru: {
+      launcher: 'ПОГОВОРИТЬ С ИГОРЕМ',
+      launcherSub: 'разговор · направление · действие',
+      ariaOpen: 'Открыть разговор с Игорем AI',
+      ariaPanel: 'Разговор с Игорем AI',
+      eyebrow: 'IGOR VEPRETSKI · 7YA',
+      title: 'Поговорить с Игорем',
+      hello: 'Расскажите, что вы пытаетесь понять, создать, сказать или изменить. Этот разговор поможет прояснить главное, усилить ваш собственный голос и превратить его в следующий реальный шаг.',
+      placeholder: 'Что сейчас у вас в голове и чего вы хотите добиться дальше?',
+      send: 'Отправить',
+      label: 'Ваше сообщение',
+      waiting: 'Слушаю, связываю точки и формирую следующий шаг…',
+      noAnswer: 'Ответ не пришёл. Сформулируйте одним предложением, что для вас сейчас важнее всего.',
+      fallback: 'Продолжим отсюда: что одно вы больше всего хотите понять, выразить или продвинуть прямо сейчас?',
+      engine: 'AI на основе публичного голоса и работы Игоря · это не Игорь в реальном времени',
+      disclosure: 'Может обращаться к Зоару/еврейской мудрости и современным инструментам, когда это уместно и обозначено · не делитесь чувствительными данными',
+      prompts: ['Я застрял — помоги найти следующий шаг', 'У меня есть идея — помоги выразить её', 'Чему я могу научиться у твоего пути?'],
+      evidencePrompts: ['Как понять, на чём реально основано моё убеждение?', 'Помоги отделить факт от интерпретации', 'Как превратить сложную правду в ясный месседж?'],
+      startonPrompts: ['Я хочу помочь подросткам — с чего начать?', 'Как сделать технологию человеческим инструментом?', 'Помоги придумать маленький выполнимый эксперимент']
     },
-    impact: {
-      label: rtl ? 'השפעה' : 'Impact',
-      eyebrow: 'PERSON / NEED / ACTION',
-      title: rtl ? 'להפוך רצון טוב לניסוי בטוח ומדיד' : 'Turn good intent into a safe measurable experiment',
-      apiMode: 'creator',
-      creatorMode: 'impact',
-      placeholder: rtl ? 'למי תרצו לעזור, ומה הצורך שאתם רואים?' : 'Who do you want to help, and what need do you see?',
-    },
+    ar: {
+      launcher: 'تحدّث مع إيغور',
+      launcherSub: 'حوار · اتجاه · فعل',
+      ariaOpen: 'افتح حوارًا مع إيغور AI',
+      ariaPanel: 'حوار مع إيغور AI',
+      eyebrow: 'IGOR VEPRETSKI · 7YA',
+      title: 'تحدّث مع إيغور',
+      hello: 'أخبرني ما الذي تحاول فهمه أو بناؤه أو التعبير عنه أو تغييره. تساعدك هذه المحادثة على توضيح ما يهمك، وتقوية صوتك الخاص، وتحويله إلى خطوة تالية قابلة للتنفيذ.',
+      placeholder: 'ما الذي يشغلك الآن، وما الذي تريد أن يحدث بعد ذلك؟',
+      send: 'إرسال',
+      label: 'رسالتك',
+      waiting: 'أستمع، أربط النقاط، وأصوغ الخطوة التالية…',
+      noAnswer: 'لم يصل رد. حاول أن تقول بجملة واحدة ما هو الأهم لك الآن.',
+      fallback: 'نكمل من هنا: ما الشيء الواحد الذي تريد فهمه أو التعبير عنه أو دفعه إلى الأمام الآن؟',
+      engine: 'AI مبني على الصوت والعمل العام لإيغور · ليس إيغور مباشرة',
+      disclosure: 'قد يستعين بالزوهار/الحكمة اليهودية وبأدوات حديثة عندما يكون ذلك مناسبًا ومُشارًا إليه · لا تشارك معلومات حساسة',
+      prompts: ['أنا عالق — ساعدني في إيجاد الخطوة التالية', 'لدي فكرة — ساعدني في التعبير عنها', 'ماذا يمكنني أن أتعلم من مسارك؟'],
+      evidencePrompts: ['كيف أعرف أن ما أؤمن به يستند إلى أساس حقيقي؟', 'ساعدني على فصل الحقيقة عن التفسير', 'كيف أحوّل حقيقة معقدة إلى رسالة واضحة؟'],
+      startonPrompts: ['أريد مساعدة الشباب — من أين أبدأ؟', 'كيف تصبح التكنولوجيا أداة إنسانية؟', 'ساعدني على تصميم تجربة صغيرة قابلة للتنفيذ']
+    }
   };
+
+  const c = COPY[locale];
 
   function element(tag, className, text) {
     const node = document.createElement(tag);
@@ -60,73 +110,25 @@
     return typeof value === 'string' && /^\/[a-z0-9/_#?-]*$/i.test(value) ? value : null;
   }
 
-  function routePrompts(mode) {
+  function routePrompts() {
     const path = canonicalPath();
-    if (mode === 'create') {
-      if (path.startsWith('/museum') || path.startsWith('/history')) {
-        return rtl
-          ? ['הפוך מקור אחד לפוסט חדש', 'בנה קרוסלה מאשכול תוכן', 'מצא קו חוזר בסיפור']
-          : ['Turn one source into a post', 'Build a carousel from a cluster', 'Find the recurring story line'];
-      }
-      if (path.startsWith('/evidence')) {
-        return rtl
-          ? ['נסח טענה זהירה ומדויקת', 'הפוך מקור להסבר פשוט', 'בנה פוסט עם מקור ותאריך']
-          : ['Write a careful claim', 'Turn a source into a clear explanation', 'Build a sourced post'];
-      }
-      return rtl
-        ? ['זקק לי רעיון לפוסט', 'בנה קונספט לווידאו קצר', 'הפוך סיפור אישי לתוכן בטוח']
-        : ['Clarify a post idea', 'Build a short-video concept', 'Turn a personal story into safe content'];
-    }
-
-    if (mode === 'fulfill') {
-      return rtl
-        ? ['בחר לי צעד ראשון של 15 דקות', 'בנה מסלול לשבוע הקרוב', 'עזור לי לצאת מתקיעות בלי לחץ']
-        : ['Choose a 15-minute first step', 'Build a plan for this week', 'Help me move without pressure'];
-    }
-
-    if (mode === 'impact') {
-      if (path.startsWith('/starton')) {
-        return rtl
-          ? ['בנה ניסוי בטוח לנוער בשבעה ימים', 'נסח הצעה לשותף בלי ניפוח', 'בחר מדד אנושי אחד']
-          : ['Build a safe seven-day youth experiment', 'Draft a precise partner proposal', 'Choose one human signal'];
-      }
-      return rtl
-        ? ['בחר אדם, צורך וניסוי קטן', 'הפוך כלי טכנולוגי לעשיית טוב', 'בנה פעולה קהילתית עם גבולות פרטיות']
-        : ['Choose one person, need, and experiment', 'Turn a tool into public good', 'Design a privacy-safe community action'];
-    }
-
-    if (path.startsWith('/evidence')) {
-      return rtl
-        ? ['איך בודקים טענה לפני פרסום?', 'מה ההבדל בין מקור להוכחה?', 'איזה ניסוח דורש הסתייגות?']
-        : ['How do I verify a claim?', 'What is source vs proof?', 'Which wording needs caution?'];
-    }
-    if (path.startsWith('/response-ai')) {
-      return rtl
-        ? ['מהו הד ציבורי אמיתי?', 'איך מפרידים צפייה מהשפעה?', 'הצג מסלולי תגובה מרכזיים']
-        : ['What is real public response?', 'Separate views from impact', 'Show key response paths'];
-    }
-    if (path.startsWith('/starton')) {
-      return rtl
-        ? ['מהו StartOn?', 'מה כבר מתועד?', 'איך מציעים שותפות?']
-        : ['What is StartOn?', 'What is documented?', 'How do I propose a partnership?'];
-    }
-    return rtl
-      ? ['מי זה איגור?', 'מהי מערכת 7YA?', 'איפה נמצאים כל הפוסטים והמקורות?']
-      : ['Who is Igor?', 'What is 7YA?', 'Where are all posts and sources?'];
+    if (path.startsWith('/evidence')) return c.evidencePrompts;
+    if (path.startsWith('/starton')) return c.startonPrompts;
+    return c.prompts;
   }
 
   const root = element('section', 'ya-signal-key');
   root.dir = rtl ? 'rtl' : 'ltr';
-  root.dataset.yaSignalKey = '20260716';
+  root.dataset.yaSignalKey = '20260920-speak-with-igor';
 
   const launcher = element('button', 'ya-signal-launcher');
   launcher.type = 'button';
   launcher.setAttribute('aria-expanded', 'false');
   launcher.setAttribute('aria-controls', 'ya-signal-panel');
-  launcher.setAttribute('aria-label', rtl ? 'פתחו את מלווה 7YA' : 'Open the 7YA companion');
+  launcher.setAttribute('aria-label', c.ariaOpen);
   const mark = element('span', 'ya-signal-mark', '7');
   const launcherCopy = element('span', 'ya-signal-launcher-copy');
-  launcherCopy.append(element('b', '', '7YA COMPANION'), element('small', '', rtl ? 'יצירה · הגשמה · השפעה' : 'Create · Fulfil · Impact'));
+  launcherCopy.append(element('b', '', c.launcher), element('small', '', c.launcherSub));
   launcher.append(mark, launcherCopy);
 
   const panel = element('div', 'ya-signal-panel');
@@ -134,62 +136,41 @@
   panel.hidden = true;
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-modal', 'false');
-  panel.setAttribute('aria-label', rtl ? 'מלווה 7YA ליצירה והגשמה' : '7YA creator and fulfilment companion');
+  panel.setAttribute('aria-label', c.ariaPanel);
 
   const header = element('header', 'ya-signal-header');
   const headingWrap = element('div');
-  const eyebrow = element('span', '', MODES.guide.eyebrow);
-  const heading = element('strong', '', MODES.guide.title);
-  headingWrap.append(eyebrow, heading);
+  headingWrap.append(element('span', '', c.eyebrow), element('strong', '', c.title));
   const close = element('button', 'ya-signal-close', '×');
   close.type = 'button';
-  close.setAttribute('aria-label', rtl ? 'סגירה' : 'Close');
+  close.setAttribute('aria-label', locale === 'he' ? 'סגירה' : locale === 'ru' ? 'Закрыть' : locale === 'ar' ? 'إغلاق' : 'Close');
   header.append(headingWrap, close);
-
-  const modeRow = element('div', 'ya-signal-modes');
-  Object.entries(MODES).forEach(([id, config]) => {
-    const button = element('button', id === 'guide' ? 'active' : '', config.label);
-    button.type = 'button';
-    button.dataset.mode = id;
-    button.setAttribute('aria-pressed', String(id === 'guide'));
-    modeRow.append(button);
-  });
 
   const messages = element('div', 'ya-signal-messages');
   messages.setAttribute('aria-live', 'polite');
-  messages.append(element('div', 'ya-signal-message bot', rtl
-    ? 'כאן לא רק שואלים. בוחרים כיוון, הופכים אותו לתוצר אמיתי ומסיימים עם צעד שאפשר לבצע. אפשר ללמוד מהדרך של איגור ומהמקורות הציבוריים, ואז לבנות את הדרך שלכם — בלי להמציא הישגים ובלי ללחוץ עליכם.'
-    : 'This is not only a Q&A. Choose a direction, turn it into something real, and finish with a step you can execute. Learn from Igor’s public journey and sources, then build your own path without invented claims or pressure.'));
+  messages.append(element('div', 'ya-signal-message bot', c.hello));
 
   const quick = element('div', 'ya-signal-quick');
 
   const form = element('form', 'ya-signal-form');
-  const label = element('label', '', rtl ? 'ההודעה שלכם' : 'Your message');
+  const label = element('label', '', c.label);
   label.htmlFor = 'ya-signal-input';
   const input = document.createElement('textarea');
   input.id = 'ya-signal-input';
   input.name = 'message';
   input.rows = 3;
   input.maxLength = 1600;
-  input.placeholder = MODES.guide.placeholder;
-  const submit = element('button', '', rtl ? 'לבנות' : 'Build');
+  input.placeholder = c.placeholder;
+  const submit = element('button', '', c.send);
   submit.type = 'submit';
   form.append(label, input, submit);
 
-  const actionRow = element('div', 'ya-signal-actions');
-  const copyButton = element('button', 'ya-signal-copy', rtl ? 'העתקת התוכנית' : 'Copy plan');
-  copyButton.type = 'button';
-  copyButton.hidden = true;
-  const studioLink = element('a', 'ya-signal-studio', rtl ? 'לסטודיו המלא /create/' : 'Open full studio /create/');
-  studioLink.href = localizePath('/create/');
-  actionRow.append(copyButton, studioLink);
-
   const footer = element('footer', 'ya-signal-footer');
-  const provider = element('span', '', rtl ? 'מנוע 7YA מוכן' : '7YA engine ready');
-  const privacy = element('span', '', rtl ? 'לא נשמר בדפדפן · לא להזין מידע רגיש' : 'Not saved in browser · no sensitive data');
+  const provider = element('span', '', c.engine);
+  const privacy = element('span', '', c.disclosure);
   footer.append(provider, privacy);
 
-  panel.append(header, modeRow, messages, quick, form, actionRow, footer);
+  panel.append(header, messages, quick, form, footer);
   root.append(panel, launcher);
   document.body.append(root);
 
@@ -201,7 +182,7 @@
   }
 
   function addMessage(text, kind = 'bot') {
-    const item = element('div', `ya-signal-message ${kind}`, text);
+    const item = element('div', 'ya-signal-message ' + kind, text);
     messages.append(item);
     messages.scrollTop = messages.scrollHeight;
     return item;
@@ -211,7 +192,7 @@
     if (!Array.isArray(links) || !links.length) return;
     const row = element('div', 'ya-signal-links');
     links.slice(0, 3).forEach((link) => {
-      const href = safeInternalHref(link?.href);
+      const href = safeInternalHref(link && link.href);
       if (!href) return;
       const anchor = element('a', '', link.label || href);
       anchor.href = localizePath(href);
@@ -220,81 +201,14 @@
     if (row.childElementCount) messages.append(row);
   }
 
-  function section(title, body) {
-    if (!body) return null;
-    const block = element('section', 'ya-signal-result-section');
-    block.append(element('b', '', title), element('p', '', body));
-    return block;
-  }
-
-  function listSection(title, items) {
-    if (!Array.isArray(items) || !items.length) return null;
-    const block = element('section', 'ya-signal-result-section');
-    block.append(element('b', '', title));
-    const list = document.createElement('ol');
-    items.slice(0, 6).forEach(item => list.append(element('li', '', item)));
-    block.append(list);
-    return block;
-  }
-
-  function formatPlan(data) {
-    const lines = [
-      data.reflection,
-      data.goal && `${rtl ? 'מטרה' : 'Goal'}: ${data.goal}`,
-      data.next_step && `${rtl ? 'הצעד הבא' : 'Next step'}: ${data.next_step}`,
-      data.today && `${rtl ? 'היום' : 'Today'}: ${data.today}`,
-      data.this_week && `${rtl ? 'השבוע' : 'This week'}: ${data.this_week}`,
-      data.content_seed?.hook && `${rtl ? 'פתיחה' : 'Hook'}: ${data.content_seed.hook}`,
-      data.content_seed?.angle && `${rtl ? 'זווית' : 'Angle'}: ${data.content_seed.angle}`,
-      ...(Array.isArray(data.content_seed?.outline) ? data.content_seed.outline.map((item, index) => `${index + 1}. ${item}`) : []),
-      ...(Array.isArray(data.evidence_notes) ? data.evidence_notes.map(item => `${rtl ? 'בדיקת אמת' : 'Truth check'}: ${item}`) : []),
-    ].filter(Boolean);
-    return lines.join('\n\n');
-  }
-
-  function addCreatorResult(data) {
-    const card = element('article', 'ya-signal-result-card');
-    card.append(element('span', 'ya-signal-result-label', `7YA · ${data.mode || 'CREATOR COMPANION'}`));
-    if (data.reflection) card.append(element('p', 'ya-signal-reflection', data.reflection));
-    [
-      section(rtl ? 'המטרה' : 'Goal', data.goal),
-      section(rtl ? 'הצעד הבא' : 'Next step', data.next_step),
-      section(rtl ? 'היום' : 'Today', data.today),
-      section(rtl ? 'השבוע' : 'This week', data.this_week),
-      section(rtl ? 'פתיחה' : 'Hook', data.content_seed?.hook),
-      section(rtl ? 'זווית' : 'Angle', data.content_seed?.angle),
-      listSection(rtl ? 'מבנה' : 'Outline', data.content_seed?.outline),
-      listSection(rtl ? 'בדיקת אמת וגבולות' : 'Truth and boundaries', data.evidence_notes),
-    ].filter(Boolean).forEach(block => card.append(block));
-    messages.append(card);
-    addLinks(data.links);
-    latestPlan = formatPlan(data);
-    copyButton.hidden = !latestPlan;
-    messages.scrollTop = messages.scrollHeight;
-  }
-
   function updateQuickPrompts() {
     quick.replaceChildren();
-    routePrompts(activeMode).forEach((prompt) => {
+    routePrompts().forEach((prompt) => {
       const button = element('button', '', prompt);
       button.type = 'button';
       button.dataset.prompt = prompt;
       quick.append(button);
     });
-  }
-
-  function setMode(nextMode) {
-    activeMode = MODES[nextMode] ? nextMode : 'guide';
-    const config = MODES[activeMode];
-    eyebrow.textContent = config.eyebrow;
-    heading.textContent = config.title;
-    input.placeholder = config.placeholder;
-    modeRow.querySelectorAll('button[data-mode]').forEach(button => {
-      const active = button.dataset.mode === activeMode;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
-    updateQuickPrompts();
   }
 
   async function ask(text) {
@@ -305,8 +219,7 @@
     submit.disabled = true;
     addMessage(message, 'user');
     conversation.push({ role: 'user', content: message });
-    const waiting = addMessage(rtl ? 'מקשיב, מזקק ובונה צעד שאפשר לבצע…' : 'Listening, clarifying, and building an actionable step…', 'waiting');
-    const config = MODES[activeMode];
+    const waiting = addMessage(c.waiting, 'waiting');
 
     try {
       const response = await fetch('/api/guide', {
@@ -314,39 +227,26 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message,
-          messages: conversation.slice(-8),
+          messages: conversation.slice(-10),
           state: companionState,
-          locale: String(document.documentElement.lang || (rtl ? 'he' : 'en')).slice(0, 2),
+          locale,
           path: canonicalPath(),
-          mode: config.apiMode,
-          creator_mode: config.creatorMode,
-        }),
+          mode: 'guide',
+          experience: 'speak-with-igor'
+        })
       });
       const data = await response.json();
-      if (!response.ok) throw new Error(data?.error || `HTTP ${response.status}`);
+      if (!response.ok) throw new Error((data && data.error) || ('HTTP ' + response.status));
       waiting.remove();
       if (data.state) companionState = data.state;
-      if (config.apiMode === 'creator') {
-        addCreatorResult(data);
-        conversation.push({ role: 'assistant', content: formatPlan(data).slice(0, 1200) });
-      } else {
-        const answer = data.answer || (rtl ? 'לא התקבלה תשובה.' : 'No answer received.');
-        addMessage(answer);
-        addLinks(data.links);
-        conversation.push({ role: 'assistant', content: answer.slice(0, 1200) });
-      }
-      while (conversation.length > 8) conversation.shift();
-      provider.textContent = rtl ? 'מנוע 7YA פעיל' : '7YA engine active';
+      const answer = data.answer || c.noAnswer;
+      addMessage(answer);
+      addLinks(data.links);
+      conversation.push({ role: 'assistant', content: answer.slice(0, 1800) });
+      while (conversation.length > 10) conversation.shift();
     } catch (error) {
-      const fallbackByMode = {
-        guide: rtl ? 'נמשיך כאן. כתבו במשפט אחד מה אתם רוצים להבין או לשנות, ואני אכוון אתכם למקור או לצעד הבא.' : 'We stay here. Write in one sentence what you want to understand or change, and I will point you to the next source or move.',
-        create: rtl ? 'מתחילים ליצור עכשיו: הגדירו תוצאה אחת, למי היא מיועדת, ומה הגרסה הקטנה שאפשר לסיים היום.' : 'Start creating now: define one outcome, who it is for, and the smallest version you can finish today.',
-        fulfill: rtl ? 'מגדירים יעד אחד לשבוע ואז צעד של 15 דקות שאפשר לבצע עכשיו.' : 'Choose one weekly outcome, then one 15-minute move you can do now.',
-        impact: rtl ? 'בוחרים אדם או קהילה אחת, צורך אחד וניסוי קטן עם מדד אנושי אחד.' : 'Choose one person or community, one need, and one small experiment with one human signal.',
-      };
-      waiting.textContent = fallbackByMode[activeMode] || fallbackByMode.guide;
-      provider.textContent = rtl ? 'מנוע 7YA פעיל' : '7YA engine active';
-      console.warn('7YA Signal Key continuity fallback', error?.message || error);
+      waiting.textContent = c.fallback;
+      console.warn('Speak with Igor continuity fallback', error && error.message ? error.message : error);
     } finally {
       busy = false;
       input.disabled = false;
@@ -379,10 +279,6 @@
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !panel.hidden) setOpen(false);
   });
-  modeRow.addEventListener('click', event => {
-    const button = event.target.closest('button[data-mode]');
-    if (button) setMode(button.dataset.mode);
-  });
   quick.addEventListener('click', event => {
     const button = event.target.closest('button[data-prompt]');
     if (button) ask(button.dataset.prompt || '');
@@ -391,24 +287,13 @@
     event.preventDefault();
     ask(input.value);
   });
-  copyButton.addEventListener('click', async () => {
-    if (!latestPlan) return;
-    try {
-      await navigator.clipboard.writeText(latestPlan);
-      copyButton.textContent = rtl ? 'הועתק ✓' : 'Copied ✓';
-      setTimeout(() => { copyButton.textContent = rtl ? 'העתקת התוכנית' : 'Copy plan'; }, 1400);
-    } catch {
-      copyButton.textContent = rtl ? 'העתקה לא זמינה' : 'Copy unavailable';
-    }
-  });
   window.addEventListener('7ya:creator-seed', event => {
-    const seed = String(event.detail?.prompt || '').trim();
-    setMode('create');
+    const seed = String((event.detail && event.detail.prompt) || '').trim();
     setOpen(true);
     input.value = seed;
     input.focus();
   });
 
-  setMode('guide');
+  updateQuickPrompts();
   loadHomeUniverse();
 })();
