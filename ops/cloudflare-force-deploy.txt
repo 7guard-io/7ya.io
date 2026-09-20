@@ -31,3 +31,7 @@ reason: replace generic proof shell on human routes, restore photographic Igor i
 retrigger: 2026-09-20T14:16:00+03:00
 source_head: da633c94a949fbef02c19fe1ac10eccc7b9e67bc
 reason: build-date + sitemap-date guard repair; force governed Cloudflare Pages production rebuild from current main
+
+retrigger: 2026-09-20T19:13:00+03:00
+source_head: 488133258af55b7cb36c283916aa93d675b79bde
+reason: Restoration+ canonical homepage shell + real portrait/voice + static style whitelist + authored-copy i18n protection; force governed Cloudflare Pages production rebuild
