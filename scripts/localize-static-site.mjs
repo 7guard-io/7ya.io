@@ -6,6 +6,17 @@ export const generatedLocaleRoots = ['en','ru','ar'];
 const allLocales = ['he', ...generatedLocaleRoots];
 const dirFor = locale => (locale === 'he' || locale === 'ar') ? 'rtl' : 'ltr';
 
+const buildDateParts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'
+}).formatToParts(new Date()).filter(part => part.type !== 'literal').map(part => [part.type, part.value]));
+const buildDate = `${buildDateParts.day}.${buildDateParts.month}.${buildDateParts.year}`;
+const buildDateIso = `${buildDateParts.year}-${buildDateParts.month}-${buildDateParts.day}`;
+const buildNowLabel = { he:'עכשיו', en:'NOW', ru:'СЕЙЧАС', ar:'الآن' };
+function stampBuildDate(html, locale) {
+  const label = buildNowLabel[locale] || buildNowLabel.he;
+  return html.replace(/(?:עכשיו|Now|NOW|СЕЙЧАС|الآن)\s*\/\s*(?:BUILD_DATE|\d{2}\.\d{2}\.\d{4})/g, `${label} / ${buildDate}`);
+}
+
 const routeNames = {
   '': {he:'ראשי',en:'Home',ru:'Главная',ar:'الرئيسية'},
   'igor-vepretski': {he:'הסיפור',en:'Story',ru:'История',ar:'القصة'},
@@ -341,6 +352,7 @@ function applyLocale(html, locale, route) {
     next=next.split(target).join(localizedInternalPath(target,locale));
   }
   next=rewriteSameHostReferences(next,locale,route);
+  next=stampBuildDate(next,locale);
   next=replaceVisibleCopy(next,locale);
   const nav=languageNav(locale,route);
   if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
@@ -364,7 +376,7 @@ async function writeSitemap(output){
     const alternates=allLocales.map(lang=>'<xhtml:link rel="alternate" hreflang="'+lang+'" href="https://7ya.io'+routePath(lang,route)+'"/>').join('');
     const xdefault='<xhtml:link rel="alternate" hreflang="x-default" href="https://7ya.io'+routePath('he',route)+'"/>';
     for(const locale of allLocales){
-      urls.push('  <url><loc>https://7ya.io'+routePath(locale,route)+'</loc><lastmod>2026-09-19</lastmod>'+alternates+xdefault+'</url>');
+      urls.push('  <url><loc>https://7ya.io'+routePath(locale,route)+'</loc><lastmod>${buildDateIso}</lastmod>'+alternates+xdefault+'</url>');
     }
   }
   const xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'+urls.join('\n')+'\n</urlset>\n';
