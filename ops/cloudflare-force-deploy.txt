@@ -27,3 +27,7 @@ reason: verify multilingual HE-EN-RU-AR clean-route release through governed Clo
 
 2026-09-19T18:05:00Z force deploy personal-first repair 87434f8dbb893bc05ce4d7ff9131cfd58d99a882
 reason: replace generic proof shell on human routes, restore photographic Igor identity, render source media and static social fallback
+
+retrigger: 2026-09-20T14:16:00+03:00
+source_head: da633c94a949fbef02c19fe1ac10eccc7b9e67bc
+reason: build-date + sitemap-date guard repair; force governed Cloudflare Pages production rebuild from current main
