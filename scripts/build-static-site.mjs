@@ -168,7 +168,7 @@ function humanizeVisitorText(text){
 function humanizePublicHtml(html){
   const protectedBlocks=[];
   let masked=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{const token=`__7YA_PROTECTED_${protectedBlocks.length}__`;protectedBlocks.push(block);return token;});
-  masked=masked.replace(/>([^<]+)</g,(match,text)=>`>${humanizeVisitorText(text)}<`);
+  masked=masked.replace(/<section\\b[^>]*data-restoration-plus[^>]*>[\\s\\S]*?<\\/section>/gi,block=>{const token=`__7YA_PROTECTED_${protectedBlocks.length}__`;protectedBlocks.push(block);return token;});\n  masked=masked.replace(/>([^<]+)</g,(match,text)=>`>${humanizeVisitorText(text)}<`);
   masked=masked.replace(/<([a-z][\w:-]*)([^>]*?)\sdir=(["'])ltr\3([^>]*)>([\s\S]*?)<\/\1>/gi,(match,tag,before,_quote,after,inner)=>/[\u0590-\u05ff]/u.test(inner.replace(/<[^>]+>/g,' '))?`<${tag}${before}${after}>${inner}</${tag}>`:match);
   return masked.replace(/__7YA_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
