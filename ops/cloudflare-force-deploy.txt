@@ -63,3 +63,6 @@ reason: publish NVIDIA-first Speak with Igor Cloudflare function and verify prov
 cloudflare-git-retrigger: 2026-09-21T12:18:00+03:00
 source_head_before_trigger: d07d607a690f30a4b5c12cc2c854999a6bbf259f
 reason: publish AppDeploy embed capability probe for Speak with Igor recovery path
+cloudflare-git-retrigger: 2026-09-21T12:28:00+03:00
+source_head_before_trigger: b89402fad77a7c2fcb92fd9fc3a5200e965379dc
+reason: publish AppDeploy client bridge + root-query ingress + bridge handshake observability
