@@ -4,7 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const dist = path.join(root, 'dist');
 const locales = ['en','ru','ar'];
-const routes = ['contact','influence','talk'];
+const routes = ['contact','influence','talk','chat'];
 const allowedHebrew = new Set(['איגור ופרצקי','עברית']);
 
 const strip = html => {
@@ -112,6 +112,19 @@ if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influen
   failures.push('legacy /feed redirect is missing');
 }
 
+
+const chatRouteContract = {
+  he: { path: path.join(dist,'chat','index.html'), canonical: 'https://7ya.io/chat/' },
+  en: { path: path.join(dist,'en','chat','index.html'), canonical: 'https://7ya.io/en/chat/' },
+  ru: { path: path.join(dist,'ru','chat','index.html'), canonical: 'https://7ya.io/ru/chat/' },
+  ar: { path: path.join(dist,'ar','chat','index.html'), canonical: 'https://7ya.io/ar/chat/' },
+};
+for (const [locale, contract] of Object.entries(chatRouteContract)) {
+  const html = await fs.readFile(contract.path,'utf8');
+  if (!html.includes(`rel="canonical" href="${contract.canonical}"`)) failures.push(`${locale}/chat: canonical route missing or stale`);
+  if (html.includes('?chat=open')) failures.push(`${locale}/chat: legacy homepage chat redirect leaked into dedicated route`);
+  if (!html.includes('Speak with Igor')) failures.push(`${locale}/chat: dedicated Speak with Igor page marker missing`);
+}
 
 const widget=await fs.readFile(path.join(dist,'scripts','7ya-signal-key-20260715.js'),'utf8');
 for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
