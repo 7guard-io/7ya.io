@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { aliasRoutes, canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
+import { routeTranslations } from './locale-route-translations.mjs';
 
 export const generatedLocaleRoots = ['en','ru','ar'];
 const allLocales = ['he', ...generatedLocaleRoots];
@@ -2884,9 +2885,10 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
     (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
   return next;
 }
-function replaceVisibleCopy(html, locale) {
+function replaceVisibleCopy(html, locale, route) {
   if(locale==='he')return html;
-  const translations=new Map([...commonTranslations[locale],...restorationTranslations[locale],...coreNarrativeTranslations[locale],...Object.entries(technicalTranslations[locale])]);
+  const routeSpecific = routeTranslations[locale] || new Map();
+  const translations=new Map([...commonTranslations[locale],...restorationTranslations[locale],...coreNarrativeTranslations[locale],...Object.entries(technicalTranslations[locale]),...routeSpecific]);
   const protectedBlocks=[];
   let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
     const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
@@ -2981,7 +2983,7 @@ function applyLocale(html, locale, route) {
   }
   next=rewriteSameHostReferences(next,locale,route);
   next=stampBuildDate(next,locale);
-  next=replaceVisibleCopy(next,locale);
+  next=replaceVisibleCopy(next,locale,route);
   const nav=languageNav(locale,route);
   if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
   else next=next.replace(/<body\b[^>]*>/i,match=>match+'\n'+nav);
