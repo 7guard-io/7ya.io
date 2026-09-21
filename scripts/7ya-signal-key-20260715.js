@@ -212,7 +212,7 @@
   }
 
   const companionBridgeOrigin = 'https://697a008fddc309b142.v2.appdeploy.ai';
-  const companionBridgeUrl = companionBridgeOrigin + '/companion-bridge/';
+  const companionBridgeUrl = companionBridgeOrigin + '/?bridge=companion';
   let companionBridgeFrame = null;
   let companionBridgeReady = false;
   let companionBridgeReadyResolve = null;
