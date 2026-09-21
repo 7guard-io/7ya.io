@@ -237,7 +237,7 @@ export async function onRequestPost({ request }) {
 export async function onRequestGet({ request }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
-    return json({ status: 'ready', experience: '7ya-growth-companion', upstream: 'server-side', secrets_exposed: false });
+    return json({ status: 'ready', experience: 'speak-with-igor', upstream: 'server-side', secrets_exposed: false });
   }
 
   const body = {
