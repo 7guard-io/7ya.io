@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-18-entity-v3",
+  "version": "2026-09-21-entity-v4",
   "canonicalBundle": "Igor Vepretski | #7YA | Founder of StartOn",
   "descriptors": {
     "en": "Systems builder connecting youth opportunity, civic power, public media and digital culture.",
@@ -26,16 +26,20 @@
     "jobTitle": "Founder of StartOn · #7YA Systems Builder",
     "sameAs": [
       "https://www.instagram.com/igor.vepretski/",
+      "https://www.instagram.com/vepretski.igor/",
       "https://www.tiktok.com/@igor.vepretski",
       "https://www.youtube.com/@IgorVepretski",
       "https://www.facebook.com/vepretski7",
-      "https://x.com/igorvepretski",
       "https://www.linkedin.com/in/vepretski/",
-      "https://github.com/vepretski",
-      "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
       "https://t.me/vepretski",
       "https://www.threads.net/@igor.vepretski",
-      "https://igorvepretski.academia.edu/"
+      "https://x.com/igorvepretski",
+      "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+      "https://music.apple.com/artist/ido-vepretski/1527248864",
+      "https://github.com/vepretski",
+      "https://medium.com/@igor.vepretski",
+      "https://igorvepretski.academia.edu/",
+      "https://linktr.ee/igor.vepretski"
     ]
   },
   "organization": {
