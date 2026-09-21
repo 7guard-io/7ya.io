@@ -55,6 +55,26 @@ for (const locale of locales) {
   }
 }
 
+const mixedScriptToken = token => {
+  const hasHebrew=/[\u0590-\u05ff]/u.test(token);
+  const hasLatin=/[A-Za-z]/u.test(token);
+  const hasCyrillic=/[\u0400-\u04ff]/u.test(token);
+  return hasHebrew && (hasLatin || hasCyrillic);
+};
+for (const locale of locales) {
+  const root=path.join(dist,locale);
+  for (const file of await htmlFiles(root)) {
+    const html=await fs.readFile(file,'utf8');
+    const text=strip(html).join(' ');
+    const tokens=text.split(/\s+/).map(token=>token.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,'')).filter(Boolean);
+    const mixed=[...new Set(tokens.filter(mixedScriptToken))];
+    if(mixed.length){
+      const relative=path.relative(dist,file).split(path.sep).join('/');
+      failures.push(`${relative}: mixed-script localization corruption -> ${mixed.slice(0,12).join(' | ')}`);
+    }
+  }
+}
+
 const now = Object.fromEntries(new Intl.DateTimeFormat('en-GB',{
   timeZone:'Asia/Jerusalem',year:'numeric',month:'2-digit',day:'2-digit'
 }).formatToParts(new Date()).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
