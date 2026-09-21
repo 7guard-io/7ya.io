@@ -2,6 +2,15 @@
   'use strict';
 
   const state = { records: [], filter: 'All', query: '' };
+  const lang=(document.documentElement.lang||'he').toLowerCase().split('-')[0];
+  const ui={
+    he:{tier1:'TIER 1 · מקור חיצוני',tier2:'TIER 2 · מקור רשמי',tier3:'TIER 3 · צילום מצב',pending:'SOURCE · אימות מטא־דאטה ממתין',undated:'ללא תאריך',original:'מקור עברי מקורי — פתחו את המקור לקריאת הטקסט המלא.',offlineTitle:'הארכיון לא נטען כרגע',offlineBody:'רשומות הליבה נשארות לאורך העמוד. קובצי המקור פתוחים לבדיקה ישירה.',openJson:'פתחו JSON'},
+    en:{tier1:'TIER 1 · External source',tier2:'TIER 2 · Official source',tier3:'TIER 3 · Snapshot',pending:'SOURCE · Metadata verification pending',undated:'Undated',original:'Original Hebrew source record — open the source to read the full original text.',offlineTitle:'The archive is unavailable right now',offlineBody:'Core records remain available throughout the page. Source files are open for direct inspection.',openJson:'Open JSON'},
+    ru:{tier1:'TIER 1 · Внешний источник',tier2:'TIER 2 · Официальный источник',tier3:'TIER 3 · Снимок',pending:'SOURCE · Проверка метаданных ожидается',undated:'Без даты',original:'Оригинальная запись на иврите — откройте источник, чтобы прочитать исходный текст полностью.',offlineTitle:'Архив сейчас недоступен',offlineBody:'Основные записи остаются доступны на странице. Файлы источников открыты для прямой проверки.',openJson:'Открыть JSON'},
+    ar:{tier1:'TIER 1 · مصدر خارجي',tier2:'TIER 2 · مصدر رسمي',tier3:'TIER 3 · لقطة',pending:'SOURCE · التحقق من البيانات الوصفية قيد الانتظار',undated:'بلا تاريخ',original:'سجل مصدر أصلي بالعبرية — افتح المصدر لقراءة النص الأصلي كاملاً.',offlineTitle:'الأرشيف غير متاح حالياً',offlineBody:'تبقى السجلات الأساسية متاحة في الصفحة. ملفات المصدر مفتوحة للفحص المباشر.',openJson:'فتح JSON'}
+  }[lang]||null;
+  const c=ui||{tier1:'TIER 1 · External source',tier2:'TIER 2 · Official source',tier3:'TIER 3 · Snapshot',pending:'SOURCE · Metadata verification pending',undated:'Undated',original:'Original source record.',offlineTitle:'Archive unavailable',offlineBody:'Source files remain available.',openJson:'Open JSON'};
+  const hasHebrew=value=>/[\u0590-\u05ff]/u.test(String(value||''));
   const selectors = {
     grid: document.querySelector('#archiveGrid'),
     count: document.querySelector('#recordCount'),
@@ -28,13 +37,13 @@
     .replace(/^-|-$/g, '');
 
   const tierLabel = tier => ({
-    TIER_1: 'TIER 1 · מקור חיצוני',
-    TIER_2: 'TIER 2 · מקור רשמי',
-    TIER_3: 'TIER 3 · snapshot',
-    SOURCE_PENDING: 'SOURCE · אימות מטא־דאטה ממתין'
+    TIER_1: c.tier1,
+    TIER_2: c.tier2,
+    TIER_3: c.tier3,
+    SOURCE_PENDING: c.pending
   }[tier] || tier || 'SOURCE');
 
-  const getYear = record => record.date ? record.date.slice(0, 4) : (record.year || 'ללא תאריך');
+  const getYear = record => record.date ? record.date.slice(0, 4) : (record.year || c.undated);
 
   const buildMedia = record => {
     if (!record.image) return '';
@@ -60,8 +69,8 @@
             <span>${escapeHtml(record.platform)} · ${escapeHtml(record.id)}</span>
             <span>${escapeHtml(getYear(record))}</span>
           </div>
-          <h3>${escapeHtml(record.title)}</h3>
-          <p>${escapeHtml(record.summary || '')}</p>
+          <h3${lang!=='he'&&hasHebrew(record.title)?' lang="he" dir="rtl"':''}>${escapeHtml(record.title)}</h3>
+          <p>${escapeHtml(lang!=='he'&&hasHebrew(record.summary)?c.original:(record.summary||''))}</p>
           <div class="archive-card-tags">${tags}</div>
           ${buildMetric(record)}
           <div class="archive-card-footer">
@@ -89,7 +98,7 @@
     if (firstSnapshot) firstSnapshot.textContent = totalText;
 
     const archiveCopy = document.querySelector('.archive-head > div > p:last-child');
-    if (archiveCopy) archiveCopy.textContent = archiveCopy.textContent.replace(/^\d+\s+רשומות מקור/, `${totalText} רשומות מקור`);
+    if (archiveCopy) archiveCopy.textContent = archiveCopy.textContent.replace(/^\d+/, totalText);
 
     const description = document.querySelector('meta[name="description"]');
     if (description) description.content = description.content.replace(/\d+ רשומות מקור/, `${totalText} רשומות מקור`);
@@ -133,9 +142,9 @@
         <article class="archive-card">
           <div class="archive-card-body">
             <div class="archive-card-meta"><span>ARCHIVE</span><span>OFFLINE</span></div>
-            <h3>הארכיון לא נטען כרגע</h3>
-            <p>רשומות הליבה נשארות לאורך העמוד. קובצי המקור פתוחים לבדיקה ישירה.</p>
-            <div class="archive-card-footer"><b>FAIL CLOSED</b><a href="/knowledge/history-song-records-1.json">פתחו JSON</a></div>
+            <h3>${escapeHtml(c.offlineTitle)}</h3>
+            <p>${escapeHtml(c.offlineBody)}</p>
+            <div class="archive-card-footer"><b>FAIL CLOSED</b><a href="/knowledge/history-song-records-1.json">${escapeHtml(c.openJson)}</a></div>
           </div>
         </article>`;
       if (selectors.count) selectors.count.textContent = '—';
