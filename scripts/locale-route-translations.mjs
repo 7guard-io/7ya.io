@@ -1,6 +1,9 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ['עברית','Hebrew','Иврит','العبرية'],
+  ['שיחה','Conversation','Разговор','محادثة'],
+  ['ניווט ראשי','Primary navigation','Основная навигация','التنقل الرئيسي'],
   ['איגור ופרצקי — 7YA','Igor Vepretski — 7YA','Игорь Вепрецкий — 7YA','إيغور فيبريتسكي — 7YA'],
   ['7YA — איגור ופרצקי','7YA — Igor Vepretski','7YA — Игорь Вепрецкий','7YA — إيغور فيبريتسكي'],
   ['אבהות, מיאל, רוסי, BIZZI, StartOn…','fatherhood, Miel, Russian identity, BIZZI, StartOn…','отцовство, Миэль, русская идентичность, BIZZI, StartOn…','الأبوة، ميال، الهوية الروسية، BIZZI، StartOn…'],
