@@ -2888,6 +2888,34 @@ function rewriteSameHostReferences(html, locale, originalRoute) {
     (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
   return next;
 }
+function accessibleAttributeFallback(value, locale) {
+  const core=String(value||'').trim();
+  if (!/[\u0590-\u05ff]/u.test(core) || core==='עברית') return core;
+  const copy={
+    en:{igor:'Igor Vepretski',portrait:'Igor Vepretski — portrait',interview:'Igor Vepretski — interview',speaker:'Igor Vepretski — speaker',service:'Igor Vepretski — public service',accounts:'Igor Vepretski — public accounts',starton:'StartOn — source media',news:'News 13 — source media',podcast:'Podcast — source media',filter:'Filter controls',audience:'Audience voices',year:'Records by year',media:'Source media'},
+    ru:{igor:'Игорь Вепрецкий',portrait:'Игорь Вепрецкий — портрет',interview:'Игорь Вепрецкий — интервью',speaker:'Игорь Вепрецкий — спикер',service:'Игорь Вепрецкий — общественная служба',accounts:'Игорь Вепрецкий — публичные аккаунты',starton:'StartOn — материалы источника',news:'News 13 — материалы источника',podcast:'Подкаст — материалы источника',filter:'Элементы фильтра',audience:'Голоса аудитории',year:'Записи по годам',media:'Материалы источника'},
+    ar:{igor:'إيغور فيبريتسكي',portrait:'إيغور فيبريتسكي — صورة شخصية',interview:'إيغور فيبريتسكي — مقابلة',speaker:'إيغور فيبريتسكي — متحدث',service:'إيغور فيبريتسكي — خدمة عامة',accounts:'إيغور فيبريتسكي — الحسابات العامة',starton:'StartOn — مادة من المصدر',news:'News 13 — مادة من المصدر',podcast:'بودكاست — مادة من المصدر',filter:'عناصر التصفية',audience:'أصوات الجمهور',year:'السجلات حسب السنة',media:'مادة من المصدر'}
+  }[locale]||null;
+  if(!copy) return core;
+  if(/פתיחת תפריט/.test(core)) return locale==='en'?'Open menu':locale==='ru'?'Открыть меню':'فتح القائمة';
+  if(/סינון/.test(core)) return copy.filter;
+  if(/רשומות לפי שנה/.test(core)) return copy.year;
+  if(/קולות מהקהל/.test(core)) return copy.audience;
+  if(/חדשות 13|הונאת קשישים/.test(core)) return /איגור ופרצקי/.test(core)?copy.interview:copy.news;
+  if(/פודקאסט|שיחה ארוכה/.test(core)) return /איגור ופרצקי/.test(core)?copy.interview:copy.podcast;
+  if(/StartOn|mynet|חלל אינטראקטיבי|נערים בסיכון|נוער בסיכון/.test(core)) return /איגור ופרצקי/.test(core)?copy.igor+' · StartOn':copy.starton;
+  if(/איגור ופרצקי/.test(core)){
+    if(/דיוקן|צילום/.test(core)) return copy.portrait;
+    if(/מרצה|במה/.test(core)) return copy.speaker;
+    if(/שירות/.test(core)) return copy.service;
+    if(/חשבונות|רשתות/.test(core)) return copy.accounts;
+    if(/ראיון|חדשות/.test(core)) return copy.interview;
+    return copy.igor;
+  }
+  if(/משטרת ישראל/.test(core)) return locale==='en'?'Why I left the Israel Police':locale==='ru'?'Почему я ушёл из полиции Израиля':'لماذا غادرت شرطة إسرائيل';
+  return copy.media;
+}
+
 function replaceVisibleCopy(html, locale, route) {
   if(locale==='he')return html;
   const routeSpecific = routeTranslations[locale] || new Map();
@@ -2906,8 +2934,9 @@ function replaceVisibleCopy(html, locale, route) {
   });
   next=next.replace(/\b(aria-label|title|placeholder|alt)=(["'])(.*?)\2/gi,(match,name,quote,value)=>{
     const core=value.trim();
-    if(!translations.has(core))return match;
-    return name+'='+quote+translations.get(core)+quote;
+    const translated=translations.has(core)?translations.get(core):accessibleAttributeFallback(core,locale);
+    if(!translated || translated===core)return match;
+    return name+'='+quote+translated+quote;
   });
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }

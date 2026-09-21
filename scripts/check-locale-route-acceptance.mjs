@@ -17,6 +17,17 @@ const strip = html => {
     .filter(Boolean);
 };
 
+async function htmlFiles(directory) {
+  const entries=await fs.readdir(directory,{withFileTypes:true});
+  const files=[];
+  for(const entry of entries){
+    const absolute=path.join(directory,entry.name);
+    if(entry.isDirectory())files.push(...await htmlFiles(absolute));
+    else if(entry.isFile()&&entry.name.endsWith('.html'))files.push(absolute);
+  }
+  return files;
+}
+
 const failures=[];
 for (const locale of locales) {
   for (const route of routes) {
@@ -27,6 +38,19 @@ for (const locale of locales) {
     const leakedAttrs=[...new Set(attrValues.filter(text=>/[\u0590-\u05ff]/u.test(text)&&!allowedHebrew.has(text)))];
     if(leaked.length) failures.push(`${locale}/${route}: Hebrew leakage -> ${leaked.slice(0,12).join(' | ')}`);
     if(leakedAttrs.length) failures.push(`${locale}/${route}: Hebrew accessibility attribute leakage -> ${leakedAttrs.slice(0,12).join(' | ')}`);
+  }
+}
+
+for (const locale of locales) {
+  const root=path.join(dist,locale);
+  for (const file of await htmlFiles(root)) {
+    const html=await fs.readFile(file,'utf8');
+    const attrValues=[...html.matchAll(/\b(?:aria-label|title|placeholder|alt)=(["'])(.*?)\1/gi)].map(match=>match[2].trim());
+    const leaked=[...new Set(attrValues.filter(text=>/[\u0590-\u05ff]/u.test(text)&&text!=='עברית'))];
+    if(leaked.length){
+      const relative=path.relative(dist,file).split(path.sep).join('/');
+      failures.push(`${relative}: Hebrew accessibility attribute leakage -> ${leaked.slice(0,12).join(' | ')}`);
+    }
   }
 }
 
