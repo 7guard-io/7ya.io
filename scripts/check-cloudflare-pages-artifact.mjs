@@ -24,6 +24,15 @@ if (!files.some(file => file.relative === 'index.html')) {
   throw new Error('Cloudflare Pages artifact is missing dist/index.html');
 }
 
+const healthPath = path.join(root, 'api', 'health', 'index.html');
+const health = JSON.parse(await fs.readFile(healthPath, 'utf8'));
+const healthDate = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'
+}).format(new Date());
+if (health.status !== 'ok' || health.provider !== 'cloudflare-pages' || health.updated !== healthDate) {
+  throw new Error(`Cloudflare health artifact stale or invalid: status=${health.status} provider=${health.provider} updated=${health.updated} expected=${healthDate}`);
+}
+
 const oversized = files.filter(file => file.size > maxFileBytes);
 if (oversized.length) {
   for (const file of oversized) {
