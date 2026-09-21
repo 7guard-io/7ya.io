@@ -23,6 +23,8 @@ const controlStyleTag = '<link rel="stylesheet" href="/styles/7ya-control-layer-
 const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" data-7ya-control-assets="20260726" defer></script>';
 
 
+const personalMediaStyleTag = '<link rel="stylesheet" href="/styles/personal-media-runtime-20260921.css?v=1" data-7ya-personal-media="20260921">';
+const personalMediaScriptTag = '<script src="/scripts/personal-media-runtime-20260921.js?v=1" data-7ya-personal-media="20260921" defer></script>';
 const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=4" data-7ya-impact-layer="20260918">';
 const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=3" data-7ya-impact-layer="20260918" defer></script>';
 const siteHumanNavMarkup = `<nav class="seven-human-nav" data-seven-human-nav aria-label="ניווט אחיד ב־7YA">
@@ -230,7 +232,9 @@ function injectSharedAssets(html, relative) {
   if (!html.includes('apple-mobile-web-app-capable')) headTags.push(appleWebAppCapableTag);
   if (!html.includes('mobile-web-app-capable')) headTags.push(mobileWebAppCapableTag);
   if (!html.includes('7ya-control-layer-20260726.css')) headTags.push(controlStyleTag);
+  if (!html.includes('data-7ya-personal-media="20260921"')) headTags.push(personalMediaStyleTag);
   if ((siteImpactEligible.has(relative) || sitePersonalAnchorEligible.has(relative)) && !html.includes('data-7ya-impact-layer="20260918"')) headTags.push(siteImpactStyleTag);
+  if (!html.includes('personal-media-runtime-20260921.js')) bodyTags.unshift(personalMediaScriptTag);
   if (!html.includes('7ya-control-layer-20260726.js')) bodyTags.push(controlScriptTag);
   if (siteImpactEligible.has(relative) && !html.includes('data-seven-proof-layer')) bodyTags.unshift(siteImpactMarkup);
   if (siteImpactEligible.has(relative) && !html.includes('site-impact-layer-20260918.js')) bodyTags.push(siteImpactScriptTag);
