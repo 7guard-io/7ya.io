@@ -1,4 +1,4 @@
-const CACHE_VERSION = '7ya-shell-20260920-speak1';
+const CACHE_VERSION = '7ya-shell-20260920-speak2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const OFFLINE_URL = '/';
