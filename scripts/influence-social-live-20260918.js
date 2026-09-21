@@ -1,5 +1,6 @@
 (()=>{
 const grid=document.getElementById('liveSocialGrid'),count=document.getElementById('liveSocialCount'),empty=document.getElementById('liveSocialEmpty'),search=document.getElementById('liveSocialSearch'),buttons=[...document.querySelectorAll('[data-live-filter]')];
+const platformList=document.querySelector('#public-channels .platform-list');
 if(!grid)return;
 const lang=(document.documentElement.lang||'he').toLowerCase().split('-')[0];
 const copy={
@@ -12,6 +13,18 @@ const c=copy||{media:'Original media',owned:'Owned',external:'External',record:'
 const hasHebrew=value=>/[\u0590-\u05ff]/u.test(String(value||''));
 const locale=lang==='he'?'he-IL':lang==='ru'?'ru-RU':lang==='ar'?'ar':'en-US';
 let items=[],filter='all';
+function renderPlatforms(platforms){
+ if(!platformList||!Array.isArray(platforms)||!platforms.length)return;
+ const fragment=document.createDocumentFragment();
+ platforms.forEach(item=>{
+  if(!item?.url)return;
+  const a=document.createElement('a');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer me';
+  const b=document.createElement('b');b.textContent=item.name||'Public profile';
+  const span=document.createElement('span');span.textContent=item.handle||'';
+  const i=document.createElement('i');i.textContent='↗';a.append(b,span,i);fragment.append(a);
+ });
+ platformList.replaceChildren(fragment);platformList.dataset.socialRegistry='canonical';
+}
 const metricLabels={views:'views',reach:'reach',likes:'likes',reactions:'reactions',comments:'comments',shares:'shares',saves:'saves',interactions:'interactions'};
 const metricText=(m={})=>Object.entries(metricLabels).filter(([k])=>m[k]!=null).map(([k,l])=>[l,m[k]]);
 function matches(i){
@@ -37,5 +50,5 @@ function card(i){
 }
 function render(){grid.replaceChildren();const visible=items.filter(matches);visible.forEach(i=>grid.append(card(i)));if(count)count.textContent=visible.length.toLocaleString(locale);if(empty)empty.hidden=visible.length>0}
 buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.liveFilter;render()}));search?.addEventListener('input',render);
-fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('feed');return r.json()}).then(d=>{items=Array.isArray(d.moments)?d.moments:[];render()}).catch(()=>{const fallbackCount=grid.children.length;if(count)count.textContent=fallbackCount?Number(fallbackCount).toLocaleString(locale):'—';if(empty){empty.hidden=fallbackCount>0;empty.textContent=c.fallback}});
+fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('feed');return r.json()}).then(d=>{renderPlatforms(d.platforms);items=Array.isArray(d.moments)?d.moments:[];render()}).catch(()=>{const fallbackCount=grid.children.length;if(count)count.textContent=fallbackCount?Number(fallbackCount).toLocaleString(locale):'—';if(empty){empty.hidden=fallbackCount>0;empty.textContent=c.fallback}});
 })();
