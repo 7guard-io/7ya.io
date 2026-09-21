@@ -263,7 +263,7 @@ export async function onRequestGet({ request }) {
   );
   return json({
     status: visitorPathReady ? 'ready' : 'degraded',
-    experience: '7ya-growth-companion',
+    experience: 'speak-with-igor',
     visitor_path_ready: visitorPathReady,
     engine_path: result.enginePath,
     response_present: Boolean(clean(payload.reflection, 20)),
