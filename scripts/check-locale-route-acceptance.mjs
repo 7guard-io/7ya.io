@@ -5,7 +5,7 @@ const root = process.cwd();
 const dist = path.join(root, 'dist');
 const locales = ['en','ru','ar'];
 const routes = ['contact','influence','talk'];
-const allowedHebrew = new Set(['איגור ופרצקי']);
+const allowedHebrew = new Set(['איגור ופרצקי','עברית']);
 
 const strip = html => {
   const body = (html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i) || [,''])[1];
