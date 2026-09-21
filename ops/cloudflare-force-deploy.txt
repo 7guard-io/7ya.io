@@ -47,3 +47,6 @@ reason: final full-fix head — locale UI + source-language archive handling + r
 retrigger-final-verified-source: 2026-09-21T10:44:00+03:00
 source_head_before_trigger: 1b332cbf336b1898c8da59098226b6870c4a621c
 reason: P0 source acceptance verified zero missing text/attribute translations on contact/influence/talk; publish complete repair
+cloudflare-git-retrigger: 2026-09-21T11:45:00+03:00
+source_head_before_trigger: 5f92563aed3606c2a53769838900ea624b8744fe
+reason: direct Cloudflare Git integration retrigger after locale acceptance gate passes cleanly
