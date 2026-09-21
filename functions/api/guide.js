@@ -363,6 +363,31 @@ export async function onRequestPost({ request, env }) {
   return json(result.payload, result.status);
 }
 
+async function inspectAppDeployEmbedding() {
+  try {
+    const response = await fetch('https://697a008fddc309b142.v2.appdeploy.ai/?chat=open', {
+      method: 'GET',
+      headers: { Accept: 'text/html' },
+      redirect: 'manual',
+      signal: AbortSignal.timeout(5000),
+    });
+    const xFrame = clean(response.headers.get('x-frame-options'), 80).toLowerCase();
+    const csp = clean(response.headers.get('content-security-policy'), 600).toLowerCase();
+    const blockedByXFrame = Boolean(xFrame && xFrame !== 'allowall');
+    const frameAncestors = (csp.match(/frame-ancestors\s+([^;]+)/i) || [,''])[1].trim();
+    const blockedByCsp = Boolean(frameAncestors && !frameAncestors.includes('*') && !frameAncestors.includes('https://7ya.io'));
+    return {
+      reachable: response.status >= 200 && response.status < 400,
+      status: response.status,
+      frame_allowed_from_7ya: !blockedByXFrame && !blockedByCsp,
+      x_frame_policy_present: Boolean(xFrame),
+      frame_ancestors_present: Boolean(frameAncestors),
+    };
+  } catch {
+    return { reachable: false, status: 0, frame_allowed_from_7ya: false, x_frame_policy_present: false, frame_ancestors_present: false };
+  }
+}
+
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
@@ -377,7 +402,7 @@ export async function onRequestGet({ request, env }) {
     mode: 'creator',
     creator_mode: 'momentum',
   };
-  const result = await buildGuideResult(body, request, env);
+  const [result, embed] = await Promise.all([buildGuideResult(body, request, env), inspectAppDeployEmbedding()]);
   const payload = result.payload || {};
   const outline = payload.content_seed && Array.isArray(payload.content_seed.outline) ? payload.content_seed.outline : [];
   const visitorPathReady = Boolean(
@@ -396,6 +421,7 @@ export async function onRequestGet({ request, env }) {
     visitor_path_ready: visitorPathReady,
     engine_path: result.enginePath,
     engine_detail: result.engineDetail || null,
+    embed_candidate: embed,
     provider_env: {
       nvidia_nim: Boolean(env && env.NVIDIA_NIM_API_KEY),
       nvidia: Boolean(env && env.NVIDIA_API_KEY),
