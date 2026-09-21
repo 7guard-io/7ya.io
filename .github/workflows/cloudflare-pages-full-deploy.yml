@@ -2,13 +2,10 @@ name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are handled directly by the Cloudflare GitHub App from main.
 # This workflow remains an explicit break-glass/manual deployment path only.
+# Manual break-glass path only. Normal production deploys are handled by the
+# Cloudflare GitHub App from main; do not create synthetic force-deploy commits.
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'ops/cloudflare-force-deploy.txt'
 
 permissions:
   contents: read
