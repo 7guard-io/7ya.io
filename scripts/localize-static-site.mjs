@@ -2903,6 +2903,11 @@ function replaceVisibleCopy(html, locale, route) {
     const core=text.trim();
     return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
   });
+  next=next.replace(/\b(aria-label|title|placeholder|alt)=(["'])(.*?)\2/gi,(match,name,quote,value)=>{
+    const core=value.trim();
+    if(!translations.has(core))return match;
+    return name+'='+quote+translations.get(core)+quote;
+  });
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
 function localizeJsonLd(html,locale,route,meta){
