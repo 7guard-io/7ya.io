@@ -72,6 +72,43 @@ if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influen
   failures.push('legacy /feed redirect is missing');
 }
 
+const chatRedirects = [
+  ['/chat', '/?chat=open'],
+  ['/chat/', '/?chat=open'],
+  ['/speak-with-igor', '/?chat=open'],
+  ['/speak-with-igor/', '/?chat=open'],
+  ['/en/chat', '/en/?chat=open'],
+  ['/en/chat/', '/en/?chat=open'],
+  ['/ru/chat', '/ru/?chat=open'],
+  ['/ru/chat/', '/ru/?chat=open'],
+  ['/ar/chat', '/ar/?chat=open'],
+  ['/ar/chat/', '/ar/?chat=open'],
+];
+for (const [from,to] of chatRedirects) {
+  const escapedFrom=from.replace(/[.*+?^$()|[\]\\]/g,'\\if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influence\/\s+301$/m.test(redirects)) {
+  failures.push('legacy /feed redirect is missing');
+}
+');
+  const escapedTo=to.replace(/[.*+?^$()|[\]\\]/g,'\\if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influence\/\s+301$/m.test(redirects)) {
+  failures.push('legacy /feed redirect is missing');
+}
+');
+  if(!new RegExp('^'+escapedFrom+'\\s+'+escapedTo+'\\s+302
+const widget=await fs.readFile(path.join(dist,'scripts','7ya-signal-key-20260715.js'),'utf8');
+for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
+  if(!widget.includes(required)) failures.push(`Speak with Igor contract missing: ${required}`);
+}
+
+if(failures.length){
+  for(const failure of failures) console.error('LOCALE_ACCEPTANCE_FAIL:',failure);
+  throw new Error(`Locale/route acceptance failed with ${failures.length} issue(s)`);
+}
+console.log('LOCALE_ROUTE_ACCEPTANCE: PASS (freshness · EN/RU/AR · /feed redirect · Speak with Igor redirects + contract)');
+,'m').test(redirects)) {
+    failures.push(`Speak with Igor redirect missing: ${from} -> ${to}`);
+  }
+}
+
 const widget=await fs.readFile(path.join(dist,'scripts','7ya-signal-key-20260715.js'),'utf8');
 for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
   if(!widget.includes(required)) failures.push(`Speak with Igor contract missing: ${required}`);
