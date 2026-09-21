@@ -30,6 +30,7 @@ const routeNames = {
   starton: {he:'StartOn',en:'StartOn',ru:'StartOn',ar:'StartOn'},
   media: {he:'מדיה',en:'Media',ru:'Медиа',ar:'الإعلام'},
   research: {he:'מחקר',en:'Research',ru:'Исследования',ar:'البحث'},
+  ai: {he:'Human Systems × AI',en:'Human Systems × AI',ru:'Human Systems × AI',ar:'Human Systems × AI'},
   speaker: {he:'מרצה',en:'Speaker',ru:'Спикер',ar:'المتحدث'},
   articles: {he:'כתיבה',en:'Writing',ru:'Тексты',ar:'الكتابة'},
   contact: {he:'דברו איתי',en:'Contact',ru:'Связаться',ar:'تواصل معي'},
