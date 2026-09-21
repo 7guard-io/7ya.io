@@ -66,3 +66,7 @@ reason: publish AppDeploy embed capability probe for Speak with Igor recovery pa
 cloudflare-git-retrigger: 2026-09-21T12:28:00+03:00
 source_head_before_trigger: b89402fad77a7c2fcb92fd9fc3a5200e965379dc
 reason: publish AppDeploy client bridge + root-query ingress + bridge handshake observability
+
+cloudflare-git-retrigger: 2026-09-21T14:25:00+03:00
+source_head_before_trigger: aa444bc73a11ab2be541f7b3be62fc15ed524549
+reason: publish complete canonical social integration after build-guard repair; 20 verified public surfaces + unified registry + /go/ + identity + influence
