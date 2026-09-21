@@ -39,3 +39,7 @@ reason: Restoration+ canonical homepage shell + real portrait/voice + static sty
 retrigger: 2026-09-21T10:44:00+03:00
 source_head_before_trigger: 3dc3bc32c758493bb2b8e6222b86936f38d210cc
 reason: full production repair — Jerusalem build freshness, complete Contact/Influence/Talk HE-EN-RU-AR localization, localized influence runtimes, canonical /feed redirect, Speak with Igor contract and acceptance gate
+
+retrigger-final: 2026-09-21T10:44:00+03:00
+source_head_before_trigger: ee347f1bf0907c524b64492e9bebd132c7f3809b
+reason: final full-fix head — locale UI + source-language archive handling + runtime localization + freshness + redirects + Speak with Igor gates
