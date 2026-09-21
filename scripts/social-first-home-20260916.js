@@ -3,6 +3,21 @@
   if(!section)return;
   const rail=section.querySelector('.social-rail');
   if(!rail)return;
+  const platformNav=section.querySelector('.social-platforms');
+  const renderPlatforms=(platforms)=>{
+    if(!platformNav||!Array.isArray(platforms)||!platforms.length)return;
+    const fragment=document.createDocumentFragment();
+    platforms.forEach(item=>{
+      if(!item?.url)return;
+      const a=document.createElement('a');
+      a.href=item.url;a.target='_blank';a.rel='noopener noreferrer me';
+      a.append(document.createTextNode(item.name||'Public profile'));
+      const span=document.createElement('span');span.textContent=item.handle||'';a.append(span);
+      fragment.append(a);
+    });
+    platformNav.replaceChildren(fragment);
+    platformNav.dataset.socialRegistry='canonical';
+  };
 
   const fmt=(n)=>new Intl.NumberFormat('en-US',{notation:Number(n)>=10000?'compact':'standard',maximumFractionDigits:1}).format(Number(n));
   const humanizeMetricDisplay=(value)=>String(value||'')
@@ -262,6 +277,7 @@
     fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();}),
     fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();})
   ]).then(([socialData,masterData])=>{
+    renderPlatforms(socialData.platforms);
     const curated=Array.isArray(socialData.moments)?socialData.moments:[];
     const masterRaw=Array.isArray(masterData.records)?masterData.records:[];
     const master=masterRaw.filter(r=>r.url).map(r=>normalizeMaster(r,masterData.generated_at));
