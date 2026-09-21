@@ -1,6 +1,8 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ['איגור ופרצקי — האדם מאחורי האתר','Igor Vepretski — the person behind the site','Игорь Вепрецкий — человек за сайтом','إيغور فيبريتسكي — الشخص وراء الموقع'],
+  ['החשבונות המקוריים','Original accounts','Оригинальные аккаунты','الحسابات الأصلية'],
   ['החיים · העשייה · התוכן המקורי','Life · work · original content','Жизнь · работа · оригинальный контент','الحياة · العمل · المحتوى الأصلي'],
   ['כל הפיד →','Full feed →','Вся лента →','الخلاصة الكاملة →'],
   ['דלג לתוכן','Skip to content','Перейти к содержанию','تجاوز إلى المحتوى'],
