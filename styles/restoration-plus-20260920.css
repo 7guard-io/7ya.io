@@ -144,3 +144,36 @@ body{background:var(--r-bg)}
   .restoration-gate{grid-template-columns:1fr}
   .restoration-gate article{min-height:122px}
 }
+
+
+/* START_HERE_HUMAN_FIRST:20260921 */
+.start-here{padding:clamp(72px,8vw,118px) clamp(18px,6vw,90px);background:#f3f0e8;color:#10110f;border-top:1px solid rgba(16,17,15,.12);border-bottom:1px solid rgba(16,17,15,.12)}
+.start-here-head{display:grid;grid-template-columns:.32fr 1fr .66fr;gap:clamp(20px,4vw,64px);align-items:end;margin-bottom:42px}
+.start-here-head h2{margin:0;font-size:clamp(44px,5.5vw,86px);line-height:.94;letter-spacing:-.05em}
+.start-here-head h2 em{font-weight:400}
+.start-here-head>p:last-child{margin:0;color:#5f635c;font-size:14px;line-height:1.65;max-width:560px}
+.start-here-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.start-here-card{min-height:320px;padding:24px;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(16,17,15,.12);text-decoration:none;color:inherit;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.start-here-card:hover{transform:translateY(-3px);border-color:rgba(16,17,15,.35);box-shadow:0 16px 38px rgba(16,17,15,.08)}
+.start-here-card small{font-size:10px;font-weight:800;letter-spacing:.08em;color:#697066}
+.start-here-card h3{margin:44px 0 12px;font-size:clamp(28px,2.4vw,40px);line-height:1}
+.start-here-card p{margin:0;color:#656961;line-height:1.58;font-size:13px}
+.start-here-card b{margin-top:auto;padding-top:24px;font-size:11px}
+.start-here-cta{margin-top:8px;padding:24px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;background:#10110f;color:#f3f0e8}
+.start-here-cta p{margin:0;max-width:760px;line-height:1.6}
+.start-here-cta .actions{margin:0}
+.start-here-cta .btn{border-color:rgba(255,255,255,.28);color:#f3f0e8}
+.start-here-cta .btn.primary{background:#8cff00;color:#0a0a0b;border-color:#8cff00}
+.start-here-cta .text-link{color:#f3f0e8}
+@media(max-width:980px){
+  .start-here-head{grid-template-columns:1fr}
+  .start-here-grid{grid-template-columns:1fr 1fr}
+  .start-here-cta{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .start-here{padding-inline:16px}
+  .start-here-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:0 16px 10px}
+  .start-here-card{flex:0 0 84vw;min-height:330px;scroll-snap-align:start}
+  .start-here-cta{margin-inline:0;padding:20px}
+  .start-here-cta .actions{display:flex;flex-wrap:wrap;gap:10px}
+}
