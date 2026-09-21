@@ -83,18 +83,3 @@ if(failures.length){
   throw new Error(`Locale/route acceptance failed with ${failures.length} issue(s)`);
 }
 console.log('LOCALE_ROUTE_ACCEPTANCE: PASS (freshness · EN/RU/AR · /feed redirect · Speak with Igor contract)');
-,'m').test(redirects)) {
-    failures.push(`Speak with Igor redirect missing: ${from} -> ${to}`);
-  }
-}
-
-const widget=await fs.readFile(path.join(dist,'scripts','7ya-signal-key-20260715.js'),'utf8');
-for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
-  if(!widget.includes(required)) failures.push(`Speak with Igor contract missing: ${required}`);
-}
-
-if(failures.length){
-  for(const failure of failures) console.error('LOCALE_ACCEPTANCE_FAIL:',failure);
-  throw new Error(`Locale/route acceptance failed with ${failures.length} issue(s)`);
-}
-console.log('LOCALE_ROUTE_ACCEPTANCE: PASS (freshness · EN/RU/AR · /feed redirect · Speak with Igor contract)');
