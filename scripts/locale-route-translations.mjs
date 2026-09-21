@@ -1,6 +1,15 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ['דלג לתוכן','Skip to content','Перейти к содержанию','تجاوز إلى المحتوى'],
+  ['בית','Home','Главная','الرئيسية'],
+  ['השפעה','Influence','Влияние','التأثير'],
+  ['שיר ההיסטוריה','History Song','Песня истории','أغنية التاريخ'],
+  ['ארכיון מלא','Full archive','Полный архив','الأرشيف الكامل'],
+  ['YouTube · שלי · 21.04.2026','YouTube · owned · 21.04.2026','YouTube · моё · 21.04.2026','YouTube · مملوك · 21.04.2026'],
+  ['YouTube · שלי · 13.02.2026','YouTube · owned · 13.02.2026','YouTube · моё · 13.02.2026','YouTube · مملوك · 13.02.2026'],
+  ['YouTube · מוזיקה · 07.08.2025','YouTube · music · 07.08.2025','YouTube · музыка · 07.08.2025','YouTube · موسيقى · 07.08.2025'],
+  ['LinkedIn · שלי · 13.09.2026','LinkedIn · owned · 13.09.2026','LinkedIn · моё · 13.09.2026','LinkedIn · مملوك · 13.09.2026'],
   // CONTACT
   ['לתיאום שיחה','Start a conversation','Начать разговор','بدء محادثة'],
   ['לא לשלוח “היי”.','Don’t just send “hi”.','Не пишите просто «привет».','لا ترسل مجرد «مرحباً».'],
