@@ -246,7 +246,7 @@ export async function onRequestPost({ request }) {
   return json(result.payload, result.status);
 }
 
-export async function onRequestGet({ request }) {
+export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
     return json({ status: 'ready', experience: 'speak-with-igor', upstream: 'server-side', secrets_exposed: false });
@@ -279,6 +279,11 @@ export async function onRequestGet({ request }) {
     visitor_path_ready: visitorPathReady,
     engine_path: result.enginePath,
     engine_detail: result.engineDetail || null,
+    provider_env: {
+      nvidia_nim: Boolean(env && env.NVIDIA_NIM_API_KEY),
+      nvidia: Boolean(env && env.NVIDIA_API_KEY),
+      ngc: Boolean(env && env.NGC_API_KEY),
+    },
     upstream_latency_ms: Number.isFinite(result.engineLatencyMs) ? result.engineLatencyMs : null,
     response_present: Boolean(clean(payload.reflection, 20)),
     next_step_present: Boolean(clean(payload.next_step, 20)),
