@@ -31,21 +31,81 @@
   loadControlLayer();
 
   const officialProfiles = [
-    {
-      label: 'Instagram · @igor.vepretski',
-      href: 'https://www.instagram.com/igor.vepretski/',
-      platform: 'instagram-primary'
-    },
-    {
-      label: 'Instagram · @vepretski.igor',
-      href: 'https://www.instagram.com/vepretski.igor/',
-      platform: 'instagram-secondary'
-    },
-    {
-      label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/vepretski/',
-      platform: 'linkedin'
-    }
+      {
+          "label": "Instagram · @igor.vepretski",
+          "href": "https://www.instagram.com/igor.vepretski/",
+          "platform": "instagram-primary"
+      },
+      {
+          "label": "Instagram · Archive · @vepretski.igor",
+          "href": "https://www.instagram.com/vepretski.igor/",
+          "platform": "instagram-secondary"
+      },
+      {
+          "label": "TikTok · @igor.vepretski",
+          "href": "https://www.tiktok.com/@igor.vepretski",
+          "platform": "tiktok"
+      },
+      {
+          "label": "YouTube · @IgorVepretski",
+          "href": "https://www.youtube.com/@IgorVepretski",
+          "platform": "youtube"
+      },
+      {
+          "label": "Facebook · /vepretski7",
+          "href": "https://www.facebook.com/vepretski7",
+          "platform": "facebook"
+      },
+      {
+          "label": "LinkedIn · /in/vepretski",
+          "href": "https://www.linkedin.com/in/vepretski/",
+          "platform": "linkedin"
+      },
+      {
+          "label": "Telegram · @vepretski",
+          "href": "https://t.me/vepretski",
+          "platform": "telegram"
+      },
+      {
+          "label": "Threads · @igor.vepretski",
+          "href": "https://www.threads.net/@igor.vepretski",
+          "platform": "threads"
+      },
+      {
+          "label": "X · @igorvepretski",
+          "href": "https://x.com/igorvepretski",
+          "platform": "x"
+      },
+      {
+          "label": "Spotify · Ido Vepretski",
+          "href": "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+          "platform": "spotify"
+      },
+      {
+          "label": "Apple Music · Ido Vepretski",
+          "href": "https://music.apple.com/artist/ido-vepretski/1527248864",
+          "platform": "apple-music"
+      },
+      {
+          "label": "GitHub · @vepretski",
+          "href": "https://github.com/vepretski",
+          "platform": "github"
+      },
+      {
+          "label": "Medium · @igor.vepretski",
+          "href": "https://medium.com/@igor.vepretski",
+          "platform": "medium"
+      },
+      {
+          "label": "Academia · Igor Vepretski",
+          "href": "https://igorvepretski.academia.edu/",
+          "platform": "academia"
+      },
+      {
+          "label": "Linktree · igor.vepretski",
+          "href": "https://linktr.ee/igor.vepretski",
+          "platform": "linktree"
+      }
   ];
 
   const connectOfficialProfiles = () => {
