@@ -22,6 +22,99 @@ const clean = (value, max = 1600) => String(value || '').trim().slice(0, max);
 const safePath = value => /^\/[a-z0-9/_#?-]*$/i.test(String(value || '')) ? String(value).slice(0, 220) : '/';
 const localeOf = value => /^ru/i.test(String(value || '')) ? 'ru' : /^ar/i.test(String(value || '')) ? 'ar' : /^en/i.test(String(value || '')) ? 'en' : 'he';
 const modeOf = body => body.mode === 'creator' ? 'build' : 'guide';
+const providerKey = env => clean(env && (env.NVIDIA_NIM_API_KEY || env.NVIDIA_API_KEY), 1200);
+const providerModel = env => clean(env && env.NVIDIA_MODEL, 160) || 'nvidia/nemotron-3-super-120b-a12b';
+
+function providerInstructions(locale, creator) {
+  const language = locale === 'he' ? 'Hebrew' : locale === 'ru' ? 'Russian' : locale === 'ar' ? 'Arabic' : 'English';
+  return [
+    'You are Speak with Igor, a transparent AI conversation inside 7YA. You are not Igor Vepretski and must never pretend to be a live human or speak on his behalf.',
+    'Keep the visitor at the center. Help them clarify what matters, express it in their own voice, and turn it into one responsible executable next move.',
+    'Igor public work can be used as a documented example, never as private memory or invented authority.',
+    'Never invent metrics, roles, relationships, endorsements, dates or evidence. Never expose private family, minors, medical, legal, financial, credential, address or security information.',
+    'When Jewish wisdom or the Zohar is genuinely relevant, label it explicitly as an optional lens; never present spiritual claims as factual certainty.',
+    'Use modern AI, research, writing, video and creation tools only when they materially help the visitor act.',
+    'Answer in ' + language + '. Be direct, substantive and practical.',
+    creator
+      ? 'Return ONLY valid JSON with keys reply, spotlight, suggestions, checkpoint and actions. suggestions is an array of up to 3 short strings. checkpoint is {title,items} with up to 4 concrete steps. actions is an array of up to 2 objects with label and an internal 7YA href.'
+      : 'Return ONLY valid JSON with keys reply, spotlight, suggestions, actions. suggestions is an array of up to 3 short strings. actions is an array of up to 2 objects with label and an internal 7YA href.'
+  ].join(' ');
+}
+
+function parseProviderPayload(text, body) {
+  const raw = clean(text, 7000).replace(/^\`\`\`json\s*/i, '').replace(/\s*\`\`\`$/i, '').trim();
+  let parsed = null;
+  try { parsed = JSON.parse(raw); } catch {}
+  const source = parsed && typeof parsed === 'object' ? parsed : { reply: raw };
+  const suggestions = Array.isArray(source.suggestions) ? source.suggestions.map(item => clean(item, 180)).filter(Boolean).slice(0, 3) : [];
+  const actions = Array.isArray(source.actions) ? source.actions.map(item => ({
+    label: clean(item && item.label, 100),
+    href: safePath(item && item.href),
+  })).filter(item => item.label && item.href !== '/') .slice(0, 2) : [];
+  const checkpointRaw = source.checkpoint && typeof source.checkpoint === 'object' ? source.checkpoint : null;
+  const checkpointItems = checkpointRaw && Array.isArray(checkpointRaw.items)
+    ? checkpointRaw.items.map(item => clean(item, 260)).filter(Boolean).slice(0, 4)
+    : [];
+  return {
+    reply: clean(source.reply, 5200) || raw,
+    spotlight: clean(source.spotlight, 420),
+    suggestions,
+    actions,
+    checkpoint: checkpointItems.length ? { title: clean(checkpointRaw.title, 140) || 'Next move', items: checkpointItems } : null,
+    evidence: [],
+    provider: 'nvidia',
+    model: '',
+    state: body.state || null,
+  };
+}
+
+async function callCloudflareNvidia(body, request, env) {
+  const key = providerKey(env);
+  if (!key) return null;
+  const locale = localeOf(body.locale || request.headers.get('accept-language'));
+  const creator = body.mode === 'creator';
+  const model = providerModel(env);
+  const history = Array.isArray(body.messages)
+    ? body.messages.slice(-10).map(item => ({
+        role: item && item.role === 'assistant' ? 'assistant' : 'user',
+        content: clean(item && item.content, 2400),
+      })).filter(item => item.content)
+    : [];
+  const message = clean(body.message, 1600);
+  if (!history.length || history[history.length - 1].content !== message) history.push({ role: 'user', content: message });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 13500);
+  const startedAt = Date.now();
+  try {
+    const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        Authorization: 'Bearer ' + key,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+        messages: [{ role: 'system', content: providerInstructions(locale, creator) }, ...history],
+        temperature: 0.2,
+        top_p: 0.9,
+        max_tokens: creator ? 1000 : 850,
+        stream: false,
+      }),
+    });
+    const data = await response.json().catch(() => null);
+    if (!response.ok) throw new Error('nvidia_http_' + response.status);
+    const output = clean(data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content, 7000);
+    if (!output) throw new Error('nvidia_empty');
+    const payload = parseProviderPayload(output, body);
+    payload.model = model;
+    return { data: payload, latencyMs: Date.now() - startedAt };
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 const engineErrorCode = error => {
   const message = clean(error && error.message, 120).toLowerCase();
   if (error && error.name === 'AbortError') return 'upstream_timeout';
@@ -200,7 +293,7 @@ async function proxyCompanion(body, request) {
   }
 }
 
-async function buildGuideResult(body, request) {
+async function buildGuideResult(body, request, env) {
   const message = clean(body && body.message, 1600);
   if (!message) return { payload: { error: 'message required' }, status: 422, enginePath: 'invalid' };
 
@@ -209,6 +302,30 @@ async function buildGuideResult(body, request) {
   const creatorMode = ['create', 'momentum', 'impact', 'clarify'].includes(body.creator_mode) ? body.creator_mode : 'clarify';
   const creator = body.mode === 'creator';
   const fallback = creator ? fallbackCreator(message, creatorMode, locale) : fallbackGuide(message, path, locale);
+
+  let directError = null;
+  try {
+    const direct = await callCloudflareNvidia(body, request, env);
+    if (direct) {
+      const data = direct.data;
+      const payload = creator
+        ? creatorShape(data, message, creatorMode, locale, fallback)
+        : {
+            answer: clean(data.reply, 5200) || fallback.answer,
+            links: actionLinks(data, fallback.links),
+            mode: '7ya-guide',
+            provider: 'nvidia',
+            model: clean(data.model, 120) || providerModel(env),
+            state: data.state || null,
+          };
+      return { payload, status: 200, enginePath: 'nvidia', engineDetail: 'nvidia_ok', engineLatencyMs: direct.latencyMs };
+    }
+  } catch (error) {
+    directError = engineErrorCode(error).replace(/^upstream_/, 'nvidia_');
+    const messageCode = clean(error && error.message, 80).toLowerCase();
+    if (/nvidia_http_\d{3}/.test(messageCode)) directError = messageCode.match(/nvidia_http_\d{3}/)[0];
+    else if (messageCode.includes('nvidia_empty')) directError = 'nvidia_empty';
+  }
 
   try {
     const proxied = await proxyCompanion(body, request);
@@ -229,20 +346,20 @@ async function buildGuideResult(body, request) {
       payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
       status: 200,
       enginePath: 'continuity',
-      engineDetail: engineErrorCode(error),
+      engineDetail: [directError, engineErrorCode(error)].filter(Boolean).join('+'),
       engineLatencyMs: null,
     };
   }
 }
 
-export async function onRequestPost({ request }) {
+export async function onRequestPost({ request, env }) {
   let body;
   try {
     body = await request.json();
   } catch {
     return json({ error: 'invalid request' }, 400);
   }
-  const result = await buildGuideResult(body, request);
+  const result = await buildGuideResult(body, request, env);
   return json(result.payload, result.status);
 }
 
@@ -260,7 +377,7 @@ export async function onRequestGet({ request, env }) {
     mode: 'creator',
     creator_mode: 'momentum',
   };
-  const result = await buildGuideResult(body, request);
+  const result = await buildGuideResult(body, request, env);
   const payload = result.payload || {};
   const outline = payload.content_seed && Array.isArray(payload.content_seed.outline) ? payload.content_seed.outline : [];
   const visitorPathReady = Boolean(
