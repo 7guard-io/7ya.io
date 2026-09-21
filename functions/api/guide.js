@@ -22,6 +22,14 @@ const clean = (value, max = 1600) => String(value || '').trim().slice(0, max);
 const safePath = value => /^\/[a-z0-9/_#?-]*$/i.test(String(value || '')) ? String(value).slice(0, 220) : '/';
 const localeOf = value => /^ru/i.test(String(value || '')) ? 'ru' : /^ar/i.test(String(value || '')) ? 'ar' : /^en/i.test(String(value || '')) ? 'en' : 'he';
 const modeOf = body => body.mode === 'creator' ? 'build' : 'guide';
+const engineErrorCode = error => {
+  const message = clean(error && error.message, 120).toLowerCase();
+  if (error && error.name === 'AbortError') return 'upstream_timeout';
+  if (/upstream_http_\d{3}/.test(message)) return message.match(/upstream_http_\d{3}/)[0];
+  if (message.includes('upstream_invalid_json')) return 'upstream_invalid_json';
+  if (message.includes('fetch') || error instanceof TypeError) return 'upstream_network';
+  return 'upstream_error';
+};
 
 function fallbackGuide(message, path, locale) {
   const q = message.toLowerCase();
@@ -148,6 +156,7 @@ async function proxyCompanion(body, request) {
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 14500);
+  const startedAt = Date.now();
   try {
     const response = await fetch(UPSTREAM, {
       method: 'POST',
@@ -183,8 +192,9 @@ async function proxyCompanion(body, request) {
       signal: controller.signal,
     });
     const data = await response.json().catch(() => null);
-    if (!response.ok || !data || typeof data !== 'object') throw new Error('upstream');
-    return { data, locale, path };
+    if (!response.ok) throw new Error(`upstream_http_${response.status}`);
+    if (!data || typeof data !== 'object') throw new Error('upstream_invalid_json');
+    return { data, locale, path, latencyMs: Date.now() - startedAt };
   } finally {
     clearTimeout(timeout);
   }
@@ -213,12 +223,14 @@ async function buildGuideResult(body, request) {
           model: clean(data.model, 120) || '7ya',
           state: data.state || null,
         };
-    return { payload, status: 200, enginePath: 'upstream' };
-  } catch {
+    return { payload, status: 200, enginePath: 'upstream', engineDetail: 'upstream_ok', engineLatencyMs: proxied.latencyMs };
+  } catch (error) {
     return {
       payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
       status: 200,
       enginePath: 'continuity',
+      engineDetail: engineErrorCode(error),
+      engineLatencyMs: null,
     };
   }
 }
@@ -266,6 +278,8 @@ export async function onRequestGet({ request }) {
     experience: 'speak-with-igor',
     visitor_path_ready: visitorPathReady,
     engine_path: result.enginePath,
+    engine_detail: result.engineDetail || null,
+    upstream_latency_ms: Number.isFinite(result.engineLatencyMs) ? result.engineLatencyMs : null,
     response_present: Boolean(clean(payload.reflection, 20)),
     next_step_present: Boolean(clean(payload.next_step, 20)),
     today_present: Boolean(clean(payload.today, 20)),
