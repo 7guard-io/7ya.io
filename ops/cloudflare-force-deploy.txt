@@ -35,3 +35,7 @@ reason: build-date + sitemap-date guard repair; force governed Cloudflare Pages 
 retrigger: 2026-09-20T19:13:00+03:00
 source_head: 488133258af55b7cb36c283916aa93d675b79bde
 reason: Restoration+ canonical homepage shell + real portrait/voice + static style whitelist + authored-copy i18n protection; force governed Cloudflare Pages production rebuild
+
+retrigger: 2026-09-21T10:44:00+03:00
+source_head_before_trigger: 3dc3bc32c758493bb2b8e6222b86936f38d210cc
+reason: full production repair — Jerusalem build freshness, complete Contact/Influence/Talk HE-EN-RU-AR localization, localized influence runtimes, canonical /feed redirect, Speak with Igor contract and acceptance gate
