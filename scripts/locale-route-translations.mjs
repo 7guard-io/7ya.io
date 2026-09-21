@@ -1,6 +1,20 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ['איגור ופרצקי — 7YA','Igor Vepretski — 7YA','Игорь Вепрецкий — 7YA','إيغور فيبريتسكي — 7YA'],
+  ['7YA — איגור ופרצקי','7YA — Igor Vepretski','7YA — Игорь Вепрецкий','7YA — إيغور فيبريتسكي'],
+  ['אבהות, מיאל, רוסי, BIZZI, StartOn…','fatherhood, Miel, Russian identity, BIZZI, StartOn…','отцовство, Миэль, русская идентичность, BIZZI, StartOn…','الأبوة، ميال، الهوية الروسية، BIZZI، StartOn…'],
+  ['סינון הקורפוס החברתי','Filter social corpus','Фильтр социального корпуса','تصفية المجموعة الاجتماعية'],
+  ['סיפור החיים של איגור ופרצקי','Igor Vepretski life story','История жизни Игоря Вепрецкого','قصة حياة إيغور فيبريتسكي'],
+  ['אבהות, דור 1.5, StartOn, חינוך, מוזיקה…','fatherhood, generation 1.5, StartOn, education, music…','отцовство, поколение 1.5, StartOn, образование, музыка…','الأبوة، جيل 1.5، StartOn، التعليم، الموسيقى…'],
+  ['סינון לפי מקור','Filter by source','Фильтр по источнику','تصفية حسب المصدر'],
+  ['Facebook, StartOn, פודקאסט, BIZZI, 2023…','Facebook, StartOn, podcast, BIZZI, 2023…','Facebook, StartOn, подкаст, BIZZI, 2023…','Facebook، StartOn، بودكاست، BIZZI، 2023…'],
+  ['סינון הרשומה הציבורית','Filter public record','Фильтр публичной записи','تصفية السجل العام'],
+  ['וידאו ציבורי של איגור ופרצקי','Public video of Igor Vepretski','Публичное видео Игоря Вепрецкого','فيديو عام لإيغور فيبريتسكي'],
+  ['ניווט אחיד ב־7YA','7YA navigation','Навигация 7YA','تنقل 7YA'],
+  ['שכבת השפעה ציבורית','Public influence layer','Слой публичного влияния','طبقة التأثير العام'],
+  ['StartOn ב-mynet חולון','StartOn in mynet Holon','StartOn в mynet Холон','StartOn في mynet حولون'],
+  ['כל חלקי 7YA והמקורות הקנוניים','All 7YA sections and canonical sources','Все разделы 7YA и канонические источники','كل أقسام 7YA والمصادر الأساسية'],
   ['איגור ופרצקי — האדם מאחורי האתר','Igor Vepretski — the person behind the site','Игорь Вепрецкий — человек за сайтом','إيغور فيبريتسكي — الشخص وراء الموقع'],
   ['החשבונות המקוריים','Original accounts','Оригинальные аккаунты','الحسابات الأصلية'],
   ['החיים · העשייה · התוכן המקורי','Life · work · original content','Жизнь · работа · оригинальный контент','الحياة · العمل · المحتوى الأصلي'],
