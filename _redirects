@@ -4,14 +4,24 @@
 /api/feed /api/feed.json 301
 /feed /influence/ 301
 /feed/ /influence/ 301
-/speak-with-igor /chat/ 301
-/speak-with-igor/ /chat/ 301
-/en/speak-with-igor /en/chat/ 301
-/en/speak-with-igor/ /en/chat/ 301
-/ru/speak-with-igor /ru/chat/ 301
-/ru/speak-with-igor/ /ru/chat/ 301
-/ar/speak-with-igor /ar/chat/ 301
-/ar/speak-with-igor/ /ar/chat/ 301
+
+# Speak with Igor uses the proven homepage companion entry instead of a brittle standalone /chat artifact.
+/chat /?chat=open 302
+/chat/ /?chat=open 302
+/speak-with-igor /?chat=open 302
+/speak-with-igor/ /?chat=open 302
+/en/chat /en/?chat=open 302
+/en/chat/ /en/?chat=open 302
+/en/speak-with-igor /en/?chat=open 302
+/en/speak-with-igor/ /en/?chat=open 302
+/ru/chat /ru/?chat=open 302
+/ru/chat/ /ru/?chat=open 302
+/ru/speak-with-igor /ru/?chat=open 302
+/ru/speak-with-igor/ /ru/?chat=open 302
+/ar/chat /ar/?chat=open 302
+/ar/chat/ /ar/?chat=open 302
+/ar/speak-with-igor /ar/?chat=open 302
+/ar/speak-with-igor/ /ar/?chat=open 302
 
 /media /media/index.html 200
 /media/ /media/index.html 200
