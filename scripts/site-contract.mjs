@@ -111,6 +111,7 @@ export const publicStyleFiles = [
   'personal-media-runtime-20260921.css',
   'zone-shells-v1.css',
   'locale-shell-20260919.css',
+  'premium-polish-20260921.css',
 ];
 
 export const publicScriptFiles = [
@@ -190,6 +191,7 @@ export const criticalArtifactPaths = [
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
   'styles/locale-shell-20260919.css',
+  'styles/premium-polish-20260921.css',
   'scripts/7ya-control-layer-20260726.js',
   'scripts/7ya-control-page-20260726.js',
   'scripts/7ya-signal-key-20260715.js',
