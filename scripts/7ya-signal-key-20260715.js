@@ -221,6 +221,7 @@
 
   function ensureCompanionBridge() {
     if (companionBridgeReady) return Promise.resolve(true);
+    document.documentElement.dataset.yaCompanionBridge = 'loading';
     if (companionBridgeReadyPromise) return companionBridgeReadyPromise;
     companionBridgeReadyPromise = new Promise((resolve) => {
       companionBridgeReadyResolve = resolve;
@@ -240,6 +241,7 @@
       document.body.append(frame);
       window.setTimeout(() => {
         if (!companionBridgeReady && companionBridgeReadyResolve) {
+          document.documentElement.dataset.yaCompanionBridge = 'unavailable';
           companionBridgeReadyResolve(false);
           companionBridgeReadyResolve = null;
         }
@@ -253,6 +255,7 @@
     const data = event.data || {};
     if (data.type === '7ya-companion-bridge-ready') {
       companionBridgeReady = true;
+      document.documentElement.dataset.yaCompanionBridge = 'ready';
       if (companionBridgeReadyResolve) {
         companionBridgeReadyResolve(true);
         companionBridgeReadyResolve = null;
