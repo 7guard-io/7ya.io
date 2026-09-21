@@ -211,6 +211,95 @@
     });
   }
 
+  const companionBridgeOrigin = 'https://697a008fddc309b142.v2.appdeploy.ai';
+  const companionBridgeUrl = companionBridgeOrigin + '/companion-bridge/';
+  let companionBridgeFrame = null;
+  let companionBridgeReady = false;
+  let companionBridgeReadyResolve = null;
+  let companionBridgeReadyPromise = null;
+  const companionBridgePending = new Map();
+
+  function ensureCompanionBridge() {
+    if (companionBridgeReady) return Promise.resolve(true);
+    if (companionBridgeReadyPromise) return companionBridgeReadyPromise;
+    companionBridgeReadyPromise = new Promise((resolve) => {
+      companionBridgeReadyResolve = resolve;
+      const frame = document.createElement('iframe');
+      frame.src = companionBridgeUrl;
+      frame.title = 'Speak with Igor transport';
+      frame.tabIndex = -1;
+      frame.setAttribute('aria-hidden', 'true');
+      frame.style.position = 'fixed';
+      frame.style.width = '1px';
+      frame.style.height = '1px';
+      frame.style.opacity = '0';
+      frame.style.pointerEvents = 'none';
+      frame.style.left = '-9999px';
+      frame.style.bottom = '0';
+      companionBridgeFrame = frame;
+      document.body.append(frame);
+      window.setTimeout(() => {
+        if (!companionBridgeReady && companionBridgeReadyResolve) {
+          companionBridgeReadyResolve(false);
+          companionBridgeReadyResolve = null;
+        }
+      }, 6000);
+    });
+    return companionBridgeReadyPromise;
+  }
+
+  window.addEventListener('message', (event) => {
+    if (event.origin !== companionBridgeOrigin || !companionBridgeFrame || event.source !== companionBridgeFrame.contentWindow) return;
+    const data = event.data || {};
+    if (data.type === '7ya-companion-bridge-ready') {
+      companionBridgeReady = true;
+      if (companionBridgeReadyResolve) {
+        companionBridgeReadyResolve(true);
+        companionBridgeReadyResolve = null;
+      }
+      return;
+    }
+    if (data.type !== '7ya-companion-response' || !data.id) return;
+    const pending = companionBridgePending.get(data.id);
+    if (!pending) return;
+    companionBridgePending.delete(data.id);
+    window.clearTimeout(pending.timer);
+    if (data.ok) pending.resolve(data.data || {});
+    else pending.reject(new Error(data.error || 'companion_unavailable'));
+  });
+
+  async function requestCompanion(payload) {
+    const ready = await ensureCompanionBridge().catch(() => false);
+    if (ready && companionBridgeFrame && companionBridgeFrame.contentWindow) {
+      const id = '7ya-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+      try {
+        return await new Promise((resolve, reject) => {
+          const timer = window.setTimeout(() => {
+            companionBridgePending.delete(id);
+            reject(new Error('companion_bridge_timeout'));
+          }, 28000);
+          companionBridgePending.set(id, { resolve, reject, timer });
+          companionBridgeFrame.contentWindow.postMessage({
+            type: '7ya-companion-request',
+            id,
+            payload
+          }, companionBridgeOrigin);
+        });
+      } catch (bridgeError) {
+        console.warn('Speak with Igor bridge fallback', bridgeError && bridgeError.message ? bridgeError.message : bridgeError);
+      }
+    }
+
+    const response = await fetch('/api/guide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error((data && data.error) || ('HTTP ' + response.status));
+    return data;
+  }
+
   async function ask(text) {
     const message = String(text || '').trim();
     if (busy || !message) return;
@@ -222,26 +311,25 @@
     const waiting = addMessage(c.waiting, 'waiting');
 
     try {
-      const response = await fetch('/api/guide', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message,
-          messages: conversation.slice(-10),
-          state: companionState,
-          locale,
-          path: canonicalPath(),
-          mode: 'guide',
-          experience: 'speak-with-igor'
-        })
+      const data = await requestCompanion({
+        message,
+        messages: conversation.slice(-10),
+        state: companionState,
+        locale,
+        path: canonicalPath(),
+        context: { path: canonicalPath(), source: '7ya-static' },
+        journeyContext: { locale, visitedChapters: [], resonances: [] },
+        mode: 'guide',
+        experience: 'speak-with-igor'
       });
-      const data = await response.json();
-      if (!response.ok) throw new Error((data && data.error) || ('HTTP ' + response.status));
       waiting.remove();
       if (data.state) companionState = data.state;
-      const answer = data.answer || c.noAnswer;
+      const answer = data.reply || data.answer || c.noAnswer;
       addMessage(answer);
-      addLinks(data.links);
+      const actionLinks = Array.isArray(data.actions)
+        ? data.actions.map(action => ({ href: action && action.href, label: action && action.label }))
+        : data.links;
+      addLinks(actionLinks);
       conversation.push({ role: 'assistant', content: answer.slice(0, 1800) });
       while (conversation.length > 10) conversation.shift();
     } catch (error) {
