@@ -24,13 +24,20 @@ One clean route map. Complexity opens only when needed.
 ## Social
 
 - [Instagram — @igor.vepretski](https://www.instagram.com/igor.vepretski/)
-- [Instagram — @vepretski.igor](https://www.instagram.com/vepretski.igor/)
-- [TikTok](https://www.tiktok.com/@igor.vepretski)
-- [YouTube](https://www.youtube.com/@IgorVepretski)
-- [Facebook](https://www.facebook.com/vepretski)
-- [X](https://x.com/igorvepretski)
-- [LinkedIn](https://www.linkedin.com/in/vepretski/)
-- [GitHub](https://github.com/vepretski)
+- [Instagram archive — @vepretski.igor](https://www.instagram.com/vepretski.igor/)
+- [TikTok — @igor.vepretski](https://www.tiktok.com/@igor.vepretski)
+- [YouTube — @IgorVepretski](https://www.youtube.com/@IgorVepretski)
+- [Facebook — /vepretski7](https://www.facebook.com/vepretski7)
+- [LinkedIn — /in/vepretski](https://www.linkedin.com/in/vepretski/)
+- [Telegram — @vepretski](https://t.me/vepretski)
+- [Threads — @igor.vepretski](https://www.threads.net/@igor.vepretski)
+- [X — @igorvepretski](https://x.com/igorvepretski)
+- [Spotify — Ido Vepretski](https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u)
+- [Apple Music — Ido Vepretski](https://music.apple.com/artist/ido-vepretski/1527248864)
+- [GitHub — @vepretski](https://github.com/vepretski)
+- [Medium — @igor.vepretski](https://medium.com/@igor.vepretski)
+- [Academia — Igor Vepretski](https://igorvepretski.academia.edu/)
+- [Linktree — igor.vepretski](https://linktr.ee/igor.vepretski)
 
 ## Rule
 
