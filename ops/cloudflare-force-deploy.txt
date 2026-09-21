@@ -54,3 +54,6 @@ reason: direct Cloudflare Git integration retrigger after locale acceptance gate
 cloudflare-git-retrigger-final: 2026-09-21T11:45:00+03:00
 source_head_before_trigger: 57afa4cf30d2afbdb133b6f0c706b6573ae6cfea
 reason: final clean production gate — Speak with Igor API/aliases + humanized Influence labels + locale validation
+cloudflare-git-retrigger: 2026-09-21T12:05:00+03:00
+source_head_before_trigger: b3ed5c608d434d665789764c5e83c4178b530b38
+reason: publish build-clean accessibility + health + Speak with Igor provider diagnostics from current main
