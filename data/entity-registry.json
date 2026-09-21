@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-21-entity-v4",
+  "version": "2026-09-21-entity-v5",
   "canonicalBundle": "Igor Vepretski | #7YA | Founder of StartOn",
   "descriptors": {
     "en": "Systems builder connecting youth opportunity, civic power, public media and digital culture.",
@@ -39,7 +39,12 @@
       "https://github.com/vepretski",
       "https://medium.com/@igor.vepretski",
       "https://igorvepretski.academia.edu/",
-      "https://linktr.ee/igor.vepretski"
+      "https://linktr.ee/igor.vepretski",
+      "https://t.me/Vepretski_bot",
+      "https://soundcloud.com/igor-kanevski",
+      "https://slaps.com/igor_vepretski",
+      "https://about.me/vepretski",
+      "https://gravatar.com/igorvepretski"
     ]
   },
   "organization": {
