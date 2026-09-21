@@ -82,6 +82,31 @@ for (const locale of ['he',...locales]) {
   if(!html.includes(`${labels[locale]} / ${buildDate}`)) failures.push(`${locale}: homepage freshness marker is not ${buildDate}`);
 }
 
+
+const humanFirstHomepageContract={
+  en:{
+    required:['My personal site · live and evolving','START HERE · choose your path','A metric is not an outcome.'],
+    forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
+  },
+  ru:{
+    required:['Мой личный сайт · живой и обновляемый','НАЧНИТЕ ЗДЕСЬ · выберите свой маршрут','Метрика — не результат.'],
+    forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
+  },
+  ar:{
+    required:['موقعي الشخصي · حيّ ومتجدد','ابدأ من هنا · اختر مسارك','المقياس ليس نتيجة.'],
+    forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
+  }
+};
+for(const locale of locales){
+  const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
+  for(const marker of humanFirstHomepageContract[locale].required){
+    if(!html.includes(marker)) failures.push(locale+': human-first homepage marker missing -> '+marker);
+  }
+  for(const marker of humanFirstHomepageContract[locale].forbidden){
+    if(html.includes(marker)) failures.push(locale+': untranslated human-first homepage copy -> '+marker);
+  }
+}
+
 const redirects=await fs.readFile(path.join(dist,'_redirects'),'utf8');
 if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influence\/\s+301$/m.test(redirects)) {
   failures.push('legacy /feed redirect is missing');
