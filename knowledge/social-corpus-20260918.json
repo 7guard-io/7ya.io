@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T18:57:00+03:00",
-  "purpose": "Curated personal social-life and public-impact stream for 7YA. Sources stay platform-native; Facebook and Instagram resonance are surfaced with source-bound counters.",
+  "generated_at": "2026-09-21T13:50:00+03:00",
+  "purpose": "Canonical public social/digital identity registry plus curated personal social-life and public-impact stream for 7YA. Public profile URLs remain platform-native; live metrics stay source-bound.",
   "curation_principles": [
     "person_before_platform",
     "real_source_media",
@@ -14,6 +14,11 @@
       "name": "Instagram",
       "url": "https://www.instagram.com/igor.vepretski/",
       "handle": "@igor.vepretski"
+    },
+    {
+      "name": "Instagram · Archive",
+      "url": "https://www.instagram.com/vepretski.igor/",
+      "handle": "@vepretski.igor"
     },
     {
       "name": "TikTok",
@@ -49,6 +54,36 @@
       "name": "X",
       "url": "https://x.com/igorvepretski",
       "handle": "@igorvepretski"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+      "handle": "Ido Vepretski"
+    },
+    {
+      "name": "Apple Music",
+      "url": "https://music.apple.com/artist/ido-vepretski/1527248864",
+      "handle": "Ido Vepretski"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/vepretski",
+      "handle": "@vepretski"
+    },
+    {
+      "name": "Medium",
+      "url": "https://medium.com/@igor.vepretski",
+      "handle": "@igor.vepretski"
+    },
+    {
+      "name": "Academia",
+      "url": "https://igorvepretski.academia.edu/",
+      "handle": "Igor Vepretski"
+    },
+    {
+      "name": "Linktree",
+      "url": "https://linktr.ee/igor.vepretski",
+      "handle": "igor.vepretski"
     }
   ],
   "moments": [
