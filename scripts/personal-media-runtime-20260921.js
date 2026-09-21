@@ -196,7 +196,7 @@
   const scheduleScan=node=>{
     if(queued)return;
     queued=true;
-    requestAnimationFrame(()=>{queued=false;scan(node?.nodeType===1?node:document)});
+    requestAnimationFrame(()=>{queued=false;scan(document)});
   };
 
   const start=()=>{
