@@ -57,3 +57,6 @@ reason: final clean production gate — Speak with Igor API/aliases + humanized 
 cloudflare-git-retrigger: 2026-09-21T12:05:00+03:00
 source_head_before_trigger: b3ed5c608d434d665789764c5e83c4178b530b38
 reason: publish build-clean accessibility + health + Speak with Igor provider diagnostics from current main
+cloudflare-git-retrigger: 2026-09-21T12:12:00+03:00
+source_head_before_trigger: 2ca4c754dc2022c133892dfefae41d9040e5089d
+reason: publish NVIDIA-first Speak with Igor Cloudflare function and verify provider readiness
