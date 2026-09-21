@@ -295,5 +295,6 @@
   });
 
   updateQuickPrompts();
+  if (/^\/chat\/?$/.test(canonicalPath())) setOpen(true);
   loadHomeUniverse();
 })();

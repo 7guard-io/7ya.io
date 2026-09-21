@@ -41,6 +41,7 @@ const routeNames = {
   ledger: {he:'מאגר',en:'Ledger',ru:'Реестр',ar:'السجل'},
   '7ya': {he:'7YA',en:'7YA',ru:'7YA',ar:'7YA'},
   talk: {he:'שיחה',en:'Talk',ru:'Разговор',ar:'حوار'},
+  chat: {he:'דברו עם איגור',en:'Speak with Igor',ru:'Поговорить с Игорем',ar:'تحدّث مع إيغور'},
   'response-ai': {he:'Response AI',en:'Response AI',ru:'Response AI',ar:'Response AI'},
   entity: {he:'זהות',en:'Identity',ru:'Идентичность',ar:'الهوية'},
   go: {he:'קישורים',en:'Links',ru:'Ссылки',ar:'الروابط'},

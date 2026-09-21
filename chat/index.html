@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-7ya-locale="he">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Speak with Igor · 7YA</title>
+  <meta name="description" content="Speak with Igor — a multilingual 7YA conversation that helps turn what matters to you into a clearer next move.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#050608">
+  <link rel="canonical" href="https://7ya.io/chat/">
+  <link rel="alternate" hreflang="he" href="https://7ya.io/chat/">
+  <link rel="alternate" hreflang="en" href="https://7ya.io/en/chat/">
+  <link rel="alternate" hreflang="ru" href="https://7ya.io/ru/chat/">
+  <link rel="alternate" hreflang="ar" href="https://7ya.io/ar/chat/">
+  <link rel="alternate" hreflang="x-default" href="https://7ya.io/chat/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#050608;color:#f4f3ee}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100svh;background:radial-gradient(circle at 50% 12%,rgba(140,255,0,.09),transparent 28rem),#050608}
+    main{min-height:100svh;display:grid;place-items:center;padding:clamp(2rem,8vw,7rem)}
+    .chat-entry{max-width:52rem;text-align:center}
+    .chat-entry small{display:block;letter-spacing:.18em;text-transform:uppercase;opacity:.62}
+    .chat-entry h1{margin:.8rem 0 .6rem;font-size:clamp(2.7rem,10vw,7rem);line-height:.92;letter-spacing:-.06em}
+    .chat-entry p{max-width:42rem;margin:0 auto;font-size:clamp(1rem,2.5vw,1.3rem);line-height:1.65;opacity:.76}
+    .chat-entry a{display:inline-block;margin-top:1.4rem;color:#8cff00;text-decoration:none;font-weight:800}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="chat-entry" aria-labelledby="chat-title">
+      <small>IGOR VEPRETSKI · 7YA</small>
+      <h1 id="chat-title">Speak with Igor</h1>
+      <p id="chat-lead">Conversation · direction · action.</p>
+      <a href="/">7YA.IO</a>
+    </section>
+  </main>
+  <script>
+    (() => {
+      const raw = String(document.documentElement.lang || 'he').toLowerCase();
+      const locale = /^ru/.test(raw) ? 'ru' : /^ar/.test(raw) ? 'ar' : /^en/.test(raw) ? 'en' : 'he';
+      const copy = {
+        he: ['דברו עם איגור','שיחה · כיוון · פעולה'],
+        en: ['Speak with Igor','Conversation · direction · action'],
+        ru: ['Поговорить с Игорем','Разговор · направление · действие'],
+        ar: ['تحدّث مع إيغور','حوار · اتجاه · فعل']
+      }[locale];
+      document.querySelector('#chat-title').textContent = copy[0];
+      document.querySelector('#chat-lead').textContent = copy[1];
+    })();
+  </script>
+</body>
+</html>
