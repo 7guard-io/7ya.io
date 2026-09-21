@@ -45,7 +45,8 @@ for (const locale of locales) {
   const root=path.join(dist,locale);
   for (const file of await htmlFiles(root)) {
     const html=await fs.readFile(file,'utf8');
-    const attrValues=[...html.matchAll(/\b(?:aria-label|title|placeholder|alt)=(["'])(.*?)\1/gi)].map(match=>match[2].trim());
+    const markupOnly=html.replace(/<(script|style|template)\b[\s\S]*?<\/\1>/gi,'');
+    const attrValues=[...markupOnly.matchAll(/\b(?:aria-label|title|placeholder|alt)=(["'])(.*?)\1/gi)].map(match=>match[2].trim());
     const leaked=[...new Set(attrValues.filter(text=>/[\u0590-\u05ff]/u.test(text)&&text!=='עברית'))];
     if(leaked.length){
       const relative=path.relative(dist,file).split(path.sep).join('/');
