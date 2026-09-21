@@ -154,6 +154,23 @@ for (const relative of artifactFiles.filter(file => file.endsWith('.html') && fi
   if (!html.includes('rel="manifest"')) fail(`${relative} missing web manifest link`);
   if (!html.includes('rel="apple-touch-icon"')) fail(`${relative} missing apple touch icon link`);
   if (!html.includes('apple-mobile-web-app-title')) fail(`${relative} missing iOS app title metadata`);
+  if (!html.includes('data-7ya-personal-media="20260921"')) fail(`${relative} missing personal media runtime stylesheet`);
+  if (!html.includes('personal-media-runtime-20260921.js')) fail(`${relative} missing personal media runtime script`);
+}
+
+const forbiddenPlaceholderHosts = [
+  'via.placeholder.com',
+  'placeholder.com',
+  'placehold.co',
+  'dummyimage.com',
+  'picsum.photos',
+  'loremflickr.com'
+];
+for (const relative of artifactFiles.filter(file => file.endsWith('.html') || file.endsWith('.js') || file.endsWith('.css'))) {
+  const body = await fs.readFile(path.join(output, relative), 'utf8');
+  for (const host of forbiddenPlaceholderHosts) {
+    if (body.includes(host)) fail(`${relative} references placeholder media host ${host}`);
+  }
 }
 
 const homepageHtml = await fs.readFile(path.join(output, 'index.html'), 'utf8');
