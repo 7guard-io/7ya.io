@@ -2875,18 +2875,24 @@ function localizedInternalPath(value, locale) {
 
 function rewriteSameHostReferences(html, locale, originalRoute) {
   if (locale==='he') return html;
-  const pageBase='https://7ya.io/'+(originalRoute?originalRoute.replace(/^\/+|\/+$/g,'')+'/':'');
-  let next=html.replace(/\b(href|src|action)=(["'])([^"']+)\2/gi,(match,attr,quote,ref)=>{
+  const pageBase='https://7ya.io/'+(originalRoute?originalRoute.replace(/^\\/+|\\/+$/g,'')+'/':'');
+  const preservedLocaleBlocks=[];
+  let working=html.replace(/<span\\b[^>]*class=["'][^"']*\\btopbar-langs\\b[^"']*["'][^>]*>[\\s\\S]*?<\\/span>/gi,block=>{
+    const token='__7YA_PRESERVED_LOCALE_BLOCK_'+preservedLocaleBlocks.length+'__';
+    preservedLocaleBlocks.push(block);
+    return token;
+  });
+  let next=working.replace(/\\b(href|src|action)=(["'])([^"']+)\\2/gi,(match,attr,quote,ref)=>{
     if (!ref || ref.startsWith('#') || /^(mailto:|tel:|javascript:|data:)/i.test(ref)) return match;
     let url; try{url=new URL(ref,pageBase)}catch{return match}
     if (url.hostname!=='7ya.io') return match;
     return attr+'='+quote+localizedInternalPath(url.href,locale)+quote;
   });
-  next=next.replace(/(<meta\b[^>]*http-equiv=["']refresh["'][^>]*content=["'][^"']*?url=)([^"' >]+)([^"']*["'][^>]*>)/gi,
+  next=next.replace(/(<meta\\b[^>]*http-equiv=["']refresh["'][^>]*content=["'][^"']*?url=)([^"' >]+)([^"']*["'][^>]*>)/gi,
     (_match,before,target,after)=>before+localizedInternalPath(target,locale)+after);
-  next=next.replace(/location\.replace\((["'])(\/[^"']*)\1\s*\+\s*location\.search\s*\+\s*location\.hash\)/g,
+  next=next.replace(/location\\.replace\\((["'])(\\/[^"']*)\\1\\s*\\+\\s*location\\.search\\s*\\+\\s*location\\.hash\\)/g,
     (_match,quote,target)=>'location.replace('+quote+localizedInternalPath(target,locale)+quote+'+location.search+location.hash)');
-  return next;
+  return next.replace(/__7YA_PRESERVED_LOCALE_BLOCK_(\\d+)__/g,(_match,index)=>preservedLocaleBlocks[Number(index)]||'');
 }
 function accessibleAttributeFallback(value, locale) {
   const core=String(value||'').trim();
