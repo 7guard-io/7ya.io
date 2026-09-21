@@ -23,7 +23,10 @@ for (const locale of locales) {
     const file=path.join(dist,locale,route,'index.html');
     const html=await fs.readFile(file,'utf8');
     const leaked=[...new Set(strip(html).filter(text=>/[\u0590-\u05ff]/u.test(text)&&!allowedHebrew.has(text)))];
+    const attrValues=[...html.matchAll(/\b(?:aria-label|title|placeholder|alt)=(["'])(.*?)\1/gi)].map(match=>match[2].trim());
+    const leakedAttrs=[...new Set(attrValues.filter(text=>/[\u0590-\u05ff]/u.test(text)&&!allowedHebrew.has(text)))];
     if(leaked.length) failures.push(`${locale}/${route}: Hebrew leakage -> ${leaked.slice(0,12).join(' | ')}`);
+    if(leakedAttrs.length) failures.push(`${locale}/${route}: Hebrew accessibility attribute leakage -> ${leakedAttrs.slice(0,12).join(' | ')}`);
   }
 }
 
