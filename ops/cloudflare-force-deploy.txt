@@ -70,3 +70,7 @@ reason: publish AppDeploy client bridge + root-query ingress + bridge handshake 
 cloudflare-git-retrigger: 2026-09-21T14:25:00+03:00
 source_head_before_trigger: aa444bc73a11ab2be541f7b3be62fc15ed524549
 reason: publish complete canonical social integration after build-guard repair; 20 verified public surfaces + unified registry + /go/ + identity + influence
+
+cloudflare-git-retrigger: 2026-09-21T14:39:00+03:00
+source_head_before_trigger: d7df28062aa0557d30920cfdbf764b64d4b57b50
+reason: premium visitor-facing release — visual cohesion, mobile polish, clean public copy, canonical social surfaces, full go localization, mixed-script corruption guard
