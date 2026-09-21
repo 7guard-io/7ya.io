@@ -24,7 +24,7 @@ const controlScriptTag = '<script src="/scripts/7ya-control-layer-20260726.js" d
 
 
 const personalMediaStyleTag = '<link rel="stylesheet" href="/styles/personal-media-runtime-20260921.css?v=1" data-7ya-personal-media="20260921">';
-const personalMediaScriptTag = '<script src="/scripts/personal-media-runtime-20260921.js?v=1" data-7ya-personal-media="20260921" defer></script>';
+const personalMediaScriptTag = '<script src="/scripts/personal-media-runtime-20260921.js?v=2" data-7ya-personal-media="20260921" defer></script>';
 const siteImpactStyleTag = '<link rel="stylesheet" href="/styles/site-impact-layer-20260918.css?v=4" data-7ya-impact-layer="20260918">';
 const siteImpactScriptTag = '<script src="/scripts/site-impact-layer-20260918.js?v=3" data-7ya-impact-layer="20260918" defer></script>';
 const siteHumanNavMarkup = `<nav class="seven-human-nav" data-seven-human-nav aria-label="ניווט אחיד ב־7YA">
