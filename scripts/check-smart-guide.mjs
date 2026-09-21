@@ -56,8 +56,8 @@ forbidText('widget', 'innerHTML', 'public guide must not render model output thr
 requireText('style', '@media(max-width:620px)', 'mobile layout contract missing');
 requireText('style', 'prefers-reduced-motion', 'reduced-motion contract missing');
 requireText('build', 'enhancePublicHtml', 'artifact-wide guide injection missing');
-requireText('build', 'v=20260920-speak1', 'chat runtime cache-bust missing from artifact build');
-requireText('serviceWorker', '7ya-shell-20260920-speak1', 'stale chat service-worker cache invalidation missing');
+requireText('build', 'v=20260920-speak2', 'chat runtime cache-bust missing from artifact build');
+requireText('serviceWorker', '7ya-shell-20260920-speak2', 'stale chat service-worker cache invalidation missing');
 requireText('proxy', 'enhanceHtml', 'edge-wide guide injection missing');
 requireText('contract', "'7ya-signal-key-20260715.css'", 'guide stylesheet absent from site contract');
 requireText('contract', "'7ya-signal-key-20260715.js'", 'guide script absent from site contract');
