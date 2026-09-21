@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-21T13:50:00+03:00",
+  "generated_at": "2026-09-21T14:08:00+03:00",
   "purpose": "Canonical public social/digital identity registry plus curated personal social-life and public-impact stream for 7YA. Public profile URLs remain platform-native; live metrics stay source-bound.",
   "curation_principles": [
     "person_before_platform",
@@ -84,6 +84,31 @@
       "name": "Linktree",
       "url": "https://linktr.ee/igor.vepretski",
       "handle": "igor.vepretski"
+    },
+    {
+      "name": "Telegram Bot",
+      "url": "https://t.me/Vepretski_bot",
+      "handle": "@Vepretski_bot"
+    },
+    {
+      "name": "SoundCloud",
+      "url": "https://soundcloud.com/igor-kanevski",
+      "handle": "igor vepretski"
+    },
+    {
+      "name": "Slaps",
+      "url": "https://slaps.com/igor_vepretski",
+      "handle": "@igor_vepretski"
+    },
+    {
+      "name": "about.me",
+      "url": "https://about.me/vepretski",
+      "handle": "Igor Vepretski"
+    },
+    {
+      "name": "Gravatar",
+      "url": "https://gravatar.com/igorvepretski",
+      "handle": "igorvepretski"
     }
   ],
   "moments": [
