@@ -289,6 +289,20 @@ await fs.writeFile(
   'utf8',
 );
 
+await fs.mkdir(path.join(output, 'api', 'health'), { recursive: true });
+await fs.writeFile(
+  path.join(output, 'api', 'health', 'index.html'),
+  JSON.stringify({
+    status: 'ok',
+    service: '7ya-frontend',
+    mode: 'canonical-static',
+    provider: 'cloudflare-pages',
+    source: '7guard-io/7ya.io@main',
+    updated: deploymentMeta.build_date_jerusalem,
+  }),
+  'utf8',
+);
+
 const artifactFiles = await walk(output);
 const hashes = {};
 for (const file of artifactFiles) {
