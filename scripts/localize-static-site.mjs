@@ -15,7 +15,9 @@ const buildDateIso = `${buildDateParts.year}-${buildDateParts.month}-${buildDate
 const buildNowLabel = { he:'עכשיו', en:'NOW', ru:'СЕЙЧАС', ar:'الآن' };
 function stampBuildDate(html, locale) {
   const label = buildNowLabel[locale] || buildNowLabel.he;
-  return html.replace(/(?:עכשיו|Now|NOW|СЕЙЧАС|الآن)\s*\/\s*(?:BUILD_DATE|\d{2}\.\d{2}\.\d{4})/g, `${label} / ${buildDate}`);
+  return html
+    .replace(/(?:עכשיו|Now|NOW|СЕЙЧАС|الآن)\s*\/\s*(?:BUILD_DATE|\d{2}\.\d{2}\.\d{4})/g, `${label} / ${buildDate}`)
+    .replace(/\bBUILD_DATE\b/g, buildDate);
 }
 
 const routeNames = {
