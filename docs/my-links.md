@@ -38,6 +38,11 @@ One clean route map. Complexity opens only when needed.
 - [Medium — @igor.vepretski](https://medium.com/@igor.vepretski)
 - [Academia — Igor Vepretski](https://igorvepretski.academia.edu/)
 - [Linktree — igor.vepretski](https://linktr.ee/igor.vepretski)
+- [Telegram Bot — @Vepretski_bot](https://t.me/Vepretski_bot)
+- [SoundCloud — igor vepretski](https://soundcloud.com/igor-kanevski)
+- [Slaps — @igor_vepretski](https://slaps.com/igor_vepretski)
+- [about.me — Igor Vepretski](https://about.me/vepretski)
+- [Gravatar — igorvepretski](https://gravatar.com/igorvepretski)
 
 ## Rule
 
