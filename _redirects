@@ -1,5 +1,6 @@
 # 7YA canonical Cloudflare Pages routing.
 # Static artifact is authoritative; no production proxy fallback to AppDeploy.
+# Route contract refresh: 2026-09-21 dedicated Speak with Igor pages.
 /api/health /api/health/index.html 200
 /api/feed /api/feed.json 301
 /feed /influence/ 301
