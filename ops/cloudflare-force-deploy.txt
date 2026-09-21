@@ -60,3 +60,6 @@ reason: publish build-clean accessibility + health + Speak with Igor provider di
 cloudflare-git-retrigger: 2026-09-21T12:12:00+03:00
 source_head_before_trigger: 2ca4c754dc2022c133892dfefae41d9040e5089d
 reason: publish NVIDIA-first Speak with Igor Cloudflare function and verify provider readiness
+cloudflare-git-retrigger: 2026-09-21T12:18:00+03:00
+source_head_before_trigger: d07d607a690f30a4b5c12cc2c854999a6bbf259f
+reason: publish AppDeploy embed capability probe for Speak with Igor recovery path
