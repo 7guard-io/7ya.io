@@ -55,12 +55,7 @@ for (const locale of locales) {
   }
 }
 
-const mixedScriptToken = token => {
-  const hasHebrew=/[\u0590-\u05ff]/u.test(token);
-  const hasLatin=/[A-Za-z]/u.test(token);
-  const hasCyrillic=/[\u0400-\u04ff]/u.test(token);
-  return hasHebrew && (hasLatin || hasCyrillic);
-};
+const mixedScriptToken = token => /(?:[A-Za-z][\u0590-\u05ff]|[\u0590-\u05ff][A-Za-z]|[\u0400-\u04ff][\u0590-\u05ff]|[\u0590-\u05ff][\u0400-\u04ff])/u.test(token);
 for (const locale of locales) {
   const root=path.join(dist,locale);
   for (const file of await htmlFiles(root)) {
