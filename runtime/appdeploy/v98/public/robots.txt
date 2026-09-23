@@ -1,0 +1,23 @@
+# 7YA.IO crawler policy — official public site of Igor Vepretski and #7YA
+# Public content may be used for search, retrieval, grounding and citation; model training is not granted.
+User-agent: meta-externalagent
+Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference
+Allow: /
+
+User-agent: meta-externalfetcher
+Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference
+Allow: /
+
+User-agent: FacebookBot
+Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference
+Allow: /
+
+User-agent: facebookexternalhit
+Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference
+Allow: /
+
+User-agent: *
+Content-signal: search=yes, ai-input=yes, ai-train=no, use=reference
+Allow: /
+
+Sitemap: https://7ya.io/sitemap.xml

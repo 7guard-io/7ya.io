@@ -1,0 +1,246 @@
+{
+  "version": "7ya-evidence-wall-20260804-1",
+  "recordCount": 24,
+  "records": [
+    {
+      "id": "press-2011-origin",
+      "date": "2011",
+      "title": "כנגד כל הסיכויים — רשומת העיתונות המוקדמת",
+      "category": "ביוגרפיה ציבורית",
+      "status": "VERIFIED",
+      "source": "מקור ראשון / NRG",
+      "url": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "note": "רשומת עיתונות חיצונית המתעדת את הסיפור הציבורי המוקדם."
+    },
+    {
+      "id": "starton-mynet-2022",
+      "date": "2022-05-13",
+      "title": "חוזר לשכונה כדי לבנות מרכז לנוער",
+      "category": "StartOn",
+      "status": "VERIFIED",
+      "source": "mynet חולון",
+      "url": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "note": "כתבת מקור חיצונית על החזרה לג׳סי כהן וחזון StartOn."
+    },
+    {
+      "id": "starton-channel14-2022",
+      "date": "2022",
+      "title": "משירות בכוחות הביטחון למרכז לנוער",
+      "category": "StartOn",
+      "status": "VERIFIED",
+      "source": "ערוץ 14 / YouTube",
+      "url": "https://youtu.be/O3v309CA4ao",
+      "note": "ראיון וידאו ציבורי על המעבר משירות ציבורי לשליחות חברתית."
+    },
+    {
+      "id": "starton-openingday-2022",
+      "date": "2022",
+      "title": "פרויקט חלל אינטראקטיבי לנוער בסיכון",
+      "category": "StartOn",
+      "status": "VERIFIED",
+      "source": "פותחים יום / YouTube",
+      "url": "https://www.youtube.com/watch?v=SOpAglwkJ8I",
+      "note": "ראיון ציבורי על המודל הפיזי, הטכנולוגיה והקהילה."
+    },
+    {
+      "id": "starton-channel13-2022",
+      "date": "2022-05-22",
+      "title": "קצין משטרה עזב כדי לבנות התחלה חדשה",
+      "category": "StartOn",
+      "status": "DOCUMENTED",
+      "source": "חדשות 13",
+      "url": "https://prod.13tv.co.il/item/news/haolam-haboker/season-01/clips/u0uoy-903061791/?pid=44",
+      "note": "עמוד תוכן ציבורי של גוף תקשורת."
+    },
+    {
+      "id": "zman-author",
+      "date": "2022",
+      "title": "עמוד הכותב של איגור ופרצקי",
+      "category": "כתיבה",
+      "status": "VERIFIED",
+      "source": "זמן ישראל",
+      "url": "https://www.zman.co.il/writer/20815/",
+      "note": "עמוד מחבר ציבורי המרכז טורים חתומים."
+    },
+    {
+      "id": "zman-tiktok-parenting",
+      "date": "2022-11-10",
+      "title": "לבן שלי אין טיקטוק!",
+      "category": "כתיבה",
+      "status": "VERIFIED",
+      "source": "זמן ישראל",
+      "url": "https://www.zman.co.il/350569/",
+      "note": "טור חתום על הורות, פחד ושייכות דיגיטלית."
+    },
+    {
+      "id": "zman-rules-changed",
+      "date": "2022-11-27",
+      "title": "כללי המשחק השתנו — חינוך בעידן המודרני",
+      "category": "כתיבה",
+      "status": "VERIFIED",
+      "source": "זמן ישראל",
+      "url": "https://www.zman.co.il/352289/",
+      "note": "טור חתום על חינוך והעולם הדיגיטלי."
+    },
+    {
+      "id": "fatherhood-hidabroot",
+      "date": "2023",
+      "title": "אבא מושלם — זה אבא ששם",
+      "category": "השפעה ציבורית",
+      "status": "VERIFIED",
+      "source": "הידברות",
+      "url": "https://www.hidabroot.org/article/1179015",
+      "note": "כתבה חיצונית על פוסט אבהות שזכה להפצה ציבורית."
+    },
+    {
+      "id": "elder-fraud-channel13",
+      "date": "2023",
+      "title": "פוסט אישי הופך למאבק בהונאות קשישים",
+      "category": "אחריות אזרחית",
+      "status": "VERIFIED",
+      "source": "חדשות 13 / YouTube",
+      "url": "https://www.youtube.com/watch?v=AE5hDzLM5XU",
+      "note": "ראיון וידאו ציבורי על הונאה והתגובה המוסדית."
+    },
+    {
+      "id": "elder-fraud-followup",
+      "date": "2023",
+      "title": "ראיון המשך על הונאת קשישים",
+      "category": "אחריות אזרחית",
+      "status": "VERIFIED",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=3XxoBtSL2pg",
+      "note": "וידאו ציבורי נוסף בשרשרת התיעוד."
+    },
+    {
+      "id": "mindset-102",
+      "date": "2022-09-20",
+      "title": "מנער בסיכון ליזם חברתי",
+      "category": "פודקאסט",
+      "status": "VERIFIED",
+      "source": "Mindset",
+      "url": "https://mindset.org.il/%D7%9E%D7%A0%D7%A2%D7%A8-%D7%91%D7%A1%D7%99%D7%9B%D7%95%D7%9F-%D7%9C%D7%99%D7%96%D7%9D-%D7%97%D7%91%D7%A8%D7%AA%D7%99-%D7%90%D7%99%D7%92%D7%95%D7%A8-%D7%95%D7%A4%D7%A8%D7%A6%D7%A7%D7%99-%D7%A4/",
+      "note": "עמוד פרק ציבורי של המפרסם."
+    },
+    {
+      "id": "mindset-spotify",
+      "date": "2022-09-20",
+      "title": "מנער בסיכון ליזם חברתי — הפצת אודיו",
+      "category": "פודקאסט",
+      "status": "DOCUMENTED",
+      "source": "Spotify",
+      "url": "https://open.spotify.com/episode/0t2lzatmzK8RJP5B88sOUw",
+      "note": "גרסת הפצה ציבורית של פרק הפודקאסט."
+    },
+    {
+      "id": "moving-minds-18",
+      "date": "2024-01-23",
+      "title": "מנוער בסיכון למנהיגות מעוררת השראה",
+      "category": "פודקאסט",
+      "status": "VERIFIED",
+      "source": "מוחות בתנועה / Podtail",
+      "url": "https://podtail.com/podcast/092cc570/--18/",
+      "note": "עמוד פרק ציבורי עם פרטי התוכנית."
+    },
+    {
+      "id": "youth-crisis-podcast",
+      "date": "2023",
+      "title": "אם לנו קשה, מה עובר על נוער בסיכון",
+      "category": "פודקאסט",
+      "status": "VERIFIED",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=U2d_hulZAC0",
+      "note": "שיחה ציבורית על נוער, משבר ותקווה מעשית."
+    },
+    {
+      "id": "nova-conversation",
+      "date": "2024",
+      "title": "מהבריחה מפסטיבל הנובה להתפכחות",
+      "category": "פודקאסט",
+      "status": "VERIFIED",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/watch?v=3h-oEuW8GJI",
+      "note": "שיחה ארוכה ופומבית על שבר, זהות ואחריות."
+    },
+    {
+      "id": "youtube-channel",
+      "date": "2026-06-08",
+      "title": "ערוץ הווידאו הציבורי של איגור ופרצקי",
+      "category": "וידאו",
+      "status": "DATED SNAPSHOT",
+      "source": "YouTube",
+      "url": "https://www.youtube.com/channel/UCyxk2AupRjm7KQ5EeWrV1Fw",
+      "note": "פרופיל ציבורי; נתוני היקף באתר מוצגים בצילום מצב מתוארך."
+    },
+    {
+      "id": "wikimedia-portrait",
+      "date": "2024-07-20",
+      "title": "דיוקן ציבורי פתוח של איגור ופרצקי",
+      "category": "זהות",
+      "status": "VERIFIED",
+      "source": "Wikimedia Commons",
+      "url": "https://commons.wikimedia.org/wiki/File:Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png",
+      "note": "נכס זיהוי ציבורי ברישיון CC0 לפי עמוד המקור."
+    },
+    {
+      "id": "medium-journey",
+      "date": "2024",
+      "title": "From Troubled Beginnings to Social Impact",
+      "category": "כתיבה",
+      "status": "PUBLIC PROFILE",
+      "source": "Medium",
+      "url": "https://medium.com/@igor.vepretski/igor-vepretski-from-troubled-beginnings-to-social-impact-a-journey-of-resilience-and-purpose-253aa8af266d",
+      "note": "מאמר מחבר ציבורי באנגלית."
+    },
+    {
+      "id": "academia-profile",
+      "date": "2026",
+      "title": "ספריית המחקר העצמאית",
+      "category": "מחקר",
+      "status": "PUBLIC PROFILE",
+      "source": "Academia.edu",
+      "url": "https://igorvepretski.academia.edu/",
+      "note": "פרופיל מחקר ציבורי; אינו מוצג כהוכחת ביקורת עמיתים."
+    },
+    {
+      "id": "spotify-artist",
+      "date": "2026",
+      "title": "Ido Vepretski — קטלוג מוזיקה",
+      "category": "מוזיקה",
+      "status": "PUBLIC PROFILE",
+      "source": "Spotify",
+      "url": "https://open.spotify.com/artist/0fgRoQ6PoCHlVCIr8a5d6u",
+      "note": "עמוד אמן ציבורי."
+    },
+    {
+      "id": "apple-music-artist",
+      "date": "2026",
+      "title": "Ido Vepretski — קטלוג Apple Music",
+      "category": "מוזיקה",
+      "status": "PUBLIC PROFILE",
+      "source": "Apple Music",
+      "url": "https://music.apple.com/il/artist/ido-vepretski/1527248864?l=he",
+      "note": "עמוד אמן ציבורי."
+    },
+    {
+      "id": "tiktok-current-export",
+      "date": "2026-06-02",
+      "title": "@igor.vepretski — מנוע הפרסום הנוכחי",
+      "category": "רשתות",
+      "status": "DATED EXPORT",
+      "source": "TikTok",
+      "url": "https://www.tiktok.com/@igor.vepretski",
+      "note": "פרופיל ציבורי המחובר לייצוא בעלים מתוארך; מספרים אינם מוצגים כנתון חי."
+    },
+    {
+      "id": "linkedin-profile-snapshot",
+      "date": "2026-06-08",
+      "title": "הנוכחות המקצועית של איגור ופרצקי",
+      "category": "מקצועי",
+      "status": "DATED SNAPSHOT",
+      "source": "LinkedIn",
+      "url": "https://www.linkedin.com/in/vepretski/",
+      "note": "פרופיל ציבורי וצילום מצב מתוארך של פעילות מקצועית."
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+import type {ReactNode} from 'react';
+type Tone='dark'|'paper'|'clear'|'accent';type Layout='editorial'|'split'|'full'|'proof';
+export default function VisualSection({tone='clear',layout='editorial',className='',children}:{tone?:Tone;layout?:Layout;className?:string;children:ReactNode}){return <section className={'v2-section '+className} data-tone={tone} data-layout={layout}><div className='v2-section-inner'>{children}</div></section>}

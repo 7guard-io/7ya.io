@@ -1,0 +1,1 @@
+{"status":"ok","service":"7ya-independent","provider":"appdeploy","release":"7ya-media-corpus-20260814-1","build":"7ya-media-corpus-20260814-1","environment":"production","static_fallback":true,"note":"Use the live backend /api/health response as authoritative proof."}

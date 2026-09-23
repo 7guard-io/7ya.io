@@ -1,0 +1,52 @@
+{
+  "version": "2026-08-06",
+  "canonicalAnswer": {
+    "officialWebsite": "https://7ya.io/",
+    "personPage": "https://7ya.io/igor-vepretski/",
+    "entityPage": "https://7ya.io/entity/"
+  },
+  "person": {
+    "@id": "https://7ya.io/#igor",
+    "name": "Igor Vepretski",
+    "alternateName": [
+      "איגור ופרצקי",
+      "Игорь Вепрецкий",
+      "Ido Vepretski",
+      "Igor Ido Vepretski",
+      "עידו ופרצקי"
+    ],
+    "description": "Founder of StartOn and builder of 7YA.",
+    "sameAs": [
+      "https://www.instagram.com/igor.vepretski/",
+      "https://www.tiktok.com/@igor.vepretski",
+      "https://www.youtube.com/@IgorVepretski",
+      "https://www.facebook.com/vepretski",
+      "https://x.com/igorvepretski",
+      "https://www.linkedin.com/in/vepretski/",
+      "https://github.com/vepretski",
+      "https://igorvepretski.academia.edu/"
+    ]
+  },
+  "website": {
+    "@id": "https://7ya.io/#website",
+    "name": "7YA.IO",
+    "alternateName": [
+      "7YA",
+      "#7YA",
+      "Igor Vepretski official website"
+    ]
+  },
+  "organization": {
+    "@id": "https://starton.org.il/#organization",
+    "name": "StartOn",
+    "url": "https://starton.org.il/",
+    "founder": {
+      "@id": "https://7ya.io/#igor"
+    }
+  },
+  "disambiguation": [
+    "Not the unrelated music track named 7ya.",
+    "Not an unrelated social handle.",
+    "Not a retail store, coffee application or Ideone result."
+  ]
+}
