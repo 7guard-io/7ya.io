@@ -1,0 +1,49 @@
+# Tests
+
+## Test 1 - Understand Igor from the first screen [sanity]
+Viewport: desktop (1280x800)
+Covers: first-person hero, immediate identity clarity, three simple visitor paths, jargon removal above the fold
+Description: Verifies a first-time visitor can understand who Igor is and how to continue without learning 7YA system terminology.
+
+Steps:
+1. Open the Hebrew home page.
+2. Inspect the first viewport without scrolling.
+3. Inspect the primary actions in the hero.
+
+Expected: The first viewport speaks in Igor's first person, visibly identifies Igor Vepretski, gives a concise human explanation of his current public/social/media work, and offers three clear paths equivalent to “להכיר אותי”, “לראות מה אני עושה”, and “לדבר איתי”. The hero does not foreground CANON, GRAPH, LEDGER, NODES, SYSTEM, or other internal architecture vocabulary.
+
+## Test 2 - Follow one coherent personal story
+Viewport: desktop (1280x800)
+Covers: life-story hierarchy, first-person chapter copy, public work before technical internals, contextual source links
+Description: Verifies the homepage reads as one personal documentary rather than a stack of independent system modules.
+
+Steps:
+1. Open the Hebrew home page.
+2. Scroll from the hero through origin, service, public voice/work, StartOn, creation, research, and the present.
+3. Inspect the copy and linked media in each chapter.
+
+Expected: The visible main journey is ordered as a human story; major chapter copy is written in first person; public images/video/source links appear next to the chapter they support; deep digital-history, chronology-ledger, graph, evidence and platform machinery do not interrupt the main story before the visitor understands Igor.
+
+## Test 3 - Explore a media-rich public life without a 100-item ceiling
+Viewport: desktop (1280x800)
+Covers: public media atlas, open-ended corpus presentation, cursor-based progressive loading, source provenance, archive/search handoff
+Description: Verifies public content is presented as an expandable life archive rather than a fixed “100 moments” product concept.
+
+Steps:
+1. Open the Hebrew home page.
+2. Reach the public-content/media exploration section.
+3. Inspect its title, filters, source links and archive/search handoff.
+
+Expected: The section is framed as an open public-life/media archive with no statement that 100 items is the target or ceiling; visible items retain original-source links and provenance; when more results exist the visitor can load another archive page without replacing earlier items; the visitor can continue into a broader archive/search surface instead of reaching an artificial end at item 100.
+
+## Test 4 - Keep the personal story clear on mobile
+Viewport: mobile (375x667)
+Covers: mobile hero clarity, readable first-person narrative, touch-safe actions, responsive media flow
+Description: Verifies the new personal-story hierarchy works on a phone without dashboard overload.
+
+Steps:
+1. Open the Hebrew home page on a mobile viewport.
+2. Inspect the hero and primary actions.
+3. Scroll through the first three story chapters and their media.
+
+Expected: Igor's identity and first-person introduction are readable in the first screen, primary actions are touch-safe and understandable, story/media sections stack without horizontal overflow, and internal system vocabulary does not dominate the mobile journey.
