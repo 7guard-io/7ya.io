@@ -1,51 +1,54 @@
 # Tests
 
-## Test 1 - Homepage makes the intellectual identity explicit without losing the creator archive [sanity]
+## Test 1 - Life-first homepage leads with Igor, current activity, and world rooms [sanity]
 Viewport: desktop
-Covers: Igor-first intellectual hero, claim-safe researcher descriptor, Content Core, Live Social, Research Spine, StartOn field-application ordering, Evidence access
-Description: Verifies the approved B positioning is visible immediately while the existing media-rich creator experience remains intact.
+Covers: life-first hero, Right Now activity, visual world rooms, home hierarchy
+Description: Verifies the homepage first reads as a human encounter and living world rather than a dossier or evidence index.
 Steps:
-1. Open /?lang=he and confirm IGOR VEPRETSKI, 'חוקר רב־תחומי עצמאי · יוצר · בונה מערכות ציבוריות' and 'RESEARCH · CREATION · PUBLIC SYSTEMS' are visible in the hero
-2. Confirm Content Core and Live Social still appear and the six requested social surfaces remain discoverable
-3. Continue to the depth sequence and confirm '05 / RESEARCH' appears before '06 / STARTON'; in Research confirm the seven-step chain includes חוויה, תצפית, שאלה, מסגרת, ראיות, יישום and שאלות פתוחות
-Expected: The homepage reads first as a real human intellectual/creator identity, keeps the creator archive and live social layers, and places Research before StartOn without clipping, horizontal overflow or removal of evidence access.
+1. Open ?lang=he and inspect the first three major homepage sections
+2. Verify IGOR VEPRETSKI is visible with a real/source-backed portrait and no visible LIVING RECORD / IGOR-001 label in the opening section
+3. Verify a RIGHT NOW / עכשיו section appears before THE ECHO and before the deep archive
+4. Verify visual room links for LIFE, FEED / VOICE, CREATE, STARTON, LAB / RESEARCH, ECHO / IMPACT and ARCHIVE are visible before the deep archive
+Expected: The first screen is a personal encounter; current activity and world rooms follow before evidence-heavy depth, and no dossier-style opening label dominates the first viewport.
 
-## Test 2 - Native Research room exposes structured claim-safe Research Objects
-Viewport: desktop
-Covers: native Research route, global Research navigation, six research domains, structured Research Objects, publication-status labels, sources, limitations
-Description: Verifies research is a native 7YA knowledge layer rather than an external profile link or promotional shelf.
-Steps:
-1. Open /research/?lang=he and follow the handoff if needed; confirm the 7YA global frame and Research map load
-2. Confirm The Resonant Self, SUPERNOAH, Strategic Sedation, Gastrocratia and Opportunity / Adversity are visible with explicit status labels
-3. Inspect one Research Object and confirm RESEARCH QUESTION, CORE PROPOSITION, EVIDENCE / METHOD BASIS, FIELD / SYSTEM APPLICATION and OPEN QUESTIONS / LIMITATIONS are all visible
-Expected: The Research room is multilingual, source-linked and structurally distinguishes question, proposition, evidence, application and unknowns; no university appointment, professorship, journal publication or peer-reviewed status is presented as fact without a source.
-
-## Test 3 - Mobile intellectual composition remains editorial and usable
+## Test 2 - Mobile life-first flow has no page overflow or fixed overlap
 Viewport: mobile
-Covers: mobile hero hierarchy, research descriptor, Research Spine reflow, Research Object readability, authentic portrait, overflow guardrail, anti-SaaS design
-Description: Performs a strict mobile visual review after the Research Spine change.
+Covers: mobile-first composition, life-first hero, world rooms, fixed-control guardrail, horizontal-overflow guardrail
+Description: Verifies the new hierarchy is independently composed for a narrow viewport.
 Steps:
-1. Open /?lang=he and inspect the first two viewports: Igor portrait, name, researcher descriptor, manifesto and CTAs
-2. Scroll to 05 / RESEARCH and verify the seven-step chain stacks cleanly and at least three named research works are readable without tiny text or overlap
-3. Open Research from the mobile navigation and inspect the first Research Object
-Expected: The portrait remains prominent and photographic; typography stays dominant; research labels are readable; the chain and objects reflow into one column; no gradients, rounded-card soup, generic academic stock imagery, horizontal overflow or fixed-control obstruction appears.
+1. Open ?lang=he&visualQA=1 and wait for the Visual QA audit to settle
+2. Inspect the hero, RIGHT NOW and world-room navigation
+3. Refresh the audit once
+4. Verify HORIZONTAL OVERFLOW, FIXED OVERLAP and BROKEN IMAGES each report 0 issues
+Expected: The first three homepage sections remain fully usable on mobile with no page-level horizontal overflow, no fixed control covering interactive content and no broken source image.
 
-## Test 4 - Global navigation keeps all major rooms discoverable with Research added
+## Test 3 - Voice universe exposes canonical longform plus recovery-scale evidence
 Viewport: desktop
-Covers: Research, Media, Music, Speaker, Blog, Creator Path, Evidence and StartOn discoverability, Museum research handoff, cross-room visual consistency
-Description: Verifies Research is added without hiding or regressing the existing public rooms.
+Covers: canonical longform registry, owner-curated video recovery inventory, caption-artifact scale, provenance semantics
+Description: Verifies the Life-First homepage itself communicates both the clean canonical longform set and the scale of the still-recovering media/transcript corpus.
 Steps:
-1. Open /?lang=he and confirm the global navigation exposes כל התוכן, מחקר, מדיה, מוזיקה, מרצה, בלוג, ליצור, ראיות and StartOn
-2. Open Research, Media, Music and Creator Path from the visible navigation and confirm each loads
-3. Open the Digital Museum and use its Research CTA
-Expected: Research stays inside the authored 7YA system; the Museum CTA leads to the native Research map; Media, Music, Create, Evidence and StartOn remain reachable and visually coherent.
+1. Open ?lang=he and STAY ON THE HOMEPAGE; do not open the global menu and do not navigate to Evidence, Media or another route. Scroll down until LIFE / SCENES, then continue directly into the next VOICE / LONGFORM section
+2. In VOICE / LONGFORM verify OWNER EXPORT / RECOVERY INDEX and the four visible metrics: 17 VERIFIED LONGFORM SOURCE RECORDS, 27 DIRECT YOUTUBE VIDEO SOURCES, 2 YOUTUBE PLAYLISTS and 48+ SRT CAPTION REFERENCES
+3. Verify the visible provenance rule says source-linked records are not unique interviews and SRT references are not complete/reviewed transcripts; also verify the selected canonical longform object shows source/year/medium/evidence state and an external source link
+Expected: The homepage VOICE / LONGFORM section communicates verified depth plus recovery scale without inflating unique interviews or transcript completeness.
 
-## Test 5 - StartOn and 7YA are framed as applications, not proof
+## Test 4 - Longform, Echo, Create and StartOn preserve the approved story order
 Viewport: desktop
-Covers: claim-safety guardrail, StartOn field application, Opportunity research program, 7YA evidence-governance application, source/status boundaries
-Description: Verifies the research narrative does not turn biography or implementation into automatic empirical proof.
+Covers: longform placement, THE ECHO placement, creator identity, music visibility, StartOn lived mission, research bridge
+Description: Verifies the approved post-Life sequence after the longform correction without confusing world-room navigation labels with actual section order.
 Steps:
-1. Open /?lang=he, scroll to 05 / RESEARCH, open Opportunity / Adversity, and read FIELD / SYSTEM APPLICATION
-2. Confirm the StartOn application text explicitly says the field environment is not automatic proof of the hypothesis
-3. Inspect 7YA / Evidence Governance and confirm it is labelled SYSTEM / DESIGN rather than peer-reviewed research and exposes open questions about trust/privacy
-Expected: The site visibly separates biography, research claims, evidence status and applications; StartOn is a field application and possible empirical environment, while 7YA is a systems application around provenance, evidence and agency.
+1. Open ?lang=en#life and locate the section headers LIFE / SCENES, VOICE / LONGFORM, #7YA / THE ECHO, CREATE / MUSIC / CULTURE, STARTON / RETURN and LAB / RESEARCH
+2. Verify those actual content sections appear in this order: LIFE / SCENES → VOICE / LONGFORM → #7YA / THE ECHO → CREATE / MUSIC / CULTURE → STARTON / RETURN → LAB / RESEARCH
+3. Verify CREATE contains at least one official YouTube music/video source object
+4. Verify STARTON / RETURN contains a public press or broadcast visual and the human return-to-neighborhood framing
+Expected: The actual content sections preserve LIFE → VOICE/LONGFORM → THE ECHO → CREATE → STARTON / RETURN → LAB / RESEARCH, with creation and StartOn still source-backed.
+
+## Test 5 - Russian visitor handoff and AI identity boundary remain intact
+Viewport: desktop
+Covers: RU localization, visitor handoff, visible Companion identity disclosure; English localization is exercised by Test 4
+Description: Verifies the localized visitor action layer and its explicit AI identity boundary without opening the body-locking chat overlay.
+Steps:
+1. Open ?lang=ru#your-room and locate the YOUR ROOM section
+2. Verify the Russian heading Хватит обо мне. Что вы хотите сдвинуть в своей жизни? and both visitor actions Обсудить мой следующий шаг с 7YA and Открыть путь создания are visible
+3. Verify the visible disclosure states that 7YA Companion is an AI tool based on Igor's public work and is not Igor himself
+Expected: The Russian visitor handoff renders both actions and an explicit bounded AI identity disclosure.
