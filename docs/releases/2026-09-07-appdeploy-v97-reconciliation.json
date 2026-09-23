@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-07",
+  "purpose": "Sovereign Control Plane v1 production reconciliation checkpoint",
+  "production": {
+    "provider": "AppDeploy",
+    "stage": "v2",
+    "app_id": "697a008fddc309b142",
+    "version_name": "v97",
+    "applied_snapshot": "1788788589415",
+    "status": "READY",
+    "canonical_domain": "https://7ya.io/",
+    "custom_domains": ["7ya.io", "www.7ya.io"],
+    "qa": {
+      "frontend_errors": 0,
+      "network_errors": 0,
+      "backend_errors": 0,
+      "e2e_tests": null
+    }
+  },
+  "release_manifest_observation": {
+    "release": "7ya-sovereign-recovery-20260905-v3-globalfix",
+    "source_repository": "7guard-io/7ya.io",
+    "source_ref": "main",
+    "source_of_truth": "appdeploy-remote-snapshot",
+    "github_provenance_commit": "32f94a80329b697d5caa5e22a5745e64c36d6b5d",
+    "full_source_export": "pending",
+    "source_alignment": "GITHUB_PROVENANCE_BOUND_FULL_SOURCE_EXPORT_PENDING"
+  },
+  "drift": {
+    "previous_control_plane_version_name": "v96",
+    "previous_control_plane_snapshot": "1788620914856",
+    "current_version_name": "v97",
+    "current_snapshot": "1788788589415",
+    "classification": "PRODUCTION_CONTROL_PLANE_DRIFT",
+    "github_main_safe_to_deploy_over_production": false
+  },
+  "runtime_observations": {
+    "agent_mesh_hourly": "enabled/success",
+    "meta_sync_hourly": "enabled/success",
+    "nvidia_nvcf_canaries": "disabled after repeated HTTP 401 authentication failures",
+    "historical_visual_gate": "disabled after repeated timeout failures"
+  },
+  "platform_roles": {
+    "github": "canonical engineering, review and release-ledger plane; not yet deployment-identical to production",
+    "appdeploy": "current production runtime authority until full v97 source reconciliation completes",
+    "vercel": "secondary/recovery/preview surface; not canonical-domain production authority",
+    "netlify": "legacy/specialized API and voice-staging surfaces pending role review"
+  },
+  "hard_gates": [
+    "Do not deploy GitHub main over AppDeploy v97 before complete source reconciliation.",
+    "Do not claim NVIDIA/NVCF end-to-end health while authentication canaries return HTTP 401.",
+    "Do not classify a release DONE without production, live verification and source alignment.",
+    "Do not publish private/restricted evidence through canon or discovery projections."
+  ],
+  "next_phase": "Inventory the complete AppDeploy v97 tree, compare canonical/runtime-critical files against GitHub, classify KEEP/PORT/DELETE/RUNTIME_ONLY, then establish reproducible release authority."
+}
