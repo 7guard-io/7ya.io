@@ -1,0 +1,47 @@
+# Tests
+
+## Test 1 - YOUR PATH routes to StartOn without identity capture [sanity]
+Viewport: desktop
+Covers: explicit session-local visitor intent, StartOn next action, privacy guardrail
+Description: Verifies a visitor can explicitly choose the StartOn path without being asked for identity data.
+
+Steps:
+1. Open ?lang=he#your-path, verify STORY EVIDENCE is visible, then choose StartOn / נוער.
+2. Verify the selected result says אני רוצה לפתוח הזדמנות לצעירים and shows להיכנס ל־StartOn, while no name, email or phone input is present.
+
+Expected: StartOn is the visible selected path with its specific next action and no identity fields.
+
+## Test 2 - Three evidence domains expose three different handoffs
+Viewport: desktop
+Covers: Influence handoff, Research handoff, StartOn handoff, contextual conversion
+Description: Verifies the home journey uses context-specific participation actions rather than one generic CTA.
+
+Steps:
+1. Open ?lang=en#handoff-influence and verify the rendered home journey contains all three primary actions: Build a public-information move together; Discuss the research; Build a youth opportunity pathway.
+2. Verify the three actions belong respectively to FROM ECHO TO ACTION, FROM QUESTION TO DIALOGUE, and FROM FIELD TO OPPORTUNITY.
+
+Expected: All three context-specific handoffs are present with distinct actions and no generic Buy or Contact CTA.
+
+## Test 3 - StartOn Create and Deep Archive show source-linked proof
+Viewport: desktop
+Covers: StartOn press and broadcast evidence, Create official video evidence, curated Deep Archive
+Description: Verifies the major proof surfaces demonstrate real work before conversion.
+
+Steps:
+1. Open ?lang=en#starton-return and verify RETURN → PRESS → BROADCAST → BUILD includes the mynet press image, a public broadcast frame and a 7YA continuation action.
+2. Open ?page=create&lang=en and verify BIZZI, מת על אקסל and פרח במדבר each show a YouTube video poster and a public-source action.
+3. Open ?lang=en#deep-archive and verify DEEP ARCHIVE / PUBLIC RECORD shows exactly 8 numbered source-linked records plus the full searchable archive action.
+
+Expected: StartOn, Create and Deep Archive visibly expose source-linked proof and the homepage archive remains curated to eight records.
+
+## Test 4 - Homepage identity opens with six distinct personal evidence frames
+Viewport: mobile
+Covers: personal identity breadth, source-linked visual evidence, autobiographical orientation
+Description: Verifies the opening personal archive represents multiple distinct parts of Igor Vepretski's life rather than repeating one portrait or one domain.
+
+Steps:
+1. Open ?lang=en#personal-memory and verify the archive marker says 06 DISTINCT REAL FRAMES.
+2. Verify six numbered frames are present with the labels QUIET, SERVICE, RETURN, VOICE, CREATE and NOW, and every frame exposes a public/source link.
+3. Scroll to the hero and verify the life trace reads KHARKIV 1990 → BAT YAM → HOLON / JESSE COHEN → SERVICE → STARTON → 7YA.
+
+Expected: The opening identity surface shows six distinct source-linked life domains and the hero provides a specific autobiographical route rather than a generic origin-to-now label.
