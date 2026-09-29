@@ -117,8 +117,8 @@ const homepageUiHebrewForbidden = [
 ];
 const homepageLocaleRequired = {
   en: ['The archive preserves the path from 2011 to today.','Voices from the comments','✓ Open','✓ Available','✓ Navigation ready'],
-  ru: ['Архив сохраняет путь с 2011 года до сегодняшнего дня.','Голоса из комментариев','✓ Открыто','✓ Доступно','✓ Навигация готова'],
-  ar: ['يحفظ الأرشيف المسار من 2011 حتى اليوم.','أصوات من التعليقات','✓ مفتوح','✓ متاح','✓ التنقل جاهز']
+  ru: ['Архив сохраняет путь с 2011 года до сегодня.','Голоса из комментариев','✓ Открыто','✓ Доступно','✓ Навигация готова'],
+  ar: ['يحفظ الأرشيف المسار من عام 2011 حتى اليوم.','أصوات من التعليقات','✓ مفتوح','✓ متاح','✓ التنقل جاهز']
 };
 for (const locale of locales) {
   const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
