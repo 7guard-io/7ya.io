@@ -107,6 +107,29 @@ for(const locale of locales){
   }
 }
 
+const homepageUiHebrewForbidden = [
+  'המאגר שומר את הדרך מ־2011 ועד היום.',
+  'רשומות ציבוריות במאגר החיים · 170 מהן כבר מחוברות למדד מספרי',
+  'קולות מהתגובות',
+  '✓ פתוחים',
+  '✓ זמינות',
+  '✓ ניווט'
+];
+const homepageLocaleRequired = {
+  en: ['The archive preserves the path from 2011 to today.','Voices from the comments','✓ Open','✓ Available','✓ Navigation ready'],
+  ru: ['Архив сохраняет путь с 2011 года до сегодняшнего дня.','Голоса из комментариев','✓ Открыто','✓ Доступно','✓ Навигация готова'],
+  ar: ['يحفظ الأرشيف المسار من 2011 حتى اليوم.','أصوات من التعليقات','✓ مفتوح','✓ متاح','✓ التنقل جاهز']
+};
+for (const locale of locales) {
+  const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
+  for (const marker of homepageUiHebrewForbidden) {
+    if (html.includes(marker)) failures.push(`${locale}: untranslated homepage UI -> ${marker}`);
+  }
+  for (const marker of homepageLocaleRequired[locale]) {
+    if (!html.includes(marker)) failures.push(`${locale}: localized homepage UI marker missing -> ${marker}`);
+  }
+}
+
 const redirects=await fs.readFile(path.join(dist,'_redirects'),'utf8');
 if(!/^\/feed\s+\/influence\/\s+301$/m.test(redirects) || !/^\/feed\/\s+\/influence\/\s+301$/m.test(redirects)) {
   failures.push('legacy /feed redirect is missing');
