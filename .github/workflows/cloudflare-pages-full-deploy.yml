@@ -1,8 +1,8 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Temporary break-glass recovery trigger: the live Pages artifact is stale and this workflow
-# is intentionally allowed to run once when this workflow file itself changes on main.
+# Break-glass recovery trigger refreshed 2026-09-30: publish the current personal-first main artifact to production.
+# This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
   push:
