@@ -1,4 +1,4 @@
-const UPSTREAM = 'https://697a008fddc309b142.v2.appdeploy.ai/api/companion';
+const UPSTREAM = 'https://api-v2.appdeploy.ai/app/697a008fddc309b142/api/companion';
 
 const headers = {
   'content-type': 'application/json; charset=utf-8',
