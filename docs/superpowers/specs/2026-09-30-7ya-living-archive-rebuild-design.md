@@ -35,9 +35,12 @@ The site is not accepted because code merged. It is accepted only after mobile a
 
 - Canonical repository: `7guard-io/7ya.io`
 - Canonical branch for production work: `main`
+- Current control-plane state dated 2026-09-30 identifies Cloudflare Pages project `7ya-io` as the production provider, built from the canonical GitHub repository with `npm run build:cloudflare` and `dist` output.
+- AppDeploy is treated as a historical recovery source, not a competing production source of truth.
 - All rebuild work occurs on dedicated preview/rebuild branches.
 - No alternate 7YA repository may silently overwrite the canonical implementation.
-- Production promotion is blocked until the release contract and current hosting/deployment path are verified against the live site.
+- Production promotion is blocked until the release contract and current hosting/deployment path are verified against the live site immediately before cutover.
+- Stale governance documentation that contradicts the current control plane must be reconciled before production changes.
 
 ### 3.2 Content and evidence source of truth
 
@@ -50,9 +53,22 @@ Before any editorial or visual selection, operators must consult:
 5. `7YA_KNOWLEDGE_GRAPH.json`
 6. the latest public-link/evidence ledgers
 7. raw owner exports and analytics where available
-8. public web verification for current external pages
+8. the Google Drive owner archives discovered during Phase 0, including the primary and secondary Instagram exports and the historical Facebook post archive
+9. public web verification for current external pages
 
 Memory or chat recollection is never enough by itself for factual, media-selection or performance claims.
+
+### 3.3 Phase 0 findings locked into the rebuild
+
+Read-only reconciliation on 2026-09-30 established:
+
+- the live site already contains valuable person-first, life-archive and public-response material, but the first experience still contains system-first / acceptance-gate language that conflicts with the intended human-first hierarchy;
+- GitHub contains a 434-record public projection derived from 438 raw rows, with 269 public URLs and 170 records carrying numeric metrics;
+- the historical AppDeploy snapshot contains reusable prior implementations of a typed canonical corpus, content graph, Life Archive, Rich Life Timeline, Owner Facebook Archive, documentary-home components and evidence ingestion;
+- those AppDeploy components may be selectively ported or adapted, but AppDeploy must not become a second canonical runtime;
+- the primary Instagram owner archive in Google Drive includes exported `posts_1.html`, `reels.html`, `archived_posts.html`, stories, IGTV, captions, exact export timestamps and original JPG/MP4 paths;
+- the historical Facebook archive in Google Drive contains individually dated POST documents and attachment folders, with observable records reaching back to at least November 2008;
+- these owner archives therefore become primary ingestion sources for chronology and authentic media recovery, subject to deduplication, public-visibility checks and privacy filters.
 
 ## 4. Public Media Corpus Rule
 
@@ -64,6 +80,7 @@ Every media object should normalize toward:
 - platform
 - account/publisher
 - source_url
+- owner_export_locator where applicable
 - original/owned/external/repost status
 - published_at
 - captured_at
@@ -90,6 +107,8 @@ Coverage states:
 
 Never claim total historical coverage where a platform is only partially enumerable.
 
+The current Social Master coverage labels must be refreshed after parsing the newly confirmed owner Instagram and Facebook archives; previous “partial” labels are not treated as permanent facts.
+
 ## 5. Content Graph
 
 The experience is driven by this relationship model:
@@ -97,6 +116,8 @@ The experience is driven by this relationship model:
 `PERSON → ERA → MOMENT → MEDIA → SOURCE → PUBLIC RESPONSE → CONSEQUENCE → PROJECT`
 
 A Moment is not a decorative card. It is a reusable canonical object with real media, source context, chronology, story role and public-response edges.
+
+The rebuild should preserve and improve the strongest ideas from the historical typed corpus/content-graph implementation: explicit verification state, source objects, media authenticity, dated metrics and graph edges such as `SUPPORTED_BY`, `HAS_MEDIA`, `HAS_METRIC` and `RELATED_TO`. The new graph additionally needs explicit public-response and consequence relationships rather than treating them as free-text impact notes.
 
 Story families include, at minimum:
 
@@ -113,7 +134,7 @@ Story families include, at minimum:
 - 7YA itself
 - Now / current work
 
-Sensitive family data, minors, addresses, health, finances, legal/private records and operational details are excluded unless already public and explicitly safe for reuse.
+Sensitive family data, minors, addresses, health, finances, legal/private records and operational details are excluded unless already public and explicitly safe for reuse. Public availability alone does not require prominent reuse; child-identifying detail is minimized by default.
 
 ## 6. Information Architecture
 
@@ -136,9 +157,9 @@ No Acceptance Gate, internal release terminology, canonical-system jargon or das
 
 ### 6.2 Life / Journey
 
-A rich chronological Life Atlas from childhood to now.
+A rich chronological Life Atlas from the earliest verified public/life evidence to now.
 
-Each era contains moments, not résumé bullets. Moments use original media, short narrative, source context and optional public-response edges.
+Each era contains moments, not résumé bullets. Moments use original media, short narrative, source context and optional public-response edges. Owner archives are used to recover authentic chronology, but publication timestamps must never be silently converted into original capture dates.
 
 ### 6.3 Public Response / Echo
 
@@ -151,6 +172,7 @@ A dedicated human-readable layer showing what came back from the public:
 - press pickup
 - television/podcast follow-on
 - cross-platform story-family continuation
+- documented real-world continuation where the source supports it
 
 External amplification remains separate from owned reach. Platform metrics are never summed into a synthetic influence total.
 
@@ -219,13 +241,15 @@ Partner tools operate as specialist services around the canonical system, never 
 Potential lanes:
 
 - NVIDIA NIM/NVCF or related verified NVIDIA skills: inference and media/RAG workloads when justified
+- NVIDIA video-search/summarization capabilities where they materially improve large-scale video archive understanding, after explicit installation/connection approval if required
 - OpenAI: reasoning, retrieval, editorial assistance and orchestration
 - Supabase: live interaction/feedback/state only when needed
 - PostHog or equivalent: product analytics
 - Metricool/Windsor/Socialstats: connected social telemetry
 - Figma/Adobe/Canva: design and asset workflows
 - Runway/Higgsfield/fal/OpenArt: creative treatments only when they do not fabricate documentary evidence
-- Vercel/Cloudflare/AppDeploy: hosting/runtime/deployment roles only
+- Cloudflare: current production hosting/runtime role according to the current control plane
+- Vercel/AppDeploy: preview, recovery or historical roles only when explicitly justified by the current deployment contract
 
 No partner tool may independently create a new 7YA source-of-truth project.
 
@@ -245,6 +269,8 @@ No partner tool may independently create a new 7YA source-of-truth project.
 - calling a selection complete when platform coverage is partial
 - production publish without preview and visual QA
 - rebuilding existing content from memory instead of source retrieval
+- trusting stale governance docs over the current machine-readable control-plane state without reconciliation
+- ignoring owner exports already present in Drive and re-scraping weaker public copies instead
 
 ## 12. Rebuild Sequence
 
@@ -252,16 +278,21 @@ No partner tool may independently create a new 7YA source-of-truth project.
 
 - verify canonical repo and release/deployment contract
 - inventory live routes against repo routes
+- reconcile stale governance text with the current machine-readable control plane
 - identify stale/duplicate/experimental code and root-level unrelated material
 - map existing content registries, scripts and generated artifacts
+- inventory historical AppDeploy components that are worth porting
+- parse owner Instagram and Facebook exports and refresh platform coverage labels
 - confirm production/live build provenance
 
 ### Phase 1 — Canonical Corpus + Graph
 
 - create normalized media/moment/story-family schema
 - import or map current 434-record archive and master social scan
-- keep coverage/confidence metadata
-- add public-response edges
+- ingest owner Instagram/Facebook chronology and media locators
+- keep coverage/confidence/privacy metadata
+- deduplicate mirrors and duplicate exports
+- add explicit public-response and consequence edges
 
 ### Phase 2 — New Experience Shell
 
@@ -305,6 +336,7 @@ The rebuild is accepted only when:
 - major HE/RU/EN pages are internally consistent
 - all primary CTAs and source links work
 - production matches the approved preview
+- platform coverage is explicitly labeled and owner exports are not silently omitted
 
 ## 14. Out of Scope Until Separate Approval
 
