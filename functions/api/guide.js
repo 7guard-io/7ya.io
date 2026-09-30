@@ -1,5 +1,3 @@
-const UPSTREAM = 'https://api-v2.appdeploy.ai/app/697a008fddc309b142/api/companion';
-
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -238,61 +236,6 @@ function creatorShape(data, message, creatorMode, locale, fallback) {
   };
 }
 
-async function proxyCompanion(body, request) {
-  const message = clean(body.message, 1600);
-  const locale = localeOf(body.locale || request.headers.get('accept-language'));
-  const path = safePath(body.path);
-  const messages = Array.isArray(body.messages)
-    ? body.messages.slice(-12).map(item => ({ role: item && item.role === 'assistant' ? 'assistant' : 'user', content: clean(item && item.content, 3000) })).filter(item => item.content)
-    : [{ role: 'user', content: message }];
-  if (!messages.length || messages[messages.length - 1].content !== message) messages.push({ role: 'user', content: message });
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 14500);
-  const startedAt = Date.now();
-  try {
-    const response = await fetch(UPSTREAM, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json', 'accept': 'application/json' },
-      body: JSON.stringify({
-        messages,
-        state: body.state || null,
-        locale,
-        context: {
-          dimension: '7ya',
-          section: path,
-          path,
-          experience: body.experience === 'speak-with-igor' ? 'speak-with-igor' : '7ya-guide',
-          purpose: 'Help the visitor clarify what matters, express it in their own voice, and choose one useful next move.',
-          principles: [
-            'conversation-first',
-            'ask before assuming',
-            'self-expression over imitation',
-            'use Igor public evidence for factual claims',
-            'offer modern creation and technology tools when useful',
-            'if drawing on the Zohar or Jewish wisdom, label it explicitly and keep it optional',
-            'never present the assistant as live Igor'
-          ],
-        },
-        mode: modeOf(body),
-        journeyContext: {
-          lastMeaningfulStep: message,
-          chosenDirection: body.mode === 'creator' || body.experience === 'speak-with-igor' ? message : '',
-          visitedChapters: [],
-          resonances: []
-        },
-      }),
-      signal: controller.signal,
-    });
-    const data = await response.json().catch(() => null);
-    if (!response.ok) throw new Error(`upstream_http_${response.status}`);
-    if (!data || typeof data !== 'object') throw new Error('upstream_invalid_json');
-    return { data, locale, path, latencyMs: Date.now() - startedAt };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
 async function buildGuideResult(body, request, env) {
   const message = clean(body && body.message, 1600);
   if (!message) return { payload: { error: 'message required' }, status: 422, enginePath: 'invalid' };
@@ -327,29 +270,13 @@ async function buildGuideResult(body, request, env) {
     else if (messageCode.includes('nvidia_empty')) directError = 'nvidia_empty';
   }
 
-  try {
-    const proxied = await proxyCompanion(body, request);
-    const data = proxied.data;
-    const payload = creator
-      ? creatorShape(data, message, creatorMode, locale, fallback)
-      : {
-          answer: clean(data.reply, 5200) || fallback.answer,
-          links: actionLinks(data, fallback.links),
-          mode: '7ya-guide',
-          provider: clean(data.provider, 40) || 'local',
-          model: clean(data.model, 120) || '7ya',
-          state: data.state || null,
-        };
-    return { payload, status: 200, enginePath: 'upstream', engineDetail: 'upstream_ok', engineLatencyMs: proxied.latencyMs };
-  } catch (error) {
-    return {
-      payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
-      status: 200,
-      enginePath: 'continuity',
-      engineDetail: [directError, engineErrorCode(error)].filter(Boolean).join('+'),
-      engineLatencyMs: null,
-    };
-  }
+  return {
+    payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
+    status: 200,
+    enginePath: 'continuity',
+    engineDetail: directError || 'local_first_party_fallback',
+    engineLatencyMs: null,
+  };
 }
 
 export async function onRequestPost({ request, env }) {
@@ -363,35 +290,10 @@ export async function onRequestPost({ request, env }) {
   return json(result.payload, result.status);
 }
 
-async function inspectAppDeployEmbedding() {
-  try {
-    const response = await fetch('https://697a008fddc309b142.v2.appdeploy.ai/?chat=open', {
-      method: 'GET',
-      headers: { Accept: 'text/html' },
-      redirect: 'manual',
-      signal: AbortSignal.timeout(5000),
-    });
-    const xFrame = clean(response.headers.get('x-frame-options'), 80).toLowerCase();
-    const csp = clean(response.headers.get('content-security-policy'), 600).toLowerCase();
-    const blockedByXFrame = Boolean(xFrame && xFrame !== 'allowall');
-    const frameAncestors = (csp.match(/frame-ancestors\s+([^;]+)/i) || [,''])[1].trim();
-    const blockedByCsp = Boolean(frameAncestors && !frameAncestors.includes('*') && !frameAncestors.includes('https://7ya.io'));
-    return {
-      reachable: response.status >= 200 && response.status < 400,
-      status: response.status,
-      frame_allowed_from_7ya: !blockedByXFrame && !blockedByCsp,
-      x_frame_policy_present: Boolean(xFrame),
-      frame_ancestors_present: Boolean(frameAncestors),
-    };
-  } catch {
-    return { reachable: false, status: 0, frame_allowed_from_7ya: false, x_frame_policy_present: false, frame_ancestors_present: false };
-  }
-}
-
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
-    return json({ status: 'ready', experience: 'speak-with-igor', upstream: 'server-side', secrets_exposed: false });
+    return json({ status: 'ready', experience: 'speak-with-igor', runtime: 'cloudflare-pages', fallback: 'first-party-local', secrets_exposed: false });
   }
 
   const body = {
@@ -402,7 +304,7 @@ export async function onRequestGet({ request, env }) {
     mode: 'creator',
     creator_mode: 'momentum',
   };
-  const [result, embed] = await Promise.all([buildGuideResult(body, request, env), inspectAppDeployEmbedding()]);
+  const result = await buildGuideResult(body, request, env);
   const payload = result.payload || {};
   const outline = payload.content_seed && Array.isArray(payload.content_seed.outline) ? payload.content_seed.outline : [];
   const visitorPathReady = Boolean(
@@ -421,7 +323,8 @@ export async function onRequestGet({ request, env }) {
     visitor_path_ready: visitorPathReady,
     engine_path: result.enginePath,
     engine_detail: result.engineDetail || null,
-    embed_candidate: embed,
+    runtime: 'cloudflare-pages',
+    external_runtime_dependency: false,
     provider_env: {
       nvidia_nim: Boolean(env && env.NVIDIA_NIM_API_KEY),
       nvidia: Boolean(env && env.NVIDIA_API_KEY),

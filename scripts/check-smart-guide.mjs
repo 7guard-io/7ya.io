@@ -27,12 +27,13 @@ requireText('guide', 'Retry-After', 'rate-limit response contract missing');
 requireText('guide', 'message.length > 1600', 'message size cap missing');
 forbidText('guide', 'nvapi-', 'hard-coded NVIDIA credential detected');
 forbidText('guide', 'sk-', 'hard-coded provider credential detected');
-requireText('pagesGuide', 'api-v2.appdeploy.ai/app/697a008fddc309b142/api/companion', 'Cloudflare guide bridge missing AppDeploy companion API upstream');
+requireText('pagesGuide', "external_runtime_dependency: false", 'Cloudflare guide must declare its independent runtime contract');
+forbidText('pagesGuide', 'appdeploy.ai', 'Cloudflare guide still depends on AppDeploy');
 requireText('pagesGuide', 'fallbackCreator', 'Cloudflare guide bridge missing in-chat creator continuity fallback');
 requireText('pagesGuide', 'secrets_exposed: false', 'Cloudflare guide bridge missing public secret boundary');
-requireText('pagesGuide', "experience: body.experience === 'speak-with-igor'", 'Speak with Igor upstream context missing');
-requireText('pagesGuide', 'never present the assistant as live Igor', 'non-impersonation upstream principle missing');
-requireText('pagesGuide', 'Zohar or Jewish wisdom', 'transparent Zohar/Jewish-wisdom principle missing');
+requireText('pagesGuide', 'You are not Igor Vepretski', 'non-impersonation provider instruction missing');
+requireText('pagesGuide', 'Jewish wisdom or the Zohar', 'transparent Zohar/Jewish-wisdom principle missing');
+requireText('pagesGuide', "model: '7ya-continuity'", 'first-party deterministic fallback missing');
 forbidText('pagesGuide', 'nvapi-', 'hard-coded NVIDIA credential detected in Cloudflare bridge');
 forbidText('pagesGuide', 'sk-', 'hard-coded provider credential detected in Cloudflare bridge');
 
@@ -40,6 +41,7 @@ requireText('widget', "setAttribute('aria-expanded'", 'launcher accessibility st
 requireText('widget', "event.key === 'Escape'", 'keyboard close behavior missing');
 requireText('widget', 'textContent', 'safe text rendering missing');
 requireText('widget', "fetch('/api/guide'", 'guide API integration missing');
+forbidText('widget', 'appdeploy.ai', 'public widget still embeds an AppDeploy transport');
 requireText('widget', 'SPEAK WITH IGOR', 'Speak with Igor English label missing');
 requireText('widget', 'ПОГОВОРИТЬ С ИГОРЕМ', 'Speak with Igor Russian label missing');
 requireText('widget', 'تحدّث مع إيغور', 'Speak with Igor Arabic label missing');

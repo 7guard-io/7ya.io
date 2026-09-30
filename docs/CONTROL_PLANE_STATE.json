@@ -1,6 +1,6 @@
 {
-  "schema_version": 8,
-  "updated_at": "2026-09-10T21:31:15+03:00",
+  "schema_version": 9,
+  "updated_at": "2026-09-30T07:25:00Z",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -12,77 +12,73 @@
     "human_core": "Igor Vepretski",
     "social_mission": "StartOn",
     "organizing_system": "7YA",
-    "public_experience_order": ["IGOR", "STORY", "WORK", "TOPICS", "MEDIA", "CONTACT", "ARCHIVE", "EVIDENCE", "RESEARCH", "SYSTEMS"],
-    "evidence_states": ["VERIFIED", "DOCUMENTED", "SELF-ATTESTED", "SOURCE PENDING", "PRIVATE", "PILOT", "DESIGN", "MISSION", "ASPIRATION"]
+    "public_experience_order": [
+      "IGOR",
+      "STORY",
+      "WORK",
+      "TOPICS",
+      "MEDIA",
+      "CONTACT",
+      "ARCHIVE",
+      "EVIDENCE",
+      "RESEARCH",
+      "SYSTEMS"
+    ],
+    "evidence_states": [
+      "VERIFIED",
+      "DOCUMENTED",
+      "SELF-ATTESTED",
+      "SOURCE PENDING",
+      "PRIVATE",
+      "PILOT",
+      "DESIGN",
+      "MISSION",
+      "ASPIRATION"
+    ]
   },
   "production": {
-    "provider": "AppDeploy",
-    "stage": "v2",
-    "app_id": "697a008fddc309b142",
-    "version_name": "v98",
-    "release": "7ya-public-profile-convergence-20260910-v11",
-    "applied_snapshot": "1789065075177",
-    "deployed_at": "2026-09-10T18:31:15.177Z",
-    "status": "READY",
+    "provider": "Cloudflare Pages",
+    "project": "7ya-io",
+    "source_repository": "7guard-io/7ya.io",
+    "source_ref": "main",
+    "status": "READY_ON_PAGES_DOMAIN",
+    "pages_domain": "https://7ya-io.pages.dev/",
     "canonical_domain": "https://7ya.io/",
-    "frontend_errors": 0,
-    "network_errors": 0,
-    "backend_errors": 0,
-    "e2e_tests": null,
-    "qa_snapshot": "1789065115207",
-    "rollback_snapshot": "1789064912967",
-    "release_receipt": "docs/releases/2026-09-10-appdeploy-v98-public-profile-convergence-v11.json"
+    "canonical_probe": "BLOCKED_BY_CLOUDFLARE_CHALLENGE_FROM_AUTOMATION",
+    "release": "7ya-independent-personal-20260930-v1",
+    "build_command": "npm run build:cloudflare",
+    "output_directory": "dist",
+    "runtime_dependency_on_appdeploy": false,
+    "rollback": "previous Cloudflare Pages deployment or Git commit"
   },
   "source_reconciliation": {
-    "github_main_contains_root_src_main_tsx": true,
-    "github_main_entrypoint_commit": "6bb5db48601e59612ebf28eab028087432e42718",
-    "github_main_contains_exact_root_src_app_tsx": false,
-    "github_main_contains_exact_root_backend_index_ts": false,
-    "github_main_contains_exact_root_cron_json": false,
-    "appdeploy_v98_contains_root_src_main_tsx": true,
-    "appdeploy_v98_contains_root_src_app_tsx": true,
-    "appdeploy_v98_contains_root_backend_index_ts": true,
-    "full_runtime_tree_export_complete": false,
-    "known_v11_surface_delta_recorded": true,
-    "production_source_of_truth": "AppDeploy remote snapshot 1789065075177",
-    "release_receipt_source_of_truth": "docs/releases/2026-09-10-appdeploy-v98-public-profile-convergence-v11.json",
-    "rule": "Do not replace the AppDeploy runtime from GitHub main until the complete runtime source is exported, compared and passes release gates."
+    "canonical_source": "7guard-io/7ya.io@main",
+    "artifact_builder": "scripts/build-static-site.mjs",
+    "runtime_source": "repository-built dist artifact",
+    "legacy_appdeploy_snapshot": "1789065075177",
+    "legacy_snapshot_role": "historical rollback/provenance reference only",
+    "runtime_dependency_on_appdeploy": false,
+    "rule": "Build and publish only the governed repository artifact; do not proxy public traffic or companion requests through AppDeploy."
   },
   "runtime_health": {
-    "terminal_appdeploy_qa": "PASS",
-    "frontend_errors": 0,
-    "network_errors": 0,
-    "backend_errors": 0,
-    "fresh_qa_screenshots_generated": true,
-    "visual_pixel_acceptance": "NOT_CLAIMED_SEPARATE_GATE",
-    "appdeploy_e2e": "NOT_RUNNER_CONFIRMED_NULL",
-    "canonical_no_cache_public_build_probe": "NOT_CLAIMED_THIS_SESSION",
-    "direct_browser_api_transport": "unresolved: direct /api/* crawler requests may surface SPA HTML while frontend @appdeploy/client transport remains the supported contract",
-    "nvidia": {
-      "configured": true,
-      "model": "nvidia/nemotron-3-super-120b-a12b",
-      "status": "DEGRADED_AUTH",
-      "last_verified_failure": "HTTP 401",
-      "release_blocking": false,
-      "canary_classification": "provider-degraded-advisory",
-      "fallback": "AppDeploy-agent/local fallback preserved"
-    },
-    "release_gate_policy": {
-      "runtime_build_marker": "blocking",
-      "frontend_network_backend_errors": "blocking",
-      "optional_nvidia_provider": "advisory-when-fallback-healthy",
-      "visual_ai_acceptance": "separate-release-gate-not-claimed",
-      "e2e": "test-contract-present-runner-not-executed"
-    }
+    "pages_domain_http": 200,
+    "pages_health_provider": "cloudflare-pages",
+    "pages_artifact_manifest_present": true,
+    "canonical_probe": "HTTP 403 Cloudflare challenge from this automation environment; public-browser acceptance not claimed",
+    "ask_igor_path": "Cloudflare Pages Function -> optional NVIDIA NIM -> deterministic first-party fallback",
+    "external_runtime_dependency_on_appdeploy": false
   },
   "domain_state": {
-    "7ya.io": "active",
-    "www.7ya.io": "active",
-    "stage": "v2",
-    "checked_after_v98_deploy": true
+    "7ya.io": "Cloudflare edge; automated probe challenged",
+    "www.7ya.io": "not independently verified this change",
+    "pages_domain": "verified HTTP 200",
+    "dns_changed_in_this_change": false
   },
   "scheduler_reconciliation": {
-    "source_active_jobs": ["agent-mesh-hourly", "meta-sync-hourly"],
+    "source_active_jobs": [
+      "agent-mesh-hourly",
+      "meta-sync-hourly"
+    ],
     "active_jobs_last_status": {
       "agent-mesh-hourly": "success",
       "meta-sync-hourly": "success"
@@ -112,20 +108,38 @@
     "ask_igor": "Public companion branding converged to Ask Igor with explicit AI/non-impersonation/source-grounding language; NVIDIA/NVCF optional primary remains degraded-auth and fallback is preserved."
   },
   "public_experience_contract": {
-    "primary_navigation": ["Home", "My story", "Work", "Topics", "Media", "Contact"],
-    "secondary_navigation": ["Archive", "Evidence", "Research", "StartOn", "All content", "Ask Igor"],
+    "primary_navigation": [
+      "Home",
+      "My story",
+      "Work",
+      "Topics",
+      "Media",
+      "Contact"
+    ],
+    "secondary_navigation": [
+      "Archive",
+      "Evidence",
+      "Research",
+      "StartOn",
+      "All content",
+      "Ask Igor"
+    ],
     "homepage_rule": "Person and documented work before archive, technology, metrics or system language.",
     "evidence_rule": "A source proves only what that source supports and must not be upgraded into unsupported outcome, reach, partnership or causation claims.",
     "ai_rule": "Ask Igor is an AI interface over public material; it must not impersonate Igor or invent positions on his behalf."
   },
   "recovery": {
-    "secondary_provider": "Vercel",
-    "role": "recovery only; not production authority for 7ya.io",
-    "appdeploy_rollback": "1789064912967"
+    "primary_rollback": "Cloudflare Pages deployment history and Git revert",
+    "legacy_appdeploy_snapshot": "1789065075177",
+    "legacy_role": "offline historical rollback reference; not an active dependency"
   },
   "monetization_gate": {
     "paid_products_frozen": true,
-    "unlock_requires": ["visual pixel acceptance", "end-to-end user-flow verification", "trusted premium site experience"]
+    "unlock_requires": [
+      "visual pixel acceptance",
+      "end-to-end user-flow verification",
+      "trusted premium site experience"
+    ]
   },
   "privacy_boundary": [
     "No identifying information about minors",
