@@ -1,11 +1,15 @@
 name: Cloudflare Pages Full Site Bootstrap
 
-# Production deploys are handled directly by the Cloudflare GitHub App from main.
-# This workflow remains an explicit break-glass/manual deployment path only.
-# Manual break-glass path only. Normal production deploys are handled by the
-# Cloudflare GitHub App from main; do not create synthetic force-deploy commits.
+# Production deploys are normally handled directly by the Cloudflare GitHub App from main.
+# Temporary break-glass recovery trigger: the live Pages artifact is stale and this workflow
+# is intentionally allowed to run once when this workflow file itself changes on main.
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cloudflare-pages-full-deploy.yml'
 
 permissions:
   contents: read
