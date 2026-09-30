@@ -62,3 +62,15 @@ img[src]:not([src=""]):not([alt=""]) { color: transparent; }
   .personal-moment:first-child{min-height:108svw}
   .personal-moments-foot{align-items:flex-start;flex-direction:column}
 }
+
+/* PERSONAL-FIRST CUT · 2026-09-30
+   The homepage should read as a person before it reads as a measurement system. */
+.home-page .hero .source-note{display:none!important}
+.home-page .restoration-status{display:none!important}
+.home-page .personal-moments{padding-block-start:clamp(46px,5vw,76px)}
+.home-page .personal-moments-head h2{max-width:10ch}
+@media(max-width:760px){
+  .home-page .personal-moments{padding-block-start:34px}
+  .home-page .personal-moments-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:10px}
+  .home-page .personal-moment,.home-page .personal-moment.pm-wide,.home-page .personal-moment.pm-tall{min-width:84vw;min-height:108vw;scroll-snap-align:start}
+}
