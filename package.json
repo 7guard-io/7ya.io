@@ -31,7 +31,7 @@
     "check:artifact": "node scripts/check-static-artifact.mjs && node scripts/check-content-os.mjs --artifact && node scripts/check-ga4-artifact.mjs",
     "verify:artifact": "node scripts/verify-static-artifact.mjs",
     "ci:local": "npm run check-all && npm run typecheck && npm test && npm run build:site && npm run check:locale-routes && npm run check:artifact && npm run verify:artifact",
-    "release:gate": "npm run check-content-os && npm run build:cloudflare",
+    "release:gate": "npm run check-content-os && npm run check:rebuild-home && npm run build:cloudflare && npm run check:rebuild-home:artifact",
     "test": "npm run build:ts && node --test dist/packages/evidence-oracle/test/*.test.js dist/packages/intelligence/test/*.test.js dist/src/core/test/*.test.js",
     "test:intelligence": "npm run build:ts && node --test dist/packages/intelligence/test/*.test.js",
     "convert": "npx --yes docsify-to-pdf@0.0.5",
@@ -52,7 +52,9 @@
     "check-content-os": "node scripts/check-content-os.mjs",
     "ci:full": "npm run ci:local",
     "build:ts": "tsc -p tsconfig.json",
-    "check:locale-routes": "node scripts/check-locale-route-acceptance.mjs"
+    "check:locale-routes": "node scripts/check-locale-route-acceptance.mjs",
+    "check:rebuild-home": "node scripts/check-rebuild-home.mjs",
+    "check:rebuild-home:artifact": "node scripts/check-rebuild-home.mjs --artifact"
   },
   "repository": {
     "type": "git",
