@@ -1,18 +1,18 @@
 {
   "service": "7ya-frontend",
   "provider": "cloudflare-pages",
-  "status": "READY",
-  "release": "7ya-multilingual-static-20260919-v20",
+  "status": "READY_FOR_REVIEW",
+  "release": "7ya-independent-personal-20260930-v1",
   "source_repository": "7guard-io/7ya.io",
   "source_ref": "main",
-  "source_sha": "48299a4eef7afff5a83fc06469d03a5006654ce3",
-  "source_sha_role": "multilingual static-root baseline: HE/EN/RU/AR canonical route projections, persistent language switching, hreflang and 100-URL sitemap",
+  "source_sha": "pending-commit",
+  "source_sha_role": "personal-first navigation and AppDeploy-independent Cloudflare runtime",
   "source_sha_policy": "Cloudflare GitHub App deploys every main push directly to Pages; GitHub Actions workflows are manual fallback/verification paths.",
   "environment": "candidate",
   "experience": "IGOR_LIVING_PUBLIC_RECORD",
   "target_launch_date": "2026-09-19",
   "publication_requested_at": "2026-09-19",
-  "build_marker": "7ya-multilingual-static-20260919-v20",
+  "build_marker": "7ya-independent-personal-20260930-v1",
   "data_contract": {
     "record_count": 66,
     "record_count_role": "verified narrative core",
@@ -91,9 +91,9 @@
     "/ru/evidence/",
     "/ar/evidence/"
   ],
-  "release_intent": "Make 7YA permanently project Igor's complete public record from canonical corpora across every major route, with route-aware recommendations, Academia/Research/StartOn/Media continuity, and fail-closed coverage checks.",
+  "release_intent": "Keep Igor as the clear public identity and run the complete site and companion path from the canonical repository without AppDeploy.",
   "promotion_gate": "Cloudflare GitHub App must build main successfully; content OS source gate must retain >=400 master records, >=250 public URLs, >=50 curated records, platform coverage floors, and required Academia/Research/Media/StartOn route markers.",
-  "rollback": "Prior Git commits and the last valid AppDeploy version remain available as rollback references; production routing must not use an AppDeploy catch-all proxy.",
+  "rollback": "Revert this Git commit or select the previous Cloudflare Pages deployment; AppDeploy is not in the serving path.",
   "remaining_gates": [],
   "operations": {
     "production_provider": "cloudflare-pages",
@@ -102,7 +102,9 @@
     "github_actions_role": "manual fallback / optional verification while runner billing is unavailable",
     "cache_policy": "homepage merged feed cache-busted v11; sitewide content OS runtime cache-busted v3; canonical corpora use no-store/revalidate",
     "sitewide_impact_layer": true,
-    "impact_layer_routes": 24
+    "impact_layer_routes": 24,
+    "runtime_dependency_on_appdeploy": false,
+    "companion_runtime": "Cloudflare Pages Function with optional NVIDIA NIM and deterministic first-party fallback"
   },
   "master_public_record": {
     "path": "/knowledge/master-public-record-20260918.json",
