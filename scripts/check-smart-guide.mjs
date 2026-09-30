@@ -27,7 +27,7 @@ requireText('guide', 'Retry-After', 'rate-limit response contract missing');
 requireText('guide', 'message.length > 1600', 'message size cap missing');
 forbidText('guide', 'nvapi-', 'hard-coded NVIDIA credential detected');
 forbidText('guide', 'sk-', 'hard-coded provider credential detected');
-requireText('pagesGuide', 'v2.appdeploy.ai/api/companion', 'Cloudflare guide bridge missing AppDeploy companion upstream');
+requireText('pagesGuide', 'api-v2.appdeploy.ai/app/697a008fddc309b142/api/companion', 'Cloudflare guide bridge missing AppDeploy companion API upstream');
 requireText('pagesGuide', 'fallbackCreator', 'Cloudflare guide bridge missing in-chat creator continuity fallback');
 requireText('pagesGuide', 'secrets_exposed: false', 'Cloudflare guide bridge missing public secret boundary');
 requireText('pagesGuide', "experience: body.experience === 'speak-with-igor'", 'Speak with Igor upstream context missing');
