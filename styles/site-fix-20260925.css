@@ -62,3 +62,22 @@ img[src]:not([src=""]):not([alt=""]) { color: transparent; }
   .personal-moment:first-child{min-height:108svw}
   .personal-moments-foot{align-items:flex-start;flex-direction:column}
 }
+
+/* Personal opening: story, real moments, then archive depth. */
+.home-page .restoration-hero{min-height:auto;padding-block:64px 48px;background:#0a0a0b}
+.home-page .restoration-hero:before,.home-page .hero-index{display:none}
+.home-page .restoration-hero h1{font-family:inherit;font-size:clamp(2.7rem,5.5vw,5.5rem);line-height:1.12;letter-spacing:0;text-transform:none}
+.home-page .restoration-hero h1 .hero-name{font-size:.45em;line-height:1.5;margin-bottom:18px;color:#f5f2ea;font-weight:650}
+.home-page .restoration-slogan{font-family:inherit;letter-spacing:0;line-height:1.5;font-size:1rem;text-transform:none}
+.home-page .restoration-hero .lead{font-size:1.125rem;line-height:1.8;max-width:48ch}
+.home-page .restoration-hero .portrait{min-height:480px}
+.home-page .restoration-hero .personal-hero-caption{font-family:inherit;letter-spacing:0;font-size:1.3rem;line-height:1.5}
+.home-page .personal-moments-head h2{line-height:1.12;letter-spacing:0;font-size:clamp(2.2rem,5vw,4rem)}
+.home-page .personal-moments-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:row;gap:20px}
+.home-page .personal-moment,.home-page .personal-moment.pm-wide,.home-page .personal-moment.pm-tall{grid-column:auto;min-height:360px}
+.home-page .personal-moment small{font-size:.875rem;letter-spacing:0}
+.personal-archive-details{margin:32px max(24px,6vw);border-block:1px solid #ffffff26}
+.personal-archive-details>summary{padding:22px 0;cursor:pointer;font-size:1rem;color:#c9c6bc}
+.personal-archive-details .restoration-status{padding:24px 0}
+@media(max-width:760px){.home-page .restoration-hero{padding-block:32px}.home-page .restoration-hero .portrait{min-height:360px}.home-page .personal-moments-grid{grid-template-columns:1fr}.home-page .personal-moment,.home-page .personal-moment.pm-wide,.home-page .personal-moment.pm-tall{min-height:320px}.home-page .personal-moment:first-child{min-height:320px}.home-page .restoration-hero .personal-hero-caption{display:none}}
+@media(prefers-reduced-motion:reduce){.personal-moment img{transition:none}.personal-moment:hover img{transform:none}}
