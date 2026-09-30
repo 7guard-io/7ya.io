@@ -30,7 +30,7 @@
     "build:site": "node scripts/build-static-site.mjs && node scripts/inject-ga4.mjs dist && node scripts/refresh-artifact-manifest.mjs",
     "check:artifact": "node scripts/check-static-artifact.mjs && node scripts/check-content-os.mjs --artifact && node scripts/check-ga4-artifact.mjs",
     "verify:artifact": "node scripts/verify-static-artifact.mjs",
-    "ci:local": "npm run check-all && npm run typecheck && npm test && npm run build:site && npm run check:artifact && npm run verify:artifact",
+    "ci:local": "npm run check-all && npm run typecheck && npm test && npm run build:site && npm run check:locale-routes && npm run check:artifact && npm run verify:artifact",
     "release:gate": "npm run check-content-os && npm run build:cloudflare",
     "test": "npm run build:ts && node --test dist/packages/evidence-oracle/test/*.test.js dist/packages/intelligence/test/*.test.js dist/src/core/test/*.test.js",
     "test:intelligence": "npm run build:ts && node --test dist/packages/intelligence/test/*.test.js",
