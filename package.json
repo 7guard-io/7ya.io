@@ -54,7 +54,8 @@
     "build:ts": "tsc -p tsconfig.json",
     "check:locale-routes": "node scripts/check-locale-route-acceptance.mjs",
     "check:rebuild-home": "node scripts/check-rebuild-home.mjs",
-    "check:rebuild-home:artifact": "node scripts/check-rebuild-home.mjs --artifact"
+    "check:rebuild-home:artifact": "node scripts/check-rebuild-home.mjs --artifact",
+    "check:home-moments": "node scripts/check-home-featured-moments.mjs"
   },
   "repository": {
     "type": "git",
