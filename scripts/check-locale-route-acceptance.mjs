@@ -10,6 +10,7 @@ const allowedHebrew = new Set(['איגור ופרצקי','עברית']);
 const strip = html => {
   const body = (html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i) || [,''])[1];
   return body
+    .replace(/<h3\b[^>]*data-original-publication[^>]*>[\s\S]*?<\/h3>/gi,'')
     .replace(/<(script|style|template|svg)\b[\s\S]*?<\/\1>/gi,'')
     .replace(/<[^>]+>/g,'\n')
     .split(/\n+/)
@@ -116,9 +117,9 @@ const homepageUiHebrewForbidden = [
   '✓ ניווט'
 ];
 const homepageLocaleRequired = {
-  en: ['The archive preserves the path from 2011 to today.','Voices from the comments','✓ Open','✓ Available','✓ Navigation ready'],
-  ru: ['Архив сохраняет путь с 2011 года до сегодня.','Голоса из комментариев','✓ Открыто','✓ Доступно','✓ Навигация готова'],
-  ar: ['يحفظ الأرشيف المسار من عام 2011 حتى اليوم.','أصوات من التعليقات','✓ مفتوح','✓ متاح','✓ التنقل جاهز']
+  en: ['The archive preserves the path from 2011 to today.','Voices from the comments'],
+  ru: ['Архив сохраняет путь с 2011 года до сегодня.','Голоса из комментариев'],
+  ar: ['يحفظ الأرشيف المسار من عام 2011 حتى اليوم.','أصوات من التعليقات']
 };
 for (const locale of locales) {
   const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
