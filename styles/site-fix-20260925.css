@@ -1,139 +1,231 @@
-/* 7YA Site Fixes · 2026-09-25 */
-.social-card:after { background: linear-gradient(180deg, transparent 15%, rgba(10,12,10,.45) 42%, rgba(10,12,10,.96) 100%) !important; }
-.pulse-card--media:after { background: linear-gradient(180deg, rgba(10,12,10,.05) 10%, rgba(10,12,10,.42) 40%, rgba(10,12,10,.97) 100%) !important; }
-.pulse-card--lead.pulse-card--media:after { background: linear-gradient(180deg, rgba(140,31,23,.18) 10%, rgba(10,12,10,.52) 45%, rgba(10,12,10,.98) 100%) !important; }
-.video-card:after { background: linear-gradient(180deg, rgba(0,0,0,.05) 15%, rgba(7,8,7,.96) 100%) !important; }
-.storyflow-evidence:after { background: linear-gradient(180deg, transparent 15%, rgba(8,10,8,.97) 100%) !important; }
-.visual-tile:after { background: linear-gradient(180deg, transparent 38%, rgba(5,6,5,.90) 100%) !important; }
-.social-card .social-copy, .social-card .social-meta, .social-card h3, .social-card p, .social-card small { text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.pulse-card--media h3, .pulse-card--media p, .pulse-card--media small, .pulse-card--media b { text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.video-card h3, .video-card p, .video-card small, .video-card b { text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.storyflow-evidence strong, .storyflow-evidence p, .storyflow-evidence small, .storyflow-evidence a { text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.visual-tile span { text-shadow: 0 2px 8px rgba(0,0,0,.7); }
-.footer { padding-bottom: calc(34px + 80px) !important; }
-@media (min-width: 761px) { .control-trigger { bottom: 18px; z-index: 200; } }
-@media (max-width: 760px) { .control-trigger { bottom: calc(82px + env(safe-area-inset-bottom)) !important; z-index: 200; } .footer { padding-bottom: calc(34px + 100px + env(safe-area-inset-bottom)) !important; } }
-.contact { margin-top: 0 !important; border-top: none !important; }
-.topics + .contact, .topics { margin-top: 0 !important; padding-top: clamp(72px,8vw,118px) !important; }
-.topics { border-bottom: none !important; padding-bottom: 0 !important; }
-.contact { border-top: none !important; }
-section { transition: background-color .6s ease; }
-.seven-personal-media-fallback { background: linear-gradient(135deg, #171915 0%, #1e211c 50%, #171915 100%); position: relative; }
-.seven-personal-media-fallback::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(140,255,0,.04) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(233,75,53,.04) 0%, transparent 50%); }
-.social-card:not(.has-source-media) .seven-personal-media-fallback, .social-card:not(.has-source-media) img[src*="igor-hero"] { opacity: .35; filter: saturate(.3) contrast(1.1) brightness(.5); }
-.pulse-card--media { position: relative; }
-.pulse-card--media>*:not(img) { position: relative; z-index: 1; }
-.pulse-card--media::before { content: ''; position: absolute; z-index: 0; inset: 0; background: linear-gradient(180deg, transparent 0%, transparent 30%, rgba(10,12,10,.88) 65%, rgba(10,12,10,.98) 100%); pointer-events: none; }
-.social-card .social-copy { background: linear-gradient(180deg, transparent 0%, rgba(10,12,10,.65) 40%, rgba(10,12,10,.92) 100%); margin: 0 -24px -24px; padding: 40px 24px 24px; position: relative; z-index: 1; }
-img[src]:not([src=""]) { background-color: #171915; }
-img[src]:not([src=""]):not([alt=""]) { color: transparent; }
-/* PERSONAL_MOMENTS_RELEASE:20260927-v1 */
-.personal-moments{position:relative;overflow:hidden;padding:clamp(72px,8vw,128px) max(24px,6vw);background:#090a09;border-block:1px solid rgba(255,255,255,.11)}
-.personal-moments::before{content:"IGOR";position:absolute;inset-block-start:-.18em;inset-inline-end:-.03em;font:900 clamp(8rem,24vw,28rem)/.72 Arial,sans-serif;letter-spacing:-.09em;color:rgba(255,255,255,.022);pointer-events:none}
-.personal-moments-head{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:clamp(28px,6vw,88px);align-items:end;max-width:1500px;margin:0 auto clamp(34px,4vw,58px)}
-.personal-moments-head h2{margin:.2em 0 0;font-size:clamp(3rem,7vw,7.4rem);line-height:.84;letter-spacing:-.055em}
-.personal-moments-head h2 em{font-style:normal;color:#8cff00}
-.personal-moments-head>p{max-width:620px;margin:0;color:rgba(255,255,255,.72);font-size:clamp(1rem,1.4vw,1.28rem);line-height:1.65}
-.personal-moments-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-flow:dense;gap:12px;max-width:1500px;margin:0 auto}
-.personal-moment{position:relative;grid-column:span 4;min-height:360px;overflow:hidden;background:#151715;color:#fff;text-decoration:none;isolation:isolate}
-.personal-moment.pm-wide{grid-column:span 8}
-.personal-moment.pm-tall{min-height:520px}
-.personal-moment img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.92) contrast(1.03);transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s ease}
-.personal-moment::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,8,7,.02) 28%,rgba(7,8,7,.18) 52%,rgba(7,8,7,.94) 100%)}
-.personal-moment span{position:absolute;z-index:2;inset-inline:clamp(18px,2.2vw,32px);inset-block-end:clamp(18px,2.2vw,30px);display:grid;gap:7px}
-.personal-moment small{font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8cff00}
-.personal-moment b{max-width:26ch;font-size:clamp(1.18rem,1.8vw,1.75rem);line-height:1.08;text-shadow:0 2px 16px rgba(0,0,0,.72)}
-.personal-moment:hover img,.personal-moment:focus-visible img{transform:scale(1.035);filter:saturate(1.04) contrast(1.05)}
-.personal-moment:focus-visible{outline:2px solid #8cff00;outline-offset:3px}
-.personal-moments-foot{position:relative;z-index:1;max-width:1500px;margin:22px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:20px;align-items:center}
-.personal-moments-foot span{font-size:.72rem;letter-spacing:.13em;color:rgba(255,255,255,.45)}
-.personal-moments-foot a{color:#fff;text-decoration:none;font-weight:800}
-@media(max-width:900px){
-  .personal-moments{padding-inline:18px}
-  .personal-moments-head{grid-template-columns:1fr;gap:18px}
-  .personal-moments-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-  .personal-moment,.personal-moment.pm-wide{grid-column:span 1;min-height:300px}
-  .personal-moment.pm-tall{min-height:390px}
+/* 7YA HUMAN-FIRST CUT · 2026-10-01
+   Purpose: the homepage must feel like Igor's life, not a dashboard.
+   Real media leads. Metrics and evidence stay available on deeper routes. */
+
+/* Keep utility fixes that are unrelated to the editorial cut. */
+.footer{padding-bottom:calc(34px + 80px)!important}
+.contact{margin-top:0!important;border-top:none!important}
+.topics+.contact,.topics{margin-top:0!important;padding-top:clamp(72px,8vw,118px)!important}
+.topics{border-bottom:none!important;padding-bottom:0!important}
+section{transition:background-color .45s ease}
+img[src]:not([src='']){background-color:#171915}
+@media(min-width:761px){.control-trigger{bottom:18px;z-index:200}}
+@media(max-width:760px){.control-trigger{bottom:calc(82px + env(safe-area-inset-bottom))!important;z-index:200}.footer{padding-bottom:calc(34px + 100px + env(safe-area-inset-bottom))!important}}
+
+/* One navigation, not two competing headers. */
+.home-page .topbar{display:none!important}
+.home-page .seven-human-nav{z-index:80}
+
+/* Remove dashboard/audit layers from the homepage. They remain reachable on their own routes. */
+.home-page .restoration-status,
+.home-page #start-here,
+.home-page #audience-pulse,
+.home-page #storyflow,
+.home-page .publication-scale,
+.home-page #media,
+.home-page #now-pulse,
+.home-page .personal-note{display:none!important}
+.home-page .hero .source-note,
+.home-page .hero-index,
+.home-page .hero blockquote{display:none!important}
+
+/* HERO — a real portrait first, interface second. */
+.home-page #home{
+  position:relative!important;
+  isolation:isolate;
+  min-height:100svh!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  overflow:hidden!important;
+  padding:clamp(112px,14vh,190px) max(22px,6vw) clamp(48px,8vh,86px)!important;
+  background:#080908!important;
+  border:0!important;
 }
-@media(max-width:560px){
-  .personal-moments-head h2{font-size:clamp(3rem,16vw,5.2rem)}
-  .personal-moments-grid{grid-template-columns:1fr}
-  .personal-moment,.personal-moment.pm-wide,.personal-moment.pm-tall{grid-column:1;min-height:68svw;max-height:520px}
-  .personal-moment:first-child{min-height:108svw}
-  .personal-moments-foot{align-items:flex-start;flex-direction:column}
+.home-page #home::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(5,6,5,.06) 0%,rgba(5,6,5,.10) 30%,rgba(5,6,5,.72) 73%,rgba(5,6,5,.97) 100%),linear-gradient(90deg,rgba(5,6,5,.76) 0%,rgba(5,6,5,.28) 48%,rgba(5,6,5,.05) 100%);
+}
+.home-page #home .portrait{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  max-width:none!important;
+  overflow:hidden!important;
+  border:0!important;
+}
+.home-page #home .portrait img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center 22%!important;
+  filter:saturate(.88) contrast(1.05) brightness(.83)!important;
+}
+.home-page #home .portrait figcaption{display:none!important}
+.home-page #home .hero-copy{
+  position:relative!important;
+  z-index:2!important;
+  width:min(920px,92vw)!important;
+  max-width:920px!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+}
+.home-page #home .hero-copy .eyebrow{
+  margin-bottom:14px!important;
+  font-size:.72rem!important;
+  letter-spacing:.16em!important;
+  color:#8cff00!important;
+}
+.home-page #home .hero-copy h1{
+  margin:0!important;
+  font-size:clamp(4.2rem,10.7vw,10.8rem)!important;
+  line-height:.76!important;
+  letter-spacing:-.075em!important;
+  text-wrap:balance;
+}
+.home-page #home .hero-x{opacity:.3}
+.home-page #home .restoration-slogan{margin:22px 0 0!important;font-size:clamp(1rem,2vw,1.6rem)!important}
+.home-page #home .lead{
+  max-width:690px!important;
+  margin:22px 0 0!important;
+  font-size:clamp(1.06rem,1.65vw,1.42rem)!important;
+  line-height:1.52!important;
+  color:rgba(255,255,255,.86)!important;
+}
+.home-page #home .actions{margin-top:28px!important;position:relative;z-index:2}
+.home-page #home .restoration-voice{margin-top:22px!important;position:relative;z-index:2;max-width:440px}
+.home-page #home .scroll-cue{position:absolute!important;z-index:2!important;inset-inline-end:max(22px,6vw)!important;inset-block-end:36px!important}
+
+/* PERSONAL MOMENTS — editorial sequence, never a dashboard rail. */
+.home-page .personal-moments{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(72px,8vw,126px) max(20px,5vw)!important;
+  background:#090a09!important;
+  border:0!important;
+}
+.home-page .personal-moments::before{
+  content:'IGOR';
+  position:absolute;
+  inset-block-start:-.17em;
+  inset-inline-end:-.03em;
+  font:900 clamp(8rem,24vw,28rem)/.72 Arial,sans-serif;
+  letter-spacing:-.09em;
+  color:rgba(255,255,255,.022);
+  pointer-events:none;
+}
+.home-page .personal-moments-head{
+  position:relative;
+  z-index:1;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr)!important;
+  gap:clamp(28px,6vw,88px)!important;
+  align-items:end!important;
+  max-width:1500px!important;
+  margin:0 auto clamp(34px,4vw,60px)!important;
+}
+.home-page .personal-moments-head h2{
+  margin:.15em 0 0!important;
+  max-width:9ch!important;
+  font-size:clamp(3.7rem,8vw,8.2rem)!important;
+  line-height:.82!important;
+  letter-spacing:-.065em!important;
+}
+.home-page .personal-moments-head h2 em{font-style:normal;color:#8cff00}
+.home-page .personal-moments-head>p{max-width:580px;margin:0;color:rgba(255,255,255,.66);font-size:clamp(1rem,1.35vw,1.22rem);line-height:1.62}
+.home-page .personal-moments-grid{
+  position:relative;
+  z-index:1;
+  display:grid!important;
+  grid-template-columns:repeat(12,minmax(0,1fr))!important;
+  grid-auto-flow:dense!important;
+  gap:9px!important;
+  max-width:1500px!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+.home-page .personal-moment{
+  position:relative!important;
+  grid-column:span 4!important;
+  min-width:0!important;
+  min-height:390px!important;
+  overflow:hidden!important;
+  background:#111311!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  isolation:isolate;
+  scroll-snap-align:none!important;
+}
+.home-page .personal-moment:nth-child(1){grid-column:span 7!important;grid-row:span 2;min-height:790px!important}
+.home-page .personal-moment:nth-child(2){grid-column:span 5!important;min-height:390px!important}
+.home-page .personal-moment:nth-child(3){grid-column:span 5!important;min-height:390px!important}
+.home-page .personal-moment:nth-child(4){grid-column:span 4!important;min-height:470px!important}
+.home-page .personal-moment:nth-child(5){grid-column:span 8!important;min-height:470px!important}
+.home-page .personal-moment:nth-child(6){grid-column:span 7!important;min-height:440px!important}
+.home-page .personal-moment:nth-child(7){grid-column:span 5!important;min-height:440px!important}
+.home-page .personal-moment img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:saturate(.9) contrast(1.04)!important;
+  transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .35s ease!important;
+}
+.home-page .personal-moment::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,8,7,.02) 30%,rgba(7,8,7,.14) 56%,rgba(7,8,7,.94) 100%)}
+.home-page .personal-moment span{position:absolute;z-index:2;inset-inline:clamp(18px,2.2vw,32px);inset-block-end:clamp(18px,2.2vw,30px);display:grid;gap:7px}
+.home-page .personal-moment small{font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#8cff00}
+.home-page .personal-moment b{max-width:25ch;font-size:clamp(1.2rem,1.8vw,1.85rem);line-height:1.06;text-shadow:0 2px 18px rgba(0,0,0,.74)}
+.home-page .personal-moment:hover img,.home-page .personal-moment:focus-visible img{transform:scale(1.028);filter:saturate(1.02) contrast(1.05)!important}
+.home-page .personal-moment:focus-visible{outline:2px solid #8cff00;outline-offset:3px}
+.home-page .personal-moments-foot{position:relative;z-index:1;max-width:1500px;margin:22px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:flex-end;gap:20px;align-items:center}
+.home-page .personal-moments-foot span{display:none}
+.home-page .personal-moments-foot a{color:#fff;text-decoration:none;font-weight:800}
+
+/* Story and originals are the next layer — context, then creation. */
+.home-page #story{margin-top:0!important;padding-top:clamp(76px,9vw,140px)!important}
+.home-page #originals{margin-top:0!important}
+.home-page #story .section-intro,.home-page #originals .originals-head{max-width:1450px;margin-inline:auto}
+
+/* Broken media: show the truth, not another recycled Igor portrait. */
+.seven-source-media-missing{position:relative;background:linear-gradient(145deg,#121512,#090b09)!important}
+.seven-source-media-missing::before{content:'SOURCE FRAME · MEDIA UNAVAILABLE';position:absolute;inset:20px;display:flex;align-items:flex-end;padding:18px;border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.5);font:800 .68rem/1.35 ui-monospace,monospace;letter-spacing:.12em;z-index:1}
+.seven-source-frame{background:radial-gradient(circle at 28% 22%,rgba(140,255,0,.07),transparent 32%),linear-gradient(145deg,#121512,#090b09)!important}
+.seven-personal-media-fallback{display:none!important}
+
+@media(max-width:900px){
+  .home-page #home{min-height:92svh!important;padding:112px 20px 42px!important}
+  .home-page #home::after{background:linear-gradient(180deg,rgba(5,6,5,.02) 0%,rgba(5,6,5,.14) 35%,rgba(5,6,5,.86) 72%,#070807 100%)}
+  .home-page #home .portrait img{object-position:58% 20%!important}
+  .home-page #home .hero-copy{width:100%!important}
+  .home-page #home .hero-copy h1{font-size:clamp(3.5rem,15vw,7.3rem)!important}
+  .home-page #home .scroll-cue{display:none!important}
+  .home-page .personal-moments{padding:64px 16px!important}
+  .home-page .personal-moments-head{grid-template-columns:1fr!important;gap:18px!important}
+  .home-page .personal-moments-head h2{font-size:clamp(3.1rem,14vw,6rem)!important}
+  .home-page .personal-moments-grid{grid-template-columns:1fr!important;display:grid!important;overflow:visible!important;gap:8px!important}
+  .home-page .personal-moment,.home-page .personal-moment:nth-child(n){grid-column:1!important;grid-row:auto!important;min-width:0!important;min-height:72svw!important;max-height:none!important}
+  .home-page .personal-moment:nth-child(1){min-height:118svw!important}
+  .home-page .personal-moment:nth-child(5){min-height:82svw!important}
 }
 
-/* PERSONAL-FIRST CUT · 2026-09-30
-   The homepage should read as a person before it reads as a measurement system. */
-.home-page .hero .source-note{display:none!important}
-.home-page .restoration-status{display:none!important}
-.home-page .personal-moments{padding-block-start:clamp(46px,5vw,76px)}
-.home-page .personal-moments-head h2{max-width:10ch}
-@media(max-width:760px){
-  .home-page .personal-moments{padding-block-start:34px}
-  .home-page .personal-moments-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:10px}
-  .home-page .personal-moment,.home-page .personal-moment.pm-wide,.home-page .personal-moment.pm-tall{min-width:84vw;min-height:108vw;scroll-snap-align:start}
-}
-
-/* MAJOR REAL-MEDIA EXPERIENCE · 2026-10-01
-   Keep the data logic intact; change hierarchy and presentation so Igor's real posts lead. */
-.home-page main{display:flex;flex-direction:column}
-.home-page #home{order:1}
-.home-page #personal-moments{order:2}
-.home-page #media{order:3}
-.home-page #now-pulse{order:4}
-.home-page #storyflow{order:5}
-.home-page #story{order:6}
-.home-page #originals{order:7}
-.home-page #work{order:8}
-.home-page #listen{order:9}
-.home-page #writing{order:10}
-.home-page #start-here{order:11}
-.home-page #audience-pulse{order:12}
-.home-page #topics{order:13}
-.home-page #now{order:14}
-.home-page .personal-note{order:15}
-.home-page .restoration-status{order:99}
-.home-page #media{padding-block:clamp(62px,7vw,104px);background:linear-gradient(180deg,#080908 0%,#0d100c 100%);border-block:1px solid rgba(255,255,255,.09)}
-.home-page #media .igor-live-head{max-width:1500px;margin-inline:auto;margin-bottom:28px}
-.home-page #media .igor-live-head h2{font-size:clamp(3rem,7vw,7.2rem);line-height:.86;letter-spacing:-.055em}
-.home-page #media .igor-live-head h2 em{color:#8cff00;font-style:normal}
-.home-page #media .feed-controls{position:sticky;top:70px;z-index:16;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px max(18px,6vw);margin-inline:calc(max(18px,6vw)*-1);margin-bottom:16px;background:linear-gradient(180deg,rgba(8,9,8,.96),rgba(8,9,8,.82),transparent);backdrop-filter:blur(12px)}
-.home-page #media .feed-controls::-webkit-scrollbar{display:none}
-.home-page #media .feed-controls button{flex:0 0 auto;border:1px solid rgba(255,255,255,.16);background:#111310;color:#fff;border-radius:999px;padding:10px 16px;white-space:nowrap}
-.home-page #media .feed-controls button.is-active{background:#8cff00;color:#071006;border-color:#8cff00}
-.home-page #media .feed-search{flex:0 0 min(360px,72vw);border:1px solid rgba(255,255,255,.18);background:#111310;color:#fff;border-radius:999px;padding:10px 16px;outline:none}
-.home-page #media .social-platforms{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;padding-bottom:12px;margin-bottom:18px}
-.home-page #media .social-platforms::-webkit-scrollbar{display:none}
-.home-page #media .social-platforms a{flex:0 0 auto;scroll-snap-align:start}
-.home-page #media .social-rail{display:grid!important;grid-auto-flow:column;grid-auto-columns:minmax(280px,24vw);grid-template-rows:repeat(2,minmax(300px,38vh));gap:10px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-inline:contain;padding:4px max(18px,6vw) 18px;margin-inline:calc(max(18px,6vw)*-1);scrollbar-width:thin}
-.home-page #media .social-card{position:relative;min-width:0!important;height:auto!important;min-height:0!important;scroll-snap-align:start;overflow:hidden;border-radius:0;background:#151715;isolation:isolate;transition:transform .28s ease,border-color .28s ease}
-.home-page #media .social-card.featured{grid-row:span 2}
-.home-page #media .social-card:hover{transform:translateY(-3px)}
-.home-page #media .social-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.96) contrast(1.03);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
-.home-page #media .social-card:hover>img{transform:scale(1.035)}
-.home-page #media .social-frame{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;background:radial-gradient(circle at 50% 35%,rgba(140,255,0,.10),transparent 30%),linear-gradient(145deg,#171a16,#0b0d0b)}
-.home-page #media .social-frame b{font-size:clamp(1.6rem,2.4vw,3rem)}
-.home-page #media .social-frame em{font-size:.72rem;letter-spacing:.12em;color:rgba(255,255,255,.55)}
-.home-page #media .social-card .social-copy{position:absolute;z-index:3;inset-inline:0;inset-block-end:0;margin:0;padding:64px 20px 20px;background:linear-gradient(180deg,transparent 0%,rgba(7,8,7,.58) 35%,rgba(7,8,7,.97) 100%)}
-.home-page #media .social-card h3{font-size:clamp(1.15rem,1.55vw,1.55rem);line-height:1.05;margin:.3em 0}
-.home-page #media .social-card p{font-size:.88rem;line-height:1.45;color:rgba(255,255,255,.76);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.home-page #media .social-card strong{display:block;margin-top:8px;color:#8cff00;font-size:.82rem}
-.home-page #media .social-card .ownership{display:inline-flex;margin-top:9px;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.home-page #media .social-card small{display:block;margin-top:6px;font-size:.65rem;color:rgba(255,255,255,.5)}
-.home-page #media .social-card.is-filtered-out{display:none!important}
-.home-page #media .archive-actions{max-width:1500px;margin:24px auto 0;display:flex;flex-wrap:wrap;gap:10px}
-.home-page #now-pulse{border-top:0}
-@media(max-width:900px){
-  .home-page #media .social-rail{grid-auto-columns:72vw;grid-template-rows:repeat(2,minmax(250px,34vh));gap:8px}
-  .home-page #media .social-card.featured{grid-row:span 2}
-}
 @media(max-width:560px){
-  .home-page #media{padding-block:46px 58px}
-  .home-page #media .igor-live-head{padding-inline:18px}
-  .home-page #media .feed-controls{top:54px;padding-inline:18px;margin-inline:-18px}
-  .home-page #media .social-rail{display:flex!important;gap:8px;padding-inline:18px;margin-inline:-18px;scroll-padding-inline:18px}
-  .home-page #media .social-card,.home-page #media .social-card.featured{flex:0 0 84vw;min-height:112vw!important;max-height:620px;scroll-snap-align:start}
-  .home-page #media .social-card .social-copy{padding:84px 18px 18px}
-  .home-page #media .social-card p{-webkit-line-clamp:3}
+  .home-page #home{padding-inline:16px!important}
+  .home-page #home .lead{font-size:1rem!important;max-width:34ch!important}
+  .home-page #home .actions{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+  .home-page .personal-moments{padding-inline:10px!important}
+  .home-page .personal-moments-head{padding-inline:8px}
+  .home-page .personal-moment,.home-page .personal-moment:nth-child(n){min-height:94vw!important}
+  .home-page .personal-moment:nth-child(1){min-height:132vw!important}
 }
