@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-30",
+  "purpose": "Small source-bound editorial projection for the person-first 7YA homepage. Not a ranking of the full corpus.",
+  "moments": [
+    {
+      "id": "life-story",
+      "story_family": "roots-and-life-story",
+      "title": "לא נולדתי למסלול מסודר. בניתי דרך.",
+      "media": "/assets/personal-hero-20260716/igor-hero.webp",
+      "source_url": "https://www.youtube.com/watch?v=fxFAUrb1h0M",
+      "source_context": "YouTube · סיפור אישי",
+      "source_kind": "owner_video"
+    },
+    {
+      "id": "public-service",
+      "story_family": "public-service-transition",
+      "title": "שנים בתוך מערכות, ואחר כך יציאה למסלול חדש.",
+      "media": "/assets/personal-hero-20260716/igor-public-service.webp",
+      "source_url": "https://www.youtube.com/watch?v=kS2CRiqRaXo",
+      "source_context": "YouTube · שירות ציבורי",
+      "source_kind": "owner_video"
+    },
+    {
+      "id": "starton-origin",
+      "story_family": "starton-origin",
+      "title": "לחזור למקום שממנו באתי — ולבנות שם משהו אחר.",
+      "media": "https://i.ytimg.com/vi/O3v309CA4ao/hqdefault.jpg",
+      "source_url": "https://youtu.be/O3v309CA4ao",
+      "source_context": "YouTube · StartOn",
+      "source_kind": "public_video"
+    },
+    {
+      "id": "fatherhood",
+      "story_family": "fatherhood",
+      "title": "הרגע שבו סיפור משפחתי הפך לשיחה ציבורית רחבה.",
+      "media": "https://storage.hidabroot.org/Graphics/Storage/327341.png",
+      "source_url": "https://www.hidabroot.org/article/1179015",
+      "source_context": "הידברות · 20.02.2023",
+      "source_kind": "external_press"
+    },
+    {
+      "id": "russian-identity",
+      "story_family": "russian-israeli-identity",
+      "title": "להפוך עלבון ישן לשיחה גלויה על זהות ושייכות.",
+      "media": "/assets/personal-hero-20260716/igor-closeup.webp",
+      "source_url": "https://www.instagram.com/p/CsnfS5WoSw8/",
+      "source_context": "Instagram · 24.05.2023",
+      "source_kind": "owner_post"
+    },
+    {
+      "id": "bizzi",
+      "story_family": "music-and-creation",
+      "title": "BIZZI — גם היצירה היא חלק מהביוגרפיה.",
+      "media": "https://i.ytimg.com/vi/jRjZjpqAgEw/maxresdefault.jpg",
+      "source_url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "source_context": "YouTube · BIZZI",
+      "source_kind": "official_video"
+    },
+    {
+      "id": "research",
+      "story_family": "research-ai-leadership",
+      "title": "מהניסיון בשטח לשאלות על מנהיגות בעידן האלגוריתמי.",
+      "media": "/assets/personal-hero-20260716/igor-executive.webp",
+      "source_url": "https://www.academia.edu/168076525/7YA_LEADERSHIP_FOR_THE_ALGORITHMIC_AGE_SUPERNOAH_Founder_Edition_After_the_Data_Flood",
+      "source_context": "Academia · SUPERNOAH",
+      "source_kind": "owner_research"
+    },
+    {
+      "id": "starton-now",
+      "story_family": "current-work",
+      "title": "StartOn ממשיכה להתפתח — עם נוער, מרחב וטכנולוגיה.",
+      "media": "/assets/personal-hero-20260716/igor-speaker.webp",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:share:7504811986866794496",
+      "source_context": "LinkedIn · 13.09.2026",
+      "source_kind": "owner_update"
+    }
+  ]
+}

@@ -76,6 +76,7 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  'rebuild-home-20260930.css',
   '7ya-control-layer-20260726.css',
   '7ya-control-page-20260726.css',
   '7ya-experience-guide-20260716.css',
@@ -143,6 +144,7 @@ export const publicScriptFiles = [
 ];
 
 export const criticalArtifactPaths = [
+  'styles/rebuild-home-20260930.css',
   'api/feed.json',
   '_redirects',
   '_headers',
