@@ -167,11 +167,11 @@
   },
   "public_life_archive": {
     "path": "/knowledge/public-life-archive-20261001.json",
-    "records": 1525,
+    "records": 1360,
     "public_urls": 608,
     "visual_records": 360,
     "tiktok_export_public": 755,
-    "youtube_channel_inventory": 336,
+    "youtube_channel_inventory": 337,
     "platforms": {
       "Facebook": 163,
       "LinkedIn": 27,

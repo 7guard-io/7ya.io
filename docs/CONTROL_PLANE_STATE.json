@@ -69,7 +69,7 @@
     "external_runtime_dependency_on_appdeploy": false
   },
   "domain_state": {
-    "7ya.io": "Cloudflare edge; automated probe challenged",
+    "7ya.io": "HTTP 200 verified 2026-10-01; canonical deployment is stale pending promotion",
     "www.7ya.io": "not independently verified this change",
     "pages_domain": "verified HTTP 200",
     "dns_changed_in_this_change": false

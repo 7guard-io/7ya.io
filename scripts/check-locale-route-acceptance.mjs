@@ -56,7 +56,7 @@ for (const locale of locales) {
   }
 }
 
-const mixedScriptToken = token => /(?:[A-Za-z][\u0590-\u05ff]|[\u0590-\u05ff][A-Za-z]|[\u0400-\u04ff][\u0590-\u05ff]|[\u0590-\u05ff][\u0400-\u04ff])/u.test(token);
+const mixedScriptToken = token => /(?:[A-Za-z][\u05d0-\u05ea]|[\u05d0-\u05ea][A-Za-z]|[\u0400-\u04ff][\u05d0-\u05ea]|[\u05d0-\u05ea][\u0400-\u04ff])/u.test(token);
 for (const locale of locales) {
   const root=path.join(dist,locale);
   for (const file of await htmlFiles(root)) {

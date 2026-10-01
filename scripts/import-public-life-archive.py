@@ -57,7 +57,13 @@ for r in records:
   target=unique[key]
   for k,v in r.items():
    if v is not None and (not target.get(k) or k in ['image','video_id','availability_checked_at']):target[k]=v
-records=list(unique.values());counts={'records':len(records),'public_urls':sum(bool(x.get('url')) for x in records),'visual_records':sum(bool(x.get('image')) for x in records),'tiktok_export_public':len(tiktok),'youtube_channel_inventory':sum(bool(x.get('source_class')=='public-channel-inventory' or (x.get('owned') and x.get('video_id'))) for x in records),'platforms':dict(collections.Counter(x.get('platform','Other') for x in records))}
+records=[r for r in unique.values() if r.get('url') or r.get('verification')=='PUBLIC_AT_EXPORT']
+for r in records:
+ evidence=' '.join(str(r.get(k,'')) for k in ['relationship','object_type','verification']).lower()
+ if 'external' in evidence:r['owned']=False
+ elif r.get('source_class')=='public-channel-inventory' or r.get('verification')=='PUBLIC_AT_EXPORT':r['owned']=True
+ elif r.get('owned') is not True:r['owned']=False
+counts={'records':len(records),'public_urls':sum(bool(x.get('url')) for x in records),'visual_records':sum(bool(x.get('image')) for x in records),'tiktok_export_public':len(tiktok),'youtube_channel_inventory':len({r['id'] for name in ['youtube-channel.json','youtube-shorts.json','youtube-streams.json'] for r in json.loads((source/name).read_text()).get('entries',[]) if r.get('id') and r.get('title')}),'platforms':dict(collections.Counter(x.get('platform','Other') for x in records))}
 archive={'schema_version':1,'updated_at':'2026-10-01','counts':counts,'coverage':{'TikTok':'755 public-at-export records; direct post URLs are pending recovery. Export ends 2026-05-17.','YouTube':'Public native videos, Shorts and streams inventoried on 2026-10-01.','Instagram':'Partial public and owner-insight evidence; no complete native export.','Facebook':'Partial public records; no complete native export.','LinkedIn':'Partial indexed public posts.','X_Threads_Telegram':'Account surfaces and selected records, incomplete historical coverage.'},'records':records}
 dates_file=source/'youtube-dates.json'
 if dates_file.exists():

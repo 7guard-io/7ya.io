@@ -6,11 +6,11 @@
   "provider": "Cloudflare Pages",
   "project": "7ya-io",
   "data": {
-    "records": 1525,
+    "records": 1360,
     "public_urls": 608,
     "visual_records": 360,
     "tiktok_export_public": 755,
-    "youtube_channel_inventory": 336,
+    "youtube_channel_inventory": 337,
     "platforms": {
       "Facebook": 163,
       "LinkedIn": 27,
@@ -52,7 +52,7 @@
   },
   "validation": {
     "release_gate": "PASS locally",
-    "native_inventory": "336 YouTube videos, Shorts and streams from the public channel",
+    "native_inventory": "337 YouTube videos, Shorts and streams from the public channel",
     "youtube_dates": "353 of 356 media IDs resolved from public publication metadata; unresolved dates remain labelled",
     "tiktok": "755 public-at-export metadata rows; 149 non-public rows excluded; signed URLs not published",
     "interaction_dom": "PASS: 12 initial cards, year filter, original-title search, optional recovery inventory, playback modal, close stops player",

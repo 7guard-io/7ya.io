@@ -3039,11 +3039,12 @@ function replaceVisibleCopy(html, locale, route) {
     protectedBlocks.push(block);
     return token;
   });
+  const connectors={en:{'ו':'and ','ב':'in ','ל':'to ','ה':'','מה':'from ','וה':'and ','ש':'that ','כ':'as '},ru:{'ו':'и ','ב':'в ','ל':'к ','ה':'','מה':'из ','וה':'и ','ש':'что ','כ':'как '},ar:{'ו':'و ','ב':'في ','ל':'إلى ','ה':'','מה':'من ','וה':'و ','ש':'أن ','כ':'مثل '}}[locale];
   next=next.replace(/>([^<]+)</g,(match,text)=>{
     const leading=text.match(/^\s*/)?.[0]||'';
     const trailing=text.match(/\s*$/)?.[0]||'';
     const core=text.trim();
-    return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
+    return translations.has(core) ? '>'+leading+translations.get(core).replace(/(?<![\u0590-\u05ff])(?:וה|מה|ו|ב|ל|ה|ש|כ)[־-](?=[A-Za-z])/g,prefix=>connectors[prefix.slice(0,-1)]||'')+trailing+'<' : match;
   });
   next=next.replace(/\b(aria-label|title|placeholder|alt)=(["'])(.*?)\2/gi,(match,name,quote,value)=>{
     const core=value.trim();
@@ -3051,10 +3052,6 @@ function replaceVisibleCopy(html, locale, route) {
     if(!translated || translated===core)return match;
     return name+'='+quote+translated+quote;
   });
-  // Translate Hebrew connective prefixes attached to Latin product names, without
-  // altering original publication titles or script/style contents.
-  const connectors={en:{'ו':'and ','ב':'in ','ל':'to ','ה':'','מה':'from ','וה':'and ','ש':'that ','כ':'as '},ru:{'ו':'и ','ב':'в ','ל':'к ','ה':'','מה':'из ','וה':'и ','ש':'что ','כ':'как '},ar:{'ו':'و ','ב':'في ','ל':'إلى ','ה':'','מה':'من ','וה':'و ','ש':'أن ','כ':'مثل '}}[locale];
-  next=next.replace(/>([^<]+)</g,(match,value)=>'>'+value.replace(/(?<![\u0590-\u05ff])(?:וה|מה|ו|ב|ל|ה|ש|כ)[־-](?=[A-Za-z])/g,prefix=>connectors[prefix.slice(0,-1)]||'')+'<');
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
 function localizeJsonLd(html,locale,route,meta){
