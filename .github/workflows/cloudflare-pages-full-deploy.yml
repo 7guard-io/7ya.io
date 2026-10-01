@@ -1,7 +1,7 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Break-glass recovery trigger refreshed 2026-10-01: publish the major real-media homepage enhancement to production.
+# Break-glass recovery trigger refreshed 2026-10-01: publish the human-first homepage and source-only media fix.
 # This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
