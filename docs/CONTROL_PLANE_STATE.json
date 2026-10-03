@@ -1,6 +1,6 @@
 {
   "schema_version": 9,
-  "updated_at": "2026-09-30T07:25:00Z",
+  "updated_at": "2026-10-01",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -41,11 +41,11 @@
     "project": "7ya-io",
     "source_repository": "7guard-io/7ya.io",
     "source_ref": "main",
-    "status": "READY_ON_PAGES_DOMAIN",
+    "status": "CANDIDATE_PENDING_CANONICAL_PUBLICATION",
     "pages_domain": "https://7ya-io.pages.dev/",
     "canonical_domain": "https://7ya.io/",
-    "canonical_probe": "BLOCKED_BY_CLOUDFLARE_CHALLENGE_FROM_AUTOMATION",
-    "release": "7ya-independent-personal-20260930-v1",
+    "canonical_probe": "Live canonical deploy-meta observed source_commit 75f81115ccbfd10e1a434edbdbacecdf485b3b08, build_date 2026-09-21",
+    "release": "7ya-public-life-archive-20261001-v1",
     "build_command": "npm run build:cloudflare",
     "output_directory": "dist",
     "runtime_dependency_on_appdeploy": false,
@@ -64,12 +64,12 @@
     "pages_domain_http": 200,
     "pages_health_provider": "cloudflare-pages",
     "pages_artifact_manifest_present": true,
-    "canonical_probe": "HTTP 403 Cloudflare challenge from this automation environment; public-browser acceptance not claimed",
+    "canonical_probe": "HTTP 200 observed 2026-10-01; stale build from 2026-09-21 before this fix",
     "ask_igor_path": "Cloudflare Pages Function -> optional NVIDIA NIM -> deterministic first-party fallback",
     "external_runtime_dependency_on_appdeploy": false
   },
   "domain_state": {
-    "7ya.io": "Cloudflare edge; automated probe challenged",
+    "7ya.io": "HTTP 200 verified 2026-10-01; canonical deployment is stale pending promotion",
     "www.7ya.io": "not independently verified this change",
     "pages_domain": "verified HTTP 200",
     "dns_changed_in_this_change": false

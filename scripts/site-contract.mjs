@@ -76,6 +76,7 @@ export const publicRootFiles = [
 export const publicDataDirectories = ['assets', 'knowledge'];
 
 export const publicStyleFiles = [
+  'public-life-archive-20261001.css',
   '7ya-control-layer-20260726.css',
   '7ya-control-page-20260726.css',
   '7ya-experience-guide-20260716.css',
@@ -117,6 +118,7 @@ export const publicStyleFiles = [
 ];
 
 export const publicScriptFiles = [
+  'public-life-archive-20261001.js',
   '7ya-control-layer-20260726.js',
   '7ya-control-page-20260726.js',
   '7ya-experience-guide-20260716.js',

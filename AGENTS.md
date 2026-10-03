@@ -16,39 +16,25 @@ Do not reverse this hierarchy. AI is never the hero. The person, the mission and
 
 ## 2. Canonical source of truth
 
-- Repository: `7guard-io/7ya.io`
-- Default branch: `main`
-- Public domain: `https://7ya.io`
-- Current production provider: AppDeploy v2
-- Current production app: `697a008fddc309b142`
-- Current verified version: `v98` / `1789065075177`
-- Current build marker: `7ya-public-profile-convergence-20260910-v11`
-- Production branch contract: `main`
-- Production receipt: `docs/releases/2026-09-10-appdeploy-v98-public-profile-convergence-v11.json`
+- Repository: `7guard-io/7ya.io`, default branch `main`.
+- Public domain: `https://7ya.io`.
+- Production provider: **Cloudflare Pages**, project `7ya-io`.
+- Runtime source: the repository-built `dist` artifact from `scripts/build-static-site.mjs`.
+- Build/release gate: `npm run release:gate`.
+- The Cloudflare GitHub integration deploys approved `main` changes. Preview branches are verified before promotion.
+- Read `docs/CONTROL_PLANE_STATE.json` and the newest release receipt before changing production. A candidate, PR, build, or Pages preview is not canonical-domain publication.
 
-GitHub remains the canonical source-control, governance and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
-
-Fresh reconciliation on 2026-09-10 confirms that AppDeploy v98 contains the active root `src/main.tsx`, `src/App.tsx` and `backend/index.ts`, and that the public homepage runtime is `index.html -> src/main.tsx -> src/App.tsx -> ConversionHome`. GitHub `main` contains the corrected root `src/main.tsx`, but still does not contain the complete exact active `src/App.tsx`, backend and runtime tree. AppDeploy v98 is therefore the current runtime source of truth; GitHub `main` must not be deployed over it until a full source export and comparison passes the release gates.
-
-The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
-
-Never copy changes from an old repository or provider snapshot into the canonical repository without comparing provenance, routes and content first.
+AppDeploy snapshots and the older Vercel repository are historical references only. Do not change their custom domains or deploy them over the canonical Cloudflare site. Preserve old routes and source provenance when importing public records.
 
 ## 3. Current control-plane state
 
-Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
+The last canonical-domain probe before this work returned HTTP 200 with source commit `75f81115ccbfd10e1a434edbdbacecdf485b3b08` and build date `2026-09-21`. September 30 changes had failed the Cloudflare build; a source update alone did not reach visitors.
 
-GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
+The October 1 candidate fixes the locale build blockers and adds a public media archive. Publication is complete only when the canonical domain's `deploy-meta.json` identifies the approved revision, the new archive and player are present, and mobile/desktop acceptance is verified. Record those observations in the release receipt; do not infer them from source alone.
 
-AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving full export and comparison of AppDeploy snapshot `1789065075177` against `main`. The v11 release receipt already records the known public-surface delta; that receipt is evidence of the deployed state, not a claim that the full runtime tree is present in GitHub.
+GitHub Actions may remain unavailable because of organisation billing. The Cloudflare GitHub integration is independent of those runners. Do not claim CI ran when no job ran.
 
-Current known runtime caveats:
-- AppDeploy reports `ready` with zero current frontend, network and backend QA errors for v98.
-- AppDeploy E2E is `null`; do not claim an AppDeploy E2E PASS.
-- `NVIDIA_API_KEY` is configured and read through AppDeploy Secrets, but historical NVIDIA/NVCF canaries return HTTP 401. NVIDIA primary is degraded-auth; AppDeploy-agent/local fallback remains the resilience path.
-- Fresh v98 mobile and desktop QA screenshots were generated, but independent pixel-level visual acceptance remains a separate gate and is not yet claimed.
-- Direct browser requests to `/api/*` can surface SPA HTML; frontend API calls must use the supported AppDeploy client transport until the direct-HTTP platform contract is explicitly resolved.
-- The custom domains `7ya.io` and `www.7ya.io` are active on AppDeploy v2.
+The canonical companion uses the Cloudflare Pages Function and its documented optional provider/fallback paths. Legacy AppDeploy secrets, schedulers and health reports do not prove current Cloudflare runtime health.
 
 ## 4. Public experience contract
 
@@ -118,11 +104,11 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 
 ## 7. Architecture and modularity
 
-The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
+The public site should remain provider-independent wherever practical, and the production runtime is the repository-built Cloudflare Pages site and Functions.
 
 - GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy version `1789065075177` is the verified production runtime snapshot.
-- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
+- AppDeploy version `1789065075177` is a historical rollback reference only.
+- Public data is derived from documented source records. Keep private exports outside the repository and public artifact.
 - Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
 - Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
 - Keep provider configuration isolated from content.
@@ -154,7 +140,7 @@ For every critical route, require:
 - no unsupported claims;
 - usable mobile and desktop rendering.
 
-For AppDeploy production, additionally require:
+For any explicitly authorised legacy AppDeploy recovery, additionally require:
 
 - terminal deployment status `ready`;
 - acceptance-test contract aligned to the intended experience;
@@ -177,8 +163,8 @@ Do not convert a generated QA screenshot into a claim of independent pixel-level
 8. Tie the intended build marker, provider version, custom domain and repository receipt together.
 9. Do not claim canonical-domain build-marker verification when the available public probe is stale or cache-ambiguous.
 10. Preserve Cloudflare mail-related records and existing nameservers during web-origin changes.
-11. After an AppDeploy-first emergency release, export the exact runtime source back to GitHub before beginning the next broad redesign.
-12. If the GitHub root is known to be older than production, do not “synchronize” by deploying it over the verified AppDeploy runtime. Record the new runtime first, then reconcile with provenance.
+11. Use one approved production writer; preserve the canonical Cloudflare build and previous deployment as rollback.
+12. Verify the canonical domain revision after publishing. A successful preview or a stale crawler result cannot close this gate.
 
 ## 10. Agent behavior toward the owner
 
