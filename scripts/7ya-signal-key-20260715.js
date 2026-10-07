@@ -28,7 +28,7 @@
       label: 'ההודעה שלכם',
       waiting: 'מקשיב, מחבר ומזקק את הצעד הבא…',
       noAnswer: 'לא התקבלה תשובה. נסו לנסח במשפט אחד מה חשוב לכם עכשיו.',
-      fallback: 'נמשיך מכאן: מה הדבר האחד שהכי חשוב לכם להבין, לבטא או לקדם עכשיו?',
+      fallback: 'לא הצלחתי להתחבר למנוע השיחה. ההודעה נשמרה כאן — לחצו שוב על שליחה כדי לנסות מחדש.',
       engine: 'AI המבוסס על הקול והעבודה הציבורית של איגור · לא איגור בזמן אמת',
       disclosure: 'עשוי להיעזר בזוהר ובחכמה יהודית, ובכלים מודרניים, כשזה רלוונטי ומסומן · אל תשתפו מידע רגיש',
       prompts: ['אני תקוע — תעזור לי למצוא צעד הבא', 'יש לי רעיון — תעזור לי לבטא אותו', 'מה אני יכול ללמוד מהדרך שלך?'],
@@ -48,7 +48,7 @@
       label: 'Your message',
       waiting: 'Listening, connecting the dots, and shaping the next move…',
       noAnswer: 'No answer came back. Try saying in one sentence what matters most right now.',
-      fallback: 'We can continue here: what is the one thing you most want to understand, express, or move forward right now?',
+      fallback: 'The conversation service is unavailable. Your message is kept here — press Send to retry.',
       engine: 'AI based on Igor’s public voice and work · not live Igor',
       disclosure: 'May draw on the Zohar/Jewish wisdom and modern tools when relevant and labeled · do not share sensitive information',
       prompts: ['I feel stuck — help me find the next move', 'I have an idea — help me express it', 'What can I learn from your path?'],
@@ -68,7 +68,7 @@
       label: 'Ваше сообщение',
       waiting: 'Слушаю, связываю точки и формирую следующий шаг…',
       noAnswer: 'Ответ не пришёл. Сформулируйте одним предложением, что для вас сейчас важнее всего.',
-      fallback: 'Продолжим отсюда: что одно вы больше всего хотите понять, выразить или продвинуть прямо сейчас?',
+      fallback: 'Сервис разговора недоступен. Сообщение сохранено здесь — нажмите Отправить ещё раз.',
       engine: 'AI на основе публичного голоса и работы Игоря · это не Игорь в реальном времени',
       disclosure: 'Может обращаться к Зоару/еврейской мудрости и современным инструментам, когда это уместно и обозначено · не делитесь чувствительными данными',
       prompts: ['Я застрял — помоги найти следующий шаг', 'У меня есть идея — помоги выразить её', 'Чему я могу научиться у твоего пути?'],
@@ -88,7 +88,7 @@
       label: 'رسالتك',
       waiting: 'أستمع، أربط النقاط، وأصوغ الخطوة التالية…',
       noAnswer: 'لم يصل رد. حاول أن تقول بجملة واحدة ما هو الأهم لك الآن.',
-      fallback: 'نكمل من هنا: ما الشيء الواحد الذي تريد فهمه أو التعبير عنه أو دفعه إلى الأمام الآن؟',
+      fallback: 'خدمة المحادثة غير متاحة. بقيت رسالتك هنا — اضغط إرسال للمحاولة مجددًا.',
       engine: 'AI مبني على الصوت والعمل العام لإيغور · ليس إيغور مباشرة',
       disclosure: 'قد يستعين بالزوهار/الحكمة اليهودية وبأدوات حديثة عندما يكون ذلك مناسبًا ومُشارًا إليه · لا تشارك معلومات حساسة',
       prompts: ['أنا عالق — ساعدني في إيجاد الخطوة التالية', 'لدي فكرة — ساعدني في التعبير عنها', 'ماذا يمكنني أن أتعلم من مسارك؟'],
@@ -119,7 +119,7 @@
 
   const root = element('section', 'ya-signal-key');
   root.dir = rtl ? 'rtl' : 'ltr';
-  root.dataset.yaSignalKey = '20260920-speak-with-igor';
+  root.dataset.yaSignalKey = '7ya-chat-20261007-v1';
 
   const launcher = element('button', 'ya-signal-launcher');
   launcher.type = 'button';
@@ -212,14 +212,20 @@
   }
 
   async function requestCompanion(payload) {
-    const response = await fetch('/api/guide', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error((data && data.error) || ('HTTP ' + response.status));
-    return data;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 35000);
+    try {
+      const response = await fetch('/api/guide', {
+        method: 'POST', signal: controller.signal, cache: 'no-store',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!(response.headers.get('content-type') || '').includes('application/json')) throw new Error('invalid_response');
+      const data = await response.json();
+      if (!response.ok || data.degraded || data.provider === 'local') throw new Error('chat_unavailable');
+      if (typeof (data.reply || data.answer) !== 'string' || !(data.reply || data.answer).trim()) throw new Error('empty_response');
+      return data;
+    } finally { clearTimeout(timeout); }
   }
 
   async function ask(text) {
@@ -228,8 +234,12 @@
     busy = true;
     input.disabled = true;
     submit.disabled = true;
-    addMessage(message, 'user');
-    conversation.push({ role: 'user', content: message });
+    const last = conversation[conversation.length - 1];
+    if (!last || last.role !== 'user' || last.content !== message) {
+      addMessage(message, 'user');
+      conversation.push({ role: 'user', content: message });
+    }
+    let succeeded = false;
     const waiting = addMessage(c.waiting, 'waiting');
 
     try {
@@ -244,6 +254,7 @@
         mode: 'guide',
         experience: 'speak-with-igor'
       });
+      succeeded = true;
       waiting.remove();
       if (data.state) companionState = data.state;
       const answer = data.reply || data.answer || c.noAnswer;
@@ -256,12 +267,14 @@
       while (conversation.length > 10) conversation.shift();
     } catch (error) {
       waiting.textContent = c.fallback;
+      waiting.classList.add('error');
+      messages.scrollTop = messages.scrollHeight;
       console.warn('Speak with Igor continuity fallback', error && error.message ? error.message : error);
     } finally {
       busy = false;
       input.disabled = false;
       submit.disabled = false;
-      input.value = '';
+      input.value = succeeded ? '' : message;
       input.focus();
     }
   }
@@ -283,6 +296,15 @@
       document.body.append(script);
     }
   }
+
+  function fitViewport() {
+    const viewport = window.visualViewport;
+    root.style.setProperty('--chat-height', (viewport ? viewport.height : window.innerHeight) + 'px');
+    root.style.setProperty('--chat-keyboard', Math.max(0, window.innerHeight - (viewport ? viewport.height + viewport.offsetTop : window.innerHeight)) + 'px');
+  }
+  fitViewport();
+  window.visualViewport?.addEventListener('resize', fitViewport);
+  window.addEventListener('resize', fitViewport);
 
   launcher.addEventListener('click', () => setOpen(panel.hidden));
   close.addEventListener('click', () => setOpen(false));

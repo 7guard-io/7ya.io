@@ -67,13 +67,17 @@ console.log(JSON.stringify({
 if (apply) {
   project = await request(projectPath, {
     method: 'PATCH',
-    body: JSON.stringify({ build_config: desired }),
+    body: JSON.stringify({ build_config: desired, deployment_configs: {
+      production: { ai_bindings: { ...(project.deployment_configs?.production?.ai_bindings || {}), AI: { project_id: '' } } },
+      preview: { ai_bindings: { ...(project.deployment_configs?.preview?.ai_bindings || {}), AI: { project_id: '' } } },
+    } }),
   });
   for (const [key, value] of Object.entries(desired)) {
     if (project.build_config?.[key] !== value) {
       throw new Error(`Cloudflare Pages build_config verification failed for ${key}: expected ${value}, got ${project.build_config?.[key]}`);
     }
   }
+  if (!project.deployment_configs?.production?.ai_bindings?.AI) throw new Error('Workers AI binding was not configured');
   console.log('CLOUDFLARE_PAGES_CONFIG: PASS');
 }
 

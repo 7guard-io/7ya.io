@@ -1,3 +1,4 @@
+const CHAT_RELEASE = '7ya-chat-20261007-v1';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -32,6 +33,8 @@ function providerInstructions(locale, creator) {
     'Never invent metrics, roles, relationships, endorsements, dates or evidence. Never expose private family, minors, medical, legal, financial, credential, address or security information.',
     'When Jewish wisdom or the Zohar is genuinely relevant, label it explicitly as an optional lens; never present spiritual claims as factual certainty.',
     'Use modern AI, research, writing, video and creation tools only when they materially help the visitor act.',
+    'Use the whole conversation. A short reply such as sales or yes answers your preceding question; do not restart or ask the same question again. Offer a concrete useful answer before asking at most one relevant follow-up. Do not repeat greetings or generic clarification.',
+    'Public source context: Igor Vepretski is the person behind 7YA (public biography: /igor-vepretski/). StartOn is his social mission connecting technology, learning, creation and belonging for youth (/starton/). 7YA organizes his public archive and sources (/evidence/). For facts beyond this context, point to a source or acknowledge that you cannot verify them.',
     'Answer in ' + language + '. Be direct, substantive and practical.',
     creator
       ? 'Return ONLY valid JSON with keys reply, spotlight, suggestions, checkpoint and actions. suggestions is an array of up to 3 short strings. checkpoint is {title,items} with up to 4 concrete steps. actions is an array of up to 2 objects with label and an internal 7YA href.'
@@ -43,7 +46,8 @@ function parseProviderPayload(text, body) {
   const raw = clean(text, 7000).replace(/^\`\`\`json\s*/i, '').replace(/\s*\`\`\`$/i, '').trim();
   let parsed = null;
   try { parsed = JSON.parse(raw); } catch {}
-  const source = parsed && typeof parsed === 'object' ? parsed : { reply: raw };
+  const source = parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : { reply: raw };
+  if (!clean(source.reply)) throw new Error('provider_empty_reply');
   const suggestions = Array.isArray(source.suggestions) ? source.suggestions.map(item => clean(item, 180)).filter(Boolean).slice(0, 3) : [];
   const actions = Array.isArray(source.actions) ? source.actions.map(item => ({
     label: clean(item && item.label, 100),
@@ -66,20 +70,46 @@ function parseProviderPayload(text, body) {
   };
 }
 
+function conversationHistory(body) {
+  const history = Array.isArray(body.messages) ? body.messages.slice(-10)
+    .filter(item => item && ['user', 'assistant'].includes(item.role))
+    .map(item => ({ role: item.role, content: clean(item.content, 2400) }))
+    .filter(item => item.content) : [];
+  const message = clean(body.message);
+  const last = history[history.length - 1];
+  if (!last || last.role !== 'user' || last.content !== message) history.push({ role: 'user', content: message });
+  return history;
+}
+
+async function callWorkersAI(body, request, env) {
+  if (!env?.AI?.run) return null;
+  const model = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
+  const startedAt = Date.now();
+  let timeout;
+  try {
+    const data = await Promise.race([
+      env.AI.run(model, {
+        messages: [{ role: 'system', content: providerInstructions(localeOf(body.locale || request.headers.get('accept-language')), body.mode === 'creator') }, ...conversationHistory(body)],
+        temperature: 0.2, max_tokens: 850, stream: false,
+      }),
+      new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 16000); }),
+    ]);
+    const output = clean(data?.response, 7000);
+    if (!output) throw new Error('workers_ai_empty');
+    const payload = parseProviderPayload(output, body);
+    payload.model = model;
+    payload.provider = 'cloudflare-ai';
+    return { data: payload, latencyMs: Date.now() - startedAt };
+  } finally { clearTimeout(timeout); }
+}
+
 async function callCloudflareNvidia(body, request, env) {
   const key = providerKey(env);
   if (!key) return null;
   const locale = localeOf(body.locale || request.headers.get('accept-language'));
   const creator = body.mode === 'creator';
   const model = providerModel(env);
-  const history = Array.isArray(body.messages)
-    ? body.messages.slice(-10).map(item => ({
-        role: item && item.role === 'assistant' ? 'assistant' : 'user',
-        content: clean(item && item.content, 2400),
-      })).filter(item => item.content)
-    : [];
-  const message = clean(body.message, 1600);
-  if (!history.length || history[history.length - 1].content !== message) history.push({ role: 'user', content: message });
+  const history = conversationHistory(body);
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 13500);
   const startedAt = Date.now();
@@ -270,8 +300,26 @@ async function buildGuideResult(body, request, env) {
     else if (messageCode.includes('nvidia_empty')) directError = 'nvidia_empty';
   }
 
+  try {
+    const worker = await callWorkersAI(body, request, env);
+    if (worker) {
+      const data = worker.data;
+      const payload = creator ? creatorShape(data, message, creatorMode, locale, fallback) : {
+        answer: data.reply, links: actionLinks(data, []), mode: '7ya-guide',
+        provider: 'cloudflare-ai', model: data.model, state: null,
+      };
+      return { payload, status: 200, enginePath: 'cloudflare-ai', engineDetail: 'workers_ai_ok', engineLatencyMs: worker.latencyMs };
+    }
+  } catch { directError = 'workers_ai_unavailable'; }
+
+  // Do not disguise a template as a successful conversational AI answer.
+  if (!creator) return {
+    payload: { error: 'chat_unavailable', retryable: true, provider: 'none' },
+    status: 503, enginePath: 'unavailable', engineDetail: directError || 'provider_not_configured',
+  };
+
   return {
-    payload: { ...fallback, provider: 'local', model: '7ya-continuity', state: body.state || null },
+    payload: { ...fallback, degraded: true, provider: 'local', model: '7ya-continuity', state: body.state || null },
     status: 200,
     enginePath: 'continuity',
     engineDetail: directError || 'local_first_party_fallback',
@@ -286,14 +334,15 @@ export async function onRequestPost({ request, env }) {
   } catch {
     return json({ error: 'invalid request' }, 400);
   }
+  if (!body || typeof body !== 'object' || Array.isArray(body) || typeof body.message !== 'string' || body.message.length > 1600) return json({ error: 'invalid message' }, 422);
   const result = await buildGuideResult(body, request, env);
-  return json(result.payload, result.status);
+  return json({ ...result.payload, release: CHAT_RELEASE }, result.status);
 }
 
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
-    return json({ status: 'ready', experience: 'speak-with-igor', runtime: 'cloudflare-pages', fallback: 'first-party-local', secrets_exposed: false });
+    return json({ release: CHAT_RELEASE, status: providerKey(env) || env?.AI?.run ? 'configured' : 'degraded', experience: 'speak-with-igor', runtime: 'cloudflare-pages', fallback: 'first-party-local', secrets_exposed: false });
   }
 
   const body = {
@@ -301,23 +350,13 @@ export async function onRequestGet({ request, env }) {
     messages: [{ role: 'user', content: 'תן צעד ראשון קטן שאפשר לבצע היום כדי להפוך רעיון לתוצר.' }],
     locale: 'he',
     path: '/',
-    mode: 'creator',
-    creator_mode: 'momentum',
+    mode: 'guide',
   };
   const result = await buildGuideResult(body, request, env);
   const payload = result.payload || {};
-  const outline = payload.content_seed && Array.isArray(payload.content_seed.outline) ? payload.content_seed.outline : [];
-  const visitorPathReady = Boolean(
-    result.status === 200 &&
-    clean(payload.reflection, 20) &&
-    clean(payload.goal, 20) &&
-    clean(payload.next_step, 20) &&
-    clean(payload.today, 20) &&
-    clean(payload.this_week, 20) &&
-    clean(payload.content_seed && payload.content_seed.hook, 20) &&
-    outline.length
-  );
+  const visitorPathReady = result.status === 200 && ['nvidia', 'cloudflare-ai'].includes(result.enginePath) && Boolean(clean(payload.answer));
   return json({
+    release: CHAT_RELEASE,
     status: visitorPathReady ? 'ready' : 'degraded',
     experience: 'speak-with-igor',
     visitor_path_ready: visitorPathReady,
@@ -329,13 +368,10 @@ export async function onRequestGet({ request, env }) {
       nvidia_nim: Boolean(env && env.NVIDIA_NIM_API_KEY),
       nvidia: Boolean(env && env.NVIDIA_API_KEY),
       ngc: Boolean(env && env.NGC_API_KEY),
+      workers_ai: Boolean(env?.AI?.run),
     },
     upstream_latency_ms: Number.isFinite(result.engineLatencyMs) ? result.engineLatencyMs : null,
-    response_present: Boolean(clean(payload.reflection, 20)),
-    next_step_present: Boolean(clean(payload.next_step, 20)),
-    today_present: Boolean(clean(payload.today, 20)),
-    week_present: Boolean(clean(payload.this_week, 20)),
-    content_seed_present: Boolean(clean(payload.content_seed && payload.content_seed.hook, 20) && outline.length),
+    response_present: Boolean(clean(payload.answer)),
     secrets_exposed: false,
   }, visitorPathReady ? 200 : 503);
 }

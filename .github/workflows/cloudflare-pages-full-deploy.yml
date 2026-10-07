@@ -1,7 +1,7 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Break-glass recovery trigger refreshed 2026-10-03: publish the mobile menu contrast and language access fix.
+# Recovery trigger refreshed 2026-10-07: publish conversation engine and mobile chat fix.
 # This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
@@ -44,6 +44,9 @@ jobs:
 
       - name: Build and verify governed static artifact
         run: npm run build:cloudflare
+
+      - name: Check multi-turn chat regression
+        run: node --test scripts/test-guide-continuity.mjs
 
       - name: Require Cloudflare credential
         shell: bash
