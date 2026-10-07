@@ -1,0 +1,29 @@
+{
+  "release": "7ya-chat-20261007-v4",
+  "status": "READY_ON_PAGES_DOMAIN",
+  "source_commit": "5955ad63021c3f51e965670fbb7e7de366c63a04",
+  "source_pr": 403,
+  "provider": "Cloudflare Pages",
+  "project": "7ya-io",
+  "deployment_id": "66675660-e5cc-4d81-8e5e-f297c0cc1512",
+  "preview": "https://22283536.7ya-io.pages.dev/chat/",
+  "production": "https://7ya-io.pages.dev/chat/",
+  "rollback_commit": "b9e6e9e061f86f5d17df3c33a8eb85711eaf6995",
+  "verification": {
+    "release_gate": "PASS",
+    "regression_tests": 8,
+    "production_probe": {
+      "visitor_path_ready": true,
+      "engine_path": "cloudflare-ai",
+      "upstream_latency_ms": 2409
+    },
+    "desktop_browser": "Three user turns: business for agencies, sales, draft outreach; distinct contextual replies and final draft",
+    "canonical_domain": "Not verified: execution environment proxy returned HTTP 502 connection refused",
+    "mobile_device_visual_test": "Not performed",
+    "github_actions_recovery": "Not started: GitHub account billing lock; direct Cloudflare GitHub App deployment succeeded"
+  },
+  "privacy": "Application does not persist or log prompts; provider processing disclosed; no provider retention guarantee",
+  "rate_controls": "Best effort per runtime isolate, not global atomic account budget",
+  "evidence_image": "7ya-chat-production-1791339602100.jpg",
+  "verified_at": "2026-10-07T02:20:00Z"
+}
