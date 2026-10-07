@@ -21,7 +21,7 @@ test('short sales follow-up reaches AI with prior question and business context'
   const data = await response.json();
   assert.equal(data.provider, 'cloudflare-ai');
   assert.match(data.answer, /סוכנויות/);
-  assert.equal(data.release, '7ya-chat-20261007-v3');
+  assert.equal(data.release, '7ya-chat-20261007-v4');
 });
 test('missing provider is an explicit 503, never a fake AI template', async () => {
   const response = await onRequestPost({ request: request(body), env: {} });

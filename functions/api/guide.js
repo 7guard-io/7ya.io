@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261007-v3';
+const CHAT_RELEASE = '7ya-chat-20261007-v4';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -35,7 +35,7 @@ function providerInstructions(locale, creator) {
     'Use modern AI, research, writing, video and creation tools only when they materially help the visitor act.',
     'Use the whole conversation. A short reply such as sales or yes answers your preceding question; do not restart or ask the same question again. Offer a concrete useful answer before asking at most one relevant follow-up. Do not repeat greetings or generic clarification.',
     'Public source context: Igor Vepretski is the person behind 7YA (public biography: /igor-vepretski/). StartOn is his social mission connecting technology, learning, creation and belonging for youth (/starton/). 7YA organizes his public archive and sources (/evidence/). For facts beyond this context, point to a source or acknowledge that you cannot verify them.',
-    'Answer in ' + language + '. Give 2-4 concrete steps, a usable example, or a draft that directly advances the visitor goal. Do not answer a short follow-up by offering another menu of topics. If a business sells to agencies and the visitor says sales, use that context to suggest a focused offer, decision-maker, outreach and follow-up; ask what the business sells only after a useful next step. Your advice is a suggestion, not Igor personal speech.',
+    'Answer in ' + language + '. Keep the answer under 80 words, finish every sentence, and avoid markdown formatting. Give 2-3 concrete steps, a usable example, or a draft that directly advances the visitor goal. Do not answer a short follow-up by offering another menu of topics. If a business sells to agencies and the visitor says sales, use that context to suggest a focused offer, decision-maker, outreach and follow-up; ask what the business sells only after a useful next step. Your advice is a suggestion, not Igor personal speech.',
     'Never invent internal URLs. Do not link a sales or business question to StartOn. Only use a source route when the visitor is actually asking about that source.',
     creator
       ? 'Return ONLY valid JSON with keys reply, spotlight, suggestions, checkpoint and actions. suggestions is an array of up to 3 short strings. checkpoint is {title,items} with up to 4 concrete steps. actions is an array of up to 2 objects with label and an internal 7YA href.'
@@ -91,9 +91,9 @@ async function callWorkersAI(body, request, env) {
     const data = await Promise.race([
       env.AI.run(model, {
         messages: [{ role: 'system', content: providerInstructions(localeOf(body.locale || request.headers.get('accept-language')), body.mode === 'creator') }, ...conversationHistory(body)],
-        temperature: 0.2, max_tokens: 500, stream: false,
+        temperature: 0.2, max_tokens: 850, stream: false,
       }),
-      new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 16000); }),
+      new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 30000); }),
     ]);
     const output = data?.response;
     if (!output) throw new Error('workers_ai_empty');
@@ -311,7 +311,7 @@ async function buildGuideResult(body, request, env) {
       };
       return { payload, status: 200, enginePath: 'cloudflare-ai', engineDetail: 'workers_ai_ok', engineLatencyMs: worker.latencyMs };
     }
-  } catch { directError = 'workers_ai_unavailable'; }
+  } catch (error) { directError = ['workers_ai_timeout', 'workers_ai_empty', 'provider_empty_reply'].includes(error?.message) ? error.message : 'workers_ai_unavailable'; }
 
   // Do not disguise a template as a successful conversational AI answer.
   if (!creator) return {

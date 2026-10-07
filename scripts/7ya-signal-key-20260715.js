@@ -120,7 +120,7 @@
 
   const root = element('section', 'ya-signal-key');
   root.dir = rtl ? 'rtl' : 'ltr';
-  root.dataset.yaSignalKey = '7ya-chat-20261007-v3';
+  root.dataset.yaSignalKey = '7ya-chat-20261007-v4';
 
   const launcher = element('button', 'ya-signal-launcher');
   launcher.type = 'button';
@@ -214,7 +214,7 @@
 
   async function requestCompanion(payload) {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 35000);
+    const timeout = setTimeout(() => controller.abort(), 50000);
     try {
       const response = await fetch('/api/guide', {
         method: 'POST', signal: controller.signal, cache: 'no-store',
