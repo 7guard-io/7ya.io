@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261007-v1';
+const CHAT_RELEASE = '7ya-chat-20261007-v2';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -43,11 +43,11 @@ function providerInstructions(locale, creator) {
 }
 
 function parseProviderPayload(text, body) {
-  const raw = clean(text, 7000).replace(/^\`\`\`json\s*/i, '').replace(/\s*\`\`\`$/i, '').trim();
-  let parsed = null;
-  try { parsed = JSON.parse(raw); } catch {}
+  const raw = typeof text === 'string' ? clean(text, 7000).replace(/^\`\`\`json\s*/i, '').replace(/\s*\`\`\`$/i, '').trim() : '';
+  let parsed = text && typeof text === 'object' ? text : null;
+  if (!parsed) { try { parsed = JSON.parse(raw); } catch {} }
   const source = parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : { reply: raw };
-  if (!clean(source.reply)) throw new Error('provider_empty_reply');
+  if (typeof source.reply !== 'string' || !clean(source.reply)) throw new Error('provider_empty_reply');
   const suggestions = Array.isArray(source.suggestions) ? source.suggestions.map(item => clean(item, 180)).filter(Boolean).slice(0, 3) : [];
   const actions = Array.isArray(source.actions) ? source.actions.map(item => ({
     label: clean(item && item.label, 100),
@@ -94,7 +94,7 @@ async function callWorkersAI(body, request, env) {
       }),
       new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 16000); }),
     ]);
-    const output = clean(data?.response, 7000);
+    const output = data?.response;
     if (!output) throw new Error('workers_ai_empty');
     const payload = parseProviderPayload(output, body);
     payload.model = model;

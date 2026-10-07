@@ -1,0 +1,8 @@
+{
+  "release": "7ya-chat-20261007-v2",
+  "status": "VALIDATED_SOURCE_PENDING_RUNTIME",
+  "rollback_commit": "b9e6e9e061f86f5d17df3c33a8eb85711eaf6995",
+  "changes": ["Normalize structured Workers AI output", "Reject malformed replies rather than display object coercion"],
+  "verification": {"chat_regressions": "7 passed", "release_gate": "passed", "v1_preview_engine": "Workers AI bound and producing responses", "v1_preview_ui": "object response normalization defect found and fixed in v2", "production_published": false},
+  "privacy": "No private records or credentials added; conversation retained only in page memory."
+}

@@ -20,7 +20,7 @@ test('short sales follow-up reaches AI with prior question and business context'
   const data = await response.json();
   assert.equal(data.provider, 'cloudflare-ai');
   assert.match(data.answer, /סוכנויות/);
-  assert.equal(data.release, '7ya-chat-20261007-v1');
+  assert.equal(data.release, '7ya-chat-20261007-v2');
 });
 test('missing provider is an explicit 503, never a fake AI template', async () => {
   const response = await onRequestPost({ request: request(body), env: {} });
@@ -53,4 +53,15 @@ test('provider failure and malformed/oversized requests remain truthful', async 
   for (const value of [null, [], { message: 'a'.repeat(1601) }]) {
     assert.equal((await onRequestPost({ request: request(value), env })).status, 422);
   }
+});
+
+test('Workers AI structured response is parsed without object coercion', async () => {
+  const env = { AI: { run: async () => ({ response: { reply: 'מכירות לסוכנויות: נבנה הצעה ממוקדת.', actions: [] } }) } };
+  const response = await onRequestPost({ request: request(body), env });
+  assert.equal(response.status, 200);
+  assert.match((await response.json()).answer, /מכירות לסוכנויות/);
+});
+test('malformed provider reply cannot pass chat readiness', async () => {
+  const env = { AI: { run: async () => ({ response: { reply: { text: 'wrong shape' } } }) } };
+  assert.equal((await onRequestPost({ request: request(body), env })).status, 503);
 });
