@@ -1,7 +1,7 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Break-glass recovery trigger refreshed 2026-10-03: publish the mobile menu contrast and language access fix.
+# Recovery trigger refreshed 2026-10-07: publish conversation engine and mobile chat fix.
 # This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
@@ -45,6 +45,9 @@ jobs:
       - name: Build and verify governed static artifact
         run: npm run build:cloudflare
 
+      - name: Check multi-turn chat regression
+        run: node --test scripts/test-guide-continuity.mjs
+
       - name: Require Cloudflare credential
         shell: bash
         run: |
@@ -70,6 +73,9 @@ jobs:
           done
           test "$ready" -eq 1
           node scripts/verify-routes.mjs https://7ya-io.pages.dev
+          curl -fsSL --max-time 60 -H 'Cache-Control: no-cache, no-store' \
+            "https://7ya-io.pages.dev/api/guide?probe=1&sha=${GITHUB_SHA}" -o live-chat-probe.json
+          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('live-chat-probe.json')); if(p.release!=='7ya-chat-20261007-v4'||!p.visitor_path_ready||!['nvidia','cloudflare-ai'].includes(p.engine_path)) throw new Error('Live AI conversation acceptance failed');"
 
       - name: Write bootstrap receipt
         if: always()
@@ -94,6 +100,7 @@ jobs:
             cloudflare-pages-result.txt
             cloudflare-pages-bootstrap-receipt.txt
             live-artifact-manifest.json
+            live-chat-probe.json
             dist/artifact-manifest.json
           if-no-files-found: warn
           retention-days: 30

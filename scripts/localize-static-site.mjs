@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+const chatReleaseTranslations = JSON.parse(readFileSync(new URL('./chat-release-locale-copy.json', import.meta.url), 'utf8'));
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { aliasRoutes, canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
@@ -3030,6 +3032,9 @@ function replaceVisibleCopy(html, locale, route) {
   if(locale==='he')return html;
   const routeSpecific = routeTranslations[locale] || new Map();
   const translations=new Map([...commonTranslations[locale],...restorationTranslations[locale],...humanFirstTranslations[locale],...coreNarrativeTranslations[locale],...Object.entries(technicalTranslations[locale]),...routeSpecific]);
+  translations.set('כל הרשתות →', locale==='en'?'All social accounts →':locale==='ru'?'Все соцсети →':'جميع الحسابات →');
+  translations.set('IGOR VEPRETSKI · השפעה ציבורית · עם מקורות', locale==='en'?'IGOR VEPRETSKI · Public influence · with sources':locale==='ru'?'IGOR VEPRETSKI · Публичное влияние · с источниками':'IGOR VEPRETSKI · التأثير العام · مع المصادر');
+  for (const [source, variants] of Object.entries(chatReleaseTranslations)) translations.set(source, variants[locale]);
   const protectedBlocks=[];
   let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
     const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';

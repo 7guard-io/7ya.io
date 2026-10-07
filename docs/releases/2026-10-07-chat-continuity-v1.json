@@ -1,0 +1,12 @@
+{
+  "release": "7ya-chat-20261007-v1",
+  "source_repository": "7guard-io/7ya.io",
+  "provider": "Cloudflare Pages",
+  "project": "7ya-io",
+  "status": "VALIDATED_SOURCE_PENDING_RUNTIME",
+  "rollback_commit": "b9e6e9e061f86f5d17df3c33a8eb85711eaf6995",
+  "scope": ["NVIDIA-first conversation with Workers AI alternative", "No template presented as a successful AI answer", "Preserved conversation and retry input", "Mobile transcript scrolling and keyboard viewport", "Locale corrections required by existing release gate", "Chat and service-worker cache invalidation"],
+  "verification": {"chat_regressions": "5 passed", "release_gate": "passed", "local_browser": "unavailable: cloud browser cannot reach local server", "canonical_before_change": "502 from this execution environment", "pages_before_change": "no NVIDIA keys, upstream 403, deterministic continuity answer", "production_published": false},
+  "privacy": "Conversation stays in page memory; no prompt persistence or logging. No private personal data added.",
+  "bindings": "AI; existing NVIDIA keys remain preferred when configured. No paid plan upgrade requested."
+}

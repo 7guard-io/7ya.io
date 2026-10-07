@@ -1,0 +1,252 @@
+{
+  "38 צפיות בחודש; 20 מתוכם ל־SUPERNOAH.": {
+    "en": "38 monthly views; 20 for SUPERNOAH.",
+    "ru": "38 просмотров за месяц; 20 — SUPERNOAH.",
+    "ar": "38 مشاهدة شهريًا؛ منها 20 لـ SUPERNOAH."
+  },
+  "Canonical JSON, SHA‑256, append‑only ledger, Merkle proofs ו־transactional outbox כבסיס לתשתית אמון.": {
+    "en": "Canonical JSON, SHA-256, an append-only ledger, Merkle proofs and a transactional outbox form the basis of trust infrastructure.",
+    "ru": "Canonical JSON, SHA-256, журнал без перезаписи, доказательства Merkle и transactional outbox — основа инфраструктуры доверия.",
+    "ar": "Canonical JSON وSHA-256 وسجل للإضافة فقط وإثباتات Merkle وtransactional outbox تشكل أساس بنية الثقة."
+  },
+  "Commander, Infrastructure, ראיות, Narrative, Relationships ו־Auditor עם אישורים ויומנים append-only.": {
+    "en": "Commander, Infrastructure, Evidence, Narrative, Relationships and Auditor, with approvals and append-only logs.",
+    "ru": "Commander, Infrastructure, Evidence, Narrative, Relationships и Auditor — с согласованиями и журналами без перезаписи.",
+    "ar": "Commander وInfrastructure وEvidence وNarrative وRelationships وAuditor مع موافقات وسجلات للإضافة فقط."
+  },
+  "Facebook, Instagram ו־LinkedIn מספרים את אותה זהות בקצב שונה.": {
+    "en": "Facebook, Instagram and LinkedIn tell the same identity at different speeds.",
+    "ru": "Facebook, Instagram и LinkedIn рассказывают об одной личности в разном темпе.",
+    "ar": "تعرض Facebook وInstagram وLinkedIn الهوية نفسها بإيقاعات مختلفة."
+  },
+  "Failover בין ספקי מודלים נשמר כאב־טיפוס/ארכיטקטורה עד להצגת קוד ריצה, tests ו־observability.": {
+    "en": "Model-provider failover remains a prototype or architecture until runtime code, tests and observability are available.",
+    "ru": "Переключение между провайдерами моделей остаётся прототипом или архитектурой до появления рабочего кода, тестов и наблюдаемости.",
+    "ar": "يبقى الانتقال بين مزودي النماذج نموذجًا أوليًا أو تصميمًا حتى يتوفر كود تشغيل واختبارات ومراقبة."
+  },
+  "HTML סריק, GitHub כמקור, crawl controls, releases, ראיות ו־Living OS.": {
+    "en": "Crawlable HTML, GitHub as the source, crawl controls, releases, evidence and Living OS.",
+    "ru": "Доступный поисковикам HTML, GitHub как источник, управление обходом, релизы, доказательства и Living OS.",
+    "ar": "HTML قابل للفهرسة، وGitHub كمصدر، وضوابط الزحف والإصدارات والأدلة وLiving OS."
+  },
+  "JavaScript נדרש להצגת טבלת ה־hash. רשומות הסיכום שמעל נשארות זמינות.": {
+    "en": "JavaScript is required to display the hash table. The summaries above remain available.",
+    "ru": "Для таблицы хешей нужен JavaScript. Сводные записи выше остаются доступными.",
+    "ar": "يلزم JavaScript لعرض جدول التجزئة. تبقى الملخصات أعلاه متاحة."
+  },
+  "Pipeline ל־IPFS, Merkle roots ועיגון on-chain אינו מוצג כמערכת פעילה עד להצגת repository, contract address או deployment evidence.": {
+    "en": "The IPFS, Merkle-root and on-chain pipeline is not presented as operational without a repository, contract address or deployment evidence.",
+    "ru": "Конвейер IPFS, корней Merkle и on-chain не считается действующим без репозитория, адреса контракта или подтверждения развёртывания.",
+    "ar": "لا تُعرض منظومة IPFS وجذور Merkle والتثبيت على السلسلة كنظام عامل دون مستودع أو عنوان عقد أو دليل نشر."
+  },
+  "Repository, tests, deployment logs ו־observability.": {
+    "en": "Repository, tests, deployment logs and observability.",
+    "ru": "Репозиторий, тесты, журналы развёртывания и наблюдаемость.",
+    "ar": "المستودع والاختبارات وسجلات النشر والمراقبة."
+  },
+  "איך הופכים נוכחות ציבורית, סיפור אישי, ראיות ו־AI למערכת אמון אזרחית שמייצרת פעולה.": {
+    "en": "How can public presence, a personal story, evidence and AI become a system of civic trust that leads to action?",
+    "ru": "Как превратить публичное присутствие, личную историю, доказательства и ИИ в систему гражданского доверия, ведущую к действию?",
+    "ar": "كيف تتحول الحضور العام والقصة الشخصية والأدلة والذكاء الاصطناعي إلى منظومة ثقة مدنية تدفع إلى العمل؟"
+  },
+  "אירועי 7/10 שינו את ה־DNA של עם ישראל.": {
+    "en": "The events of October 7 changed the DNA of Israeli society.",
+    "ru": "События 7 октября изменили ДНК израильского общества.",
+    "ar": "غيّرت أحداث 7 أكتوبر هوية المجتمع الإسرائيلي بعمق."
+  },
+  "בנייה מחדש: Identity, CTA, הפרדת StartOn ו־7YA, ופוליש מובייל אחרי ש־P0 יציב.": {
+    "en": "Rebuild identity, calls to action, the separation of StartOn and 7YA, and mobile polish once P0 is stable.",
+    "ru": "После стабилизации P0 обновить идентичность, призывы к действию, разделение StartOn и 7YA и мобильный интерфейс.",
+    "ar": "بعد استقرار P0 تُحدّث الهوية ودعوات العمل والفصل بين StartOn و7YA وتحسينات الهاتف."
+  },
+  "ה־Ledger נועד לשמור רצף ניתן לביקורת: פריט, מקור, זמן, hash ושינוי סטטוס. תיקון אינו מעלים גרסה קודמת אלא מצרף רשומה חדשה.": {
+    "en": "The ledger preserves an auditable sequence: item, source, time, hash and status changes. Corrections add a new record rather than hide an earlier version.",
+    "ru": "Журнал сохраняет проверяемую последовательность: запись, источник, время, хеш и изменение статуса. Исправления добавляют запись, а не скрывают прежнюю версию.",
+    "ar": "يحفظ السجل تسلسلًا قابلًا للتدقيق: العنصر والمصدر والوقت والتجزئة وتغييرات الحالة. يضيف التصحيح سجلًا جديدًا دون إخفاء النسخة السابقة."
+  },
+  "ה־One Pager המקורי": {
+    "en": "The original one-pager",
+    "ru": "Оригинальный одностраничный документ",
+    "ar": "الوثيقة الأصلية من صفحة واحدة"
+  },
+  "ה־SHA‑256 מחושב מתוכן הרשומה הקנונית לצורך זיהוי שינוי. הוא אינו טענה ל־IPFS pin, חתימה דיגיטלית, Merkle anchor או רישום on-chain.": {
+    "en": "SHA-256 is computed from the canonical record to detect changes. It does not prove an IPFS pin, digital signature, Merkle anchor or on-chain registration.",
+    "ru": "SHA-256 вычисляется по канонической записи для обнаружения изменений. Это не доказательство IPFS pin, цифровой подписи, якоря Merkle или записи on-chain.",
+    "ar": "تُحسب SHA-256 من السجل المعتمد لاكتشاف التغيير، ولا تثبت تثبيت IPFS أو توقيعًا رقميًا أو تثبيت Merkle أو تسجيلًا على السلسلة."
+  },
+  "ה־מאגר החיים המלא מחזיק 434 רשומות. הנה עוגנים שמראים איך הנוכחות עברה מעיתונות מוקדמת, דרך Facebook ו־Instagram, לטלוויזיה, מוזיקה ו־7YA.": {
+    "en": "The complete life archive contains 434 records. These anchors trace public presence from early press through Facebook and Instagram to television, music and 7YA.",
+    "ru": "Полный архив жизни содержит 434 записи. Эти источники показывают путь от ранней прессы через Facebook и Instagram к телевидению, музыке и 7YA.",
+    "ar": "يضم أرشيف الحياة الكامل 434 سجلًا. توضح هذه المصادر المسار من الصحافة المبكرة عبر Facebook وInstagram إلى التلفزيون والموسيقى و7YA."
+  },
+  "הדרך שהובילה ל־StartOn ↗": {
+    "en": "The path that led to StartOn ↗",
+    "ru": "Путь, который привёл к StartOn ↗",
+    "ar": "المسار الذي أدى إلى StartOn ↗"
+  },
+  "הלוח מתרגם את ממצאי ה־Delta Audit לתוכנית עבודה אחת: P0 לסגירת חסמי השקה, P1 לבנייה מוסדית, ו־P2 למדידה ובקרה. בסיס המקור הוא דוח 12 ביולי 2026 בלבד; Claims שתלויים במצב ריצה מסומנים לאימות מחדש.": {
+    "en": "This board turns the Delta Audit into a work plan: P0 for launch blockers, P1 for institutional development and P2 for measurement. It uses the July 12, 2026 report; runtime-dependent claims require fresh verification.",
+    "ru": "Доска превращает Delta Audit в план: P0 — устранение препятствий запуску, P1 — институциональное развитие, P2 — измерение. Основа — отчёт от 12 июля 2026 года; утверждения о работающей системе требуют новой проверки.",
+    "ar": "تحوّل اللوحة Delta Audit إلى خطة: P0 لعوائق الإطلاق وP1 للبناء المؤسسي وP2 للقياس. المصدر تقرير 12 يوليو 2026؛ وتحتاج ادعاءات التشغيل إلى تحقق جديد."
+  },
+  "העמוד ימשיך להתרחב כאשר יתווספו תמונות מקור, תעודות, קישורי מוזיקה, מסמכי מחקר ו־artifacts טכנולוגיים — בלי למחוק את מדרג האימות.": {
+    "en": "The page will expand with original photos, certificates, music links, research documents and technical artifacts, while preserving verification levels.",
+    "ru": "Страница будет дополняться оригинальными фото, документами, музыкальными ссылками, исследованиями и техническими материалами с сохранением уровней проверки.",
+    "ar": "ستتوسع الصفحة بصور أصلية وشهادات وروابط موسيقى ووثائق بحثية ومخرجات تقنية مع الحفاظ على مستويات التحقق."
+  },
+  "העמוד מרכז את המקורות שכבר אומתו בקורפוס 7YA. במקום שבו אותו ראיון הופץ מחדש ב־Spotify, YouTube או אתר אחר, ההפצה נשמרת כ־mirror ולא נספרת כהופעה עיתונאית חדשה.": {
+    "en": "This page collects sources verified in the 7YA corpus. Reposts of an interview on Spotify, YouTube or another site are recorded as mirrors, not new press appearances.",
+    "ru": "Страница объединяет проверенные источники корпуса 7YA. Повторные публикации интервью в Spotify, YouTube или на другом сайте отмечаются как копии, а не новые выступления в СМИ.",
+    "ar": "تجمع الصفحة مصادر تم التحقق منها في قاعدة 7YA. إعادة نشر المقابلة على Spotify أو YouTube أو موقع آخر تُسجل كنسخة، لا كظهور صحفي جديد."
+  },
+  "הפריטים הבאים הגיעו ב־Master Entity Index אך אינם מוצגים באתר כהישג מאומת עד להצמדת מקור ישיר.": {
+    "en": "These entries came from the Master Entity Index and are not displayed as verified achievements until a direct source is attached.",
+    "ru": "Эти записи поступили из Master Entity Index и не считаются подтверждёнными достижениями без прямого источника.",
+    "ar": "وردت هذه العناصر في Master Entity Index ولا تُعرض كإنجازات موثقة حتى يُرفق مصدر مباشر."
+  },
+  "הקורפוס נטען מה־JSON הציבורי של 7YA. כל כרטיס פותח את המקור החיצוני או הציבורי שממנו הוא הגיע.": {
+    "en": "The corpus loads from 7YA public JSON. Each card opens the external or public source it came from.",
+    "ru": "Корпус загружается из публичного JSON 7YA. Каждая карточка открывает свой внешний или публичный источник.",
+    "ar": "تُحمّل القاعدة من JSON العام لـ7YA. تفتح كل بطاقة المصدر الخارجي أو العام الذي جاءت منه."
+  },
+  "השפה הטכנולוגית מקבלת ערך רק כאשר אפשר לפתוח קוד, Release, endpoint או מסמך ארכיטקטורה. שמות ספקים אינם שותפות, ו־design אינו production.": {
+    "en": "Technology has value when code, a release, an endpoint or an architecture document can be inspected. Provider names do not prove partnerships; design is not production.",
+    "ru": "Технология имеет ценность, когда можно проверить код, релиз, endpoint или архитектуру. Названия провайдеров не доказывают партнёрство; проектирование не означает работающую систему.",
+    "ar": "تكتسب التقنية قيمة عند إتاحة فحص الكود أو الإصدار أو نقطة الخدمة أو وثيقة التصميم. أسماء المزودين لا تثبت شراكات؛ والتصميم لا يعني تشغيلًا فعليًا."
+  },
+  "זה לא “ויראלי”. זה signal קטן ומוגדר שהוצג בפוסט המחובר ל־LinkedIn, ומספק סיבה להמשיך לבדוק מה מושך קוראים לעבודת המחקר.": {
+    "en": "This is a small, defined signal documented in the connected LinkedIn post. It offers a reason to keep examining what draws readers to the research.",
+    "ru": "Это небольшой конкретный сигнал, зафиксированный в связанном посте LinkedIn. Он даёт повод изучать, что привлекает читателей к исследованию.",
+    "ar": "هذه إشارة صغيرة ومحددة موثقة في منشور LinkedIn المرتبط، وتدعو إلى مواصلة فحص ما يجذب القراء إلى البحث."
+  },
+  "זהו אינדקס העבודה של „שיר ההיסטוריה”: רשומות ציבוריות, הפצות חיצוניות, עיתונות, וידאו, פודקאסטים, מוזיקה ו־snapshots מתוארכים.": {
+    "en": "The working index of the history song: public records, external distribution, press, video, podcasts, music and dated snapshots.",
+    "ru": "Рабочий индекс песни истории: публичные записи, внешнее распространение, пресса, видео, подкасты, музыка и датированные снимки.",
+    "ar": "فهرس العمل لأغنية التاريخ: سجلات عامة وتوزيع خارجي وصحافة وفيديو وبودكاست وموسيقى ولقطات مؤرخة."
+  },
+  "חשבונות, תוכן מקורי, reposts, press echoes ו־snapshots מתוארכים.": {
+    "en": "Accounts, original content, reposts, press echoes and dated snapshots.",
+    "ru": "Аккаунты, оригинальный контент, репосты, отклики прессы и датированные снимки.",
+    "ar": "حسابات ومحتوى أصلي وإعادة نشر وأصداء صحفية ولقطات مؤرخة."
+  },
+  "טענות, מקורות, סטטוס אימות, תיקונים ו־Release provenance במקום זיכרון שיווקי.": {
+    "en": "Claims, sources, verification status, corrections and release provenance, replacing promotional recollection.",
+    "ru": "Утверждения, источники, статус проверки, исправления и происхождение релизов вместо рекламных воспоминаний.",
+    "ar": "ادعاءات ومصادر وحالة تحقق وتصحيحات وسجل منشأ الإصدارات بدلًا من الذاكرة الترويجية."
+  },
+  "יש מקורות ציבוריים לרעיון, ל־One Pager, לכתבה, לווידאו ולכתיבה העדכנית סביב StartOn.": {
+    "en": "Public sources document the StartOn concept, one-pager, article, video and recent writing.",
+    "ru": "Публичные источники отражают концепцию StartOn, одностраничный документ, статью, видео и новые тексты.",
+    "ar": "توثق المصادر العامة فكرة StartOn والوثيقة المختصرة والمقال والفيديو والكتابة الحديثة."
+  },
+  "כתבות, ראיונות ושידורים חיצוניים לאורך השנים. המקור וההקשר נשארים גלויים; כתבת דעה מסומנת ככתיבת דעה, ראיון כשידור, ו־mirror אינו מוצג כהופעה חדשה.": {
+    "en": "External articles, interviews and broadcasts over the years. Sources and context remain visible; opinion is labeled as opinion, interviews as broadcasts, and mirrors as republication.",
+    "ru": "Внешние статьи, интервью и эфиры за разные годы. Источники и контекст видны; мнения, интервью и повторные публикации обозначены отдельно.",
+    "ar": "مقالات ومقابلات وبث خارجي عبر السنوات. تبقى المصادر والسياق واضحين، مع تمييز الرأي والمقابلة وإعادة النشر."
+  },
+  "ל־Ledger": {
+    "en": "Open ledger",
+    "ru": "Открыть журнал",
+    "ar": "فتح السجل"
+  },
+  "ל־Living OS →": {
+    "en": "Open Living OS →",
+    "ru": "Открыть Living OS →",
+    "ar": "فتح Living OS →"
+  },
+  "ל־Medium ↗": {
+    "en": "Open Medium ↗",
+    "ru": "Открыть Medium ↗",
+    "ar": "فتح Medium ↗"
+  },
+  "ל־StartOn": {
+    "en": "Open StartOn",
+    "ru": "Открыть StartOn",
+    "ar": "فتح StartOn"
+  },
+  "ל־StartOn ↗": {
+    "en": "Open StartOn ↗",
+    "ru": "Открыть StartOn ↗",
+    "ar": "فتح StartOn ↗"
+  },
+  "ל־release.json →": {
+    "en": "Open release.json →",
+    "ru": "Открыть release.json →",
+    "ar": "فتح release.json →"
+  },
+  "לחתימת ה־Release": {
+    "en": "Release signature",
+    "ru": "Подпись релиза",
+    "ar": "توقيع الإصدار"
+  },
+  "למידה, אב־טיפוס בענן וכלי AI אחראיים למיזמי 7YA ו־StartOn — רק אחרי בדיקת זכאות, עלות ופרטיות.": {
+    "en": "Learning, cloud prototypes and responsible AI tools for 7YA and StartOn projects, after checking eligibility, cost and privacy.",
+    "ru": "Обучение, облачные прототипы и ответственные инструменты ИИ для 7YA и StartOn — после проверки условий участия, стоимости и приватности.",
+    "ar": "تعلم ونماذج سحابية وأدوات ذكاء اصطناعي مسؤولة لمشاريع 7YA وStartOn بعد التحقق من الأهلية والتكلفة والخصوصية."
+  },
+  "לפתיחת התוכנית ב־Spotify ↗": {
+    "en": "Open the program on Spotify ↗",
+    "ru": "Открыть программу в Spotify ↗",
+    "ar": "فتح البرنامج على Spotify ↗"
+  },
+  "לתרומה ישירה ל־StartOn ↗": {
+    "en": "Donate directly to StartOn ↗",
+    "ru": "Пожертвовать напрямую StartOn ↗",
+    "ar": "التبرع مباشرة لـStartOn ↗"
+  },
+  "מדידה מתמשכת: Vault, Search Console, התרעות, נגישות חוזרת ו־public changelog.": {
+    "en": "Ongoing measurement: Vault, Search Console, alerts, repeated accessibility checks and a public changelog.",
+    "ru": "Постоянные измерения: Vault, Search Console, уведомления, повторные проверки доступности и публичный журнал изменений.",
+    "ar": "قياس مستمر عبر Vault وSearch Console والتنبيهات وفحوص إمكانية الوصول المتكررة وسجل تغييرات عام."
+  },
+  "מסלול איסוף, normalization, deduplication, classification ו־indexing למקורות ציבוריים. נדרש artifact ציבורי לקיבוע הסטטוס.": {
+    "en": "Collection, normalization, deduplication, classification and indexing of public sources. A public artifact is required to confirm status.",
+    "ru": "Сбор, нормализация, удаление дублей, классификация и индексация публичных источников. Для подтверждения статуса нужен публичный результат.",
+    "ar": "جمع المصادر العامة وتوحيدها وإزالة تكرارها وتصنيفها وفهرستها. يلزم مخرج عام لتأكيد الحالة."
+  },
+  "מצב קצר בזמן בדיקת ה־Snapshot.": {
+    "en": "Brief status at the snapshot review.",
+    "ru": "Краткий статус на момент проверки снимка.",
+    "ar": "حالة مختصرة عند مراجعة اللقطة."
+  },
+  "מקור מאושר אחד הופך לנגזרות TikTok, Instagram, Facebook, LinkedIn, Telegram ו־HE/EN/RU.": {
+    "en": "One approved source becomes versions for TikTok, Instagram, Facebook, LinkedIn, Telegram and Hebrew, English and Russian.",
+    "ru": "Один согласованный источник превращается в версии для TikTok, Instagram, Facebook, LinkedIn, Telegram и иврита, английского и русского.",
+    "ar": "يتحول مصدر معتمد إلى نسخ لـTikTok وInstagram وFacebook وLinkedIn وTelegram وبالعبرية والإنجليزية والروسية."
+  },
+  "מקור שליטה: אינדקס הנוכחות הציבורית V2 וה־AUDITED v4 workbook. פרסום חזק יותר מותנה במקור ראשוני, צילום מצב מתוארך או מסמך רשמי.": {
+    "en": "Control source: the public-presence index V2 and AUDITED v4 workbook. Stronger publication requires a primary source, dated snapshot or official document.",
+    "ru": "Контрольный источник: индекс публичного присутствия V2 и таблица AUDITED v4. Более сильные утверждения требуют первичного источника, датированного снимка или официального документа.",
+    "ar": "مصدر الضبط: فهرس الحضور العام V2 وجدول AUDITED v4. يتطلب النشر الأقوى مصدرًا أوليًا أو لقطة مؤرخة أو وثيقة رسمية."
+  },
+  "סיפור זהות שעבר בין Instagram, Facebook ו־LinkedIn.": {
+    "en": "An identity story shared across Instagram, Facebook and LinkedIn.",
+    "ru": "История личности, прошедшая через Instagram, Facebook и LinkedIn.",
+    "ar": "قصة هوية انتقلت عبر Instagram وFacebook وLinkedIn."
+  },
+  "פרופילים, ראיונות, כתיבה, פודקאסטים, יצירה ו־StartOn — כל כרטיס מוביל למקור ציבורי, לא לעוד שכבת יחסי ציבור.": {
+    "en": "Profiles, interviews, writing, podcasts, creation and StartOn: each card links to a public source.",
+    "ru": "Профили, интервью, тексты, подкасты, творчество и StartOn: каждая карточка ведёт к публичному источнику.",
+    "ar": "ملفات ومقابلات وكتابة وبودكاست وإبداع وStartOn؛ كل بطاقة تقود إلى مصدر عام."
+  },
+  "קישור הפצה רשמי, credits ו־release date.": {
+    "en": "Official distribution link, credits and release date.",
+    "ru": "Официальная ссылка на распространение, авторство и дата релиза.",
+    "ar": "رابط توزيع رسمي والاعتمادات وتاريخ الإصدار."
+  },
+  "רק ב־PDF.": {
+    "en": "PDF only.",
+    "ru": "Только в PDF.",
+    "ar": "بصيغة PDF فقط."
+  },
+  "רשומות תגובה מאומתות ב־TikTok LIVE": {
+    "en": "Verified comment records from TikTok LIVE",
+    "ru": "Проверенные записи комментариев TikTok LIVE",
+    "ar": "سجلات تعليقات موثقة من TikTok LIVE"
+  },
+  "שירות, זהות, אבהות, הונאת הקשישים ו־StartOn הפכו לפרסומים ושיחות ציבוריות. כאן פותחים את המקור במקום להסתפק בתקציר.": {
+    "en": "Service, identity, fatherhood, the elder-fraud investigation and StartOn became public publications and conversations. Open the original sources here.",
+    "ru": "Служба, идентичность, отцовство, расследование мошенничества против пожилых и StartOn стали темами публичных материалов и разговоров. Здесь доступны исходные источники.",
+    "ar": "أصبح العمل العام والهوية والأبوة والتحقيق في الاحتيال على المسنين وStartOn موضوعات منشورات وحوارات عامة. افتح المصادر الأصلية هنا."
+  }
+}

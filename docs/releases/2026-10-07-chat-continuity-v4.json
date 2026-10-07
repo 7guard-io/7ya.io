@@ -1,0 +1,22 @@
+{
+  "release": "7ya-chat-20261007-v4",
+  "status": "VALIDATED_SOURCE_PENDING_RUNTIME",
+  "rollback_commit": "b9e6e9e061f86f5d17df3c33a8eb85711eaf6995",
+  "scope": [
+    "AI conversation history and truthful retryable failures",
+    "NVIDIA first with Cloudflare Workers AI alternate",
+    "30 second Workers inference deadline, 50 second browser deadline",
+    "Short complete Hebrew answers with sufficient token budget",
+    "Mobile transcript flex scrolling and visual viewport keyboard handling",
+    "Runtime-isolate best effort throttling, not globally atomic spending cap",
+    "Full translations and provider privacy disclosure"
+  ],
+  "verification": {
+    "regression_tests": "8 passed",
+    "release_gate": "passed",
+    "prior_preview": "669430f8.7ya-io.pages.dev",
+    "prior_preview_sales_context": "verified in desktop browser after retry; first request failed",
+    "production_published": false,
+    "mobile_device_visual_test": false
+  }
+}
