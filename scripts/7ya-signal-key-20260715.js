@@ -30,7 +30,7 @@
       noAnswer: 'לא התקבלה תשובה. נסו לנסח במשפט אחד מה חשוב לכם עכשיו.',
       fallback: 'לא הצלחתי להתחבר למנוע השיחה. ההודעה נשמרה כאן — לחצו שוב על שליחה כדי לנסות מחדש.',
       engine: 'AI המבוסס על הקול והעבודה הציבורית של איגור · לא איגור בזמן אמת',
-      disclosure: 'עשוי להיעזר בזוהר ובחכמה יהודית, ובכלים מודרניים, כשזה רלוונטי ומסומן · אל תשתפו מידע רגיש',
+      disclosure: 'עשוי להיעזר בזוהר ובחכמה יהודית, ובכלים מודרניים, כשזה רלוונטי ומסומן · ההודעות מעובדות גם אצל NVIDIA או Cloudflare · אל תשתפו מידע רגיש',
       prompts: ['אני תקוע — תעזור לי למצוא צעד הבא', 'יש לי רעיון — תעזור לי לבטא אותו', 'מה אני יכול ללמוד מהדרך שלך?'],
       evidencePrompts: ['איך אדע אם מה שאני מאמין בו באמת מבוסס?', 'תעזור לי להפריד בין עובדה לפרשנות', 'איך הופכים אמת מורכבת למסר ברור?'],
       startonPrompts: ['יש לי רעיון לעזור לנוער — מאיפה מתחילים?', 'איך הופכים טכנולוגיה לכלי אנושי?', 'תעזור לי לבנות ניסוי קטן שאפשר לבצע']
@@ -50,7 +50,7 @@
       noAnswer: 'No answer came back. Try saying in one sentence what matters most right now.',
       fallback: 'The conversation service is unavailable. Your message is kept here — press Send to retry.',
       engine: 'AI based on Igor’s public voice and work · not live Igor',
-      disclosure: 'May draw on the Zohar/Jewish wisdom and modern tools when relevant and labeled · do not share sensitive information',
+      disclosure: 'May draw on the Zohar/Jewish wisdom and modern tools when relevant and labeled · Messages are also processed by NVIDIA or Cloudflare · do not share sensitive information',
       prompts: ['I feel stuck — help me find the next move', 'I have an idea — help me express it', 'What can I learn from your path?'],
       evidencePrompts: ['How do I know if my belief is actually grounded?', 'Help me separate fact from interpretation', 'How do I turn a complex truth into a clear message?'],
       startonPrompts: ['I want to help youth — where do I start?', 'How can technology become a human tool?', 'Help me design one small executable experiment']
@@ -70,7 +70,7 @@
       noAnswer: 'Ответ не пришёл. Сформулируйте одним предложением, что для вас сейчас важнее всего.',
       fallback: 'Сервис разговора недоступен. Сообщение сохранено здесь — нажмите Отправить ещё раз.',
       engine: 'AI на основе публичного голоса и работы Игоря · это не Игорь в реальном времени',
-      disclosure: 'Может обращаться к Зоару/еврейской мудрости и современным инструментам, когда это уместно и обозначено · не делитесь чувствительными данными',
+      disclosure: 'Может обращаться к Зоару/еврейской мудрости и современным инструментам, когда это уместно и обозначено · Сообщения также обрабатываются NVIDIA или Cloudflare · не делитесь чувствительными данными',
       prompts: ['Я застрял — помоги найти следующий шаг', 'У меня есть идея — помоги выразить её', 'Чему я могу научиться у твоего пути?'],
       evidencePrompts: ['Как понять, на чём реально основано моё убеждение?', 'Помоги отделить факт от интерпретации', 'Как превратить сложную правду в ясный месседж?'],
       startonPrompts: ['Я хочу помочь подросткам — с чего начать?', 'Как сделать технологию человеческим инструментом?', 'Помоги придумать маленький выполнимый эксперимент']
@@ -90,7 +90,7 @@
       noAnswer: 'لم يصل رد. حاول أن تقول بجملة واحدة ما هو الأهم لك الآن.',
       fallback: 'خدمة المحادثة غير متاحة. بقيت رسالتك هنا — اضغط إرسال للمحاولة مجددًا.',
       engine: 'AI مبني على الصوت والعمل العام لإيغور · ليس إيغور مباشرة',
-      disclosure: 'قد يستعين بالزوهار/الحكمة اليهودية وبأدوات حديثة عندما يكون ذلك مناسبًا ومُشارًا إليه · لا تشارك معلومات حساسة',
+      disclosure: 'قد يستعين بالزوهار/الحكمة اليهودية وبأدوات حديثة عندما يكون ذلك مناسبًا ومُشارًا إليه · تُعالج الرسائل أيضًا لدى NVIDIA أو Cloudflare · لا تشارك معلومات حساسة',
       prompts: ['أنا عالق — ساعدني في إيجاد الخطوة التالية', 'لدي فكرة — ساعدني في التعبير عنها', 'ماذا يمكنني أن أتعلم من مسارك؟'],
       evidencePrompts: ['كيف أعرف أن ما أؤمن به يستند إلى أساس حقيقي؟', 'ساعدني على فصل الحقيقة عن التفسير', 'كيف أحوّل حقيقة معقدة إلى رسالة واضحة؟'],
       startonPrompts: ['أريد مساعدة الشباب — من أين أبدأ؟', 'كيف تصبح التكنولوجيا أداة إنسانية؟', 'ساعدني على تصميم تجربة صغيرة قابلة للتنفيذ']
@@ -98,6 +98,7 @@
   };
 
   const c = COPY[locale];
+  c.rateLimited = { he: 'הגעתם למגבלת הבקשות. ההודעה נשמרה כאן; נסו שוב מאוחר יותר.', en: 'The request limit was reached. Your message is kept here; please try again later.', ru: 'Достигнут лимит запросов. Сообщение сохранено здесь; попробуйте позже.', ar: 'تم بلوغ حد الطلبات. بقيت رسالتك هنا؛ حاول مجددًا لاحقًا.' }[locale];
 
   function element(tag, className, text) {
     const node = document.createElement(tag);
@@ -119,7 +120,7 @@
 
   const root = element('section', 'ya-signal-key');
   root.dir = rtl ? 'rtl' : 'ltr';
-  root.dataset.yaSignalKey = '7ya-chat-20261007-v1';
+  root.dataset.yaSignalKey = '7ya-chat-20261007-v3';
 
   const launcher = element('button', 'ya-signal-launcher');
   launcher.type = 'button';
@@ -222,6 +223,7 @@
       });
       if (!(response.headers.get('content-type') || '').includes('application/json')) throw new Error('invalid_response');
       const data = await response.json();
+      if (response.status === 429) throw new Error('rate_limited');
       if (!response.ok || data.degraded || data.provider === 'local') throw new Error('chat_unavailable');
       if (typeof (data.reply || data.answer) !== 'string' || !(data.reply || data.answer).trim()) throw new Error('empty_response');
       return data;
@@ -266,7 +268,7 @@
       conversation.push({ role: 'assistant', content: answer.slice(0, 1800) });
       while (conversation.length > 10) conversation.shift();
     } catch (error) {
-      waiting.textContent = c.fallback;
+      waiting.textContent = error.message === 'rate_limited' ? c.rateLimited : c.fallback;
       waiting.classList.add('error');
       messages.scrollTop = messages.scrollHeight;
       console.warn('Speak with Igor continuity fallback', error && error.message ? error.message : error);

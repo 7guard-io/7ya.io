@@ -6,7 +6,8 @@ const messages = [
   { role: 'assistant', content: 'מה תרצה לשפר בעסק מול הסוכנויות?' },
   { role: 'user', content: 'מכירות' },
 ];
-const request = body => new Request('https://7ya.io/api/guide', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+let testClient = 0;
+const request = body => new Request('https://7ya.io/api/guide', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': 'test-' + (++testClient) }, body: JSON.stringify(body) });
 const body = { message: 'מכירות', messages, locale: 'he', mode: 'guide' };
 test('short sales follow-up reaches AI with prior question and business context', async () => {
   let received;
@@ -20,7 +21,7 @@ test('short sales follow-up reaches AI with prior question and business context'
   const data = await response.json();
   assert.equal(data.provider, 'cloudflare-ai');
   assert.match(data.answer, /סוכנויות/);
-  assert.equal(data.release, '7ya-chat-20261007-v2');
+  assert.equal(data.release, '7ya-chat-20261007-v3');
 });
 test('missing provider is an explicit 503, never a fake AI template', async () => {
   const response = await onRequestPost({ request: request(body), env: {} });
@@ -64,4 +65,16 @@ test('Workers AI structured response is parsed without object coercion', async (
 test('malformed provider reply cannot pass chat readiness', async () => {
   const env = { AI: { run: async () => ({ response: { reply: { text: 'wrong shape' } } }) } };
   assert.equal((await onRequestPost({ request: request(body), env })).status, 503);
+});
+
+test('burst limit returns 429 before another model invocation', async () => {
+  let calls = 0;
+  const env = { AI: { run: async () => { calls++; return { response: { reply: 'תשובה' } }; } } };
+  for (let i = 0; i < 7; i++) {
+    const req = request(body); req.headers.set('cf-connecting-ip', 'burst-regression-client');
+    const response = await onRequestPost({ request: req, env });
+    if (i < 6) assert.equal(response.status, 200);
+    else { assert.equal(response.status, 429); assert.equal(response.headers.get('retry-after'), '60'); }
+  }
+  assert.equal(calls, 6);
 });

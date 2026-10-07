@@ -1,0 +1,9 @@
+{
+  "release": "7ya-chat-20261007-v3",
+  "status": "VALIDATED_SOURCE_PENDING_RUNTIME",
+  "rollback_commit": "b9e6e9e061f86f5d17df3c33a8eb85711eaf6995",
+  "scope": ["Structured AI output normalization", "Multi-turn conversation and honest provider failures", "Per-client throttling, concurrency control and runtime-isolate budgets for POST and canary", "Correct health fallback metadata", "Full source-node translations instead of mixed-language prefix replacements", "Provider-processing disclosure"],
+  "rate_controls": {"scope":"runtime-isolate, best effort; not a globally atomic spending cap", "client_per_minute":6,"client_per_day":20,"isolate_per_minute":15,"isolate_per_day":60,"workers_ai_output_tokens":500},
+  "privacy_correction": "Supersedes the absolute privacy wording in v1: the 7YA application itself does not persist or log prompts. Conversation is processed by NVIDIA or Cloudflare according to provider policies; this implementation does not establish provider retention guarantees.",
+  "verification": {"regression_tests":"8 passed","release_gate":"passed","production_published":false}
+}

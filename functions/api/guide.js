@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261007-v2';
+const CHAT_RELEASE = '7ya-chat-20261007-v3';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -35,10 +35,11 @@ function providerInstructions(locale, creator) {
     'Use modern AI, research, writing, video and creation tools only when they materially help the visitor act.',
     'Use the whole conversation. A short reply such as sales or yes answers your preceding question; do not restart or ask the same question again. Offer a concrete useful answer before asking at most one relevant follow-up. Do not repeat greetings or generic clarification.',
     'Public source context: Igor Vepretski is the person behind 7YA (public biography: /igor-vepretski/). StartOn is his social mission connecting technology, learning, creation and belonging for youth (/starton/). 7YA organizes his public archive and sources (/evidence/). For facts beyond this context, point to a source or acknowledge that you cannot verify them.',
-    'Answer in ' + language + '. Be direct, substantive and practical.',
+    'Answer in ' + language + '. Give 2-4 concrete steps, a usable example, or a draft that directly advances the visitor goal. Do not answer a short follow-up by offering another menu of topics. If a business sells to agencies and the visitor says sales, use that context to suggest a focused offer, decision-maker, outreach and follow-up; ask what the business sells only after a useful next step. Your advice is a suggestion, not Igor personal speech.',
+    'Never invent internal URLs. Do not link a sales or business question to StartOn. Only use a source route when the visitor is actually asking about that source.',
     creator
       ? 'Return ONLY valid JSON with keys reply, spotlight, suggestions, checkpoint and actions. suggestions is an array of up to 3 short strings. checkpoint is {title,items} with up to 4 concrete steps. actions is an array of up to 2 objects with label and an internal 7YA href.'
-      : 'Return ONLY valid JSON with keys reply, spotlight, suggestions, actions. suggestions is an array of up to 3 short strings. actions is an array of up to 2 objects with label and an internal 7YA href.'
+      : 'Return the answer as plain text, with short numbered steps when useful. Do not return JSON. Ask at most one focused follow-up question.'
   ].join(' ');
 }
 
@@ -52,7 +53,7 @@ function parseProviderPayload(text, body) {
   const actions = Array.isArray(source.actions) ? source.actions.map(item => ({
     label: clean(item && item.label, 100),
     href: safePath(item && item.href),
-  })).filter(item => item.label && item.href !== '/') .slice(0, 2) : [];
+  })).filter(item => item.label && Object.values(links).some(link => link.href === item.href)).slice(0, 2) : [];
   const checkpointRaw = source.checkpoint && typeof source.checkpoint === 'object' ? source.checkpoint : null;
   const checkpointItems = checkpointRaw && Array.isArray(checkpointRaw.items)
     ? checkpointRaw.items.map(item => clean(item, 260)).filter(Boolean).slice(0, 4)
@@ -71,9 +72,9 @@ function parseProviderPayload(text, body) {
 }
 
 function conversationHistory(body) {
-  const history = Array.isArray(body.messages) ? body.messages.slice(-10)
+  const history = Array.isArray(body.messages) ? body.messages.slice(-8)
     .filter(item => item && ['user', 'assistant'].includes(item.role))
-    .map(item => ({ role: item.role, content: clean(item.content, 2400) }))
+    .map(item => ({ role: item.role, content: clean(item.content, 1200) }))
     .filter(item => item.content) : [];
   const message = clean(body.message);
   const last = history[history.length - 1];
@@ -90,7 +91,7 @@ async function callWorkersAI(body, request, env) {
     const data = await Promise.race([
       env.AI.run(model, {
         messages: [{ role: 'system', content: providerInstructions(localeOf(body.locale || request.headers.get('accept-language')), body.mode === 'creator') }, ...conversationHistory(body)],
-        temperature: 0.2, max_tokens: 850, stream: false,
+        temperature: 0.2, max_tokens: 500, stream: false,
       }),
       new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 16000); }),
     ]);
@@ -327,6 +328,35 @@ async function buildGuideResult(body, request, env) {
   };
 }
 
+// Best-effort bounds per runtime isolate, including the public canary. This is
+// deliberately not advertised as a globally atomic account spending limit.
+const clients = new Map();
+let budgetDay = -1;
+let dailyAttempts = 0;
+let minuteWindow = -1;
+let minuteAttempts = 0;
+async function reserveInference(request) {
+  const now = Date.now();
+  const day = Math.floor(now / 86400000);
+  const minute = Math.floor(now / 60000);
+  if (day !== budgetDay) { budgetDay = day; dailyAttempts = 0; clients.clear(); }
+  if (minute !== minuteWindow) { minuteWindow = minute; minuteAttempts = 0; }
+  const ip = request.headers.get('cf-connecting-ip') || 'anonymous';
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip));
+  const key = Array.from(new Uint8Array(digest), x => x.toString(16).padStart(2, '0')).join('');
+  const current = clients.get(key) || { minute, attempts: 0, daily: 0, active: false };
+  if (current.minute !== minute) { current.minute = minute; current.attempts = 0; }
+  if (current.active || current.attempts >= 6 || current.daily >= 20 || dailyAttempts >= 60 || minuteAttempts >= 15 || (!clients.has(key) && clients.size >= 2000)) return null;
+  current.attempts++; current.daily++; current.active = true;
+  clients.set(key, current); dailyAttempts++; minuteAttempts++;
+  return () => { current.active = false; };
+}
+const limited = () => {
+  const response = json({ error: 'rate_limited', retryable: true, release: CHAT_RELEASE }, 429);
+  response.headers.set('retry-after', '60');
+  return response;
+};
+
 export async function onRequestPost({ request, env }) {
   let body;
   try {
@@ -335,14 +365,18 @@ export async function onRequestPost({ request, env }) {
     return json({ error: 'invalid request' }, 400);
   }
   if (!body || typeof body !== 'object' || Array.isArray(body) || typeof body.message !== 'string' || body.message.length > 1600) return json({ error: 'invalid message' }, 422);
-  const result = await buildGuideResult(body, request, env);
-  return json({ ...result.payload, release: CHAT_RELEASE }, result.status);
+  const release = await reserveInference(request);
+  if (!release) return limited();
+  try {
+    const result = await buildGuideResult(body, request, env);
+    return json({ ...result.payload, release: CHAT_RELEASE }, result.status);
+  } finally { release(); }
 }
 
 export async function onRequestGet({ request, env }) {
   const url = new URL(request.url);
   if (url.searchParams.get('probe') !== '1') {
-    return json({ release: CHAT_RELEASE, status: providerKey(env) || env?.AI?.run ? 'configured' : 'degraded', experience: 'speak-with-igor', runtime: 'cloudflare-pages', fallback: 'first-party-local', secrets_exposed: false });
+    return json({ release: CHAT_RELEASE, status: providerKey(env) || env?.AI?.run ? 'configured' : 'degraded', experience: 'speak-with-igor', runtime: 'cloudflare-pages', guide_fallback: 'none', creator_fallback: 'first-party-local', rate_limit_scope: 'runtime-isolate', secrets_exposed: false });
   }
 
   const body = {
@@ -352,7 +386,10 @@ export async function onRequestGet({ request, env }) {
     path: '/',
     mode: 'guide',
   };
-  const result = await buildGuideResult(body, request, env);
+  const release = await reserveInference(request);
+  if (!release) return limited();
+  let result;
+  try { result = await buildGuideResult(body, request, env); } finally { release(); }
   const payload = result.payload || {};
   const visitorPathReady = result.status === 200 && ['nvidia', 'cloudflare-ai'].includes(result.enginePath) && Boolean(clean(payload.answer));
   return json({

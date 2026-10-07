@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+const chatReleaseTranslations = JSON.parse(readFileSync(new URL('./chat-release-locale-copy.json', import.meta.url), 'utf8'));
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { aliasRoutes, canonicalRoutes, publicRouteDirectories } from './site-contract.mjs';
@@ -3032,8 +3034,7 @@ function replaceVisibleCopy(html, locale, route) {
   const translations=new Map([...commonTranslations[locale],...restorationTranslations[locale],...humanFirstTranslations[locale],...coreNarrativeTranslations[locale],...Object.entries(technicalTranslations[locale]),...routeSpecific]);
   translations.set('כל הרשתות →', locale==='en'?'All social accounts →':locale==='ru'?'Все соцсети →':'جميع الحسابات →');
   translations.set('IGOR VEPRETSKI · השפעה ציבורית · עם מקורות', locale==='en'?'IGOR VEPRETSKI · Public influence · with sources':locale==='ru'?'IGOR VEPRETSKI · Публичное влияние · с источниками':'IGOR VEPRETSKI · التأثير العام · مع المصادر');
-  const prefixes = { en: {'ו':'and ', 'ב':'in ', 'ל':'to ', 'מ':'from ', 'ה':'the ', 'מה':'from the ', 'הב':'in the ', 'וה':'and the ', 'כ':'as ', 'ש':'that '}, ru: {'ו':'и ', 'ב':'в ', 'ל':'к ', 'מ':'из ', 'ה':'', 'מה':'из ', 'הב':'в ', 'וה':'и ', 'כ':'как ', 'ש':'что '}, ar: {'ו':'و ', 'ב':'في ', 'ל':'إلى ', 'מ':'من ', 'ה':'', 'מה':'من ', 'הב':'في ', 'וה':'و ', 'כ':'مثل ', 'ש':'أن '} };
-  const translatePrefixes = text => text.replace(/(^|[\s(])([ובכלמהש]+)־(?=[A-Za-z])/g, (match, start, prefix) => Object.hasOwn(prefixes[locale], prefix) ? start + prefixes[locale][prefix] : match);
+  for (const [source, variants] of Object.entries(chatReleaseTranslations)) translations.set(source, variants[locale]);
   const protectedBlocks=[];
   let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
     const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
@@ -3044,7 +3045,7 @@ function replaceVisibleCopy(html, locale, route) {
     const leading=text.match(/^\s*/)?.[0]||'';
     const trailing=text.match(/\s*$/)?.[0]||'';
     const core=text.trim();
-    return '>'+leading+translatePrefixes(translations.has(core) ? translations.get(core) : core)+trailing+'<';
+    return translations.has(core) ? '>'+leading+translations.get(core)+trailing+'<' : match;
   });
   next=next.replace(/\b(aria-label|title|placeholder|alt)=(["'])(.*?)\2/gi,(match,name,quote,value)=>{
     const core=value.trim();

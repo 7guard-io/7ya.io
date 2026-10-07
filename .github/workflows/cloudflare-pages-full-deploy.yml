@@ -75,7 +75,7 @@ jobs:
           node scripts/verify-routes.mjs https://7ya-io.pages.dev
           curl -fsSL --max-time 40 -H 'Cache-Control: no-cache, no-store' \
             "https://7ya-io.pages.dev/api/guide?probe=1&sha=${GITHUB_SHA}" -o live-chat-probe.json
-          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('live-chat-probe.json')); if(p.release!=='7ya-chat-20261007-v2'||!p.visitor_path_ready||!['nvidia','cloudflare-ai'].includes(p.engine_path)) throw new Error('Live AI conversation acceptance failed');"
+          node --input-type=module -e "import fs from 'node:fs'; const p=JSON.parse(fs.readFileSync('live-chat-probe.json')); if(p.release!=='7ya-chat-20261007-v3'||!p.visitor_path_ready||!['nvidia','cloudflare-ai'].includes(p.engine_path)) throw new Error('Live AI conversation acceptance failed');"
 
       - name: Write bootstrap receipt
         if: always()
