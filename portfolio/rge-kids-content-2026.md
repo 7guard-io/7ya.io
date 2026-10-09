@@ -1,3 +1,7 @@
+> **חדש — גרסת הפורטפוליו המעוצבת:** [לצפייה בגרסת אתר HTML](https://htmlpreview.github.io/?https://github.com/7guard-io/7ya.io/blob/main/portfolio/rge-kids-2026/index.html) · [מקור קובץ ה־HTML](./rge-kids-2026/index.html). עד לפרסום בדומיין ציבורי עצמאי, זהו קישור תצוגה בלבד ולא קישור מומלץ להגשה למגייסים.
+
+---
+
 # איגור ופרצקי | תיק עבודות למשרת מנהל/ת סושיאל ותוכן — ערוץ הילדים (RGE)
 
 **אוקטובר 2026 | Creative × Strategy × Youth & Technology**
