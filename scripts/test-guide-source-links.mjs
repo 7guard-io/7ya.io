@@ -2,11 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 let isolate=0;
-async function answer(body) {
+async function answer(body,onInput=()=>{}) {
   // Each case is a separate runtime isolate; do not share the spending limiter.
   const {onRequestPost}=await import(`../functions/api/guide.js?source-case=${isolate++}`);
   const request=new Request('https://7ya.io/api/guide',{method:'POST',headers:{'content-type':'application/json','cf-connecting-ip':'source-test'},body:JSON.stringify(body)});
-  const response=await onRequestPost({request,env:{AI:{run:async()=>({response:'A useful source-grounded reply.'})}}});
+  const response=await onRequestPost({request,env:{AI:{run:async(model,input)=>{onInput(input);return {response:'A useful source-grounded reply.'};}}}});
   assert.equal(response.status,200);
   return response.json();
 }
@@ -59,4 +59,23 @@ test('sales question with a pronoun clears source state even on StartOn',async()
 test('Russian contextual turn keeps public biography sources',async()=>{
   const data=await answer({message:'Что было после его переезда?',locale:'ru',messages:[{role:'user',content:'Расскажи об Игоре'}]});
   assert.ok(data.links.some(link=>link.href==='/igor-vepretski/'));
+});
+
+test('explicit biography history overrides StartOn route fallback',async()=>{
+ const data=await answer({message:'Tell me more',locale:'en',path:'/starton/',messages:[{role:'user',content:'Tell me about Igor'}]});
+ assert.equal(data.state.source_topic,'identity');
+ assert.ok(data.links.some(link=>link.href==='/igor-vepretski/'));
+});
+test('restored source state is supplied to the answer provider',async()=>{
+ let input;const data=await answer({message:'What happened next?',locale:'en',state:{source_topic:'starton'},messages:[{role:'user',content:'Tell me more'}]},value=>{input=value;});
+ assert.ok(input.messages[0].content.includes('Active public source topic: StartOn'));
+ assert.equal(data.state.source_topic,'starton');
+});
+test('sales to youth agencies does not classify as StartOn',async()=>{
+ const data=await answer({message:'How do I sell software to youth agencies?',locale:'en',path:'/starton/'});
+ assert.deepEqual(data.links,[]);
+});
+test('agency biography follow-up preserves identity context',async()=>{
+ const data=await answer({message:'Which agency did he work with?',locale:'en',messages:[{role:'user',content:'Tell me about Igor'}]});
+ assert.equal(data.state.source_topic,'identity');
 });
