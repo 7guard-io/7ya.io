@@ -1,6 +1,10 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ["הודעה רגילה אינה כספת. מידע רגיש נשלח רק לאחר תיאום ערוץ מתאים ורק כאשר הוא הכרחי.", "An ordinary message is not a secure vault. Share sensitive information only through an agreed appropriate channel and only when necessary.", "Обычное сообщение — не защищённое хранилище. Передавайте чувствительные данные только по согласованному подходящему каналу и лишь при необходимости.", "الرسالة العادية ليست خزنة آمنة. لا تشاركوا معلومات حساسة إلا عبر قناة مناسبة متفق عليها وعند الضرورة."],
+  ["לא לשלוח בהודעה הראשונה", "Do not include in the first message", "Не отправляйте в первом сообщении", "لا ترسلوا في الرسالة الأولى"],
+  ["שחוסכים עשר הודעות.", "that save ten messages.", "которые заменят десять сообщений.", "توفر عشر رسائل."],
+
   ["טלגרם · הקשר ברור · מענה אנושי", "TELEGRAM · YOUR CONTEXT · HUMAN RESPONSE", "TELEGRAM · ВАШ КОНТЕКСТ · ОТВЕТ ЧЕЛОВЕКА", "تيليغرام · سياقكم · رد بشري"],
   ["שיחה טובה מתחילה בהקשר ברור: מי אתם, מה אתם רוצים לבנות, למה זה חשוב עכשיו ומה יכולה להיות הפעולה הבאה. אפשר לפנות אליי בטלגרם עם ההקשר והרעיון שלכם.", "A good conversation starts with context: who you are, what you want to build, why it matters now, and what the next step could be. Contact me on Telegram with your context and idea.", "Хороший разговор начинается с контекста: кто вы, что хотите создать, почему это важно сейчас и каким может быть следующий шаг. Напишите мне в Telegram о вашей идее.", "تبدأ المحادثة الجيدة بسياق واضح: من أنتم، وما الذي تريدون بناءه، ولماذا يهم الآن، وما الخطوة التالية. تواصلوا معي عبر تيليغرام مع سياق فكرتكم."],
   ["TELEGRAM · CLEAR CONTEXT · HUMAN RESPONSE", "TELEGRAM · YOUR CONTEXT · HUMAN RESPONSE", "TELEGRAM · ВАШ КОНТЕКСТ · ОТВЕТ ЧЕЛОВЕКА", "تيليغرام · سياقكم · رد بشري"],

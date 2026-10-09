@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261007-v4';
+const CHAT_RELEASE = '7ya-chat-20261009-v5';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -193,7 +193,7 @@ function fallbackGuide(message, path, locale) {
     answer: text.starton,
     links: [links.starton, links.evidence, links.contact],
   };
-  if (/איגור|igor|игор|إيغور|סיפור|journey|путь|مسار/.test(q)) return {
+  if (/איגור|igor|игор|إيغور|סיפור|journey|דרך|מסע|jessie|путь|مسار/.test(q)) return {
     answer: text.igor,
     links: [links.identity, links.journey, links.evidence],
   };
@@ -278,6 +278,7 @@ async function buildGuideResult(body, request, env) {
   const creatorMode = ['create', 'momentum', 'impact', 'clarify'].includes(body.creator_mode) ? body.creator_mode : 'clarify';
   const creator = body.mode === 'creator';
   const fallback = creator ? fallbackCreator(message, creatorMode, locale) : fallbackGuide(message, path, locale);
+  const sourceLinks = /starton|נוער|youth|молод|شباب|איגור|igor|игор|إيغور|סיפור|journey|דרך|מסע|jessie|путь|مسار|מקור|ראי|evidence|proof|source|доказ|دليل|مصدر/i.test(message) ? fallback.links : [];
 
   let directError = null;
   try {
@@ -288,7 +289,7 @@ async function buildGuideResult(body, request, env) {
         ? creatorShape(data, message, creatorMode, locale, fallback)
         : {
             answer: clean(data.reply, 5200) || fallback.answer,
-            links: actionLinks(data, fallback.links),
+            links: actionLinks(data, sourceLinks),
             mode: '7ya-guide',
             provider: 'nvidia',
             model: clean(data.model, 120) || providerModel(env),
@@ -308,7 +309,7 @@ async function buildGuideResult(body, request, env) {
     if (worker) {
       const data = worker.data;
       const payload = creator ? creatorShape(data, message, creatorMode, locale, fallback) : {
-        answer: data.reply, links: actionLinks(data, []), mode: '7ya-guide',
+        answer: data.reply, links: actionLinks(data, sourceLinks), mode: '7ya-guide',
         provider: 'cloudflare-ai', model: data.model, state: null,
       };
       return { payload, status: 200, enginePath: 'cloudflare-ai', engineDetail: 'workers_ai_ok', engineLatencyMs: worker.latencyMs };
@@ -371,6 +372,12 @@ export async function onRequestPost({ request, env }) {
   if (!release) return limited();
   try {
     const result = await buildGuideResult(body, request, env);
+    const locale=localeOf(body.locale || request.headers.get('accept-language'));
+    const labels={en:['Igor’s story','Journey','Create','StartOn','Sources','Public work','Contact'],ru:['История Игоря','Путь','Творчество','StartOn','Источники','Публичная работа','Связаться'],ar:['قصة إيغور','المسار','الإبداع','StartOn','المصادر','العمل العام','تواصل']};
+    if(labels[locale] && Array.isArray(result.payload.links)) result.payload.links=result.payload.links.map(link=>{
+      const index=Object.values(links).findIndex(item=>item.href===link.href);
+      return index<0?link:{...link,label:labels[locale][index]};
+    });
     return json({ ...result.payload, release: CHAT_RELEASE }, result.status);
   } finally { release(); }
 }

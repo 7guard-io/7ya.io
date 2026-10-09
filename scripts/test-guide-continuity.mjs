@@ -21,7 +21,17 @@ test('short sales follow-up reaches AI with prior question and business context'
   const data = await response.json();
   assert.equal(data.provider, 'cloudflare-ai');
   assert.match(data.answer, /סוכנויות/);
-  assert.equal(data.release, '7ya-chat-20261007-v4');
+  assert.equal(data.release, '7ya-chat-20261009-v5');
+  assert.deepEqual(data.links, [], 'unrelated sales advice must not link to Igor sources');
+});
+
+test('journey answers include clickable source routes with localized labels', async () => {
+  const env={AI:{run:async()=>({response:'Igor grew up in Jessie Cohen. Start with one conversation.'})}};
+  const response=await onRequestPost({request:request({message:'What can I learn from Igor journey?',locale:'en'}),env});
+  const data=await response.json();
+  assert.equal(response.status,200);
+  assert.ok(data.links.some(link=>link.href==='/igor-vepretski/' && link.label==='Igor’s story'));
+  assert.ok(data.links.every(link=>!/[\u0590-\u05ff]/.test(link.label)));
 });
 test('missing provider is an explicit 503, never a fake AI template', async () => {
   const response = await onRequestPost({ request: request(body), env: {} });
