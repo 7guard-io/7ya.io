@@ -1,6 +1,10 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ["רגעים אישיים · REAL מדיה", "Personal moments · REAL MEDIA", "Личные моменты · НАСТОЯЩИЕ МЕДИА", "لحظات شخصية · وسائط حقيقية"],
+  ["7YA · ORIGINAL / מחובר למקור מדיה", "7YA · ORIGINAL MEDIA / VIEW THE SOURCE", "7YA · ОРИГИНАЛЬНЫЕ МЕДИА / ОТКРЫТЬ ИСТОЧНИК", "7YA · وسائط أصلية / عرض المصدر"],
+  ["גיבורי העל של התקופה", "The superheroes of this time", "Супергерои этого времени", "أبطال هذه الفترة"],
+
   ["הודעה רגילה אינה כספת. מידע רגיש נשלח רק לאחר תיאום ערוץ מתאים ורק כאשר הוא הכרחי.", "An ordinary message is not a secure vault. Share sensitive information only through an agreed appropriate channel and only when necessary.", "Обычное сообщение — не защищённое хранилище. Передавайте чувствительные данные только по согласованному подходящему каналу и лишь при необходимости.", "الرسالة العادية ليست خزنة آمنة. لا تشاركوا معلومات حساسة إلا عبر قناة مناسبة متفق عليها وعند الضرورة."],
   ["לא לשלוח בהודעה הראשונה", "Do not include in the first message", "Не отправляйте в первом сообщении", "لا ترسلوا في الرسالة الأولى"],
   ["שחוסכים עשר הודעות.", "that save ten messages.", "которые заменят десять сообщений.", "توفر عشر رسائل."],
