@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261009-v6';
+const CHAT_RELEASE = '7ya-chat-20261009-v7';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -157,22 +157,34 @@ const engineErrorCode = error => {
 
 function sourceTopic(message) {
   const q=clean(message).toLowerCase();
-  if(/starton|סטארט\s*און|стартон/.test(q)) return 'starton';
+  if(/starton|סטארט\s*און|стартон|\byouth\b|נוער|молод|подрост|شباب/.test(q)) return 'starton';
   if(/\bigor\b|איגור|игор|إيغور|your (?:path|journey|story)|הדרך שלך|המסע שלך|הסיפור שלך|твоего пути|твоей истории|مسارك|قصتك|رحلتك/.test(q)) return 'identity';
   if(/\bevidence\b|\bproof\b|\bsources?\b|מקורות|ראיות|доказ|источни|دليل|مصدر/.test(q)) return 'evidence';
   return null;
 }
 
-function conversationSourceLinks(body) {
+function conversationSourceTopic(body) {
   const continuation=value=>/^(?:tell me more|more|yes|continue|go on|עוד|כן|תמשיך|המשך|ספר לי עוד|подробнее|да|продолжай|расскажи подробнее|نعم|المزيد|تابع)[.!?\s]*$/i.test(clean(value));
+  const contextual=value=>continuation(value)||/\b(?:he|his|they|their|it|that|then|next|afterwards)\b|הוא|שלו|אחרי|אותו|השלב הבא|(?:^|\s)(?:он|его|они|их|это|дальше)(?=\s|[.!?,]|$)|ذلك|بعد|هو|التالي/i.test(clean(value));
+  const newTopic=value=>/\b(?:sell|sales|business|agenc(?:y|ies)|weather|recipe)\b|מכירות|למכור|עסק|סוכנויות|продаж|бизнес|агентств|мبيعات|بيع|وكالات/i.test(clean(value));
   let topic=sourceTopic(body.message);
-  if(!topic && continuation(body.message)) {
+  if(!topic && newTopic(body.message)) return null;
+  if(!topic && /^\/(?:en\/|ru\/|ar\/)?starton(?:\/|$)/.test(safePath(body.path))) topic='starton';
+  if(!topic && contextual(body.message)) {
     const previous=Array.isArray(body.messages)?body.messages.slice(-8).filter(item=>item?.role==='user' && clean(item.content)!==clean(body.message)):[];
     for(const item of previous.reverse()) {
-      if(continuation(item.content)) continue;
-      topic=sourceTopic(item.content);break;
+      topic=sourceTopic(item.content);
+      if(topic) return topic;
+      if(newTopic(item.content)) return null;
+      if(!contextual(item.content)) return null;
     }
+    topic=['identity','starton','evidence'].includes(body.state?.source_topic)?body.state.source_topic:null;
   }
+  return topic;
+}
+
+function conversationSourceLinks(body) {
+  const topic=conversationSourceTopic(body);
   return topic==='starton'?[links.starton,links.evidence,links.contact]:topic==='identity'?[links.identity,links.journey,links.evidence]:topic==='evidence'?[links.evidence,links.influence]:[];
 }
 
@@ -393,6 +405,7 @@ export async function onRequestPost({ request, env }) {
   if (!release) return limited();
   try {
     const result = await buildGuideResult(body, request, env);
+    if(body.mode!=='creator') result.payload.state={source_topic:conversationSourceTopic(body)};
     const locale=localeOf(body.locale || request.headers.get('accept-language'));
     const labels={en:['Igor’s story','Journey','Create','StartOn','Sources','Public work','Contact'],ru:['История Игоря','Путь','Творчество','StartOn','Источники','Публичная работа','Связаться'],ar:['قصة إيغور','المسار','الإبداع','StartOn','المصادر','العمل العام','تواصل']};
     if(labels[locale] && Array.isArray(result.payload.links)) result.payload.links=result.payload.links.map(link=>{

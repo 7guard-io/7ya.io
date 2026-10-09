@@ -1,0 +1,15 @@
+{
+  "release": "7ya-chat-20261009-v7",
+  "state": "VALIDATED_PENDING_PUBLICATION",
+  "scope": [
+    "source context survives contextual follow-up and bounded history",
+    "explicit unrelated sales topics clear source state",
+    "StartOn-page prompts retain their source context",
+    "chat regression suites run in the normal Cloudflare deployment gate"
+  ],
+  "verification": {
+    "release_gate": "PASS",
+    "chat_tests": "25 PASS"
+  },
+  "rollback": "Revert this commit; no DNS or billing changes"
+}
