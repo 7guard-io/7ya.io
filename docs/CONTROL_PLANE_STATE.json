@@ -1,6 +1,6 @@
 {
   "schema_version": 10,
-  "updated_at": "2026-10-07T02:20:00Z",
+  "updated_at": "2026-10-09T17:10:00Z",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -71,12 +71,12 @@
     "pages_domain_http": 200,
     "pages_health_provider": "cloudflare-pages",
     "pages_artifact_manifest_present": true,
-    "canonical_probe": "HTTP 403 Cloudflare challenge from this automation environment; public-browser acceptance not claimed",
+    "canonical_probe": "HTTP 502 / connection refused observed from execution and browser on 2026-10-09; global availability unknown",
     "ask_igor_path": "Cloudflare Pages Function -> optional NVIDIA NIM -> deterministic first-party fallback",
     "external_runtime_dependency_on_appdeploy": false
   },
   "domain_state": {
-    "7ya.io": "Cloudflare edge; automated probe challenged",
+    "7ya.io": "Not verified: HTTP 502 / connection refused from this execution environment on 2026-10-09",
     "www.7ya.io": "not independently verified this change",
     "pages_domain": "verified HTTP 200",
     "dns_changed_in_this_change": false
@@ -101,18 +101,19 @@
     "rule": "Disabled historical scheduler records are advisory history, not current release blockers."
   },
   "release_scope": {
-    "name": "APPDEPLOY_V98_PUBLIC_PROFILE_CONVERGENCE_V11",
-    "runtime_wiring_changed": true,
-    "ui_component_changed": true,
-    "content_hierarchy_changed": true,
+    "name": "CLOUDFLARE_PERSONAL_HOME_20261009",
+    "state": "TESTED_LOCALLY_PENDING_PREVIEW_AND_PRODUCTION",
+    "scope": [
+      "visible single desktop/mobile navigation",
+      "separate readable biography and uncropped portrait",
+      "chronological story before personal media",
+      "remove repetitive metrics and system UI from home presentation",
+      "update stale provider instructions",
+      "verify exact deployed source commit"
+    ],
     "content_deleted": false,
     "routes_deleted": false,
-    "deep_archive_preserved": true,
-    "deep_route_static_shells_hardened": true,
-    "evidence_anchor_wall_expanded": true,
-    "release_metadata_changed": true,
-    "regression_contract_changed": true,
-    "ask_igor": "Public companion branding converged to Ask Igor with explicit AI/non-impersonation/source-grounding language; NVIDIA/NVCF optional primary remains degraded-auth and fallback is preserved."
+    "chat_engine_changed": false
   },
   "public_experience_contract": {
     "primary_navigation": [

@@ -1,0 +1,24 @@
+{
+  "release": "7ya-personal-home-20261009",
+  "state": "TESTED_LOCALLY_PENDING_PREVIEW_AND_PRODUCTION",
+  "base_commit": "b0213f89126ef931d1ca40ff26ea0423c79d1c2c",
+  "provider": "Cloudflare Pages",
+  "project": "7ya-io",
+  "scope": [
+    "restore visible primary navigation",
+    "separate photo from title",
+    "personal biographical lead in HE/EN/RU/AR",
+    "chronological story before original media",
+    "reduce duplicate home sections; archive retained",
+    "correct stale provider guidance",
+    "require exact live source commit and no-store deployment metadata"
+  ],
+  "verification": {
+    "release_gate": "PASS",
+    "chat_continuity_tests": "8 PASS",
+    "pixel_acceptance": "PENDING",
+    "canonical_domain": "502 connection refused in this environment; worldwide outage not established"
+  },
+  "privacy": "No new private media, identifying minors, personal documents or credentials published. Existing public source assets only.",
+  "rollback": "Revert this release commit or select previous Cloudflare Pages deployment."
+}

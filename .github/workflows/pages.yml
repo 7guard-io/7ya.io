@@ -1,6 +1,6 @@
 name: Legacy Static Snapshot — manual only
 
-# 7ya.io is currently served by the AppDeploy runtime.
+# 7ya.io production is Cloudflare Pages; this is a manual legacy fallback.
 # Keep this workflow only as an explicit/manual legacy snapshot path so a push
 # to main cannot compete with, overwrite, or generate false production signals.
 on:

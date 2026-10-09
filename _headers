@@ -6,6 +6,8 @@
 
 
 /
+  Cache-Control: no-cache, no-store, must-revalidate
+
 /index.html
   Cache-Control: no-cache, no-store, must-revalidate
 
@@ -39,3 +41,10 @@
 /*
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff
+
+/deploy-meta.json
+  Cache-Control: no-cache, no-store, must-revalidate
+  X-Content-Type-Options: nosniff
+
+/styles/site-fix-20260925.css
+  Cache-Control: no-cache, must-revalidate
