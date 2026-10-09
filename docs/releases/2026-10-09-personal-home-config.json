@@ -1,6 +1,6 @@
 {
   "release": "7ya-personal-home-20261009",
-  "state": "MERGED_PUBLICATION_BLOCKED",
+  "state": "PUBLISHED_PAGES_CANONICAL_DOMAIN_BLOCKED",
   "base_commit": "b0213f89126ef931d1ca40ff26ea0423c79d1c2c",
   "provider": "Cloudflare Pages",
   "project": "7ya-io",
@@ -17,9 +17,11 @@
     "release_gate": "PASS",
     "chat_continuity_tests": "8 PASS",
     "pixel_acceptance": "Desktop and 390px mobile preview inspected in browser; visible navigation, separate portrait and text; no desktop horizontal overflow",
-    "canonical_domain": "502 connection refused in this environment; worldwide outage not established",
+    "canonical_domain": "LIVE DNS NXDOMAIN for 7ya.io and www; registrar recovery required",
     "preview": "https://7ya-fix-preview-lvypcbtqe-igor-vepretskis-projects.vercel.app/ (temporary protected visual preview; not production)",
-    "production": "NOT PUBLISHED: Pages deploy-meta still reports b0213f89126ef931d1ca40ff26ea0423c79d1c2c"
+    "production": "PUBLISHED: browser deploy-meta source_commit 700fa11918cff8941f91ef04786917e95989b440 on main",
+    "live_ui": "PASS: visible navigation, new biographical hero, no desktop horizontal overflow on HE/EN/RU/AR",
+    "live_chat": "PASS: submitted a Hebrew question through the visitor UI and received a response"
   },
   "privacy": "No new private media, identifying minors, personal documents or credentials published. Existing public source assets only.",
   "rollback": "Revert this release commit or select previous Cloudflare Pages deployment.",
@@ -29,8 +31,10 @@
     "github_actions": {
       "run": "https://github.com/7guard-io/7ya.io/actions/runs/37964208591",
       "message": "The job was not started because your account is locked due to a billing issue.",
-      "steps_executed": 0
+      "steps_executed": 0,
+      "role": "Bootstrap workflow unavailable; does not block the verified Cloudflare Git integration deployment"
     },
-    "cloudflare_direct": "No authenticated Cloudflare dashboard session; login shows verification error after one reload."
+    "cloudflare_direct": "No authenticated Cloudflare dashboard session; login shows verification error after one reload.",
+    "canonical_domain": "Registrar recovery required; public DNS returns NXDOMAIN. No registration, billing or DNS mutation performed."
   }
 }
