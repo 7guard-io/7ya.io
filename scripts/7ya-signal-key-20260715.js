@@ -120,7 +120,7 @@
 
   const root = element('section', 'ya-signal-key');
   root.dir = rtl ? 'rtl' : 'ltr';
-  root.dataset.yaSignalKey = '7ya-chat-20261009-v7';
+  root.dataset.yaSignalKey = '7ya-chat-20261009-v8';
 
   const launcher = element('button', 'ya-signal-launcher');
   launcher.type = 'button';
