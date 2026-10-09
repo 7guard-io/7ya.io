@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261009-v5';
+const CHAT_RELEASE = '7ya-chat-20261009-v6';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -155,6 +155,27 @@ const engineErrorCode = error => {
   return 'upstream_error';
 };
 
+function sourceTopic(message) {
+  const q=clean(message).toLowerCase();
+  if(/starton|סטארט\s*און|стартон/.test(q)) return 'starton';
+  if(/\bigor\b|איגור|игор|إيغور|your (?:path|journey|story)|הדרך שלך|המסע שלך|הסיפור שלך|твоего пути|твоей истории|مسارك|قصتك|رحلتك/.test(q)) return 'identity';
+  if(/\bevidence\b|\bproof\b|\bsources?\b|מקורות|ראיות|доказ|источни|دليل|مصدر/.test(q)) return 'evidence';
+  return null;
+}
+
+function conversationSourceLinks(body) {
+  const continuation=value=>/^(?:tell me more|more|yes|continue|go on|עוד|כן|תמשיך|המשך|ספר לי עוד|подробнее|да|продолжай|расскажи подробнее|نعم|المزيد|تابع)[.!?\s]*$/i.test(clean(value));
+  let topic=sourceTopic(body.message);
+  if(!topic && continuation(body.message)) {
+    const previous=Array.isArray(body.messages)?body.messages.slice(-8).filter(item=>item?.role==='user' && clean(item.content)!==clean(body.message)):[];
+    for(const item of previous.reverse()) {
+      if(continuation(item.content)) continue;
+      topic=sourceTopic(item.content);break;
+    }
+  }
+  return topic==='starton'?[links.starton,links.evidence,links.contact]:topic==='identity'?[links.identity,links.journey,links.evidence]:topic==='evidence'?[links.evidence,links.influence]:[];
+}
+
 function fallbackGuide(message, path, locale) {
   const q = message.toLowerCase();
   const copy = {
@@ -193,7 +214,7 @@ function fallbackGuide(message, path, locale) {
     answer: text.starton,
     links: [links.starton, links.evidence, links.contact],
   };
-  if (/איגור|igor|игор|إيغور|סיפור|journey|דרך|מסע|jessie|путь|مسار/.test(q)) return {
+  if (sourceTopic(message)==='identity') return {
     answer: text.igor,
     links: [links.identity, links.journey, links.evidence],
   };
@@ -278,7 +299,7 @@ async function buildGuideResult(body, request, env) {
   const creatorMode = ['create', 'momentum', 'impact', 'clarify'].includes(body.creator_mode) ? body.creator_mode : 'clarify';
   const creator = body.mode === 'creator';
   const fallback = creator ? fallbackCreator(message, creatorMode, locale) : fallbackGuide(message, path, locale);
-  const sourceLinks = /starton|נוער|youth|молод|شباب|איגור|igor|игор|إيغور|סיפור|journey|דרך|מסע|jessie|путь|مسار|מקור|ראי|evidence|proof|source|доказ|دليل|مصدر/i.test(message) ? fallback.links : [];
+  const sourceLinks = conversationSourceLinks(body);
 
   let directError = null;
   try {

@@ -1,0 +1,17 @@
+{
+  "release": "7ya-chat-20261009-v6",
+  "state": "VALIDATED_PENDING_PUBLICATION",
+  "scope": [
+    "explicit public-source topic recognition",
+    "preserve source links through contextual follow-up",
+    "recognize all four shipped journey prompts",
+    "no source links on unrelated agency sales questions",
+    "versioned backend and client caches"
+  ],
+  "verification": {
+    "release_gate": "PASS",
+    "chat_tests": "17 PASS"
+  },
+  "canonical_domain": "Registrar recovery remains separate; no DNS or billing mutation",
+  "rollback": "Revert this release commit"
+}
