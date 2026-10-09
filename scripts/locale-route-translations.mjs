@@ -1,6 +1,7 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ['נולדתי בחרקוב. גדלתי בג׳סי כהן. עברתי דרך שירות, ביטחון ומשטרה — וחזרתי לשאלה שמלווה אותי מאז הילדות: איך נותנים לאדם הזדמנות להרגיש שייך?','I was born in Kharkiv and grew up in Jessie Cohen. Service, security and policing brought me back to a question from childhood: how do you give someone a chance to belong?','Я родился в Харькове и вырос в Джесси Коэн. Служба, работа в безопасности и полиции вернули меня к вопросу из детства: как дать человеку шанс почувствовать себя своим?','وُلدت في خاركيف ونشأت في جيسي كوهين. أعادتني الخدمة والعمل في الأمن والشرطة إلى سؤال يرافقني منذ الطفولة: كيف نمنح الإنسان فرصة للشعور بالانتماء؟'],
   ['ההשפעה שלי / מקור → הקשר → משמעות','MY INFLUENCE / SOURCE → CONTEXT → MEANING','МОЁ ВЛИЯНИЕ / ИСТОЧНИК → КОНТЕКСТ → СМЫСЛ','تأثيري / المصدر ← السياق ← المعنى'],
   ['קיר הראיות','Evidence wall','Стена доказательств','جدار الأدلة'],
   ['האדם · הקול · העשייה · המקורות','HUMAN · VOICE · WORK · SOURCES','ЧЕЛОВЕК · ГОЛОС · РАБОТА · ИСТОЧНИКИ','الإنسان · الصوت · العمل · المصادر'],

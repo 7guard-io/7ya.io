@@ -1,7 +1,7 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Recovery trigger refreshed 2026-10-07: publish conversation engine and mobile chat fix.
+# Recovery trigger refreshed 2026-10-09: require the deployed source commit, not a stale manifest.
 # This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
@@ -64,7 +64,12 @@ jobs:
           ready=0
           for attempt in $(seq 1 60); do
             if curl -fsSL --connect-timeout 10 --max-time 30               -H 'Cache-Control: no-cache, no-store'               "https://7ya-io.pages.dev/artifact-manifest.json?sha=${GITHUB_SHA}&attempt=${attempt}"               -o live-artifact-manifest.json; then
-              if grep -Fq '"artifact": "7ya-static-site"' live-artifact-manifest.json; then
+              if grep -Fq '"artifact": "7ya-static-site"' live-artifact-manifest.json &&
+                curl -fsSL --connect-timeout 10 --max-time 30 \
+                  -H 'Cache-Control: no-cache, no-store' \
+                  "https://7ya-io.pages.dev/deploy-meta.json?sha=${GITHUB_SHA}&attempt=${attempt}" \
+                  -o live-deploy-meta.json &&
+                node --input-type=module -e "import fs from 'node:fs'; const m=JSON.parse(fs.readFileSync('live-deploy-meta.json')); if(m.source_commit!==process.env.GITHUB_SHA) process.exit(1);"; then
                 ready=1
                 break
               fi
@@ -100,6 +105,7 @@ jobs:
             cloudflare-pages-result.txt
             cloudflare-pages-bootstrap-receipt.txt
             live-artifact-manifest.json
+            live-deploy-meta.json
             live-chat-probe.json
             dist/artifact-manifest.json
           if-no-files-found: warn

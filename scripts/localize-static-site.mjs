@@ -1,3 +1,4 @@
+import { primaryNavigation } from './primary-navigation.mjs';
 import { readFileSync } from 'node:fs';
 const chatReleaseTranslations = JSON.parse(readFileSync(new URL('./chat-release-locale-copy.json', import.meta.url), 'utf8'));
 import fs from 'node:fs/promises';
@@ -3137,7 +3138,7 @@ function applyLocale(html, locale, route) {
   next=rewriteSameHostReferences(next,locale,route);
   next=stampBuildDate(next,locale);
   next=replaceVisibleCopy(next,locale,route);
-  const nav=languageNav(locale,route);
+  const nav=primaryNavigation(locale,route);
   if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
   else next=next.replace(/<body\b[^>]*>/i,match=>match+'\n'+nav);
   if(locale!=='he'){

@@ -14,41 +14,22 @@ The canonical hierarchy is:
 
 Do not reverse this hierarchy. AI is never the hero. The person, the mission and the documented work come first.
 
-## 2. Canonical source of truth
+## 2. Canonical source and production
 
-- Repository: `7guard-io/7ya.io`
-- Default branch: `main`
-- Public domain: `https://7ya.io`
-- Current production provider: AppDeploy v2
-- Current production app: `697a008fddc309b142`
-- Current verified version: `v98` / `1789065075177`
-- Current build marker: `7ya-public-profile-convergence-20260910-v11`
-- Production branch contract: `main`
-- Production receipt: `docs/releases/2026-09-10-appdeploy-v98-public-profile-convergence-v11.json`
+- Repository: `7guard-io/7ya.io`, branch `main`.
+- Production: Cloudflare Pages project `7ya-io`.
+- Build: `npm run build:cloudflare`, output: `dist`.
+- Public origin: `https://7ya-io.pages.dev/`; canonical domain: `https://7ya.io/`.
+- Chat: same-origin `/api/guide`, Cloudflare Pages Function with Workers AI and an optional NVIDIA provider.
+- AppDeploy snapshot `1789065075177` is historical provenance only, not an active runtime dependency.
 
-GitHub remains the canonical source-control, governance and review plane. The verified AppDeploy runtime snapshot has not yet been fully exported back into the repository. Until that export is completed and compared, do not claim that `main` contains the exact production source.
+Read `docs/CONTROL_PLANE_STATE.json` and the newest release receipts before deployment changes. The September 10 AppDeploy contract has been superseded by the September 30 Cloudflare cutover and October 7 chat release. Build the repository artifact; do not route public traffic back through legacy AppDeploy or Vercel projects.
 
-Fresh reconciliation on 2026-09-10 confirms that AppDeploy v98 contains the active root `src/main.tsx`, `src/App.tsx` and `backend/index.ts`, and that the public homepage runtime is `index.html -> src/main.tsx -> src/App.tsx -> ConversionHome`. GitHub `main` contains the corrected root `src/main.tsx`, but still does not contain the complete exact active `src/App.tsx`, backend and runtime tree. AppDeploy v98 is therefore the current runtime source of truth; GitHub `main` must not be deployed over it until a full source export and comparison passes the release gates.
+## 3. Verification state
 
-The former Vercel recovery project and older repository `vepretski/7ya.io` are historical recovery references only. They must not be treated as the active production source-control plane.
+The Cloudflare Pages homepage and `/api/health` were directly observed on October 9, 2026. The canonical domain returned HTTP 502 / connection refused in this execution environment; this does not prove a worldwide outage. Verify canonical-domain acceptance separately and never infer it from a Pages-domain success.
 
-Never copy changes from an old repository or provider snapshot into the canonical repository without comparing provenance, routes and content first.
-
-## 3. Current control-plane state
-
-Read the newest release receipt in `docs/releases/` and `docs/CONTROL_PLANE_STATE.json` before changing deployment, routing, domains or release metadata. Where they conflict, the newest independently verified receipt wins and the stale control-plane document must be corrected in the same focused change.
-
-GitHub Actions may fail before checkout because the organization account is locked by a billing issue. A missing or immediately failed workflow is not evidence that the code failed. Do not claim CI passed when no job ran.
-
-AppDeploy is the active production runtime. GitHub remains the source-control and review plane. The next source-control priority is a provenance-preserving full export and comparison of AppDeploy snapshot `1789065075177` against `main`. The v11 release receipt already records the known public-surface delta; that receipt is evidence of the deployed state, not a claim that the full runtime tree is present in GitHub.
-
-Current known runtime caveats:
-- AppDeploy reports `ready` with zero current frontend, network and backend QA errors for v98.
-- AppDeploy E2E is `null`; do not claim an AppDeploy E2E PASS.
-- `NVIDIA_API_KEY` is configured and read through AppDeploy Secrets, but historical NVIDIA/NVCF canaries return HTTP 401. NVIDIA primary is degraded-auth; AppDeploy-agent/local fallback remains the resilience path.
-- Fresh v98 mobile and desktop QA screenshots were generated, but independent pixel-level visual acceptance remains a separate gate and is not yet claimed.
-- Direct browser requests to `/api/*` can surface SPA HTML; frontend API calls must use the supported AppDeploy client transport until the direct-HTTP platform contract is explicitly resolved.
-- The custom domains `7ya.io` and `www.7ya.io` are active on AppDeploy v2.
+GitHub Actions may be blocked by organization billing. Distinguish a skipped or blocked runner from a failed code test. The Cloudflare Git integration is the normal production deployment path. Use `deploy-meta.json` to compare the actual live source commit with the intended commit; a valid-looking manifest alone is insufficient.
 
 ## 4. Public experience contract
 
@@ -118,17 +99,13 @@ Use aggregation, redaction and privacy-by-default. Public transparency is not un
 
 ## 7. Architecture and modularity
 
-The public site should remain provider-independent wherever practical, but the current verified production runtime is an AppDeploy frontend-and-backend application.
-
-- GitHub is the canonical governance, review and long-term source-control plane.
-- AppDeploy version `1789065075177` is the verified production runtime snapshot.
-- The full AppDeploy source snapshot must be exported into a focused GitHub branch and compared against `main` before the repository can again be described as an exact production source.
-- Do not overwrite the root public files with the runtime snapshot without a route, content, privacy and provenance comparison.
-- Prefer shared styles and reusable content contracts over duplicated ad-hoc markup.
-- Keep provider configuration isolated from content.
-- Preserve rollback paths; do not destroy the previous working version before the replacement passes all gates.
-- Do not add a second production source without an explicit cutover and rollback plan.
-- Do not reintroduce the previous system-first homepage simply because legacy components remain in the runtime tree; the active home route is `ConversionHome`.
+- Keep provider configuration separate from content.
+- Preserve source-linked archive routes and public media.
+- Maintain one visible primary navigation on desktop and mobile; language links must remain usable without JavaScript.
+- Do not cover Igor's face with oversized headings or stack competing homepage shells.
+- Keep evidence, search and system controls reachable on their dedicated routes without turning the homepage into a dashboard.
+- Build the governed repository artifact and preserve rollback through Git revert or Cloudflare deployment history.
+- Do not add another production source without an explicit cutover and rollback plan.
 
 ## 8. Required validation
 
@@ -154,12 +131,12 @@ For every critical route, require:
 - no unsupported claims;
 - usable mobile and desktop rendering.
 
-For AppDeploy production, additionally require:
+For Cloudflare production, additionally require:
 
-- terminal deployment status `ready`;
+- a successful Cloudflare deployment;
 - acceptance-test contract aligned to the intended experience;
 - no frontend or backend errors;
-- active custom-domain records;
+- separately verified canonical-domain routing;
 - a unique, no-cache server-side probe that proves `7ya.io` serves the intended build marker when such a probe is available;
 - an immutable release receipt and explicit rollback version.
 
