@@ -29,3 +29,34 @@ test('new sales topic replaces previous Igor context for subsequent follow-up',a
   const data=await answer({message:'Tell me more',locale:'en',messages:[{role:'user',content:'Tell me about Igor'},{role:'assistant',content:'His documented journey.'},{role:'user',content:'How do I sell a service to agencies?'},{role:'assistant',content:'Choose one agency.'}]});
   assert.deepEqual(data.links,[]);
 });
+test('contextual questions preserve sources through an ordinary middle turn',async()=>{
+  const data=await answer({message:'Tell me more',locale:'en',messages:[{role:'user',content:'Tell me about Igor'},{role:'assistant',content:'His public journey.'},{role:'user',content:'What happened after he moved?'},{role:'assistant',content:'The next documented chapter.'}]});
+  assert.ok(data.links.some(link=>link.href==='/igor-vepretski/'));
+  assert.equal(data.state.source_topic,'identity');
+});
+test('source state survives bounded history and clears on a new topic',async()=>{
+  const state={source_topic:'identity'};
+  const data=await answer({message:'What happened next?',locale:'en',state,messages:[{role:'user',content:'Tell me more'}]});
+  assert.ok(data.links.some(link=>link.href==='/igor-vepretski/'));
+  const changed=await answer({message:'How do I sell to agencies?',locale:'en',state});
+  assert.deepEqual(changed.links,[]);
+  assert.equal(changed.state.source_topic,null);
+});
+for(const [locale,message] of Object.entries({en:'I want to help youth — where do I start?',he:'אני רוצה לעזור לנוער — מאיפה מתחילים?',ar:'أريد مساعدة الشباب — من أين أبدأ؟'})) test(`${locale} youth-help prompt provides StartOn sources`,async()=>{
+  const data=await answer({message,locale,path:'/starton/'});
+  assert.ok(data.links.some(link=>link.href==='/starton/'));
+});
+test('all other StartOn-page prompts retain route context',async()=>{
+  for(const message of ['How can technology become a human tool?','Help me design one small executable experiment']) {
+    const data=await answer({message,locale:'en',path:'/en/starton/'});
+    assert.ok(data.links.some(link=>link.href==='/starton/'));
+  }
+});
+test('sales question with a pronoun clears source state even on StartOn',async()=>{
+  const data=await answer({message:'How can I sell it to agencies?',locale:'en',path:'/starton/',state:{source_topic:'starton'}});
+  assert.deepEqual(data.links,[]);
+});
+test('Russian contextual turn keeps public biography sources',async()=>{
+  const data=await answer({message:'Что было после его переезда?',locale:'ru',messages:[{role:'user',content:'Расскажи об Игоре'}]});
+  assert.ok(data.links.some(link=>link.href==='/igor-vepretski/'));
+});
