@@ -3119,6 +3119,7 @@ function addShellAssets(html) {
   if(!next.includes('premium-polish-20260921.css'))headAssets.push('<link rel="stylesheet" href="/styles/premium-polish-20260921.css?v=1">');
   if(!next.includes('locale-runtime-20260919.js'))headAssets.push('<script src="/scripts/locale-runtime-20260919.js?v=2" defer></script>');
   if(headAssets.length)next=next.replace('</head>','  '+headAssets.join('\n  ')+'\n</head>');
+  next=next.replace(/(\/styles\/(?:locale-shell-20260919|premium-polish-20260921)\.css)(?:\?[^"'\s>]*)?/g,'$1?v=20261009-nav2');
   return next;
 }
 

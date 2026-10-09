@@ -175,6 +175,16 @@ for (const [locale, contract] of Object.entries(chatRouteContract)) {
 }
 
 const widget=await fs.readFile(path.join(dist,'scripts','7ya-signal-key-20260715.js'),'utf8');
+// A legacy header must never hide the shared language/navigation controls again.
+for (const css of ['locale-shell-20260919.css','premium-polish-20260921.css']) {
+  const text=await fs.readFile(path.join(dist,'styles',css),'utf8');
+  if (/body:has\(>\s*\.topbar\)>\.seven-human-nav\s*\{\s*display:none/.test(text)) failures.push(`${css}: legacy header hides primary navigation`);
+}
+for (const locale of ['he',...locales]) {
+  const html=await fs.readFile(path.join(dist,locale==='he'?'':locale,'contact/index.html'),'utf8');
+  if (!html.includes('href="https://t.me/vepretski"')) failures.push(`${locale}/contact: direct contact route missing`);
+  if (html.includes('href="mailto:hello@7ya.io')) failures.push(`${locale}/contact: unavailable domain is still a contact action`);
+}
 for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
   if(!widget.includes(required)) failures.push(`Speak with Igor contract missing: ${required}`);
 }

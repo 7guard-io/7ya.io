@@ -26,7 +26,7 @@ button,a,input,select,textarea{touch-action:manipulation}
   .locale-context{margin:8px max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left));padding:12px 14px;border-radius:14px;font-size:14px}
   .locale-context strong{font-size:15px}
   .locale-context p{margin:4px 0}
-  body:has(> .topbar)>.seven-human-nav{display:none}
+  body:has(> .seven-human-nav)>.topbar{display:none}
   input,select,textarea{font-size:16px!important}
   pre,code{max-width:100%;overflow-x:auto}
 }

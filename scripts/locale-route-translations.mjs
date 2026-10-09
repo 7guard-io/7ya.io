@@ -1,6 +1,13 @@
 // Route-specific visitor copy for pages whose Hebrew source is projected into EN/RU/AR.
 // Exact visible-text mapping keeps the static build deterministic and testable.
 const rows = [
+  ["טלגרם · הקשר ברור · מענה אנושי", "TELEGRAM · YOUR CONTEXT · HUMAN RESPONSE", "TELEGRAM · ВАШ КОНТЕКСТ · ОТВЕТ ЧЕЛОВЕКА", "تيليغرام · سياقكم · رد بشري"],
+  ["שיחה טובה מתחילה בהקשר ברור: מי אתם, מה אתם רוצים לבנות, למה זה חשוב עכשיו ומה יכולה להיות הפעולה הבאה. אפשר לפנות אליי בטלגרם עם ההקשר והרעיון שלכם.", "A good conversation starts with context: who you are, what you want to build, why it matters now, and what the next step could be. Contact me on Telegram with your context and idea.", "Хороший разговор начинается с контекста: кто вы, что хотите создать, почему это важно сейчас и каким может быть следующий шаг. Напишите мне в Telegram о вашей идее.", "تبدأ المحادثة الجيدة بسياق واضح: من أنتم، وما الذي تريدون بناءه، ولماذا يهم الآن، وما الخطوة التالية. تواصلوا معي عبر تيليغرام مع سياق فكرتكم."],
+  ["TELEGRAM · CLEAR CONTEXT · HUMAN RESPONSE", "TELEGRAM · YOUR CONTEXT · HUMAN RESPONSE", "TELEGRAM · ВАШ КОНТЕКСТ · ОТВЕТ ЧЕЛОВЕКА", "تيليغرام · سياقكم · رد بشري"],
+
+  ["אפשר לפנות אליי בטלגרם עם ההקשר והרעיון שלכם.", "You can contact me on Telegram with your context and idea.", "Напишите мне в Telegram: расскажите о контексте и вашей идее.", "يمكنكم التواصل معي عبر تيليغرام مع سياق فكرتكم."],
+  ["לפנייה ישירה:", "Direct contact:", "Прямая связь:", "للتواصل المباشر:"],
+
   ['נולדתי בחרקוב. גדלתי בג׳סי כהן. עברתי דרך שירות, ביטחון ומשטרה — וחזרתי לשאלה שמלווה אותי מאז הילדות: איך נותנים לאדם הזדמנות להרגיש שייך?','I was born in Kharkiv and grew up in Jessie Cohen. Service, security and policing brought me back to a question from childhood: how do you give someone a chance to belong?','Я родился в Харькове и вырос в Джесси Коэн. Служба, работа в безопасности и полиции вернули меня к вопросу из детства: как дать человеку шанс почувствовать себя своим?','وُلدت في خاركيف ونشأت في جيسي كوهين. أعادتني الخدمة والعمل في الأمن والشرطة إلى سؤال يرافقني منذ الطفولة: كيف نمنح الإنسان فرصة للشعور بالانتماء؟'],
   ['ההשפעה שלי / מקור → הקשר → משמעות','MY INFLUENCE / SOURCE → CONTEXT → MEANING','МОЁ ВЛИЯНИЕ / ИСТОЧНИК → КОНТЕКСТ → СМЫСЛ','تأثيري / المصدر ← السياق ← المعنى'],
   ['קיר הראיות','Evidence wall','Стена доказательств','جدار الأدلة'],

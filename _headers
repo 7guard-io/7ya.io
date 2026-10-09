@@ -48,3 +48,9 @@
 
 /styles/site-fix-20260925.css
   Cache-Control: no-cache, must-revalidate
+
+/styles/locale-shell-20260919.css
+  Cache-Control: no-cache, must-revalidate
+
+/styles/premium-polish-20260921.css
+  Cache-Control: no-cache, must-revalidate
