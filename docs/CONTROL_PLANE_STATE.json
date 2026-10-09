@@ -1,6 +1,6 @@
 {
-  "schema_version": 10,
-  "updated_at": "2026-10-09T17:10:00Z",
+  "schema_version": 11,
+  "updated_at": "2026-10-09T17:38:34.880774+00:00",
   "owner": "Igor Vepretski",
   "public_domain": "https://7ya.io/",
   "canonical_repository": {
@@ -44,7 +44,7 @@
     "status": "READY_ON_PAGES_DOMAIN",
     "pages_domain": "https://7ya-io.pages.dev/",
     "canonical_domain": "https://7ya.io/",
-    "canonical_probe": "NOT_VERIFIED_EXECUTION_PROXY_502_CONNECTION_REFUSED",
+    "canonical_probe": "DNS_NXDOMAIN_REGISTRAR_RECOVERY_REQUIRED",
     "release": "7ya-chat-20261007-v4",
     "build_command": "npm run build:cloudflare",
     "output_directory": "dist",
@@ -55,11 +55,13 @@
       "engine": "cloudflare-ai",
       "nvidia_keys_present": false,
       "production_receipt": "docs/releases/2026-10-07-chat-continuity-production-v4.json",
-      "source_commit": "5955ad63021c3f51e965670fbb7e7de366c63a04"
+      "source_commit": "5955ad63021c3f51e965670fbb7e7de366c63a04",
+      "live_ui_verification": "PASS: submitted a Hebrew question and received a response on the Pages origin on 2026-10-09"
     },
-    "source_commit_observed": "b0213f89126ef931d1ca40ff26ea0423c79d1c2c",
+    "source_commit_observed": "700fa11918cff8941f91ef04786917e95989b440",
     "desired_source_commit": "d4b170d9fb971c6df5c237a8a0907b268beb49a6",
-    "publication_blocker": "GitHub Actions account billing lock; no authenticated Cloudflare direct deployment session"
+    "publication_blocker": null,
+    "deployment_path": "Cloudflare Pages Git integration; GitHub Actions bootstrap is separately blocked"
   },
   "source_reconciliation": {
     "canonical_source": "7guard-io/7ya.io@main",
@@ -74,15 +76,16 @@
     "pages_domain_http": 200,
     "pages_health_provider": "cloudflare-pages",
     "pages_artifact_manifest_present": true,
-    "canonical_probe": "HTTP 502 / connection refused observed from execution and browser on 2026-10-09; global availability unknown",
+    "canonical_probe": "Google Public DNS returns NXDOMAIN for apex NS/A and www A; Pages origin resolves and renders",
     "ask_igor_path": "Cloudflare Pages Function -> optional NVIDIA NIM -> deterministic first-party fallback",
     "external_runtime_dependency_on_appdeploy": false
   },
   "domain_state": {
-    "7ya.io": "Not verified: HTTP 502 / connection refused from this execution environment on 2026-10-09",
-    "www.7ya.io": "not independently verified this change",
-    "pages_domain": "verified HTTP 200",
-    "dns_changed_in_this_change": false
+    "7ya.io": "NXDOMAIN; registrar recovery required",
+    "www.7ya.io": "NXDOMAIN",
+    "pages_domain": "LIVE: personal-home release, four language routes, health ok and chat response verified",
+    "dns_changed_in_this_change": false,
+    "recovery_required": "Registrar must restore registration/delegation before the canonical domain can serve the existing Pages deployment"
   },
   "scheduler_reconciliation": {
     "source_active_jobs": [
@@ -105,7 +108,7 @@
   },
   "release_scope": {
     "name": "CLOUDFLARE_PERSONAL_HOME_20261009",
-    "state": "MERGED_PUBLICATION_BLOCKED",
+    "state": "PUBLISHED_PAGES_CANONICAL_DOMAIN_BLOCKED",
     "scope": [
       "visible single desktop/mobile navigation",
       "separate readable biography and uncropped portrait",
