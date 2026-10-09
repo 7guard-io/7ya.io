@@ -56,7 +56,10 @@
       "nvidia_keys_present": false,
       "production_receipt": "docs/releases/2026-10-07-chat-continuity-production-v4.json",
       "source_commit": "5955ad63021c3f51e965670fbb7e7de366c63a04"
-    }
+    },
+    "source_commit_observed": "b0213f89126ef931d1ca40ff26ea0423c79d1c2c",
+    "desired_source_commit": "d4b170d9fb971c6df5c237a8a0907b268beb49a6",
+    "publication_blocker": "GitHub Actions account billing lock; no authenticated Cloudflare direct deployment session"
   },
   "source_reconciliation": {
     "canonical_source": "7guard-io/7ya.io@main",
@@ -102,7 +105,7 @@
   },
   "release_scope": {
     "name": "CLOUDFLARE_PERSONAL_HOME_20261009",
-    "state": "LOCAL_AND_VISUAL_ACCEPTANCE_PASS_PENDING_PRODUCTION",
+    "state": "MERGED_PUBLICATION_BLOCKED",
     "scope": [
       "visible single desktop/mobile navigation",
       "separate readable biography and uncropped portrait",
