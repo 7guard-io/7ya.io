@@ -21,7 +21,7 @@ test('short sales follow-up reaches AI with prior question and business context'
   const data = await response.json();
   assert.equal(data.provider, 'cloudflare-ai');
   assert.match(data.answer, /סוכנויות/);
-  assert.equal(data.release, '7ya-chat-20261009-v5');
+  assert.equal(data.release, '7ya-chat-20261009-v6');
   assert.deepEqual(data.links, [], 'unrelated sales advice must not link to Igor sources');
 });
 
