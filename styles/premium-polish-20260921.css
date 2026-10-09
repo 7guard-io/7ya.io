@@ -44,7 +44,7 @@
   background:rgba(255,255,255,.08);
   outline:none;
 }
-.seven-human-nav-cta{
+.seven-human-nav>.seven-human-nav-cta{
   background:var(--p-acid)!important;
   color:#050505!important;
   font-weight:900!important;
