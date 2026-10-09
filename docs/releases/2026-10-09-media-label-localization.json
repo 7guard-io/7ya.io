@@ -1,0 +1,11 @@
+{
+  "release": "7ya-media-labels-20261009",
+  "state": "VALIDATED_PENDING_PUBLICATION",
+  "scope": "Translate three live-observed Hebrew media labels on EN/RU/AR homepages",
+  "verification": {
+    "release_gate": "PASS",
+    "chat_tests": "25 PASS",
+    "locale_regression_gate": "PASS"
+  },
+  "rollback": "Revert this commit"
+}

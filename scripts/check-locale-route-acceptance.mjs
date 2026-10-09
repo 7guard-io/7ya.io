@@ -29,6 +29,12 @@ async function htmlFiles(directory) {
 }
 
 const failures=[];
+for(const locale of locales){
+  const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
+  for(const untranslated of ['רגעים אישיים · REAL מדיה','7YA · ORIGINAL / מחובר למקור מדיה','גיבורי העל של התקופה']) {
+    if(strip(html).includes(untranslated)) failures.push(`${locale}/home: untranslated media label -> ${untranslated}`);
+  }
+}
 for (const locale of locales) {
   for (const route of routes) {
     const file=path.join(dist,locale,route,'index.html');
