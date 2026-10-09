@@ -102,7 +102,7 @@
   },
   "release_scope": {
     "name": "CLOUDFLARE_PERSONAL_HOME_20261009",
-    "state": "TESTED_LOCALLY_PENDING_PREVIEW_AND_PRODUCTION",
+    "state": "LOCAL_AND_VISUAL_ACCEPTANCE_PASS_PENDING_PRODUCTION",
     "scope": [
       "visible single desktop/mobile navigation",
       "separate readable biography and uncropped portrait",
