@@ -68,7 +68,8 @@
 .locale-context small{color:var(--p-muted)}
 
 /* Homepage: one clear navigation, less internal-system language */
-body:has(> .seven-human-nav)>.topbar{display:none!important}
+body:has(> .seven-human-nav)>.topbar,
+body:has(> .seven-human-nav)>header.top{display:none!important}
 .topbar{
   border-bottom:1px solid var(--p-line)!important;
   box-shadow:0 12px 36px rgba(0,0,0,.18);
