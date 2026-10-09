@@ -1,0 +1,18 @@
+{
+  "release": "7ya-chat-20261009-v5",
+  "state": "VALIDATED_PENDING_PUBLICATION",
+  "base_commit": "b39ceede7b6047c37bdb900f97ddd6e39c35f357",
+  "scope": [
+    "versioned chat backend, widget and service worker",
+    "clickable localized public source links for relevant questions",
+    "LTR/RTL navigation follows document language",
+    "skip-to-content before navigation",
+    "Telegram contact metadata and consistent message wording"
+  ],
+  "verification": {
+    "release_gate": "PASS",
+    "chat_continuity": "9 PASS",
+    "diff_check": "PASS"
+  },
+  "rollback": "Revert review follow-up commit; no DNS or billing changes"
+}

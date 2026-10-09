@@ -3148,6 +3148,8 @@ function applyLocale(html, locale, route) {
     const context=contextMarkup(locale,route);
     next=next.replace(nav,nav+'\n'+context);
   }
+  const skip=next.match(/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i);
+  if(skip){next=next.replace(skip[0],'');next=next.replace(nav,skip[0]+'\n'+nav);}
   next=setMetadata(next,locale,route);
   next=addShellAssets(next);
   return next;

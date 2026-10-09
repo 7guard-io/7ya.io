@@ -184,6 +184,9 @@ for (const locale of ['he',...locales]) {
   const html=await fs.readFile(path.join(dist,locale==='he'?'':locale,'contact/index.html'),'utf8');
   if (!html.includes('href="https://t.me/vepretski"')) failures.push(`${locale}/contact: direct contact route missing`);
   if (html.includes('href="mailto:hello@7ya.io')) failures.push(`${locale}/contact: unavailable domain is still a contact action`);
+  if(html.includes('"email":"hello@7ya.io"')) failures.push(`${locale}/contact: unavailable email remains in structured data`);
+  const skip=html.search(/<a\b[^>]*class=["'][^"']*\bskip\b/);
+  if(skip<0 || skip>html.indexOf('<nav class="seven-human-nav"')) failures.push(`${locale}/contact: skip link must precede primary navigation`);
 }
 for(const required of ['Speak with Igor','ПОГОВОРИТЬ С ИГОРЕМ','تحدّث مع إيغور',"fetch('/api/guide'","experience: 'speak-with-igor'"]){
   if(!widget.includes(required)) failures.push(`Speak with Igor contract missing: ${required}`);
