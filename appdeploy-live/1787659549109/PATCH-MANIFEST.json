@@ -1,0 +1,34 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot_version": "1787659549109",
+  "qa_capture_set": "1787659606432",
+  "canonical_domain": "https://7ya.io/",
+  "working_branch": "reorg/living-story-20260825",
+  "status": "READY",
+  "source_state": "APPDEPLOY_RUNTIME_AHEAD_OF_HISTORICAL_GITHUB_MAIN",
+  "principles": [
+    "IGOR_FIRST",
+    "FIRST_PERSON_COPY",
+    "PUBLIC_MEDIA_IN_CONTEXT",
+    "STORY_BEFORE_SYSTEM",
+    "NO_100_ITEM_PRODUCT_CEILING",
+    "CURSOR_BASED_PROGRESSIVE_ARCHIVE",
+    "HE_EN_RU",
+    "MOBILE_FIRST_CLASS"
+  ],
+  "changed_files": [
+    "src/life-first/PersonalStoryEntry.tsx",
+    "src/life-first/personal-story-entry.css",
+    "src/life-first/AutobiographicalCinema.tsx",
+    "src/life-first/HundredMoments.tsx",
+    "src/life-first/hundred-moments.css",
+    "tests/tests.txt"
+  ],
+  "verification": {
+    "deployment": "ready",
+    "frontend_errors": 0,
+    "network_errors": 0,
+    "qa_screenshots": ["desktop", "mobile"],
+    "e2e_tests": null
+  }
+}

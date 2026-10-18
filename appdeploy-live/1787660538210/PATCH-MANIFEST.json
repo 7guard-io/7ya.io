@@ -1,0 +1,32 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot_version": "1787660538210",
+  "canonical_domain": "https://7ya.io/",
+  "working_branch": "reorg/living-story-20260825",
+  "status": "READY",
+  "performance": {
+    "chronology_mount": "on_open",
+    "deep_sources_mount": "on_open",
+    "live_social_mount": "near_viewport",
+    "archive_mount": "near_viewport",
+    "archive_code_split": true,
+    "projection_initial_limit": 48,
+    "projection_pagination": "cursor_append"
+  },
+  "localization": {
+    "languages": ["he", "en", "ru"],
+    "chapter_labels_localized": true,
+    "archive_labels_localized": true,
+    "mixed_ledger_wording_removed": true,
+    "russian_service_typo_fixed": true,
+    "bidi_wrappers_corrected": true
+  },
+  "verification": {
+    "deployment": "ready",
+    "runtime_errors": 0,
+    "preceding_qa_capture_set": "1787660484066",
+    "preceding_qa_frontend_errors": 0,
+    "preceding_qa_network_errors": 0,
+    "final_qa_screenshot": null
+  }
+}
