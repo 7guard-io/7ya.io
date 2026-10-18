@@ -29,7 +29,7 @@ export default async function login(req) {
     const { email, password } = parsed.data;
     const result = await query(
       `
-      SELECT id, email, password_hash, role
+      SELECT id, email, password_hash, role, github_login, auth_provider
       FROM users
       WHERE LOWER(email) = LOWER($1)
       LIMIT 1
@@ -37,7 +37,7 @@ export default async function login(req) {
       [email]
     );
 
-    if (result.rowCount === 0) {
+    if (result.rowCount === 0 || !result.rows[0].password_hash) {
       return json(
         {
           ok: false,
@@ -66,7 +66,9 @@ export default async function login(req) {
       user: {
         id: user.id,
         email: user.email,
-        role: user.role
+        role: user.role,
+        github_login: user.github_login || null,
+        provider: user.auth_provider || "password"
       }
     });
   } catch (error) {
