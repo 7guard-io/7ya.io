@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Digital Justice Protocol v0.1 | 7YA Research</title>
+  <meta name="description" content="Digital Justice Protocol v0.1: a public working draft for human agency, provenance, challenge and remedy in digital records and automated decisions.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#10120f">
+  <link rel="canonical" href="https://7ya.io/research/digital-justice/">
+  <style>
+    :root{--ink:#10120f;--paper:#f1efe9;--cream:#fffdf8;--red:#e94b35;--muted:#686c65;--line:rgba(16,18,15,.18);--serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans)}a{color:inherit}
+    .top{position:sticky;top:0;z-index:20;padding:18px clamp(18px,4vw,60px);display:flex;justify-content:space-between;align-items:center;background:rgba(241,239,233,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .top a{text-decoration:none}.top b{letter-spacing:.08em}.top nav{display:flex;gap:20px;font-size:12px}
+    .hero{padding:clamp(88px,11vw,160px) clamp(18px,6vw,90px);display:grid;grid-template-columns:.32fr 1fr .58fr;gap:5vw;align-items:end}
+    .eyebrow{margin:0;color:var(--red);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .hero h1,.section-head h2{margin:0;font:500 clamp(58px,7vw,112px)/.84 var(--serif);letter-spacing:-.06em}
+    .hero h1 em,.section-head h2 em{color:var(--red);font-weight:400}.hero p:last-child{margin:0;color:var(--muted);font-size:18px;line-height:1.65}
+    .north{padding:32px clamp(18px,6vw,90px);background:var(--red);color:#fff;display:grid;grid-template-columns:.28fr 1fr;gap:4vw}
+    .north b{font-size:10px;letter-spacing:.1em}.north p{margin:0;font:500 clamp(28px,3.3vw,48px)/1.05 var(--serif);max-width:980px}
+    .section{padding:clamp(82px,10vw,145px) clamp(18px,6vw,90px);border-top:1px solid var(--line)}
+    .section.dark{background:var(--ink);color:var(--paper)}.section-head{display:grid;grid-template-columns:.3fr 1fr .58fr;gap:5vw;align-items:end;margin-bottom:50px}
+    .section-head h2{font-size:clamp(46px,5.5vw,88px)}.section-head>p:last-child{margin:0;color:var(--muted);line-height:1.65}.dark .section-head>p:last-child{color:#b6bbb3}
+    .rights{display:grid;grid-template-columns:repeat(12,1fr);gap:8px}.right{grid-column:span 4;min-height:290px;padding:28px;background:var(--cream);border:1px solid var(--line);display:flex;flex-direction:column}
+    .right small{color:var(--red);font-size:10px;font-weight:800}.right h3{margin:34px 0 12px;font:500 34px/1 var(--serif)}.right p{margin:0;color:var(--muted);line-height:1.6}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
+    .flow article{padding:28px;min-height:230px;border-left:1px solid rgba(255,255,255,.16)}.flow article:first-child{border-left:0}.flow small{color:var(--red);font-weight:800}.flow h3{margin:42px 0 12px;font:500 28px/1 var(--serif)}.flow p{margin:0;color:#b9beb6;line-height:1.55}
+    .pilot{display:grid;grid-template-columns:1fr 1fr;gap:8px}.pilot article{padding:34px;min-height:330px;background:var(--cream);border:1px solid var(--line)}.pilot h3{margin:0 0 18px;font:500 38px/1 var(--serif)}.pilot p,.pilot li{color:var(--muted);line-height:1.6}.pilot ul{padding-left:20px}
+    .status{padding:30px clamp(18px,6vw,90px);background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:.28fr 1fr;gap:4vw}.status p{margin:0;line-height:1.65;color:var(--muted)}
+    .cta{padding:100px clamp(18px,6vw,90px);background:var(--red);color:#fff}.cta h2{margin:0 0 28px;font:500 clamp(48px,6vw,88px)/.88 var(--serif);letter-spacing:-.05em}.cta p{max-width:820px;line-height:1.65}.cta a{display:inline-block;margin:10px 8px 0 0;padding:14px 18px;border:1px solid #111;text-decoration:none;font-weight:800;font-size:12px}
+    .footer{padding:32px clamp(18px,6vw,90px);background:var(--ink);color:#9ba098;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:10px}
+    @media(max-width:900px){.hero,.section-head{grid-template-columns:1fr}.rights{grid-template-columns:1fr 1fr}.right{grid-column:auto}.flow{grid-template-columns:1fr 1fr 1fr}.pilot{grid-template-columns:1fr}.north,.status{grid-template-columns:1fr}}
+    @media(max-width:620px){.top nav{display:none}.hero,.section{padding-inline:16px}.hero h1{font-size:58px}.rights,.flow{grid-template-columns:1fr}.right{min-height:0}.cta{padding-inline:16px}}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CreativeWork","name":"Digital Justice Protocol v0.1","author":{"@type":"Person","name":"Igor Vepretski"},"isPartOf":{"@type":"WebSite","name":"7YA","url":"https://7ya.io"},"version":"0.1","inLanguage":"en","description":"A public working draft for human agency, provenance, challenge and remedy in digital records and automated decisions."}
+  </script>
+</head>
+<body>
+<header class="top"><a href="/research/"><b>7YA · RESEARCH</b></a><nav><a href="/research/">Research</a><a href="/evidence/">Evidence</a><a href="/contact/">Contact</a></nav></header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">PUBLIC WORKING DRAFT · v0.1 · 21 SEP 2026</p>
+    <h1>Digital<br><em>Justice.</em></h1>
+    <p>A practical rights-and-evidence framework for a world where digital records and automated systems can affect a person’s opportunities, identity and choices.</p>
+  </section>
+
+  <section class="north">
+    <b>NORTH STAR</b>
+    <p>No person should be powerless against a digital record or an automated decision about their own life.</p>
+  </section>
+
+  <section class="section">
+    <header class="section-head"><p class="eyebrow">01 / THE RIGHTS</p><h2>Seven rights.<br><em>One human position.</em></h2><p>The protocol starts with the person. Technology may assist a decision, record a claim or organize evidence; it should not erase the ability to understand, challenge and correct what affects you.</p></header>
+    <div class="rights">
+      <article class="right"><small>01</small><h3>Right to Know</h3><p>Know when a consequential digital record or automated process is being used and what role it plays.</p></article>
+      <article class="right"><small>02</small><h3>Right to Source</h3><p>See where consequential information came from, its date, status and relevant provenance.</p></article>
+      <article class="right"><small>03</small><h3>Right to Explanation</h3><p>Receive a useful explanation of the factors, rules or evidence that materially shaped an outcome.</p></article>
+      <article class="right"><small>04</small><h3>Right to Correct</h3><p>Contest inaccurate, outdated or misleading records and submit better evidence.</p></article>
+      <article class="right"><small>05</small><h3>Right to Challenge</h3><p>Reach a real review path when a system or record has meaningful consequences.</p></article>
+      <article class="right"><small>06</small><h3>Right to Evidence</h3><p>Preserve a reviewable record of relevant inputs, sources, changes and outcomes without unnecessary exposure of private data.</p></article>
+      <article class="right"><small>07</small><h3>Right to Remedy</h3><p>A successful challenge should lead to an actionable correction, reversal, annotation or other appropriate remedy.</p></article>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <header class="section-head"><p class="eyebrow">02 / REFERENCE FLOW</p><h2>Rights become real<br><em>through process.</em></h2><p>A right that cannot be exercised is only a statement. The reference flow turns the protocol into an auditable sequence.</p></header>
+    <div class="flow">
+      <article><small>01</small><h3>Notice</h3><p>Tell the person what system or record matters.</p></article>
+      <article><small>02</small><h3>Capture</h3><p>Preserve the relevant state, date and context.</p></article>
+      <article><small>03</small><h3>Provenance</h3><p>Attach source, origin and change history where available.</p></article>
+      <article><small>04</small><h3>AI Receipt</h3><p>Create a compact receipt for material AI-assisted actions and outputs.</p></article>
+      <article><small>05</small><h3>Challenge</h3><p>Provide a clear path to dispute, add evidence and request review.</p></article>
+      <article><small>06</small><h3>Remedy</h3><p>Record the correction or outcome and preserve the audit trail.</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head"><p class="eyebrow">03 / PILOT</p><h2>Start with cases.<br><em>Not slogans.</em></h2><p>Version 0.1 is intended to be tested against real, consented cases before anyone treats it as a standard.</p></header>
+    <div class="pilot">
+      <article><h3>90-day pilot</h3><ul><li>Recruit a small set of consented cases where a digital record or automated process is disputed.</li><li>Preserve evidence and provenance with minimum necessary data.</li><li>Generate a human-readable case receipt.</li><li>Run a challenge-and-review path.</li><li>Document whether a correction or remedy was achieved.</li></ul></article>
+      <article><h3>What to measure</h3><ul><li>Can the affected person understand what happened?</li><li>Can an independent reviewer reconstruct the evidence chain?</li><li>How long does a challenge take?</li><li>Was inaccurate information corrected or meaningfully annotated?</li><li>What private data did the process avoid collecting?</li><li>Which steps fail across institutions or jurisdictions?</li></ul></article>
+    </div>
+  </section>
+
+  <section class="status">
+    <b>STATUS / LIMITS</b>
+    <p><strong>Digital Justice Protocol v0.1 is an independent public working draft.</strong> It is not a law, certification, compliance claim, legal advice or adopted international standard. The point of publishing early is to make the assumptions visible, invite criticism and test the framework against evidence before stronger claims are made.</p>
+  </section>
+
+  <section class="cta">
+    <h2>Help test<br>Digital Justice.</h2>
+    <p>Researchers, civil-society organizations, technologists, public institutions and people with relevant lived experience are invited to challenge the framework, propose cases and identify failure modes.</p>
+    <a href="/contact/">Propose a pilot</a>
+    <a href="/evidence/">Open the evidence layer</a>
+    <a href="/research/">Back to research</a>
+  </section>
+</main>
+<footer class="footer"><b>DIGITAL JUSTICE PROTOCOL v0.1 · 7YA</b><span>Public working draft · source before claim · correction is part of the record</span></footer>
+</body>
+</html>
