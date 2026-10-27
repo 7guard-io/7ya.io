@@ -3297,13 +3297,17 @@ function upsertTitle(html, value) {
 }
 
 function normalizeImageUrl(value, route) {
-  const fallback = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png/960px-Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png';
+  const fallback = 'https://7ya.io/assets/igor-home-og-20260712.jpg';
   if (!value || /^data:/i.test(value)) return fallback;
   try {
     const normalizedRoute = String(route || '').replace(/^\/+|\/+$/g, '');
     const base = 'https://7ya.io/' + (normalizedRoute ? normalizedRoute + '/' : '');
     const url = new URL(value, base);
     if (url.protocol !== 'https:' && url.protocol !== 'http:') return fallback;
+    if (url.hostname === '7ya.io') {
+      if (!url.pathname.startsWith('/assets/')) return fallback;
+      url.protocol = 'https:';
+    }
     return url.href;
   } catch {
     return fallback;
