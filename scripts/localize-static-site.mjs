@@ -3259,18 +3259,18 @@ function decodeHtml(value) {
 }
 
 function attributeValue(tag, name) {
-  const attributes = [...tag.matchAll(/([^\\s=<>/]+)\\s*=\\s*(["'])(.*?)\\2/gi)];
+  const attributes = [...tag.matchAll(/([^\s=<>/]+)\s*=\s*(["'])(.*?)\2/gi)];
   const found = attributes.find(match => match[1].toLowerCase() === name.toLowerCase());
   return found?.[3] ?? null;
 }
 
 function readTitle(html) {
-  const match = html.match(/<title\\b[^>]*>([\\s\\S]*?)<\\/title>/i);
+  const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
   return decodeHtml(match?.[1] || '').trim();
 }
 
 function readMetaValue(html, key, attribute = 'name') {
-  const tags = html.match(/<meta\\b[^>]*>/gi) || [];
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
   const tag = tags.find(item => (attributeValue(item, attribute) || '').toLowerCase() === key.toLowerCase());
   return decodeHtml(attributeValue(tag || '', 'content') || '').trim();
 }
@@ -3278,29 +3278,29 @@ function readMetaValue(html, key, attribute = 'name') {
 function upsertMetaValue(html, key, value, attribute = 'name') {
   const tagValue = '<meta ' + attribute + '="' + key + '" content="' + esc(value) + '">';
   let found = false;
-  html = html.replace(/<meta\\b[^>]*>/gi, tag => {
+  html = html.replace(/<meta\b[^>]*>/gi, tag => {
     if ((attributeValue(tag, attribute) || '').toLowerCase() !== key.toLowerCase()) return tag;
     if (found) return '';
     found = true;
     return tagValue;
   });
-  if (!found) html = html.replace(/<\\/head>/i, '  ' + tagValue + '\\n</head>');
+  if (!found) html = html.replace(/<\/head>/i, '  ' + tagValue + '\n</head>');
   return html;
 }
 
 function upsertTitle(html, value) {
   const tag = '<title>' + esc(value) + '</title>';
-  if (/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i.test(html)) {
-    return html.replace(/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i, tag);
+  if (/<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)) {
+    return html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, tag);
   }
-  return html.replace(/<\\/head>/i, '  ' + tag + '\\n</head>');
+  return html.replace(/<\/head>/i, '  ' + tag + '\n</head>');
 }
 
 function normalizeImageUrl(value, route) {
-  const fallback = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png/960px-Igor_vepretski-_Israeli_entrepreneur_and-founder_of_Starton_nonprofit_organisation.png';
+  const fallback = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png/960px-Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png';
   if (!value || /^data:/i.test(value)) return fallback;
   try {
-    const normalizedRoute = String(route || '').replace(/^\\/+|\\/+$/g, '');
+    const normalizedRoute = String(route || '').replace(/^\/+|\/+$/g, '');
     const base = 'https://7ya.io/' + (normalizedRoute ? normalizedRoute + '/' : '');
     const url = new URL(value, base);
     if (url.protocol !== 'https:' && url.protocol !== 'http:') return fallback;
@@ -3313,7 +3313,7 @@ function normalizeImageUrl(value, route) {
 function setMetadata(html, locale, route) {
   const resolvedRoute = canonicalRoute(route);
   const canonical = canonicalHref(locale, route);
-  let next = html.replace(/<html\\b[^>]*>/i, '<html lang="' + locale + '" dir="' + dirFor(locale) + '" data-7ya-locale="' + locale + '">');
+  let next = html.replace(/<html\b[^>]*>/i, '<html lang="' + locale + '" dir="' + dirFor(locale) + '" data-7ya-locale="' + locale + '">');
   const suggested = routeMeta(locale, resolvedRoute);
   const title = locale === 'he' ? (readTitle(next) || suggested.title) : suggested.title;
   const description = locale === 'he' ? (readMetaValue(next, 'description') || suggested.description) : suggested.description;
@@ -3351,13 +3351,13 @@ function setMetadata(html, locale, route) {
   next = upsertMetaValue(next, 'twitter:image', twitterImage);
   next = upsertMetaValue(next, 'twitter:image:alt', locale === 'he' ? (readMetaValue(next, 'twitter:image:alt') || title) : title);
 
-  next = next.replace(/<link\\b(?=[^>]*\\brel=["']canonical["'])[^>]*>\\s*/gi, '');
-  next = next.replace(/<link\\b(?=[^>]*\\brel=["']alternate["'])(?=[^>]*\\bhreflang\\s*=)[^>]*>\\s*/gi, '');
+  next = next.replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>\s*/gi, '');
+  next = next.replace(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang\s*=)[^>]*>\s*/gi, '');
   const alternates = allLocales.map(lang =>
     '<link rel="alternate" hreflang="' + lang + '" href="' + canonicalHref(lang, route) + '">'
-  ).join('\\n  ') + '\\n  <link rel="alternate" hreflang="x-default" href="' + canonicalHref('he', route) + '">';
-  const linkBlock = '<link rel="canonical" href="' + canonical + '">\\n  ' + alternates;
-  next = next.replace(/<\\/head>/i, '  ' + linkBlock + '\\n</head>');
+  ).join('\n  ') + '\n  <link rel="alternate" hreflang="x-default" href="' + canonicalHref('he', route) + '">';
+  const linkBlock = '<link rel="canonical" href="' + canonical + '">\n  ' + alternates;
+  next = next.replace(/<\/head>/i, '  ' + linkBlock + '\n</head>');
   return localizeJsonLd(next, locale, resolvedRoute, {title, description});
 }
 
