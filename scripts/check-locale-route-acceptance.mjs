@@ -244,65 +244,65 @@ for (const route of canonicalRoutes) {
     try {
       html = await fs.readFile(file, 'utf8');
     } catch {
-      failures.push(\`${locale}/${route || 'home'}: SEO check could not read ${path.relative(dist,file)}\`);
+      failures.push(locale + '/' + (route || 'home') + ': SEO check could not read ' + path.relative(dist,file));
       continue;
     }
 
-    const location = \`${locale}/${route || 'home'}\`;
+    const location = locale + '/' + (route || 'home');
     const titles = [...html.matchAll(/<title\b[^>]*>([\s\S]*?)<\/title>/gi)];
-    if (titles.length !== 1) failures.push(\`${location}: expected exactly one title, found ${titles.length}\`);
+    if (titles.length !== 1) failures.push(location + ': expected exactly one title, found ' + titles.length);
     const title = decodeMeta(titles[0]?.[1] || '').trim();
-    if (title.length < 8 || title.length > 180) failures.push(\`${location}: title missing or outside 8–180 characters\`);
+    if (title.length < 8 || title.length > 180) failures.push(location + ': title missing or outside 8–180 characters');
 
     for (const key of expectedSeoNames) {
       const attribute = key.startsWith('og:') ? 'property' : 'name';
       const tags = metaTagsFor(html, key, attribute);
-      if (tags.length !== 1) failures.push(\`${location}: expected exactly one ${key} tag, found ${tags.length}\`);
-      if (tags.length === 1 && !metaAttr(tags[0], 'content')?.trim()) failures.push(\`${location}: ${key} has empty content\`);
+      if (tags.length !== 1) failures.push(location + ': expected exactly one ' + key + ' tag, found ' + tags.length);
+      if (tags.length === 1 && !metaAttr(tags[0], 'content')?.trim()) failures.push(location + ': ' + key + ' has empty content');
     }
 
     const description = metaValueFor(html,'description');
-    if (description.length < 35 || description.length > 260) failures.push(\`${location}: description length ${description.length} is outside 35–260 characters\`);
-    if (!metaValueFor(html,'og:title','property')) failures.push(\`${location}: og:title missing\`);
-    if (!metaValueFor(html,'og:description','property')) failures.push(\`${location}: og:description missing\`);
-    if (!metaValueFor(html,'twitter:title')) failures.push(\`${location}: twitter:title missing\`);
-    if (!metaValueFor(html,'twitter:description')) failures.push(\`${location}: twitter:description missing\`);
-    if (metaValueFor(html,'og:locale','property') !== expectedOgLocales[locale]) failures.push(\`${location}: og:locale does not match ${locale}\`);
-    if (metaValueFor(html,'twitter:card') !== 'summary_large_image') failures.push(\`${location}: twitter:card must be summary_large_image\`);
+    if (description.length < 35 || description.length > 260) failures.push(location + ': description length ' + description.length + ' is outside 35–260 characters');
+    if (!metaValueFor(html,'og:title','property')) failures.push(location + ': og:title missing');
+    if (!metaValueFor(html,'og:description','property')) failures.push(location + ': og:description missing');
+    if (!metaValueFor(html,'twitter:title')) failures.push(location + ': twitter:title missing');
+    if (!metaValueFor(html,'twitter:description')) failures.push(location + ': twitter:description missing');
+    if (metaValueFor(html,'og:locale','property') !== expectedOgLocales[locale]) failures.push(location + ': og:locale does not match ' + locale);
+    if (metaValueFor(html,'twitter:card') !== 'summary_large_image') failures.push(location + ': twitter:card must be summary_large_image');
 
     if (locale !== 'he') {
       const localizedSeo = title + ' ' + description + ' ' + metaValueFor(html,'og:title','property') + ' ' + metaValueFor(html,'og:description','property') + ' ' + metaValueFor(html,'twitter:title') + ' ' + metaValueFor(html,'twitter:description');
-      if (noHebrew.test(localizedSeo)) failures.push(\`${location}: Hebrew text leaked into localized SEO fields\`);
-      if (locale === 'en' && noCyrillic.test(title + ' ' + description)) failures.push(\`${location}: Cyrillic text leaked into English title/description\`);
-      if (locale === 'en' && noArabic.test(title + ' ' + description)) failures.push(\`${location}: Arabic text leaked into English title/description\`);
-      if (metaValueFor(html,'og:title','property') !== title) failures.push(\`${location}: og:title must match localized title\`);
-      if (metaValueFor(html,'twitter:title') !== title) failures.push(\`${location}: twitter:title must match localized title\`);
-      if (metaValueFor(html,'og:description','property') !== description) failures.push(\`${location}: og:description must match localized description\`);
-      if (metaValueFor(html,'twitter:description') !== description) failures.push(\`${location}: twitter:description must match localized description\`);
+      if (noHebrew.test(localizedSeo)) failures.push(location + ': Hebrew text leaked into localized SEO fields');
+      if (locale === 'en' && noCyrillic.test(title + ' ' + description)) failures.push(location + ': Cyrillic text leaked into English title/description');
+      if (locale === 'en' && noArabic.test(title + ' ' + description)) failures.push(location + ': Arabic text leaked into English title/description');
+      if (metaValueFor(html,'og:title','property') !== title) failures.push(location + ': og:title must match localized title');
+      if (metaValueFor(html,'twitter:title') !== title) failures.push(location + ': twitter:title must match localized title');
+      if (metaValueFor(html,'og:description','property') !== description) failures.push(location + ': og:description must match localized description');
+      if (metaValueFor(html,'twitter:description') !== description) failures.push(location + ': twitter:description must match localized description');
     }
 
     const canonical = canonicalValueFor(html);
     const expectedUrl = canonicalPublicUrl(locale,route);
-    if (canonical.tags.length !== 1) failures.push(\`${location}: expected exactly one canonical, found ${canonical.tags.length}\`);
-    if (canonical.href !== expectedUrl) failures.push(\`${location}: canonical mismatch; expected ${expectedUrl}, found ${canonical.href || '(empty)'}\`);
-    if (metaValueFor(html,'og:url','property') !== expectedUrl) failures.push(\`${location}: og:url must match canonical ${expectedUrl}\`);
+    if (canonical.tags.length !== 1) failures.push(location + ': expected exactly one canonical, found ' + canonical.tags.length);
+    if (canonical.href !== expectedUrl) failures.push(location + ': canonical mismatch; expected ' + expectedUrl + ', found ' + (canonical.href || '(empty)'));
+    if (metaValueFor(html,'og:url','property') !== expectedUrl) failures.push(location + ': og:url must match canonical ' + expectedUrl);
 
     for (const language of expectedHreflangs) {
       const link = hreflangValueFor(html,language);
       const expectedHref = language === 'x-default' ? canonicalPublicUrl('he',route) : canonicalPublicUrl(language,route);
-      if (link.tags.length !== 1) failures.push(\`${location}: expected exactly one hreflang=${language}, found ${link.tags.length}\`);
-      if (link.href !== expectedHref) failures.push(\`${location}: hreflang=${language} mismatch; expected ${expectedHref}, found ${link.href || '(empty)'}\`);
+      if (link.tags.length !== 1) failures.push(location + ': expected exactly one hreflang=' + language + ', found ' + link.tags.length);
+      if (link.href !== expectedHref) failures.push(location + ': hreflang=' + language + ' mismatch; expected ' + expectedHref + ', found ' + (link.href || '(empty)'));
     }
 
     const imageMeta = metaValueFor(html,'og:image','property');
     const twitterImage = metaValueFor(html,'twitter:image');
-    if (!/^https?:\/\//i.test(imageMeta)) failures.push(\`${location}: og:image is not an absolute URL\`);
-    if (!/^https?:\/\//i.test(twitterImage)) failures.push(\`${location}: twitter:image is not an absolute URL\`);
+    if (!/^https?:\/\//i.test(imageMeta)) failures.push(location + ': og:image is not an absolute URL');
+    if (!/^https?:\/\//i.test(twitterImage)) failures.push(location + ': twitter:image is not an absolute URL');
 
     const jsonLdScripts = [...html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
     for (let index = 0; index < jsonLdScripts.length; index++) {
       try { JSON.parse(jsonLdScripts[index][1]); }
-      catch { failures.push(\`${location}: JSON-LD block ${index + 1} is invalid JSON\`); }
+      catch { failures.push(location + ': JSON-LD block ' + (index + 1) + ' is invalid JSON'); }
     }
   }
 }
