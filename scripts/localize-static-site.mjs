@@ -3315,8 +3315,10 @@ function setMetadata(html, locale, route) {
   const canonical = canonicalHref(locale, route);
   let next = html.replace(/<html\b[^>]*>/i, '<html lang="' + locale + '" dir="' + dirFor(locale) + '" data-7ya-locale="' + locale + '">');
   const suggested = routeMeta(locale, resolvedRoute);
-  const title = locale === 'he' ? (readTitle(next) || suggested.title) : suggested.title;
-  const description = locale === 'he' ? (readMetaValue(next, 'description') || suggested.description) : suggested.description;
+  const sourceTitle = readTitle(next);
+  const sourceDescription = readMetaValue(next, 'description');
+  const title = locale === 'he' && sourceTitle.length >= 8 && sourceTitle.length <= 180 ? sourceTitle : suggested.title;
+  const description = locale === 'he' && sourceDescription.length >= 35 && sourceDescription.length <= 260 ? sourceDescription : suggested.description;
   const currentOgTitle = readMetaValue(next, 'og:title', 'property');
   const currentOgDescription = readMetaValue(next, 'og:description', 'property');
   const currentTwitterTitle = readMetaValue(next, 'twitter:title');
