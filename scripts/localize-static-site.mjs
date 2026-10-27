@@ -3248,45 +3248,56 @@ function localizeJsonLd(html,locale,route,meta){
     }catch{return match}
   });
 }
-function escapeRegExp(value) {
-  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
 function decodeHtml(value) {
   return String(value)
-    .replace(/&amp;/gi, '&').replace(/&quot;/gi, '"')
-    .replace(/&apos;/gi, "'").replace(/&#39;/gi, "'")
-    .replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&#39;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>');
 }
+
+function attributeValue(tag, name) {
+  const attributes = [...tag.matchAll(/([^\\s=<>/]+)\\s*=\\s*(["'])(.*?)\\2/gi)];
+  const found = attributes.find(match => match[1].toLowerCase() === name.toLowerCase());
+  return found?.[3] ?? null;
+}
+
 function readTitle(html) {
   const match = html.match(/<title\\b[^>]*>([\\s\\S]*?)<\\/title>/i);
   return decodeHtml(match?.[1] || '').trim();
 }
-function readMetaValue(html, key, attribute='name') {
-  const pattern = new RegExp('<meta\\\\b(?=[^>]*\\\\b' + attribute + '\\\\s*=\\\\s*(["\\\'])' + escapeRegExp(key) + '\\\\1)[^>]*>', 'i');
-  const tag = html.match(pattern)?.[0] || '';
-  const match = tag.match(/\\bcontent\\s*=\\s*(["'])([\\s\\S]*?)\\1/i);
-  return decodeHtml(match?.[2] || '').trim();
+
+function readMetaValue(html, key, attribute = 'name') {
+  const tags = html.match(/<meta\\b[^>]*>/gi) || [];
+  const tag = tags.find(item => (attributeValue(item, attribute) || '').toLowerCase() === key.toLowerCase());
+  return decodeHtml(attributeValue(tag || '', 'content') || '').trim();
 }
-function upsertMetaValue(html, key, value, attribute='name') {
-  const escapedKey = escapeRegExp(key);
-  const pattern = new RegExp('<meta\\\\b(?=[^>]*\\\\b' + attribute + '\\\\s*=\\\\s*(["\\\'])' + escapedKey + '\\\\1)[^>]*>\\\\s*', 'gi');
-  const tag = '<meta ' + attribute + '="' + key + '" content="' + esc(value) + '">';
+
+function upsertMetaValue(html, key, value, attribute = 'name') {
+  const tagValue = '<meta ' + attribute + '="' + key + '" content="' + esc(value) + '">';
   let found = false;
-  html = html.replace(pattern, () => {
+  html = html.replace(/<meta\\b[^>]*>/gi, tag => {
+    if ((attributeValue(tag, attribute) || '').toLowerCase() !== key.toLowerCase()) return tag;
     if (found) return '';
     found = true;
-    return tag + '\\n';
+    return tagValue;
   });
-  if (!found) html = html.replace(/<\\/head>/i, '  ' + tag + '\\n</head>');
+  if (!found) html = html.replace(/<\\/head>/i, '  ' + tagValue + '\\n</head>');
   return html;
 }
+
 function upsertTitle(html, value) {
   const tag = '<title>' + esc(value) + '</title>';
-  if (/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i.test(html)) return html.replace(/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i, tag);
+  if (/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i.test(html)) {
+    return html.replace(/<title\\b[^>]*>[\\s\\S]*?<\\/title>/i, tag);
+  }
   return html.replace(/<\\/head>/i, '  ' + tag + '\\n</head>');
 }
+
 function normalizeImageUrl(value, route) {
-  const fallback = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png/960px-Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png';
+  const fallback = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Igor_vepretski-_Israeli_entrepreneur_and_founder_of_Starton_nonprofit_organisation.png/960px-Igor_vepretski-_Israeli_entrepreneur_and-founder_of_Starton_nonprofit_organisation.png';
   if (!value || /^data:/i.test(value)) return fallback;
   try {
     const normalizedRoute = String(route || '').replace(/^\\/+|\\/+$/g, '');
@@ -3294,8 +3305,11 @@ function normalizeImageUrl(value, route) {
     const url = new URL(value, base);
     if (url.protocol !== 'https:' && url.protocol !== 'http:') return fallback;
     return url.href;
-  } catch { return fallback; }
+  } catch {
+    return fallback;
+  }
 }
+
 function setMetadata(html, locale, route) {
   const resolvedRoute = canonicalRoute(route);
   const canonical = canonicalHref(locale, route);
@@ -3319,7 +3333,7 @@ function setMetadata(html, locale, route) {
     ru: 'Игорь Вепрецкий · 7YA',
     ar: 'إيغور فيبريتسكي · 7YA'
   }[locale] || '7YA';
-  const localeCode = {he:'he_IL',en:'en_US',ru:'ru_RU',ar:'ar_IL'}[locale] || 'en_US';
+  const localeCode = {he:'he_IL', en:'en_US', ru:'ru_RU', ar:'ar_IL'}[locale] || 'en_US';
 
   next = upsertTitle(next, title);
   next = upsertMetaValue(next, 'description', description);
@@ -3346,6 +3360,7 @@ function setMetadata(html, locale, route) {
   next = next.replace(/<\\/head>/i, '  ' + linkBlock + '\\n</head>');
   return localizeJsonLd(next, locale, resolvedRoute, {title, description});
 }
+
 function addShellAssets(html) {
   let next=html;
   const headAssets=[];
