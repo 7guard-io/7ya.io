@@ -95,10 +95,164 @@ const localeCopy = {
   }
 };
 
-const metaDescriptions = {
-  en:'A source-linked public record of Igor Vepretski: life, StartOn, media, research, creation, public reactions and evidence.',
-  ru:'Публичная запись Игоря Вепрецкого с источниками: жизнь, StartOn, медиа, исследования, творчество, реакции аудитории и доказательства.',
-  ar:'سجل عام مرتبط بالمصادر لإيغور فيبريتسكي: الحياة وStartOn والإعلام والبحث والإبداع وتفاعل الجمهور والأدلة.'
+const routeDescriptions = {
+  '': {
+    he:'המסע הציבורי של איגור ופרצקי: StartOn, שירות ציבורי, יצירה, מחקר, מדיה ומקורות פתוחים לבדיקה.',
+    en:'Igor Vepretski’s living public record: StartOn, public service, original media, research and verifiable sources.',
+    ru:'Живая публичная история Игоря Вепрецкого: StartOn, служба, авторские материалы, исследования и проверяемые источники.',
+    ar:'السجل العام الحي لإيغور فيبريتسكي: StartOn والخدمة العامة والإعلام الأصلي والبحث والمصادر القابلة للتحقق.'
+  },
+  'igor-vepretski': {
+    he:'הסיפור הציבורי של איגור ופרצקי: שורשים, שירות, משטרה, אקדמיה, אבהות, StartOn ויצירה עם קישורים למקורות.',
+    en:'Igor Vepretski’s biography and public work, connecting service, research, fatherhood, StartOn and original media to sources.',
+    ru:'Биография и общественная работа Игоря Вепрецкого: служба, исследования, отцовство, StartOn и авторские материалы с источниками.',
+    ar:'السيرة والعمل العام لإيغور فيبريتسكي: الخدمة والبحث والأبوة وStartOn والمواد الأصلية مع روابط المصادر.'
+  },
+  go: {
+    he:'שער הקישורים של איגור ופרצקי: 7YA, StartOn, מדיה, מחקר, הרצאות וחשבונות ציבוריים נבחרים.',
+    en:'A central gateway to Igor Vepretski’s 7YA and StartOn work, public media, research, speaking and selected public profiles.',
+    ru:'Единая точка входа к 7YA и StartOn Игоря Вепрецкого, публичным материалам, исследованиям, выступлениям и профилям.',
+    ar:'بوابة موحدة إلى 7YA وStartOn وأعمال إيغور فيبريتسكي والإعلام العام والبحث والمحاضرات والحسابات العامة.'
+  },
+  museum: {
+    he:'המוזיאון הדיגיטלי של איגור ופרצקי: רגעים, מדיה מקורית, הקשר וציר חיים המחובר למקורות ציבוריים.',
+    en:'A digital museum of Igor Vepretski’s life and work, bringing original media, context and a source-linked timeline together.',
+    ru:'Цифровой музей жизни и работы Игоря Вепрецкого: оригинальные материалы, контекст и хронология со ссылками на источники.',
+    ar:'متحف رقمي لحياة إيغور فيبريتسكي وعمله، يجمع المواد الأصلية والسياق والتسلسل الزمني وروابط المصادر.'
+  },
+  entity: {
+    he:'רשומת הזהות הציבורית של איגור ופרצקי: פרטי זיהוי פומביים, קשרים וקישורים למקורות, עם הבחנה בין עובדה להערכה.',
+    en:'A public identity record for Igor Vepretski, connecting public profiles and references while distinguishing evidence from interpretation.',
+    ru:'Публичная запись об Игоре Вепрецком: профили и ссылки на источники с разделением подтверждённых фактов и интерпретаций.',
+    ar:'سجل الهوية العامة لإيغور فيبريتسكي، يربط الملفات العامة والمراجع مع التمييز بين الأدلة والتفسير.'
+  },
+  create: {
+    he:'מסלול יצירה חינמי ב־7YA להפיכת רעיון לתוכנית פעולה, עם כלים מעשיים, פרומפטים וצעד ראשון מוגדר.',
+    en:'A free 7YA creator path that turns an idea into an actionable plan, practical tools, prompts and a clear first step.',
+    ru:'Бесплатный маршрут 7YA для превращения идеи в план действий, практические инструменты, промпты и первый конкретный шаг.',
+    ar:'مسار إبداع مجاني من 7YA يحوّل الفكرة إلى خطة قابلة للتنفيذ وأدوات عملية وموجهات وخطوة أولى واضحة.'
+  },
+  history: {
+    he:'ציר הזמן של איגור ופרצקי: תחנות חיים ועשייה לפי שנים, עם מדיה וקישורים למקורות ציבוריים.',
+    en:'A dated timeline of Igor Vepretski’s life and work, with original media and links to public sources for context.',
+    ru:'Хронология жизни и работы Игоря Вепрецкого по датам, с оригинальными материалами и ссылками на публичные источники.',
+    ar:'خط زمني لحياة إيغور فيبريتسكي وعمله حسب التواريخ، مع مواد أصلية وروابط إلى مصادر عامة.'
+  },
+  journey: {
+    he:'מסע החיים של איגור ופרצקי — משורשים ושירות אל מחקר, StartOn, יצירה ו־7YA — עם הקשר ומקורות לכל תחנה.',
+    en:'Follow Igor Vepretski’s journey from early roots and service to research, StartOn, creation and 7YA, with context and sources.',
+    ru:'Путь Игоря Вепрецкого: от детства и службы к исследованиям, StartOn, творчеству и 7YA — с контекстом и источниками.',
+    ar:'رحلة إيغور فيبريتسكي من الجذور والخدمة إلى البحث وStartOn والإبداع و7YA، مع سياق ومصادر لكل محطة.'
+  },
+  starton: {
+    he:'StartOn היא עמותה רשומה שמטרותיה כוללות חינוך והכשרה טכנולוגית לבני נוער; העמוד מפריד בין רישום, מודל ותוצאות.',
+    en:'StartOn is a registered nonprofit whose formal purposes include technology education and training for youth; purpose and outcomes are distinguished.',
+    ru:'StartOn — зарегистрированная некоммерческая организация с целями технологического образования молодёжи; формальные цели отделены от результатов.',
+    ar:'StartOn جمعية مسجلة تشمل أهدافها الرسمية التعليم والتدريب التقني للشباب، مع فصل الأهداف المعلنة عن النتائج.'
+  },
+  radar: {
+    he:'7YA Radar מארגן הצהרות, החלטות, תקציבים וביצוע סביב מקורות ציבוריים, תוך הפרדה בין עובדה, ניתוח ושאלה פתוחה.',
+    en:'7YA Radar organizes public statements, decisions, budgets and delivery evidence, separating facts from analysis and open questions.',
+    ru:'7YA Radar систематизирует публичные заявления, решения, бюджеты и данные об исполнении, отделяя факты от анализа и открытых вопросов.',
+    ar:'ينظم 7YA Radar التصريحات والقرارات والميزانيات وأدلة التنفيذ، مع الفصل بين الحقائق والتحليل والأسئلة المفتوحة.'
+  },
+  influence: {
+    he:'השפעה דיגיטלית עם הקשר: מקורות, תאריכי מדידה וסטטוס אימות, בלי לאחד מדדים מפלטפורמות שונות באופן מטעה.',
+    en:'Explore Igor Vepretski’s digital footprint with source links, dated snapshots and verification labels, without misleading cross-platform totals.',
+    ru:'Цифровое присутствие Игоря Вепрецкого: источники, датированные снимки и статусы проверки без вводящих в заблуждение общих сумм.',
+    ar:'استكشف الحضور الرقمي لإيغور فيبريتسكي عبر المصادر واللقطات المؤرخة وحالات التحقق، دون جمع مضلل لمقاييس منصات مختلفة.'
+  },
+  research: {
+    he:'מחקר ומדיניות סביב נוער בסיכון, זהות דיגיטלית, ממשל ואלגוריתמים, עם מקורות, מגבלות והבחנה בין נתון לפרשנות.',
+    en:'Research and policy work on youth at risk, digital identity, governance and algorithms, with sources, limits and clear evidence labels.',
+    ru:'Исследования и политика по темам молодёжи в риске, цифровой идентичности, управления и алгоритмов — с источниками и ограничениями.',
+    ar:'بحث وسياسات حول الشباب المعرّضين للخطر والهوية الرقمية والحكم والخوارزميات، مع مصادر وحدود واضحة للأدلة.'
+  },
+  ai: {
+    he:'העבודה של 7YA בצומת אדם ובינה מלאכותית: שימוש אחראי, הקשר ציבורי ומקורות פתוחים במקום טענות לא מבוססות.',
+    en:'7YA’s work at the intersection of people and AI, emphasizing responsible use, public context and source-grounded claims.',
+    ru:'Работа 7YA на пересечении человека и ИИ: ответственное применение, общественный контекст и утверждения с опорой на источники.',
+    ar:'عمل 7YA عند تقاطع الإنسان والذكاء الاصطناعي، مع التركيز على الاستخدام المسؤول والسياق العام والادعاءات المسندة إلى مصادر.'
+  },
+  'response-ai': {
+    he:'שיחה בסיוע AI המבוססת על הארכיון הציבורי של 7YA, עם קישורים למקורות והבחנה בין עובדה, דיווח ופרשנות.',
+    en:'An AI-assisted guide to the 7YA public archive that returns source links and distinguishes facts, reported claims and interpretation.',
+    ru:'ИИ-помощник по публичному архиву 7YA со ссылками на источники и разграничением фактов, сообщений и интерпретаций.',
+    ar:'مساعد بالذكاء الاصطناعي للأرشيف العام لـ7YA، يعرض روابط المصادر ويميّز بين الحقائق والتقارير والتفسير.'
+  },
+  evidence: {
+    he:'מאגר הראיות של 7YA: כתבות, רישומים, ראיונות, מסמכים וקישורים, לצד סטטוס אימות ומגבלות של כל מקור.',
+    en:'The 7YA evidence ledger brings together coverage, public records, interviews and documents with verification status and source limitations.',
+    ru:'Реестр доказательств 7YA: публикации, публичные записи, интервью и документы со статусом проверки и ограничениями источников.',
+    ar:'يجمع سجل الأدلة في 7YA التغطيات والسجلات العامة والمقابلات والوثائق مع حالات التحقق وحدود المصادر.'
+  },
+  verify: {
+    he:'שער אימות לטענות וקישורים ציבוריים: מקור, תאריך, הקשר ומגבלות לפני שמציגים פריט כמאומת.',
+    en:'A verification workflow for public claims and links, recording sources, dates, context and limits before treating an item as verified.',
+    ru:'Процесс проверки публичных утверждений и ссылок: источники, даты, контекст и ограничения до присвоения статуса подтверждения.',
+    ar:'مسار للتحقق من الادعاءات والروابط العامة، يوثق المصادر والتواريخ والسياق والحدود قبل اعتبار العنصر مؤكداً.'
+  },
+  ledger: {
+    he:'יומן מקורות וטענות של 7YA עם קישורים, תאריכי איסוף וסטטוס, כדי להבחין בין חומר מאומת לחומר שדורש בדיקה.',
+    en:'A 7YA register of claims and sources with links, collection dates and status labels, separating verified records from items needing review.',
+    ru:'Реестр утверждений и источников 7YA со ссылками, датами сбора и статусами — от подтверждённых записей до требующих проверки.',
+    ar:'سجل 7YA للادعاءات والمصادر مع الروابط وتواريخ الجمع وحالات التحقق، لتمييز السجلات المؤكدة عما يحتاج إلى مراجعة.'
+  },
+  '7ya': {
+    he:'7YA הוא מרחב ציבורי שמחבר בין זהות, מדיה, מקורות ופעולה — עם האדם לפני המערכת וראיות לפני הגברה.',
+    en:'7YA connects public identity, media, sources and action in one living record, putting the person before the system and evidence before amplification.',
+    ru:'7YA объединяет публичную идентичность, медиа, источники и действия в одном архиве: человек важнее системы, доказательства важнее усиления.',
+    ar:'يجمع 7YA الهوية العامة والإعلام والمصادر والعمل في سجل حي، واضعاً الإنسان قبل النظام والأدلة قبل التضخيم.'
+  },
+  speaker: {
+    he:'פרופיל ההרצאות של איגור ופרצקי: ראיונות, פאנלים, פודקאסטים ושיחות על AI, מדיה, StartOn ואמון ציבורי.',
+    en:'Igor Vepretski’s speaking profile for interviews, panels and podcasts on AI, media, StartOn and public trust.',
+    ru:'Профиль выступлений Игоря Вепрецкого: интервью, панели и подкасты об ИИ, медиа, StartOn и общественном доверии.',
+    ar:'ملف إيغور فيبريتسكي للقاءات والحوارات والبودكاست حول الذكاء الاصطناعي والإعلام وStartOn والثقة العامة.'
+  },
+  talk: {
+    he:'עמוד לשיחה עם איגור ופרצקי על 7YA, StartOn, מחקר, יצירה ושיתופי פעולה — עם דרך ישירה לפנייה.',
+    en:'A direct entry point for conversations with Igor Vepretski about 7YA, StartOn, research, creation and collaboration.',
+    ru:'Прямая точка для разговора с Игорем Вепрецким о 7YA, StartOn, исследованиях, творчестве и сотрудничестве.',
+    ar:'مدخل مباشر للتواصل مع إيغور فيبريتسكي بشأن 7YA وStartOn والبحث والإبداع والتعاون.'
+  },
+  chat: {
+    he:'שיחה עם איגור דרך הארכיון הציבורי של 7YA: תשובות מסויגות, מקורות פתוחים והבחנה בין תיעוד לפרשנות.',
+    en:'Explore the 7YA public archive through a source-linked assistant that separates documented material from interpretation.',
+    ru:'Изучайте публичный архив 7YA через помощника со ссылками на источники и разграничением документов и интерпретаций.',
+    ar:'استكشف الأرشيف العام لـ7YA عبر مساعد يربط الإجابات بالمصادر ويميّز بين المواد الموثقة والتفسير.'
+  },
+  media: {
+    he:'מדיה ציבורית של איגור ופרצקי: תמונות, וידאו, ראיונות וחומרי עיתונות, עם הקשר וקישורים למקור.',
+    en:'Public media by and about Igor Vepretski, including photos, video, interviews and press material with source links and context.',
+    ru:'Публичные материалы об Игоре Вепрецком и его работы: фото, видео, интервью и материалы для прессы со ссылками на источник.',
+    ar:'مواد عامة عن إيغور فيبريتسكي وأعماله، تشمل الصور والفيديو والمقابلات والمواد الصحفية مع روابط المصادر والسياق.'
+  },
+  library: {
+    he:'הארכיון הציבורי של 7YA: מדיה, כתיבה, מחקר ומקורות, עם הבחנה בין חומר מתועד לפריטים שעדיין דורשים בדיקה.',
+    en:'The 7YA public library brings together media, writing, research and sources, distinguishing documented records from items that need review.',
+    ru:'Публичная библиотека 7YA объединяет медиа, тексты, исследования и источники, отделяя документированные материалы от требующих проверки.',
+    ar:'تجمع مكتبة 7YA العامة الإعلام والكتابة والبحث والمصادر، مع الفصل بين السجلات الموثقة والعناصر التي تحتاج إلى مراجعة.'
+  },
+  articles: {
+    he:'מאמרים ורשימות של 7YA ואיגור ופרצקי על טכנולוגיה, יצירה, זהות, מדיניות ואמון ציבורי.',
+    en:'Articles and essays by Igor Vepretski and 7YA on technology, creation, identity, policy and public trust.',
+    ru:'Статьи и заметки Игоря Вепрецкого и 7YA о технологиях, творчестве, идентичности, политике и общественном доверии.',
+    ar:'مقالات ونصوص لإيغور فيبريتسكي و7YA حول التكنولوجيا والإبداع والهوية والسياسات والثقة العامة.'
+  },
+  contact: {
+    he:'יצירת קשר עם איגור ופרצקי להרצאות, ראיונות, פניות לעיתונות, StartOn ושיתופי פעולה מקצועיים.',
+    en:'Contact Igor Vepretski about speaking, interviews, press enquiries, StartOn and professional collaboration.',
+    ru:'Свяжитесь с Игорем Вепрецким по вопросам выступлений, интервью, прессы, StartOn и профессионального сотрудничества.',
+    ar:'تواصل مع إيغور فيبريتسكي بشأن المحاضرات والمقابلات والصحافة وStartOn والتعاون المهني.'
+  }
+};
+
+const rootTitles = {
+  he:'איגור ופרצקי | מסע חיים, עשייה ומקורות · 7YA',
+  en:'Igor Vepretski | Life, StartOn and source-linked public record · 7YA',
+  ru:'Игорь Вепрецкий | жизнь, StartOn и открытые источники · 7YA',
+  ar:'إيغور فيبريتسكي | الحياة وStartOn والمصادر المفتوحة · 7YA'
 };
 
 const commonTranslations = {
@@ -2961,11 +3115,18 @@ function proofMarkup(locale) {
     '<p class="seven-proof-integrity">'+c.integrity+'</p></section>';
 }
 
-function routeMeta(locale, route) {
-  const name = routeNames[route]?.[locale] || routeNames[route]?.en || route || '7YA';
-  if (locale === 'he') return null;
-  const site=localeCopy[locale].site;
-  return {title:(route?name+' · ':'')+site,description:metaDescriptions[locale]};
+function routeMeta(locale, route='') {
+  const resolvedRoute = canonicalRoute(route);
+  const name = routeNames[resolvedRoute]?.[locale] || routeNames[resolvedRoute]?.en || resolvedRoute || '7YA';
+  const site = locale === 'he' ? '7YA' : (localeCopy[locale]?.site || '7YA');
+  const title = resolvedRoute ? name + ' · ' + site : rootTitles[locale];
+  const fallbackDescriptions = {
+    he: 'עמוד ' + name + ' ב־7YA מציג הקשר, חומר מקורי וקישורים למקורות ציבוריים שאפשר לבדוק.',
+    en: name + ' in Igor Vepretski’s public record, with context, original material and verifiable public sources.',
+    ru: 'Раздел «' + name + '» в публичном архиве Игоря Вепрецкого: контекст, материалы и проверяемые источники.',
+    ar: 'قسم ' + name + ' في السجل العام لإيغور فيبريتسكي، مع السياق والمواد وروابط المصادر القابلة للتحقق.'
+  };
+  return {title, description: routeDescriptions[resolvedRoute]?.[locale] || fallbackDescriptions[locale]};
 }
 
 function localizedInternalPath(value, locale) {
@@ -3057,7 +3218,6 @@ function replaceVisibleCopy(html, locale, route) {
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
 function localizeJsonLd(html,locale,route,meta){
-  if(locale==='he')return html;
   const pageCanonical=canonicalHref(locale,route);
   const pageTypes=new Set(['WebPage','ProfilePage','ContactPage','CollectionPage','AboutPage','ItemPage']);
   return html.replace(/<script\b([^>]*type=["']application\/ld\+json["'][^>]*)>([\s\S]*?)<\/script>/gi,(match,attrs,body)=>{
@@ -3088,28 +3248,123 @@ function localizeJsonLd(html,locale,route,meta){
     }catch{return match}
   });
 }
-function setMetadata(html, locale, route) {
-  const resolvedRoute=canonicalRoute(route);
-  const canonical=canonicalHref(locale,route);
-  let next=html.replace(/<html\b[^>]*>/i,'<html lang="'+locale+'" dir="'+dirFor(locale)+'" data-7ya-locale="'+locale+'">');
-  next=next.replace(/<link\b[^>]*rel=["']alternate["'][^>]*hreflang=["'][^"']+["'][^>]*>\s*/gi,'');
-  if(locale!=='he'){
-    const meta=routeMeta(locale,route);
-    next=next.replace(/<title>[\s\S]*?<\/title>/i,'<title>'+esc(meta.title)+'</title>');
-    next=next.replace(/<meta\s+name=["']description["'][^>]*>/i,'<meta name="description" content="'+esc(meta.description)+'">');
-    next=next.replace(/<meta\s+property=["']og:title["'][^>]*>/i,'<meta property="og:title" content="'+esc(meta.title)+'">');
-    next=next.replace(/<meta\s+property=["']og:description["'][^>]*>/i,'<meta property="og:description" content="'+esc(meta.description)+'">');
-    next=next.replace(/<meta\s+name=["']twitter:title["'][^>]*>/i,'<meta name="twitter:title" content="'+esc(meta.title)+'">');
-    next=next.replace(/<meta\s+name=["']twitter:description["'][^>]*>/i,'<meta name="twitter:description" content="'+esc(meta.description)+'">');
-    next=next.replace(/<meta\s+property=["']og:url["'][^>]*>/i,'<meta property="og:url" content="'+canonical+'">');
-    next=next.replace(/<meta\s+property=["']og:locale["'][^>]*>/i,'<meta property="og:locale" content="'+(locale==='ru'?'ru_RU':locale==='ar'?'ar_IL':'en_US')+'">');
+function decodeHtml(value) {
+  return String(value)
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&apos;/gi, "'")
+    .replace(/&#39;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>');
+}
+
+function attributeValue(tag, name) {
+  const attributes = [...tag.matchAll(/([^\s=<>/]+)\s*=\s*(["'])(.*?)\2/gi)];
+  const found = attributes.find(match => match[1].toLowerCase() === name.toLowerCase());
+  return found?.[3] ?? null;
+}
+
+function readTitle(html) {
+  const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i);
+  return decodeHtml(match?.[1] || '').trim();
+}
+
+function readMetaValue(html, key, attribute = 'name') {
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
+  const tag = tags.find(item => (attributeValue(item, attribute) || '').toLowerCase() === key.toLowerCase());
+  return decodeHtml(attributeValue(tag || '', 'content') || '').trim();
+}
+
+function upsertMetaValue(html, key, value, attribute = 'name') {
+  const tagValue = '<meta ' + attribute + '="' + key + '" content="' + esc(value) + '">';
+  let found = false;
+  html = html.replace(/<meta\b[^>]*>/gi, tag => {
+    if ((attributeValue(tag, attribute) || '').toLowerCase() !== key.toLowerCase()) return tag;
+    if (found) return '';
+    found = true;
+    return tagValue;
+  });
+  if (!found) html = html.replace(/<\/head>/i, '  ' + tagValue + '\n</head>');
+  return html;
+}
+
+function upsertTitle(html, value) {
+  const tag = '<title>' + esc(value) + '</title>';
+  if (/<title\b[^>]*>[\s\S]*?<\/title>/i.test(html)) {
+    return html.replace(/<title\b[^>]*>[\s\S]*?<\/title>/i, tag);
   }
-  if(/<link\b[^>]*rel=["']canonical["'][^>]*>/i.test(next))next=next.replace(/<link\b[^>]*rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+canonical+'">');
-  else next=next.replace('</head>','  <link rel="canonical" href="'+canonical+'">\n</head>');
-  const alternates=allLocales.map(lang=>'  <link rel="alternate" hreflang="'+lang+'" href="'+canonicalHref(lang,route)+'">').join('\n')+'\n  <link rel="alternate" hreflang="x-default" href="'+canonicalHref('he',route)+'">';
-  next=next.replace('</head>',alternates+'\n</head>');
-  const localizedMeta=locale==='he'?null:routeMeta(locale,resolvedRoute);
-  return localizeJsonLd(next,locale,resolvedRoute,localizedMeta);
+  return html.replace(/<\/head>/i, '  ' + tag + '\n</head>');
+}
+
+function normalizeImageUrl(value, route) {
+  const fallback = 'https://7ya.io/assets/igor-home-og-20260712.jpg';
+  if (!value || /^data:/i.test(value)) return fallback;
+  try {
+    const normalizedRoute = String(route || '').replace(/^\/+|\/+$/g, '');
+    const base = 'https://7ya.io/' + (normalizedRoute ? normalizedRoute + '/' : '');
+    const url = new URL(value, base);
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return fallback;
+    if (url.hostname === '7ya.io') {
+      if (!url.pathname.startsWith('/assets/')) return fallback;
+      url.protocol = 'https:';
+    }
+    return url.href;
+  } catch {
+    return fallback;
+  }
+}
+
+function setMetadata(html, locale, route) {
+  const resolvedRoute = canonicalRoute(route);
+  const canonical = canonicalHref(locale, route);
+  let next = html.replace(/<html\b[^>]*>/i, '<html lang="' + locale + '" dir="' + dirFor(locale) + '" data-7ya-locale="' + locale + '">');
+  const suggested = routeMeta(locale, resolvedRoute);
+  const sourceTitle = readTitle(next);
+  const sourceDescription = readMetaValue(next, 'description');
+  const title = locale === 'he' && sourceTitle.length >= 8 && sourceTitle.length <= 180 ? sourceTitle : suggested.title;
+  const description = locale === 'he' && sourceDescription.length >= 35 && sourceDescription.length <= 260 ? sourceDescription : suggested.description;
+  const currentOgTitle = readMetaValue(next, 'og:title', 'property');
+  const currentOgDescription = readMetaValue(next, 'og:description', 'property');
+  const currentTwitterTitle = readMetaValue(next, 'twitter:title');
+  const currentTwitterDescription = readMetaValue(next, 'twitter:description');
+  const ogTitle = locale === 'he' ? (currentOgTitle || title) : title;
+  const ogDescription = locale === 'he' ? (currentOgDescription || description) : description;
+  const twitterTitle = locale === 'he' ? (currentTwitterTitle || ogTitle) : title;
+  const twitterDescription = locale === 'he' ? (currentTwitterDescription || ogDescription) : description;
+  const ogImage = normalizeImageUrl(readMetaValue(next, 'og:image', 'property'), resolvedRoute);
+  const twitterImage = normalizeImageUrl(readMetaValue(next, 'twitter:image') || ogImage, resolvedRoute);
+  const localeName = {
+    he: 'איגור ופרצקי · 7YA',
+    en: 'Igor Vepretski · 7YA',
+    ru: 'Игорь Вепрецкий · 7YA',
+    ar: 'إيغور فيبريتسكي · 7YA'
+  }[locale] || '7YA';
+  const localeCode = {he:'he_IL', en:'en_US', ru:'ru_RU', ar:'ar_IL'}[locale] || 'en_US';
+
+  next = upsertTitle(next, title);
+  next = upsertMetaValue(next, 'description', description);
+  next = upsertMetaValue(next, 'og:title', ogTitle, 'property');
+  next = upsertMetaValue(next, 'og:description', ogDescription, 'property');
+  next = upsertMetaValue(next, 'og:url', canonical, 'property');
+  next = upsertMetaValue(next, 'og:locale', localeCode, 'property');
+  next = upsertMetaValue(next, 'og:site_name', localeName, 'property');
+  next = upsertMetaValue(next, 'og:type', readMetaValue(next, 'og:type', 'property') || 'profile', 'property');
+  next = upsertMetaValue(next, 'og:image', ogImage, 'property');
+  next = upsertMetaValue(next, 'og:image:alt', locale === 'he' ? (readMetaValue(next, 'og:image:alt', 'property') || title) : title, 'property');
+  next = upsertMetaValue(next, 'twitter:card', 'summary_large_image');
+  next = upsertMetaValue(next, 'twitter:title', twitterTitle);
+  next = upsertMetaValue(next, 'twitter:description', twitterDescription);
+  next = upsertMetaValue(next, 'twitter:image', twitterImage);
+  next = upsertMetaValue(next, 'twitter:image:alt', locale === 'he' ? (readMetaValue(next, 'twitter:image:alt') || title) : title);
+
+  next = next.replace(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>\s*/gi, '');
+  next = next.replace(/<link\b(?=[^>]*\brel=["']alternate["'])(?=[^>]*\bhreflang\s*=)[^>]*>\s*/gi, '');
+  const alternates = allLocales.map(lang =>
+    '<link rel="alternate" hreflang="' + lang + '" href="' + canonicalHref(lang, route) + '">'
+  ).join('\n  ') + '\n  <link rel="alternate" hreflang="x-default" href="' + canonicalHref('he', route) + '">';
+  const linkBlock = '<link rel="canonical" href="' + canonical + '">\n  ' + alternates;
+  next = next.replace(/<\/head>/i, '  ' + linkBlock + '\n</head>');
+  return localizeJsonLd(next, locale, resolvedRoute, {title, description});
 }
 
 function addShellAssets(html) {
