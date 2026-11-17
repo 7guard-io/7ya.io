@@ -1,0 +1,63 @@
+{
+  "service": "7ya-frontend",
+  "provider": "appdeploy",
+  "app_id": "697a008fddc309b142",
+  "status": "READY",
+  "release": "7ya-digital-museum-integration-20260803-1",
+  "runtime_snapshot": "1785761259243",
+  "deployed_at": "2026-08-03T12:47:39.243Z",
+  "custom_domains": [
+    "https://7ya.io",
+    "https://www.7ya.io"
+  ],
+  "source_experience": "https://igor-7ya-digital-museum.igor-vepretski.chatgpt.site/",
+  "integration": {
+    "strategy": "native depth page with gentle homepage bridge",
+    "route": "https://7ya.io/museum/",
+    "hierarchy": [
+      "Igor Vepretski",
+      "StartOn",
+      "7YA"
+    ],
+    "languages": [
+      "he",
+      "en",
+      "ru"
+    ],
+    "changed_runtime_paths": [
+      "src/MuseumPage.tsx",
+      "src/museum-page.css",
+      "src/App.tsx",
+      "src/locale.tsx",
+      "src/GlobalNav.tsx",
+      "src/GalaxyHome.tsx",
+      "src/PlatformUniverse.tsx",
+      "src/ViralFeed.tsx",
+      "backend/index.ts",
+      "shared/media-impact.ts",
+      "public/museum/index.html",
+      "public/sitemap.xml",
+      "public/release.json",
+      "tests/tests.txt"
+    ],
+    "corrected_canonical_urls": {
+      "academia": "https://igorvepretski.academia.edu/"
+    }
+  },
+  "verification": {
+    "deployment_status": "ready",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e_status": "passed",
+    "e2e_total_jobs": 4,
+    "e2e_reported_passed_jobs": 3,
+    "note": "AppDeploy returned terminal e2e status passed while reporting passed_jobs 3 of 4; the platform status is recorded without normalizing the counter discrepancy."
+  },
+  "rollback": {
+    "provider": "appdeploy",
+    "version": "1785570508207",
+    "label": "runtime snapshot before native digital museum integration"
+  },
+  "source_alignment": "AppDeploy runtime remains authoritative. This receipt records the deployed patch while the complete runtime source export to the canonical repository remains pending."
+}
