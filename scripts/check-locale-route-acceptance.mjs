@@ -140,18 +140,35 @@ for (const locale of locales) {
 // Guard the most visible personal copy against future fallback to Hebrew.
 const personalPageLocaleContract = {
   en: {
-    home: ['I was born in Kharkiv and grew up in Jessie Cohen.', 'Opportunity and belonging', 'If something in this story', '7YA organizes the memory. Igor remains the person at its center.'],
+    home: ['I was born in Kharkiv and grew up in Jesse Cohen, Holon.', 'Opportunity and belonging', 'If something in this story', '7YA organizes the memory. Igor remains the person at its center.'],
     story: ['Not a title. A journey.', 'I was born in Kharkiv and grew up in Israel.', 'Three distinct tracks: a social mission', 'These accounts are not marketing channels on this site.']
   },
   ru: {
-    home: ['Я родился в Харькове и вырос в Джесси Коэн.', 'Возможности и причастность', 'Если что-то в этой истории', '7YA упорядочивает память.'],
+    home: ['Я родился в Харькове и вырос в Джесси Коэн в Холоне.', 'Возможности и причастность', 'Если что-то в этой истории', '7YA упорядочивает память.'],
     story: ['Не должность. Путь.', 'Я родился в Харькове, вырос в Израиле.', 'Три разных направления: социальная миссия', 'Эти аккаунты на сайте — не «маркетинговые каналы».']
   },
   ar: {
-    home: ['وُلدت في خاركيف ونشأت في جيسي كوهين.', 'الفرص والانتماء', 'إذا كان في هذه القصة ما', 'تنظّم 7YA الذاكرة'],
+    home: ['وُلدت في خاركيف ونشأت في جيسي كوهين في حولون.', 'الفرص والانتماء', 'إذا كان في هذه القصة ما', 'تنظّم 7YA الذاكرة'],
     story: ['ليست صفة وظيفية. بل رحلة.', 'وُلدت في خاركيف ونشأت في إسرائيل.', 'ثلاثة مسارات مختلفة: رسالة اجتماعية', 'هذه الحسابات ليست «قنوات تسويق» على الموقع']
   }
 };
+const revisedHeroActions = {
+  en: ['Watch BIZZI', 'Discover StartOn', 'I was born in Kharkiv and grew up in Jesse Cohen, Holon.'],
+  ru: ['Смотреть BIZZI', 'Узнать о StartOn', 'Я родился в Харькове и вырос в Джесси Коэн в Холоне.'],
+  ar: ['شاهد BIZZI', 'اكتشف StartOn', 'وُلدت في خاركيف ونشأت في جيسي كوهين في حولون.']
+};
+for (const locale of locales) {
+  const html = await fs.readFile(path.join(dist, locale, 'index.html'), 'utf8');
+  const hero = (html.match(/<section class="hero[^>]*id="home"[\\s\\S]*?<\\/section>/i) || [,''])[1];
+  if (!hero) failures.push(locale + ': homepage hero section missing');
+  for (const marker of revisedHeroActions[locale]) {
+    if (!hero.includes(marker)) failures.push(locale + ': revised hero copy missing -> ' + marker);
+  }
+  if (hero.includes('הסיפור שלי') || hero.includes('העשייה שלי') || hero.includes('דברו איתי')) {
+    failures.push(locale + ': Hebrew primary CTA text leaked into localized hero');
+  }
+}
+
 for (const [locale, pages] of Object.entries(personalPageLocaleContract)) {
   for (const [route, markers] of Object.entries(pages)) {
     const file = path.join(dist, locale, route === 'home' ? 'index.html' : 'igor-vepretski/index.html');
