@@ -55,7 +55,7 @@ body.home-page>.seven-human-nav {display:flex!important;position:sticky!importan
  .home-page .seven-language-switch {width:100%!important;justify-content:flex-start!important;margin:0!important;border-top:1px solid #343634}
  .home-page .seven-language-switch a {min-width:44px!important;font-size:13px!important}
  .home-page #home {grid-template-columns:1fr!important;gap:24px!important;padding:24px 20px 40px!important}
- .home-page #home .portrait {grid-column:1!important;grid-row:1!important;aspect-ratio:4/3!important}
+ .home-page #home .portrait {grid-column:1!important;grid-row:1!important;aspect-ratio:4/5!important}
  .home-page #home .hero-copy {grid-column:1;grid-row:2}
  .home-page #home .hero-copy h1 {font-size:clamp(46px,12vw,72px)!important;line-height:.98!important}
  .home-page #home .lead {font-size:18px!important;max-width:none!important}
