@@ -88,7 +88,7 @@ for (const required of [
   '7YA מארגנת את הזיכרון. איגור נשאר האדם.'
 ]) requireText(home, required, 'homepage');
 
-const homepageSchemaMatch = home.match(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/);
+const homepageSchemaMatch = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
 if (!homepageSchemaMatch) {
   fail('homepage is missing a closed JSON-LD block');
 } else {
