@@ -194,3 +194,8 @@ html[lang="he"] .igor-film-source[data-igor-locale="he"],html[lang="en"] .igor-f
  body.home-page .seven-language-switch{margin-inline-start:8px!important;flex:0 0 auto!important;flex-wrap:nowrap!important}
  body.home-page>.seven-human-nav>a,body.home-page .seven-language-switch a{min-height:40px!important;padding:8px 10px!important;font-size:12px!important}
 }
+
+/* Arabic route keeps a readable fallback until dedicated Arabic copy is authored. */
+html[lang="ar"] .igor-film [data-igor-locale="en"]{display:inline}
+html[lang="ar"] .igor-film-copy>p[data-igor-locale="en"]{display:block}
+html[lang="ar"] .igor-film-source[data-igor-locale="en"]{display:inline-flex}
