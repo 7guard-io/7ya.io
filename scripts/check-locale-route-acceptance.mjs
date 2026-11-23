@@ -159,7 +159,7 @@ const revisedHeroActions = {
 };
 for (const locale of locales) {
   const html = await fs.readFile(path.join(dist, locale, 'index.html'), 'utf8');
-  const hero = (html.match(/<section class="hero[^>]*id="home"[\\s\\S]*?<\\/section>/i) || [,''])[1];
+  const hero = (html.match(/<section class="hero[^>]*id="home"[\s\S]*?<\/section>/i) || [,''])[1];
   if (!hero) failures.push(locale + ': homepage hero section missing');
   for (const marker of revisedHeroActions[locale]) {
     if (!hero.includes(marker)) failures.push(locale + ': revised hero copy missing -> ' + marker);
