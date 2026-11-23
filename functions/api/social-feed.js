@@ -1,0 +1,11 @@
+const json=(body,status=200)=>new Response(JSON.stringify(body),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"public, max-age=300"}});
+const get=async(url)=>{const r=await fetch(url);const d=await r.json();if(!r.ok||d.error)throw new Error(d.error?.message||"Social API request failed");return d};
+export async function onRequestGet({env}){
+ const version=env.META_GRAPH_VERSION||"v24.0";const tasks=[];const errors=[];
+ const ig=env.IG_ACCOUNTS_JSON?JSON.parse(env.IG_ACCOUNTS_JSON):[];
+ for(const a of ig){if(!a.id||!a.token)continue;tasks.push(get(`https://graph.facebook.com/${version}/${encodeURIComponent(a.id)}/media?fields=id,caption,media_type,media_url,permalink,timestamp,thumbnail_url&limit=12&access_token=${encodeURIComponent(a.token)}`).then(d=>(d.data||[]).map(p=>({id:p.id,source:a.handle||"Instagram",text:p.caption||"",url:p.permalink,mediaType:p.media_type,image:p.thumbnail_url||p.media_url,publishedAt:p.timestamp}))).catch(e=>{errors.push("instagram: "+e.message);return[]}));}
+ if(env.THREADS_USER_ID&&env.THREADS_ACCESS_TOKEN){tasks.push(get(`https://graph.threads.net/${version}/${encodeURIComponent(env.THREADS_USER_ID)}/threads?fields=id,media_type,media_url,permalink,text,timestamp,username&limit=12&access_token=${encodeURIComponent(env.THREADS_ACCESS_TOKEN)}`).then(d=>(d.data||[]).map(p=>({id:p.id,source:"Threads @"+(p.username||"vepretski.igor"),text:p.text||"",url:p.permalink,mediaType:p.media_type,image:p.media_url,publishedAt:p.timestamp}))).catch(e=>{errors.push("threads: "+e.message);return[]}));}
+ if(env.FACEBOOK_PAGE_ID&&env.FACEBOOK_PAGE_ACCESS_TOKEN){tasks.push(get(`https://graph.facebook.com/${version}/${encodeURIComponent(env.FACEBOOK_PAGE_ID)}/posts?fields=id,message,permalink_url,created_time,full_picture&limit=12&access_token=${encodeURIComponent(env.FACEBOOK_PAGE_ACCESS_TOKEN)}`).then(d=>(d.data||[]).map(p=>({id:p.id,source:"Facebook",text:p.message||"",url:p.permalink_url,mediaType:p.full_picture?"PHOTO":"TEXT",image:p.full_picture,publishedAt:p.created_time}))).catch(e=>{errors.push("facebook: "+e.message);return[]}));}
+ const items=(await Promise.all(tasks)).flat().sort((a,b)=>Date.parse(b.publishedAt||0)-Date.parse(a.publishedAt||0)).slice(0,36);
+ return json({configured:tasks.length>0,items,errors,updatedAt:new Date().toISOString()});
+}
