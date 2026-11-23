@@ -75,15 +75,36 @@ for (const [route, target] of aliases) {
 const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
-  '7ya-content-os-20260918-v16',
-  'אני איגור.', 'החיים לימדו אותי', 'לבנות דרך.',
-  'אישי לפני מערכתי', 'להכיר אותי מעבר לכותרת',
+  '7ya-igor-first-20261123-v1', '20261123-v2-igor-first',
+  'hero-system-label', 'MY LIFE, IN CONTEXT',
+  'נולדתי בחרקוב וגדלתי בג׳סי כהן בחולון.',
+  'הסיפור שלי', 'מה אני בונה', 'לפתוח את המקורות',
+  'START HERE · האדם לפני המערכת', 'קודם להכיר אותי.', 'אחר כך לפתוח את העולם.',
+  '01 · PERSON', '02 · MISSION', '03 · CREATE', '04 · RECORD',
+  'StartOn', 'היצירה והקול שלי', '7YA · מקורות וראיות',
   'id="home"', 'id="story"', 'id="work"', 'id="topics"', 'id="media"',
-  'הסיפור שלי', 'העשייה שלי', 'דברו איתי',
-  'כל צילום ורגע באתר מובילים לפרסום או למקור',
-  'StartOn התחילה מחזרה למקום מוכר', 'לא קיר של לוגואים ולא מספרי ראווה',
+  'הסיפור', 'מה אני בונה', 'יצירה', 'מקורות', 'דברו איתי',
+  'StartOn התחילה מחזרה למקום מוכר',
   '7YA מארגנת את הזיכרון. איגור נשאר האדם.'
 ]) requireText(home, required, 'homepage');
+
+const homepageSchemaMatch = home.match(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/);
+if (!homepageSchemaMatch) {
+  fail('homepage is missing a closed JSON-LD block');
+} else {
+  try {
+    const homepageSchema = JSON.parse(homepageSchemaMatch[1]);
+    const graph = Array.isArray(homepageSchema['@graph']) ? homepageSchema['@graph'] : [];
+    graph.some(node => node['@id'] === 'https://7ya.io/#igor' && node['@type'] === 'Person')
+      ? pass('homepage identifies Igor as a Person entity')
+      : fail('homepage Person entity is missing');
+    graph.some(node => node['@id'] === 'https://starton.org.il/#organization' && node.founder?.['@id'] === 'https://7ya.io/#igor')
+      ? pass('StartOn founder relationship is linked to Igor')
+      : fail('StartOn founder relationship is missing');
+  } catch (error) {
+    fail(`homepage JSON-LD is invalid: ${error.message}`);
+  }
+}
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
