@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-export const GA4_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID ?? 'G-1028S7MMGQ';
+export const GA4_MEASUREMENT_ID = 'G-PVKYN39ZNF';
 export const GA4_MARKER = '<!-- 7YA_GA4 -->';
 
 if (!/^G-[A-Z0-9]+$/.test(GA4_MEASUREMENT_ID)) {
@@ -45,7 +45,7 @@ export async function injectGa4(root = 'dist') {
   for (const file of files) {
     if (file.replaceAll('\\\\', '/').includes('/api/')) continue;
     const html = await readFile(file, 'utf8');
-    const existingIds = [...html.matchAll(/googletagmanager\.com\/gtag\/js\?id=(G-[A-Z0-9]+)/g)]
+    const existingIds = [...html.matchAll(/googletagmanager\\.com\\/gtag\\/js\\?id=(G-[A-Z0-9]+)/g)]
       .map((match) => match[1]);
 
     if (existingIds.some((id) => id !== GA4_MEASUREMENT_ID)) {
@@ -61,7 +61,7 @@ export async function injectGa4(root = 'dist') {
       throw new Error(`${file} is missing </head>`);
     }
 
-    await writeFile(file, html.replace('</head>', `${snippet}\n</head>`), 'utf8');
+    await writeFile(file, html.replace('</head>', `${snippet}\\n</head>`), 'utf8');
     injected += 1;
   }
 
