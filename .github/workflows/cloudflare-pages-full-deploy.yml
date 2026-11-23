@@ -1,7 +1,7 @@
 name: Cloudflare Pages Full Site Bootstrap
 
 # Production deploys are normally handled directly by the Cloudflare GitHub App from main.
-# Recovery trigger refreshed 2026-10-09: require the deployed source commit, not a stale manifest.
+# Recovery trigger refreshed 2026-11-23: merge this workflow change to main to execute one governed production deployment and verify the exact source commit.
 # This workflow intentionally runs when this workflow file itself changes on main.
 on:
   workflow_dispatch:
