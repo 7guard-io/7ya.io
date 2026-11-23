@@ -109,6 +109,7 @@ export const publicStyleFiles = [
   'social-first-20260916.css',
   'site-impact-layer-20260918.css',
   'site-fix-20260925.css',
+  'igor-experience-20261123.css',
   'master-public-record-20260918.css',
   'personal-media-runtime-20260921.css',
   'zone-shells-v1.css',
@@ -140,6 +141,7 @@ export const publicScriptFiles = [
   'personal-media-runtime-20260921.js',
   'zone-shells-v1.js',
   'locale-runtime-20260919.js',
+  'igor-experience-20261123.js',
 ];
 
 export const criticalArtifactPaths = [
