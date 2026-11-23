@@ -164,7 +164,10 @@ for (const locale of locales) {
   for (const marker of revisedHeroActions[locale]) {
     if (!hero.includes(marker)) failures.push(locale + ': revised hero copy missing -> ' + marker);
   }
-  if (hero.includes('הסיפור שלי') || hero.includes('העשייה שלי') || hero.includes('דברו איתי')) {
+  const actions = (hero.match(/<div class="actions"[\s\S]*?<\/div>/i) || [,''])[1];
+  if (!actions) failures.push(locale + ': homepage primary action group missing');
+  if ((actions.match(/<a\b/gi) || []).length !== 2) failures.push(locale + ': homepage hero must have exactly two primary actions');
+  if (actions.includes('הסיפור שלי') || actions.includes('העשייה שלי') || actions.includes('דברו איתי')) {
     failures.push(locale + ': Hebrew primary CTA text leaked into localized hero');
   }
 }
