@@ -67,7 +67,33 @@
     return year?Number(year)*10000:0;
   };
 
-  const sourceMediaUrl=()=>''; // Text-first archive cards until a verified local asset is available.
+  let personalMediaManifest=null;
+  const sourceMediaUrl=(item)=>{
+    const indexed=personalMediaManifest?.social_previews?.find(record=>record.id===item?.id);
+    const approved=new Set([
+      ...(personalMediaManifest?.records||[]).map(record=>record.public_url||record.asset_url).filter(Boolean),
+      ...(personalMediaManifest?.social_previews||[]).map(record=>record.image_url).filter(Boolean)
+    ].map(value=>{
+      try{return new URL(value,location.origin).href}catch{return ''}
+    }).filter(Boolean));
+    const candidates=[
+      item?.media?.image,item?.media?.thumbnail,item?.image,item?.image_url,
+      item?.media_url,item?.thumbnail,item?.preview?.image,item?.preview?.url,
+      item?.full_picture,indexed?.image_url
+    ];
+    for(const candidate of candidates){
+      const raw=typeof candidate==='string'?candidate:(candidate?.url||candidate?.src||'');
+      if(!raw)continue;
+      try{
+        const resolved=new URL(String(raw).trim(),location.origin);
+        if(!['https:','http:'].includes(resolved.protocol)||resolved.username||resolved.password)continue;
+        if(resolved.protocol==='http:'&&resolved.origin!==location.origin)continue;
+        if(!approved.has(resolved.href))continue;
+        return resolved.href;
+      }catch{}
+    }
+    return '';
+  };
 
   const displayScore=(item)=>{
     const cls=classify(item);
@@ -107,7 +133,12 @@
     archive_only:!!record.archive_only,
     political:!!record.political,
     verification:record.verification,
-    source_class:record.source_class
+    source_class:record.source_class,
+    image:record.image,
+    image_url:record.image_url,
+    media:record.media,
+    thumbnail:record.thumbnail,
+    media_url:record.media_url
   });
 
   const canonicalUrl=(value)=>{
@@ -158,7 +189,30 @@
     a.dataset.feedOrigin=item.origin||'curated';
     a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
-    a.append(makeSourceFrame(item));
+    const imageUrl=sourceMediaUrl(item);
+    if(imageUrl){
+      const image=document.createElement('img');
+      image.src=imageUrl;
+      const indexed=personalMediaManifest?.social_previews?.find(record=>record.id===item.id);
+      image.alt=String(indexed?.alt?.[(document.documentElement.lang||'he').slice(0,2)]||item.image_alt||item.alt||`Preview supplied with the ${item.platform||'public'} publication: ${item.title||'public record'}`);
+      if(indexed?.width)image.width=indexed.width;
+      if(indexed?.height)image.height=indexed.height;
+      image.loading='lazy';
+      image.decoding='async';
+      image.referrerPolicy='no-referrer';
+      image.addEventListener('error',()=>{
+        image.remove();
+        a.classList.remove('has-source-media');
+        a.dataset.mediaState='source-fallback';
+        a.prepend(makeSourceFrame(item));
+      },{once:true});
+      a.classList.add('has-source-media');
+      a.dataset.mediaState='source-media';
+      a.append(image);
+    }else{
+      a.dataset.mediaState='source-fallback';
+      a.append(makeSourceFrame(item));
+    }
 
     const copy=document.createElement('div');
     copy.className='social-copy';
@@ -247,8 +301,10 @@
 
   Promise.all([
     fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();}),
-    fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();})
-  ]).then(([socialData,masterData])=>{
+    fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();}),
+    fetch('/knowledge/personal-media-manifest-20261127.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([socialData,masterData,mediaManifest])=>{
+    personalMediaManifest=mediaManifest;
     renderPlatforms(socialData.platforms);
     const curated=Array.isArray(socialData.moments)?socialData.moments:[];
     const masterRaw=Array.isArray(masterData.records)?masterData.records:[];
