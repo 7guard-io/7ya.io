@@ -250,3 +250,36 @@ body.home-page .life-album::after{display:none}
  .life-album-page-button{min-height:44px;padding:0 10px;font-size:9px}
  .life-album-page-status{font-size:9px}
 }
+
+
+/* Same cover treatment on every localized homepage template. */
+body.home-page main > .hero.restoration-hero,body.home-page main > .hero.launch-hero,body.home-page main > .hero{
+ min-height:calc(100svh - 62px);padding:clamp(38px,6vw,88px) clamp(18px,6vw,90px);
+ display:grid;grid-template-columns:minmax(0,1.08fr) minmax(290px,.82fr);gap:clamp(26px,5vw,76px);align-items:center;
+ background:var(--album-paper)!important;color:var(--album-ink)!important;border-bottom:1px solid var(--album-line);isolation:isolate
+}
+body.home-page main > .hero.restoration-hero::before,body.home-page main > .hero.launch-hero::before,body.home-page main > .hero::before{
+ content:"";position:absolute;z-index:-1;inset:18px;border:1px solid rgba(37,35,31,.12);border-radius:2px;transform:none;
+ background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(37,35,31,.025) 31px 32px)
+}
+body.home-page main > .hero .hero-index{color:rgba(166,64,46,.65);font:900 10px/1.5 ui-monospace,monospace;letter-spacing:.14em}
+body.home-page main > .hero .hero-copy{max-width:720px;z-index:2}
+body.home-page main > .hero h1{margin:18px 0 20px;color:var(--album-ink);font:900 clamp(48px,7vw,96px)/.92 Georgia,"Times New Roman",serif;letter-spacing:-.07em;text-transform:none}
+body.home-page main > .hero h1 em{color:var(--album-red)!important;font-style:normal}
+body.home-page main > .hero .lead{max-width:58ch;color:#514c43;font:500 clamp(15px,1.3vw,19px)/1.75 Georgia,"Times New Roman",serif}
+body.home-page main > .hero .actions{display:flex;flex-wrap:wrap;gap:10px}
+body.home-page main > .hero .btn{min-height:46px;padding:13px 17px;border:1px solid var(--album-ink);border-radius:2px;background:transparent;color:var(--album-ink);font-weight:800}
+body.home-page main > .hero .btn.primary{background:var(--album-red);border-color:var(--album-red);color:#fff}
+body.home-page main > .hero .text-link,body.home-page main > .hero .scroll-cue{color:var(--album-red);font:900 10px/1.4 ui-monospace,monospace;text-decoration:none}
+body.home-page main > .hero .source-note{color:var(--album-muted);font-size:10px}
+body.home-page main > .hero .source-note i{background:var(--album-red)}
+body.home-page main > .hero .portrait{position:relative;align-self:center;min-height:0;max-height:none;aspect-ratio:4/5;padding:11px;background:#fff;border:1px solid rgba(37,35,31,.2);box-shadow:var(--album-shadow);transform:rotate(1.2deg);overflow:visible}
+body.home-page main > .hero .portrait::before{content:"";position:absolute;z-index:3;top:-13px;left:36%;width:94px;height:25px;background:rgba(203,184,142,.72);transform:rotate(-5deg);box-shadow:0 2px 5px rgba(0,0,0,.08)}
+body.home-page main > .hero .portrait::after{display:none}
+body.home-page main > .hero .portrait img{display:block;width:100%;height:100%;min-height:0;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;filter:none}
+body.home-page main > .hero .portrait figcaption{position:static;display:flex;justify-content:space-between;gap:8px;padding:12px 3px 3px;color:var(--album-ink);background:transparent}
+body.home-page main > .hero .portrait figcaption span{color:var(--album-ink);font:900 10px/1.3 ui-monospace,monospace}
+body.home-page main > .hero .portrait figcaption small{color:var(--album-muted);font:italic 11px Georgia,serif}
+body.home-page main > .hero blockquote{position:absolute;z-index:2;left:clamp(18px,5vw,72px);bottom:22px;color:rgba(37,35,31,.14);font:900 clamp(22px,4vw,52px)/.8 Georgia,serif;letter-spacing:-.06em}
+@media(max-width:900px){body.home-page main > .hero{grid-template-columns:1fr;min-height:0;padding-top:40px}body.home-page main > .hero .portrait{width:min(100%,520px);justify-self:center;aspect-ratio:4/5;max-height:none}body.home-page main > .hero blockquote{display:none}}
+@media(max-width:620px){body.home-page main > .hero{padding:30px 16px 44px;gap:22px}body.home-page main > .hero h1{font-size:clamp(48px,14vw,68px);line-height:.94}body.home-page main > .hero .lead{font-size:16px}body.home-page main > .hero .portrait{width:90%;padding:8px}}
