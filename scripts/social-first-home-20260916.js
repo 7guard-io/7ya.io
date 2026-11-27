@@ -67,16 +67,7 @@
     return year?Number(year)*10000:0;
   };
 
-  const sourceMediaUrl=(item)=>[
-    item.image,
-    item.thumbnail,
-    item.poster,
-    item.media?.image,
-    item.media?.thumbnail,
-    item.media?.poster,
-    item.media?.url,
-    item.media?.src
-  ].find(value=>typeof value==='string'&&/^https?:\/\//i.test(value.trim()))?.trim()||'';
+  const sourceMediaUrl=()=>''; // Text-first archive cards until a verified local asset is available.
 
   const displayScore=(item)=>{
     const cls=classify(item);
@@ -167,26 +158,7 @@
     a.dataset.feedOrigin=item.origin||'curated';
     a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
-    const sourceMedia=sourceMediaUrl(item);
-    if(sourceMedia){
-      const img=document.createElement('img');
-      img.src=sourceMedia;
-      img.alt=item.title;
-      img.loading='lazy';
-      img.decoding='async';
-      img.referrerPolicy='no-referrer';
-      img.addEventListener('error',()=>{
-        if(!img.parentNode)return;
-        a.replaceChild(makeSourceFrame(item),img);
-        a.classList.remove('has-source-media');
-        a.dataset.sourceMedia='unavailable';
-      },{once:true});
-      a.classList.add('has-source-media');
-      a.dataset.sourceMedia='attached';
-      a.append(img);
-    }else{
-      a.append(makeSourceFrame(item));
-    }
+    a.append(makeSourceFrame(item));
 
     const copy=document.createElement('div');
     copy.className='social-copy';

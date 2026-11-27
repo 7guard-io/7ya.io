@@ -107,7 +107,35 @@
 
   // A child-identifying external repost is intentionally withheld from the public projection.
   const withheldRecordIds = new Set(['facebook-mial-newsonline']);
-  let records = [];
+  const metricKeys = new Map([
+    ['צפיות','views'],['views','views'],['חשיפה','reach'],['reach','reach'],
+    ['לייקים','likes'],['likes','likes'],['תגובות־רגש','reactions'],['reactions','reactions'],
+    ['תגובות בפוסט','comments'],['post comments','comments'],['שיתופים','shares'],['shares','shares'],
+    ['שמירות','saves'],['saves','saves'],['אינטראקציות','interactions'],['interactions','interactions']
+  ]);
+  const parseFallbackCard = card => {
+    const rawDate = card.querySelector('.public-voice-date')?.textContent.trim() || '';
+    const dateMatch = rawDate.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+    const date = dateMatch ? dateMatch[3]+'-'+dateMatch[2].padStart(2,'0')+'-'+dateMatch[1].padStart(2,'0') : '';
+    const metrics = {};
+    card.querySelectorAll('.public-voice-metrics > span').forEach(entry => {
+      const value = Number((entry.querySelector('b')?.textContent || '').replace(/[^\d.-]/g,''));
+      const label = (entry.querySelector('small')?.textContent || '').trim().toLocaleLowerCase(locale);
+      const key = metricKeys.get(label);
+      if (key && Number.isFinite(value)) metrics[key] = value;
+    });
+    return {
+      id:card.dataset.recordId || '', platform:card.dataset.platform || '',
+      owned:card.dataset.ownership === 'owned', date,
+      title:card.querySelector('h4')?.textContent.trim() || '',
+      audience_reactions:[...card.querySelectorAll('.public-voice-quotes blockquote')].map(node=>node.textContent.trim()).filter(Boolean),
+      metrics, url:card.querySelector('.public-voice-source')?.href || ''
+    };
+  };
+  const fallbackRecords = grid ? [...grid.querySelectorAll('[data-voice-card]')].map(parseFallbackCard).filter(item =>
+    item.id && item.url && item.audience_reactions.length
+  ) : [];
+  let records = fallbackRecords;
   let activeFilter = 'all';
 
   const dateLabel = (date) => {
@@ -226,10 +254,11 @@
     })
     .then(data => {
       const all = Array.isArray(data.moments) ? data.moments : [];
-      records = all
+      const remoteRecords = all
         .filter(item => item && item.id && !withheldRecordIds.has(item.id) && item.url &&
           Array.isArray(item.audience_reactions) && item.audience_reactions.length > 0)
         .sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+      records = remoteRecords.length ? remoteRecords : fallbackRecords;
       const excerpts = records.reduce((sum,item)=>sum + item.audience_reactions.length,0);
       const platforms = new Set(records.map(item=>item.platform).filter(Boolean));
       if (excerptCount) excerptCount.textContent = excerpts.toLocaleString(locale);
@@ -241,6 +270,7 @@
       if (status) status.textContent = lang === 'he'
         ? 'הארכיון החי לא נטען כרגע. קטעי המקור שכבר מופיעים כאן נשארים זמינים; אפשר לפתוח כל פרסום ישירות.'
         : c.status(25,8);
-      // Keep the source-linked static fallback in the page if the JSON endpoint is unavailable.
+      if (fallbackRecords.length) render();
+      // Search and filters keep using the static fallback while the corpus API is unavailable.
     });
 })();
