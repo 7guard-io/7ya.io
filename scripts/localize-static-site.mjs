@@ -3207,6 +3207,7 @@ function replaceVisibleCopy(html, locale, route) {
     ru:'Архив сохраняет путь с 2011 года до сегодня.',
     ar:'يحفظ الأرشيف المسار من عام 2011 حتى اليوم.'
   }[locale];
+  translations.set("המאגר שומר את הדרך מ־2011 ועד היום. כאן מקבלים טעימה מהרגעים שבהם אפשר לראות גם את מה שהקהל עשה עם התוכן — צפיות, תגובות, שיתופים והפצה מעבר לחשבון Owned.", "The archive preserves the path from 2011 to today. This section offers a glimpse of moments that show how audiences engaged with the content — views, comments, shares and distribution beyond an owned account.");
   if (archiveAudienceCopy) translations.set('המאגר שומר את הדרך מ־2011 ועד היום.', archiveAudienceCopy);
   const protectedBlocks=[];
   let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
@@ -3243,7 +3244,7 @@ function replaceVisibleCopy(html, locale, route) {
 
   if (locale === 'en') {
     const mixedScriptRepairs = [
-      ['Sourcesת','Sources'], ['בSources','Sources'], ['ב־SUPERNOAH','SUPERNOAH'],
+      ['Sourcesת','Sources'], ['בSources','Sources'], ['מSources','Sources'], ['לResearch','Research'], ['ה־Master','Master'], ['לLibrary','Library'], ['לEvidence','Evidence'], ['ב־SUPERNOAH','SUPERNOAH'],
       ['מFeed','Feed'], ['ב־Academia','Academia'], ['הResearch','Research'],
       ['וSources','Sources'], ['שSources','Sources'], ['וExternal','External'],
       ['כExternal','External'], ['כשStory','Story'], ['וMusic','Music'],
