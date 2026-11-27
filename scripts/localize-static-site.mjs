@@ -3397,13 +3397,13 @@ function applyLocale(html, locale, route) {
   const hasDedicatedLaunchNav=/<nav class=["']launch-nav["']/i.test(next);
   const nav=primaryNavigation(locale,route);
   if(!hasDedicatedLaunchNav){
-    if(/<nav class=["']seven-human-nav["'][\\s\\S]*?<\\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\\s\\S]*?<\\/nav>/i,nav);
-    else next=next.replace(/<body\\b[^>]*>/i,match=>match+'\\n'+nav);
+    if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
+    else next=next.replace(/<body\b[^>]*>/i,match=>match+'\n'+nav);
     if(locale!=='he'){
       const proof=proofMarkup(locale);
-      if(/<section class=["']seven-proof-layer["'][\\s\\S]*?<\\/section>/i.test(next))next=next.replace(/<section class=["']seven-proof-layer["'][\\s\\S]*?<\\/section>/i,proof);
+      if(/<section class=["']seven-proof-layer["'][\s\S]*?<\/section>/i.test(next))next=next.replace(/<section class=["']seven-proof-layer["'][\s\S]*?<\/section>/i,proof);
       const context=contextMarkup(locale,route);
-      next=next.replace(nav,nav+'\\n'+context);
+      next=next.replace(nav,nav+'\n'+context);
     }
   }
   const skip=next.match(/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i);
