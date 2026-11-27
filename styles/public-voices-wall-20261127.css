@@ -65,21 +65,17 @@
 }
 .public-voices-panel>a.public-voices-film{
   display:grid;
-  min-height:150px;
-  padding:0;
-  border-inline-start:1px solid rgba(140,255,0,.3);
-  flex-direction:row;
-  text-decoration:none;
   grid-template-columns:minmax(170px,290px) 1fr;
   min-height:150px;
   margin:28px 0 34px;
+  padding:0;
   background:#1b2118;
   color:#f7f3e8;
   text-decoration:none;
   border:1px solid rgba(140,255,0,.3);
   transition:border-color .2s ease,transform .2s ease;
 }
-.public-voices-film:hover{border-color:#8cff00;transform:translateY(-2px)}
+.public-voices-panel>a.public-voices-film:hover{border-color:#8cff00;transform:translateY(-2px)}
 .public-voices-film img{
   display:block;
   width:100%;
