@@ -111,6 +111,7 @@ export const publicStyleFiles = [
   'site-fix-20260925.css',
   'igor-experience-20261123.css',
   'public-voices-wall-20261127.css',
+  'igor-life-album-20261127.css',
   'master-public-record-20260918.css',
   'personal-media-runtime-20260921.css',
   'zone-shells-v1.css',
@@ -144,6 +145,7 @@ export const publicScriptFiles = [
   'locale-runtime-20260919.js',
   'igor-experience-20261123.js',
   'public-voices-wall-20261127.js',
+  'igor-life-album-20261127.js',
 ];
 
 export const criticalArtifactPaths = [
@@ -195,6 +197,7 @@ export const criticalArtifactPaths = [
   'styles/site-fix-20260925.css',
   'styles/master-public-record-20260918.css',
   'styles/personal-media-runtime-20260921.css',
+  'styles/igor-life-album-20261127.css',
   'styles/positive-creator-20260715.css',
   'styles/public-response-ai-20260715.css',
   'styles/zone-shells-v1.css',
@@ -225,6 +228,7 @@ export const criticalArtifactPaths = [
   'scripts/site-impact-layer-20260918.js',
   'scripts/master-public-record-20260918.js',
   'scripts/personal-media-runtime-20260921.js',
+  'scripts/igor-life-album-20261127.js',
   'scripts/zone-shells-v1.js',
   'scripts/locale-runtime-20260919.js',
   'data/evidence-claims.json',
