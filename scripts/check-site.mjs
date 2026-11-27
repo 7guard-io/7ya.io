@@ -76,7 +76,7 @@ const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
   '7ya-igor-first-20261123-v1', '20261123-v2-igor-first',
-  'NOT FASHION. FORCE.', 'החיים עצמם,',
+  'NOT FASHION. FORCE.', 'איגור ופרצקי',
   'גדלתי בג׳סי כהן בחולון',
   'הסיפור שלי', 'היכנסו לבנייה', 'לפתוח את המקורות',
   '67 רשומות מדיה מאומתות', '2,753+ פרסומים מתועדים', '6 סיפורי עוגן',

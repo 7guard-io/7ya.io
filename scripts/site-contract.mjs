@@ -110,6 +110,8 @@ export const publicStyleFiles = [
   'site-impact-layer-20260918.css',
   'site-fix-20260925.css',
   'igor-experience-20261123.css',
+  'igor-life-album-20261127.css',
+  'qa-426-igor-first.css',
   'public-voices-wall-20261127.css',
   'master-public-record-20260918.css',
   'personal-media-runtime-20260921.css',
@@ -143,6 +145,7 @@ export const publicScriptFiles = [
   'zone-shells-v1.js',
   'locale-runtime-20260919.js',
   'igor-experience-20261123.js',
+  'igor-life-album-20261127.js',
   'public-voices-wall-20261127.js',
 ];
 
