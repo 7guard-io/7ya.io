@@ -3443,6 +3443,14 @@ function applyLocale(html, locale, route) {
       next=next.replace(nav,nav+'\n'+context);
     }
   }
+  if (hasDedicatedLaunchNav) {
+    next = next.replace(/(<span\b[^>]*data-seven-languages[^>]*>)([\s\S]*?)(<\/span>)/i,
+      (_match, open, links, close) => open + links.replace(/<a\b([^>]*\blang=(["'])(he|en|ru|ar)\2[^>]*)>/gi,
+        (_anchor, attributes, quote, anchorLocale) => {
+          const cleaned = attributes.replace(/\saria-current=(["'])page\1/gi,'');
+          return '<a' + cleaned + (anchorLocale.toLowerCase() === locale ? ' aria-current="page"' : '') + '>';
+        }) + close);
+  }
   const skip=next.match(/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i);
   if(skip){next=next.replace(skip[0],'');next=next.replace(nav,skip[0]+'\n'+nav);}
   next=setMetadata(next,locale,route);
