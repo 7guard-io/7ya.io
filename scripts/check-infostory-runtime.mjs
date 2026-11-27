@@ -37,7 +37,7 @@ for (const id of sectionIds) {
   requireText(home, `id="${id}"`, 'Personal homepage');
 }
 
-const imageTags = home.match(/<img\\s[^>]*>/gi) || [];
+const imageTags = home.match(/<img\s[^>]*>/gi) || [];
 const verifiedPortraitCount = imageTags.filter(tag => tag.includes('/assets/igor-home-portrait-20260712.webp')).length;
 verifiedPortraitCount === 1 && imageTags.length === 1
   ? pass('Personal homepage uses only its verified local portrait')
@@ -45,7 +45,6 @@ verifiedPortraitCount === 1 && imageTags.length === 1
 for (const forbiddenImageHost of ['scontent.fbcdn.net', 'i.ytimg.com', 'media.licdn.com', 'storage.hidabroot.org', 'pic1.yitweb.co.il']) {
   excludeText(home, forbiddenImageHost, 'Personal homepage image sources');
 }
-imageCount >= 5 ? pass('Personal homepage uses varied source-linked imagery') : fail(`Personal homepage has only ${imageCount} image references`);
 
 for (const marker of [
   "fetch('/knowledge/social-corpus-20260918.json'",
