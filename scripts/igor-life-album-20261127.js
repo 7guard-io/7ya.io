@@ -3,10 +3,10 @@
  'use strict';
  const main=document.querySelector('body.home-page main');
  if(!main)return;
- const order=['storyflow','story','igor-film','personal-moments','work','originals','igor-live','audience-voices','social-depth','visual-archive','longform','writing','publication-scale','impact-wall','now-pulse','audience-pulse','topics','action-router','contact','commenter-call','launch-proof-strip','start-here','restoration-status'];
+ const order=['storyflow','story','igor-film','personal-moments','work','originals','igor-live','audience-voices','social-depth','visual-archive','longform','writing','publication-scale','impact-wall','now-pulse','audience-pulse','topics','action-router','now','commenter-call','launch-proof-strip','start-here','restoration-status'];
  const nodes=new Map([...main.children].filter(n=>n.id).map(n=>[n.id,n]));
  order.forEach(id=>{const node=nodes.get(id);if(node)main.append(node)});
- const chapters=[['story','הסיפור שלי'],['personal-moments','רגעים אישיים'],['work','StartOn והעשייה'],['originals','מוזיקה ויצירה'],['igor-live','מה שפרסמתי'],['audience-voices','התגובות שלכם'],['visual-archive','הארכיון'],['contact','הפרק הבא']];
+ const chapters=[['story','הסיפור שלי'],['personal-moments','רגעים אישיים'],['work','StartOn והעשייה'],['originals','מוזיקה ויצירה'],['igor-live','מה שפרסמתי'],['facebook-instagram','התגובות שלכם'],['visual-archive','הארכיון'],['now','הפרק הבא']];
  const nav=document.createElement('nav');nav.className='album-index';nav.setAttribute('aria-label','דפדוף בפרקי אלבום החיים');
  const label=document.createElement('span');label.className='album-index-label';label.textContent='דפדוף באלבום';nav.append(label);
  chapters.forEach(([id,title],i)=>{
