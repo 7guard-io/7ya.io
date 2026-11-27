@@ -52,7 +52,7 @@ function getSection(html,token){
  const end=html.indexOf('</section>',start);assert.ok(end>=0,'unclosed '+token);
  return html.slice(start,end+'</section>'.length);
 }
-for(const file of ['index.html','en/index.html']){
+for(const [locale,file] of [['he','index.html'],['en','en/index.html'],['ru','ru/index.html'],['ar','ar/index.html']]){
  const html=fs.readFileSync(path.join(root,file),'utf8');
  const hero=html.match(/<img\b[^>]*data-media-id="home-hero"[^>]*>/)?.[0]||'';
  assert.ok(hero,file+' needs the source-backed hero photograph');
@@ -61,7 +61,7 @@ for(const file of ['index.html','en/index.html']){
  const cards=[...moments.matchAll(/<a class="personal-moment[^"]*"[^>]*data-media-id="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)];
  assert.equal(cards.length,7,file+' must contain seven image-backed moments');
  const uniqueSrc=new Set();
- const locale=file.startsWith('en/')?'en':'he';
+ 
  for(const [,id,body] of cards){
   const record=byId.get(id);
   assert.ok(record,file+' uses an unregistered asset ID: '+id);
@@ -81,9 +81,15 @@ for(const file of ['index.html','en/index.html']){
  const video=getSection(html,'<section class="first-person-video');
  assert.match(video,/youtube-nocookie\.com\/embed\/fxFAUrb1h0M/,file+' must embed the first-person story');
  assert.match(video,/youtube\.com\/watch\?v=fxFAUrb1h0M/,file+' must retain the direct YouTube source fallback');
- assert.match(video,/loading="lazy"/,file+' iframe should be lazy loaded');
+ assert.match(video,/loading="eager"/,file+' opening iframe should be prioritized directly below the hero');
  assert.match(video,/playsinline=1/,file+' iframe should support mobile inline playback');
  assert.doesNotMatch(video,/autoplay=1|autoplay;/,file+' video must not autoplay');
+}
+assert.ok(manifest.social_previews?.length>=10,'manifest should index all existing source-linked social image previews');
+for(const preview of manifest.social_previews){
+ assert.match(preview.image_url,/^https:\/\//,preview.id+' preview must use HTTPS');
+ assert.match(preview.source_url,/^https:\/\//,preview.id+' source must use HTTPS');
+ assert.ok(preview.alt?.he&&preview.alt?.en&&preview.alt?.ru&&preview.alt?.ar,preview.id+' needs four-language alt text');
 }
 for(const video of manifest.videos){
  assert.match(video.source_url,/^https:\/\//,video.id+' needs a public source');
