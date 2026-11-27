@@ -4,6 +4,8 @@
   // A broken/missing visual stays an explicit source frame so the page preserves truth.
   const contentSelector='.social-card,.live-social-item,.media-density-card,.visual-tile,.storyflow-evidence,.source-shot,.original-card,.card.media,.pulse-card--media,.seven-proof-visual,.seven-route-depth-card.image,.personal-moment';
 
+  const currentLocale=()=>((document.documentElement.lang||'he').slice(0,2));
+  const localizeAlt=img=>{const alt=img.getAttribute?.('data-alt-'+currentLocale());if(alt)img.alt=alt};
   const isContentImage=img=>{
     const descriptor=[img.className,img.id,img.alt,img.getAttribute('src'),img.closest?.('[class]')?.className]
       .filter(Boolean).join(' ').toLowerCase();
@@ -17,6 +19,12 @@
     if(!img?.isConnected||img.dataset.personalMediaRecovery==='done'||!isContentImage(img))return;
     img.dataset.personalMediaRecovery='done';
     img.dataset.personalMedia='missing-no-fallback';
+    const card=img.closest('.personal-moment');
+    if(card&&!card.querySelector('.personal-media-failure')){
+      const note=document.createElement('span');note.className='personal-media-failure';note.setAttribute('role','img');
+      const copy={he:'התמונה לא נטענה · פתחו את המקור',en:'Image unavailable · open the source',ru:'Изображение недоступно · открыть источник',ar:'الصورة غير متاحة · افتح المصدر'};
+      note.textContent=copy[currentLocale()]||copy.en;card.append(note);
+    }
     img.removeAttribute('srcset');
     img.hidden=true;
     const container=img.closest(contentSelector)||img.parentElement;
@@ -31,6 +39,7 @@
     imgs.forEach(img=>{
       if(img.dataset.personalMediaWired)return;
       img.dataset.personalMediaWired='source-only';
+      localizeAlt(img);
       img.addEventListener('error',()=>markMissing(img),{once:true});
       if(img.complete&&img.naturalWidth===0)markMissing(img);
     });

@@ -6,6 +6,9 @@
  const order=['storyflow','story','igor-film','personal-moments','work','originals','media','audience-voices','social-depth','visual-archive','longform','writing','publication-scale','impact-wall','now-pulse','audience-pulse','topics','action-router','contact','commenter-call','launch-proof-strip','start-here','restoration-status'];
  const nodes=new Map([...main.children].filter(n=>n.id).map(n=>[n.id,n]));
  order.forEach(id=>{const node=nodes.get(id);if(node)main.append(node)});
+ const hero=[...main.children].find(node=>node.classList?.contains('hero'));
+ const film=nodes.get('igor-film');
+ if(hero&&film)hero.after(film);
  const locale=(document.documentElement.lang||'he').slice(0,2);
  const labels={
   he:[['story','הסיפור שלי'],['personal-moments','רגעים אישיים'],['work','StartOn והעשייה'],['originals','מוזיקה ויצירה'],['media','מה שפרסמתי'],['audience-voices','התגובות שלכם'],['visual-archive','הארכיון'],['contact','הפרק הבא']],
