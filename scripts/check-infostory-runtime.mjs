@@ -29,6 +29,7 @@ function excludeText(body, text, label) {
 
 const home = read('index.html');
 const runtime = read('scripts/social-first-home-20260916.js');
+const wall = read('scripts/public-voices-wall-20261127.js');
 const style = read('styles/forever-runtime-20260913.css');
 
 const sectionIds = ['home', 'story', 'work', 'topics', 'media'];
@@ -36,7 +37,14 @@ for (const id of sectionIds) {
   requireText(home, `id="${id}"`, 'Personal homepage');
 }
 
-const imageCount = (home.match(/<img\s/g) || []).length;
+const imageTags = home.match(/<img\\s[^>]*>/gi) || [];
+const verifiedPortraitCount = imageTags.filter(tag => tag.includes('/assets/igor-home-portrait-20260712.webp')).length;
+verifiedPortraitCount === 1 && imageTags.length === 1
+  ? pass('Personal homepage uses only its verified local portrait')
+  : fail(`Personal homepage has ${imageTags.length} image tags and ${verifiedPortraitCount} verified local portraits`);
+for (const forbiddenImageHost of ['scontent.fbcdn.net', 'i.ytimg.com', 'media.licdn.com', 'storage.hidabroot.org', 'pic1.yitweb.co.il']) {
+  excludeText(home, forbiddenImageHost, 'Personal homepage image sources');
+}
 imageCount >= 5 ? pass('Personal homepage uses varied source-linked imagery') : fail(`Personal homepage has only ${imageCount} image references`);
 
 for (const marker of [
@@ -44,12 +52,8 @@ for (const marker of [
   'replaceChildren', 'textContent', 'section.dataset.socialCorpusLoaded'
 ]) requireText(runtime, marker, 'Personal homepage runtime');
 
-for (const forbidden of [
-  'innerHTML',
-  'localStorage',
-  'OPENAI_API_KEY',
-  'NVIDIA_API_KEY',
-]) excludeText(runtime, forbidden, 'Personal homepage runtime');
+for (const forbidden of ['innerHTML','localStorage','OPENAI_API_KEY','NVIDIA_API_KEY','img.src=sourceMedia','media?.thumbnail']) excludeText(runtime, forbidden, 'Personal homepage runtime');
+for (const marker of ['const fallbackRecords = grid ?','let records = fallbackRecords;','records = remoteRecords.length ? remoteRecords : fallbackRecords;','if (fallbackRecords.length) render();']) requireText(wall, marker, 'Public voices fallback runtime');
 
 for (const marker of [
   '.hero', '.story-path', '.work-grid', '.topics', '.contact',
