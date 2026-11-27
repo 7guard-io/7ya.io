@@ -9,7 +9,7 @@ const corpus=JSON.parse(fs.readFileSync(path.join(root,'knowledge/social-corpus-
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'knowledge/personal-media-manifest-20261127.json'),'utf8'));
 class FakeClassList{
  constructor(owner){this.owner=owner;this.values=new Set()}
- replace(value=''){this.values=new Set(String(value).split(/\\s+/).filter(Boolean))}
+ replace(value=''){this.values=new Set(String(value).split(/\s+/).filter(Boolean))}
  contains(value){return this.values.has(value)}
  add(...values){values.forEach(v=>this.values.add(v));this.owner._className=[...this.values].join(' ')}
  remove(...values){values.forEach(v=>this.values.delete(v));this.owner._className=[...this.values].join(' ')}

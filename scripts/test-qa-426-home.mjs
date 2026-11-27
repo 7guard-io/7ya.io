@@ -13,10 +13,10 @@ for (const [locale, file, ownPath, name] of homes) {
   assert.match(html, new RegExp(`<h1[^>]*>${name}</h1>`), `${locale}: person name must be the H1`);
   assert.match(html, /class="[^"]*\bfirst-person-video\b[^"]*"[^>]*[\s\S]*?youtube\.com\/watch\?v=fxFAUrb1h0M/, 'first-person video must retain its original YouTube source');
   assert.match(html, /youtube-nocookie\.com\/embed\/fxFAUrb1h0M/, 'first-person video must be embedded in the opening experience');
-  const personalMoments=html.match(/<section class="personal-moments"[\\s\\S]*?<\\/section>/)?.[0]||'';
-  const imageCards=[...personalMoments.matchAll(/<a class="personal-moment[^"]*"[^>]*data-media-id="([^"]+)"[\\s\\S]*?<img\\b/g)];
+  const personalMoments=html.match(/<section class="personal-moments"[\s\S]*?<\/section>/)?.[0]||'';
+  const imageCards=[...personalMoments.matchAll(/<a class="personal-moment[^"]*"[^>]*data-media-id="([^"]+)"[\s\S]*?<img\b/g)];
   assert.equal(imageCards.length,7,`${locale}: every personal-moment card must include a real image`);
-  assert.doesNotMatch(personalMoments,/<a class="personal-moment[^"]*"[^>]*>\\s*<span/,`${locale}: empty media frames are forbidden`);
+  assert.doesNotMatch(personalMoments,/<a class="personal-moment[^"]*"[^>]*>\s*<span/,`${locale}: empty media frames are forbidden`);
   assert.match(html, /class="corpus-clarification"[\s\S]*?(?:September 2026|сентябрь 2026|ספטמבר 2026|سبتمبر 2026)/, `${locale}: corpus must be dated`);
   const switcher = html.match(/data-seven-languages[\s\S]*?<\/span>/)?.[0] || '';
   for (const [language, path] of Object.entries(routes)) {
