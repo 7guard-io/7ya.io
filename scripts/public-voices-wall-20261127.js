@@ -16,6 +16,7 @@
   const localePrefix = lang === 'he' ? '' : '/' + lang;
   const text = {
     he:{
+      kicker:'IGOR VEPRETSKI · תגובות אמיתיות למסלול שלי',filterGroupLabel:'סינון תגובות ציבוריות',statsLabel:'היקף קטעי התגובה',filmAlt:'איגור ופרצקי מספר את סיפורו בווידאו מקורי',
       title:'הסיפור שלי לא נגמר ברגע הפרסום.',
       intro:'אלה הקולות שחזרו אליי: תמיכה, הזדהות, צחוק, ויכוח וגם ביקורת. לא בחרתי רק מחמאות — כל קטע נשאר מחובר לפרסום המקורי.',
       excerptLabel:'קטעי תגובה ציבוריים',threadLabel:'פרסומים עם תגובות',platformLabel:'פלטפורמות',
@@ -32,6 +33,7 @@
       integrity:'היקף הפרסום: קטעי התגובה המאומתים שנכללים כרגע בקורפוס הציבורי של 7YA — לא ייצוא מלא של כל תגובה שאי פעם התקבלה בכל פלטפורמה. מדדי התגובות מתייחסים לשרשור המקורי; הקטעים המוצגים הם בחירה קצרה מתוכו. פרסומים חיצוניים מסומנים בנפרד, ופרטים מזהים של קטינים הושמטו.'
     },
     en:{
+      kicker:'IGOR VEPRETSKI · REAL RESPONSES TO MY STORY',filterGroupLabel:'Filter public comments',statsLabel:'Comment excerpt coverage',filmAlt:'Igor Vepretski tells his story in an original video',
       title:'My story does not end when I hit publish.',
       intro:'These are some of the voices that came back: support, recognition, humour, disagreement and criticism. The wall does not keep only compliments — every excerpt links to its original public post.',
       excerptLabel:'public comment excerpts',threadLabel:'public posts with responses',platformLabel:'platforms',
@@ -48,6 +50,7 @@
       integrity:'Scope: these are the verified comment excerpts currently included in 7YA’s public corpus — not a complete export of every comment ever received on every platform. Comment totals refer to the original thread; the displayed words are a short selection. External distribution is labelled separately, and identifying details about minors are omitted.'
     },
     ru:{
+      kicker:'ИГОРЬ ВЕПРЕЦКИЙ · РЕАКЦИИ НА МОЮ ИСТОРИЮ',filterGroupLabel:'Фильтр публичных комментариев',statsLabel:'Охват фрагментов комментариев',filmAlt:'Игорь Вепрецкий рассказывает свою историю в оригинальном видео',
       title:'Моя история не заканчивается после публикации.',
       intro:'Вот голоса, которые вернулись ко мне: поддержка, узнавание, юмор, спор и критика. Здесь не только комплименты — каждый фрагмент связан с исходной публичной публикацией.',
       excerptLabel:'фрагментов публичных комментариев',threadLabel:'публикаций с ответами',platformLabel:'платформы',
@@ -64,6 +67,7 @@
       integrity:'Охват: это проверенные фрагменты комментариев, которые сейчас включены в публичный корпус 7YA, а не полный экспорт всех комментариев на всех платформах. Счётчики относятся к исходным обсуждениям; показанные фразы — короткая выборка. Внешнее распространение отмечено отдельно, идентифицирующие сведения о несовершеннолетних удалены.'
     },
     ar:{
+      kicker:'إيغور فيبريتسكي · ردود حقيقية على قصتي',filterGroupLabel:'تصفية التعليقات العامة',statsLabel:'نطاق مقتطفات التعليقات',filmAlt:'إيغور فيبريتسكي يروي قصته في فيديو أصلي',
       title:'قصتي لا تنتهي لحظة النشر.',
       intro:'هذه بعض الأصوات التي عادت إليّ: الدعم والتعاطف والفكاهة والاختلاف والنقد. لا نعرض المديح فقط؛ كل مقتطف مرتبط بمنشوره العام الأصلي.',
       excerptLabel:'مقتطفات من التعليقات العامة',threadLabel:'منشورات تضم ردوداً',platformLabel:'منصات',
@@ -90,6 +94,12 @@
       search.placeholder = c.searchPlaceholder;
       search.setAttribute('aria-label', c.searchLabel);
     }
+    const filterGroup = panel.querySelector('.public-voices-filters');
+    if (filterGroup) filterGroup.setAttribute('aria-label', c.filterGroupLabel);
+    const stats = panel.querySelector('.public-voices-stats');
+    if (stats) stats.setAttribute('aria-label', c.statsLabel);
+    const filmImage = panel.querySelector('.public-voices-film img');
+    if (filmImage) filmImage.alt = c.filmAlt;
     const localizedPaths = panel.querySelectorAll('[data-voices-local-path]');
     localizedPaths.forEach(link => { link.href = localePrefix + link.dataset.voicesLocalPath; });
   };
