@@ -3218,7 +3218,7 @@ function replaceVisibleCopy(html, locale, route) {
     "איגור ופרצקי — צילום במה והרצאות מתוך ארכיון 7YA": {
       "en": "Igor Vepretski — speaking and stage portrait from the 7YA archive",
       "ru": "Игорь Вепрецкий — фотография выступления из архива 7YA",
-      "ar": "إيغور فيبريتсקי — صورة من أرشيف 7YA أثناء إلقاء كلمة"
+      "ar": "إيغور فيبريتسكي — صورة من أرشيف 7YA أثناء إلقاء كلمة"
     },
     "תצוגה מקדימה של סרטון StartOn בערוץ YouTube של איגור ופרצקי": {
       "en": "YouTube preview for Igor Vepretski’s public StartOn video",
@@ -3248,6 +3248,49 @@ function replaceVisibleCopy(html, locale, route) {
   translations.set('הסיפור שלי בגוף ראשון.', locale==='en' ? 'My story, in the first person.' : locale==='ru' ? 'Моя история от первого лица.' : 'قصتي بلساني.');
   translations.set('וידאו מקורי שבו אני מספר את הסיפור בקול שלי — עם קישור ישיר למקור.', locale==='en' ? 'An original video where I tell the story myself, with a direct link to the source.' : locale==='ru' ? 'Оригинальное видео, где я сам рассказываю свою историю, с прямой ссылкой на источник.' : 'فيديو أصلي أروي فيه قصتي بنفسي، مع رابط مباشر إلى المصدر.');
   translations.set('לצפייה ב-YouTube ↗', locale==='en' ? 'Watch on YouTube ↗' : locale==='ru' ? 'Смотреть на YouTube ↗' : 'شاهدوا على YouTube ↗');
+  const startHereTranslations = {
+    'START HERE · האדם לפני המערכת': {en:'START HERE · the person before the system',ru:'НАЧНИТЕ ЗДЕСЬ · человек прежде системы',ar:'ابدأ من هنا · الإنسان قبل النظام'},
+    '01 · PERSON': {en:'01 · PERSON',ru:'01 · ЧЕЛОВЕК',ar:'01 · الإنسان'},
+    '01 · האדם': {en:'01 · PERSON',ru:'01 · ЧЕЛОВЕК',ar:'01 · الإنسان'},
+    '02 · MISSION': {en:'02 · MISSION',ru:'02 · МИССИЯ',ar:'02 · الرسالة'},
+    '03 · CREATE': {en:'03 · CREATE',ru:'03 · ТВОРЧЕСТВО',ar:'03 · الإبداع'},
+    '04 · RECORD': {en:'04 · RECORD',ru:'04 · АРХИВ',ar:'04 · السجل'},
+    'IGOR · FIRST האדם · ORIGINAL וידאו': {en:'IGOR · FIRST PERSON · ORIGINAL VIDEO',ru:'ИГОРЬ · ОТ ПЕРВОГО ЛИЦА · ОРИГИНАЛЬНОЕ ВИДЕО',ar:'إيغور · بلسانه · فيديو أصلي'},
+    'קודם להכיר אותי.': {en:'First, get to know me.',ru:'Сначала познакомьтесь со мной.',ar:'تعرّفوا إليّ أولاً.'},
+    'אחר כך לפתוח את העולם.': {en:'Then explore my world.',ru:'Затем откройте мой мир.',ar:'ثم اكتشفوا عالمي.'},
+    'אני האדם שבמרכז. StartOn היא העשייה החברתית; יצירה ומחקר הם חלק מהדרך; 7YA מחברת את הסיפור לרגעים, למדיה ולמקורות — בלי לערבב ביניהם.': {en:'I am the person at the centre. StartOn is my social work; creativity and research are part of the journey; 7YA connects the story to moments, media and sources without conflating them.',ru:'В центре — я как человек. StartOn — моя общественная работа; творчество и исследования — часть пути; 7YA связывает историю с моментами, медиа и источниками, не смешивая их.',ar:'أنا الإنسان في المركز. StartOn هو عملي الاجتماعي؛ والإبداع والبحث جزء من الرحلة؛ تربط 7YA القصة باللحظات والوسائط والمصادر من دون خلط بينها.'},
+    'חרקוב, ג׳סי כהן, שירות, משטרה, משפחה, יצירה והבחירות שעיצבו את הדרך שלי.': {en:'Kharkiv, Jessy Cohen, service, policing, family, creativity and the choices that shaped my path.',ru:'Харьков, Джесси Коэн, служба, полиция, семья, творчество и решения, определившие мой путь.',ar:'خاركيف، جيسي كوهين، الخدمة، الشرطة، العائلة، الإبداع والقرارات التي شكّلت طريقي.'},
+    'להכיר את איגור ↗': {en:'Meet Igor ↗',ru:'Познакомиться с Игорем ↗',ar:'تعرّفوا إلى إيغور ↗'},
+    'העשייה החברתית בשטח: טכנולוגיה, למידה, יצירה ושייכות לצעירים.': {en:'On-the-ground social work: technology, learning, creativity and belonging for young people.',ru:'Общественная работа на местах: технологии, обучение, творчество и чувство принадлежности для молодёжи.',ar:'العمل الاجتماعي على أرض الواقع: التكنولوجيا والتعلّم والإبداع والانتماء للشباب.'},
+    'לראות את המשימה ↗': {en:'Explore the mission ↗',ru:'Узнать о миссии ↗',ar:'اكتشفوا الرسالة ↗'},
+    'היצירה והקול שלי': {en:'My creative work and voice',ru:'Моё творчество и мой голос',ar:'إبداعي وصوتي'},
+    'מוזיקה, וידאו, ראיונות ופודקאסטים — לא נספח לאתר, חלק מהביוגרפיה.': {en:'Music, video, interviews and podcasts — not an appendix to the site, but part of the biography.',ru:'Музыка, видео, интервью и подкасты — не приложение к сайту, а часть биографии.',ar:'الموسيقى والفيديو والمقابلات والبودكاست — ليست ملحقاً بالموقع، بل جزء من السيرة.'},
+    'למדיה המקורית ↗': {en:'Original media ↗',ru:'К оригинальным материалам ↗',ar:'إلى المواد الأصلية ↗'},
+    '7YA · מקורות וראיות': {en:'7YA · sources and evidence',ru:'7YA · источники и доказательства',ar:'7YA · المصادر والأدلة'},
+    'הארכיון שמחבר אדם, רגע, תאריך ופרסום. מה מאומת, מה מדווח ומה עדיין בבדיקה.': {en:'An archive connecting a person, moment, date and publication. What is verified, what is reported and what is still being checked.',ru:'Архив связывает человека, момент, дату и публикацию. Что подтверждено, что сообщается и что ещё проверяется.',ar:'أرشيف يربط الإنسان واللحظة والتاريخ والمنشور. ما تم التحقق منه، وما تم الإبلاغ عنه، وما يزال قيد المراجعة.'},
+    'לפתוח את המקורות ↗': {en:'Open the sources ↗',ru:'Открыть источники ↗',ar:'افتحوا المصادر ↗'},
+    'יש כיוון לשיחה?': {en:'Have something to discuss?',ru:'Есть тема для разговора?',ar:'هل لديكم موضوع للنقاش؟'},
+    'אפשר לדבר על שותפות, הרצאה, יצירה, מחקר או רעיון שראוי להפוך לעשייה.': {en:'Let’s talk about a partnership, a talk, creative work, research or an idea worth putting into action.',ru:'Можно обсудить партнёрство, выступление, творчество, исследования или идею, которую стоит воплотить.',ar:'يمكننا مناقشة شراكة أو محاضرة أو إبداع أو بحث أو فكرة تستحق أن تتحول إلى عمل.'},
+    'דברו איתי': {en:'Talk with me',ru:'Связаться со мной',ar:'تحدثوا معي'},
+    'לשיחה עם Igor באתר': {en:'Talk with Igor on the site',ru:'Поговорить с Игорем на сайте',ar:'تحدثوا مع إيغور عبر الموقع'}
+  };
+  for (const [source, variants] of Object.entries(startHereTranslations)) if (variants[locale]) translations.set(source, variants[locale]);
+  const personalEntryTranslations = {
+    'בלי שפה של ארגון גדול: אדם אחד, מסלול לא ישר, ועשייה שאפשר לראות ולבדוק.': {
+      en:'No corporate language: one person, an unconventional path, and work you can see and verify.',
+      ru:'Без корпоративных формулировок: один человек, непрямой путь и работа, которую можно увидеть и проверить.',
+      ar:'بلا لغة المؤسسات الكبيرة: شخص واحد، ومسار غير مستقيم، وعمل يمكن رؤيته والتحقق منه.'
+    },
+    'אישי לפני מערכתי': {en:'PERSON BEFORE SYSTEM',ru:'ЧЕЛОВЕК ПРЕЖДЕ СИСТЕМЫ',ar:'الإنسان قبل النظام'},
+    'העיקרון שמוביל את 7YA': {en:'The principle behind 7YA',ru:'Принцип, которым руководствуется 7YA',ar:'المبدأ الذي يوجّه 7YA'},
+    'להכיר אותי מעבר לכותרת': {en:'Get to know me beyond the headline',ru:'Узнать меня за пределами заголовка',ar:'تعرّفوا إليّ بعيداً عن العنوان'},
+    '2,753+ פרסומים מאונדקסים · 434 רשומות במאגר החיים (מתוכן 170 עם מדד מספרי מתועד) · 67 רשומות מדיה מאומתות · 6 סיפורי עוגן מרכזיים. הקורפוס הוא ארכיון נבחר ומתוארך: ספטמבר 2026 — לא פיד בזמן אמת.': {
+      en:'2,753+ indexed publications · 434 life-archive records (170 with documented numeric metrics) · 67 verified media records · 6 anchor stories. A curated archive dated September 2026 — not a live feed.',
+      ru:'2 753+ публикаций в индексе · 434 записи в архиве жизни (170 с документированными числовыми показателями) · 67 проверенных медиазаписей · 6 ключевых историй. Корпус — отобранный архив с датировкой: сентябрь 2026 года, а не лента в реальном времени.',
+      ar:'أكثر من 2,753 منشوراً مفهرساً · 434 سجلاً في أرشيف الحياة (170 منها مرتبطة بمؤشرات رقمية موثقة) · 67 سجلاً إعلامياً موثقاً · 6 قصص محورية. هذا أرشيف منتقى ومؤرخ في سبتمبر 2026، وليس خلاصة مباشرة في الوقت الفعلي.'
+    }
+  };
+  for (const [source, variants] of Object.entries(personalEntryTranslations)) if (variants[locale]) translations.set(source, variants[locale]);
   for (const [source, variants] of Object.entries(launchTranslationMap)) {
     if (variants[locale]) translations.set(source, variants[locale]);
   }
@@ -3301,6 +3344,23 @@ function replaceVisibleCopy(html, locale, route) {
       ['ב־YouTube','on YouTube'], ['ב־Instagram','on Instagram']
     ];
     for (const [from,to] of mixedScriptRepairs) next = next.split(from).join(to);
+  }
+  if (locale !== 'he') {
+    next = next.replace(/<(section|aside|p)\\b([^>]*)>/gi, (tag, tagName, attrs) => {
+      const className = attrs.match(/\\bclass=["']([^"']+)["']/i)?.[1] || '';
+      const classes = className.split(/\\s+/);
+      const name = tagName.toLowerCase();
+      const target = (name === 'section' && (classes.includes('first-person-video') || classes.includes('start-here'))) || (name === 'p' && classes.includes('corpus-clarification'));
+      if (!target) return tag;
+      const cleanAttrs = attrs.replace(/\\s(?:lang|dir)=["'][^"']*["']/gi, '');
+      return '<' + tagName + cleanAttrs + ' lang="' + locale + '" dir="' + dirFor(locale) + '">';
+    });
+  }
+  if (route === '') {
+    next = next.replace(/<body\\b([^>]*)>/i, (tag, attrs) => {
+      if (/\\bclass=["'][^"']*\\bhome-page\\b/i.test(attrs)) return tag;
+      return '<body' + attrs + ' class="home-page">';
+    });
   }
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }

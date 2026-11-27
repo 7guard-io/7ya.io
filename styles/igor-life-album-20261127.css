@@ -183,3 +183,21 @@ html[lang="he"] .personal-moment-caption[data-media-locale="he"],html[lang="en"]
 body.home-page .personal-media-failure{position:absolute;z-index:4;inset:12px 12px auto;padding:9px 11px;background:rgba(8,9,10,.88);border-inline-start:3px solid #8cff00;color:#fff;font:700 10px/1.4 ui-monospace,monospace}
 @media(max-width:760px){body.home-page .personal-moment-caption{inset:auto 12px 12px}body.home-page .personal-moment-caption b{font-size:19px}}
 @media(prefers-reduced-motion:reduce){body.home-page .personal-moment>img{transition:none!important}}
+
+/* Keep the first-person video copy strictly locale-scoped in every language. */
+html[lang="he"] .first-person-video [data-igor-locale]:not([data-igor-locale="he"]),
+html[lang="en"] .first-person-video [data-igor-locale]:not([data-igor-locale="en"]),
+html[lang="ru"] .first-person-video [data-igor-locale]:not([data-igor-locale="ru"]),
+html[lang="ar"] .first-person-video [data-igor-locale]:not([data-igor-locale="ar"]){display:none!important}
+html[lang="he"] .first-person-video [data-igor-locale="he"],
+html[lang="en"] .first-person-video [data-igor-locale="en"],
+html[lang="ru"] .first-person-video [data-igor-locale="ru"],
+html[lang="ar"] .first-person-video [data-igor-locale="ar"]{display:inline!important}
+html[lang="he"] .first-person-video p[data-igor-locale="he"],
+html[lang="en"] .first-person-video p[data-igor-locale="en"],
+html[lang="ru"] .first-person-video p[data-igor-locale="ru"],
+html[lang="ar"] .first-person-video p[data-igor-locale="ar"]{display:block!important}
+html[lang="he"] .first-person-video a[data-igor-locale="he"],
+html[lang="en"] .first-person-video a[data-igor-locale="en"],
+html[lang="ru"] .first-person-video a[data-igor-locale="ru"],
+html[lang="ar"] .first-person-video a[data-igor-locale="ar"]{display:inline-flex!important}

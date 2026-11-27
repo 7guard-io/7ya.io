@@ -39,10 +39,10 @@ for (const id of sectionIds) {
 
 const imageTags = home.match(/<img\s[^>]*>/gi) || [];
 const verifiedPortraitCount = imageTags.filter(tag => tag.includes('/assets/igor-home-portrait-20260712.webp')).length;
-verifiedPortraitCount === 1 && imageTags.length === 1
-  ? pass('Personal homepage uses only its verified local portrait')
+verifiedPortraitCount === 1 && imageTags.length >= 8
+  ? pass('Personal homepage includes verified hero portrait and seven gallery images')
   : fail(`Personal homepage has ${imageTags.length} image tags and ${verifiedPortraitCount} verified local portraits`);
-for (const forbiddenImageHost of ['scontent.fbcdn.net', 'i.ytimg.com', 'media.licdn.com', 'storage.hidabroot.org', 'pic1.yitweb.co.il']) {
+for (const forbiddenImageHost of ['scontent.fbcdn.net', 'media.licdn.com', 'storage.hidabroot.org', 'pic1.yitweb.co.il']) {
   excludeText(home, forbiddenImageHost, 'Personal homepage image sources');
 }
 
@@ -51,7 +51,8 @@ for (const marker of [
   'replaceChildren', 'textContent', 'section.dataset.socialCorpusLoaded'
 ]) requireText(runtime, marker, 'Personal homepage runtime');
 
-for (const forbidden of ['innerHTML','localStorage','OPENAI_API_KEY','NVIDIA_API_KEY','img.src=sourceMedia','media?.thumbnail']) excludeText(runtime, forbidden, 'Personal homepage runtime');
+requireText(runtime, 'item?.media?.thumbnail', 'Personal homepage approved media resolver');
+for (const forbidden of ['innerHTML','localStorage','OPENAI_API_KEY','NVIDIA_API_KEY','img.src=sourceMedia']) excludeText(runtime, forbidden, 'Personal homepage runtime');
 for (const marker of ['const fallbackRecords = grid ?','!withheldRecordIds.has(item.id)','let records = fallbackRecords;','records = remoteRecords.length ? remoteRecords : fallbackRecords;','if (fallbackRecords.length) render();']) requireText(wall, marker, 'Public voices fallback runtime');
 
 for (const marker of [
