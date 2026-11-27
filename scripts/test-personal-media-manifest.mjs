@@ -27,6 +27,12 @@ function readWebpDimensions(file){
  }
  throw new Error('Unsupported WebP dimension header: '+file);
 }
+const localeSource=fs.readFileSync(path.join(root,'scripts/localize-static-site.mjs'),'utf8');
+for(const record of manifest.records){
+ for(const locale of ['he','en','ru','ar']){
+  assert.ok(localeSource.includes(record.alt[locale]),record.id+' localized alt is missing for '+locale);
+ }
+}
 for(const record of manifest.records){
  assert.ok(record.id&&record.chapter&&record.relationship_to_igor,'relationship metadata is required');
  assert.ok(record.width>0&&record.height>0&&record.aspect_ratio,record.id+' requires dimensions and ratio');

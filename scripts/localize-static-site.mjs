@@ -3195,45 +3195,45 @@ function replaceVisibleCopy(html, locale, route) {
   const routeSpecific = routeTranslations[locale] || new Map();
   const translations=new Map([...commonTranslations[locale],...restorationTranslations[locale],...humanFirstTranslations[locale],...coreNarrativeTranslations[locale],...Object.entries(technicalTranslations[locale]),...routeSpecific]);
   const personalMediaAlts = {
-    'איגור ופרצקי באולפן, צילום מקורי מארכיון 7YA': {
-      en: 'Igor Vepretski in a recording studio — original image from the 7YA archive',
-      ru: 'Игорь Вепрецкий в студии — фотография из архива 7YA',
-      ar: 'إيغور فيبريتسكي في الاستوديو — صورة من أرشيف 7YA'
+    "איגור ופרצקי באולפן, צילום מקורי מארכיון 7YA": {
+      "en": "Igor Vepretski in a recording studio, original 7YA archive photograph",
+      "ru": "Игорь Вепрецкий в студии — фотография из архива 7YA",
+      "ar": "إيغور فيبريتسكي في الاستوديو — صورة من أرشيف 7YA"
     },
-    'איגור ופרצקי — צילום תקריב מתוך ארכיון 7YA': {
-      en: 'Igor Vepretski — close-up photograph from the 7YA archive',
-      ru: 'Игорь Вепрецкий — портрет крупным планом из архива 7YA',
-      ar: 'إيغور فيبريتسكي — صورة شخصية مقرّبة من أرشيف 7YA'
+    "איגור ופרצקי — צילום תקריב מתוך ארכיון 7YA": {
+      "en": "Igor Vepretski — close-up portrait from the 7YA archive",
+      "ru": "Игорь Вепрецкий — портрет крупным планом из архива 7YA",
+      "ar": "إيغور فيبريتسكي — صورة شخصية مقرّبة من أرشيف 7YA"
     },
-    'איגור ופרצקי — צילום אישי המקושר לווידאו הסיפור בגוף ראשון': {
-      en: 'Igor Vepretski — personal photograph paired with his first-person story video',
-      ru: 'Игорь Вепрецкий — личная фотография рядом с видеоисторией от первого лица',
-      ar: 'إيغور فيبريتسكي — صورة شخصية مرتبطة بفيديو قصته بصوته'
+    "איגור ופרצקי — צילום אישי המקושר לווידאו הסיפור בגוף ראשון": {
+      "en": "Igor Vepretski — personal image paired with the first-person story video",
+      "ru": "Игорь Вепрецкий — личная фотография рядом с видеоисторией от первого лица",
+      "ar": "إيغور فيبريتسكي — صورة شخصية مرتبطة بفيديو قصته بصوته"
     },
-    'איגור ופרצקי — פרק השירות הציבורי, צילום מתוך ארכיון 7YA': {
-      en: 'Igor Vepretski — public-service chapter photograph from the 7YA archive',
-      ru: 'Игорь Вепрецкий — фотография о публичной службе из архива 7YA',
-      ar: 'إيغور فيبريتسكي — صورة من فصل الخدمة العامة في أرشيف 7YA'
+    "איגור ופרצקי — פרק השירות הציבורי, צילום מתוך ארכיון 7YA": {
+      "en": "Igor Vepretski — public-service chapter visual from the 7YA archive",
+      "ru": "Игорь Вепрецкий — визуальный материал о публичной службе из архива 7YA",
+      "ar": "إيغور فيبريتسكي — صورة من فصل الخدمة العامة في أرشيف 7YA"
     },
-    'איגור ופרצקי — צילום במה והרצאות מתוך ארכיון 7YA': {
-      en: 'Igor Vepretski — speaking and stage photograph from the 7YA archive',
-      ru: 'Игорь Вепрецкий — фотография выступлений из архива 7YA',
-      ar: 'إيغور فيبريتسكي — صورة لإيغور أثناء التحدث وإلقاء المحاضرات من أرشيف 7YA'
+    "איגור ופרצקי — צילום במה והרצאות מתוך ארכיון 7YA": {
+      "en": "Igor Vepretski — speaking and stage portrait from the 7YA archive",
+      "ru": "Игорь Вепрецкий — фотография выступления из архива 7YA",
+      "ar": "إيغور فيبريتсקי — صورة من أرشيف 7YA أثناء إلقاء كلمة"
     },
-    'תצוגה מקדימה של סרטון StartOn בערוץ YouTube של איגור ופרצקי': {
-      en: 'YouTube preview for Igor Vepretski’s public StartOn video',
-      ru: 'Превью публичного видео StartOn на YouTube Игоря Вепрецкого',
-      ar: 'معاينة فيديو StartOn العام على قناة إيغور فيبريتسكي على YouTube'
+    "תצוגה מקדימה של סרטון StartOn בערוץ YouTube של איגור ופרצקי": {
+      "en": "YouTube preview for Igor Vepretski’s public StartOn video",
+      "ru": "Превью публичного видео StartOn на YouTube Игоря Вепрецкого",
+      "ar": "معاينة فيديو StartOn العام على قناة إيغور فيبريتسكي في YouTube"
     },
-    'תצוגה מקדימה של פרסום מוזיקלי VEPRETSKI ב-YouTube': {
-      en: 'YouTube preview for a VEPRETSKI music publication',
-      ru: 'Превью музыкальной публикации VEPRETSKI на YouTube',
-      ar: 'معاينة منشور موسيقي لـ VEPRETSKI على YouTube'
+    "תצוגה מקדימה של פרסום מוזיקלי VEPRETSKI ב-YouTube": {
+      "en": "YouTube preview for a VEPRETSKI music publication",
+      "ru": "Превью музыкальной публикации VEPRETSKI на YouTube",
+      "ar": "معاينة منشور موسيقي لـ VEPRETSKI على YouTube"
     },
-    'איגור ופרצקי — צילום אישי המקושר לעבודה ולמחקר': {
-      en: 'Igor Vepretski — personal photograph paired with work and research',
-      ru: 'Игорь Вепрецкий — личный портрет рядом с работой и исследованиями',
-      ar: 'إيغور فيبريتسكي — صورة شخصية مرتبطة بالعمل والبحث'
+    "איגור ופרצקי — צילום אישי המקושר לעבודה ולמחקר": {
+      "en": "Igor Vepretski — personal portrait paired with work and research",
+      "ru": "Игорь Вепрецкий — личный портрет рядом с работой и исследованиями",
+      "ar": "إيغور فيبريتسكي — صورة شخصية مرتبطة بالعمل والبحث"
     }
   };
   for (const [source, variants] of Object.entries(personalMediaAlts)) {
