@@ -380,3 +380,7 @@
 .action-route:hover{border-color:#8cff00;transform:translateY(-2px)}.action-route small{color:#8cff00;font:900 9px ui-monospace,monospace;letter-spacing:.1em}.action-route h3{margin:17px 0 6px;font:500 clamp(22px,2.4vw,30px)/1.1 var(--serif)}
 .action-route p{margin:0 0 14px;color:#aeb5a7;font-size:11px}.action-route strong{margin-top:auto;color:#e9f1e1;font-size:12px;line-height:1.55}.action-router-contact{margin:24px 0 0;color:#b6beb0;font-size:11px}.action-router-contact a{font-weight:900}
 @media(max-width:760px){.launch-nav{justify-content:flex-start;gap:16px;min-height:58px}.launch-nav .launch-brand{margin-inline-end:10px}.launch-hero{grid-template-columns:1fr!important;min-height:0!important;padding-top:58px!important}.launch-hero .portrait{grid-row:1;max-width:340px;margin:0 auto 22px}.launch-hero .hero-copy{grid-row:2}.launch-transition{align-items:flex-start;flex-direction:column;gap:10px}.action-router-grid{grid-template-columns:1fr}.action-route{min-height:180px}}
+
+/* Film card is intentionally text-only until a locally verified frame is available. */
+.public-voices-panel>a.public-voices-film{grid-template-columns:1fr}
+.public-voices-film-copy{grid-column:1/-1}
