@@ -3443,6 +3443,7 @@ export async function localizeStaticSite(output){
         ? await fs.readFile(authoredEnglishHome,'utf8')
         : base;
       await fs.writeFile(target,applyLocale(localeBase,locale,route),'utf8');
+    }
   }
   await writeSitemap(output);
   console.log('LOCALE_PROJECTION: PASS (he/en/ru/ar · clean paths · hreflang · sitemap)');
