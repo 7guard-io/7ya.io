@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
 import { resolve } from 'node:path';
 
 const read = async path => readFile(resolve(process.cwd(), path), 'utf8');
@@ -25,6 +26,8 @@ assert.equal(album.chapters.find(chapter => chapter.id === 'fatherhood').media, 
 const cssPath = 'styles/igor-life-album-20261127.css';
 const jsPath = 'scripts/igor-life-album-20261127.js';
 const dataPath = 'knowledge/igor-life-album-20261127.json';
+const syntax = spawnSync(process.execPath, ['--check', 'scripts/igor-life-album-20261127.js'], { encoding: 'utf8' });
+assert.equal(syntax.status, 0, 'life album runtime must pass node --check: ' + (syntax.stderr || syntax.stdout));
 const css = await read('dist/' + cssPath);
 const js = await read('dist/' + jsPath);
 assert.ok(css.includes('.life-album-spread'), 'album spread styles must ship');
@@ -37,4 +40,8 @@ for (const locale of ['','en/','ru/','ar/']) {
   assert.ok(html.includes(jsPath), path + ' is missing the album runtime');
   assert.match(html, /<body[^>]*class=["'][^"']*home-page/, path + ' must enable the homepage album runtime');
 }
-console.log('LIFE_ALBUM: PASS (8 canonical chapters · source-linked media only · privacy gates · HE/EN/RU/AR assets)');
+const contract = await read('scripts/site-contract.mjs');
+assert.ok(contract.includes(cssPath), 'site contract must ship album CSS');
+assert.ok(contract.includes(jsPath), 'site contract must ship album JS');
+assert.ok(contract.includes(dataPath), 'site contract must require album data');
+console.log('LIFE_ALBUM: PASS (8 canonical chapters · source-linked media only · privacy gates · HE/EN/RU/AR assets · JS syntax)');
