@@ -92,15 +92,15 @@ for (const locale of ['he',...locales]) {
 
 const humanFirstHomepageContract={
   en:{
-    required:['My personal site · live and evolving','START HERE · choose your path','A metric is not an outcome.'],
+    required:['LIVING ARCHIVE · VERIFIED SOURCES ONLY · ZERO STOCK PHOTOS','Life itself,','You Left a Comment. Now Step In.'],
     forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
   },
   ru:{
-    required:['Мой личный сайт · живой и обновляемый','НАЧНИТЕ ЗДЕСЬ · выберите свой маршрут','Метрика — не результат.'],
+    required:['ЖИВОЙ АРХИВ · ТОЛЬКО ПРОВЕРЕННЫЕ ИСТОЧНИКИ · БЕЗ СТОКОВЫХ ФОТО','Сама жизнь,','Вы когда-то оставили комментарий. Теперь присоединяйтесь.'],
     forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
   },
   ar:{
-    required:['موقعي الشخصي · حيّ ومتجدد','ابدأ من هنا · اختر مسارك','المقياس ليس نتيجة.'],
+    required:['أرشيف حي · مصادر موثقة فقط · بلا صور مخزنة','الحياة نفسها،','هل سبق أن تركتم تعليقاً؟ حان وقت المشاركة.'],
     forbidden:['האתר האישי שלי · חי ומתעדכן','START HERE · בלי לנחש מה לחפש','מדד הוא לא תוצאה.']
   }
 };
@@ -123,9 +123,9 @@ const homepageUiHebrewForbidden = [
   '✓ ניווט'
 ];
 const homepageLocaleRequired = {
-  en: ['The archive preserves the path from 2011 to today.','Voices from the comments','✓ Open','✓ Available','✓ Navigation ready'],
-  ru: ['Архив сохраняет путь с 2011 года до сегодня.','Голоса из комментариев','✓ Открыто','✓ Доступно','✓ Навигация готова'],
-  ar: ['يحفظ الأرشيف المسار من عام 2011 حتى اليوم.','أصوات من التعليقات','✓ مفتوح','✓ متاح','✓ التنقل جاهز']
+  en: ['The archive preserves the path from 2011 to today.','To everyone who ever stopped, left a comment on my feed, and kept scrolling — this is the callback.','67 Verified Media Records'],
+  ru: ['Архив сохраняет путь с 2011 года до сегодня.','Всем, кто когда-либо остановился, написал мне комментарий в ленте и продолжил листать, — это обращение к вам.','67 проверенных медиазаписей'],
+  ar: ['يحفظ الأرشيف المسار من عام 2011 حتى اليوم.','إلى كل من توقف يوماً وترك تعليقاً على صفحتي ثم واصل التمرير — هذه الرسالة لكم.','67 سجلاً إعلامياً موثقاً']
 };
 for (const locale of locales) {
   const html=await fs.readFile(path.join(dist,locale,'index.html'),'utf8');
@@ -140,22 +140,22 @@ for (const locale of locales) {
 // Guard the most visible personal copy against future fallback to Hebrew.
 const personalPageLocaleContract = {
   en: {
-    home: ['I was born in Kharkiv and grew up in Jesse Cohen, Holon.', 'Opportunity and belonging', 'If something in this story', '7YA organizes the memory. Igor remains the person at its center.'],
+    home: ['Raised in Jessy Cohen, Holon.', 'Opportunity and belonging', 'If something in this story', '7YA organizes the memory. Igor remains the person at its center.'],
     story: ['Not a title. A journey.', 'I was born in Kharkiv and grew up in Israel.', 'Three distinct tracks: a social mission', 'These accounts are not marketing channels on this site.']
   },
   ru: {
-    home: ['Я родился в Харькове и вырос в Джесси Коэн в Холоне.', 'Возможности и причастность', 'Если что-то в этой истории', '7YA упорядочивает память.'],
+    home: ['Я вырос в Джесси Коэн в Холоне, командовал боевым подразделением Пальсар 401', 'Возможности и причастность', 'Если что-то в этой истории', '7YA упорядочивает память.'],
     story: ['Не должность. Путь.', 'Я родился в Харькове, вырос в Израиле.', 'Три разных направления: социальная миссия', 'Эти аккаунты на сайте — не «маркетинговые каналы».']
   },
   ar: {
-    home: ['وُلدت في خاركيف ونشأت في جيسي كوهين في حولون.', 'الفرص والانتماء', 'إذا كان في هذه القصة ما', 'تنظّم 7YA الذاكرة'],
+    home: ['نشأت في جيسي كوهين في حولون، وقدت وحدة قتالية في بلسار 401', 'الفرص والانتماء', 'إذا كان في هذه القصة ما', 'تنظّم 7YA الذاكرة'],
     story: ['ليست صفة وظيفية. بل رحلة.', 'وُلدت في خاركيف ونشأت في إسرائيل.', 'ثلاثة مسارات مختلفة: رسالة اجتماعية', 'هذه الحسابات ليست «قنوات تسويق» على الموقع']
   }
 };
 const revisedHeroActions = {
   en: ['You Left a Comment. Now Step In.', 'Inspect the Proof-of-Work Ledger', 'Raised in Jessy Cohen, Holon.'],
-  ru: ['Смотреть BIZZI', 'Узнать о StartOn', 'Я родился в Харькове и вырос в Джесси Коэн в Холоне.'],
-  ar: ['شاهد BIZZI', 'اكتشف StartOn', 'وُلدت في خاركيف ونشأت في جيسي كوهين في حولون.']
+  ru: ['Вы когда-то оставили комментарий. Теперь присоединяйтесь.', 'Откройте журнал подтверждённой работы (Proof of Work)', 'Я вырос в Джесси Коэн в Холоне, командовал боевым подразделением Пальсар 401'],
+  ar: ['هل سبق أن تركتم تعليقاً؟ حان وقت المشاركة.', 'افتحوا سجل العمل المثبت (Proof of Work)', 'نشأت في جيسي كوهين في حولون، وقدت وحدة قتالية في بلسار 401']
 };
 for (const locale of locales) {
   const html = await fs.readFile(path.join(dist, locale, 'index.html'), 'utf8');
