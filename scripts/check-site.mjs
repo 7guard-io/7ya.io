@@ -76,14 +76,15 @@ const home = read('index.html');
 for (const required of [
   'איגור ופרצקי', 'IGOR VEPRETSKI',
   '7ya-igor-first-20261123-v1', '20261123-v2-igor-first',
-  'hero-system-label', 'MY LIFE, IN CONTEXT',
-  'נולדתי בחרקוב וגדלתי בג׳סי כהן בחולון.',
-  'הסיפור שלי', 'מה אני בונה', 'לפתוח את המקורות',
+  'NOT FASHION. FORCE.', 'החיים עצמם,',
+  'גדלתי בג׳סי כהן בחולון',
+  'הסיפור שלי', 'היכנסו לבנייה', 'לפתוח את המקורות',
+  '67 רשומות מדיה מאומתות', '2,753+ פרסומים מתועדים', '6 סיפורי עוגן',
   'START HERE · האדם לפני המערכת', 'קודם להכיר אותי.', 'אחר כך לפתוח את העולם.',
   '01 · PERSON', '02 · MISSION', '03 · CREATE', '04 · RECORD',
   'StartOn', 'היצירה והקול שלי', '7YA · מקורות וראיות',
   'id="home"', 'id="story"', 'id="work"', 'id="topics"', 'id="media"',
-  'הסיפור', 'מה אני בונה', 'יצירה', 'מקורות', 'דברו איתי',
+  'הסיפור', 'היכנסו לבנייה', 'יצירה', 'מקורות', 'דברו איתי',
   'StartOn התחילה מחזרה למקום מוכר',
   '7YA מארגנת את הזיכרון. איגור נשאר האדם.'
 ]) requireText(home, required, 'homepage');
@@ -108,8 +109,8 @@ if (!homepageSchemaMatch) {
 
 for (const technical of [
   'width=device-width, initial-scale=1, viewport-fit=cover',
-  '/assets/personal-hero-20260716/igor-hero.webp',
-  '/assets/personal-hero-20260716/igor-closeup.webp',
+  '/assets/igor-home-portrait-20260712.webp',
+  '/styles/public-voices-wall-20261127.css',
   '/styles/forever-runtime-20260913.css',
   '/styles/social-first-20260916.css',
   '/scripts/social-first-home-20260916.js'
@@ -171,10 +172,11 @@ excludeText(experienceGuide, 'localStorage', 'experience guide privacy contract'
 excludeText(experienceGuide, 'innerHTML', 'experience guide rendering contract');
 
 const signalKey = read('scripts/7ya-signal-key-20260715.js');
+// The companion now uses route-aware prompt sets instead of the retired creatorMode/clipboard API.
 for (const required of [
-  "creatorMode: 'create'", "creatorMode: 'momentum'", "creatorMode: 'impact'",
+  'function routePrompts()', 'c.evidencePrompts', 'c.startonPrompts',
   "fetch('/api/guide'", "window.addEventListener('7ya:creator-seed'",
-  'navigator.clipboard.writeText', 'אני המלווה החיובי של 7YA'
+  "setAttribute('aria-expanded'"
 ]) requireText(signalKey, required, 'Signal Key companion');
 excludeText(signalKey, 'localStorage', 'Signal Key privacy contract');
 excludeText(signalKey, 'innerHTML', 'Signal Key rendering contract');
