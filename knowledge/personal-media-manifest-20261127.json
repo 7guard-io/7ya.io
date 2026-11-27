@@ -27,7 +27,8 @@
         "en": "Igor Vepretski in a recording studio, original 7YA archive photograph",
         "ru": "Игорь Вепрецкий в студии — фотография из архива 7YA",
         "ar": "إيغور فيبريتسكي في الاستوديو — صورة من أرشيف 7YA"
-      }
+      },
+      "object_position": "50% 24%"
     },
     {
       "id": "home-closeup",
@@ -52,7 +53,8 @@
         "en": "Igor Vepretski — close-up portrait from the 7YA archive",
         "ru": "Игорь Вепрецкий — портрет крупным планом из архива 7YA",
         "ar": "إيغور فيبريتسكي — صورة شخصية مقرّبة من أرشيف 7YA"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-hero-story",
@@ -77,7 +79,8 @@
         "en": "Igor Vepretski — personal image paired with the first-person story video",
         "ru": "Игорь Вепрецкий — личная фотография рядом с видеоисторией от первого лица",
         "ar": "إيغور فيبريتسكي — صورة شخصية مرتبطة بفيديو قصته بصوته"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-service",
@@ -102,7 +105,8 @@
         "en": "Igor Vepretski — public-service chapter visual from the 7YA archive",
         "ru": "Игорь Вепрецкий — визуальный материал о публичной службе из архива 7YA",
         "ar": "إيغور فيبريتسكي — صورة من فصل الخدمة العامة في أرشيف 7YA"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-speaker",
@@ -127,7 +131,8 @@
         "en": "Igor Vepretski — speaking and stage portrait from the 7YA archive",
         "ru": "Игорь Вепрецкий — фотография выступления из архива 7YA",
         "ar": "إيغور فيبريتсקי — صورة من أرشيف 7YA أثناء إلقاء كلمة"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-starton",
@@ -151,7 +156,8 @@
         "en": "YouTube preview for Igor Vepretski’s public StartOn video",
         "ru": "Превью публичного видео StartOn на YouTube Игоря Вепрецкого",
         "ar": "معاينة فيديو StartOn العام على قناة إيغور فيبريتسكي في YouTube"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-music",
@@ -175,7 +181,8 @@
         "en": "YouTube preview for a VEPRETSKI music publication",
         "ru": "Превью музыкальной публикации VEPRETSKI на YouTube",
         "ar": "معاينة منشور موسيقي لـ VEPRETSKI على YouTube"
-      }
+      },
+      "object_position": "50% 50%"
     },
     {
       "id": "home-research",
@@ -200,7 +207,8 @@
         "en": "Igor Vepretski — personal portrait paired with work and research",
         "ru": "Игорь Вепрецкий — личный портрет рядом с работой и исследованиями",
         "ar": "إيغور فيبريتسكي — صورة شخصية مرتبطة بالعمل والبحث"
-      }
+      },
+      "object_position": "50% 50%"
     }
   ],
   "videos": [

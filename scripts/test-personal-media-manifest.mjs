@@ -68,6 +68,7 @@ for(const file of ['index.html','en/index.html']){
   assert.equal(src,record.public_url||record.asset_url,id+' src must match manifest');
   assert.equal(alt,record.alt[locale],id+' alt must match page locale');
   assert.deepEqual({width,height},{width:record.width,height:record.height},id+' dimensions must match manifest');
+  assert.ok(attrs.includes(`data-focal-point="${record.object_position}"`),id+' focal point must match manifest');
   assert.ok(!uniqueSrc.has(src),file+' repeats the same image across separate scenes: '+src);
   uniqueSrc.add(src);
  }
