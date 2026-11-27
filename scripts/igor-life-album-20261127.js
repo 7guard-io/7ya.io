@@ -23,7 +23,7 @@
   link.addEventListener('click',()=>{nav.querySelectorAll('a').forEach(a=>a.removeAttribute('aria-current'));link.setAttribute('aria-current','location')});
   nav.append(link);
  });
- const header=document.querySelector('[data-launch-header]');
+ const header=document.querySelector('[data-launch-header]')||document.querySelector('[data-seven-human-nav]')||document.querySelector('header');
  if(header&&nav.children.length>1)header.after(nav);
  if('IntersectionObserver'in window){
   const links=[...nav.querySelectorAll('a')];
