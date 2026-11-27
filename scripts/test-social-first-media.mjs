@@ -45,6 +45,12 @@ test('renders a canonical preview registered in the media manifest',async()=>{
  assert.ok(image);assert.equal(image.src,record.image);assert.equal(image.loading,'lazy');assert.equal(image.decoding,'async');
  assert.match(image.alt,/LinkedIn publication/);assert.equal(card.dataset.mediaState,'source-media');
 });
+test('canonicalizes local manifest asset paths before allowlist comparison',async()=>{
+ const local=manifest.records.find(item=>item.id==='home-closeup');
+ const rail=await render([{id:'local-preview',platform:'Facebook',title:'Local source image',url:'https://www.facebook.com/example/posts/7',image:local.public_url}]);
+ const image=rail.children[0].children.find(item=>item?.tagName==='img');
+ assert.ok(image);assert.equal(image.src,new URL(local.public_url,'https://7ya.io').href);
+});
 test('uses a registered source thumbnail when title and date metadata are missing',async()=>{
  const indexed=manifest.social_previews.find(item=>item.id==='linkedin-identity-20260911');
  const rail=await render([{id:indexed.id,platform:indexed.platform,url:indexed.source_url}]);

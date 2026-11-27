@@ -73,7 +73,9 @@
     const approved=new Set([
       ...(personalMediaManifest?.records||[]).map(record=>record.public_url||record.asset_url).filter(Boolean),
       ...(personalMediaManifest?.social_previews||[]).map(record=>record.image_url).filter(Boolean)
-    ]);
+    ].map(value=>{
+      try{return new URL(value,location.origin).href}catch{return ''}
+    }).filter(Boolean));
     const candidates=[
       item?.media?.image,item?.media?.thumbnail,item?.image,item?.image_url,
       item?.media_url,item?.thumbnail,item?.preview?.image,item?.preview?.url,
