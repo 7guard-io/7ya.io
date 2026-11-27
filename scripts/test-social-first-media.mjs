@@ -49,6 +49,8 @@ class FakeElement {
     this.classList = new FakeClassList(this);
     this._className = '';
     this.isFragment = fragment;
+    this.listeners = {};
+    this.parentNode = null;
   }
 
   set className(value) {
@@ -62,9 +64,25 @@ class FakeElement {
 
   append(...nodes) {
     for (const node of nodes) {
-      if (node?.isFragment) this.children.push(...node.children);
-      else this.children.push(node);
+      if (node?.isFragment) {
+        for (const child of node.children) { child.parentNode = this; this.children.push(child); }
+      } else {
+        if (node && typeof node === 'object') node.parentNode = this;
+        this.children.push(node);
+      }
     }
+  }
+
+  prepend(...nodes) {
+    for (const node of [...nodes].reverse()) {
+      if (node && typeof node === 'object') node.parentNode = this;
+      this.children.unshift(node);
+    }
+  }
+
+  remove() {
+    if (this.parentNode) this.parentNode.children = this.parentNode.children.filter(child => child !== this);
+    this.parentNode = null;
   }
 
   replaceChildren(...nodes) {
@@ -76,7 +94,8 @@ class FakeElement {
     this[name] = String(value);
   }
 
-  addEventListener() {}
+  addEventListener(type, callback) { this.listeners[type] = callback; }
+  trigger(type) { this.listeners[type]?.({ type, target: this }); }
 
   querySelectorAll(selector) {
     const matches = [];
@@ -144,7 +163,55 @@ test('renders attached media from the media object as the social-card visual', a
 
   assert.ok(image, 'an attached-media record should render an image element');
   assert.equal(image.src, 'https://media.example.test/post-preview.jpg');
+  assert.equal(image.loading, 'lazy');
+  assert.equal(image.decoding, 'async');
+  assert.match(image.alt, /LinkedIn publication/);
   assert.equal(card.classList.contains('has-source-media'), true);
+  assert.equal(card.dataset.mediaState, 'source-media');
+});
+
+test('uses a preview image even when descriptive metadata is incomplete', async () => {
+  const rail = await render([{
+    id: 'partial-image-record',
+    platform: 'LinkedIn',
+    url: 'https://www.linkedin.com/feed/update/partial',
+    image: 'https://media.example.test/partial.jpg'
+  }]);
+  const card = rail.children[0];
+  const image = card?.children.find(child => child?.tagName === 'img');
+  assert.ok(image, 'an image URL must not be discarded when title/date metadata is absent');
+  assert.equal(image.src, 'https://media.example.test/partial.jpg');
+});
+
+test('falls back to a labeled source frame when a preview image fails', async () => {
+  const rail = await render([{
+    id: 'failed-image',
+    platform: 'Facebook',
+    title: 'A public post',
+    url: 'https://www.facebook.com/example/posts/1',
+    image: 'https://cdn.example.test/expired.jpg'
+  }]);
+  const card = rail.children[0];
+  const image = card.children.find(child => child?.tagName === 'img');
+  assert.ok(image);
+  image.trigger('error');
+  assert.equal(card.children.some(child => child?.className === 'social-frame'), true);
+  assert.equal(card.classList.contains('has-source-media'), false);
+  assert.equal(card.dataset.mediaState, 'source-fallback');
+});
+
+test('rejects unsafe image schemes and retains a source-frame fallback', async () => {
+  const rail = await render([{
+    id: 'unsafe-image',
+    platform: 'External',
+    title: 'A public source',
+    url: 'https://example.test/post',
+    image: 'javascript:alert(1)'
+  }]);
+  const card = rail.children[0];
+  assert.equal(card.children.some(child => child?.tagName === 'img'), false);
+  assert.equal(card.children.some(child => child?.className === 'social-frame'), true);
+  assert.equal(card.dataset.mediaState, 'source-fallback');
 });
 
 test('the selected public social posts retain their verified source-preview media', () => {

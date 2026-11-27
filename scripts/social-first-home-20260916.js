@@ -67,7 +67,24 @@
     return year?Number(year)*10000:0;
   };
 
-  const sourceMediaUrl=()=>''; // Text-first archive cards until a verified local asset is available.
+  const sourceMediaUrl=(item)=>{
+    const candidates=[
+      item?.media?.image,item?.media?.thumbnail,item?.image,item?.image_url,
+      item?.media_url,item?.thumbnail,item?.preview?.image,item?.preview?.url,
+      item?.full_picture
+    ];
+    for(const candidate of candidates){
+      const raw=typeof candidate==='string'?candidate:(candidate?.url||candidate?.src||'');
+      if(!raw)continue;
+      try{
+        const resolved=new URL(String(raw).trim(),location.origin);
+        if(!['https:','http:'].includes(resolved.protocol)||resolved.username||resolved.password)continue;
+        if(resolved.protocol==='http:'&&resolved.origin!==location.origin)continue;
+        return resolved.href;
+      }catch{}
+    }
+    return '';
+  };
 
   const displayScore=(item)=>{
     const cls=classify(item);
@@ -107,7 +124,12 @@
     archive_only:!!record.archive_only,
     political:!!record.political,
     verification:record.verification,
-    source_class:record.source_class
+    source_class:record.source_class,
+    image:record.image,
+    image_url:record.image_url,
+    media:record.media,
+    thumbnail:record.thumbnail,
+    media_url:record.media_url
   });
 
   const canonicalUrl=(value)=>{
@@ -158,7 +180,27 @@
     a.dataset.feedOrigin=item.origin||'curated';
     a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
-    a.append(makeSourceFrame(item));
+    const imageUrl=sourceMediaUrl(item);
+    if(imageUrl){
+      const image=document.createElement('img');
+      image.src=imageUrl;
+      image.alt=String(item.image_alt||item.alt||`Preview supplied with the ${item.platform||'public'} publication: ${item.title||'untitled record'}`);
+      image.loading='lazy';
+      image.decoding='async';
+      image.referrerPolicy='no-referrer';
+      image.addEventListener('error',()=>{
+        image.remove();
+        a.classList.remove('has-source-media');
+        a.dataset.mediaState='source-fallback';
+        a.prepend(makeSourceFrame(item));
+      },{once:true});
+      a.classList.add('has-source-media');
+      a.dataset.mediaState='source-media';
+      a.append(image);
+    }else{
+      a.dataset.mediaState='source-fallback';
+      a.append(makeSourceFrame(item));
+    }
 
     const copy=document.createElement('div');
     copy.className='social-copy';
