@@ -17,8 +17,15 @@
   ar:[['story','قصتي'],['personal-moments','لحظات شخصية'],['work','StartOn والعمل'],['originals','الموسيقى والإبداع'],['media','ما نشرته'],['audience-voices','ردودكم'],['visual-archive','الأرشيف'],['contact','الفصل التالي']]
  };
  const chapters=labels[locale]||labels.he;
- const nav=document.createElement('nav');nav.className='album-index';nav.setAttribute('aria-label','דפדוף בפרקי אלבום החיים');
- const label=document.createElement('span');label.className='album-index-label';label.textContent='דפדוף באלבום';nav.append(label);
+ const indexCopy={
+  he:{aria:'דפדוף בפרקי אלבום החיים',label:'דפדוף באלבום'},
+  en:{aria:'Browse life album chapters',label:'Browse the album'},
+  ru:{aria:'Навигация по главам альбома жизни',label:'Навигация по альбому'},
+  ar:{aria:'تصفح فصول ألبوم الحياة',label:'تصفح الألبوم'}
+ };
+ const indexLabels=indexCopy[locale]||indexCopy.en;
+ const nav=document.createElement('nav');nav.className='album-index';nav.setAttribute('aria-label',indexLabels.aria);
+ const label=document.createElement('span');label.className='album-index-label';label.textContent=indexLabels.label;nav.append(label);
  chapters.forEach(([id,title],i)=>{
   const target=document.getElementById(id);if(!target)return;
   target.dataset.albumChapter=String(i+1);
