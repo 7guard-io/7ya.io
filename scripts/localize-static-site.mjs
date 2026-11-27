@@ -3201,6 +3201,13 @@ function replaceVisibleCopy(html, locale, route) {
   for (const [source, variants] of Object.entries(launchTranslationMap)) {
     if (variants[locale]) translations.set(source, variants[locale]);
   }
+
+  const archiveAudienceCopy = {
+    en:'The archive preserves the path from 2011 to today.',
+    ru:'Архив сохраняет путь с 2011 года до сегодня.',
+    ar:'يحفظ الأرشيف المسار من عام 2011 حتى اليوم.'
+  }[locale];
+  if (archiveAudienceCopy) translations.set('המאגר שומר את הדרך מ־2011 ועד היום.', archiveAudienceCopy);
   const protectedBlocks=[];
   let next=html.replace(/<(script|style|template)\b[^>]*>[\s\S]*?<\/\1>/gi,block=>{
     const token='__7YA_LOCALE_PROTECTED_'+protectedBlocks.length+'__';
@@ -3232,6 +3239,17 @@ function replaceVisibleCopy(html, locale, route) {
       const mixedScriptRepairs=[['לSources','Sources'],['וResearch','Research'],['Sourcesי','Sources'],['הSourcesית','public sources'],['הSourcesי','Sources'],['בExternal','External'],['והSourcesות','sources'],['הSources','Sources'],['Sourcesות','Sources'],['בSourcesות','Sources'],['וה־One','One'],['ה־One','One']];
       for(const [source,target] of mixedScriptRepairs) next=next.split(source).join(target);
     }
+  }
+
+  if (locale === 'en') {
+    const mixedScriptRepairs = [
+      ['Sourcesת','Sources'], ['בSources','Sources'], ['ב־SUPERNOAH','SUPERNOAH'],
+      ['מFeed','Feed'], ['ב־Academia','Academia'], ['הResearch','Research'],
+      ['וSources','Sources'], ['שSources','Sources'], ['וExternal','External'],
+      ['כExternal','External'], ['כשStory','Story'], ['וMusic','Music'],
+      ['ב־YouTube','on YouTube'], ['ב־Instagram','on Instagram']
+    ];
+    for (const [from,to] of mixedScriptRepairs) next = next.split(from).join(to);
   }
   return next.replace(/__7YA_LOCALE_PROTECTED_(\d+)__/g,(_match,index)=>protectedBlocks[Number(index)]||'');
 }
