@@ -331,3 +331,45 @@ body.home-page .footer{padding-top:32px!important}
  body.home-page .start-here-card,body.home-page .work-card{transition:none!important}
  body.home-page .work-card:hover{transform:none}
 }
+
+/* 7YA · IGOR LIVING LIFE ALBUM · 2026-11-27 */
+body.home-page .igor-album{position:relative;overflow:hidden;padding:clamp(58px,8vw,112px) clamp(18px,5.5vw,88px);background:#e9e3d6;color:#171815;isolation:isolate}
+body.home-page .igor-album:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;background-image:radial-gradient(#5c5548 .55px,transparent .55px);background-size:5px 5px;pointer-events:none}
+body.home-page .igor-album-head{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,6vw,90px);align-items:end;max-width:1450px;margin:0 auto 42px}
+body.home-page .igor-album-kicker{font:700 10px/1.4 ui-monospace,monospace;letter-spacing:.18em;color:#5c6254;margin:0 0 18px}
+body.home-page .igor-album-head h2{font-size:clamp(48px,7.4vw,106px);line-height:.88;letter-spacing:-.075em;margin:0;font-weight:950;color:#171815}
+body.home-page .igor-album-head h2 em{font-style:normal;color:#657d28}
+body.home-page .igor-album-head>p{max-width:48ch;margin:0 0 5px;color:#44463d;font-size:clamp(15px,1.35vw,19px);line-height:1.8}
+body.home-page .igor-album-cover{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(260px,.92fr);gap:clamp(16px,3vw,42px);max-width:1450px;margin:0 auto 42px;align-items:stretch}
+body.home-page .igor-album-cover-photo{position:relative;display:block;min-height:clamp(300px,42vw,570px);padding:13px;background:#fff;box-shadow:0 14px 34px #1718151c;transform:rotate(-1.1deg)}
+body.home-page .igor-album-cover-photo img{display:block;width:100%;height:100%;min-height:inherit;object-fit:cover;object-position:center 30%;filter:saturate(.88)}
+body.home-page .igor-album-stamp{position:absolute;inset:auto 26px 25px auto;padding:9px 13px;border:1px solid #fff;background:#171815d9;color:#f6f1e6;font:700 10px ui-monospace,monospace;letter-spacing:.16em}
+body.home-page .igor-album-cover-note{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,58px);background:#f5f0e5;border:1px solid #d3cbbb;box-shadow:0 12px 26px #1718150d;transform:rotate(.65deg)}
+body.home-page .igor-album-cover-note>small,body.home-page .igor-album-caption small{font:700 10px ui-monospace,monospace;letter-spacing:.13em;color:#69754b}
+body.home-page .igor-album-cover-note h3{font-size:clamp(35px,5vw,66px);line-height:.96;letter-spacing:-.06em;margin:22px 0 15px;color:#1a1c17}
+body.home-page .igor-album-cover-note p{font-size:16px;line-height:1.8;color:#505046;max-width:38ch}
+body.home-page .igor-album-cover-note>a,body.home-page .igor-album-caption>a{color:#536b20;font-weight:850;text-decoration:underline;text-underline-offset:4px}
+body.home-page .igor-album-handnote{margin-top:42px;color:#737b5d;font:italic 14px Georgia,serif;transform:rotate(-3deg);align-self:flex-start}
+body.home-page .igor-album-toolbar{max-width:1450px;margin:0 auto 17px;padding:13px 0;border-block:1px solid #c5beaf;display:flex;align-items:center;justify-content:space-between;gap:16px;color:#525348;font:700 10px ui-monospace,monospace;letter-spacing:.1em}
+body.home-page .igor-album-toolbar nav{display:flex;gap:7px;flex-wrap:wrap}
+body.home-page .igor-album-toolbar nav a{padding:8px 12px;border:1px solid #c8c1b2;border-radius:999px;color:#34372d;text-decoration:none;letter-spacing:0}
+body.home-page .igor-album-toolbar nav a:hover{background:#dce4c9;border-color:#8d9d69}
+body.home-page .igor-album-pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px);max-width:1450px;margin:0 auto}
+body.home-page .igor-album-page{min-width:0;padding:12px 12px 19px;background:#f8f4eb;border:1px solid #d4ccbd;box-shadow:0 10px 24px #17181512;display:flex;flex-direction:column;transform:rotate(var(--album-tilt,0deg));transition:transform .25s ease,box-shadow .25s ease}
+body.home-page .igor-album-page:nth-child(2){--album-tilt:.7deg}body.home-page .igor-album-page:nth-child(3){--album-tilt:-.65deg}body.home-page .igor-album-page:nth-child(4){--album-tilt:.45deg}
+body.home-page .igor-album-page:hover{transform:translateY(-6px) rotate(0);box-shadow:0 18px 32px #17181520}
+body.home-page .igor-album-frame{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:#d5d0c4;color:white;text-decoration:none}
+body.home-page .igor-album-frame img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .4s ease;filter:saturate(.88)}
+body.home-page .igor-album-frame:hover img{transform:scale(1.045)}
+body.home-page .igor-album-frame>span{position:absolute;inset:auto 9px 9px;padding:7px 8px;background:#171815d9;color:#fff;font:700 9px ui-monospace,monospace;letter-spacing:.06em}
+body.home-page .igor-album-frame-portrait img{object-position:center 28%}
+body.home-page .igor-album-play{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#141610d9;color:#d6ff7a;border:1px solid #d6ff7a;font-size:15px}
+body.home-page .igor-album-caption{padding:16px 4px 0;display:flex;flex-direction:column;flex:1}
+body.home-page .igor-album-caption h3{font-size:clamp(20px,2.2vw,27px);line-height:1.05;letter-spacing:-.045em;margin:10px 0;color:#20221c}
+body.home-page .igor-album-caption p{font-size:13px;line-height:1.7;color:#55564d;margin:0 0 18px}
+body.home-page .igor-album-caption>a{margin-top:auto;font-size:12px}
+body.home-page .igor-album-foot{max-width:1450px;margin:24px auto 0;padding-top:17px;border-top:1px solid #c5beaf;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#5a5b50;font-size:12px}
+body.home-page .igor-album-foot a{color:#4d641e;font-weight:850}
+@media(max-width:900px){body.home-page .igor-album-head{grid-template-columns:1fr;gap:18px}body.home-page .igor-album-pages{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){body.home-page .igor-album{padding:52px 14px}body.home-page .igor-album-cover{grid-template-columns:1fr;gap:15px}body.home-page .igor-album-cover-photo{min-height:330px}body.home-page .igor-album-cover-note{padding:25px 21px}body.home-page .igor-album-toolbar{align-items:flex-start;flex-direction:column}body.home-page .igor-album-toolbar nav{gap:5px}body.home-page .igor-album-toolbar nav a{padding:7px 10px}body.home-page .igor-album-pages{grid-template-columns:1fr 1fr;gap:9px}body.home-page .igor-album-page{padding:7px 7px 12px}body.home-page .igor-album-caption{padding:11px 2px 0}body.home-page .igor-album-caption h3{font-size:19px}body.home-page .igor-album-caption p{font-size:12px;line-height:1.55}body.home-page .igor-album-frame{aspect-ratio:1/1}body.home-page .igor-album-frame>span{font-size:8px;inset:auto 5px 5px;padding:5px}body.home-page .igor-album-foot{font-size:11px}}
+@media(prefers-reduced-motion:reduce){body.home-page .igor-album-page,body.home-page .igor-album-frame img{transition:none!important}body.home-page .igor-album-page:hover{transform:none}}
