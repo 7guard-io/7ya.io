@@ -177,3 +177,11 @@
   .pulse-card,.pulse-card--lead,.audience-pulse-card,.impact-proof,.impact-proof--hero,.social-depth-card,.social-depth-card.lead,.original-card,.original-card.span-4,.original-card.span-5,.original-card.span-7,.original-card.span-12{flex-basis:88vw}
   .storyflow-item{flex-basis:92vw}
 }
+
+
+/* 2026-11-27 · source-backed social media layer and explicit failure fallback */
+.igor-live .social-card>img{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.igor-live .social-card.has-source-media .social-frame{display:none}
+.igor-live .social-card:not(.has-source-media) .social-frame{display:block}
+.igor-live .social-card .social-copy{position:relative;z-index:2}
+.igor-live .social-card:after{pointer-events:none}
