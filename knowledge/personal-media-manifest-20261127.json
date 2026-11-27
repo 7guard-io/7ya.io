@@ -260,5 +260,237 @@
       "verification": "public source link already present in locale homepage source",
       "fallback": "Open original YouTube source"
     }
+  ],
+  "social_previews": [
+    {
+      "id": "linkedin-starton-20260913",
+      "platform": "LinkedIn",
+      "title": "StartOn: מטכנולוגיה לתשתית של שייכות",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:share:7504811986866794496",
+      "image_url": "https://media.licdn.com/dms/image/v2/D4E10AQE9HnfWEzwZ4Q/image-shrink_800/B4EaCZysD6H4Ag-/0/1789286597102?e=2147483647&v=beta&t=JwaMyTJQwgWKtI6AcCkWRTzZ57w46OqpIXOI07jclWk",
+      "date": "2026-09-13",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "starton",
+      "width": null,
+      "height": null,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום LinkedIn — StartOn: מטכנולוגיה לתשתית של שייכות",
+        "en": "Preview image for LinkedIn publication — StartOn: מטכנולוגיה לתשתית של שייכות",
+        "ru": "Превью публикации LinkedIn — StartOn: מטכנולוגיה לתשתית של שייכות",
+        "ar": "صورة معاينة لمنشور LinkedIn — StartOn: מטכנולוגיה לתשתית של שייכות"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-starton-20260213",
+      "platform": "YouTube",
+      "title": "מיזם חללים אינטראקטיביים לנערים בסיכון",
+      "source_url": "https://www.youtube.com/watch?v=SOx8DUXFIEw",
+      "image_url": "https://i.ytimg.com/vi/SOx8DUXFIEw/hqdefault.jpg",
+      "date": "2026-02-13",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "starton",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — מיזם חללים אינטראקטיביים לנערים בסיכון",
+        "en": "Preview image for YouTube publication — מיזם חללים אינטראקטיביים לנערים בסיכון",
+        "ru": "Превью публикации YouTube — מיזם חללים אינטראקטיביים לנערים בסיכון",
+        "ar": "صورة معاينة لمنشور YouTube — מיזם חללים אינטראקטיביים לנערים בסיכון"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-story-20260421",
+      "platform": "YouTube",
+      "title": "Igor Vepretski Story — what’s your story?",
+      "source_url": "https://www.youtube.com/watch?v=fxFAUrb1h0M",
+      "image_url": "https://i.ytimg.com/vi/fxFAUrb1h0M/hqdefault.jpg",
+      "date": "2026-04-21",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "life",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — Igor Vepretski Story — what’s your story?",
+        "en": "Preview image for YouTube publication — Igor Vepretski Story — what’s your story?",
+        "ru": "Превью публикации YouTube — Igor Vepretski Story — what’s your story?",
+        "ar": "صورة معاينة لمنشور YouTube — Igor Vepretski Story — what’s your story?"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-collab-20260606",
+      "platform": "YouTube",
+      "title": "#7YA × Nawan",
+      "source_url": "https://www.youtube.com/watch?v=dhIiamSyKZk",
+      "image_url": "https://i.ytimg.com/vi/dhIiamSyKZk/hqdefault.jpg",
+      "date": "2026-06-06",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "music",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — #7YA × Nawan",
+        "en": "Preview image for YouTube publication — #7YA × Nawan",
+        "ru": "Превью публикации YouTube — #7YA × Nawan",
+        "ar": "صورة معاينة لمنشور YouTube — #7YA × Nawan"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-bizzi-2025",
+      "platform": "YouTube",
+      "title": "BIZZI (feat. Vepretski)",
+      "source_url": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "image_url": "https://i.ytimg.com/vi/jRjZjpqAgEw/hqdefault.jpg",
+      "date": "2025-08-07",
+      "date_precision": "day",
+      "relationship_to_igor": "external distribution",
+      "ownership": "third-party publication / distribution",
+      "theme": "music",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — BIZZI (feat. Vepretski)",
+        "en": "Preview image for YouTube publication — BIZZI (feat. Vepretski)",
+        "ru": "Превью публикации YouTube — BIZZI (feat. Vepretski)",
+        "ar": "صورة معاينة لمنشور YouTube — BIZZI (feat. Vepretski)"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "linkedin-identity-20260911",
+      "platform": "LinkedIn",
+      "title": "אני האדם. המערכות הן הכלים.",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:share:7504087285517336576",
+      "image_url": "https://media.licdn.com/dms/image/v2/D4E10AQESsT8GkLSf3Q/image-shrink_1280/B4EaCPfljiJkAc-/0/1789113817842?e=2147483647&v=beta&t=fjbbR2G7GV_KZ3JV6vz92cLD0W0tsNQ2vhoqxfGID2o",
+      "date": "2026-09-11",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "identity",
+      "width": null,
+      "height": null,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום LinkedIn — אני האדם. המערכות הן הכלים.",
+        "en": "Preview image for LinkedIn publication — אני האדם. המערכות הן הכלים.",
+        "ru": "Превью публикации LinkedIn — אני האדם. המערכות הן הכלים.",
+        "ar": "صورة معاينة لمنشور LinkedIn — אני האדם. המערכות הן הכלים."
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "linkedin-supernoah-20260909",
+      "platform": "LinkedIn",
+      "title": "SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:share:7503449606756925440",
+      "image_url": "https://media.licdn.com/dms/image/sync/v2/D4E27AQHpS4DdR0A5Hw/articleshare-shrink_480/B4EaCGbq0iJoAc-/0/1788961796006?e=2147483647&v=beta&t=NUKEX0kMM7tH5iCOLlEaPvGCMdPQEIxetiDj3xqzWxs",
+      "date": "2026-09-09",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "research",
+      "width": null,
+      "height": null,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום LinkedIn — SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+        "en": "Preview image for LinkedIn publication — SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+        "ru": "Превью публикации LinkedIn — SUPERNOAH — מנהיגות בעידן האלגוריתמי",
+        "ar": "صورة معاينة لمنشور LinkedIn — SUPERNOAH — מנהיגות בעידן האלגוריתמי"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-nawan-external-2025",
+      "platform": "YouTube",
+      "title": "Joy stick 🕹️ @Igor.vepretski",
+      "source_url": "https://www.youtube.com/shorts/k9haTADKG3M",
+      "image_url": "https://i.ytimg.com/vi/k9haTADKG3M/hqdefault.jpg",
+      "date": "2025",
+      "date_precision": "year",
+      "relationship_to_igor": "external distribution",
+      "ownership": "third-party publication / distribution",
+      "theme": "external_amplification",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — Joy stick 🕹️ @Igor.vepretski",
+        "en": "Preview image for YouTube publication — Joy stick 🕹️ @Igor.vepretski",
+        "ru": "Превью публикации YouTube — Joy stick 🕹️ @Igor.vepretski",
+        "ar": "صورة معاينة لمنشور YouTube — Joy stick 🕹️ @Igor.vepretski"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-owned-nawan-2025",
+      "platform": "YouTube",
+      "title": "@Nawan #7YA🥷🏼",
+      "source_url": "https://www.youtube.com/watch?v=iJyEgWnGA5M",
+      "image_url": "https://i.ytimg.com/vi/iJyEgWnGA5M/hqdefault.jpg",
+      "date": "2025",
+      "date_precision": "year",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "music",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — @Nawan #7YA🥷🏼",
+        "en": "Preview image for YouTube publication — @Nawan #7YA🥷🏼",
+        "ru": "Превью публикации YouTube — @Nawan #7YA🥷🏼",
+        "ar": "صورة معاينة لمنشور YouTube — @Nawan #7YA🥷🏼"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    },
+    {
+      "id": "youtube-first-upload-20111027",
+      "platform": "YouTube",
+      "title": "העלאת YouTube הראשונה שנמצאה בארכיון",
+      "source_url": "https://www.youtube.com/watch?v=feGSc663qww",
+      "image_url": "https://i.ytimg.com/vi/feGSc663qww/hqdefault.jpg",
+      "date": "2011-10-27",
+      "date_precision": "day",
+      "relationship_to_igor": "owner publication",
+      "ownership": "owner publication",
+      "theme": "archive",
+      "width": 480,
+      "height": 360,
+      "alt": {
+        "he": "תצוגה מקדימה של פרסום YouTube — העלאת YouTube הראשונה שנמצאה בארכיון",
+        "en": "Preview image for YouTube publication — העלאת YouTube הראשונה שנמצאה בארכיון",
+        "ru": "Превью публикации YouTube — העלאת YouTube הראשונה שנמצאה בארכיון",
+        "ar": "صورة معاينة لمنشور YouTube — העלאת YouTube הראשונה שנמצאה בארכיון"
+      },
+      "verification": "DOCUMENTED — exact thumbnail URL and public original URL are recorded in the canonical social corpus; live HTTP response has not been independently probed.",
+      "publication_status": "public social preview copied without URL alteration from the canonical corpus",
+      "privacy_status": "public source preview only"
+    }
   ]
 }

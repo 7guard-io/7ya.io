@@ -67,11 +67,17 @@
     return year?Number(year)*10000:0;
   };
 
+  let personalMediaManifest=null;
   const sourceMediaUrl=(item)=>{
+    const indexed=personalMediaManifest?.social_previews?.find(record=>record.id===item?.id);
+    const approved=new Set([
+      ...(personalMediaManifest?.records||[]).map(record=>record.public_url||record.asset_url).filter(Boolean),
+      ...(personalMediaManifest?.social_previews||[]).map(record=>record.image_url).filter(Boolean)
+    ]);
     const candidates=[
       item?.media?.image,item?.media?.thumbnail,item?.image,item?.image_url,
       item?.media_url,item?.thumbnail,item?.preview?.image,item?.preview?.url,
-      item?.full_picture
+      item?.full_picture,indexed?.image_url
     ];
     for(const candidate of candidates){
       const raw=typeof candidate==='string'?candidate:(candidate?.url||candidate?.src||'');
@@ -80,6 +86,7 @@
         const resolved=new URL(String(raw).trim(),location.origin);
         if(!['https:','http:'].includes(resolved.protocol)||resolved.username||resolved.password)continue;
         if(resolved.protocol==='http:'&&resolved.origin!==location.origin)continue;
+        if(!approved.has(resolved.href))continue;
         return resolved.href;
       }catch{}
     }
@@ -184,7 +191,10 @@
     if(imageUrl){
       const image=document.createElement('img');
       image.src=imageUrl;
-      image.alt=String(item.image_alt||item.alt||`Preview supplied with the ${item.platform||'public'} publication: ${item.title||'untitled record'}`);
+      const indexed=personalMediaManifest?.social_previews?.find(record=>record.id===item.id);
+      image.alt=String(indexed?.alt?.[(document.documentElement.lang||'he').slice(0,2)]||item.image_alt||item.alt||`Preview supplied with the ${item.platform||'public'} publication: ${item.title||'public record'}`);
+      if(indexed?.width)image.width=indexed.width;
+      if(indexed?.height)image.height=indexed.height;
       image.loading='lazy';
       image.decoding='async';
       image.referrerPolicy='no-referrer';
@@ -289,8 +299,10 @@
 
   Promise.all([
     fetch('/knowledge/social-corpus-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`social corpus HTTP ${r.status}`);return r.json();}),
-    fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();})
-  ]).then(([socialData,masterData])=>{
+    fetch('/knowledge/master-public-record-20260918.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`master public record HTTP ${r.status}`);return r.json();}),
+    fetch('/knowledge/personal-media-manifest-20261127.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]).then(([socialData,masterData,mediaManifest])=>{
+    personalMediaManifest=mediaManifest;
     renderPlatforms(socialData.platforms);
     const curated=Array.isArray(socialData.moments)?socialData.moments:[];
     const masterRaw=Array.isArray(masterData.records)?masterData.records:[];
