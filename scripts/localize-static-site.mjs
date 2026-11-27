@@ -3438,7 +3438,7 @@ export async function localizeStaticSite(output){
     for(const locale of generatedLocaleRoots){
       const target=path.join(output,locale,route?route+'/index.html':'index.html');
       await fs.mkdir(path.dirname(target),{recursive:true});
-      const authoredEnglishHome=locale==='en'&&route===''?path.join(root,'en','index.html'):null;
+      const authoredEnglishHome=locale==='en'&&route===''?path.resolve(output,'..','en','index.html'):null;
       const localeBase=authoredEnglishHome&&await exists(authoredEnglishHome)
         ? await fs.readFile(authoredEnglishHome,'utf8')
         : base;
