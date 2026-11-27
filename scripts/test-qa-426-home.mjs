@@ -11,8 +11,8 @@ const routes = {he:'/', en:'/en/', ru:'/ru/', ar:'/ar/'};
 for (const [locale, file, ownPath, name] of homes) {
   const html = fs.readFileSync(file, 'utf8');
   assert.match(html, new RegExp(`<h1[^>]*>${name}</h1>`), `${locale}: person name must be the H1`);
-  assert.match(html, /class="[^"]*\\bfirst-person-video\\b[^"]*"[^>]*[\\s\\S]*?youtube\\.com\\/watch\\?v=fxFAUrb1h0M/, `${locale}: first-person video must retain its original YouTube source`);
-  assert.match(html, /youtube-nocookie\\.com\\/embed\\/fxFAUrb1h0M/, `${locale}: first-person video must be embedded in the opening experience`);
+  assert.match(html, /class="[^"]*\bfirst-person-video\b[^"]*"[^>]*[\s\S]*?youtube\.com\/watch\?v=fxFAUrb1h0M/, \`\${locale}: first-person video must retain its original YouTube source\`);
+  assert.match(html, /youtube-nocookie\.com\/embed\/fxFAUrb1h0M/, \`\${locale}: first-person video must be embedded in the opening experience\`);
   assert.match(html, /class="corpus-clarification"[\s\S]*?(?:September 2026|сентябрь 2026|ספטמבר 2026|سبتمبر 2026)/, `${locale}: corpus must be dated`);
   const switcher = html.match(/data-seven-languages[\s\S]*?<\/span>/)?.[0] || '';
   for (const [language, path] of Object.entries(routes)) {
