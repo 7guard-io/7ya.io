@@ -67,7 +67,14 @@
     return year?Number(year)*10000:0;
   };
 
-  const sourceMediaUrl=()=>''; // Text-first archive cards until a verified local asset is available.
+  const sourceMediaUrl=(item)=>{
+    const value=String(item?.image||'').trim();
+    // Only curated corpus thumbnails from stable YouTube/LinkedIn image hosts.
+    // Ephemeral Facebook/Instagram CDN URLs remain excluded.
+    if(/^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]+\/(?:hqdefault|mqdefault|maxresdefault)\.jpg$/i.test(value))return value;
+    if(/^https:\/\/media\.licdn\.com\/dms\/image\/[A-Za-z0-9/_-]+(?:\?[A-Za-z0-9_=&%-]+)?$/i.test(value))return value;
+    return '';
+  };
 
   const displayScore=(item)=>{
     const cls=classify(item);
@@ -158,7 +165,22 @@
     a.dataset.feedOrigin=item.origin||'curated';
     a.dataset.feedSearch=[item.platform,item.title,item.summary,item.date,item.year,item.kind,item.relationship].filter(Boolean).join(' ').toLowerCase();
 
-    a.append(makeSourceFrame(item));
+    const mediaUrl=sourceMediaUrl(item);
+    if(mediaUrl){
+      const image=document.createElement('img');
+      image.src=mediaUrl;
+      image.alt=(item.platform||'מקור')+' · '+(item.title||'מדיה מקורית של איגור ופרצקי');
+      image.loading='lazy';
+      image.decoding='async';
+      image.referrerPolicy='no-referrer';
+      image.addEventListener('error',()=>{
+        image.remove();
+        if(!a.querySelector('.social-frame'))a.prepend(makeSourceFrame(item));
+      },{once:true});
+      a.append(image);
+    }else{
+      a.append(makeSourceFrame(item));
+    }
 
     const copy=document.createElement('div');
     copy.className='social-copy';
