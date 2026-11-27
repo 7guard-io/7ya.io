@@ -7,7 +7,7 @@ export const GA4_MARKER = '<!-- 7YA_GA4 -->';
 
 const snippet = [
   '  ' + GA4_MARKER,
-  '  <script async src="https://www.googletagmanager.com/gtm.js?id=' + GA4_MEASUREMENT_ID + '"></script>',
+  '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID + '"></script>',
   '  <script>',
   '    window.dataLayer = window.dataLayer || [];',
   '    function gtag(){dataLayer.push(arguments);}',
