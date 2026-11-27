@@ -164,7 +164,7 @@ for (const locale of locales) {
   for (const marker of revisedHeroActions[locale]) {
     if (!hero.includes(marker)) failures.push(locale + ': revised hero copy missing -> ' + marker);
   }
-  const actions = (hero.match(/<div class="actions"[\s\S]*?<\/div>/i) || [,''])[1];
+  const actions = (hero.match(/<div class="actions"[\s\S]*?<\/div>/i) || [''])[0];
   if (!actions) failures.push(locale + ': homepage primary action group missing');
   if ((actions.match(/<a\b/gi) || []).length !== 2) failures.push(locale + ': homepage hero must have exactly two primary actions');
   if (actions.includes('הסיפור שלי') || actions.includes('העשייה שלי') || actions.includes('דברו איתי')) {
