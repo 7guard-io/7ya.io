@@ -3394,14 +3394,17 @@ function applyLocale(html, locale, route) {
   next=rewriteSameHostReferences(next,locale,route);
   next=stampBuildDate(next,locale);
   next=replaceVisibleCopy(next,locale,route);
+  const hasDedicatedLaunchNav=/<nav class=["']launch-nav["']/i.test(next);
   const nav=primaryNavigation(locale,route);
-  if(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\s\S]*?<\/nav>/i,nav);
-  else next=next.replace(/<body\b[^>]*>/i,match=>match+'\n'+nav);
-  if(locale!=='he'){
-    const proof=proofMarkup(locale);
-    if(/<section class=["']seven-proof-layer["'][\s\S]*?<\/section>/i.test(next))next=next.replace(/<section class=["']seven-proof-layer["'][\s\S]*?<\/section>/i,proof);
-    const context=contextMarkup(locale,route);
-    next=next.replace(nav,nav+'\n'+context);
+  if(!hasDedicatedLaunchNav){
+    if(/<nav class=["']seven-human-nav["'][\\s\\S]*?<\\/nav>/i.test(next))next=next.replace(/<nav class=["']seven-human-nav["'][\\s\\S]*?<\\/nav>/i,nav);
+    else next=next.replace(/<body\\b[^>]*>/i,match=>match+'\\n'+nav);
+    if(locale!=='he'){
+      const proof=proofMarkup(locale);
+      if(/<section class=["']seven-proof-layer["'][\\s\\S]*?<\\/section>/i.test(next))next=next.replace(/<section class=["']seven-proof-layer["'][\\s\\S]*?<\\/section>/i,proof);
+      const context=contextMarkup(locale,route);
+      next=next.replace(nav,nav+'\\n'+context);
+    }
   }
   const skip=next.match(/<a\b[^>]*class=["'][^"']*\bskip\b[^"']*["'][^>]*>[\s\S]*?<\/a>/i);
   if(skip){next=next.replace(skip[0],'');next=next.replace(nav,skip[0]+'\n'+nav);}
@@ -3435,8 +3438,11 @@ export async function localizeStaticSite(output){
     for(const locale of generatedLocaleRoots){
       const target=path.join(output,locale,route?route+'/index.html':'index.html');
       await fs.mkdir(path.dirname(target),{recursive:true});
-      await fs.writeFile(target,applyLocale(base,locale,route),'utf8');
-    }
+      const authoredEnglishHome=locale==='en'&&route===''?path.join(root,'en','index.html'):null;
+      const localeBase=authoredEnglishHome&&await exists(authoredEnglishHome)
+        ? await fs.readFile(authoredEnglishHome,'utf8')
+        : base;
+      await fs.writeFile(target,applyLocale(localeBase,locale,route),'utf8');
   }
   await writeSitemap(output);
   console.log('LOCALE_PROJECTION: PASS (he/en/ru/ar · clean paths · hreflang · sitemap)');
