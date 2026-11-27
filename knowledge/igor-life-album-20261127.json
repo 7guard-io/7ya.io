@@ -1,0 +1,698 @@
+{
+  "schemaVersion": 1,
+  "source": "appdeploy-live/1789229505851/src/album/album-data.ts",
+  "generatedFor": "7ya.io static homepage life album",
+  "imagePolicy": "Only source-linked public media; no invented childhood or family photos. Missing imagery uses a source frame.",
+  "chapters": [
+    {
+      "id": "origin",
+      "kicker": {
+        "he": "מקור / ילדות / שייכות",
+        "en": "ORIGIN / CHILDHOOD / BELONGING",
+        "ru": "ИСТОК / ДЕТСТВО / ПРИНАДЛЕЖНОСТЬ"
+      },
+      "title": {
+        "he": "לפני שהיה סיפור ציבורי, הייתי ילד שמנסה להבין איפה הוא שייך.",
+        "en": "Before there was a public story, there was a child trying to understand where he belonged.",
+        "ru": "До публичной истории был ребёнок, пытавшийся понять, где его место."
+      },
+      "age": {
+        "he": "ילדות → בן 20 בעוגן הציבורי הראשון",
+        "en": "CHILDHOOD → AGE 20 AT THE FIRST PUBLIC ANCHOR",
+        "ru": "ДЕТСТВО → 20 ЛЕТ В ПЕРВОЙ ПУБЛИЧНОЙ ТОЧКЕ"
+      },
+      "place": {
+        "he": "חרקוב → בת־ים → חולון / ג׳סי כהן",
+        "en": "KHARKIV → BAT YAM → HOLON / JESSE COHEN",
+        "ru": "ХАРЬКОВ → БАТ-ЯМ → ХОЛОН / ДЖЕССИ КОЭН"
+      },
+      "people": {
+        "he": "משפחה, סבתא, בית־ספר והשכונה",
+        "en": "FAMILY, GRANDMOTHER, SCHOOL AND NEIGHBORHOOD",
+        "ru": "СЕМЬЯ, БАБУШКА, ШКОЛА И РАЙОН"
+      },
+      "moment": {
+        "he": "עלייה לישראל כילד וההתבגרות בשכונות שלא תמיד ידעו מה לעשות עם ילד שמתקשה להשתלב. מה שנשאר ברשת מתחיל מאוחר יותר — ולכן האלבום לא ממציא צילום ילדות שאין לנו.",
+        "en": "Immigrating to Israel as a child and growing up in neighborhoods that did not always know what to do with a kid struggling to fit in. The surviving public web record starts later, so the album does not invent childhood imagery we do not have.",
+        "ru": "Репатриация в Израиль ребёнком и взросление в районах, где не всегда знали, что делать с трудным ребёнком. Публичный интернет-след начинается позже, поэтому альбом не придумывает детские фотографии."
+      },
+      "story": {
+        "he": "חרקוב, העלייה, בת־ים, חולון וג׳סי כהן הם לא רק רקע. הם המקום שממנו צמחו שאלות על שייכות, הזדמנות ומי רואים בזמן. נקודת העוגן הציבורית המוקדמת שנשמרה היא כתבה מ־2011.",
+        "en": "Kharkiv, immigration, Bat Yam, Holon and Jesse Cohen are not background copy. They are where questions about belonging, opportunity and who gets seen in time began. The earliest surviving public anchor here is a 2011 press record.",
+        "ru": "Харьков, репатриация, Бат-Ям, Холон и Джесси Коэн — не фон. Здесь появились вопросы о принадлежности, возможностях и о том, кого замечают вовремя. Самая ранняя сохранённая публичная опора здесь — публикация 2011 года."
+      },
+      "response": {
+        "he": "אין כרגע קורפוס תגובות ישיר מהילדות עצמה. זה פער אמיתי בארכיון, לא משהו שהאתר יסתיר במספרים.",
+        "en": "There is no direct audience-response corpus from childhood itself yet. That is a real archival gap, not something the site will hide behind counters.",
+        "ru": "Прямого корпуса реакций из самого детства пока нет. Это реальный пробел архива, а не то, что сайт будет прятать за цифрами."
+      },
+      "consequence": {
+        "he": "השאלות של שייכות והזדמנות חזרו מאוחר יותר בשירות, באבהות וב־StartOn.",
+        "en": "The questions of belonging and opportunity later returned through service, fatherhood and StartOn.",
+        "ru": "Вопросы принадлежности и возможностей позже вернулись через службу, отцовство и StartOn."
+      },
+      "reflection": {
+        "he": "היום אני מבין שלא צריך להפוך ילדות קשה למיתולוגיה. צריך לראות מה היא לימדה אותי לזהות אצל ילד אחר לפני שהמערכת מגדירה אותו דרך משבר.",
+        "en": "Today I understand that a difficult childhood does not need mythology. What matters is what it taught me to notice in another child before a system defines them through crisis.",
+        "ru": "Сегодня я понимаю: трудное детство не нужно превращать в миф. Важно то, чему оно научило меня замечать в другом ребёнке до того, как система определит его через кризис."
+      },
+      "capability": {
+        "he": "לראות אדם בתוך הקשר",
+        "en": "Read a person inside context",
+        "ru": "Видеть человека в контексте"
+      },
+      "publicValue": {
+        "he": "להתחיל מהאדם, לא מהתווית.",
+        "en": "Start with the person, not the label.",
+        "ru": "Начинать с человека, а не с ярлыка."
+      },
+      "depthLabel": {
+        "he": "לציר החיים המלא",
+        "en": "Open the full life record",
+        "ru": "Открыть полный жизненный архив"
+      },
+      "index": "01",
+      "era": "1990—2011",
+      "sourceUrl": "https://www.makorrishon.co.il/nrg/online/54/ART2/235/169.html",
+      "depth": "archive",
+      "sourceLabel": {
+        "he": "מקור ראשון / NRG · 2011",
+        "en": "Makor Rishon / NRG · 2011",
+        "ru": "Makor Rishon / NRG · 2011"
+      }
+    },
+    {
+      "id": "service",
+      "kicker": {
+        "he": "שירות / מערכות / אחריות",
+        "en": "SERVICE / SYSTEMS / RESPONSIBILITY",
+        "ru": "СЛУЖБА / СИСТЕМЫ / ОТВЕТСТВЕННОСТЬ"
+      },
+      "title": {
+        "he": "חשבתי שאבנה את עצמי בתוך המערכת.",
+        "en": "I thought I would build myself inside the system.",
+        "ru": "Я думал, что построю себя внутри системы."
+      },
+      "age": {
+        "he": "בערך 17 → 31",
+        "en": "ABOUT AGE 17 → 31",
+        "ru": "ПРИМЕРНО 17 → 31"
+      },
+      "place": {
+        "he": "ישראל → שירות בחו״ל → תל־אביב",
+        "en": "ISRAEL → OVERSEAS SERVICE → TEL AVIV",
+        "ru": "ИЗРАИЛЬ → СЛУЖБА ЗА РУБЕЖОМ → ТЕЛЬ-АВИВ"
+      },
+      "people": {
+        "he": "חיילים, אנשי ביטחון, שוטרים ואזרחים",
+        "en": "SOLDIERS, SECURITY STAFF, POLICE AND CIVILIANS",
+        "ru": "СОЛДАТЫ, СОТРУДНИКИ БЕЗОПАСНОСТИ, ПОЛИЦЕЙСКИЕ И ГРАЖДАНЕ"
+      },
+      "moment": {
+        "he": "שנים של צבא, ביטחון ועבודה משטרתית הכניסו אותי עמוק לתוך מוסדות, אחריות ומצבי קצה. החומר הציבורי ששורד מהתקופה אינו אלבום מלא של השירות — חלקו מגיע דרך רפלקציה וראיונות מאוחרים יותר.",
+        "en": "Years in military, security and police work put me deep inside institutions, responsibility and high-pressure situations. The surviving public record is not a complete service album; some of it reaches us through later reflection and interviews.",
+        "ru": "Годы армии, безопасности и полиции погрузили меня в институты, ответственность и экстремальные ситуации. Сохранившийся публичный след — не полный альбом службы; часть его приходит через более поздние интервью и рефлексию."
+      },
+      "story": {
+        "he": "השירות נתן מסגרת, משמעת ואחריות — וגם מפגש יומיומי עם המקום שבו מערכת פוגשת אדם. הפריים כאן הוא ראיון ציבורי מאוחר יותר על המעבר מהשירות למשימה חברתית, לא צילום שמתחזה להיות מאותה תקופה.",
+        "en": "Service built discipline and responsibility — and daily exposure to the point where institutions meet people. The frame here is a later public interview about moving from service into a social mission, not a photograph pretending to come from the service period.",
+        "ru": "Служба дала дисциплину и ответственность — и ежедневный опыт того, где система встречает человека. Кадр здесь — более позднее интервью о переходе к общественной миссии, а не фотография, притворяющаяся архивной."
+      },
+      "response": {
+        "he": "התגובה הציבורית לתקופת השירות נשמרה בעיקר בפוסטים ובראיונות מאוחרים יותר. אין כרגע ארכיון תגובות מלא לשנות השירות עצמן.",
+        "en": "Public response to the service period survives mainly through later posts and interviews. There is not yet a complete comment archive from the service years themselves.",
+        "ru": "Публичная реакция на годы службы сохранилась главным образом в более поздних постах и интервью. Полного архива комментариев самой службы пока нет."
+      },
+      "consequence": {
+        "he": "היציאה מהמסלול הבטוח הפכה את הניסיון המקצועי לשאלה חדשה: מה עושים איתו מחוץ למערכת.",
+        "en": "Leaving the safe institutional path turned professional experience into a new question: what do you do with it outside the system?",
+        "ru": "Выход из безопасной институциональной траектории превратил профессиональный опыт в новый вопрос: что делать с ним вне системы?"
+      },
+      "reflection": {
+        "he": "פעם חיפשתי תפקיד שנותן אחריות. היום אני מחפש דרך לקחת אחריות גם בלי לחכות שתפקיד ייתן לי רשות.",
+        "en": "I once looked for a role that carried responsibility. Today I look for ways to take responsibility without waiting for a role to grant permission.",
+        "ru": "Раньше я искал должность, которая даёт ответственность. Сегодня я ищу способ брать ответственность, не ожидая разрешения от должности."
+      },
+      "capability": {
+        "he": "אחריות תחת לחץ",
+        "en": "Responsibility under pressure",
+        "ru": "Ответственность под давлением"
+      },
+      "publicValue": {
+        "he": "להבין איפה מערכת פוגשת אדם — ואיפה היא מפספסת אותו.",
+        "en": "Understand where institutions meet people — and where they miss them.",
+        "ru": "Понимать, где система встречает человека — и где упускает его."
+      },
+      "depthLabel": {
+        "he": "לראיונות ולמדיה",
+        "en": "Open interviews & media",
+        "ru": "Открыть интервью и медиа"
+      },
+      "index": "02",
+      "era": "2008—2021",
+      "sourceUrl": "https://youtu.be/O3v309CA4ao",
+      "depth": "media",
+      "sourceLabel": {
+        "he": "ראיון ציבורי · ערוץ 14",
+        "en": "Public interview · Channel 14",
+        "ru": "Публичное интервью · Channel 14"
+      },
+      "media": {
+        "id": "service-channel14",
+        "kind": "video-poster",
+        "sourceUrl": "https://youtu.be/O3v309CA4ao",
+        "sourceLabel": "CHANNEL 14 · PUBLIC INTERVIEW · 2022",
+        "authenticity": "source-thumbnail",
+        "src": "https://i.ytimg.com/vi/O3v309CA4ao/hqdefault.jpg",
+        "alt": {
+          "he": "איגור ופרצקי בראיון ערוץ 14",
+          "en": "Igor Vepretski in a Channel 14 interview",
+          "ru": "Игорь Вепрецкий в интервью Channel 14"
+        },
+        "caption": {
+          "he": "פריים מקור · ערוץ 14 · 2022",
+          "en": "Source frame · Channel 14 · 2022",
+          "ru": "Кадр источника · Channel 14 · 2022"
+        }
+      }
+    },
+    {
+      "id": "fatherhood",
+      "kicker": {
+        "he": "אבהות / נוכחות / תיקון",
+        "en": "FATHERHOOD / PRESENCE / REPAIR",
+        "ru": "ОТЦОВСТВО / ПРИСУТСТВИЕ / ИЗМЕНЕНИЕ"
+      },
+      "title": {
+        "he": "אבהות הפכה את הסיפור האישי למבחן יומיומי.",
+        "en": "Fatherhood turned the personal story into a daily test.",
+        "ru": "Отцовство превратило личную историю в ежедневный экзамен."
+      },
+      "age": {
+        "he": "בן 27 → 32 · עוגן ציבורי ב־2023",
+        "en": "AGE 27 → 32 · PUBLIC ANCHOR IN 2023",
+        "ru": "27 → 32 ГОДА · ПУБЛИЧНАЯ ТОЧКА В 2023"
+      },
+      "place": {
+        "he": "הבית → Facebook / LinkedIn → מדיה",
+        "en": "HOME → FACEBOOK / LINKEDIN → MEDIA",
+        "ru": "ДОМ → FACEBOOK / LINKEDIN → МЕДИА"
+      },
+      "people": {
+        "he": "הילדים והמשפחה · קהל שפגש את הסיפור",
+        "en": "CHILDREN AND FAMILY · THE AUDIENCE THAT MET THE STORY",
+        "ru": "ДЕТИ И СЕМЬЯ · АУДИТОРИЯ, ВСТРЕТИВШАЯ ИСТОРИЮ"
+      },
+      "moment": {
+        "he": "טקסט על אבהות ונוכחות הורית יצא מהפיד והתחיל לחיות אצל אנשים אחרים. כאן לא צריך לחשוף את הילדים כדי להבין את הסיפור — המרכז הוא הבחירה להיות נוכח.",
+        "en": "A piece about fatherhood and parental presence moved beyond the feed and began living with other people. The children do not need to be exposed for the story to work; the center is the choice to be present.",
+        "ru": "Текст об отцовстве и присутствии родителя вышел за пределы ленты и начал жить у других людей. Для этой истории не нужно раскрывать детей; в центре — выбор быть рядом."
+      },
+      "story": {
+        "he": "הסיפור “אבא מושלם” הפך לרגע שבו חוויה משפחתית קיבלה שפה ציבורית. האתר מציג את המקור וההד, אבל מצמצם פרטים מזהים של הילדים.",
+        "en": "The “perfect father” story became a point where family experience gained a public language. The site shows the source and its echoes while minimizing identifying details about the children.",
+        "ru": "История об «идеальном отце» стала моментом, когда семейный опыт получил публичный язык. Сайт показывает источник и эхо, но минимизирует идентифицирующие данные детей."
+      },
+      "response": {
+        "he": "הסיפור קיבל תגובות רבות והפצה בין Facebook, LinkedIn ומדיה. המספרים נשארים קשורים לכל מקור בנפרד; צילומי תגובות וקולות מהקהל מופיעים בשכבת ה־Broadcast.",
+        "en": "The story received substantial response and distribution across Facebook, LinkedIn and media. Counts remain bound to each source separately; reaction images and audience voices appear in the Broadcast layer.",
+        "ru": "История получила заметный отклик и распространение между Facebook, LinkedIn и медиа. Цифры остаются привязаны к каждому источнику отдельно; скриншоты реакций и голоса аудитории показаны в Broadcast."
+      },
+      "consequence": {
+        "he": "החוויה הפרטית הפכה לשיחה על נוכחות, אחריות ומה ילדים זוכרים מהורה.",
+        "en": "A private experience became a conversation about presence, responsibility and what children remember from a parent.",
+        "ru": "Личный опыт стал разговором о присутствии, ответственности и о том, что дети запоминают от родителя."
+      },
+      "reflection": {
+        "he": "הורות בשבילי איננה הוכחה שהצלחתי לתקן את העבר. היא הבחירה לחזור שוב ושוב להיות שם, גם כשאין קהל.",
+        "en": "For me, fatherhood is not proof that I repaired the past. It is the repeated choice to be there even when there is no audience.",
+        "ru": "Для меня отцовство — не доказательство того, что прошлое исправлено. Это повторяющийся выбор быть рядом, даже когда нет аудитории."
+      },
+      "capability": {
+        "he": "להפוך פגיעוּת לאחריות",
+        "en": "Turn vulnerability into responsibility",
+        "ru": "Превращать уязвимость в ответственность"
+      },
+      "publicValue": {
+        "he": "לדבר על משפחה בלי להפוך אותה למוצר.",
+        "en": "Talk about family without turning it into a product.",
+        "ru": "Говорить о семье, не превращая её в продукт."
+      },
+      "depthLabel": {
+        "he": "לתגובות ולהד הציבורי",
+        "en": "Open audience response & media echo",
+        "ru": "Открыть реакции и медийное эхо"
+      },
+      "index": "03",
+      "era": "2018—2023",
+      "sourceUrl": "https://www.hidabroot.org/article/1179015",
+      "depth": "media",
+      "sourceLabel": {
+        "he": "הידברות · מקור ציבורי",
+        "en": "Hidabroot · public source",
+        "ru": "Hidabroot · публичный источник"
+      },
+      "media": null
+    },
+    {
+      "id": "starton",
+      "kicker": {
+        "he": "חזרה / StartOn / בנייה",
+        "en": "RETURN / STARTON / BUILD",
+        "ru": "ВОЗВРАЩЕНИЕ / STARTON / СОЗДАНИЕ"
+      },
+      "title": {
+        "he": "חזרתי דווקא למקום שממנו רציתי פעם לצאת.",
+        "en": "I returned to the place I once wanted to leave.",
+        "ru": "Я вернулся именно туда, откуда когда-то хотел уйти."
+      },
+      "age": {
+        "he": "בן 31 · עוגן 2022",
+        "en": "AGE 31 · 2022 ANCHOR",
+        "ru": "31 ГОД · ОПОРНАЯ ТОЧКА 2022"
+      },
+      "place": {
+        "he": "ג׳סי כהן · חולון",
+        "en": "JESSE COHEN · HOLON",
+        "ru": "ДЖЕССИ КОЭН · ХОЛОН"
+      },
+      "people": {
+        "he": "צעירים, אנשי חינוך, שותפים מקומיים ומנטורים",
+        "en": "YOUNG PEOPLE, EDUCATORS, LOCAL PARTNERS AND MENTORS",
+        "ru": "МОЛОДЁЖЬ, ПЕДАГОГИ, МЕСТНЫЕ ПАРТНЁРЫ И НАСТАВНИКИ"
+      },
+      "moment": {
+        "he": "ב־2022 ההחלטה לעזוב מסלול בטוח קיבלה צורה פיזית: ניסיון לבנות לצעירים מקום שבו טכנולוגיה, יצירה, מבוגרים תומכים ושייכות נפגשים לפני שהמשבר הופך לזהות.",
+        "en": "In 2022, leaving a safe path took physical form: an attempt to build a place where technology, creation, supportive adults and belonging meet young people before crisis becomes identity.",
+        "ru": "В 2022 году уход с безопасной траектории получил физическую форму: попытку создать место, где технологии, творчество, поддерживающие взрослые и принадлежность встречают молодёжь до того, как кризис становится идентичностью."
+      },
+      "story": {
+        "he": "החזרה לג׳סי כהן סגרה מעגל בין הילד שהייתי לבין המערכת שרציתי לראות קיימת. כאן כבר יש צילום עיתונות אמיתי, שידורים, פוסטים ותיעוד של ההחלטה.",
+        "en": "Returning to Jesse Cohen connected the child I had been with the system I wanted to exist. Here the archive already contains real press photography, broadcasts, posts and documentation of the decision.",
+        "ru": "Возвращение в Джесси Коэн связало ребёнка, которым я был, с системой, которую хотел видеть существующей. Здесь уже есть настоящая пресс-фотография, эфиры, посты и документация решения."
+      },
+      "response": {
+        "he": "שני פוסטי עוגן על ההחלטה והחזון מתועדים עם 105 ו־153 תגובות ב־LinkedIn, כל מספר נשאר קשור לפוסט שלו.",
+        "en": "Two anchor posts about the decision and vision are documented with 105 and 153 LinkedIn comments respectively; each count remains bound to its own post.",
+        "ru": "Два опорных поста о решении и видении задокументированы с 105 и 153 комментариями в LinkedIn соответственно; каждая цифра остаётся привязанной к своему посту."
+      },
+      "consequence": {
+        "he": "הסיפור הפסיק להיות רק רפלקציה והפך לעמותה, מודל מרחב, שותפויות וניסיון מתמשך לבנות.",
+        "en": "The story stopped being only reflection and became a nonprofit, a space model, partnerships and an ongoing attempt to build.",
+        "ru": "История перестала быть только рефлексией и стала НКО, моделью пространства, партнёрствами и продолжающейся попыткой строить."
+      },
+      "reflection": {
+        "he": "החזרה לשכונה לימדה אותי שהישג אישי לא סוגר מעגל. מעגל נסגר רק כשמשהו מהדרך הופך להזדמנות למישהו אחר.",
+        "en": "Returning to the neighborhood taught me that personal achievement does not close a loop. A loop closes only when something from the path becomes opportunity for someone else.",
+        "ru": "Возвращение в район научило меня: личное достижение не замыкает круг. Круг замыкается, когда часть твоего пути становится возможностью для другого."
+      },
+      "capability": {
+        "he": "להפוך ניסיון למודל פעולה",
+        "en": "Turn experience into an operating model",
+        "ru": "Превращать опыт в рабочую модель"
+      },
+      "publicValue": {
+        "he": "לבנות הזדמנות מוחשית במקום שבו קל יותר למדוד כשל.",
+        "en": "Build tangible opportunity where systems too often measure failure.",
+        "ru": "Создавать реальную возможность там, где системы чаще измеряют неудачу."
+      },
+      "depthLabel": {
+        "he": "להיכנס ל־StartOn",
+        "en": "Enter StartOn",
+        "ru": "Открыть StartOn"
+      },
+      "index": "04",
+      "era": "2022—NOW",
+      "sourceUrl": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+      "depth": "starton",
+      "sourceLabel": {
+        "he": "mynet · חוזר לשכונה",
+        "en": "mynet · Returning to the neighborhood",
+        "ru": "mynet · Возвращение в район"
+      },
+      "media": {
+        "id": "starton-mynet",
+        "kind": "press",
+        "sourceUrl": "https://holon.mynet.co.il/local_news/article/hjxqegkiq",
+        "sourceLabel": "MYNET · PUBLIC PRESS PHOTO · 13.05.2022",
+        "authenticity": "public-source",
+        "objectPosition": "50% 28%",
+        "src": "https://pic1.yitweb.co.il/cdn-cgi/image/f%3Dauto%2Cw%3D740%2Cq%3D75/picserver/mynet/crop_images/2022/05/11/r1F0NeKU9/r1F0NeKU9_0_0_640_360_0_large.jpg",
+        "alt": {
+          "he": "איגור ופרצקי בכתבת mynet על החזרה לג׳סי כהן",
+          "en": "Igor Vepretski in the mynet story about returning to Jesse Cohen",
+          "ru": "Игорь Вепрецкий в материале mynet о возвращении в Джесси Коэн"
+        },
+        "caption": {
+          "he": "צילום עיתונות ציבורי · mynet · 13.05.2022",
+          "en": "Public press photograph · mynet · 13.05.2022",
+          "ru": "Публичная пресс-фотография · mynet · 13.05.2022"
+        }
+      }
+    },
+    {
+      "id": "voice",
+      "kicker": {
+        "he": "קול / הפצה / שיחה",
+        "en": "VOICE / DISTRIBUTION / CONVERSATION",
+        "ru": "ГОЛОС / РАСПРОСТРАНЕНИЕ / РАЗГОВОР"
+      },
+      "title": {
+        "he": "פתאום הפוסט כבר לא היה שלי בלבד.",
+        "en": "Suddenly the post was no longer mine alone.",
+        "ru": "В какой-то момент пост перестал быть только моим."
+      },
+      "age": {
+        "he": "בן 31 → 34",
+        "en": "AGE 31 → 34",
+        "ru": "31 → 34 ГОДА"
+      },
+      "place": {
+        "he": "הרשת → עמודי הפצה → אולפנים",
+        "en": "THE FEED → PUBLISHER PAGES → STUDIOS",
+        "ru": "ЛЕНТА → СТРАНИЦЫ РАСПРОСТРАНЕНИЯ → СТУДИИ"
+      },
+      "people": {
+        "he": "עוקבים, עורכים, מארחים, מגיבים ומתנגדים",
+        "en": "FOLLOWERS, EDITORS, HOSTS, SUPPORTERS AND CRITICS",
+        "ru": "ПОДПИСЧИКИ, РЕДАКТОРЫ, ВЕДУЩИЕ, СТОРОННИКИ И КРИТИКИ"
+      },
+      "moment": {
+        "he": "אבהות, הונאת קשישים, חינוך, זהות ושירות התחילו לעבור מחשבון אישי לעמודים חיצוניים, כתבות וראיונות. מכאן הסיפור כבר כולל גם את מה שאנשים אחרים עשו איתו.",
+        "en": "Fatherhood, elder fraud, education, identity and service began moving from a personal account into external pages, articles and interviews. From here, the story also includes what other people did with it.",
+        "ru": "Отцовство, мошенничество против пожилых, образование, идентичность и служба начали переходить из личного аккаунта во внешние страницы, статьи и интервью. С этого момента история включает и то, что другие сделали с ней."
+      },
+      "story": {
+        "he": "הונאת הקשישים היא דוגמה ברורה: חוויה אישית עברה מהפיד לשיחה חדשותית ולראיונות המשך. השפעה כאן אינה “מספר גדול”; היא מסלול שאפשר לעקוב אחריו.",
+        "en": "The elder-fraud story is a clear example: a personal experience moved from the feed into a newsroom conversation and follow-up interviews. Impact here is not a big number; it is a traceable path.",
+        "ru": "История мошенничества против пожилых — ясный пример: личный опыт перешёл из ленты в новостной разговор и последующие интервью. Влияние здесь — не большая цифра, а прослеживаемый путь."
+      },
+      "response": {
+        "he": "הקהל לא רק אהב. הוא הזדהה, התווכח, הפיץ ולעיתים התנגד. כל תגובה ומדד נשארים קשורים למשטח שבו נמדדו.",
+        "en": "The audience did not only like. People resonated, argued, redistributed and sometimes opposed. Every response and metric stays bound to the surface where it was observed.",
+        "ru": "Аудитория не только ставила лайки. Люди сопереживали, спорили, распространяли и иногда возражали. Каждая реакция и метрика остаётся привязанной к площадке, где она наблюдалась."
+      },
+      "consequence": {
+        "he": "חלק מהפוסטים קיבלו חיים עצמאיים והפכו לחומר תקשורתי, מקצועי וציבורי.",
+        "en": "Some posts acquired an independent life and became media, professional and public material.",
+        "ru": "Некоторые посты получили самостоятельную жизнь и стали медийным, профессиональным и общественным материалом."
+      },
+      "reflection": {
+        "he": "אני פחות מתעניין היום בשאלה “כמה ראו” ויותר בשאלה “מה עבר מאדם לאדם, ומה השתנה בדרך”.",
+        "en": "Today I am less interested in “how many saw it” and more in “what moved from person to person, and what changed along the way.”",
+        "ru": "Сегодня меня меньше интересует вопрос «сколько увидели», и больше — «что перешло от человека к человеку и что изменилось по пути»."
+      },
+      "capability": {
+        "he": "לנסח חוויה שאנשים ממשיכים איתה",
+        "en": "Frame experience people carry forward",
+        "ru": "Формулировать опыт, который люди несут дальше"
+      },
+      "publicValue": {
+        "he": "להפוך תשומת לב לשיחה בלי לאבד את המקור.",
+        "en": "Turn attention into conversation without losing provenance.",
+        "ru": "Превращать внимание в разговор, не теряя происхождение."
+      },
+      "depthLabel": {
+        "he": "למפת ההד והמדיה",
+        "en": "Open the media echo",
+        "ru": "Открыть медийное эхо"
+      },
+      "index": "05",
+      "era": "2022—2024",
+      "sourceUrl": "https://www.youtube.com/watch?v=AE5hDzLM5XU",
+      "depth": "media",
+      "sourceLabel": {
+        "he": "חדשות 13 · מקור וידאו",
+        "en": "News 13 · video source",
+        "ru": "News 13 · видеоисточник"
+      },
+      "media": {
+        "id": "voice-fraud-13",
+        "kind": "video-poster",
+        "sourceUrl": "https://www.youtube.com/watch?v=AE5hDzLM5XU",
+        "sourceLabel": "NEWS 13 · PUBLIC INTERVIEW",
+        "authenticity": "source-thumbnail",
+        "src": "https://i.ytimg.com/vi/AE5hDzLM5XU/hqdefault.jpg",
+        "alt": {
+          "he": "ראיון על הונאת קשישים",
+          "en": "Interview about elder fraud",
+          "ru": "Интервью о мошенничестве против пожилых"
+        },
+        "caption": {
+          "he": "חדשות 13 · שיחה ציבורית",
+          "en": "News 13 · public conversation",
+          "ru": "News 13 · публичный разговор"
+        }
+      }
+    },
+    {
+      "id": "create",
+      "kicker": {
+        "he": "יצירה / מוזיקה / תרבות",
+        "en": "CREATE / MUSIC / CULTURE",
+        "ru": "ТВОРЧЕСТВО / МУЗЫКА / КУЛЬТУРА"
+      },
+      "title": {
+        "he": "גם מוזיקה היא ביוגרפיה.",
+        "en": "Music is biography too.",
+        "ru": "Музыка — тоже биография."
+      },
+      "age": {
+        "he": "בן 29 → 35",
+        "en": "AGE 29 → 35",
+        "ru": "29 → 35 ЛЕТ"
+      },
+      "place": {
+        "he": "אולפן → YouTube → חשבונות של יוצרים אחרים",
+        "en": "STUDIO → YOUTUBE → OTHER CREATORS’ ACCOUNTS",
+        "ru": "СТУДИЯ → YOUTUBE → АККАУНТЫ ДРУГИХ АВТОРОВ"
+      },
+      "people": {
+        "he": "אמנים, יוצרים, קהלי מוזיקה וקהילות וידאו",
+        "en": "ARTISTS, CREATORS, MUSIC AUDIENCES AND VIDEO COMMUNITIES",
+        "ru": "АРТИСТЫ, АВТОРЫ, МУЗЫКАЛЬНАЯ И ВИДЕО-АУДИТОРИЯ"
+      },
+      "moment": {
+        "he": "הומור, קליפים ושיתופי פעולה לא היו הפסקה מהחיים “הרציניים”. הם היו דרך אחרת להגיד דברים שלא נכנסים למסמך, תפקיד או נאום.",
+        "en": "Humour, clips and collaborations were not a break from the “serious” life. They were another way to say things that do not fit inside a document, role or speech.",
+        "ru": "Юмор, клипы и коллаборации не были паузой от «серьёзной» жизни. Это был другой способ говорить о том, что не помещается в документ, должность или речь."
+      },
+      "story": {
+        "he": "מ־“מת על אקסל” ועד BIZZI, לצד הופעות אצל יוצרים אחרים, היצירה מספרת שכבה של זהות שלא צריך להצדיק דרך קריירה ציבורית.",
+        "en": "From “Met Al Excel” to BIZZI and appearances with other creators, creation holds a layer of identity that does not need to justify itself through a public-service career.",
+        "ru": "От «Мет аль Эксель» до BIZZI и появлений у других авторов творчество хранит слой идентичности, которому не нужно оправдываться общественной карьерой."
+      },
+      "response": {
+        "he": "חלק מהתגובה נמצאת בחשבונות בבעלותי וחלק בחשבונות של יוצרים אחרים. האתר שומר attribution ברור ולא מעביר צפיות חיצוניות לחשבון שלי.",
+        "en": "Some response lives on owned accounts and some on other creators’ accounts. The site keeps attribution explicit and does not transfer external views into my account totals.",
+        "ru": "Часть реакции находится в моих аккаунтах, часть — у других авторов. Сайт сохраняет явную атрибуцию и не переносит внешние просмотры в мои итоги."
+      },
+      "consequence": {
+        "he": "הקהל הכיר שכבה אחרת של אותו אדם — לא רק שירות, StartOn או פוליטיקה.",
+        "en": "The audience met another layer of the same person — not only service, StartOn or politics.",
+        "ru": "Аудитория увидела другой слой того же человека — не только службу, StartOn или политику."
+      },
+      "reflection": {
+        "he": "אם אני מוחק מהביוגרפיה הומור, מוזיקה ושטויות, אני מוחק חלק גדול מהאדם שבנה את כל השאר.",
+        "en": "If I delete humour, music and play from the biography, I delete a large part of the person who built everything else.",
+        "ru": "Если убрать из биографии юмор, музыку и игру, исчезнет большая часть человека, который построил всё остальное."
+      },
+      "capability": {
+        "he": "לנוע בין שפות, צורות וקהל",
+        "en": "Move across languages, forms and audiences",
+        "ru": "Переключаться между языками, формами и аудиториями"
+      },
+      "publicValue": {
+        "he": "לחבר אנשים גם דרך תרבות, לא רק דרך מסמך או נאום.",
+        "en": "Connect people through culture, not only through documents or speeches.",
+        "ru": "Соединять людей через культуру, а не только через документы и речи."
+      },
+      "depthLabel": {
+        "he": "לכל המוזיקה",
+        "en": "Open all music",
+        "ru": "Открыть всю музыку"
+      },
+      "index": "06",
+      "era": "2020—2025",
+      "sourceUrl": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+      "depth": "music",
+      "sourceLabel": {
+        "he": "BIZZI · הקליפ הרשמי",
+        "en": "BIZZI · official video",
+        "ru": "BIZZI · официальный клип"
+      },
+      "media": {
+        "id": "create-bizzi",
+        "kind": "video-poster",
+        "sourceUrl": "https://www.youtube.com/watch?v=jRjZjpqAgEw",
+        "sourceLabel": "YOUTUBE · OFFICIAL VIDEO · 2025",
+        "authenticity": "source-thumbnail",
+        "src": "https://i.ytimg.com/vi/jRjZjpqAgEw/hqdefault.jpg",
+        "alt": {
+          "he": "NAWAN ft. VEPRETSKI — BIZZI",
+          "en": "NAWAN ft. VEPRETSKI — BIZZI",
+          "ru": "NAWAN ft. VEPRETSKI — BIZZI"
+        },
+        "caption": {
+          "he": "קליפ רשמי · 2025",
+          "en": "Official video · 2025",
+          "ru": "Официальный клип · 2025"
+        }
+      }
+    },
+    {
+      "id": "leadership",
+      "kicker": {
+        "he": "מנהיגות / פוליטיקה / מבחן",
+        "en": "LEADERSHIP / POLITICS / TEST",
+        "ru": "ЛИДЕРСТВО / ПОЛИТИКА / ИСПЫТАНИЕ"
+      },
+      "title": {
+        "he": "ניסיתי להיכנס לחדר שבו מתקבלות החלטות.",
+        "en": "I tried to enter the room where decisions are made.",
+        "ru": "Я пытался войти в комнату, где принимаются решения."
+      },
+      "age": {
+        "he": "בן 33 → 36",
+        "en": "AGE 33 → 36",
+        "ru": "33 → 36 ЛЕТ"
+      },
+      "place": {
+        "he": "שטח ציבורי → מפלגה → קהלים בעברית וברוסית",
+        "en": "PUBLIC FIELD → PARTY → HEBREW AND RUSSIAN AUDIENCES",
+        "ru": "ОБЩЕСТВЕННОЕ ПОЛЕ → ПАРТИЯ → АУДИТОРИИ НА ИВРИТЕ И РУССКОМ"
+      },
+      "people": {
+        "he": "פעילים, קהלים, אנשי ציבור ונבחרי ציבור",
+        "en": "ACTIVISTS, AUDIENCES, PUBLIC FIGURES AND ELECTED OFFICIALS",
+        "ru": "АКТИВИСТЫ, АУДИТОРИИ, ОБЩЕСТВЕННЫЕ И ИЗБРАННЫЕ ДЕЯТЕЛИ"
+      },
+      "moment": {
+        "he": "הקול הציבורי נכנס גם לזירה הפוליטית: תוכן, סיורים, קהלים רב־לשוניים והפצות מפלגתיות. האתר מציג את זה כחלק מהדרך שלי — לא כהוכחה להסכמה ציבורית ולא כקיצור דרך למנהיגות.",
+        "en": "The public voice also entered politics: content, public activity, multilingual audiences and party distribution. The site presents this as part of my path — not as proof of public agreement and not as a shortcut to leadership.",
+        "ru": "Публичный голос вошёл и в политику: контент, общественная активность, многоязычная аудитория и партийное распространение. Сайт показывает это как часть моего пути — не как доказательство общественного согласия и не как короткий путь к лидерству."
+      },
+      "story": {
+        "he": "ב־2026 הפער בין שאיפה לתפקיד לבין המציאות נהיה אישי מאוד. זה לא פרק שנועד “להוכיח” שהייתי צריך לקבל מקום; הוא נועד להראות מה קורה לאדם כשהמסלול שקיווה לו לא נהיה התפקיד שלו.",
+        "en": "In 2026 the gap between aspiring to a role and reality became deeply personal. This chapter is not here to “prove” I deserved a place; it is here to show what happens when a path you hoped for does not become your role.",
+        "ru": "В 2026 году разрыв между стремлением к роли и реальностью стал очень личным. Эта глава не пытается «доказать», что мне должны были дать место; она показывает, что происходит, когда желаемый путь не становится твоей должностью."
+      },
+      "response": {
+        "he": "יש הפצה מפלגתית ושיחה ציבורית בעברית וברוסית. מעורבות אינה מוצגת כתמיכה, הצבעה או הסכמה.",
+        "en": "There is party distribution and public conversation in Hebrew and Russian. Engagement is not presented as endorsement, voting intent or agreement.",
+        "ru": "Есть партийное распространение и публичный разговор на иврите и русском. Вовлечённость не выдаётся за поддержку, намерение голосовать или согласие."
+      },
+      "consequence": {
+        "he": "השאלה השתנתה מ“איזה תפקיד אקבל” ל“איזו אחריות אני יכול לקחת גם בלי תפקיד”.",
+        "en": "The question changed from “what role will I get?” to “what responsibility can I take even without a role?”",
+        "ru": "Вопрос изменился с «какую должность я получу?» на «какую ответственность я могу взять даже без должности?»"
+      },
+      "reflection": {
+        "he": "כשלא קיבלתי ב־2026 את המקום שקיוויתי לו, הכאב היה אמיתי. אבל אם כל החזון תלוי בכיסא אחד — זה לא חזון מספיק חזק. מכאן המבחן הוא לבנות גם בלי הכיסא.",
+        "en": "When I did not receive the place I had hoped for in 2026, the disappointment was real. But if the entire vision depends on one seat, it is not strong enough. The test now is to build without the seat as well.",
+        "ru": "Когда в 2026 году я не получил место, на которое надеялся, разочарование было настоящим. Но если всё видение зависит от одного кресла, оно недостаточно сильное. Теперь испытание — строить и без этого кресла."
+      },
+      "capability": {
+        "he": "להפריד בין שליחות לתפקיד",
+        "en": "Separate mission from title",
+        "ru": "Отделять миссию от должности"
+      },
+      "publicValue": {
+        "he": "למדוד מנהיגות לפי אחריות ותוצאה, לא רק לפי מיקום ברשימה.",
+        "en": "Measure leadership by responsibility and outcome, not only by list position.",
+        "ru": "Измерять лидерство ответственностью и результатом, а не только местом в списке."
+      },
+      "depthLabel": {
+        "he": "למעבדת המנהיגות",
+        "en": "Open the leadership lab",
+        "ru": "Открыть лабораторию лидерства"
+      },
+      "index": "07",
+      "era": "2023—2026",
+      "sourceUrl": "https://www.facebook.com/beytenu/videos/26702411802682636/",
+      "depth": "leadership",
+      "sourceLabel": {
+        "he": "הפצה ציבורית · ישראל ביתנו · 2026",
+        "en": "Public party distribution · Yisrael Beiteinu · 2026",
+        "ru": "Публичное партийное распространение · НДИ · 2026"
+      }
+    },
+    {
+      "id": "now",
+      "kicker": {
+        "he": "עכשיו / זיכרון / בנייה",
+        "en": "NOW / MEMORY / BUILD",
+        "ru": "СЕЙЧАС / ПАМЯТЬ / СОЗДАНИЕ"
+      },
+      "title": {
+        "he": "עכשיו אני מנסה לא לאבד שוב את החוט.",
+        "en": "Now I am trying not to lose the thread again.",
+        "ru": "Сейчас я пытаюсь больше не терять нить."
+      },
+      "age": {
+        "he": "בן 36",
+        "en": "AGE 36",
+        "ru": "36 ЛЕТ"
+      },
+      "place": {
+        "he": "7YA · StartOn · הרשת הציבורית",
+        "en": "7YA · STARTON · THE PUBLIC WEB",
+        "ru": "7YA · STARTON · ПУБЛИЧНАЯ СЕТЬ"
+      },
+      "people": {
+        "he": "המשפחה, הקהילה, שותפים ומי שנכנס לסיפור",
+        "en": "FAMILY, COMMUNITY, PARTNERS AND PEOPLE ENTERING THE STORY",
+        "ru": "СЕМЬЯ, СООБЩЕСТВО, ПАРТНЁРЫ И ЛЮДИ, ВХОДЯЩИЕ В ИСТОРИЮ"
+      },
+      "moment": {
+        "he": "7YA נבנה כדי שהחיים לא יתפרקו שוב לעשרות חשבונות, כתבות, פוסטים, תפקידים ומסמכים שאין ביניהם חוט. ההווה צריך להישאר חי — לא להפוך למוזיאון סגור.",
+        "en": "7YA is being built so the life does not fragment again into dozens of accounts, articles, posts, roles and documents with no connecting thread. The present must stay alive, not become a sealed museum.",
+        "ru": "7YA строится, чтобы жизнь снова не распалась на десятки аккаунтов, статей, постов, ролей и документов без общей нити. Настоящее должно оставаться живым, а не превращаться в закрытый музей."
+      },
+      "story": {
+        "he": "כאן StartOn, יצירה, מחקר, מדיה, עבודה ציבורית והחיים האישיים חוזרים להיות סיפור אחד — עם מקורות פתוחים, אבל בלי לדרוש מהמבקר להבין את המערכת לפני שהוא מבין את האדם.",
+        "en": "Here StartOn, creation, research, media, public work and personal life become one story again — with open sources, but without requiring the visitor to understand the system before understanding the person.",
+        "ru": "Здесь StartOn, творчество, исследования, медиа, общественная работа и личная жизнь снова становятся одной историей — с открытыми источниками, но без требования понять систему раньше человека."
+      },
+      "response": {
+        "he": "ההווה ממשיך להיכנס דרך פידים ציבוריים, תגובות, שיחות ותנועה באתר. כל אות נשמר במקור שלו; אין “Total” סינתטי שמעמיד פנים שכל המדדים הם אותו דבר.",
+        "en": "The present continues to enter through public feeds, comments, conversations and site activity. Every signal stays bound to its source; there is no synthetic “Total” pretending different metrics are the same thing.",
+        "ru": "Настоящее продолжает входить через публичные ленты, комментарии, разговоры и активность сайта. Каждый сигнал остаётся у своего источника; синтетического «Total», смешивающего разные метрики, нет."
+      },
+      "consequence": {
+        "he": "האתר עצמו נהיה חלק מהדרך: הוא לא רק מספר מה היה, אלא עוזר לבחור מה עושים מכאן.",
+        "en": "The site itself becomes part of the path: it does not only describe what happened, it helps choose what happens next.",
+        "ru": "Сам сайт становится частью пути: он не только рассказывает, что было, но помогает выбирать, что делать дальше."
+      },
+      "reflection": {
+        "he": "אם כל מה שעברתי נשאר רק ארכיון — פספסתי. הערך האמיתי הוא להפוך זיכרון, ניסיון וקהל לתשתית שמאפשרת לאחרים לפעול.",
+        "en": "If everything I lived through remains only an archive, I missed the point. The real value is turning memory, experience and audience into infrastructure that helps other people act.",
+        "ru": "Если всё пережитое останется только архивом, смысл потерян. Настоящая ценность — превращать память, опыт и аудиторию в инфраструктуру, помогающую другим действовать."
+      },
+      "capability": {
+        "he": "לחבר חיים לפעולה",
+        "en": "Connect life to action",
+        "ru": "Соединять жизнь с действием"
+      },
+      "publicValue": {
+        "he": "לעבור מזיכרון מתועד לצעד הבא.",
+        "en": "Move from documented memory to the next move.",
+        "ru": "Переходить от документированной памяти к следующему шагу."
+      },
+      "depthLabel": {
+        "he": "לבנות משהו יחד",
+        "en": "Build something together",
+        "ru": "Создать что-то вместе"
+      },
+      "index": "08",
+      "era": "2026 → NOW",
+      "sourceUrl": "https://www.instagram.com/igor.vepretski/",
+      "depth": "create",
+      "sourceLabel": {
+        "he": "הפיד הציבורי החי",
+        "en": "Live public feed",
+        "ru": "Живая публичная лента"
+      }
+    }
+  ]
+}
