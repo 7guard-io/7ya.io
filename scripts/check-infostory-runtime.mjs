@@ -52,7 +52,7 @@ for (const marker of [
 ]) requireText(runtime, marker, 'Personal homepage runtime');
 
 for (const forbidden of ['innerHTML','localStorage','OPENAI_API_KEY','NVIDIA_API_KEY','img.src=sourceMedia','media?.thumbnail']) excludeText(runtime, forbidden, 'Personal homepage runtime');
-for (const marker of ['const fallbackRecords = grid ?','let records = fallbackRecords;','records = remoteRecords.length ? remoteRecords : fallbackRecords;','if (fallbackRecords.length) render();']) requireText(wall, marker, 'Public voices fallback runtime');
+for (const marker of ['const fallbackRecords = grid ?','!withheldRecordIds.has(item.id)','let records = fallbackRecords;','records = remoteRecords.length ? remoteRecords : fallbackRecords;','if (fallbackRecords.length) render();']) requireText(wall, marker, 'Public voices fallback runtime');
 
 for (const marker of [
   '.hero', '.story-path', '.work-grid', '.topics', '.contact',

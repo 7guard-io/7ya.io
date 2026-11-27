@@ -133,7 +133,7 @@
     };
   };
   const fallbackRecords = grid ? [...grid.querySelectorAll('[data-voice-card]')].map(parseFallbackCard).filter(item =>
-    item.id && item.url && item.audience_reactions.length
+    item.id && !withheldRecordIds.has(item.id) && item.url && item.audience_reactions.length
   ) : [];
   let records = fallbackRecords;
   let activeFilter = 'all';

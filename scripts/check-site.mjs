@@ -89,6 +89,25 @@ for (const required of [
   '7YA מארגנת את הזיכרון. איגור נשאר האדם.'
 ]) requireText(home, required, 'homepage');
 
+const requiredTransitionOrder = [
+  '03 / MEDIA &amp; ECHO',
+  '04 / STARTON',
+  '05 / CULTURE &amp; SOUND',
+  '06 / RESEARCH, SUPERNOAH &amp; AI'
+];
+function checkTransitionOrder(html, label) {
+  let previous = -1;
+  for (const transition of requiredTransitionOrder) {
+    const position = html.indexOf(transition);
+    if (position > previous) pass(label + ' transition order includes ' + transition);
+    else fail(label + ' transition order is incorrect at ' + transition);
+    previous = position;
+  }
+}
+checkTransitionOrder(home, 'HE homepage');
+const englishHome = read('en/index.html');
+checkTransitionOrder(englishHome, 'EN homepage');
+
 const homepageSchemaMatch = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
 if (!homepageSchemaMatch) {
   fail('homepage is missing a closed JSON-LD block');
