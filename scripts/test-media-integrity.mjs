@@ -18,7 +18,8 @@ for(const token of ['REALITY &amp; MEDIA EXPLORER','data-living-explorer','livin
 const runtime=fs.readFileSync('scripts/living-archive-explorer-20261128.js','utf8');
 for(const [token,label] of [
   ['const safeExternalUrl=','external URL validation is explicit'],
-  ["['http:','https:'].includes(url.protocol)",'only HTTP(S) source links are allowed'],
+  ["url.protocol==='https:'",'external source links require HTTPS'],
+  ["url.origin===window.location.origin",'HTTP is limited to same-origin development links'],
   ["link.rel='noopener noreferrer'",'external links are isolated from the opener'],
   ['request!==state.request','stale collection requests cannot overwrite the active layer'],
   ['ui.grid.replaceChildren(fragment)','cards are rendered as DOM nodes'],
