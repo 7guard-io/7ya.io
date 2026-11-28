@@ -1,0 +1,32 @@
+{
+  "app_id": "697a008fddc309b142",
+  "snapshot": "1789235152209",
+  "parent_snapshot": "1789235063083",
+  "purpose": "Authentic chapter Memory Strips for the canonical personal life album",
+  "narrative_rule": "AGE -> PLACE -> PEOPLE -> MOMENT -> MEDIA -> RESPONSE -> CONSEQUENCE -> REFLECTION",
+  "release_files": [
+    "src/album/AlbumHome.tsx",
+    "src/album/album-story-traces.css",
+    "tests/tests.txt"
+  ],
+  "runtime_delta_from_parent": [
+    "src/album/AlbumHome.tsx",
+    "src/album/album-story-traces.css"
+  ],
+  "verification": {
+    "deployment_status": "READY",
+    "frontend_errors": 0,
+    "backend_errors": 0,
+    "network_errors": 0,
+    "e2e_tests": null,
+    "canonical_domain": "active",
+    "www_domain": "active",
+    "independent_qa_screenshot_inspection": false
+  },
+  "publication_boundaries": {
+    "private_drive_assets_auto_published": false,
+    "family_minors_privacy_minimized": true,
+    "synthetic_reach_total": false,
+    "synthetic_period_imagery": false
+  }
+}

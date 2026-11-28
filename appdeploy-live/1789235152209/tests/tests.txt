@@ -1,0 +1,73 @@
+# Tests
+
+## Test 1 - Walk the human-context life album [sanity]
+Viewport: desktop
+Covers: canonical homepage, personal album cover, chronological life chapters, age/place/people context, moment/consequence/reflection sequence, chapter-bound public story traces, source actions
+Description: Verifies the homepage now reads as Igor's life in time rather than as a portfolio or evidence dashboard.
+
+Steps:
+1. Open the Hebrew homepage and activate "להיכנס לחיים"
+2. Inspect the first chapter and then continue to the service chapter
+3. Read the chapter context and memory blocks before using any source action
+
+Expected: The homepage visibly presents "PERSONAL ALBUM / IGOR VEPRETSKI" and the life-rule "AGE → PLACE → PEOPLE → MOMENT → MEDIA → RESPONSE → CONSEQUENCE → REFLECTION"; after the app settles, the Personal Album remains the visible canonical homepage and the legacy recovery shell is not shown; each inspected chapter visibly shows גיל, מקום, אנשים, הרגע, מה חזר מהקהל, מה קרה אחר כך and מה אני מבין היום before the evidence/source actions; each chapter also shows a compact "מה נשאר מהזמן הזה ברשת" trace strip with source-bound real posts/videos from the existing corpus, while full social/viral depth is deferred to /album/ instead of becoming a generic homepage wall.
+
+## Test 2 - Follow a Moment into audience response and consequence
+Viewport: desktop
+Covers: fatherhood chapter, StartOn chapter, public-leadership chapter, authentic/source media, 2–5-item chapter Memory Strips, privacy-minimized family story, source-bound public response, leadership reflection boundary
+Description: Verifies strong chapters connect a human moment to its surviving media, audience response, consequence and present-day reflection without inventing aggregate reach or political endorsement.
+
+Steps:
+1. Open /album/ and navigate to the fatherhood chapter
+2. Continue to StartOn and then to the public-leadership chapter
+3. Inspect each chapter's MEMORY STRIP, media/source frame, response, consequence and reflection blocks
+
+Expected: At least five life chapters visibly expose a MEMORY STRIP with 2–5 authentic source objects and readable source/date labels; Fatherhood centers parental presence without exposing unnecessary child details; StartOn shows the 2022 return and keeps its documented LinkedIn comment counts attached to their individual posts; the leadership chapter states that engagement is not endorsement and frames the 2026 disappointment as personal reflection rather than proof of entitlement to a role.
+
+## Test 3 - Use the canonical life album on mobile
+Viewport: mobile
+Covers: responsive album cover, eight-chapter rail, age/place/people cards, memory blocks, horizontally scrollable chapter Memory Strips, deep-album handoff, mobile overflow guardrail
+Description: Verifies the richer human-context experience remains readable and story-first on a 375x667 viewport.
+
+Steps:
+1. Open the Hebrew homepage and scroll from the cover through the first two life chapters
+2. Continue through a later chapter and horizontally swipe the chapter MEMORY STRIP inside that chapter
+3. Continue below the life chapters and verify the homepage offers a compact Broadcast/depth handoff instead of the full Posts Memory and 20-scene walls
+
+Expected: Age/place/people and response/consequence/reflection blocks stack cleanly, controls remain tappable, each MEMORY STRIP scrolls horizontally inside its own chapter, contains 2–5 authentic thumbnails or explicit SOURCE OBJECT fallbacks with readable source/date labels, and never creates page-level horizontal overflow; the canonical homepage keeps the personal life story primary; /album/ remains the destination for the full Posts Memory and Broadcast depth.
+
+## Test 4 - Explore Story, Impact Trace and Life Galaxy on mobile
+Viewport: mobile
+Covers: museum Story Mode, Public Projection read, Media Impact read, four-choice narrative interaction, source-bound Impact Trace, evidence-gravity Galaxy View, chapter jump, mobile overflow guardrail
+Description: Verifies the museum continues to use one public-data flow for narrative, source-bound impact and the interactive life galaxy without inventing an aggregate total.
+
+Steps:
+1. Open the Hebrew museum route and scroll to "STORY MODE · CANON + IMPACT"
+2. In the four choices under "מה לדעתך מגיע עכשיו במסלול המתועד?", activate the choice containing "שירות, ביטחון ומשטרה" and then activate "פתח את הפרק הבא"
+3. Observe "IMPACT TRACE · SOURCE BOUND", then use "LIFE GALAXY · EVIDENCE GRAVITY" to jump to the StartOn chapter
+
+Expected: Story Mode moves to the StartOn chapter, Impact Trace states that no synthetic Total is constructed and shows only source-bound surfaces/signals or a direct-metric empty state, and the page has no horizontal overflow.
+
+## Test 5 - Keep the museum usable when Public Projection fails
+Viewport: desktop
+Covers: museum failure guardrail, Public Projection error handling, legacy museum continuity
+Description: Verifies a temporary Public Projection failure does not blank or replace the existing museum experience.
+
+QA Faults:
+```json
+[
+  {
+    "method": "GET",
+    "path": "/api/public-projection",
+    "status": 503,
+    "body_json": {"error":"simulated_projection_failure"}
+  }
+]
+```
+
+Steps:
+1. Open the Hebrew museum route
+2. Observe the Story Mode area
+3. Continue scrolling below Story Mode into the existing museum content
+
+Expected: Story Mode shows a visible temporary-unavailable message while the existing museum chronology, evidence/depth content, and source-linked sections remain rendered and usable below it.
