@@ -1,0 +1,14 @@
+{
+  "appId": "697a008fddc309b142",
+  "appDeployVersion": "1789293197999",
+  "capturedOn": "2026-09-16",
+  "canonicalRepository": "7guard-io/7ya.io",
+  "sourceRoot": "apps/7ya-live",
+  "behaviorChange": false,
+  "productionCutoverAllowed": false,
+  "cutoverGate": "FULL_SOURCE_PARITY_REQUIRED",
+  "currentProductionProvider": "AppDeploy",
+  "targetProductionProvider": "Vercel",
+  "targetVercelProjectId": "prj_4aaG2FZcGR9tagwE7FfEBGO9yQOt",
+  "targetVercelTeamId": "team_iNIgNZ4YWL66QZRdZn2IihaL"
+}
