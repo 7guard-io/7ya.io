@@ -117,6 +117,7 @@ export const publicStyleFiles = [
   'personal-media-runtime-20260921.css',
   'zone-shells-v1.css',
   'locale-shell-20260919.css',
+  'living-archive-explorer-20261128.css',
   'premium-polish-20260921.css',
 ];
 
@@ -144,6 +145,7 @@ export const publicScriptFiles = [
   'personal-media-runtime-20260921.js',
   'zone-shells-v1.js',
   'locale-runtime-20260919.js',
+  'living-archive-explorer-20261128.js',
   'igor-experience-20261123.js',
   'igor-life-album-20261127.js',
   'public-voices-wall-20261127.js',
