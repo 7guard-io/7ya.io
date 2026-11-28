@@ -1,0 +1,12 @@
+{
+  "status": "VALIDATED_PENDING_PUBLICATION",
+  "release": "7ya-chat-20261009-v8",
+  "changes": [
+    "History and stored topic take precedence over page route",
+    "Stored public source topic included in both provider prompts",
+    "Youth-related sales do not become StartOn",
+    "Agency biography questions retain biography context"
+  ],
+  "validation": "release:gate PASS; 29 chat regression cases PASS",
+  "domain_blocker": "7ya.io expired registrar clientHold; DNS NXDOMAIN; existing Replit recovery tickets"
+}

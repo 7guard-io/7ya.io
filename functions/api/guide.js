@@ -1,4 +1,4 @@
-const CHAT_RELEASE = '7ya-chat-20261009-v7';
+const CHAT_RELEASE = '7ya-chat-20261009-v8';
 const headers = {
   'content-type': 'application/json; charset=utf-8',
   'cache-control': 'no-store',
@@ -24,7 +24,7 @@ const modeOf = body => body.mode === 'creator' ? 'build' : 'guide';
 const providerKey = env => clean(env && (env.NVIDIA_NIM_API_KEY || env.NVIDIA_API_KEY), 1200);
 const providerModel = env => clean(env && env.NVIDIA_MODEL, 160) || 'nvidia/nemotron-3-super-120b-a12b';
 
-function providerInstructions(locale, creator) {
+function providerInstructions(locale, creator, sourceContext) {
   const language = locale === 'he' ? 'Hebrew' : locale === 'ru' ? 'Russian' : locale === 'ar' ? 'Arabic' : 'English';
   return [
     'You are Speak with Igor, a transparent AI conversation inside 7YA. You are not Igor Vepretski and must never pretend to be a live human or speak on his behalf.',
@@ -35,6 +35,7 @@ function providerInstructions(locale, creator) {
     'Use modern AI, research, writing, video and creation tools only when they materially help the visitor act.',
     'Use the whole conversation. A short reply such as sales or yes answers your preceding question; do not restart or ask the same question again. Offer a concrete useful answer before asking at most one relevant follow-up. Do not repeat greetings or generic clarification.',
     'Public source context: Igor Vepretski is the person behind 7YA (public biography: /igor-vepretski/). StartOn is his social mission connecting technology, learning, creation and belonging for youth (/starton/). 7YA organizes his public archive and sources (/evidence/). For facts beyond this context, point to a source or acknowledge that you cannot verify them.',
+    sourceContext ? 'Active public source topic: '+({identity:'Igor biography (/igor-vepretski/)',starton:'StartOn (/starton/)',evidence:'Public sources (/evidence/)'}[sourceContext])+'. Resolve ambiguous follow-ups using this topic and the documented excerpt; do not invent missing events or facts.' : '',
     'Public biography excerpt (/igor-vepretski/): Igor was born in Kharkiv and grew up in Jessie Cohen in Israel. His public story connects service and public systems with a return to the neighborhood through StartOn. The recurring question is how to give a person a place and a chance to belong. StartOn describes spaces connecting technology, creation, community and support for youth; this is its mission, not proof of measured outcomes. Do not invent results, funding or partnerships.',
     'When a visitor asks about Igor journey or StartOn, first connect your answer to this specific documented transition and mention the relevant source route. Then offer an explicitly suggested action tied to that example, such as listening to one young person about a barrier before planning a space. If they ask for one step, give one step. Do not replace their question with generic advice to list ideas. For unrelated visitor goals, use their own context instead.',
     'Answer in ' + language + '. Keep the answer under 80 words, finish every sentence, and avoid markdown formatting. Give 2-3 concrete steps, a usable example, or a draft that directly advances the visitor goal. Do not answer a short follow-up by offering another menu of topics. If a business sells to agencies and the visitor says sales, use that context to suggest a focused offer, decision-maker, outreach and follow-up; ask what the business sells only after a useful next step. Your advice is a suggestion, not Igor personal speech.',
@@ -92,7 +93,7 @@ async function callWorkersAI(body, request, env) {
   try {
     const data = await Promise.race([
       env.AI.run(model, {
-        messages: [{ role: 'system', content: providerInstructions(localeOf(body.locale || request.headers.get('accept-language')), body.mode === 'creator') }, ...conversationHistory(body)],
+        messages: [{ role: 'system', content: providerInstructions(localeOf(body.locale || request.headers.get('accept-language')), body.mode === 'creator', conversationSourceTopic(body)) }, ...conversationHistory(body)],
         temperature: 0.2, max_tokens: 850, stream: false,
       }),
       new Promise((_, reject) => { timeout = setTimeout(() => reject(new Error('workers_ai_timeout')), 30000); }),
@@ -127,7 +128,7 @@ async function callCloudflareNvidia(body, request, env) {
       },
       body: JSON.stringify({
         model,
-        messages: [{ role: 'system', content: providerInstructions(locale, creator) }, ...history],
+        messages: [{ role: 'system', content: providerInstructions(locale, creator, conversationSourceTopic(body)) }, ...history],
         temperature: 0.2,
         top_p: 0.9,
         max_tokens: creator ? 1000 : 850,
@@ -157,7 +158,7 @@ const engineErrorCode = error => {
 
 function sourceTopic(message) {
   const q=clean(message).toLowerCase();
-  if(/starton|סטארט\s*און|стартон|\byouth\b|נוער|молод|подрост|شباب/.test(q)) return 'starton';
+  if(/starton|סטארט\s*און|стартон|(?:help|support).*?\byouth\b|(?:לעזור|עזרה).*?נוער|помо.*?(?:молод|подрост)|مساعدة.*?شباب/.test(q)) return 'starton';
   if(/\bigor\b|איגור|игор|إيغور|your (?:path|journey|story)|הדרך שלך|המסע שלך|הסיפור שלך|твоего пути|твоей истории|مسارك|قصتك|رحلتك/.test(q)) return 'identity';
   if(/\bevidence\b|\bproof\b|\bsources?\b|מקורות|ראיות|доказ|источни|دليل|مصدر/.test(q)) return 'evidence';
   return null;
@@ -166,10 +167,9 @@ function sourceTopic(message) {
 function conversationSourceTopic(body) {
   const continuation=value=>/^(?:tell me more|more|yes|continue|go on|עוד|כן|תמשיך|המשך|ספר לי עוד|подробнее|да|продолжай|расскажи подробнее|نعم|المزيد|تابع)[.!?\s]*$/i.test(clean(value));
   const contextual=value=>continuation(value)||/\b(?:he|his|they|their|it|that|then|next|afterwards)\b|הוא|שלו|אחרי|אותו|השלב הבא|(?:^|\s)(?:он|его|они|их|это|дальше)(?=\s|[.!?,]|$)|ذلك|بعد|هو|التالي/i.test(clean(value));
-  const newTopic=value=>/\b(?:sell|sales|business|agenc(?:y|ies)|weather|recipe)\b|מכירות|למכור|עסק|סוכנויות|продаж|бизнес|агентств|мبيعات|بيع|وكالات/i.test(clean(value));
+  const newTopic=value=>/\b(?:sell|sales|weather|recipe)\b|מכירות|למכור|продаж|мبيعات|بيع/i.test(clean(value));
+  if(newTopic(body.message)) return null;
   let topic=sourceTopic(body.message);
-  if(!topic && newTopic(body.message)) return null;
-  if(!topic && /^\/(?:en\/|ru\/|ar\/)?starton(?:\/|$)/.test(safePath(body.path))) topic='starton';
   if(!topic && contextual(body.message)) {
     const previous=Array.isArray(body.messages)?body.messages.slice(-8).filter(item=>item?.role==='user' && clean(item.content)!==clean(body.message)):[];
     for(const item of previous.reverse()) {
@@ -180,7 +180,7 @@ function conversationSourceTopic(body) {
     }
     topic=['identity','starton','evidence'].includes(body.state?.source_topic)?body.state.source_topic:null;
   }
-  return topic;
+  return topic || (/^\/(?:en\/|ru\/|ar\/)?starton(?:\/|$)/.test(safePath(body.path)) ? 'starton' : null);
 }
 
 function conversationSourceLinks(body) {
